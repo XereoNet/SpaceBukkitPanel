@@ -1,0 +1,1742 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: SpaceBukkit \n"
+"POT-Creation-Date: 2012-01-25 20:16+0100\n"
+"PO-Revision-Date: 2012-01-28 21:39+0200\n"
+"Last-Translator: Iiro <iiroseppanen@gmail.com>\n"
+"Language-Team: ibab\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"X-Poedit-Language: Finnish\n"
+
+#: \Controller\BukgetController.php:76;76
+msgid "Installed!"
+msgstr "Asennettu!"
+
+#: \Controller\BukgetController.php:78;78
+#: \View\TPluginsController\index.ctp:125;125
+msgid "Install"
+msgstr "Asenna"
+
+#: \Controller\DashController.php:141;141
+msgid "Up to date (devbuild)"
+msgstr "Päivitetty (dev versio)"
+
+#: \Controller\DashController.php:143;143
+msgid "Up to date!"
+msgstr "Päivitetty!"
+
+#: \Controller\DashController.php:145;145
+msgid "Outdated!"
+msgstr "Vanhentunut!"
+
+#: \Controller\DashController.php:267;267
+#: \View\DashController\index.ctp:74;74
+msgid "Players"
+msgstr "Pelaajat"
+
+#: \Controller\DashController.php:302;302
+msgid "Java Usage"
+msgstr "Javan käyttö"
+
+#: \Controller\DashController.php:388;388
+msgid "Nobody online :"
+msgstr "Kukaan ei ole paikalla :"
+
+#: \Controller\DashController.php:421;421
+msgid "You said "
+msgstr "Sinä sanoit"
+
+#: \Controller\GlobalController.php:160;160
+msgid " reloaded the server"
+msgstr "palvelin ladattu uudelleen"
+
+#: \Controller\GlobalController.php:180;180
+msgid " restarted the server"
+msgstr "palvelin resetoitu"
+
+#: \Controller\GlobalController.php:201;201
+msgid " stopped the server"
+msgstr "palvelin sammutettu"
+
+#: \Controller\GlobalController.php:220;220
+msgid " started the server"
+msgstr "palvelin käynnistetty"
+
+#: \Controller\GlobalController.php:248;248
+msgid "Invalid server"
+msgstr "Epäkelvollinen palvelin"
+
+#: \Controller\GlobalController.php:251;251
+#: \Controller\ServersController.php:80;80
+msgid "Server deleted"
+msgstr "Palvelin poistettu"
+
+#: \Controller\GlobalController.php:256;256
+#: \Controller\ServersController.php:83;83
+msgid "Server was not deleted"
+msgstr "Palvelinta ei poistettu"
+
+#: \Controller\GlobalController.php:264;264
+msgid "The Server has been added!"
+msgstr "Palvelin on lisätty!"
+
+#: \Controller\GlobalController.php:292;292
+msgid "The command"
+msgstr "Komento"
+
+#: \Controller\GlobalController.php:292;292
+msgid "was executed!"
+msgstr "suoritettu"
+
+#: \Controller\GlobalController.php:300;300
+msgid " executed the command \""
+msgstr "suoritti komennon \""
+
+#: \Controller\GlobalController.php:306;306
+msgid "No servers set"
+msgstr "Palvelimia ei ole määritetty"
+
+#: \Controller\GlobalController.php:312;312
+msgid "No server set | Manage"
+msgstr "Palvelitan ei ole määritetty | Muuta"
+
+#: \Controller\GlobalController.php:318;318
+msgid "No servers associated"
+msgstr "Palvelimia ei ole liitetty"
+
+#: \Controller\GlobalController.php:324;324
+msgid "SpaceBukkit is in maintenance mode"
+msgstr "SpaceBukkit on huolto tilassa"
+
+#: \Controller\InstallController.php:20;20
+msgid "You passed all tests, young jedi! You're ready for the next step! :P"
+msgstr "Suoritit kaikki testit, nuori jedi! Olet valmis seuraavaan askeleeseen! :P"
+
+#: \Controller\InstallController.php:34;34
+msgid "Sorry, you can' use SpaceBukkit here!"
+msgstr "Anteeksi, et voi käyttää SpaceBukkittia täällä!"
+
+#: \Controller\InstallController.php:37;58;79;99;118;137;37;58;79;99;118;137
+msgid "You didn't pass all tests. Please go fix all issues to continue"
+msgstr "Et suorittanut kaikkia testejä. Mene takaisin ja korjaa ongelmat jotta voit jatkaa"
+
+#: \Controller\InstallController.php:48;69;48;69
+msgid "is writable"
+msgstr "on kirjoitettava"
+
+#: \Controller\InstallController.php:76;76
+msgid "is not writable"
+msgstr "on kirjoittamaton"
+
+#: \Controller\InstallController.php:89;89
+msgid "allow_url_fopen is enabled"
+msgstr "allow_url_fopen on käytössä"
+
+#: \Controller\InstallController.php:96;96
+msgid "allow_url_fopen is disabled"
+msgstr "allow_url_fopen ei ole käytössä"
+
+#: \Controller\InstallController.php:108;108
+msgid "CURL is enabled, make sure your provider doesn't block ports 2011 and 2012"
+msgstr "CURL on käytössä, varmista että tarjoajasi ei estä portteja 2011 ja 2012"
+
+#: \Controller\InstallController.php:115;115
+msgid "CURL is not enabled"
+msgstr "CURL ei ole käytössä"
+
+#: \Controller\InstallController.php:127;127
+msgid "mod_rewrite is enabled"
+msgstr "mod_rewrite on käytössä"
+
+#: \Controller\InstallController.php:134;134
+msgid "mod_rewrite is not enabled"
+msgstr "mod_rewrite ei ole käytössä"
+
+#: \Controller\InstallController.php:261;261
+msgid "The server was not reached. Please check your data."
+msgstr "Palvelinta ei tavoitettu. Varmista tiedot."
+
+#: \Controller\InstallController.php:271;271
+#: \Controller\ServersController.php:39;60;39;60
+msgid "The Server has been saved"
+msgstr "Palvelin on tallennettu"
+
+#: \Controller\InstallController.php:279;279
+#: \Controller\ServersController.php:42;63;42;63
+msgid "The Server could not be saved. Please, try again."
+msgstr "Palvelinta ei voitu tallentaa. Yritä uudestaan."
+
+#: \Controller\RolesController.php:116;212;116;212
+msgid "The role has been saved"
+msgstr "Rooli tallennettu"
+
+#: \Controller\RolesController.php:119;215;119;215
+msgid "The role could not be saved. Please, try again."
+msgstr "Roolia ei voitu tallentaa. Yritä uudestaan."
+
+#: \Controller\RolesController.php:134;253;134;253
+msgid "Invalid role"
+msgstr "Epäkelvollinen rooli"
+
+#: \Controller\RolesController.php:258;258
+msgid "You cannot delete the default role"
+msgstr "Et voi poistaa oletus roolia"
+
+#: \Controller\RolesController.php:261;261
+msgid "Role deleted"
+msgstr "Rooli poistettu"
+
+#: \Controller\RolesController.php:264;264
+msgid "Role was not deleted"
+msgstr "Roolia ei poistettu"
+
+#: \Controller\ServersController.php:56;77;56;77
+msgid "Invalid Server"
+msgstr "Epäkelvollinen palvelin"
+
+#: \Controller\TplayersController.php:140;140
+msgid "Noone is online"
+msgstr "Kukaan ei ole paikalla"
+
+#: \Controller\TplayersController.php:166;230;166;230
+#: \View\TServersController\index.ctp:241;241
+msgid "Survival"
+msgstr "Selviytymis"
+
+#: \Controller\TplayersController.php:166;166
+msgid "Set to creative"
+msgstr "Aseta luovaksi"
+
+#: \Controller\TplayersController.php:168;232;168;232
+#: \View\TServersController\index.ctp:242;242
+msgid "Creative"
+msgstr "Luova"
+
+#: \Controller\TplayersController.php:168;168
+msgid "Set to survival"
+msgstr "Aseta selviytymiseksi"
+
+#: \Controller\TplayersController.php:172;172
+msgid "Yes"
+msgstr "Kyllä"
+
+#: \Controller\TplayersController.php:172;172
+msgid "Deop"
+msgstr "Deop"
+
+#: \Controller\TplayersController.php:174;174
+msgid "No"
+msgstr "Ei"
+
+#: \Controller\TplayersController.php:174;174
+msgid "Op"
+msgstr "Op"
+
+#: \Controller\TplayersController.php:176;176
+msgid "Health"
+msgstr "Elämä"
+
+#: \Controller\TplayersController.php:176;176
+msgid "Food"
+msgstr "Ruoka"
+
+#: \Controller\TplayersController.php:176;176
+msgid "Lvl"
+msgstr "Taso"
+
+#: \Controller\TplayersController.php:176;176
+msgid "Exp"
+msgstr "Kokemus"
+
+#: \Controller\TplayersController.php:177;177
+msgid "Heal"
+msgstr "Paranna"
+
+#: \Controller\TplayersController.php:177;177
+msgid "Feed"
+msgstr "Ruoki"
+
+#: \Controller\TplayersController.php:177;177
+#: \View\TPlayersController\inventory.ctp2.ctp:2;2
+msgid "Inventory"
+msgstr "Laukku"
+
+#: \Controller\TplayersController.php:177;177
+msgid "Kill"
+msgstr "Tapa"
+
+#: \Controller\TplayersController.php:177;177
+msgid "Kick"
+msgstr "Potki"
+
+#: \Controller\TplayersController.php:177;177
+msgid "Ban"
+msgstr "Estä"
+
+#: \Controller\TplayersController.php:234;234
+msgid "was set to "
+msgstr "asetettiin"
+
+#: \Controller\TplayersController.php:236;341;364;386;407;430;452;472;494;514;534;554;236;341;364;386;407;430;452;472;494;514;534;554
+msgid "[USERS]"
+msgstr "[KÄYTTÄJÄT]"
+
+#: \Controller\TplayersController.php:236;236
+msgid " set "
+msgstr "asetettu"
+
+#: \Controller\TplayersController.php:236;236
+msgid " to "
+msgstr "johonkin"
+
+#: \Controller\TplayersController.php:263;304;263;304
+#: \Controller\TpluginsController.php:177;179;254;256;177;179;254;256
+#: \Controller\TserversController.php:466;466
+#: \View\TPlayersController\index.ctp:163;172;163;172
+msgid "Remove"
+msgstr "Poista"
+
+#: \Controller\TplayersController.php:335;335
+msgid " has been killed from orbit"
+msgstr " on tapettu kiertoradalta"
+
+#: \Controller\TplayersController.php:341;341
+msgid " killed "
+msgstr " tapettu"
+
+#: \Controller\TplayersController.php:359;359
+msgid " has been magically healed from space"
+msgstr " on taikamaisesti parannettu ulkoavaruudesta"
+
+#: \Controller\TplayersController.php:364;364
+msgid " healed "
+msgstr " parannettu"
+
+#: \Controller\TplayersController.php:381;381
+msgid " ate some delicious MoonCheese (tm)"
+msgstr " söi herkullista kuu juustoa (tm)"
+
+#: \Controller\TplayersController.php:386;386
+msgid " fed "
+msgstr " ruokki"
+
+#: \Controller\TplayersController.php:402;402
+msgid " has been kicked. Spacey!"
+msgstr " on potkittu."
+
+#: \Controller\TplayersController.php:407;407
+msgid " kicked "
+msgstr " potkittu"
+
+#: \Controller\TplayersController.php:425;425
+msgid " has been banned. SpaceBukkit is gonna miss him :("
+msgstr " on estetty. SpaceBukkit tulee kaipaamaan häntä :("
+
+#: \Controller\TplayersController.php:430;452;430;452
+msgid " banned "
+msgstr " estetty"
+
+#: \Controller\TplayersController.php:450;450
+msgid " was banned and added to blacklist."
+msgstr " on estetty ja lisätty mustalle listalle"
+
+#: \Controller\TplayersController.php:470;470
+msgid " was removed from blacklist."
+msgstr " on poistettu mustasta listasta"
+
+#: \Controller\TplayersController.php:472;472
+msgid " unbanned "
+msgstr " esto poistettu"
+
+#: \Controller\TplayersController.php:492;492
+msgid " was added to whitelist."
+msgstr " on lisätty valkoiselle listalle"
+
+#: \Controller\TplayersController.php:494;494
+msgid " added "
+msgstr " lisätty"
+
+#: \Controller\TplayersController.php:494;494
+msgid " to whitelist"
+msgstr " valkoiselle listalle"
+
+#: \Controller\TplayersController.php:512;512
+msgid " was removed from whitelist."
+msgstr " poistettiin valkoiselta listalta"
+
+#: \Controller\TplayersController.php:514;514
+msgid " removed "
+msgstr " poistettu"
+
+#: \Controller\TplayersController.php:514;514
+msgid " from whitelist"
+msgstr " valkoiselta listalta"
+
+#: \Controller\TplayersController.php:532;532
+msgid " was opped!"
+msgstr " lisättiin opksi!"
+
+#: \Controller\TplayersController.php:534;534
+msgid " opped "
+msgstr " op:tettiin"
+
+#: \Controller\TplayersController.php:552;552
+msgid " was deopped!"
+msgstr " poistetiin opsta!"
+
+#: \Controller\TplayersController.php:554;554
+msgid " deopped "
+msgstr " tippunut"
+
+#: \Controller\TpluginsController.php:106;106
+msgid "Feature temporarily disabled"
+msgstr "ominaisuus poistettu tilapäisesti"
+
+#: \Controller\TpluginsController.php:177;254;177;254
+#: \Controller\TworldsController.php:206;213;235;206;213;235
+msgid "Disable"
+msgstr "Poista käytöstä"
+
+#: \Controller\TpluginsController.php:179;256;179;256
+#: \Controller\TworldsController.php:208;215;237;208;215;237
+msgid "Enable"
+msgstr "Käytä"
+
+#: \Controller\TpluginsController.php:184;261;184;261
+msgid "Configure"
+msgstr "konfiguroi"
+
+#: \Controller\TpluginsController.php:187;264;187;264
+msgid "Website"
+msgstr "Nettisivu"
+
+#: \Controller\TpluginsController.php:290;307;320;290;307;320
+msgid "[PLUGINS]"
+msgstr "[PLUGINIT]"
+
+#: \Controller\TpluginsController.php:290;290
+msgid " disabled "
+msgstr " poistettu käytöstä"
+
+#: \Controller\TpluginsController.php:291;291
+msgid " has been disabled."
+msgstr " on poistettu käytöstä"
+
+#: \Controller\TpluginsController.php:307;307
+msgid " enabled "
+msgstr " käytössä"
+
+#: \Controller\TpluginsController.php:308;308
+msgid " has been enabled."
+msgstr " on nyt käytössä"
+
+#: \Controller\TpluginsController.php:320;320
+msgid " updated "
+msgstr "päivitetty"
+
+#: \Controller\TserversController.php:85;85
+#: \View\Layouts\sbv1_notrunning.ctp:140;140
+msgid "Server"
+msgstr "Palvelin"
+
+#: \Controller\TserversController.php:240;311;240;311
+msgid "[SERVERS] "
+msgstr "[PALVELIMET]"
+
+#: \Controller\TserversController.php:240;240
+msgid " installed CraftBukkit v"
+msgstr " asennettu CraftBukkit v"
+
+#: \Controller\TserversController.php:311;311
+msgid " update the server.properties"
+msgstr " päivitä server.properties"
+
+#: \Controller\TserversController.php:432;432
+msgid "Backup Worlds"
+msgstr "Varmuuskopioi maailmat"
+
+#: \Controller\TserversController.php:434;434
+msgid "Disable Whitelisting"
+msgstr "Poista valkoinen lista käytöstä"
+
+#: \Controller\TserversController.php:436;436
+msgid "Enable Whitelisting"
+msgstr "Ota valkoinen lista käyttöön"
+
+#: \Controller\TserversController.php:438;438
+msgid "Restart Server"
+msgstr "Resetoi palvelin"
+
+#: \Controller\TserversController.php:440;440
+msgid "Restart Server (if empty)"
+msgstr "Resetoi palvelin (jos tyhjä)"
+
+#: \Controller\TserversController.php:442;442
+msgid "Save Worlds"
+msgstr "Tallenna maailmat"
+
+#: \Controller\TserversController.php:444;444
+msgid "Say something"
+msgstr "Sano jotakin"
+
+#: \Controller\TserversController.php:446;446
+msgid "Execute command"
+msgstr "Suorita komento"
+
+#: \Controller\TserversController.php:448;448
+msgid "Start Server"
+msgstr "Käynnistä palvelin"
+
+#: \Controller\TserversController.php:450;450
+msgid "Stop Server"
+msgstr "Sammuta palvelin"
+
+#: \Controller\TserversController.php:455;455
+msgid "Every X Hours"
+msgstr "Joka X tunti"
+
+#: \Controller\TserversController.php:457;457
+msgid "Every X Minutes"
+msgstr "Joka x minuutti"
+
+#: \Controller\TserversController.php:459;459
+msgid "Once per day at X:Y"
+msgstr "Kerran päivässä aikaan X:Y"
+
+#: \Controller\TserversController.php:461;461
+msgid "At X minutes after every hour"
+msgstr "Joka x minuutti tunnissa"
+
+#: \Controller\TserversController.php:466;466
+msgid "Run now"
+msgstr "Suorita nyt"
+
+#: \Controller\TsettingsController.php:383;383
+#: \Controller\UsersController.php:403;403
+msgid "Invalid user"
+msgstr "Epäkelvollinen käyttäjä"
+
+#: \Controller\TsettingsController.php:388;388
+msgid "The theme has been saved"
+msgstr "Teema tallennettu"
+
+#: \Controller\TsettingsController.php:393;393
+msgid "The theme could not be saved. Please, try again."
+msgstr "Teemaa ei pystytty tallentamaan. Yritä uudestaan."
+
+#: \Controller\TsettingsController.php:408;408
+msgid "The theme has been deleted"
+msgstr "Teema poistettu"
+
+#: \Controller\TworldsController.php:84;84
+#: \View\DashController\index.ctp:88;88
+#: \View\Layouts\sbv1_notrunning.ctp:139;139
+#: \View\TWorldsController\index.ctp:46;46
+msgid "Worlds"
+msgstr "Maailmat"
+
+#: \Controller\TworldsController.php:165;165
+msgid "Load"
+msgstr "Ladaa"
+
+#: \Controller\TworldsController.php:181;181
+#: \View\Tsettings\index.ctp:156;156
+msgid "Default"
+msgstr "Oletus"
+
+#: \Controller\TworldsController.php:242;244;246;248;242;244;246;248
+msgid "Change"
+msgstr "Vaihda"
+
+#: \Controller\TworldsController.php:292;292
+msgid "Unload"
+msgstr "Pura"
+
+#: \Controller\TworldsController.php:364;399;435;472;529;553;577;608;640;671;364;399;435;472;529;553;577;608;640;671
+msgid "[WORLDS]"
+msgstr "[MAAILMAT]"
+
+#: \Controller\TworldsController.php:364;364
+msgid " Changed time in "
+msgstr " Vaihda aikaa"
+
+#: \Controller\TworldsController.php:365;400;436;473;530;365;400;436;473;530
+msgid "You"
+msgstr "Sinä"
+
+#: \Controller\TworldsController.php:365;365
+msgid " changed time in "
+msgstr " vaihda aikaa maailmassa"
+
+#: \Controller\TworldsController.php:366;401;437;474;531;366;401;437;474;531
+msgid "error while setting variable in "
+msgstr "virhe määrittäessä muuttujaa"
+
+#: \Controller\TworldsController.php:386;386
+msgid " enabled animals on "
+msgstr " eläimet otettu käyttöön"
+
+#: \Controller\TworldsController.php:394;394
+msgid " disabled animals on "
+msgstr " eläimet poistettu käytöstä"
+
+#: \Controller\TworldsController.php:422;422
+msgid " enabled hostiles on "
+msgstr " viholliset otettu käyttöön"
+
+#: \Controller\TworldsController.php:430;430
+msgid " disabled hostiles on "
+msgstr " viholliset poistettu käytöstä"
+
+#: \Controller\TworldsController.php:459;459
+msgid " enabled PVP on "
+msgstr " PVP otettu käyttöön"
+
+#: \Controller\TworldsController.php:502;502
+msgid " changed difficulty to peaceful in "
+msgstr " vaikeustaso vaihdettu rauhalliseksi"
+
+#: \Controller\TworldsController.php:509;509
+msgid " changed difficulty to easy in "
+msgstr " vaikeustaso vaihdettu helpoksi"
+
+#: \Controller\TworldsController.php:516;516
+msgid " changed difficulty to normal in "
+msgstr " vaikeustaso vaihdettu normaaliksi"
+
+#: \Controller\TworldsController.php:523;523
+msgid " changed difficulty to hard in "
+msgstr " vaikeustaso vaihdettu vaikeaksi"
+
+#: \Controller\TworldsController.php:553;553
+msgid " unloaded "
+msgstr " purettu"
+
+#: \Controller\TworldsController.php:554;554
+msgid " has been unloaded."
+msgstr "on purettu"
+
+#: \Controller\TworldsController.php:555;555
+msgid "error while unloading "
+msgstr "virhe purkaessa latausta"
+
+#: \Controller\TworldsController.php:577;577
+msgid " loaded "
+msgstr " ladattu"
+
+#: \Controller\TworldsController.php:578;578
+msgid " has been loaded."
+msgstr " on ladattu"
+
+#: \Controller\TworldsController.php:579;579
+msgid "error while loading "
+msgstr "virhe ladatessa"
+
+#: \Controller\TworldsController.php:608;608
+msgid " created "
+msgstr " luotu"
+
+#: \Controller\TworldsController.php:640;640
+msgid " ran MapAutoTrim on "
+msgstr " laittoi MapAutoTrimin päälle"
+
+#: \Controller\TworldsController.php:671;671
+msgid " ran Chunkster on "
+msgstr " laittoi Chunksterin päälle"
+
+#: \Controller\UpdateController.php:57;57
+msgid "Updating SpaceBukkit"
+msgstr "Päivitetään SpaceBukkitia"
+
+#: \Controller\UpdateController.php:88;88
+msgid "already up to date"
+msgstr "on jo ajantasalla"
+
+#: \Controller\UpdateController.php:132;132
+msgid "unzipping failed!"
+msgstr "purkaus epäonnistui!"
+
+#: \Controller\UpdateController.php:141;141
+msgid "unzip didn't unzip! :("
+msgstr "purku ei purkanut! :("
+
+#: \Controller\UsersController.php:60;60
+msgid "Invalid username or password, try again"
+msgstr "Väärä käyttäjänimi tai salasana, kokeile uudestaan"
+
+#: \Controller\UsersController.php:63;63
+msgid "Login to SpaceBukkit"
+msgstr "Kirjaudu SpaceBukkitiin"
+
+#: \Controller\UsersController.php:77;77
+msgid "The user has been saved"
+msgstr "Käyttäjä tallennettu"
+
+#: \Controller\UsersController.php:80;80
+msgid "The user could not be saved. Please, try again."
+msgstr "Käyttäjää ei voitu tallentaa. Yritä uudestaan."
+
+#: \Controller\UsersController.php:272;389;272;389
+msgid "Your User has been updated."
+msgstr "Käyttäjäsi on päivitetty."
+
+#: \Controller\UsersController.php:281;392;281;392
+msgid "Unable to update your User."
+msgstr "Käyttäjää ei pystytty päivittämään."
+
+#: \Controller\UsersController.php:409;409
+msgid "User deleted"
+msgstr "Käyttäjä poistettu."
+
+#: \Controller\UsersController.php:412;412
+msgid "User was not deleted"
+msgstr "Käyttäjää ei poistettu"
+
+#: \Controller\UsersController.php:440;440
+msgid "The server has been saved"
+msgstr "Palvelin on tallennettu"
+
+#: \Controller\UsersController.php:443;443
+msgid "The server could not be saved. Please, try again."
+msgstr "Palvelinta ei pystytty tallentamaan. Yritä uudestaan."
+
+#: \Controller\UsersController.php:459;482;459;482
+msgid "Invalid ServersUsers"
+msgstr "Epäkelvolliset palvelimen käyttäjät"
+
+#: \Controller\UsersController.php:462;462
+msgid "ServersUsers deleted"
+msgstr "Palvelimen käyttäjät poistettu"
+
+#: \Controller\UsersController.php:465;465
+msgid "ServersUsers was not deleted"
+msgstr "Palvelimen käyttäjiä ei poistettu"
+
+#: \Controller\UsersController.php:486;486
+msgid "Saved!"
+msgstr "Tallennettu!"
+
+#: \Controller\UsersController.php:488;488
+msgid "Error :("
+msgstr "Virhe :("
+
+#: \View\DashController\index.ctp:6;6
+#: \View\TPlayersController\index.ctp:5;5
+#: \View\TPluginsController\index.ctp:5;5
+#: \View\TServersController\index.ctp:5;5
+#: \View\TWorldsController\index.ctp:5;5
+#: \View\Tsettings\index.ctp:5;5
+msgid " Dashboard"
+msgstr " Kojelauta"
+
+#: \View\DashController\index.ctp:9;9
+#: \View\TPlayersController\index.ctp:8;8
+#: \View\TPluginsController\index.ctp:8;8
+#: \View\TServersController\index.ctp:8;8
+#: \View\TWorldsController\index.ctp:8;8
+#: \View\Tsettings\index.ctp:8;8
+msgid " Players "
+msgstr " Pelaajat"
+
+#: \View\DashController\index.ctp:12;12
+#: \View\TPlayersController\index.ctp:11;11
+#: \View\TPluginsController\index.ctp:11;11
+#: \View\TPluginsController\updater.ctp:6;6
+#: \View\TServersController\index.ctp:11;11
+#: \View\TWorldsController\index.ctp:11;11
+#: \View\Tsettings\index.ctp:11;11
+msgid " Plugins "
+msgstr " Lisäosat"
+
+#: \View\DashController\index.ctp:15;15
+#: \View\TPlayersController\index.ctp:14;14
+#: \View\TPluginsController\index.ctp:14;14
+#: \View\TPluginsController\updater.ctp:7;7
+#: \View\TServersController\index.ctp:14;14
+#: \View\TWorldsController\index.ctp:14;14
+#: \View\Tsettings\index.ctp:14;14
+msgid " Worlds "
+msgstr " Maailmat"
+
+#: \View\DashController\index.ctp:18;18
+#: \View\TPlayersController\index.ctp:17;17
+#: \View\TPluginsController\index.ctp:17;17
+#: \View\TServersController\index.ctp:17;17
+#: \View\TWorldsController\index.ctp:17;17
+#: \View\Tsettings\index.ctp:17;17
+msgid " Server "
+msgstr " Palvelin"
+
+#: \View\DashController\index.ctp:21;21
+#: \View\TPlayersController\index.ctp:20;20
+#: \View\TPluginsController\index.ctp:20;20
+#: \View\TPluginsController\updater.ctp:10;10
+#: \View\TServersController\index.ctp:20;20
+#: \View\TWorldsController\index.ctp:20;20
+#: \View\Tsettings\index.ctp:20;20
+msgid " Settings "
+msgstr " Asetukset"
+
+#: \View\DashController\index.ctp:31;31
+msgid "Start"
+msgstr "Aloitus"
+
+#: \View\DashController\index.ctp:32;32
+msgid "Chat"
+msgstr "Chatti"
+
+#: \View\DashController\index.ctp:63;63
+#: \View\Layouts\sbv1_notrunning.ctp:138;138
+#: \View\TPluginsController\index.ctp:29;46;29;46
+msgid "Plugins"
+msgstr "Lisäosat"
+
+#: \View\DashController\index.ctp:67;67
+msgid "installed"
+msgstr "asennettu"
+
+#: \View\DashController\index.ctp:68;68
+msgid "disabled"
+msgstr "poistettu käytöstä"
+
+#: \View\DashController\index.ctp:78;78
+msgid "whitelist"
+msgstr "valkoinen lista"
+
+#: \View\DashController\index.ctp:79;79
+msgid "banned"
+msgstr "estetty"
+
+#: \View\DashController\index.ctp:92;92
+msgid "Normal Worlds"
+msgstr "Normaalit maailmat"
+
+#: \View\DashController\index.ctp:96;96
+msgid "Nether Worlds"
+msgstr "Helvetti maailmat"
+
+#: \View\DashController\index.ctp:100;100
+msgid "Skyland Worlds"
+msgstr "Taivas maailmat"
+
+#: \View\DashController\index.ctp:104;104
+msgid "End Worlds"
+msgstr "Loppu maailmat"
+
+#: \View\DashController\index.ctp:110;110
+msgid "Staff"
+msgstr "Henkilökunta"
+
+#: \View\DashController\index.ctp:113;113
+msgid "members connected with this server"
+msgstr "käyttäjää yhdistetty tähän palvelimeen"
+
+#: \View\DashController\index.ctp:118;118
+msgid "CraftBukkit"
+msgstr "CraftBukkit"
+
+#: \View\DashController\index.ctp:135;135
+msgid "Activity Feed (latest on top)"
+msgstr "Aktiivisuus syöte (uusin päälimmäisenä)"
+
+#: \View\DashController\index.ctp:153;153
+msgid "Admins online"
+msgstr "Ylläpitäjää paikalla"
+
+#: \View\DashController\index.ctp:184;184
+msgid "Say it"
+msgstr "Sano se"
+
+#: \View\GlobalController\maintenance.ctp:26;26
+msgid "A new SpaceBukkit update is ready for you to download! You're version is "
+msgstr "Uusi SpaceBukkit päivitys on ladattavissa! Sinun versiosi on"
+
+#: \View\GlobalController\maintenance.ctp:26;26
+#: \View\GlobalController\no_servers_assoc.ctp:26;26
+#: \View\GlobalController\no_servers_set.ctp:26;26
+#: \View\GlobalController\no_servers_set_manage.ctp:26;26
+#: \View\Layouts\sbv1.ctp:35;35
+#: \View\Layouts\sbv1_notreached.ctp:26;26
+#: \View\Layouts\sbv1_notrunning.ctp:27;27
+msgid "while the new version is"
+msgstr "kun taas uusi versi on"
+
+#: \View\GlobalController\maintenance.ctp:26;26
+#: \View\GlobalController\no_servers_assoc.ctp:26;26
+#: \View\GlobalController\no_servers_set.ctp:26;26
+#: \View\GlobalController\no_servers_set_manage.ctp:26;26
+#: \View\Layouts\sbv1.ctp:35;35
+#: \View\Layouts\sbv1_notreached.ctp:26;26
+#: \View\Layouts\sbv1_notrunning.ctp:27;27
+msgid "Click here when you are ready"
+msgstr "Paina tästä kun olet valmis"
+
+#: \View\GlobalController\maintenance.ctp:51;51
+#: \View\GlobalController\no_servers_assoc.ctp:50;50
+#: \View\GlobalController\no_servers_set.ctp:51;51
+#: \View\GlobalController\no_servers_set_manage.ctp:51;51
+#: \View\Layouts\sbv1.ctp:132;132
+#: \View\Layouts\sbv1_notrunning.ctp:115;115
+msgid "Hey there"
+msgstr "Hei siellä"
+
+#: \View\GlobalController\maintenance.ctp:54;54
+#: \View\GlobalController\no_servers_assoc.ctp:53;53
+#: \View\GlobalController\no_servers_set.ctp:54;54
+#: \View\GlobalController\no_servers_set_manage.ctp:54;54
+#: \View\Layouts\sbv1.ctp:135;135
+#: \View\Layouts\sbv1_notreached.ctp:103;103
+#: \View\Layouts\sbv1_notrunning.ctp:118;118
+msgid "Account Settings"
+msgstr "Käyttäjän asetukset"
+
+#: \View\GlobalController\maintenance.ctp:55;55
+#: \View\GlobalController\no_servers_assoc.ctp:54;54
+#: \View\GlobalController\no_servers_set.ctp:55;55
+#: \View\GlobalController\no_servers_set_manage.ctp:55;55
+#: \View\Layouts\sbv1.ctp:136;136
+#: \View\Layouts\sbv1_notreached.ctp:104;104
+#: \View\Layouts\sbv1_notrunning.ctp:119;119
+msgid "SpaceBukkit Theme"
+msgstr "SpaceBukkit teema"
+
+#: \View\GlobalController\maintenance.ctp:56;56
+#: \View\GlobalController\no_servers_assoc.ctp:55;55
+#: \View\GlobalController\no_servers_set.ctp:56;56
+#: \View\GlobalController\no_servers_set_manage.ctp:56;56
+#: \View\Layouts\sbv1.ctp:137;137
+#: \View\Layouts\sbv1_notreached.ctp:105;105
+#: \View\Layouts\sbv1_notrunning.ctp:120;120
+msgid "Logout"
+msgstr "Kirjaudu ulos"
+
+#: \View\GlobalController\maintenance.ctp:75;75
+msgid "Admin is updating SpaceBukkit. Please wait!"
+msgstr "Ylläpito päivittää SpaceBukkitia. Odota!"
+
+#: \View\GlobalController\no_servers_assoc.ctp:26;26
+#: \View\GlobalController\no_servers_set.ctp:26;26
+#: \View\GlobalController\no_servers_set_manage.ctp:26;26
+#: \View\Layouts\sbv1.ctp:35;35
+#: \View\Layouts\sbv1_notreached.ctp:26;26
+#: \View\Layouts\sbv1_notrunning.ctp:27;27
+msgid "A new SpaceBukkit update is ready for you to download! You're version is"
+msgstr "Uusi SpaceBukkit päivitys on ladattavissa! Sinun versiosi on"
+
+#: \View\GlobalController\no_servers_assoc.ctp:74;74
+msgid "There are no servers associated with this account. Ask an administrator to add you to a server."
+msgstr "Palvelimia ei ole yhdistetty tähän käyttäjään. Pyydä ylläpitäjää lisäämään sinut palvelimeen."
+
+#: \View\GlobalController\no_servers_set.ctp:75;75
+msgid "There are no servers stored in the database. Ask an administrator to add one."
+msgstr "Palvelimia ei ole varastoitu tietokantaan. Pyydä ylläpitäjää lisäämään yksi."
+
+#: \View\GlobalController\no_servers_set_manage.ctp:75;75
+msgid "There are no servers connected with this panel!"
+msgstr "Palvelimia ei ole yhdistetty tähän paneeliin!"
+
+#: \View\GlobalController\no_servers_set_manage.ctp:82;82
+msgid "Add a server"
+msgstr "Lisää palvelin"
+
+#: \View\GlobalController\no_servers_set_manage.ctp:90;90
+#: \View\Servers\add.ctp:12;12
+msgid "Title"
+msgstr "Otsikko"
+
+#: \View\GlobalController\no_servers_set_manage.ctp:94;94
+#: \View\Servers\add.ctp:16;16
+msgid "My Cool Server"
+msgstr "Minun hieno palvelin"
+
+#: \View\GlobalController\no_servers_set_manage.ctp:100;100
+#: \View\Servers\add.ctp:22;22
+msgid "Address"
+msgstr "Osoite"
+
+#: \View\GlobalController\no_servers_set_manage.ctp:101;101
+msgid "Port doesn't matter"
+msgstr "Portilla ei ole väliä"
+
+#: \View\GlobalController\no_servers_set_manage.ctp:111;111
+msgid "Spacebukkit port"
+msgstr "Spacebukkit portti"
+
+#: \View\GlobalController\no_servers_set_manage.ctp:112;123;134;112;123;134
+#: \View\Servers\edit.ctp:37;48;59;37;48;59
+msgid "This can be changed in the config.yml of your server"
+msgstr "Tämä voidaan vaihtaa palvelimesi config.yml tiedostossa"
+
+#: \View\GlobalController\no_servers_set_manage.ctp:116;116
+msgid "Usually 2011"
+msgstr "Yleensä 2011"
+
+#: \View\GlobalController\no_servers_set_manage.ctp:122;122
+msgid "SpacebukkitRTK port"
+msgstr "SpacebukkitRTK portti"
+
+#: \View\GlobalController\no_servers_set_manage.ctp:127;127
+msgid "Usually 2012"
+msgstr "Yleensä 2012"
+
+#: \View\GlobalController\no_servers_set_manage.ctp:133;133
+msgid "Salt"
+msgstr "Suola"
+
+#: \View\GlobalController\no_servers_set_manage.ctp:138;138
+msgid "Salty Pretzels!"
+msgstr "Suolaiset suolarinkilät!"
+
+#: \View\GlobalController\no_servers_set_manage.ctp:141;141
+#: \View\Layouts\sbv1.ctp:49;49
+#: \View\Servers\edit.ctp:66;66
+#: \View\TWorldsController\add_world.ctp:53;53
+#: \View\Tsettings\index.ctp:253;253
+msgid "Submit"
+msgstr "Lähetä"
+
+#: \View\GlobalController\no_servers_set_manage.ctp:154;154
+msgid "Manage Users"
+msgstr "Hallitse käyttäjiä"
+
+#: \View\GlobalController\no_servers_set_manage.ctp:162;162
+#: \View\Tsettings\index.ctp:59;77;59;77
+msgid "Name "
+msgstr "Nimi"
+
+#: \View\GlobalController\no_servers_set_manage.ctp:163;163
+#: \View\Tsettings\index.ctp:60;60
+msgid "Add new user"
+msgstr "Lisää uusi käyttäjä"
+
+#: \View\Install\index.ctp:8;8
+#: \View\Install\step1.ctp:8;8
+#: \View\Install\step2.ctp:8;8
+#: \View\Install\step3.ctp:8;8
+#: \View\Install\step4.ctp:8;8
+msgid "Installing Spacebukkit"
+msgstr "Asennetaan SpaceBukkitia"
+
+#: \View\Layouts\sbv1.ctp:48;48
+msgid "Enter Command"
+msgstr "Syötä komento"
+
+#: \View\Layouts\sbv1.ctp:124;124
+msgid "Stop server"
+msgstr "Sammuta palvelin"
+
+#: \View\Layouts\sbv1.ctp:126;126
+msgid "Reload server"
+msgstr "Lataa palvelin uudelleen"
+
+#: \View\Layouts\sbv1.ctp:128;128
+msgid "Restart server"
+msgstr "Resetoi palvelin"
+
+#: \View\Layouts\sbv1.ctp:160;160
+msgid "SpaceBukkit version"
+msgstr "SpaceBukkit versio"
+
+#: \View\Layouts\sbv1.ctp:160;160
+msgid "proudly presented by the SpaceBukkit Team :)"
+msgstr "ylpeästi esittää SpaceBukkit tiimi :)"
+
+#: \View\Layouts\sbv1.ctp:167;167
+msgid "Home"
+msgstr "Etusivu"
+
+#: \View\Layouts\sbv1.ctp:168;168
+msgid "Wiki"
+msgstr "Wiki"
+
+#: \View\Layouts\sbv1.ctp:169;169
+msgid "Forums"
+msgstr "Foorumit"
+
+#: \View\Layouts\sbv1_notreached.ctp:121;121
+#: \View\Layouts\sbv1_notrunning.ctp:141;141
+msgid "Settings"
+msgstr "Asetukset"
+
+#: \View\Layouts\sbv1_notreached.ctp:132;132
+msgid "Server was not reached! Maybe it crashed, maybe the ports are not open. Who knows? You should. Go fix it!"
+msgstr "Palvelinta ei tavoitettu! Ehkä se on kaatunut, tai portit eivät ole auki. Kuka tietää? Sinun tulisi korjata se. Mene korjaamaan se!"
+
+#: \View\Layouts\sbv1_notrunning.ctp:41;41
+msgid "(latest on top)"
+msgstr "(viimeisin päällä)"
+
+#: \View\Layouts\sbv1_notrunning.ctp:136;136
+msgid "Dashboard"
+msgstr "Kojelauta"
+
+#: \View\Layouts\sbv1_notrunning.ctp:137;137
+#: \View\Tsettings\index.ctp:29;29
+msgid "Users"
+msgstr "Käyttäjät"
+
+#: \View\Layouts\sbv1_notrunning.ctp:152;152
+msgid "Server is stopped!"
+msgstr "Palvelin on pysäytetty!"
+
+#: \View\Layouts\sbv1_notrunning.ctp:154;154
+msgid ""
+"This page needs a running server to fetch it's data. \n"
+"\t\t\t\t\t        You can start your server in the upper right bar of SpaceBukkit."
+msgstr ""
+"Tämä sivu vaatii pyörivän palvelimen ladatakseen tietonsa. \n"
+"\t\t\t\t\t        Voit käynnistää palvelimesi SpaceBukkitin ylemmästä oikeasta laatikosta"
+
+#: \View\Roles\add.backup.ctp:257;257
+msgid "Create role"
+msgstr "Luo rooli"
+
+#: \View\Roles\add.ctp:4;4
+msgid "Add new role"
+msgstr "Lisää uusi rooli"
+
+#: \View\Roles\add.ctp:16;16
+#: \View\Roles\edit.ctp:16;16
+msgid "Role Name"
+msgstr "Roolin nimi"
+
+#: \View\Roles\add.ctp:43;43
+#: \View\Roles\edit.ctp:44;44
+msgid "Save role"
+msgstr "Tallenna rooli"
+
+#: \View\Servers\add.ctp:2;2
+msgid "Add new Server"
+msgstr "Lisää palvelin"
+
+#: \View\Servers\add.ctp:23;23
+msgid "Port doesn"
+msgstr "Portti ei"
+
+#: \View\Servers\edit.ctp:2;2
+msgid "Edit Server"
+msgstr "Muokkaa palvelinta"
+
+#: \View\Servers\edit.ctp:15;15
+msgid "Title*"
+msgstr "Ostikko*"
+
+#: \View\Servers\edit.ctp:25;25
+msgid "Address*"
+msgstr "Osoite*"
+
+#: \View\Servers\edit.ctp:36;36
+msgid "Spacebukkit port*"
+msgstr "Spacebukkit portti*"
+
+#: \View\Servers\edit.ctp:47;47
+msgid "SpacebukkitRTK port*"
+msgstr "SpacebukkitRTK portti*"
+
+#: \View\Servers\edit.ctp:58;58
+msgid "Salt*"
+msgstr "Suola*"
+
+#: \View\TPlayersController\index.ctp:29;29
+msgid "Online"
+msgstr "Paikalla"
+
+#: \View\TPlayersController\index.ctp:30;30
+#: \View\TServersController\index.ctp:249;249
+msgid "Whitelist"
+msgstr "Valkoinen lista"
+
+#: \View\TPlayersController\index.ctp:31;31
+msgid "Blacklist"
+msgstr "Musta lista"
+
+#: \View\TPlayersController\index.ctp:45;45
+msgid "Online Players"
+msgstr "Paikalla olevat pelaajat"
+
+#: \View\TPlayersController\index.ctp:46;46
+#: \View\TWorldsController\index.ctp:58;58
+msgid "Refresh"
+msgstr "Päivitä"
+
+#: \View\TPlayersController\index.ctp:53;88;152;53;88;152
+msgid "Avatar"
+msgstr "Avatar"
+
+#: \View\TPlayersController\index.ctp:54;54
+#: \View\TPluginsController\index.ctp:54;54
+msgid "Status"
+msgstr "Tila"
+
+#: \View\TPlayersController\index.ctp:55;89;153;55;89;153
+msgid "Username"
+msgstr "Käyttäjänimi"
+
+#: \View\TPlayersController\index.ctp:56;56
+#: \View\TServersController\index.ctp:235;235
+msgid "Gamemode"
+msgstr "Pelimoodi"
+
+#: \View\TPlayersController\index.ctp:57;57
+msgid "Operator"
+msgstr "Operaattori"
+
+#: \View\TPlayersController\index.ctp:58;90;154;58;90;154
+#: \View\TPluginsController\index.ctp:59;91;59;91
+#: \View\TWorldsController\index.ctp:73;73
+msgid "Actions"
+msgstr "Toiminnot"
+
+#: \View\TPlayersController\index.ctp:81;81
+msgid "Whitelisted Players"
+msgstr "Valkoisen listan pelaajat"
+
+#: \View\TPlayersController\index.ctp:109;190;109;190
+msgid "Add User"
+msgstr "Lisää käyttäjä"
+
+#: \View\TPlayersController\index.ctp:118;199;118;199
+#: \View\TPluginsController\index.ctp:55;90;55;90
+#: \View\TWorldsController\add_world.ctp:16;16
+#: \View\TWorldsController\index.ctp:66;66
+#: \View\Tsettings\index.ctp:124;154;124;154
+msgid "Name"
+msgstr "Nimi"
+
+#: \View\TPlayersController\index.ctp:123;204;123;204
+#: \View\TWorldsController\index.ctp:50;50
+msgid "Add"
+msgstr "Lisää"
+
+#: \View\TPlayersController\index.ctp:145;145
+msgid "Blacklisted Players"
+msgstr "Mustan listan pelaajat"
+
+#: \View\TPlayersController\index.ctp:160;160
+msgid "Creeper"
+msgstr "Lurkki"
+
+#: \View\TPlayersController\index.ctp:169;169
+msgid "User"
+msgstr "Käyttäjä"
+
+#: \View\TPlayersController\inventory.ctp:15;15
+msgid "Level"
+msgstr "Taso"
+
+#: \View\TPlayersController\inventory.ctp:28;28
+msgid "Stats coming soon :)"
+msgstr "Tilastot tulossa pian :)"
+
+#: \View\TPlayersController\inventory.ctp2.ctp:60;60
+msgid "Item ID or NAME"
+msgstr "Esineen ID tai NIMI"
+
+#: \View\TPlayersController\inventory.ctp2.ctp:61;61
+msgid "Amount"
+msgstr "Määrä"
+
+#: \View\TPlayersController\inventory.ctp2.ctp:62;62
+msgid "Give"
+msgstr "Anna"
+
+#: \View\TPluginsController\index.ctp:30;30
+msgid "Manage"
+msgstr "Hallinnoi"
+
+#: \View\TPluginsController\index.ctp:39;39
+msgid "Attention! This page might be slow with many plugins!"
+msgstr "Huomautus! Tämä sivusto saattaa olla hidas monen lisäosan kanssa!"
+
+#: \View\TPluginsController\index.ctp:40;40
+msgid "Plugins with the <img src=\"img/bukget_enabled.png\" /> Bukget Icon are automatically checked for Updates. Disabling a plugin will only disable it till the next reload or restart (we are working on a better solution :)"
+msgstr "Lisäosat joissa on <img src=\"img/bukget_enabled.png\" /> Bukget ikoni varmistetaan automaattisesti päivityksiltä. Lisäosan estäminen estää sen ainoastaan kunnes palvelin uudelleen ladataan tai resetoidaan (luomme parempaa tapaa :)"
+
+#: \View\TPluginsController\index.ctp:56;56
+#: \View\Tsettings\index.ctp:182;182
+msgid "Version"
+msgstr "Versio"
+
+#: \View\TPluginsController\index.ctp:57;57
+msgid "Authors"
+msgstr "Luojat"
+
+#: \View\TPluginsController\index.ctp:58;58
+#: \View\Tsettings\index.ctp:184;184
+msgid "Description"
+msgstr "Selitys"
+
+#: \View\TPluginsController\index.ctp:60;60
+msgid "Info"
+msgstr "Tietoa"
+
+#: \View\TPluginsController\index.ctp:83;83
+msgid "Update Checker"
+msgstr "Päivityksien etsijä"
+
+#: \View\TPluginsController\index.ctp:108;108
+msgid "Install Plugin"
+msgstr "Asenna lisäosa"
+
+#: \View\TPluginsController\index.ctp:116;116
+msgid "Via Bukget (Recommended)"
+msgstr "Bukgetin kautta (Suositeltavaa)"
+
+#: \View\TPluginsController\index.ctp:117;117
+msgid "Bukget"
+msgstr "Bukget"
+
+#: \View\TPluginsController\updater.ctp:4;4
+msgid " Dashboard "
+msgstr " Kojelauta"
+
+#: \View\TPluginsController\updater.ctp:5;5
+msgid " Users "
+msgstr " Käyttäjät"
+
+#: \View\TPluginsController\updater.ctp:8;8
+msgid " Statistics "
+msgstr " Tilastot"
+
+#: \View\TPluginsController\updater.ctp:9;9
+msgid " File Manager "
+msgstr " Tiedoston hallinto"
+
+#: \View\TServersController\index.ctp:30;119;30;119
+msgid "Server properties"
+msgstr "Palvelimen asetukset"
+
+#: \View\TServersController\index.ctp:31;31
+msgid "Shedules"
+msgstr "Aikataulut"
+
+#: \View\TServersController\index.ctp:43;43
+msgid "CraftBukkit RB Chooser"
+msgstr "CraftBukkit RB valikoija"
+
+#: \View\TServersController\index.ctp:49;49
+msgid "Hover over an RB to see it's details. Click on an RB to install it for this server. Installing another CraftBukkit build will stop the server during the process!"
+msgstr "Vie hiiri RB:n päälle nähdäksesi sen tiedot. Paina RB:tä asentaaksesi sen palvelimellesi. Toisen CraftBukkit version asennus sammuttaa palvelimen päivityksen ajaksi!"
+
+#: \View\TServersController\index.ctp:96;96
+msgid "Alternatively you can specify a custom build here:"
+msgstr "Vaihtoehtoisesti voit kirjoittaa version numeron tähän:"
+
+#: \View\TServersController\index.ctp:103;103
+msgid "e.g. 1000"
+msgstr "esim. 1000"
+
+#: \View\TServersController\index.ctp:104;104
+msgid "Download & Install this Build"
+msgstr "Lataa & Asenna tämä versio"
+
+#: \View\TServersController\index.ctp:125;125
+msgid "Save"
+msgstr "Tallenna"
+
+#: \View\TServersController\index.ctp:130;130
+msgid "Server Name"
+msgstr "Palvelimen Nimi"
+
+#: \View\TServersController\index.ctp:139;139
+msgid "Server ID"
+msgstr "Palvelimen ID"
+
+#: \View\TServersController\index.ctp:148;148
+msgid "Level Name"
+msgstr "Tason Nimi"
+
+#: \View\TServersController\index.ctp:157;157
+msgid "Level Seed"
+msgstr "Tason Siemen"
+
+#: \View\TServersController\index.ctp:166;166
+msgid "MOTD"
+msgstr "MOTD"
+
+#: \View\TServersController\index.ctp:175;175
+msgid "Server port"
+msgstr "Palvelimen portti"
+
+#: \View\TServersController\index.ctp:185;185
+msgid " Server IP"
+msgstr " Palvelimen IP"
+
+#: \View\TServersController\index.ctp:195;195
+msgid "Maximum Players"
+msgstr "Maksimi pelaajat"
+
+#: \View\TServersController\index.ctp:204;204
+msgid "View Distance"
+msgstr "Näkyvyys alue"
+
+#: \View\TServersController\index.ctp:218;218
+#: \View\TWorldsController\index.ctp:71;71
+msgid "Difficulty"
+msgstr "Vaikeustaso"
+
+#: \View\TServersController\index.ctp:225;225
+#: \View\TWorldsController\get_world_diff.ctp:11;24;11;24
+msgid "Peaceful"
+msgstr "Rauhallinen"
+
+#: \View\TServersController\index.ctp:226;226
+#: \View\TWorldsController\get_world_diff.ctp:13;27;13;27
+msgid "Easy"
+msgstr "Helppo"
+
+#: \View\TServersController\index.ctp:227;227
+#: \View\TWorldsController\get_world_diff.ctp:15;30;15;30
+msgid "Normal"
+msgstr "Normaali"
+
+#: \View\TServersController\index.ctp:228;228
+#: \View\TWorldsController\get_world_diff.ctp:17;33;17;33
+msgid "Hard"
+msgstr "Vaikea"
+
+#: \View\TServersController\index.ctp:258;258
+msgid "Online Mode"
+msgstr "Online moodi"
+
+#: \View\TServersController\index.ctp:267;267
+msgid "Allow Flight"
+msgstr "Salli lentäminen"
+
+#: \View\TServersController\index.ctp:276;276
+msgid "Allow Nether"
+msgstr "Salli helvetti"
+
+#: \View\TServersController\index.ctp:286;286
+msgid "Spawn Animals"
+msgstr "Luo eläimiä"
+
+#: \View\TServersController\index.ctp:295;295
+#: \View\TWorldsController\index.ctp:70;70
+msgid "PVP"
+msgstr "PVP"
+
+#: \View\TServersController\index.ctp:305;305
+msgid "Spawn Monsters"
+msgstr "Luo monstereita"
+
+#: \View\TServersController\index.ctp:314;314
+msgid "Enable Rcon"
+msgstr "Salli Rcon"
+
+#: \View\TServersController\index.ctp:323;323
+msgid "Enable Query"
+msgstr "Salli Query"
+
+#: \View\TServersController\index.ctp:347;347
+msgid "Add Schedule"
+msgstr "Lisää ajastin"
+
+#: \View\TServersController\index.ctp:387;387
+msgid "Add this schedule"
+msgstr "Lisää tämä ajastin"
+
+#: \View\TServersController\index.ctp:403;403
+msgid "Schedules"
+msgstr "Ajastukset"
+
+#: \View\TWorldsController\add_world.ctp:26;26
+msgid "Seed"
+msgstr "Siemen"
+
+#: \View\TWorldsController\add_world.ctp:36;36
+#: \View\TWorldsController\index.ctp:72;72
+msgid "Environment"
+msgstr "Ympäristö"
+
+#: \View\TWorldsController\add_world.ctp:43;43
+msgid "NORMAL"
+msgstr "NORMAALI"
+
+#: \View\TWorldsController\add_world.ctp:44;44
+msgid "NETHER"
+msgstr "HELVETTI"
+
+#: \View\TWorldsController\add_world.ctp:45;45
+msgid "THE_END"
+msgstr "LOPPU"
+
+#: \View\TWorldsController\get_time.ctp:11;11
+msgid "Notice: If you're running MultiVerse, please update to the latest dev version ;)"
+msgstr "Huomautus: Mikäli käytät MultiVerseä, päivitä viimeisimpään dev versioon ;)"
+
+#: \View\TWorldsController\get_time.ctp:12;12
+msgid "Your current time is: "
+msgstr "Nykyinen aika on:"
+
+#: \View\TWorldsController\get_time.ctp:12;12
+msgid "Set time to:"
+msgstr "Vaihda aika:"
+
+#: \View\TWorldsController\get_time.ctp:14;14
+msgid "Sunrise"
+msgstr "Auringon nousu"
+
+#: \View\TWorldsController\get_time.ctp:15;15
+msgid "Noon"
+msgstr "Päivä"
+
+#: \View\TWorldsController\get_time.ctp:16;16
+msgid "Sunset"
+msgstr "Auringon lasku"
+
+#: \View\TWorldsController\get_time.ctp:17;17
+msgid "Midnight"
+msgstr "Keskiyö"
+
+#: \View\TWorldsController\get_time.ctp:19;19
+msgid "Or specify your own time:"
+msgstr "Tai määritä oma aikasi:"
+
+#: \View\TWorldsController\get_time.ctp:23;23
+msgid "Set"
+msgstr "Aseta"
+
+#: \View\TWorldsController\get_world_diff.ctp:21;21
+msgid "Your current difficulty is set to: "
+msgstr "Säädetty vaikeustaso on:"
+
+#: \View\TWorldsController\get_world_diff.ctp:21;21
+msgid "Click a difficulty to change to:"
+msgstr "Paina vaihtaaksesi vaikeustasoa:"
+
+#: \View\TWorldsController\index.ctp:29;29
+msgid "Overview"
+msgstr "Yleiskatsaus"
+
+#: \View\TWorldsController\index.ctp:30;87;30;87
+msgid "Chunkster"
+msgstr "Chunkster"
+
+#: \View\TWorldsController\index.ctp:31;152;31;152
+msgid "MapAutoTrim"
+msgstr "MapAutoTrim"
+
+#: \View\TWorldsController\index.ctp:40;40
+msgid "Attention: some or more features may not be supported be your multiworld plugin! If your using MultiVerse please make sure your worlds are imported at first, otherwise loading won't work!"
+msgstr "Huomio: multiworld lisäosasi ei pakosti tue kaikkia ominaisuuksia! Mikäli käytät MultiVerseä varmista että maailmasi ovat tuotu ensin, muuten lataaminen ei toimi!"
+
+#: \View\TWorldsController\index.ctp:54;54
+msgid "Install multiworld plugin"
+msgstr "Asenna multiworld lisäosa"
+
+#: \View\TWorldsController\index.ctp:65;65
+msgid "Active"
+msgstr "Aktiivinen"
+
+#: \View\TWorldsController\index.ctp:67;67
+msgid "Time"
+msgstr "Aika"
+
+#: \View\TWorldsController\index.ctp:68;68
+msgid "Animals"
+msgstr "Eläimet"
+
+#: \View\TWorldsController\index.ctp:69;69
+msgid "Hostiles"
+msgstr "Viholliset"
+
+#: \View\TWorldsController\index.ctp:89;89
+msgid ""
+"Use this utility if you are encountering chunk errors over and over in the error log and would like them repaired. This repairs an underlying issue of duplicate/bad pointers.\n"
+"\t        No responsibility is taken if worlds get corrupted/destroyed by this tool. A backup is reccomended first!<br />\n"
+"\t        <a href=\"http://forums.bukkit.org/threads/admin-chunkster.8186/\">Bukkit Thread</a>"
+msgstr ""
+"Käytä tätä apuvälinettä jos kohtaat virheitä palasissa ja virhe raportissa ja haluaisit korjata ne. Tämä korjaa taustalla olevan monistus/huonot osoittimet ongelmat.\n"
+"\t        Vastuuta ei oteta mikäli maailma corruptoituu/tuhoutuu tämän työkalun takia. Varmuuskopiointia suositellaan ennen tämän käyttöä!\t        <a href=\"http://forums.bukkit.org/threads/admin-chunkster.8186/\">Bukkit Thread</a>"
+
+#: \View\TWorldsController\index.ctp:101;166;101;166
+msgid "Parameters"
+msgstr "Tunnussuurteet"
+
+#: \View\TWorldsController\index.ctp:108;173;108;173
+msgid "World"
+msgstr "Maailma"
+
+#: \View\TWorldsController\index.ctp:137;221;137;221
+msgid "Notifying players of shutdown..."
+msgstr "Ilmoitetaan pelaajia sammutuksesta...."
+
+#: \View\TWorldsController\index.ctp:154;154
+msgid ""
+"Useful tool to migrate to another version of bukkit and getting new terrain features without sacrificing structures.\n"
+"\t        The aim is: delete as many old chunks as possible to be replaced by new chunks, while the chunks which contain structures remain.<br/>\n"
+"\t        <a href=\"http://forums.bukkit.org/threads/tool-admin-minecraft-map-auto-trim-v0-2.37846/\">Bukkit Thread</a>"
+msgstr ""
+"Hyödyllinen työkalu muuttaessasi toiseen bukkitin versioon ja saadaksesi uudet maaston ominaisuudet ilman rakennusten uhraamista.\n"
+"\t        Tavoitteena on: poista niin monta vanhaa palasta kuin mahdollista jotka vaihdetaan uusiksi palasiksi, kun taas palaset jotka sisältävät rakennuksia säilyvät.<br/>\n"
+"\t        <a href=\"http://forums.bukkit.org/threads/tool-admin-minecraft-map-auto-trim-v0-2.37846/\">Bukkit Thread</a>"
+
+#: \View\TWorldsController\index.ctp:190;190
+msgid "Dilatation Size"
+msgstr "Dilatation alue"
+
+#: \View\TWorldsController\index.ctp:191;191
+msgid "Indicates the amount of chunks that should be preserved around a \"positive\" chunk."
+msgstr "Osoittaa palasien määrän jotka tulisi säilyttää \"positiivisen\" palasen ympärillä."
+
+#: \View\TWorldsController\index.ctp:199;199
+msgid "Preserved Block IDs"
+msgstr "Haluamasi Block IDt"
+
+#: \View\TWorldsController\index.ctp:200;200
+msgid "Define your own preserve block id list. This is useful to design your own trim method. <a href=\"http://forums.bukkit.org/threads/tool-admin-minecraft-map-auto-trim-v0-2.37846/\">Read here for default</a>"
+msgstr "Määritä haluamasi block id lista. Tämä on hyödyllinen suunnitellessasi omaa trimmaus tapaa. <a href=\"http://forums.bukkit.org/threads/tool-admin-minecraft-map-auto-trim-v0-2.37846/\">Lue oletus täältä</a>"
+
+#: \View\TWorldsController\index.ctp:207;207
+msgid "Run MapAutoTrim"
+msgstr "Suorita MapAutoTrim"
+
+#: \View\Tsettings\index.ctp:30;116;30;116
+msgid "Servers"
+msgstr "Palvelimet"
+
+#: \View\Tsettings\index.ctp:31;145;31;145
+msgid "Roles"
+msgstr "Roolit"
+
+#: \View\Tsettings\index.ctp:32;174;32;174
+msgid "Themes"
+msgstr "Teemat"
+
+#: \View\Tsettings\index.ctp:33;33
+msgid "SpaceBukkit's Settings"
+msgstr "SpaceBukkitin asetukset"
+
+#: \View\Tsettings\index.ctp:46;46
+msgid "Users, Servers, Roles"
+msgstr "Käyttäjät, Palvelimet, Roolit"
+
+#: \View\Tsettings\index.ctp:52;52
+msgid "From here you can assign users to servers and a role for each user, on each server. To start, select a user. Then, start adding him to a server, and assing a role to that server."
+msgstr "Täältä voit asettaa käyttäjiä palvelimiin ja roolin jokaiselle käyttäjälle, jokaiseen palvelimeen. Aloittaaksesi, valitse käyttäjä. Sitten, lisää hänet palvelimeen, ja aseta rooli palvelimeen."
+
+#: \View\Tsettings\index.ctp:72;72
+msgid "Select a user first!"
+msgstr "Valitse käyttäjä ensin!"
+
+#: \View\Tsettings\index.ctp:78;78
+msgid "Add to a server"
+msgstr "Lisää palvelimeen"
+
+#: \View\Tsettings\index.ctp:81;81
+msgid "loading"
+msgstr "ladataan"
+
+#: \View\Tsettings\index.ctp:98;98
+msgid "Saving...."
+msgstr "Tallennetaan..."
+
+#: \View\Tsettings\index.ctp:117;117
+msgid "Add Server"
+msgstr "Lisää palvelin"
+
+#: \View\Tsettings\index.ctp:125;155;186;125;155;186
+msgid "Action"
+msgstr "Toiminto"
+
+#: \View\Tsettings\index.ctp:140;140
+msgid "If you delete a role, every user with that role on a server will acquire the \"fallback\" role."
+msgstr "Jos poistat roolin, jokainen käyttäjä jolla rooli on saavat \"fallback\" roolin."
+
+#: \View\Tsettings\index.ctp:147;147
+msgid "Add Role"
+msgstr "Lisää rooli"
+
+#: \View\Tsettings\index.ctp:180;180
+msgid "Thumbnail"
+msgstr "Pienoiskuva"
+
+#: \View\Tsettings\index.ctp:181;181
+msgid "Theme"
+msgstr "Teema"
+
+#: \View\Tsettings\index.ctp:183;183
+msgid "Author"
+msgstr "Luoja"
+
+#: \View\Tsettings\index.ctp:185;185
+msgid "Link"
+msgstr "Linkki"
+
+#: \View\Tsettings\index.ctp:206;206
+msgid "SpaceBukkit Database Settings"
+msgstr "SpaceBukkitin tietokanta asetukset"
+
+#: \View\Tsettings\index.ctp:214;214
+msgid "Host*"
+msgstr "Isäntä*"
+
+#: \View\Tsettings\index.ctp:224;224
+msgid "Login*"
+msgstr "Kirjaudu sisään*"
+
+#: \View\Tsettings\index.ctp:234;234
+msgid "Password*"
+msgstr "Salasana*"
+
+#: \View\Tsettings\index.ctp:244;244
+msgid "Database*"
+msgstr "Tietokanta*"
+
+#: \View\Tsettings\index.ctp:268;268
+msgid "Configuring Spacebukkit"
+msgstr "Konfiguroidaan SpaceBukkitia"
+
+#: \View\Tsettings\index.ctp:270;270
+msgid "If you need help, there is none at the moment. Go to hell."
+msgstr "Jos tarvitset apua, sitä ei ole saatavilla. Mene helvettiin."
+
+#: \View\Update\index.ctp:7;7
+msgid "Updating Spacebukkit"
+msgstr "Päivitetään Spacebukkitia"
+
+#: \View\Update\index.ctp:9;9
+msgid "Cancel and go back"
+msgstr "Peruuta ja mene takaisin"
+
+#: \View\Update\index.ctp:15;15
+msgid "SpaceBukkit is ready to be updated from version \""
+msgstr "SpaceBukkit on valmis päivitettäväksi versiosta \""
+
+#: \View\Update\index.ctp:15;15
+msgid "\" to version \""
+msgstr "\" versioon \""
+
+#: \View\Update\index.ctp:15;15
+msgid "\". Click the update button when you're ready!"
+msgstr "\". Paina päivitä nappia kun olet valmis!"
+
+#: \View\Update\index.ctp:17;17
+msgid "Update Now!"
+msgstr "Päivitä nyt!"
+
+#: \View\Update\index.ctp:20;20
+msgid "Changelog"
+msgstr "Muutosloki"
+
+#: \View\Update\maintenance.ctp:2;2
+msgid "Spacebukkit is in maintenance mode!"
+msgstr "Spacebukkit on huolto tilassa!"
+
+#: \View\Update\maintenance.ctp:8;8
+msgid "Most probably your system admin is performing updates..."
+msgstr "Mitä luultavimmin järjestelmäsi ylläpito suorittaa päivityksiä..."
+
+#: \View\Users\add.ctp:79;79
+#: \View\Users\edit.ctp:87;87
+#: \View\Users\edit_admin.ctp:87;87
+msgid "SuperUser"
+msgstr "Pääkäyttäjä"
+

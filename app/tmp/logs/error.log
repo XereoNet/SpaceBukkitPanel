@@ -1,0 +1,125 @@
+2012-02-09 12:01:21 Error: [MissingConnectionException] Database connection "SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo failed: Host sconosciuto. " is missing, or could not be created.
+#0 C:\xampp\htdocs\spacecp\3\lib\Cake\Model\Datasource\DboSource.php(244): Mysql->connect()
+#1 C:\xampp\htdocs\spacecp\3\app\Model\ConnectionManager.php(98): DboSource->__construct(Array)
+#2 C:\xampp\htdocs\spacecp\3\lib\Cake\Model\Model.php(3214): ConnectionManager::getDataSource('default')
+#3 C:\xampp\htdocs\spacecp\3\lib\Cake\Model\Model.php(1023): Model->setDataSource('default')
+#4 C:\xampp\htdocs\spacecp\3\lib\Cake\Model\Model.php(3238): Model->setSource('roles')
+#5 C:\xampp\htdocs\spacecp\3\lib\Cake\Model\Model.php(2460): Model->getDataSource()
+#6 C:\xampp\htdocs\spacecp\3\app\Controller\InstallController.php(212): Model->find('all')
+#7 [internal function]: InstallController->step3()
+#8 C:\xampp\htdocs\spacecp\3\lib\Cake\Controller\Controller.php(473): ReflectionMethod->invokeArgs(Object(InstallController), Array)
+#9 C:\xampp\htdocs\spacecp\3\lib\Cake\Routing\Dispatcher.php(107): Controller->invokeAction(Object(CakeRequest))
+#10 C:\xampp\htdocs\spacecp\3\lib\Cake\Routing\Dispatcher.php(89): Dispatcher->_invoke(Object(InstallController), Object(CakeRequest), Object(CakeResponse))
+#11 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2012-02-09 16:56:00 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 16:58:53 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 16:59:10 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:00:10 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:00:17 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:00:48 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:02:05 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:02:33 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:02:50 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:04:18 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:04:25 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:04:48 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:05:01 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:05:11 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:05:20 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:06:56 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:06:56 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:07:36 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:07:36 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:07:49 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:07:49 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:09:04 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:09:04 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:10:16 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:10:16 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:11:10 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:11:10 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:11:52 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:11:52 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:17:28 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:20:03 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:21:15 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:24:44 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:24:44 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:24:56 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:25:06 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:47:31 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}

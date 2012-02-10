@@ -1,0 +1,61 @@
+<?php
+class RolesController extends AppController {
+
+    public function beforeFilter() {
+        require '../configuration.php';
+    }
+
+    public function index() {
+        $this->redirect(array('controller' => 'dash', 'action' => 'index'));
+    }
+
+    public function add() {
+        if ($this->request->is('post')) {
+            $this->User->create();
+            if ($this->User->save($this->request->data)) {
+                $this->Session->setFlash(__('The role has been saved'));
+                $this->redirect(array('controller' => 'tsettings', 'action' => 'index'));
+            } else {
+                $this->Session->setFlash(__('The role could not be saved. Please, try again.'));
+            }
+        }
+        $this->layout = 'popup';
+
+    }
+
+    public function edit($id = null) {
+        $this->User->id = $id;
+        if (!$this->User->exists()) {
+            throw new NotFoundException(__('Invalid role'));
+        }
+        if ($this->request->is('post') || $this->request->is('put')) {
+            if ($this->User->save($this->request->data)) {
+                $this->Session->setFlash(__('The role has been saved'));
+                $this->redirect(array('controller' => 'tsettings', 'action' => 'index'));
+            } else {
+                $this->Session->setFlash(__('The role could not be saved. Please, try again.'));
+            }
+        } else {
+            $this->request->data = $this->User->read(null, $id);
+            unset($this->request->data['User']['password']);
+        }
+        $this->layout = 'popup';
+    }
+
+    public function delete($id = null) {
+        if (!$this->request->is('post')) {
+            throw new MethodNotAllowedException();
+        }
+        $this->User->id = $id;
+        if (!$this->User->exists()) {
+            throw new NotFoundException(__('Invalid role'));
+        }
+        if ($this->User->delete()) {
+            $this->Session->setFlash(__('Role deleted'));
+            $this->redirect($this->referer());
+        }
+        $this->Session->setFlash(__('Role was not deleted'));
+        $this->redirect($this->referer());
+    }
+
+}

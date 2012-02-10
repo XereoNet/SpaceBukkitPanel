@@ -1,0 +1,17 @@
+<addon>
+	<name>IceCone</name>
+	<author>XereoNet</author>
+	<desc>Brrrrr, it's cold!</desc>
+	<version>1.0</version>
+	<url>http://spacebukkit.xereo.net</url>
+	<assets>
+		<asset>
+			<type>0</type>
+			<source>http://yahoo.com</source>
+		</asset>
+		<asset>
+			<type>1</type>
+			<source>asset.php</source>
+		</asset>
+	</assets>
+</addon>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title><?php echo $title_for_layout?> | SpaceBukkit by XereoNet | Bukkit Web Administration</title>
+
+<!-- CSS -->
+<link rel="stylesheet" href="<?php echo $this->webroot; ?>css/import.css" /> 
+
+<!--[if lt IE 9]>
+<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!--[if lte IE 6]>
+
+<meta HTTP-EQUIV="REFRESH" content="0; url=http://www.ie6countdown.com/">
+
+<![endif]-->
+
+<noscript><h1>Please enabled Javascript!</h1></noscript>
+
+
+<!-- Load theme -->
+<link rel="stylesheet" href="<?php echo $this->webroot; ?>themes/<?php echo $current_theme?>/css/theme.css" /> 
+
+<!-- Load Jquery -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js" type="text/javascript"></script>
+<script src="<?php echo $this->webroot; ?>js/script.js"></script> 
+<script src="<?php echo $this->webroot; ?>js/selectivizr.min.js"></script> 
+
+</head>
+
+<body>
+<?php if(isset($spacebukkitbuildready)) {?>
+<div class="top_message black slideDown">
+<p><?php echo __('A new SpaceBukkit update is ready for you to download! You\'re version is'); ?> <strong><?php echo $spacebukkitbuildcurrent; ?></strong> <?php echo __('while the new version is'); ?> <strong><?php echo $spacebukkitbuildnew; ?></strong> <a href="./update/"><?php echo __('Click here when you are ready'); ?></a></p>
+</div>
+<?php };?>
+<?php if(isset($antmessage)) {?>
+<div class="top_message <?php echo $antmessagetype; ?> slideDown">
+<p><?php echo $antmessage; ?></p>
+</div>
+<?php };?>
+<?php if (($user_perm['pages'] & $glob_perm['pages']['console']) || ($user_perm['is_super'] == 1)) { ?>
+<div class="panel">
+
+    <form id="runcommand" class="runcommand" method="post" action="./global/runcommand">
+      <div>
+        <input id="command" name="command" type="text" placeholder="<?php echo __('Enter Command'); ?>"/>
+    	<input type="submit" class="button primary submit" value="<?php echo __('Submit'); ?>">
+    	<small style="float: right">(latest on top)</small>
+      </div>
+    </form>
+    <br />
+
+	<div id="console">
+	</div>
+	<div style="clear:both;"></div>
+<?php } ?>
+</div>
+	<div id="header">
+		<div id="container"> 
+<?php if (($user_perm['pages'] & $glob_perm['pages']['console']) || ($user_perm['is_super'] == 1)) { ?>
+		
+			<a class="trigger" href="#"></a>
+<?php } ?>
+
+			<!-- Logo -->
+			<div class="hheight"> 
+
+				<!-- Logo -->
+				<div class="col left col_1_3">
+				<h1 id="logo">SpaceBukkit</h1>
+				</div>
+				<!-- Upper Bar -->
+				<div id="upperbar" class="col right col_2_3">
+					<div id="serverbox">
+						<span class="dropdown_servers tip"><p><a href="#"><?php echo $current_server_name; ?></a></p></span>
+						<div class="tooltip white server_add_to_list" style="max-width: 190px">
+							<ul>
+									<?php 
+
+					//get all servers and display them nicely :)
+
+					if ($is_super == 1) {
+
+					//if superuser
+					
+					foreach ($all_servers as $list) {
+
+						$title = $list['Server']['title'];
+						$id = $list['Server']['id'];
+
+								echo <<<END
+									<li><a href="./global/setserver/$id">$title</a></li>
+END;
+					}
+										
+					} else {
+
+					//if not superuser
+					
+					foreach ($user_data as $list) {
+
+						$title = $list['Server']['title'];
+						$id = $list['Server']['id'];
+
+								echo <<<END
+									<li><a href="./global/setserver/$id">$title</a></li>
+END;
+					}
+ }
+
+
+								?>	
+							</ul>
+						</div>
+
+					</div>
+					
+					<!-- Start/Stop, Reload, Message, Logout -->
+
+					<div id="serverbuttons"> 
+						<a href="./global/stop" id="stop" class="bounce tip"></a> 
+							<div class="tooltip"><?php echo __('Stop server'); ?></div>						
+						<a href="./global/reload" id="reload" class="bounce tip"></a>
+							<div class="tooltip"><?php echo __('Reload server'); ?></div>
+						<a href="./global/restart" id="restart" class="bounce tip"></a>
+							<div class="tooltip"><?php echo __('Restart server'); ?></div>
+					</div>
+					<div id="userbuttons">
+						
+						<span><a href="#" class="account tip"><?php echo __('Hey there'); ?>, <?php echo $username; ?> :) </a></span>
+						<div class="tooltip white">
+							<ul>
+								<li><a href="./users/edit/<?php echo $current_user_id; ?>" class="fancy"><?php echo __('Account Settings'); ?></a></li>
+								<li><a href="./users/theme" class="fancy"><?php echo __('SpaceBukkit Theme'); ?></a></li>
+								<li><a href="./users/logout"><?php echo __('Logout'); ?></a></li>
+							</ul>
+						</div>
+
+						
+					</div>
+				</div>
+			</div>
+
+
+			<!-- Main Content Start -->
+			<div id="wrapper"> 
+			
+			<?php echo $content_for_layout ?>
+			<div class="pushfooter"></div>
+
+			</div>
+			<!-- End #wrapper --> 
+
+			<div id="footer">
+
+				<div class="col left">
+
+				<?php echo __('SpaceBukkit version'); ?> <?php echo $spacebukkitbuildcurrent; ?> <?php echo __('proudly presented by the SpaceBukkit Team :)'); ?>
+
+				</div>
+
+				<div class="col right">
+
+				<ul>
+					<li><a href="http://spacebukkit.xereo.net" alt="SpaceBukkit Home"><?php echo __('Home'); ?></a></li>
+					<li><a href="http://spacebukkit.xereo.net/wiki" alt="SpaceBukkit Home"><?php echo __('Wiki'); ?></a></li>
+					<li><a href="http://spacebukkit.xereo.net/forum" alt="SpaceBukkit Home"><?php echo __('Forums'); ?></a></li>
+					<form action="https://www.paypal.com/cgi-bin/webscr" method="post" style="display: inline-block; position: relative; top: 10px;">
+					<input type="hidden" name="cmd" value="_s-xclick">
+					<input type="hidden" name="hosted_button_id" value="ZW8KTNTJLRGGY">
+					<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+					<img alt="" border="0" src="https://www.paypalobjects.com/it_IT/i/scr/pixel.gif" width="1" height="1">
+					</form>
+
+				</ul>
+
+				</div>
+
+			</div>
+			<!-- End #footer --> 
+
+		</div>
+		<!-- End #container --> 
+
+	<!-- Import JS -->
+	<script src="<?php echo $this->webroot; ?>js/ttw-simple-notifications-min.js"></script> 
+	<script src="<?php echo $this->webroot; ?>js/excanvas.js"></script> 
+	<script src="<?php echo $this->webroot; ?>js/jquery.uniform.min.js"></script> 
+	<script src="<?php echo $this->webroot; ?>js/jquery.validate.min.js"></script> 
+	<script src="http://tab-slide-out.googlecode.com/files/jquery.tabSlideOut.v1.3.js"></script>
+	<script src="<?php echo $this->webroot; ?>js/jquery.livesearch.js"></script>
+	<script src="<?php echo $this->webroot; ?>js/jquery.visualize.js"></script> 
+	<script src="<?php echo $this->webroot; ?>js/jquery.datatables.js"></script>
+	<script src="<?php echo $this->webroot; ?>js/reload_dtb.js"></script>
+	<script src="<?php echo $this->webroot; ?>js/ajax.js"></script> 
+	<script src="<?php echo $this->webroot; ?>js/jquery.placeholder.js"></script> 
+	<script src="<?php echo $this->webroot; ?>js/jquery.tools.min.js"></script> 
+	<script src="<?php echo $this->webroot; ?>js/jquery.colorbox-min.js"></script>
+	<script>
+	var notifications = $('body').ttwSimpleNotifications({
+    position:'bottom right',
+    autoHide:true,
+    autoHideDelay:7000,
+	});
+
+	  /* attach a submit handler to the form */
+	  $(".runcommand").submit(function(event) {
+
+	    /* stop form from submitting normally */
+	    event.preventDefault(); 
+	        
+	    /* get some values from elements on the page: */
+	    var $form = $(this),
+	        term = $form.find( 'input[name="command"]' ).val(),
+	        url = $form.attr( 'action' );
+
+	    /* Send the data using post and put the results in a div */
+	    $.post(url, {command: term},
+	      function( data ) {
+	      	message = data;
+	        notifications.show({msg:data, icon:'img/win.png'});
+	      }
+	    );
+	  });
+
+$(document).ready(function() {
+
+	doAndRefresh('#console','./global/getConsole', 5000);
+
+
+});
+
+</script>
+<?php 
+
+if ($gototab > 1) {
+?>
+<script>
+$(document).ready(function() {
+
+$(function () {
+
+$('nav#smalltabs ul li:nth-child(<?php echo $gototab ?>) a').trigger('click');
+
+});
+
+});
+</script>
+
+<?php 
+}
+?>       
+<?php 
+if (isset($doodle)) {
+?>
+<script>
+$(document).ready(function() {
+var doodle = "url(<?php echo $doodle; ?>)";
+$("#logo").css("background-image", doodle);  
+
+});
+</script>
+
+<?php 
+}
+?>
+
+	</body>
+</html>
