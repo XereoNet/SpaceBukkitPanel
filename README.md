@@ -48,16 +48,34 @@ SpaceBukkit is a project developed over the last 6 months aiming to bring an adv
 - Wiki: [http://spacebukkit.xereo.net/wiki](http://spacebukkit.xereo.net/wiki).
  
 ## License
-SpaceBukkit is free software: you can redistribute it and/or modify it under
-the terms of the Attribution-NonCommercial-ShareAlike Unported (CC BY-NC-SA)
-license as published by the Creative Common organization, either version 3.0 of
-the license, or (at your option) any later version.
+Copyright 2012 SpaceDev team (SpaceBukkit and SpaceCP development team)
 
-SpaceBukkit is distributed in the hope that it will be useful, but WITHOUT ANY
-WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE. See the Attribution-NonCommercial-ShareAlike Unported (CC 
-BY-NC-SA) license for more details.
+SpaceBukkit Panel by SpaceBukkit is licensed under a 
+Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License (THE LICENSE).
+http://creativecommons.org/licenses/by-nc-sa/3.0/
 
-You should have received a copy of the Attribution-NonCommercial-ShareAlike 
-Unported (CC BY-NC-SA) license along with this program. If not, see 
-[http://creativecommons.org/licenses/by-nc-sa/3.0/](http://creativecommons.org/licenses/by-nc-sa/3.0/).
+Permissions beyond the scope of this license may be available at lucarager@gmail.com
+
+CakePHP is licensed under
+the MIT License
+
+CakePHP(tm) : The Rapid Development PHP Framework (http://cakephp.org)
+Copyright 2005-2011, Cake Software Foundation, Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the "Software"),
+to deal in the Software without restriction, including without limitation
+the rights to use, copy, modify, merge, publish, distribute, sublicense,
+and/or sell copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.
