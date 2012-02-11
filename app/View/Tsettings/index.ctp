@@ -267,7 +267,7 @@
         <div class="colorbox green boxpad">
             <h3><?php echo __('Configuring Spacebukkit') ?></h3> 
             <p> 
-                <?php echo __('If you need help, there is none at the moment. Go to hell.') ?></a>
+                <?php echo __('Here you can reconfigure your database settings.') ?></a>
             </p> 
         </div> 
 
