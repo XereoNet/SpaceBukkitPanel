@@ -128,7 +128,7 @@
 
     <section>
         <form id="ServerAddForm" method="post" action="./tservers/saveConfig">
-        <input type="submit" class="button primary submit leftsubmit" name="save" style="top: -48px" value="<?php echo __('Save') ?>">
+        <input type="submit" id="saveprop" class="button primary submit leftsubmit" name="save" style="top: -48px" value="<?php echo __('Save') ?>">
         <div class="col left">
 
             <section>
@@ -484,6 +484,10 @@ END;
 <!-- End #content --> 
 <script>
 $('document').ready(function() {
+
+  $("#saveprop").live('click', function(){
+    showOverlay('Saving properties...');
+  });
 
    $('#arguments').hide();        
 
