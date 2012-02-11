@@ -1,4 +1,4 @@
-# SpaceBukkit - the awesome way!
+# SpaceBukkit - Web administrationthe awesome way!
 A powerful yet simple web panel for administering your Bukkit Minecraft servers with ease.
 
 ## Description
