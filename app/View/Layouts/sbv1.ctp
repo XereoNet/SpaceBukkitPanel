@@ -65,14 +65,14 @@
 						    </form>
 							<section>
 							<p>Server running since</p>
-							<pre>122 h 12m</pre>
+							<pre id="server-uptime">122 h 12m</pre>
 
 							<div class="console-controls splitter">
 								<ul>
-									<li class="segment-1 selected-1"><a href="#" data-value="all">Everything</a></li>
-									<li class="segment-0"><a href="#" data-value="info">Info</a></li>
-									<li class="segment-0"><a href="#" data-value="warning">Warning</a></li>
-									<li class="segment-2"><a href="#" data-value="severe">Severe</a></li>
+									<li class="segment-1 selected-1"><a href="#" rel="all">Everything</a></li>
+									<li class="segment-0"><a href="#" rel="info">Info</a></li>
+									<li class="segment-0"><a href="#" rel="warning">Warning</a></li>
+									<li class="segment-2"><a href="#" rel="severe">Severe</a></li>
 								</ul>
 							</div>
 							</section>
@@ -243,6 +243,7 @@ END;
 	<script src="<?php echo $this->webroot; ?>js/jquery.placeholder.js"></script> 
 	<script src="<?php echo $this->webroot; ?>js/jquery.tools.min.js"></script> 
 	<script src="<?php echo $this->webroot; ?>js/jquery.colorbox-min.js"></script>
+	<script src="<?php echo $this->webroot; ?>js/jquery.quicksand.js"></script>
 	<script>
 	var notifications = $('body').ttwSimpleNotifications({
     position:'bottom right',
@@ -272,10 +273,16 @@ END;
 
 $(document).ready(function() {
 
-	var console_wrapper = $('#console-list');
-	var console_param = $(console_wrapper).attr("rel");
-	var console_url = './global/getConsole/'+console_param;
-	doAndRefresh(console_wrapper, console_url, 5000);
+	 function loadConsole() {
+		console_wrapper = $('#console-list');
+		console_param = $(console_wrapper).attr("rel");
+		console_url = './global/getConsole/'+console_param;	 	
+		setTimeout(function() {$(console_wrapper).load(console_url, loadConsole)} , 5000); 
+	 } 
+
+	loadConsole();
+	doAndRefresh('#server-uptime', './global/getUpTime', 3000);
+
 
 });
 

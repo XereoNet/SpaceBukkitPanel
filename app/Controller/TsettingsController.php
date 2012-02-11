@@ -79,7 +79,7 @@ class TsettingsController extends AppController {
                      
         foreach ($users as $user) {
 
-        $name = $user['User']['username'];
+        $name = trim($user['User']['username']);
         $id = $user['User']['id'];
 
         $edit = './users/edit_admin/';

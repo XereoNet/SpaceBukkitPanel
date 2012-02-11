@@ -41,7 +41,19 @@ $('document').ready(function () {
         $(".sidebar-wrap").each(function() { $(this).hide();});
     });
 
+  $('.console-controls ul li a').click(function(e) {
 
+    var rel = $(this).attr('rel');
+    var console_url = './global/getConsole/'+rel;
+
+    $('.console-controls li').each(function () { $(this).removeClass('selected-1'); });
+    $(this).parent('li').addClass('selected-1');
+    $('#console-list').attr('rel', rel).html('<div class="preloader"><div><img src="./img/big_loader.gif" /></div></div>');
+   
+    e.preventDefault();  
+    return false;
+
+  });
 
     $(document).bind('cbox_complete', function () {
         $("select, input:checkbox, input:radio, input:file").uniform();

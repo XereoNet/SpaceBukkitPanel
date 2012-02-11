@@ -128,49 +128,71 @@ class GlobalController extends AppController {
             //var_dump($console);
 
             echo '<ul>';
+
             foreach (array_reverse($console) as $c) {
-              
+              $hidden = 'hidden';
+     
               //split the string
               $c = explode("[", $c, 2);
 
               //check for color the string
-              if (strpos($c[1], 'WARNING') === 0 || strpos($c[1], 'SEVERE') === 0) { $class = "warning"; } else { $class = "info"; }
+              if (strpos($c[1], 'WARNING' ) === 0) { 
 
+                $class = "warning"; 
+
+                if ($filter == 'warning') {
+                  $hidden = '';
+                }
+
+              } 
+              elseif (strpos($c[1], 'SEVERE') === 0) {
+
+               $class = "warning"; 
+                if ($filter == 'severe') {
+                  $hidden = '';
+                }
+              }
+              elseif (strpos($c[1], 'INFO') === 0) { 
+
+                $class = "info"; 
+                if ($filter == 'info') {
+                  $hidden = '';
+                }
+
+              } else { 
+                $class = "info";
+              }
+              if ($filter == 'all') {
+                $hidden = '';
+              }
               //var_dump($c);
               echo <<<END
-                <li><b>$c[0]</b> <p class="console-$class"> [$c[1]</p></li>                    
+                <li class="$hidden"><b>$c[0]</b> <p class="console-$class"> [$c[1]</p></li>                    
 END;
 
             }
             echo '</ul>';
   
-/*
-            $console = array();
-            array_walk($log, 'flatten_array', &$console);
-            array_reverse($console);
 
-            //Generate Output
-            echo '<table id="console_list" class="consoletable">';
-            foreach (array_reverse($console) as $list) {
-            $severe = strpos($list, $sev);
-            echo <<<END
-            <tr class="consoletr">
-                <td class="consoletd"
-END;
-if (strpos($list, 'WARNING') > 0 | strpos($list, 'SEVERE') > 0) {
+        } 
 
+    }
+      function getUpTime() {
 
-            echo 'style="color: red"';
-}
-            echo <<<END
+        if ($this->request->is('ajax')) 
+        {
+            
+            include '../spacebukkitcall.php';
 
-                ">$list</td>
-            </tr>
+            $this->disableCache();
+            Configure::write('debug', 0);
+            $this->autoRender = false;
 
-END;
-             }  
-            echo '</table>';
-*/
+            $args = array();   
+            $time = $api->call("getUpTime", $args, false);
+
+            echo $time;
+
         } 
 
     }
