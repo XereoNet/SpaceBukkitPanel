@@ -99,7 +99,7 @@ class GlobalController extends AppController {
       }
     }
 
-      function getConsole() {
+      function getConsole($filter=null) {
 
         if ($this->request->is('ajax')) 
         {
@@ -109,8 +109,10 @@ class GlobalController extends AppController {
             $this->disableCache();
             Configure::write('debug', 0);
             $this->autoRender = false;
+
             $args = array();   
             $log = $api->call("getLatestConsoleLogs", $args, false);
+            //var_dump($log);
 
             //Function to make array monodimensional
             function flatten_array($value, $key, &$array) {
@@ -120,6 +122,29 @@ class GlobalController extends AppController {
                     array_walk($value, 'flatten_array', &$array);
              
             }
+            $console = array();
+            array_walk($log, 'flatten_array', &$console);
+
+            //var_dump($console);
+
+            echo '<ul>';
+            foreach (array_reverse($console) as $c) {
+              
+              //split the string
+              $c = explode("[", $c, 2);
+
+              //check for color the string
+              if (strpos($c[1], 'WARNING') === 0 || strpos($c[1], 'SEVERE') === 0) { $class = "warning"; } else { $class = "info"; }
+
+              //var_dump($c);
+              echo <<<END
+                <li><b>$c[0]</b> <p class="console-$class"> [$c[1]</p></li>                    
+END;
+
+            }
+            echo '</ul>';
+  
+/*
             $console = array();
             array_walk($log, 'flatten_array', &$console);
             array_reverse($console);
@@ -145,7 +170,7 @@ if (strpos($list, 'WARNING') > 0 | strpos($list, 'SEVERE') > 0) {
 END;
              }  
             echo '</table>';
-
+*/
         } 
 
     }
@@ -174,7 +199,7 @@ END;
 
         include '../spacebukkitcall.php';
 
-        $args = array();   
+        $args = array(true);   
         $api->call("restartServer", $args, true);  
 
         w_serverlog($this->Session->read("current_server"), '[GLOBAL]'.$this->Auth->user('username').__(' restarted the server'));

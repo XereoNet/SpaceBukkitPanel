@@ -41,27 +41,72 @@
 </div>
 <?php };?>
 <?php if (($user_perm['pages'] & $glob_perm['pages']['console']) || ($user_perm['is_super'] == 1)) { ?>
-<div class="panel">
 
-    <form id="runcommand" class="runcommand" method="post" action="./global/runcommand">
-      <div>
-        <input id="command" name="command" type="text" placeholder="<?php echo __('Enter Command'); ?>"/>
-    	<input type="submit" class="button primary submit" value="<?php echo __('Submit'); ?>">
-    	<small style="float: right">(latest on top)</small>
-      </div>
-    </form>
-    <br />
 
-	<div id="console">
-	</div>
-	<div style="clear:both;"></div>
 <?php } ?>
 </div>
+
 	<div id="header">
 		<div id="container"> 
 <?php if (($user_perm['pages'] & $glob_perm['pages']['console']) || ($user_perm['is_super'] == 1)) { ?>
 		
 			<a class="trigger" href="#"></a>
+			<div id="sidebar-widget" class="widget-reset" style="display: none; ">
+
+				<a href="#" class="sidebar-button console-button" rel="nofollow">console</a>
+				<div id="sidebar-console-wrap" class="sidebar-wrap">
+					<div id="sidebar-console">
+
+						<div id="console-meta">
+							<h4>Console</h4>
+							<form id="runcommand" class="runcommand" method="post" action="./global/runcommand">
+						        <input id="command" name="command" type="text" placeholder="<?php echo __('Enter Command'); ?>"/>
+						    	<input type="submit" class="button primary submit hidden" value="<?php echo __('Submit'); ?>">
+						    </form>
+							<section>
+							<p>Server running since</p>
+							<pre>122 h 12m</pre>
+
+							<div class="console-controls splitter">
+								<ul>
+									<li class="segment-1 selected-1"><a href="#" data-value="all">Everything</a></li>
+									<li class="segment-0"><a href="#" data-value="info">Info</a></li>
+									<li class="segment-0"><a href="#" data-value="warning">Warning</a></li>
+									<li class="segment-2"><a href="#" data-value="severe">Severe</a></li>
+								</ul>
+							</div>
+							</section>
+						</div>
+						<div id="console-list" rel="all">
+							<ul>
+							</ul>
+						</div>
+
+						<!--
+					    <form id="runcommand" class="runcommand" method="post" action="./global/runcommand">
+					      <div>
+					        <input id="command" name="command" type="text" placeholder="<?php echo __('Enter Command'); ?>"/>
+					    	<input type="submit" class="button primary submit" value="<?php echo __('Submit'); ?>">
+					    	<small style="float: right">(latest on top)</small>
+					      </div>
+					    </form>
+					    <br />
+
+						<div id="console">
+						</div>-->
+					</div>
+					<span class="switcher-arrow"></span>
+				</div>
+
+				<a href="#" class="sidebar-button chat-button" rel="nofollow">chat</a>
+				<div id="sidebar-chat-wrap" class="sidebar-wrap">
+					<div id="sidebar-chat">
+
+					</div>
+					<span class="switcher-arrow"></span>
+				</div>				
+
+			</div>
 <?php } ?>
 
 			<!-- Logo -->
@@ -227,8 +272,10 @@ END;
 
 $(document).ready(function() {
 
-	doAndRefresh('#console','./global/getConsole', 5000);
-
+	var console_wrapper = $('#console-list');
+	var console_param = $(console_wrapper).attr("rel");
+	var console_url = './global/getConsole/'+console_param;
+	doAndRefresh(console_wrapper, console_url, 5000);
 
 });
 
