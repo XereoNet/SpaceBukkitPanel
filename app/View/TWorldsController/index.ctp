@@ -27,6 +27,7 @@
 <nav id="smalltabs">
 	<ul>
 		<li class="current"><a href="#tab1"><?php echo __('Overview') ?></a></li>
+		<li><a href="#tab2"><?php echo __('Map') ?></a></li>
 		<li><a href="#tab3"><?php echo __('Chunkster') ?></a></li>
 		<li><a href="#tab4"><?php echo __('MapAutoTrim') ?></a></li>
 	</ul>
@@ -78,6 +79,20 @@
     </tbody> 
 
   </table> 
+  </div>
+		</div>
+	<div class="clear"></div>
+
+	<div class="tab" id="tab2">	
+
+  <div class="table_container">
+
+    <header>
+
+      <h2><?php echo __('Map') ?></h2>
+	
+	</header>
+	<section><center><p class="description">Coming soon to a SpaceBukkit enabled server near you!</p></center></section>
   </div>
 		</div>
 	<div class="clear"></div>
@@ -242,6 +257,33 @@ $('document').ready(function() {
   $('#update_worlds').click(function() {
     Table1.fnReloadAjax("./tworlds/getWorlds")
   });
+
+  $(".backup").live('click', (function(){
+  	
+  	window.alert('Function will be available soon!');
+
+  }));
+
+  $(".remove").live('click', (function(){
+  	
+  	if(confirm("Are you sure you want to delete this world?!\nThis will restart the server...")){
+  		// Create overlay and append to body:
+    	showOverlay('Removing world and restarting server...');
+    	
+  		var source = $(this).attr("href");
+  
+		$.ajax({
+  			url: source,
+  			success: function(data) {
+	     		notifications.show(data);
+	      		Table1.fnReloadAjax("./tworlds/getWorlds")
+	      		hideOverlay();
+  			}
+		
+		});
+  	}
+  	return false;
+  }));
 
   $(".ajax_table1").live('click', (function(){
 

@@ -251,7 +251,7 @@ class TWorldsController extends AppController {
 
                         //set load button if it's not the main world
                         if (in_array($name, $main) == NULL){
-                            $load = '<span class=\"button-group\"><a href=\"./tworlds/unloadWorld/'.$name.'\" class=\"button icon arrowdown ajax_table1\">'.__('Unload').'</a></span>';
+                            $load = '<a href=\"./tworlds/unloadWorld/'.$name.'\" class=\"button icon arrowdown ajax_table1\">'.__('Unload').'</a>';
                         }else{
                             $load = "";
                         }
@@ -294,7 +294,7 @@ class TWorldsController extends AppController {
 
                         //set load button if it's not the main world
                         if (in_array($name, $main) == NULL){
-                        $load = '<span class=\"button-group\"><a href=\"./tworlds/unloadWorld/'.$name.'\" class=\"button icon arrowdown ajax_table1\">'.__('Unload').'</a></span>';
+                        $load = '<a href=\"./tworlds/unloadWorld/'.$name.'\" class=\"button icon arrowdown ajax_table1\">'.__('Unload').'</a>';
                         }else{
                             $load = "";
                         }
@@ -306,7 +306,7 @@ class TWorldsController extends AppController {
                 
                 //$actions = '<center> '.$load.' <span class=\"button-group\"><a href=\"#\"  class=\"button icon like ajax_table1\">'.__('Backup').'</a><a href=\"#\" class=\"button icon remove danger ajax_table1\">'.__('Delete!').'</a></span></center>';
                 
-                $actions = '<center> '.$load.'</center>';
+                $actions = '<center><span class=\"button-group\"> '.$load.'</span> <span class=\"button-group\"><a href=\"#\"  class=\"button icon like backup\">'.__('Backup').'</a><a href=\"./tworlds/deleteWorld/'.$name.'\" class=\"button icon remove danger remove\">'.__('Delete!').'</a></span></center>';
                 
                 //send to table
                 ECHO <<<END
@@ -586,7 +586,34 @@ END;
                 echo $wrld.__(' has been loaded.');
             }else{echo __('error while loading ').$wrld;}  
         }
+    }
 
+
+
+    function deleteWorld($wrld) {
+        if ($this->request->is('ajax')) {
+            $this->disableCache();
+            Configure::write('debug', 0);
+            $this->autoRender = false;
+            include '../spacebukkitcall.php';
+            //stop the server
+            $args = array();
+            $api->call("hold", $args, true);
+            sleep(20);
+            //backup the world
+            $args = array('bukkit.yml');
+            $bukkit = $api->call('getFileContents', $args, true);
+            $wc = $this->get_string_between($bukkit, "world-container: ", "\n");
+            $args = array($wc.'/'.$wrld);
+            $api->call("backup", $args, true);
+            sleep(5);
+            //remove the world
+
+            //start the server
+            $args = array();
+            $api->call('unhold', $args, true);
+            echo 'Hi!';
+        }
     }
 
     function addWorld() {

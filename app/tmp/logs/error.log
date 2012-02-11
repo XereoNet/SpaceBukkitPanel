@@ -1,0 +1,1430 @@
+2012-02-09 12:01:21 Error: [MissingConnectionException] Database connection "SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo failed: Host sconosciuto. " is missing, or could not be created.
+#0 C:\xampp\htdocs\spacecp\3\lib\Cake\Model\Datasource\DboSource.php(244): Mysql->connect()
+#1 C:\xampp\htdocs\spacecp\3\app\Model\ConnectionManager.php(98): DboSource->__construct(Array)
+#2 C:\xampp\htdocs\spacecp\3\lib\Cake\Model\Model.php(3214): ConnectionManager::getDataSource('default')
+#3 C:\xampp\htdocs\spacecp\3\lib\Cake\Model\Model.php(1023): Model->setDataSource('default')
+#4 C:\xampp\htdocs\spacecp\3\lib\Cake\Model\Model.php(3238): Model->setSource('roles')
+#5 C:\xampp\htdocs\spacecp\3\lib\Cake\Model\Model.php(2460): Model->getDataSource()
+#6 C:\xampp\htdocs\spacecp\3\app\Controller\InstallController.php(212): Model->find('all')
+#7 [internal function]: InstallController->step3()
+#8 C:\xampp\htdocs\spacecp\3\lib\Cake\Controller\Controller.php(473): ReflectionMethod->invokeArgs(Object(InstallController), Array)
+#9 C:\xampp\htdocs\spacecp\3\lib\Cake\Routing\Dispatcher.php(107): Controller->invokeAction(Object(CakeRequest))
+#10 C:\xampp\htdocs\spacecp\3\lib\Cake\Routing\Dispatcher.php(89): Dispatcher->_invoke(Object(InstallController), Object(CakeRequest), Object(CakeResponse))
+#11 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2012-02-09 16:56:00 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 16:58:53 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 16:59:10 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:00:10 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:00:17 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:00:48 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:02:05 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:02:33 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:02:50 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:04:18 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:04:25 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:04:48 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:05:01 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:05:11 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:05:20 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:06:56 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:06:56 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:07:36 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:07:36 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:07:49 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:07:49 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:09:04 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:09:04 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:10:16 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:10:16 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:11:10 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:11:10 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:11:52 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:11:52 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:17:28 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:20:03 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:21:15 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:24:44 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:24:44 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:24:56 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:25:06 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-09 17:47:31 Error: [MissingControllerException] Controller class DashsController could not be found.
+#0 C:\xampp\htdocs\spacecp\3\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 14:40:35 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 124]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 124
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 14:40:42 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 124]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 124
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 14:40:48 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 124]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 124
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 16:40:34 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 16:40:34 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 16:40:34 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 16:40:34 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 16:40:34 Error: [MissingControllerException] Controller class CssController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 16:40:34 Error: [MissingControllerException] Controller class CssController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 16:40:35 Error: [MissingControllerException] Controller class CssController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 16:40:35 Error: [MissingControllerException] Controller class Version.jsController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 16:40:35 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 16:40:35 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 16:40:35 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 16:40:35 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 16:40:35 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 16:40:35 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 16:40:35 Error: [MissingControllerException] Controller class Config.jsController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 16:40:35 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 16:41:06 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 16:41:06 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 16:41:06 Error: [MissingControllerException] Controller class CssController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 16:41:06 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 16:41:06 Error: [MissingControllerException] Controller class CssController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 16:41:06 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 16:41:06 Error: [MissingControllerException] Controller class CssController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 16:41:07 Error: [MissingControllerException] Controller class Version.jsController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 16:41:07 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 16:41:07 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 16:41:07 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 16:41:07 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 16:41:07 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 16:41:07 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 16:41:07 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 16:41:07 Error: [MissingControllerException] Controller class Config.jsController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 17:05:14 Error: [MissingViewException] View file "C:\xampp\htdocs\sb\app\View\TWorldsController\delete_world.ctp" is missing.
+#0 C:\xampp\htdocs\sb\lib\Cake\View\View.php(363): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\sb\lib\Cake\Controller\Controller.php(900): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(114): Controller->render()
+#3 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(89): Dispatcher->_invoke(Object(TWorldsController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-02-11 17:05:15 Error: [MissingViewException] View file "C:\xampp\htdocs\sb\app\View\TWorldsController\delete_world.ctp" is missing.
+#0 C:\xampp\htdocs\sb\lib\Cake\View\View.php(363): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\sb\lib\Cake\Controller\Controller.php(900): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(114): Controller->render()
+#3 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(89): Dispatcher->_invoke(Object(TWorldsController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-02-11 17:05:41 Error: [MissingViewException] View file "C:\xampp\htdocs\sb\app\View\TWorldsController\delete_world.ctp" is missing.
+#0 C:\xampp\htdocs\sb\lib\Cake\View\View.php(363): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\sb\lib\Cake\Controller\Controller.php(900): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(114): Controller->render()
+#3 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(89): Dispatcher->_invoke(Object(TWorldsController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-02-11 17:05:42 Error: [MissingViewException] View file "C:\xampp\htdocs\sb\app\View\TWorldsController\delete_world.ctp" is missing.
+#0 C:\xampp\htdocs\sb\lib\Cake\View\View.php(363): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\sb\lib\Cake\Controller\Controller.php(900): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(114): Controller->render()
+#3 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(89): Dispatcher->_invoke(Object(TWorldsController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-02-11 17:05:51 Error: [MissingViewException] View file "C:\xampp\htdocs\sb\app\View\TWorldsController\delete_world.ctp" is missing.
+#0 C:\xampp\htdocs\sb\lib\Cake\View\View.php(363): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\sb\lib\Cake\Controller\Controller.php(900): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(114): Controller->render()
+#3 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(89): Dispatcher->_invoke(Object(TWorldsController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-02-11 17:05:52 Error: [MissingViewException] View file "C:\xampp\htdocs\sb\app\View\TWorldsController\delete_world.ctp" is missing.
+#0 C:\xampp\htdocs\sb\lib\Cake\View\View.php(363): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\sb\lib\Cake\Controller\Controller.php(900): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(114): Controller->render()
+#3 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(89): Dispatcher->_invoke(Object(TWorldsController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-02-11 17:09:21 Error: [MissingViewException] View file "C:\xampp\htdocs\sb\app\View\TWorldsController\delete_world.ctp" is missing.
+#0 C:\xampp\htdocs\sb\lib\Cake\View\View.php(363): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\sb\lib\Cake\Controller\Controller.php(900): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(114): Controller->render()
+#3 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(89): Dispatcher->_invoke(Object(TWorldsController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-02-11 17:09:21 Error: [MissingViewException] View file "C:\xampp\htdocs\sb\app\View\TWorldsController\delete_world.ctp" is missing.
+#0 C:\xampp\htdocs\sb\lib\Cake\View\View.php(363): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\sb\lib\Cake\Controller\Controller.php(900): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(114): Controller->render()
+#3 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(89): Dispatcher->_invoke(Object(TWorldsController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-02-11 17:11:26 Error: [MissingViewException] View file "C:\xampp\htdocs\sb\app\View\TWorldsController\delete_world.ctp" is missing.
+#0 C:\xampp\htdocs\sb\lib\Cake\View\View.php(363): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\sb\lib\Cake\Controller\Controller.php(900): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(114): Controller->render()
+#3 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(89): Dispatcher->_invoke(Object(TWorldsController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-02-11 17:11:26 Error: [MissingViewException] View file "C:\xampp\htdocs\sb\app\View\TWorldsController\delete_world.ctp" is missing.
+#0 C:\xampp\htdocs\sb\lib\Cake\View\View.php(363): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\sb\lib\Cake\Controller\Controller.php(900): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(114): Controller->render()
+#3 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(89): Dispatcher->_invoke(Object(TWorldsController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-02-11 17:39:40 Error: [MissingViewException] View file "C:\xampp\htdocs\sb\app\View\TWorldsController\delete_world.ctp" is missing.
+#0 C:\xampp\htdocs\sb\lib\Cake\View\View.php(363): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\sb\lib\Cake\Controller\Controller.php(900): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(114): Controller->render()
+#3 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(89): Dispatcher->_invoke(Object(TWorldsController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-02-11 17:39:40 Error: [MissingViewException] View file "C:\xampp\htdocs\sb\app\View\TWorldsController\delete_world.ctp" is missing.
+#0 C:\xampp\htdocs\sb\lib\Cake\View\View.php(363): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\sb\lib\Cake\Controller\Controller.php(900): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(114): Controller->render()
+#3 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(89): Dispatcher->_invoke(Object(TWorldsController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-02-11 17:54:35 Error: [MissingControllerException] Controller class ImgController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 17:55:15 Error: [MissingControllerException] Controller class ImgController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 17:56:07 Error: [MissingControllerException] Controller class ImgController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 17:56:46 Error: [MissingControllerException] Controller class ImgController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 17:57:30 Error: [MissingControllerException] Controller class ImgController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 17:58:54 Error: [MissingControllerException] Controller class ImgController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 17:59:11 Error: [MissingControllerException] Controller class ImgController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 17:59:37 Error: [MissingControllerException] Controller class ImgController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 18:00:00 Error: [MissingControllerException] Controller class ImgController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 18:00:15 Error: [MissingControllerException] Controller class ImgController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 18:00:56 Error: [MissingControllerException] Controller class ImgController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 18:00:56 Error: [MissingControllerException] Controller class ImgController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 18:02:01 Error: [MissingControllerException] Controller class ImgController could not be found.
+#0 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-02-11 18:38:04 Error: [MissingViewException] View file "C:\xampp\htdocs\sb\app\View\TWorldsController\delete_world.ctp" is missing.
+#0 C:\xampp\htdocs\sb\lib\Cake\View\View.php(363): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\sb\lib\Cake\Controller\Controller.php(900): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(114): Controller->render()
+#3 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(89): Dispatcher->_invoke(Object(TWorldsController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-02-11 18:38:04 Error: [MissingViewException] View file "C:\xampp\htdocs\sb\app\View\TWorldsController\delete_world.ctp" is missing.
+#0 C:\xampp\htdocs\sb\lib\Cake\View\View.php(363): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\sb\lib\Cake\Controller\Controller.php(900): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(114): Controller->render()
+#3 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(89): Dispatcher->_invoke(Object(TWorldsController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-02-11 18:38:32 Error: [MissingViewException] View file "C:\xampp\htdocs\sb\app\View\TWorldsController\delete_world.ctp" is missing.
+#0 C:\xampp\htdocs\sb\lib\Cake\View\View.php(363): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\sb\lib\Cake\Controller\Controller.php(900): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(114): Controller->render()
+#3 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(89): Dispatcher->_invoke(Object(TWorldsController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-02-11 18:38:32 Error: [MissingViewException] View file "C:\xampp\htdocs\sb\app\View\TWorldsController\delete_world.ctp" is missing.
+#0 C:\xampp\htdocs\sb\lib\Cake\View\View.php(363): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\sb\lib\Cake\Controller\Controller.php(900): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(114): Controller->render()
+#3 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(89): Dispatcher->_invoke(Object(TWorldsController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-02-11 18:44:26 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 18:44:43 Error: [MissingViewException] View file "C:\xampp\htdocs\sb\app\View\TWorldsController\delete_world.ctp" is missing.
+#0 C:\xampp\htdocs\sb\lib\Cake\View\View.php(363): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\sb\lib\Cake\Controller\Controller.php(900): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(114): Controller->render()
+#3 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(89): Dispatcher->_invoke(Object(TWorldsController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-02-11 18:44:43 Error: [MissingViewException] View file "C:\xampp\htdocs\sb\app\View\TWorldsController\delete_world.ctp" is missing.
+#0 C:\xampp\htdocs\sb\lib\Cake\View\View.php(363): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\sb\lib\Cake\Controller\Controller.php(900): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(114): Controller->render()
+#3 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(89): Dispatcher->_invoke(Object(TWorldsController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-02-11 18:45:07 Error: [MissingViewException] View file "C:\xampp\htdocs\sb\app\View\TWorldsController\delete_world.ctp" is missing.
+#0 C:\xampp\htdocs\sb\lib\Cake\View\View.php(363): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\sb\lib\Cake\Controller\Controller.php(900): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(114): Controller->render()
+#3 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(89): Dispatcher->_invoke(Object(TWorldsController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-02-11 18:45:07 Error: [MissingViewException] View file "C:\xampp\htdocs\sb\app\View\TWorldsController\delete_world.ctp" is missing.
+#0 C:\xampp\htdocs\sb\lib\Cake\View\View.php(363): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\sb\lib\Cake\Controller\Controller.php(900): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(114): Controller->render()
+#3 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(89): Dispatcher->_invoke(Object(TWorldsController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-02-11 18:47:55 Error: [MissingViewException] View file "C:\xampp\htdocs\sb\app\View\TWorldsController\delete_world.ctp" is missing.
+#0 C:\xampp\htdocs\sb\lib\Cake\View\View.php(363): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\sb\lib\Cake\Controller\Controller.php(900): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(114): Controller->render()
+#3 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(89): Dispatcher->_invoke(Object(TWorldsController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-02-11 18:47:55 Error: [MissingViewException] View file "C:\xampp\htdocs\sb\app\View\TWorldsController\delete_world.ctp" is missing.
+#0 C:\xampp\htdocs\sb\lib\Cake\View\View.php(363): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\sb\lib\Cake\Controller\Controller.php(900): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(114): Controller->render()
+#3 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(89): Dispatcher->_invoke(Object(TWorldsController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-02-11 18:49:05 Error: [MissingViewException] View file "C:\xampp\htdocs\sb\app\View\TWorldsController\delete_world.ctp" is missing.
+#0 C:\xampp\htdocs\sb\lib\Cake\View\View.php(363): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\sb\lib\Cake\Controller\Controller.php(900): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(114): Controller->render()
+#3 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(89): Dispatcher->_invoke(Object(TWorldsController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-02-11 18:49:05 Error: [MissingViewException] View file "C:\xampp\htdocs\sb\app\View\TWorldsController\delete_world.ctp" is missing.
+#0 C:\xampp\htdocs\sb\lib\Cake\View\View.php(363): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\sb\lib\Cake\Controller\Controller.php(900): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(114): Controller->render()
+#3 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(89): Dispatcher->_invoke(Object(TWorldsController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-02-11 18:49:36 Error: [MissingViewException] View file "C:\xampp\htdocs\sb\app\View\TWorldsController\delete_world.ctp" is missing.
+#0 C:\xampp\htdocs\sb\lib\Cake\View\View.php(363): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\sb\lib\Cake\Controller\Controller.php(900): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(114): Controller->render()
+#3 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(89): Dispatcher->_invoke(Object(TWorldsController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-02-11 18:49:37 Error: [MissingViewException] View file "C:\xampp\htdocs\sb\app\View\TWorldsController\delete_world.ctp" is missing.
+#0 C:\xampp\htdocs\sb\lib\Cake\View\View.php(363): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\sb\lib\Cake\Controller\Controller.php(900): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(114): Controller->render()
+#3 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(89): Dispatcher->_invoke(Object(TWorldsController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-02-11 18:50:43 Error: [MissingViewException] View file "C:\xampp\htdocs\sb\app\View\TWorldsController\delete_world.ctp" is missing.
+#0 C:\xampp\htdocs\sb\lib\Cake\View\View.php(363): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\sb\lib\Cake\Controller\Controller.php(900): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(114): Controller->render()
+#3 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(89): Dispatcher->_invoke(Object(TWorldsController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-02-11 18:50:43 Error: [MissingViewException] View file "C:\xampp\htdocs\sb\app\View\TWorldsController\delete_world.ctp" is missing.
+#0 C:\xampp\htdocs\sb\lib\Cake\View\View.php(363): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\sb\lib\Cake\Controller\Controller.php(900): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(114): Controller->render()
+#3 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(89): Dispatcher->_invoke(Object(TWorldsController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-02-11 18:51:28 Error: [MissingViewException] View file "C:\xampp\htdocs\sb\app\View\TWorldsController\delete_world.ctp" is missing.
+#0 C:\xampp\htdocs\sb\lib\Cake\View\View.php(363): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\sb\lib\Cake\Controller\Controller.php(900): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(114): Controller->render()
+#3 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(89): Dispatcher->_invoke(Object(TWorldsController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-02-11 18:51:29 Error: [MissingViewException] View file "C:\xampp\htdocs\sb\app\View\TWorldsController\delete_world.ctp" is missing.
+#0 C:\xampp\htdocs\sb\lib\Cake\View\View.php(363): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\sb\lib\Cake\Controller\Controller.php(900): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(114): Controller->render()
+#3 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(89): Dispatcher->_invoke(Object(TWorldsController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-02-11 18:51:33 Error: [MissingViewException] View file "C:\xampp\htdocs\sb\app\View\TWorldsController\delete_world.ctp" is missing.
+#0 C:\xampp\htdocs\sb\lib\Cake\View\View.php(363): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\sb\lib\Cake\Controller\Controller.php(900): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(114): Controller->render()
+#3 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(89): Dispatcher->_invoke(Object(TWorldsController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-02-11 18:51:33 Error: [MissingViewException] View file "C:\xampp\htdocs\sb\app\View\TWorldsController\delete_world.ctp" is missing.
+#0 C:\xampp\htdocs\sb\lib\Cake\View\View.php(363): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\sb\lib\Cake\Controller\Controller.php(900): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(114): Controller->render()
+#3 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(89): Dispatcher->_invoke(Object(TWorldsController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-02-11 19:03:51 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 19:05:01 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 19:40:22 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 19:40:30 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:26:21 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:26:30 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:26:56 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:27:02 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:27:08 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:27:15 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:27:21 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:50:20 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:50:22 Warning: Warning (2): in_array() expects parameter 2 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\TworldsController.php, line 108]
+Trace:
+in_array - [internal], line ??
+TWorldsController::getWMPL() - APP\Controller\TworldsController.php, line 108
+TWorldsController::getWorlds() - APP\Controller\TworldsController.php, line 129
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:50:22 Warning: Warning (2): in_array() expects parameter 2 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\TworldsController.php, line 110]
+Trace:
+in_array - [internal], line ??
+TWorldsController::getWMPL() - APP\Controller\TworldsController.php, line 110
+TWorldsController::getWorlds() - APP\Controller\TworldsController.php, line 129
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:50:24 Warning: Warning (2): in_array() expects parameter 2 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\TworldsController.php, line 153]
+Trace:
+in_array - [internal], line ??
+TWorldsController::getWorlds() - APP\Controller\TworldsController.php, line 153
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:50:24 Warning: Warning (2): in_array() expects parameter 2 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\TworldsController.php, line 153]
+Trace:
+in_array - [internal], line ??
+TWorldsController::getWorlds() - APP\Controller\TworldsController.php, line 153
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:50:24 Warning: Warning (2): in_array() expects parameter 2 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\TworldsController.php, line 153]
+Trace:
+in_array - [internal], line ??
+TWorldsController::getWorlds() - APP\Controller\TworldsController.php, line 153
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:50:24 Warning: Warning (2): in_array() expects parameter 2 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\TworldsController.php, line 153]
+Trace:
+in_array - [internal], line ??
+TWorldsController::getWorlds() - APP\Controller\TworldsController.php, line 153
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:50:25 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:51:40 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:51:45 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:51:46 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:51:51 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:51:53 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:51:57 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:52:00 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:52:04 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:52:07 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:52:11 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:52:13 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:52:17 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:52:19 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:52:24 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:52:26 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:52:30 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:52:32 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:52:36 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:52:38 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:52:42 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:52:46 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:52:49 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:52:52 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:52:55 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:52:59 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:53:01 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:53:06 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:53:10 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:53:46 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:53:53 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:53:59 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:54:05 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:54:11 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:54:17 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:54:24 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:54:30 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:54:36 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:54:42 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:54:48 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:54:54 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:55:01 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:55:07 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:55:13 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:55:19 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:55:26 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:55:32 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:55:38 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:55:44 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:55:50 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:55:56 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:56:03 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:56:09 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:56:15 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:56:21 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:56:27 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 21:56:54 Error: [MissingViewException] View file "C:\xampp\htdocs\sb\app\View\TWorldsController\delete_world.ctp" is missing.
+#0 C:\xampp\htdocs\sb\lib\Cake\View\View.php(363): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\sb\lib\Cake\Controller\Controller.php(900): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(114): Controller->render()
+#3 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(89): Dispatcher->_invoke(Object(TWorldsController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-02-11 21:56:54 Error: [MissingViewException] View file "C:\xampp\htdocs\sb\app\View\TWorldsController\delete_world.ctp" is missing.
+#0 C:\xampp\htdocs\sb\lib\Cake\View\View.php(363): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\sb\lib\Cake\Controller\Controller.php(900): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(114): Controller->render()
+#3 C:\xampp\htdocs\sb\lib\Cake\Routing\Dispatcher.php(89): Dispatcher->_invoke(Object(TWorldsController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\sb\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-02-11 21:59:14 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 22:02:14 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 22:02:39 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 22:02:48 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 22:11:33 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 22:11:41 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 22:11:45 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 22:11:49 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 22:11:57 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 22:12:04 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 22:12:11 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 22:12:16 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 22:12:21 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 22:12:26 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+
+2012-02-11 22:12:33 Warning: Warning (2): array_walk() expects parameter 1 to be array, null given in [C:\xampp\htdocs\sb\app\Controller\GlobalController.php, line 126]
+Trace:
+array_walk - [internal], line ??
+GlobalController::getConsole() - APP\Controller\GlobalController.php, line 126
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 473
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 107
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 89
+[main] - APP\webroot\index.php, line 96
+

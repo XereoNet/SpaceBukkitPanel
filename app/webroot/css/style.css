@@ -6,154 +6,176 @@ position: relative;
 display: block;
 }
 .xdebug-var-dump {
-	background: #fefefe
+  background: #fefefe
 }
 .hidden {
-	display: none!important;
-	visibility: hidden!important;
+  display: none!important;
+  visibility: hidden!important;
+}
+.screen_overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  filter: alpha(opacity=75); /* internet explorer */
+  -khtml-opacity: 0.75;      /* khtml, old safari */
+  -moz-opacity: 0.75;       /* mozilla, netscape */
+  opacity: 0.75;           /* fx, safari, opera */
+  text-align: center;
+  background: grey url(../img/big_loader.gif) no-repeat center;
+  display: none;
+}
+.screen_overlay div{
+  margin: 200px auto 0;
+  background: #eee;
+  border: 1px solid #ddd;
+  width: 200px;
+  padding: 10px;
 }
 .cake-debug {
-	background: #fefefe
+  background: #fefefe
 }
 .error_box {
-	background: #fad3c4;
-	border: 1px solid #a75b4e;
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	color: #444;
-	display: none;
-	font-size: 13px;
-	margin: 0 0 15px 0;
-	padding: 8px 8px;
-	width: auto
+  background: #fad3c4;
+  border: 1px solid #a75b4e;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  color: #444;
+  display: none;
+  font-size: 13px;
+  margin: 0 0 15px 0;
+  padding: 8px 8px;
+  width: auto
 }
 div.preloader {
-	width: 100%;
-	height: 100%;
-	text-align: center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
 }
 div.preloader > div{
-	margin: 30px auto;
-	width: 100px;
-	height: 100px;
+  margin: 30px auto;
+  width: 100px;
+  height: 100px;
 }
 div.preloader > div > img {
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 button[disabled]: active,button[disabled],input[type="reset"][disabled]: active,input[type="reset"][disabled],input[type="button"][disabled]: active,input[type="button"][disabled],select[disabled]>input[type="button"],select[disabled]>input[type="button"]: active,input[type="submit"][disabled]: active,input[type="submit"][disabled] {
-	padding: 0 6px 0 6px;
-	border: 2px outset ButtonFace;
-	color: GrayText;
-	cursor: inherit
+  padding: 0 6px 0 6px;
+  border: 2px outset ButtonFace;
+  color: GrayText;
+  cursor: inherit
 }
 html {
-	height: 100%
+  height: 100%
 }
 @import url(http: //fonts.googleapis.com/css?family=Ubuntu&subset=latin,cyrillic-ext);
-	body {
-	background: #000;
-	font-family: 'Ubuntu',sans-serif;
-	font-size: 13px;
-	height: 100%
+  body {
+  background: #000;
+  font-family: 'Ubuntu',sans-serif;
+  font-size: 13px;
+  height: 100%
 }
 a {
-	color: #06F;
-	text-decoration: none
+  color: #06F;
+  text-decoration: none
 }
 #header {
-	min-height: 100%
+  min-height: 100%
 }
 #container {
-	margin: 0 auto;
-	min-width: 960px;
-	max-width: 92%
+  margin: 0 auto;
+  min-width: 960px;
+  max-width: 92%
 }
 #container.login {
-	max-width: 800px;
-	min-width: 800px;
-	padding-top: 20px
+  max-width: 800px;
+  min-width: 800px;
+  padding-top: 20px
 }
 #container.login #wrapper {
-	max-height: 200px;
-	min-height: 200px
+  max-height: 200px;
+  min-height: 200px
 }
 #container.login .login_user,#container.login .login_pass {
-	width: 40%
+  width: 40%
 }
 #container.login .login_user {
-	background: url(../img/login_user.png) no-repeat 95% 50%
+  background: url(../img/login_user.png) no-repeat 95% 50%
 }
 #container.login .login_pass {
-	background: url(../img/login_pass.png) no-repeat 95% 50%
+  background: url(../img/login_pass.png) no-repeat 95% 50%
 }
 #container.login #content {
-	padding: 5px 15px 25px 15px;
-	background: 0;
-	border-radius: 0!important;
-	-moz-border-radius: 0!important;
-	-webkit-border-radius: 0!important;
-	-moz-border-radius: 0!important;
-	-webkit-border-radius: 0!important;
-	box-shadow: none!important;
-	-webkit-box-shadow: none!important;
-	-moz-box-shadow: none!important
+  padding: 5px 15px 25px 15px;
+  background: 0;
+  border-radius: 0!important;
+  -moz-border-radius: 0!important;
+  -webkit-border-radius: 0!important;
+  -moz-border-radius: 0!important;
+  -webkit-border-radius: 0!important;
+  box-shadow: none!important;
+  -webkit-box-shadow: none!important;
+  -moz-box-shadow: none!important
 }
 #session {
-	cursor: pointer;
-	display: inline-block;
-	vertical-align: middle;
-	white-space: nowrap;
-	background: url(../img/select.png) right no-repeat;
-	border: 1px solid #c3c3c3;
-	border-radius: 7px;
-	height: 25px;
-	-moz-border-radius: 7px;
-	-webkit-border-radius: 7px;
-	width: 250px
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  white-space: nowrap;
+  background: url(../img/select.png) right no-repeat;
+  border: 1px solid #c3c3c3;
+  border-radius: 7px;
+  height: 25px;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  width: 250px
 }
 .droptext {
-	display: inline;
-	position: relative;
-	top: 3px;
-	padding: 0 0 0 5px;
-	color: #1a88e9;
-	font-size: 14px
+  display: inline;
+  position: relative;
+  top: 3px;
+  padding: 0 0 0 5px;
+  color: #1a88e9;
+  font-size: 14px
 }
 #signin-dropdown {
-	background: transparent;
-	zoom: 1;
-	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr=#00000070,endColorstr=#00000070);
-	-ms-filter: "progid: DXImageTransform.Microsoft.gradient(startColorstr=#00000070, endColorstr=#00000070)";
-	background: #000;
-	background: rgba(0,0,0,0.7);
-	border-bottom-left-radius: 3px;
-	border-bottom-right-radius: 3px;
-	box-shadow: 0 0 4px #444;
-	-webkit-box-shadow: 0 0 4px #444;
-	-moz-box-shadow: 0 0 4px #444;
-	min-width: 350px;
-	position: absolute;
-	left: 0;
-	margin-top: 8px;
-	display: none;
-	z-index: 700
+  background: transparent;
+  zoom: 1;
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr=#00000070,endColorstr=#00000070);
+  -ms-filter: "progid: DXImageTransform.Microsoft.gradient(startColorstr=#00000070, endColorstr=#00000070)";
+  background: #000;
+  background: rgba(0,0,0,0.7);
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  box-shadow: 0 0 4px #444;
+  -webkit-box-shadow: 0 0 4px #444;
+  -moz-box-shadow: 0 0 4px #444;
+  min-width: 350px;
+  position: absolute;
+  left: 0;
+  margin-top: 8px;
+  display: none;
+  z-index: 700
 }
 #signin-dropdown form {
-	cursor: pointer;
-	padding: 10px;
-	text-align: left
+  cursor: pointer;
+  padding: 10px;
+  text-align: left
 }
 #signin-dropdown .textbox span {
-	color: #bababa
+  color: #bababa
 }
 #signin-dropdown .textbox input {
-	width: 200px
+  width: 200px
 }
 .signin-dropdown .textbox input {
-	width: 200px
+  width: 200px
 }
 
 /* Console, Chat */
@@ -258,66 +280,66 @@ a {
 }
 
 #console {
-	height: 500px;
-	max-width: 960px;
-	overflow-y: auto;
-	overflow-x: hidden
+  height: 500px;
+  max-width: 960px;
+  overflow-y: auto;
+  overflow-x: hidden
 }
 
 #console-meta {
-	height: 26px;
-	padding: 6px 10px 3px 15px;
-	color: #CCC;
+  height: 26px;
+  padding: 6px 10px 3px 15px;
+  color: #CCC;
 }
 
 #console-meta h4{
-	display: inline;
-	color: #eee;
-	font-weight: bold;
-	font-size: 18px;
-	line-height: 18px;
+  display: inline;
+  color: #eee;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 18px;
 }
 
 #console-meta form{
-	display: inline;
-	color: #eee;
+  display: inline;
+  color: #eee;
 }
 
 #console-meta input[type="text"]{
-	height: 20px;
-	background: #252525;
-	border: 1px solid #777;
-	padding: 1px 5px;
-	color: #AAA;
-	margin-left: 5px;
+  height: 20px;
+  background: #252525;
+  border: 1px solid #777;
+  padding: 1px 5px;
+  color: #AAA;
+  margin-left: 5px;
 }
 
 #console-meta form{
-	display: inline;
-	color: #eee;
+  display: inline;
+  color: #eee;
 }
 
 
 #console-meta > section{
-	display: inline;
-	float: right;
+  display: inline;
+  float: right;
 }
 
 #console-meta > section p{
-	display: inline;
+  display: inline;
 }
 
 #console-meta > section pre{
-	display: inline;
-	background: #252525;
-	border: 1px solid #777;
-	padding: 1px 5px;
-	color: #aaa;
+  display: inline;
+  background: #252525;
+  border: 1px solid #777;
+  padding: 1px 5px;
+  color: #aaa;
 }
 
 #console-meta > section div{
-	display: inline;
-	margin-left: 20px;
+  display: inline;
+  margin-left: 20px;
 }
 
 .splitter li,
@@ -353,13 +375,13 @@ a {
 
 .splitter ul li.segment-0,
 .splitter ul li.segment-2 {
-	margin-left: -3px;
+  margin-left: -3px;
   background-position: -3px -92px;
 }
 
 .splitter ul li.segment-0 a,
 .splitter ul li.segment-2 a{
-	background: none;
+  background: none;
 }
 
 .splitter ul li.segment-1 {
@@ -401,1629 +423,1629 @@ a {
 }
 
 #console-list {
-	height: auto;
-	max-height: 500px;
-	max-width: 100% !important;
-	overflow-y: auto;
-	overflow-x: hidden;
-	background: #000;	
-	color: #ccc;
-	font-size: 12px;	
-	border: 1px solid #333;
-	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  height: auto;
+  max-height: 500px;
+  max-width: 100% !important;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #000;  
+  color: #ccc;
+  font-size: 12px;  
+  border: 1px solid #333;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
 #console-list ul{
-	
+  
 }
 
 #console-list ul > li{
-	display: block;	
-	background: #111;
-	padding: 1px 0;
+  display: block;  
+  background: #111;
+  padding: 1px 0;
 }
 #console-list ul > li:nth-child(odd) {
-	background: #181818;
+  background: #181818;
 }
 
 #console-list .console-warning {
-	color: red;
+  color: red;
 }
 
 #console-list .console-info {
-	color: inherit;
+  color: inherit;
 }
 
 #console-list ul > li b{
-	padding: 0 4px;
-	border-right: 1px solid #333;
-	font-weight: bold;
+  padding: 0 4px;
+  border-right: 1px solid #333;
+  font-weight: bold;
 }
 
 #console-list ul > li p{
-	position: relative;
-	display: inline-block;
-	display: inline;
-	color: #ddd;
-	margin-left: 6px;
+  position: relative;
+  display: inline-block;
+  display: inline;
+  color: #ddd;
+  margin-left: 6px;
 }
 
 header {
-	height: 100px
+  height: 100px
 }
 .hheight {
-	height: 100px
+  height: 100px
 }
 .notext p {
-	font-size: 1px
+  font-size: 1px
 }
 #serverbox {
-	float: left;
-	margin-top: 29px;
-	position: relative;
-	padding: 5px 10px 10px 0
+  float: left;
+  margin-top: 29px;
+  position: relative;
+  padding: 5px 10px 10px 0
 }
 #serverbox span.dropdown_servers {
-	cursor: pointer;
-	display: inline-block;
-	vertical-align: middle;
-	white-space: nowrap;
-	background: url(../img/select.png) right no-repeat;
-	border-radius: 5px;
-	height: 25px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	width: 200px
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  white-space: nowrap;
+  background: url(../img/select.png) right no-repeat;
+  border-radius: 5px;
+  height: 25px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  width: 200px
 }
 #serverbox span.dropdown_servers p {
-	margin: 5px 0 0 5px
+  margin: 5px 0 0 5px
 }
 #serverbox span.dropdown_servers a {
-	color: white;
-	font-weight: bold
+  color: white;
+  font-weight: bold
 }
 #serverlist td,th {
-	vertical-align: middle;
-	border-right: 0
+  vertical-align: middle;
+  border-right: 0
 }
 #serverlist tr {
-	color: #222;
-	text-shadow: #fff 1px 1px 0
+  color: #222;
+  text-shadow: #fff 1px 1px 0
 }
 #serverlist tr: hover {
-	background-color: #eaeaea;
-	background-image: -o-linear-gradient(top,#fff,#ddd);
-	background-image: -ms-linear-gradient(top,#fff,#ddd);
-	background-image: -moz-linear-gradient(top,#fff,#ddd);
-	background-image: -webkit-gradient(linear,left top,left bottom,from(#fff),to(#ddd));
-	background-image: -webkit-linear-gradient(top,#fff,#ddd);
-	background-image: linear-gradient(top,#fff,#ddd);
-	-pie-background: linear-gradient(top,#fff,#ddd);
-	border-top: 0;
-	color: #333;
-	text-shadow: none
+  background-color: #eaeaea;
+  background-image: -o-linear-gradient(top,#fff,#ddd);
+  background-image: -ms-linear-gradient(top,#fff,#ddd);
+  background-image: -moz-linear-gradient(top,#fff,#ddd);
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#fff),to(#ddd));
+  background-image: -webkit-linear-gradient(top,#fff,#ddd);
+  background-image: linear-gradient(top,#fff,#ddd);
+  -pie-background: linear-gradient(top,#fff,#ddd);
+  border-top: 0;
+  color: #333;
+  text-shadow: none
 }
 #serverbox p {
-	padding-right: 11px;
-	margin-bottom: 5px
+  padding-right: 11px;
+  margin-bottom: 5px
 }
 #serverbuttons {
-	float: left;
-	margin-top: 20px;
-	position: relative;
-	padding: 10px 0 10px 0;
-	border-right: 1px solid #ccc
+  float: left;
+  margin-top: 20px;
+  position: relative;
+  padding: 10px 0 10px 0;
+  border-right: 1px solid #ccc
 }
 #serverbuttons a {
-	height: 34px;
-	text-indent: -9999px;
-	width: 30px;
-	padding: 0 7px 0 4px
+  height: 34px;
+  text-indent: -9999px;
+  width: 30px;
+  padding: 0 7px 0 4px
 }
 #userbuttons {
-	position: relative;
-	float: right;
-	margin: 40px 0 0 0
+  position: relative;
+  float: right;
+  margin: 40px 0 0 0
 }
 #userbuttons a.account {
-	color: #444;
-	background: url(../img/arrow-down.png) no-repeat right center;
-	padding: 0 35px 0 20px
+  color: #444;
+  background: url(../img/arrow-down.png) no-repeat right center;
+  padding: 0 35px 0 20px
 }
 #userbuttons ul,.server_add_to_list ul {
-	width: 190px
+  width: 190px
 }
 #userbuttons ul li,.server_add_to_list ul li {
-	padding: 7px 30px;
-	float: left;
-	position: relative;
-	width: 130px;
-	border-bottom: 1px solid #ccc;
-	list-style: none
+  padding: 7px 30px;
+  float: left;
+  position: relative;
+  width: 130px;
+  border-bottom: 1px solid #ccc;
+  list-style: none
 }
 #userbuttons ul a,.server_add_to_list ul a {
-	color: #222;
-	padding: 5px 0;
-	text-shadow: #fff 1px 1px 0;
-	display: block;
-	line-height: 100%
+  color: #222;
+  padding: 5px 0;
+  text-shadow: #fff 1px 1px 0;
+  display: block;
+  line-height: 100%
 }
 #userbuttons ul li: hover,.server_add_to_list ul li: hover {
-	background-color: #eaeaea;
-	background-image: -o-linear-gradient(top,#fff,#ddd);
-	background-image: -ms-linear-gradient(top,#fff,#ddd);
-	background-image: -moz-linear-gradient(top,#fff,#ddd);
-	background-image: -webkit-gradient(linear,left top,left bottom,from(#fff),to(#ddd));
-	background-image: -webkit-linear-gradient(top,#fff,#ddd);
-	background-image: linear-gradient(top,#fff,#ddd);
-	-pie-background: linear-gradient(top,#fff,#ddd);
-	border-top: 0;
-	color: #333;
-	text-shadow: none
+  background-color: #eaeaea;
+  background-image: -o-linear-gradient(top,#fff,#ddd);
+  background-image: -ms-linear-gradient(top,#fff,#ddd);
+  background-image: -moz-linear-gradient(top,#fff,#ddd);
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#fff),to(#ddd));
+  background-image: -webkit-linear-gradient(top,#fff,#ddd);
+  background-image: linear-gradient(top,#fff,#ddd);
+  -pie-background: linear-gradient(top,#fff,#ddd);
+  border-top: 0;
+  color: #333;
+  text-shadow: none
 }
 nav#mainnav {
-	border-bottom: 1px solid #333;
-	height: 80px;
-	background: url(../img/wrapperbg.png) repeat-x #e1e1e1;
-	border-radius: 7px;
-	box-shadow: 0 2px 3px 0 #111;
-	-moz-border-radius: 7px;
-	-webkit-border-radius: 7px;
-	-webkit-box-shadow: 0 2px 3px 0 #111;
-	-moz-box-shadow: 0 2px 3px 0 #111;
-	margin-bottom: 10px
+  border-bottom: 1px solid #333;
+  height: 80px;
+  background: url(../img/wrapperbg.png) repeat-x #e1e1e1;
+  border-radius: 7px;
+  box-shadow: 0 2px 3px 0 #111;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  -webkit-box-shadow: 0 2px 3px 0 #111;
+  -moz-box-shadow: 0 2px 3px 0 #111;
+  margin-bottom: 10px
 }
 nav#mainnav ul li {
-	position: relative;
-	float: left;
-	list-style: none
+  position: relative;
+  float: left;
+  list-style: none
 }
 nav#mainnav ul li a {
-	color: #777;
-	display: block;
-	font-size: 13px;
-	height: 70px;
-	text-align: center;
-	text-decoration: none;
-	width: 120px
+  color: #777;
+  display: block;
+  font-size: 13px;
+  height: 70px;
+  text-align: center;
+  text-decoration: none;
+  width: 120px
 }
 nav#mainnav ul li.current .icon {
-	background-position: left center
+  background-position: left center
 }
 nav#mainnav span.icon {
-	display: block;
-	margin: 0 auto;
-	background-repeat: no-repeat;
-	background-position: right center;
-	margin-top: 10px;
-	width: 25px;
-	padding: 20px 0
+  display: block;
+  margin: 0 auto;
+  background-repeat: no-repeat;
+  background-position: right center;
+  margin-top: 10px;
+  width: 25px;
+  padding: 20px 0
 }
 input: focus {
-	outline: 0
+  outline: 0
 }
 nav#smalltabs,nav#popuptabs {
-	height: 36px
+  height: 36px
 }
 nav#smalltabs ul li,nav#popuptabs ul li {
-	list-style: none;
-	float: left
+  list-style: none;
+  float: left
 }
 nav#smalltabs ul li a,nav#popuptabs ul li a {
-	background: url(../img/tab.png) repeat-x #111;
-	border-top-left-radius: 7px;
-	border-top-right-radius: 7px;
-	color: #fefefe;
-	display: block;
-	font-size: 12px;
-	margin: 8px 0 0 0;
-	padding: 8px 20px;
-	text-decoration: none;
-	text-shadow: 0 -1px 0 #282828
+  background: url(../img/tab.png) repeat-x #111;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  color: #fefefe;
+  display: block;
+  font-size: 12px;
+  margin: 8px 0 0 0;
+  padding: 8px 20px;
+  text-decoration: none;
+  text-shadow: 0 -1px 0 #282828
 }
 nav#smalltabs ul li.current a,nav#popuptabs ul li.current a {
-	background: #efefef;
-	color: #222;
-	text-shadow: 0 1px 0 #fff
+  background: #efefef;
+  color: #222;
+  text-shadow: 0 1px 0 #fff
 }
 .colorbox {
-	padding: 10px 20px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	border-radius: 3px;
-	margin-bottom: 10px;
-	-moz-box-shadow: inset 0 2px 3px rgba(255,255,255,0.5),0 2px 3px rgba(0,0,0,0.1);
-	-webkit-box-shadow: inset 0 2px 3px rgba(255,255,255,0.5),0 2px 3px rgba(0,0,0,0.1);
-	box-shadow: inset 0 2px 3px rgba(255,255,255,0.5),0 2px 3px rgba(0,0,0,0.1);
-	zoom: 1
+  padding: 10px 20px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  -moz-box-shadow: inset 0 2px 3px rgba(255,255,255,0.5),0 2px 3px rgba(0,0,0,0.1);
+  -webkit-box-shadow: inset 0 2px 3px rgba(255,255,255,0.5),0 2px 3px rgba(0,0,0,0.1);
+  box-shadow: inset 0 2px 3px rgba(255,255,255,0.5),0 2px 3px rgba(0,0,0,0.1);
+  zoom: 1
 }
 .colorbox.blue {
-	border: 1px solid #cadcea;
-	background-color: #CDF;
-	background-image: -o-linear-gradient(top,#f7f7f7,#cdf);
-	background-image: -ms-linear-gradient(top,#f7f7f7,#cdf);
-	background-image: -moz-linear-gradient(top,#f7f7f7,#cdf);
-	background-image: -webkit-gradient(linear,left top,left bottom,from(#f7f7f7),to(#cdf));
-	background-image: -webkit-linear-gradient(top,#f7f7f7,#cdf);
-	background-image: linear-gradient(top,#f7f7f7,#cdf);
-	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#EEf7f7f7F',endColorstr='#CCDDFF');
-	color: #225b86;
-	text-shadow: 0 1px 1px white
+  border: 1px solid #cadcea;
+  background-color: #CDF;
+  background-image: -o-linear-gradient(top,#f7f7f7,#cdf);
+  background-image: -ms-linear-gradient(top,#f7f7f7,#cdf);
+  background-image: -moz-linear-gradient(top,#f7f7f7,#cdf);
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#f7f7f7),to(#cdf));
+  background-image: -webkit-linear-gradient(top,#f7f7f7,#cdf);
+  background-image: linear-gradient(top,#f7f7f7,#cdf);
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#EEf7f7f7F',endColorstr='#CCDDFF');
+  color: #225b86;
+  text-shadow: 0 1px 1px white
 }
 .colorbox.green div {
-	background: url(../img/win.png) no-repeat center left
+  background: url(../img/win.png) no-repeat center left
 }
 .colorbox.red div {
-	background: url(../img/fail.png) no-repeat center left
+  background: url(../img/fail.png) no-repeat center left
 }
 .colorbox div.message {
-	background: 0
+  background: 0
 }
 .colorbox div h3,.colorbox div p {
-	margin-left: 65px
+  margin-left: 65px
 }
 .colorbox.green {
-	border: 1px solid #b8c97b;
-	background-color: #e5edc4;
-	background-image: -o-linear-gradient(top,#e5edc4,#d9e4ac);
-	background-image: -ms-linear-gradient(top,#e5edc4,#d9e4ac);
-	background-image: -moz-linear-gradient(top,#e5edc4,#d9e4ac);
-	background-image: -webkit-gradient(linear,left top,left bottom,from(#e5edc4),to(#d9e4ac));
-	background-image: -webkit-linear-gradient(top,#e5edc4,#d9e4ac);
-	background-image: linear-gradient(top,#e5edc4,#d9e4ac);
-	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#e5edc4',endColorstr='#d9e4ac');
-	color: #3f7227;
-	text-shadow: 0 1px 1px white
+  border: 1px solid #b8c97b;
+  background-color: #e5edc4;
+  background-image: -o-linear-gradient(top,#e5edc4,#d9e4ac);
+  background-image: -ms-linear-gradient(top,#e5edc4,#d9e4ac);
+  background-image: -moz-linear-gradient(top,#e5edc4,#d9e4ac);
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#e5edc4),to(#d9e4ac));
+  background-image: -webkit-linear-gradient(top,#e5edc4,#d9e4ac);
+  background-image: linear-gradient(top,#e5edc4,#d9e4ac);
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#e5edc4',endColorstr='#d9e4ac');
+  color: #3f7227;
+  text-shadow: 0 1px 1px white
 }
 .colorbox.red {
-	border: 1px solid #eeb7ba;
-	background-color: #fae2e2;
-	background-image: -o-linear-gradient(top,#fae2e2,#f2cacb);
-	background-image: -ms-linear-gradient(top,#fae2e2,#f2cacb);
-	background-image: -moz-linear-gradient(top,#fae2e2,#f2cacb);
-	background-image: -webkit-gradient(linear,left top,left bottom,from(#fae2e2),to(#f2cacb));
-	background-image: -webkit-linear-gradient(top,#fae2e2,#f2cacb);
-	background-image: linear-gradient(top,#fae2e2,#f2cacb);
-	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#fae2e2',endColorstr='#f2cacb');
-	color: #be4741;
-	text-shadow: 0 1px 1px white
+  border: 1px solid #eeb7ba;
+  background-color: #fae2e2;
+  background-image: -o-linear-gradient(top,#fae2e2,#f2cacb);
+  background-image: -ms-linear-gradient(top,#fae2e2,#f2cacb);
+  background-image: -moz-linear-gradient(top,#fae2e2,#f2cacb);
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#fae2e2),to(#f2cacb));
+  background-image: -webkit-linear-gradient(top,#fae2e2,#f2cacb);
+  background-image: linear-gradient(top,#fae2e2,#f2cacb);
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#fae2e2',endColorstr='#f2cacb');
+  color: #be4741;
+  text-shadow: 0 1px 1px white
 }
 .box, .table_container {
-	-moz-box-shadow: 0 2px 3px rgba(0,0,0,0.1);
-	-webkit-box-shadow: 0 2px 3px rgba(0,0,0,0.1);
-	box-shadow: 0 2px 3px rgba(0,0,0,0.1);
-	background-color: #f7f7f7;
+  -moz-box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+  -webkit-box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+  background-color: #f7f7f7;
 }
 .box>header, .table_container>header {
-	border: 1px solid #111;
-	padding: 10px 15px;
-	height: 30px;
-	background: #222
+  border: 1px solid #111;
+  padding: 10px 15px;
+  height: 30px;
+  background: #222
 }
 .box>header h2, .table_container>header h2 {
-	font-family: Ubuntu,Helvetica,sans-serif;
-	font-size: 11px;
-	font-weight: bold;
-	margin: 0;
-	color: #fefefe;
-	text-shadow: 0 1px 1px #333;
-	display: inline;
+  font-family: Ubuntu,Helvetica,sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  margin: 0;
+  color: #fefefe;
+  text-shadow: 0 1px 1px #333;
+  display: inline;
 }
 .box>section {
-	border: 1px solid #CCC;
-	border-top-width: 0;
-	padding: 10px
+  border: 1px solid #CCC;
+  border-top-width: 0;
+  padding: 10px
 }
 .boxpad {
-	margin-top: 20px
+  margin-top: 20px
 }
 .box .full {
-	width: 100%
+  width: 100%
 }
 .box td,th {
-	line-height: 20px
+  line-height: 20px
 }
 .box td strong {
-	color: red;
-	text-decoration: underline
+  color: red;
+  text-decoration: underline
 }
 .box .line td {
-	border-bottom: 1px solid #ccc
+  border-bottom: 1px solid #ccc
 }
 .ar {
-	text-align: right!important
+  text-align: right!important
 }
 .progress {
-	background-color: #dedede;
-	background-image: -o-linear-gradient(top,#ccc,#e9e9e9);
-	background-image: -ms-linear-gradient(top,#ccc,#e9e9e9);
-	background-image: -moz-linear-gradient(top,#ccc,#e9e9e9);
-	background-image: -webkit-gradient(linear,left top,left bottom,from(#ccc),to(#e9e9e9));
-	background-image: -webkit-linear-gradient(top,#ccc,#e9e9e9);
-	background-image: linear-gradient(top,#ccc,#e9e9e9);
-	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#cccccc',endColorstr='#e9e9e9');
-	border: 1px solid #ccc;
-	-moz-border-radius: 2px;
-	-webkit-border-radius: 2px;
-	border-radius: 2px;
-	-moz-box-shadow: 0 1px 0 #fff;
-	-webkit-box-shadow: 0 1px 0 #fff;
-	box-shadow: 0 1px 0 #fff;
-	display: block;
-	height: 22px;
-	margin: 4px 0;
-	min-width: 100px;
-	padding: 0;
-	position: relative
+  background-color: #dedede;
+  background-image: -o-linear-gradient(top,#ccc,#e9e9e9);
+  background-image: -ms-linear-gradient(top,#ccc,#e9e9e9);
+  background-image: -moz-linear-gradient(top,#ccc,#e9e9e9);
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#ccc),to(#e9e9e9));
+  background-image: -webkit-linear-gradient(top,#ccc,#e9e9e9);
+  background-image: linear-gradient(top,#ccc,#e9e9e9);
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#cccccc',endColorstr='#e9e9e9');
+  border: 1px solid #ccc;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  -moz-box-shadow: 0 1px 0 #fff;
+  -webkit-box-shadow: 0 1px 0 #fff;
+  box-shadow: 0 1px 0 #fff;
+  display: block;
+  height: 22px;
+  margin: 4px 0;
+  min-width: 100px;
+  padding: 0;
+  position: relative
 }
 .progress span {
-	background-color: #013182;
-	background-image: -o-linear-gradient(top,#1c5cc9,#013182);
-	background-image: -ms-linear-gradient(top,#1c5cc9,#013182);
-	background-image: -moz-linear-gradient(top,#1c5cc9,#013182);
-	background-image: -webkit-gradient(linear,left top,left bottom,from(#1c5cc9),to(#013182));
-	background-image: -webkit-linear-gradient(top,#1c5cc9,#013182);
-	background-image: linear-gradient(top,#1c5cc9,#013182);
-	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr=#1c5cc9,endColorstr=#013182);
-	-moz-box-shadow: inset 0 1px 0 #FFF,0 1px 3px rgba(0,0,0,0.15);
-	-webkit-box-shadow: inset 0 1px 0 #FFF,0 1px 3px rgba(0,0,0,0.15);
-	box-shadow: inset 0 1px 0 #FFF,0 1px 3px rgba(0,0,0,0.15);
-	-moz-border-radius: 2px;
-	-webkit-border-radius: 2px;
-	border-radius: 2px;
-	color: #111;
-	display: block;
-	height: 23px;
-	margin: 0;
-	padding: 0;
-	text-align: center;
-	width: 0
+  background-color: #013182;
+  background-image: -o-linear-gradient(top,#1c5cc9,#013182);
+  background-image: -ms-linear-gradient(top,#1c5cc9,#013182);
+  background-image: -moz-linear-gradient(top,#1c5cc9,#013182);
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#1c5cc9),to(#013182));
+  background-image: -webkit-linear-gradient(top,#1c5cc9,#013182);
+  background-image: linear-gradient(top,#1c5cc9,#013182);
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr=#1c5cc9,endColorstr=#013182);
+  -moz-box-shadow: inset 0 1px 0 #FFF,0 1px 3px rgba(0,0,0,0.15);
+  -webkit-box-shadow: inset 0 1px 0 #FFF,0 1px 3px rgba(0,0,0,0.15);
+  box-shadow: inset 0 1px 0 #FFF,0 1px 3px rgba(0,0,0,0.15);
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  color: #111;
+  display: block;
+  height: 23px;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  width: 0
 }
 .progress b {
-	color: #fefefe;
-	line-height: 20px;
-	padding: 0 0 5px 3px;
-	text-shadow: 0 1px 1px #222;
-	font-size: 10px;
-	white-space: nowrap;
-	position: relative;
-	top: -24px
+  color: #fefefe;
+  line-height: 20px;
+  padding: 0 0 5px 3px;
+  text-shadow: 0 1px 1px #222;
+  font-size: 10px;
+  white-space: nowrap;
+  position: relative;
+  top: -24px
 }
 .sprogress {
-	background-color: #dedede;
-	background-image: -o-linear-gradient(top,#ccc,#e9e9e9);
-	background-image: -ms-linear-gradient(top,#ccc,#e9e9e9);
-	background-image: -moz-linear-gradient(top,#ccc,#e9e9e9);
-	background-image: -webkit-gradient(linear,left top,left bottom,from(#ccc),to(#e9e9e9));
-	background-image: -webkit-linear-gradient(top,#ccc,#e9e9e9);
-	background-image: linear-gradient(top,#ccc,#e9e9e9);
-	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#cccccc',endColorstr='#e9e9e9');
-	border: 1px solid #ccc;
-	-moz-border-radius: 2px;
-	-webkit-border-radius: 2px;
-	border-radius: 2px;
-	-moz-box-shadow: 0 1px 0 #fff;
-	-webkit-box-shadow: 0 1px 0 #fff;
-	box-shadow: 0 1px 0 #fff;
-	display: block;
-	margin: 0;
-	padding: 0;
-	position: relative
+  background-color: #dedede;
+  background-image: -o-linear-gradient(top,#ccc,#e9e9e9);
+  background-image: -ms-linear-gradient(top,#ccc,#e9e9e9);
+  background-image: -moz-linear-gradient(top,#ccc,#e9e9e9);
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#ccc),to(#e9e9e9));
+  background-image: -webkit-linear-gradient(top,#ccc,#e9e9e9);
+  background-image: linear-gradient(top,#ccc,#e9e9e9);
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#cccccc',endColorstr='#e9e9e9');
+  border: 1px solid #ccc;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  -moz-box-shadow: 0 1px 0 #fff;
+  -webkit-box-shadow: 0 1px 0 #fff;
+  box-shadow: 0 1px 0 #fff;
+  display: block;
+  margin: 0;
+  padding: 0;
+  position: relative
 }
 .sprogress span {
-	background-color: #EEE;
-	background-image: -o-linear-gradient(top,#fefefe,#EEE);
-	background-image: -ms-linear-gradient(top,#fefefe,#EEE);
-	background-image: -moz-linear-gradient(top,#fefefe,#EEE);
-	background-image: -webkit-gradient(linear,left top,left bottom,from(#fefefe),to(#EEE));
-	background-image: -webkit-linear-gradient(top,#fefefe,#EEE);
-	background-image: linear-gradient(top,#fefefe,#EEE);
-	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr=#FEFEFE,endColorstr=#EEEEEE);
-	-moz-box-shadow: inset 0 1px 0 #FFF,0 1px 3px rgba(0,0,0,0.15);
-	-webkit-box-shadow: inset 0 1px 0 #FFF,0 1px 3px rgba(0,0,0,0.15);
-	box-shadow: inset 0 1px 0 #FFF,0 1px 3px rgba(0,0,0,0.15);
-	-moz-border-radius: 2px;
-	-webkit-border-radius: 2px;
-	border-radius: 2px;
-	color: #111;
-	display: block;
-	margin: 0;
-	padding: 2px 0;
-	text-align: center;
-	width: 0
+  background-color: #EEE;
+  background-image: -o-linear-gradient(top,#fefefe,#EEE);
+  background-image: -ms-linear-gradient(top,#fefefe,#EEE);
+  background-image: -moz-linear-gradient(top,#fefefe,#EEE);
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#fefefe),to(#EEE));
+  background-image: -webkit-linear-gradient(top,#fefefe,#EEE);
+  background-image: linear-gradient(top,#fefefe,#EEE);
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr=#FEFEFE,endColorstr=#EEEEEE);
+  -moz-box-shadow: inset 0 1px 0 #FFF,0 1px 3px rgba(0,0,0,0.15);
+  -webkit-box-shadow: inset 0 1px 0 #FFF,0 1px 3px rgba(0,0,0,0.15);
+  box-shadow: inset 0 1px 0 #FFF,0 1px 3px rgba(0,0,0,0.15);
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  color: #111;
+  display: block;
+  margin: 0;
+  padding: 2px 0;
+  text-align: center;
+  width: 0
 }
 .sprogress span b {
-	color: #000;
-	padding: 0 0 5px 3px;
-	text-shadow: 0 1px 1px #fff;
-	font-size: 10px
+  color: #000;
+  padding: 0 0 5px 3px;
+  text-shadow: 0 1px 1px #fff;
+  font-size: 10px
 }
 .sprogress.red span {
-	-moz-box-shadow: none;
-	-webkit-box-shadow: none;
-	box-shadow: none;
-	background-color: #e30000;
-	background-image: -o-linear-gradient(top,#ff3838,#e30000);
-	background-image: -ms-linear-gradient(top,#ff3838,#e30000);
-	background-image: -moz-linear-gradient(top,#ff3838,#e30000);
-	background-image: -webkit-gradient(linear,left top,left bottom,from(#ff3838),to(#e30000));
-	background-image: -webkit-linear-gradient(top,#ff3838,#e30000);
-	background-image: linear-gradient(top,#ff3838,#e30000);
-	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr=#FF3838,endColorstr=#E30000)
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  background-color: #e30000;
+  background-image: -o-linear-gradient(top,#ff3838,#e30000);
+  background-image: -ms-linear-gradient(top,#ff3838,#e30000);
+  background-image: -moz-linear-gradient(top,#ff3838,#e30000);
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#ff3838),to(#e30000));
+  background-image: -webkit-linear-gradient(top,#ff3838,#e30000);
+  background-image: linear-gradient(top,#ff3838,#e30000);
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr=#FF3838,endColorstr=#E30000)
 }
 .sprogress.red span b {
-	color: #fff;
-	font-weight: bold;
-	padding: 0 0 7px 3px;
-	text-shadow: 0 1px 1px #000;
-	font-size: 11px
+  color: #fff;
+  font-weight: bold;
+  padding: 0 0 7px 3px;
+  text-shadow: 0 1px 1px #000;
+  font-size: 11px
 }
 .sprogress.green span {
-	-moz-box-shadow: none;
-	-webkit-box-shadow: none;
-	box-shadow: none;
-	background-color: #33b500;
-	background-image: -o-linear-gradient(top,#51b02c,#33b500);
-	background-image: -ms-linear-gradient(top,#51b02c,#33b500);
-	background-image: -moz-linear-gradient(top,#51b02c,#33b500);
-	background-image: -webkit-gradient(linear,left top,left bottom,from(#51b02c),to(#33b500));
-	background-image: -webkit-linear-gradient(top,#51b02c,#33b500);
-	background-image: linear-gradient(top,#51b02c,#33b500);
-	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr=#51B02C,endColorstr=#33B500)
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  background-color: #33b500;
+  background-image: -o-linear-gradient(top,#51b02c,#33b500);
+  background-image: -ms-linear-gradient(top,#51b02c,#33b500);
+  background-image: -moz-linear-gradient(top,#51b02c,#33b500);
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#51b02c),to(#33b500));
+  background-image: -webkit-linear-gradient(top,#51b02c,#33b500);
+  background-image: linear-gradient(top,#51b02c,#33b500);
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr=#51B02C,endColorstr=#33B500)
 }
 .sprogress.green span b {
-	color: #fff;
-	font-weight: bold;
-	padding: 0 0 7px 3px;
-	text-shadow: 0 1px 1px #000;
-	font-size: 11px
+  color: #fff;
+  font-weight: bold;
+  padding: 0 0 7px 3px;
+  text-shadow: 0 1px 1px #000;
+  font-size: 11px
 }
 .vprogress {
-	background-color: #dedede;
-	background-image: -o-linear-gradient(top,#ccc,#e9e9e9);
-	background-image: -ms-linear-gradient(top,#ccc,#e9e9e9);
-	background-image: -moz-linear-gradient(top,#ccc,#e9e9e9);
-	background-image: -webkit-gradient(linear,left top,left bottom,from(#ccc),to(#e9e9e9));
-	background-image: -webkit-linear-gradient(top,#ccc,#e9e9e9);
-	background-image: linear-gradient(top,#ccc,#e9e9e9);
-	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#cccccc',endColorstr='#e9e9e9');
-	border: 1px solid #ccc;
-	-moz-border-radius: 2px;
-	-webkit-border-radius: 2px;
-	border-radius: 2px;
-	-moz-box-shadow: 0 1px 0 #fff;
-	-webkit-box-shadow: 0 1px 0 #fff;
-	box-shadow: 0 1px 0 #fff;
-	display: inline-block;
-	height: 130px;
-	margin: 4px 0;
-	width: 25px;
-	padding: 0;
-	position: relative
+  background-color: #dedede;
+  background-image: -o-linear-gradient(top,#ccc,#e9e9e9);
+  background-image: -ms-linear-gradient(top,#ccc,#e9e9e9);
+  background-image: -moz-linear-gradient(top,#ccc,#e9e9e9);
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#ccc),to(#e9e9e9));
+  background-image: -webkit-linear-gradient(top,#ccc,#e9e9e9);
+  background-image: linear-gradient(top,#ccc,#e9e9e9);
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#cccccc',endColorstr='#e9e9e9');
+  border: 1px solid #ccc;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  -moz-box-shadow: 0 1px 0 #fff;
+  -webkit-box-shadow: 0 1px 0 #fff;
+  box-shadow: 0 1px 0 #fff;
+  display: inline-block;
+  height: 130px;
+  margin: 4px 0;
+  width: 25px;
+  padding: 0;
+  position: relative
 }
 .vprogress span {
-	background-color: #EEE;
-	background-image: -o-linear-gradient(top,#fefefe,#EEE);
-	background-image: -ms-linear-gradient(top,#fefefe,#EEE);
-	background-image: -moz-linear-gradient(top,#fefefe,#EEE);
-	background-image: -webkit-gradient(linear,left top,left bottom,from(#fefefe),to(#EEE));
-	background-image: -webkit-linear-gradient(top,#fefefe,#EEE);
-	background-image: linear-gradient(top,#fefefe,#EEE);
-	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr=#FEFEFE,endColorstr=#EEEEEE);
-	-moz-box-shadow: inset 0 1px 0 #FFF,0 1px 3px rgba(0,0,0,0.15);
-	-webkit-box-shadow: inset 0 1px 0 #FFF,0 1px 3px rgba(0,0,0,0.15);
-	box-shadow: inset 0 1px 0 #FFF,0 1px 3px rgba(0,0,0,0.15);
-	-moz-border-radius: 2px;
-	-webkit-border-radius: 2px;
-	border-radius: 2px;
-	color: #111;
-	display: block;
-	position: absolute;
-	bottom: 0;
-	margin: 0;
-	padding: 0;
-	text-align: center;
-	width: 100%
+  background-color: #EEE;
+  background-image: -o-linear-gradient(top,#fefefe,#EEE);
+  background-image: -ms-linear-gradient(top,#fefefe,#EEE);
+  background-image: -moz-linear-gradient(top,#fefefe,#EEE);
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#fefefe),to(#EEE));
+  background-image: -webkit-linear-gradient(top,#fefefe,#EEE);
+  background-image: linear-gradient(top,#fefefe,#EEE);
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr=#FEFEFE,endColorstr=#EEEEEE);
+  -moz-box-shadow: inset 0 1px 0 #FFF,0 1px 3px rgba(0,0,0,0.15);
+  -webkit-box-shadow: inset 0 1px 0 #FFF,0 1px 3px rgba(0,0,0,0.15);
+  box-shadow: inset 0 1px 0 #FFF,0 1px 3px rgba(0,0,0,0.15);
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  color: #111;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  width: 100%
 }
 .vprogress b {
-	color: #000;
-	line-height: 20px;
-	padding: 10px 0 50px 0;
-	margin-top: 50%;
-	text-shadow: 0 1px 1px #fff;
-	font-size: 10px;
-	white-space: nowrap
+  color: #000;
+  line-height: 20px;
+  padding: 10px 0 50px 0;
+  margin-top: 50%;
+  text-shadow: 0 1px 1px #fff;
+  font-size: 10px;
+  white-space: nowrap
 }
 .tooltip {
-	-moz-box-shadow: inset 0 1px 0 #333,0 1px 3px rgba(0,0,0,0.5);
-	-webkit-box-shadow: inset 0 1px 0 #333,0 1px 3px rgba(0,0,0,0.5);
-	box-shadow: inset 0 1px 0 #333,0 1px 3px rgba(0,0,0,0.5);
-	display: none;
-	overflow: visible;
-	padding: .5em 1em;
-	border: 1px solid #333;
-	margin: 0;
-	text-decoration: none;
-	font: 12px/normal sans-serif;
-	color: #eee;
-	white-space: nowrap;
-	cursor: pointer;
-	outline: 0;
-	background-color: #111;
-	background-image: -webkit-gradient(linear,0 0,0 100%,from(#222),to(#111));
-	background-image: -moz-linear-gradient(#222,#111);
-	background-image: -o-linear-gradient(#222,#111);
-	background-image: linear-gradient(#222,#111);
-	height: auto;
-	width: auto
+  -moz-box-shadow: inset 0 1px 0 #333,0 1px 3px rgba(0,0,0,0.5);
+  -webkit-box-shadow: inset 0 1px 0 #333,0 1px 3px rgba(0,0,0,0.5);
+  box-shadow: inset 0 1px 0 #333,0 1px 3px rgba(0,0,0,0.5);
+  display: none;
+  overflow: visible;
+  padding: .5em 1em;
+  border: 1px solid #333;
+  margin: 0;
+  text-decoration: none;
+  font: 12px/normal sans-serif;
+  color: #eee;
+  white-space: nowrap;
+  cursor: pointer;
+  outline: 0;
+  background-color: #111;
+  background-image: -webkit-gradient(linear,0 0,0 100%,from(#222),to(#111));
+  background-image: -moz-linear-gradient(#222,#111);
+  background-image: -o-linear-gradient(#222,#111);
+  background-image: linear-gradient(#222,#111);
+  height: auto;
+  width: auto
 }
 .tooltip.white {
-	padding: 0;
-	-moz-box-shadow: 0 2px 3px rgba(0,0,0,0.1);
-	-webkit-box-shadow: 0 2px 3px rgba(0,0,0,0.1);
-	box-shadow: 0 2px 3px rgba(0,0,0,0.1);
-	left: -9999px;
-	opacity: 0;
-	position: absolute;
-	background: #f8f8f8;
-	border: 0;
-	width: 190px;
-	z-index: 800
+  padding: 0;
+  -moz-box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+  -webkit-box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+  left: -9999px;
+  opacity: 0;
+  position: absolute;
+  background: #f8f8f8;
+  border: 0;
+  width: 190px;
+  z-index: 800
 }
 #serverbox .tooltip.white {
-	width: 400px
+  width: 400px
 }
 #server_presentation {
-	margin: 10px 0 0 0;
-	width: 100%;
-	position: relative;
-	height: 150px
+  margin: 10px 0 0 0;
+  width: 100%;
+  position: relative;
+  height: 150px
 }
 #server_presentation header {
-	padding: 5px;
-	position: relative;
-	float: left;
-	height: 150px;
-	background: #222;
-	width: 30%;
-	box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	border: 1px solid #333;
-	color: #fefefe
+  padding: 5px;
+  position: relative;
+  float: left;
+  height: 150px;
+  background: #222;
+  width: 30%;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  border: 1px solid #333;
+  color: #fefefe
 }
 #server_presentation header table {
-	position: relative
+  position: relative
 }
 #server_presentation header table td {
-	color: #ddd;
-	width: 100%;
-	font-size: 13px;
-	padding: 3px 5px 0 5px
+  color: #ddd;
+  width: 100%;
+  font-size: 13px;
+  padding: 3px 5px 0 5px
 }
 #server_presentation header table td h3 {
-	color: #fefefe;
-	font-size: 27px
+  color: #fefefe;
+  font-size: 27px
 }
 #server_presentation section {
-	padding: 5px;
-	position: relative;
-	float: left;
-	height: 150px;
-	background: #f7f7f7;
-	width: 70%;
-	box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	border: 1px solid #ccc
+  padding: 5px;
+  position: relative;
+  float: left;
+  height: 150px;
+  background: #f7f7f7;
+  width: 70%;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  border: 1px solid #ccc
 }
 #server_presentation section div.cell {
-	height: 140px;
-	padding: 5px 12px 0 0;
-	width: 18%;
-	float: right;
-	text-align: center
+  height: 140px;
+  padding: 5px 12px 0 0;
+  width: 18%;
+  float: right;
+  text-align: center
 }
 #server_presentation section div.cell h4 {
-	font-weight: bold;
-	color: #AAA
+  font-weight: bold;
+  color: #AAA
 }
 #server_presentation section div.cell_data p {
-	font-size: 25px;
-	font-weight: 200;
-	text-align: center;
-	padding: 3px 0
+  font-size: 25px;
+  font-weight: 200;
+  text-align: center;
+  padding: 3px 0
 }
 #server_presentation section div.worlds p {
-	font-size: 16px;
-	font-weight: 200;
-	text-align: center;
-	padding: 5px 0
+  font-size: 16px;
+  font-weight: 200;
+  text-align: center;
+  padding: 5px 0
 }
 #server_presentation b.cell_left {
-	text-align: right
+  text-align: right
 }
 #server_presentation b.cell_right {
-	text-align: left;
-	padding: 0 0 0 7px
+  text-align: left;
+  padding: 0 0 0 7px
 }
 #server_presentation .greyed {
-	color: #aaa
+  color: #aaa
 }
 #server_presentation section div.cell_data p.cell_medium {
-	font-size: 14px;
-	font-weight: 200;
-	text-align: center
+  font-size: 14px;
+  font-weight: 200;
+  text-align: center
 }
 #server_presentation section div.cell_data p.cell_small {
-	font-size: 12px;
-	font-weight: 200;
-	text-align: center
+  font-size: 12px;
+  font-weight: 200;
+  text-align: center
 }
 p.fail {
-	color: #b50505;
-	text-decoration: underline
+  color: #b50505;
+  text-decoration: underline
 }
 p.win {
-	color: #0080ff
+  color: #0080ff
 }
 p.success {
-	color: green
+  color: green
 }
 p.failed {
-	color: red
+  color: red
 }
 #server_presentation section p.normal_world {
-	background: url(../img/world_normal.png) no-repeat 35% 50%;
-	padding-left: 49px!important
+  background: url(../img/world_normal.png) no-repeat 35% 50%;
+  padding-left: 49px!important
 }
 #server_presentation section p.nether_world {
-	background: url(../img/world_nether.png) no-repeat 35% 50%;
-	padding-left: 49px!important
+  background: url(../img/world_nether.png) no-repeat 35% 50%;
+  padding-left: 49px!important
 }
 #server_presentation section p.skylands_world {
-	background: url(../img/world_sky.png) no-repeat 35% 50%;
-	padding-left: 49px!important
+  background: url(../img/world_sky.png) no-repeat 35% 50%;
+  padding-left: 49px!important
 }
 #server_presentation section p.end_world {
-	background: url(../img/world_end.png) no-repeat 35% 50%;
-	padding-left: 49px!important
+  background: url(../img/world_end.png) no-repeat 35% 50%;
+  padding-left: 49px!important
 }
 .nosearch .dataTables_filter {
-	display: none
+  display: none
 }
 .column_desc {
-	position: relative;
-	margin-top: 50%;
-	width: 100%;
-	text-align: center
+  position: relative;
+  margin-top: 50%;
+  width: 100%;
+  text-align: center
 }
 #rb_chooser {
-	position: relative;
-	padding: 5px 0 0 0;
-	width: 100%;
-	text-align: center
+  position: relative;
+  padding: 5px 0 0 0;
+  width: 100%;
+  text-align: center
 }
 p.description {
-	color: #777;
-	font-size: 12px;
-	padding: 15px 0;
-	text-align: center
+  color: #777;
+  font-size: 12px;
+  padding: 15px 0;
+  text-align: center
 }
 #rb_chooser div.rb_builds {
-	margin: 0 auto;
-	position: relative
+  margin: 0 auto;
+  position: relative
 }
 #rb_chooser div.rb {
-	position: relative;
-	float: right;
-	font-weight: bold;
-	width: 85px;
-	height: 40px;
-	padding: 15px 0 0 0;
-	margin-left: 3%;
-	text-align: center;
-	font-size: 18px;
-	color: #333;
-	background: url(../img/rb_container.png) no-repeat 50% 50%;
-	cursor: pointer
+  position: relative;
+  float: right;
+  font-weight: bold;
+  width: 85px;
+  height: 40px;
+  padding: 15px 0 0 0;
+  margin-left: 3%;
+  text-align: center;
+  font-size: 18px;
+  color: #333;
+  background: url(../img/rb_container.png) no-repeat 50% 50%;
+  cursor: pointer
 }
 #rb_chooser div.currentrb {
-	color: #fefefe;
-	background: url(../img/rb_container_current.png) no-repeat 50% 50%
+  color: #fefefe;
+  background: url(../img/rb_container_current.png) no-repeat 50% 50%
 }
 #rb_chooser div.timeline_start {
-	position: absolute;
-	width: 10px;
-	left: 0;
-	z-index: 100;
-	top: 55px;
-	height: 10px;
-	background: url(../img/rb_ball.png) no-repeat
+  position: absolute;
+  width: 10px;
+  left: 0;
+  z-index: 100;
+  top: 55px;
+  height: 10px;
+  background: url(../img/rb_ball.png) no-repeat
 }
 #rb_chooser div.timeline_end {
-	position: absolute;
-	width: 10px;
-	right: 0;
-	top: 55px;
-	height: 10px;
-	background: url(../img/rb_ball.png) no-repeat
+  position: absolute;
+  width: 10px;
+  right: 0;
+  top: 55px;
+  height: 10px;
+  background: url(../img/rb_ball.png) no-repeat
 }
 #rb_chooser div.timeline {
-	position: absolute;
-	top: 58px;
-	width: 100%;
-	height: 3px;
-	background: url(../img/rb_timeline.gif) repeat-x
+  position: absolute;
+  top: 58px;
+  width: 100%;
+  height: 3px;
+  background: url(../img/rb_timeline.gif) repeat-x
 }
 .wrapper {
-	min-height: 100%;
-	height: auto!important;
-	margin-bottom: -35px
+  min-height: 100%;
+  height: auto!important;
+  margin-bottom: -35px
 }
 #footer,.pushfooter {
-	height: 35px
+  height: 35px
 }
 #footer {
-	background: #111;
-	position: relative;
-	border-top: 1px solid #222;
-	padding: 20px 20px 0 20px;
-	color: #fefefe
+  background: #111;
+  position: relative;
+  border-top: 1px solid #222;
+  padding: 20px 20px 0 20px;
+  color: #fefefe
 }
 #footer ul {
-	position: relative;
-	float: right;
-	 top:  -15px;
+  position: relative;
+  float: right;
+   top:  -15px;
 }
 #footer li {
-	list-style: none;
-	display: inline-block;
-	margin-right: 5px;
-	text-decoration: underline
+  list-style: none;
+  display: inline-block;
+  margin-right: 5px;
+  text-decoration: underline
 }
 .col {
-	width: 49%
+  width: 49%
 }
 .col.left {
-	float: left
+  float: left
 }
 .col.right {
-	float: right
+  float: right
 }
 .col.col_1 {
-	width: 24%
+  width: 24%
 }
 .col.col_1_3 {
-	width: 32%
+  width: 32%
 }
 .col.col_2 {
-	width: 49%
+  width: 49%
 }
 .col.col_2_3 {
-	width: 65%
+  width: 65%
 }
 .col.dtbbutton {
-	position: relative;
-	top: 28px;
-	z-index: 10
+  position: relative;
+  top: 28px;
+  z-index: 10
 }
 form section {
-	padding: 15px 0
+  padding: 15px 0
 }
 form .box section,form section.box {
-	padding: 0
+  padding: 0
 }
 form section>div {
-	color: #444;
-	font-size: 12px;
-	margin-left: 33%;
-	position: relative
+  color: #444;
+  font-size: 12px;
+  margin-left: 33%;
+  position: relative
 }
 form section>div.tab2 {
-	margin-left: 0
+  margin-left: 0
 }
 form section>label {
-	color: #555;
-	float: left;
-	font-size: 13px;
-	font-weight: bold;
-	margin-right: 7%;
-	margin-top: 3px;
-	width: 25%
+  color: #555;
+  float: left;
+  font-size: 13px;
+  font-weight: bold;
+  margin-right: 7%;
+  margin-top: 3px;
+  width: 25%
 }
 form section label small {
-	border-top: 1px solid #ccc;
-	color: #666;
-	display: block;
-	font-size: 11px;
-	font-weight: normal;
-	line-height: 12px;
-	margin-top: 4px;
-	text-transform: none
+  border-top: 1px solid #ccc;
+  color: #666;
+  display: block;
+  font-size: 11px;
+  font-weight: normal;
+  line-height: 12px;
+  margin-top: 4px;
+  text-transform: none
 }
 input[type="text"],form input[type="password"] {
-	background: white url("../img/input-bg.gif") repeat-x;
-	font: 14px "Lucida Sans Unicode","Lucida Grande","Arial",sans-serif;
-	color: #5a5a5a;
-	padding: 0 7px;
-	height: 32px;
-	border: 1px solid silver;
-	width: 250px;
-	margin: 0;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px
+  background: white url("../img/input-bg.gif") repeat-x;
+  font: 14px "Lucida Sans Unicode","Lucida Grande","Arial",sans-serif;
+  color: #5a5a5a;
+  padding: 0 7px;
+  height: 32px;
+  border: 1px solid silver;
+  width: 250px;
+  margin: 0;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px
 }
 .dataTables_filter input[type="text"] {
-	height: 20px;
-	width: auto
+  height: 20px;
+  width: auto
 }
 input[type="text"]: hover,form input[type="password"]: hover {
-	background: #fff;
-	-moz-box-shadow: #b2b2b2 0 0 5px;
-	-webkit-box-shadow: #b2b2b2 0 0 5px;
-	box-shadow: #b2b2b2 0 0 5px
+  background: #fff;
+  -moz-box-shadow: #b2b2b2 0 0 5px;
+  -webkit-box-shadow: #b2b2b2 0 0 5px;
+  box-shadow: #b2b2b2 0 0 5px
 }
 input[type="text"]: focus,form input[type="password"]: focus {
-	background: #fff;
-	border-color: #175e7c;
-	color: #5a5a5a;
-	-moz-box-shadow: #b2b2b2 0 0 5px;
-	-webkit-box-shadow: #b2b2b2 0 0 5px;
-	box-shadow: #b2b2b2 0 0 5px
+  background: #fff;
+  border-color: #175e7c;
+  color: #5a5a5a;
+  -moz-box-shadow: #b2b2b2 0 0 5px;
+  -webkit-box-shadow: #b2b2b2 0 0 5px;
+  box-shadow: #b2b2b2 0 0 5px
 }
 form textarea {
-	background: #111;
-	color: #1b60e0
+  background: #111;
+  color: #1b60e0
 }
 form input.xsmall {
-	width: 10%
+  width: 10%
 }
 form input.small {
-	width: 20%
+  width: 20%
 }
 form input.medium {
-	width: 40%
+  width: 40%
 }
 form input.large {
-	width: 69%
+  width: 69%
 }
 form textarea {
-	padding-top: 3px;
-	height: 150px
+  padding-top: 3px;
+  height: 150px
 }
 label.radio,label.checkbox {
-	color: #404040;
-	font-size: 11px;
-	padding: 3px 0
+  color: #404040;
+  font-size: 11px;
+  padding: 3px 0
 }
 form fieldset {
-	padding: 15px 15px
+  padding: 15px 15px
 }
 form fieldset label {
-	color: #555;
-	float: left;
-	font-size: 13px;
-	font-weight: bold;
-	margin-right: 7%;
-	margin-top: 3px
+  color: #555;
+  float: left;
+  font-size: 13px;
+  font-weight: bold;
+  margin-right: 7%;
+  margin-top: 3px
 }
 .leftsubmit {
-	position: relative;
-	padding: 7px 0;
-	float: right
+  position: relative;
+  padding: 7px 0;
+  float: right
 }
 select {
-	cursor: pointer;
-	width: 100%;
-	color: #676767
+  cursor: pointer;
+  width: 100%;
+  color: #676767
 }
 h1,h2,h3,h4,h5,h6 {
-	color: #333;
-	line-height: 30px
+  color: #333;
+  line-height: 30px
 }
 h1 {
-	font-size: 24px;
-	text-shadow: 0 1px 0 #fefefe
+  font-size: 24px;
+  text-shadow: 0 1px 0 #fefefe
 }
 h2 {
-	font-size: 21px;
-	margin: 14px 0;
-	text-shadow: 0 1px 0 #fefefe
+  font-size: 21px;
+  margin: 14px 0;
+  text-shadow: 0 1px 0 #fefefe
 }
 h3 {
-	font-size: 18px
+  font-size: 18px
 }
 h4 {
-	font-size: 15px
+  font-size: 15px
 }
 h5 {
-	font-size: 13px
+  font-size: 13px
 }
 p {
-	text-align: justify
+  text-align: justify
 }
 em {
-	font-style: italic
+  font-style: italic
 }
 #content {
-	padding: 5px 15px 25px 15px;
-	background: #efefef;
-	border-radius: 7px;
-	-moz-border-radius: 7px;
-	-webkit-border-radius: 7px;
-	border-top-left-radius: 0!important;
-	-moz-border-top-left-radius: 0!important;
-	-webkit-border-top-left-radius: 0!important;
-	-moz-border-radius: 7px;
-	-webkit-border-radius: 7px;
-	box-shadow: 0 2px 3px 0 #111;
-	-webkit-box-shadow: 0 2px 3px 0 #111;
-	-moz-box-shadow: 0 2px 3px 0 #111
+  padding: 5px 15px 25px 15px;
+  background: #efefef;
+  border-radius: 7px;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  border-top-left-radius: 0!important;
+  -moz-border-top-left-radius: 0!important;
+  -webkit-border-top-left-radius: 0!important;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  box-shadow: 0 2px 3px 0 #111;
+  -webkit-box-shadow: 0 2px 3px 0 #111;
+  -moz-box-shadow: 0 2px 3px 0 #111
 }
 #content ul,ol {
-	color: #282828;
-	line-height: 16px
+  color: #282828;
+  line-height: 16px
 }
 #content ul {
-	list-style: disc
+  list-style: disc
 }
 #content ol {
-	list-style: decimal
+  list-style: decimal
 }
 #content li>ul,#content li>ol {
-	margin: 0 24px
+  margin: 0 24px
 }
 #content li>ul {
-	list-style: circle
+  list-style: circle
 }
 .table {
-	background: #fefefe;
-	border: 1px solid #c5c5c5;
-	color: #333;
-	margin-bottom: 18px;
-	padding: 6px;
-	width: 100%
+  background: #fefefe;
+  border: 1px solid #c5c5c5;
+  color: #333;
+  margin-bottom: 18px;
+  padding: 6px;
+  width: 100%
 }
 .servertable {
-	border: 0;
-	background: 0;
-	color: #eee
+  border: 0;
+  background: 0;
+  color: #eee
 }
 .consoletable {
-	background: #111;
-	border: 1px solid #555;
-	color: #eee;
-	margin-bottom: 0;
-	padding: 0;
-	width: 100%
+  background: #111;
+  border: 1px solid #555;
+  color: #eee;
+  margin-bottom: 0;
+  padding: 0;
+  width: 100%
 }
 .chattable {
-	color: #222;
-	margin-bottom: 0;
-	font-size: 12px;
-	padding: 0;
-	width: 100%
+  color: #222;
+  margin-bottom: 0;
+  font-size: 12px;
+  padding: 0;
+  width: 100%
 }
 #chat,#log {
-	height: 300px;
-	overflow-x: hidden;
-	overflow-y: auto
+  height: 300px;
+  overflow-x: hidden;
+  overflow-y: auto
 }
 .table thead,th {
-	text-align: left;
-	background: #ddd;
-	font-weight: bold
+  text-align: left;
+  background: #ddd;
+  font-weight: bold
 }
 .table tr {
-	border-bottom: 1px solid #cdcdcd
+  border-bottom: 1px solid #cdcdcd
 }
 .consoletr {
-	border-bottom: 1px solid #555
+  border-bottom: 1px solid #555
 }
 .chattr {
-	border-bottom: 0
+  border-bottom: 0
 }
 .table td,th {
-	border-right: 1px solid #cdcdcd;
-	padding: 12px
+  border-right: 1px solid #cdcdcd;
+  padding: 12px
 }
 .consoletd {
-	min-width: 810px;
-	max-width: 810px;
-	padding: 10px 0 10px 5px
+  min-width: 810px;
+  max-width: 810px;
+  padding: 10px 0 10px 5px
 }
 .chattd {
-	padding: 0 0 5px 5px;
-	width: 90%
+  padding: 0 0 5px 5px;
+  width: 90%
 }
 .chattd.time {
-	color: #555;
-	width: 60px
+  color: #555;
+  width: 60px
 }
 .clear {
-	clear: both
+  clear: both
 }
 a: focus {
-	outline: 0
+  outline: 0
 }
 #loading-container {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	display: none
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: none
 }
 #loading-content {
-	width: 800px;
-	text-align: center;
-	margin-left: -400px;
-	height: 50px;
-	margin-top: -25px;
-	line-height: 50px
+  width: 800px;
+  text-align: center;
+  margin-left: -400px;
+  height: 50px;
+  margin-top: -25px;
+  line-height: 50px
 }
 #loading-content {
-	font-family: "Helvetica","Ubuntu",sans-serif;
-	font-size: 18px;
-	color: white;
-	text-shadow: 0 1px 0 black
+  font-family: "Helvetica","Ubuntu",sans-serif;
+  font-size: 18px;
+  color: white;
+  text-shadow: 0 1px 0 black
 }
 #loading-graphic {
-	margin-right: .2em;
-	margin-bottom: -2px
+  margin-right: .2em;
+  margin-bottom: -2px
 }
 #loading {
-	background-color: #111;
-	height: 100%;
-	width: 100%;
-	overflow: hidden;
-	position: absolute;
-	left: 0;
-	top: 0;
-	z-index: 99999
+  background-color: #111;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 99999
 }
 .rightalign {
-	text-align: right
+  text-align: right
 }
 .fadein {
-	display: none
+  display: none
 }
 .hide {
-	display: none
+  display: none
 }
 #wrapper.popup {
-	min-width: 700px;
-	min-height: 500px;
-	border-radius: 0;
-	-moz-border-radius: 0;
-	-webkit-border-radius: 0;
-	max-width: 960px;
-	background-color: #fefefe
+  min-width: 700px;
+  min-height: 500px;
+  border-radius: 0;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  max-width: 960px;
+  background-color: #fefefe
 }
 #wrapper.popup #content {
-	padding: 5px 15px 25px 15px;
-	background: 0;
-	border-radius: 0!important;
-	-moz-border-radius: 0!important;
-	-webkit-border-radius: 0!important;
-	-moz-border-radius: 0!important;
-	-webkit-border-radius: 0!important;
-	box-shadow: none!important;
-	-webkit-box-shadow: none!important;
-	-moz-box-shadow: none!important
+  padding: 5px 15px 25px 15px;
+  background: 0;
+  border-radius: 0!important;
+  -moz-border-radius: 0!important;
+  -webkit-border-radius: 0!important;
+  -moz-border-radius: 0!important;
+  -webkit-border-radius: 0!important;
+  box-shadow: none!important;
+  -webkit-box-shadow: none!important;
+  -moz-box-shadow: none!important
 }
 #mainnav.popup {
-	height: 30px;
-	padding: 5px;
-	border: 1px solid #111;
-	padding: 10px 15px;
-	height: 30px;
-	background: #222;
-	border-radius: 0!important;
-	-moz-border-radius: 0!important;
-	-webkit-border-radius: 0!important;
-	-moz-border-radius: 0!important;
-	-webkit-border-radius: 0!important;
-	box-shadow: none!important;
-	-webkit-box-shadow: none!important;
-	-moz-box-shadow: none!important;
-	margin-bottom: 0!important
+  height: 30px;
+  padding: 5px;
+  border: 1px solid #111;
+  padding: 10px 15px;
+  height: 30px;
+  background: #222;
+  border-radius: 0!important;
+  -moz-border-radius: 0!important;
+  -webkit-border-radius: 0!important;
+  -moz-border-radius: 0!important;
+  -webkit-border-radius: 0!important;
+  box-shadow: none!important;
+  -webkit-box-shadow: none!important;
+  -moz-box-shadow: none!important;
+  margin-bottom: 0!important
 }
 .popup h3 {
-	color: #fefefe;
-	font-weight: bold
+  color: #fefefe;
+  font-weight: bold
 }
 .top_message {
-	background-color: #EEE;
-	-moz-box-shadow: inset 0 1px 0 #FFF,0 1px 3px rgba(0,0,0,0.15);
-	-webkit-box-shadow: inset 0 1px 0 #FFF,0 1px 3px rgba(0,0,0,0.15);
-	box-shadow: inset 0 1px 0 #FFF,0 1px 3px rgba(0,0,0,0.15);
-	height: 40px;
-	padding: 30px 20px 10px 20px;
-	text-align: left;
-	border-bottom: 1px solid #555;
-	color: rgba(255,255,255,0.8)!important;
-	color: white;
-	font-size: 14px;
-	text-decoration: none;
-	text-shadow: 0 2px 3px rgba(0,0,0,0.35);
-	display: none
+  background-color: #EEE;
+  -moz-box-shadow: inset 0 1px 0 #FFF,0 1px 3px rgba(0,0,0,0.15);
+  -webkit-box-shadow: inset 0 1px 0 #FFF,0 1px 3px rgba(0,0,0,0.15);
+  box-shadow: inset 0 1px 0 #FFF,0 1px 3px rgba(0,0,0,0.15);
+  height: 40px;
+  padding: 30px 20px 10px 20px;
+  text-align: left;
+  border-bottom: 1px solid #555;
+  color: rgba(255,255,255,0.8)!important;
+  color: white;
+  font-size: 14px;
+  text-decoration: none;
+  text-shadow: 0 2px 3px rgba(0,0,0,0.35);
+  display: none
 }
 .top_message.black {
-	background: #333;
-	background: -moz-linear-gradient(top,rgba(51,51,51,1) 0,rgba(0,0,0,1) 100%);
-	background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,rgba(51,51,51,1)),color-stop(100%,rgba(0,0,0,1)));
-	background: -webkit-linear-gradient(top,rgba(51,51,51,1) 0,rgba(0,0,0,1) 100%);
-	background: -o-linear-gradient(top,rgba(51,51,51,1) 0,rgba(0,0,0,1) 100%);
-	background: -ms-linear-gradient(top,rgba(51,51,51,1) 0,rgba(0,0,0,1) 100%);
-	background: linear-gradient(top,rgba(51,51,51,1) 0,rgba(0,0,0,1) 100%);
-	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#333333',endColorstr='#000000',GradientType=0)
+  background: #333;
+  background: -moz-linear-gradient(top,rgba(51,51,51,1) 0,rgba(0,0,0,1) 100%);
+  background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,rgba(51,51,51,1)),color-stop(100%,rgba(0,0,0,1)));
+  background: -webkit-linear-gradient(top,rgba(51,51,51,1) 0,rgba(0,0,0,1) 100%);
+  background: -o-linear-gradient(top,rgba(51,51,51,1) 0,rgba(0,0,0,1) 100%);
+  background: -ms-linear-gradient(top,rgba(51,51,51,1) 0,rgba(0,0,0,1) 100%);
+  background: linear-gradient(top,rgba(51,51,51,1) 0,rgba(0,0,0,1) 100%);
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#333333',endColorstr='#000000',GradientType=0)
 }
 .top_message.green {
-	background: #008a00;
-	background: -moz-linear-gradient(top,rgba(0,138,0,1) 0,rgba(0,36,0,1) 100%);
-	background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,rgba(0,138,0,1)),color-stop(100%,rgba(0,36,0,1)));
-	background: -webkit-linear-gradient(top,rgba(0,138,0,1) 0,rgba(0,36,0,1) 100%);
-	background: -o-linear-gradient(top,rgba(0,138,0,1) 0,rgba(0,36,0,1) 100%);
-	background: -ms-linear-gradient(top,rgba(0,138,0,1) 0,rgba(0,36,0,1) 100%);
-	background: linear-gradient(top,rgba(0,138,0,1) 0,rgba(0,36,0,1) 100%);
-	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#008a00',endColorstr='#002400',GradientType=0)
+  background: #008a00;
+  background: -moz-linear-gradient(top,rgba(0,138,0,1) 0,rgba(0,36,0,1) 100%);
+  background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,rgba(0,138,0,1)),color-stop(100%,rgba(0,36,0,1)));
+  background: -webkit-linear-gradient(top,rgba(0,138,0,1) 0,rgba(0,36,0,1) 100%);
+  background: -o-linear-gradient(top,rgba(0,138,0,1) 0,rgba(0,36,0,1) 100%);
+  background: -ms-linear-gradient(top,rgba(0,138,0,1) 0,rgba(0,36,0,1) 100%);
+  background: linear-gradient(top,rgba(0,138,0,1) 0,rgba(0,36,0,1) 100%);
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#008a00',endColorstr='#002400',GradientType=0)
 }
 .top_message.red {
-	background: #a90329;
-	background: -moz-linear-gradient(top,#a90329 0,#8f0222 44%,#6d0019 100%);
-	background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#a90329),color-stop(44%,#8f0222),color-stop(100%,#6d0019));
-	background: -webkit-linear-gradient(top,#a90329 0,#8f0222 44%,#6d0019 100%);
-	background: -o-linear-gradient(top,#a90329 0,#8f0222 44%,#6d0019 100%);
-	background: -ms-linear-gradient(top,#a90329 0,#8f0222 44%,#6d0019 100%);
-	background: linear-gradient(top,#a90329 0,#8f0222 44%,#6d0019 100%);
-	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#a90329',endColorstr='#6d0019',GradientType=0)
+  background: #a90329;
+  background: -moz-linear-gradient(top,#a90329 0,#8f0222 44%,#6d0019 100%);
+  background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#a90329),color-stop(44%,#8f0222),color-stop(100%,#6d0019));
+  background: -webkit-linear-gradient(top,#a90329 0,#8f0222 44%,#6d0019 100%);
+  background: -o-linear-gradient(top,#a90329 0,#8f0222 44%,#6d0019 100%);
+  background: -ms-linear-gradient(top,#a90329 0,#8f0222 44%,#6d0019 100%);
+  background: linear-gradient(top,#a90329 0,#8f0222 44%,#6d0019 100%);
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#a90329',endColorstr='#6d0019',GradientType=0)
 }
 .top_message.blue {
-	background: #207cca;
-	background: -moz-linear-gradient(top,rgba(32,124,202,1) 0,rgba(30,87,153,1) 100%);
-	background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,rgba(32,124,202,1)),color-stop(100%,rgba(30,87,153,1)));
-	background: -webkit-linear-gradient(top,rgba(32,124,202,1) 0,rgba(30,87,153,1) 100%);
-	background: -o-linear-gradient(top,rgba(32,124,202,1) 0,rgba(30,87,153,1) 100%);
-	background: -ms-linear-gradient(top,rgba(32,124,202,1) 0,rgba(30,87,153,1) 100%);
-	background: linear-gradient(top,rgba(32,124,202,1) 0,rgba(30,87,153,1) 100%);
-	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#207cca',endColorstr='#1e5799',GradientType=0)
+  background: #207cca;
+  background: -moz-linear-gradient(top,rgba(32,124,202,1) 0,rgba(30,87,153,1) 100%);
+  background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,rgba(32,124,202,1)),color-stop(100%,rgba(30,87,153,1)));
+  background: -webkit-linear-gradient(top,rgba(32,124,202,1) 0,rgba(30,87,153,1) 100%);
+  background: -o-linear-gradient(top,rgba(32,124,202,1) 0,rgba(30,87,153,1) 100%);
+  background: -ms-linear-gradient(top,rgba(32,124,202,1) 0,rgba(30,87,153,1) 100%);
+  background: linear-gradient(top,rgba(32,124,202,1) 0,rgba(30,87,153,1) 100%);
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#207cca',endColorstr='#1e5799',GradientType=0)
 }
 .top_message p {
-	text-align: center
+  text-align: center
 }
 .top_message strong {
-	font-weight: bold
+  font-weight: bold
 }
 #wrapper.update_bukkit nav {
-	padding: 25px 10px 0 10px;
-	border-bottom: 0
+  padding: 25px 10px 0 10px;
+  border-bottom: 0
 }
 #wrapper.update_bukkit nav div {
-	position: relative;
-	top: -27px;
-	text-align: right
+  position: relative;
+  top: -27px;
+  text-align: right
 }
 #wrapper.update_bukkit nav h3 {
-	color: #fefefe;
-	font-weight: bold
+  color: #fefefe;
+  font-weight: bold
 }
 .code {
-	background: #EEE;
-	border: 1px solid #CCC;
-	border-radius: 3px;
-	font-family: monospace;
-	overflow: auto;
-	padding: 16px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px
+  background: #EEE;
+  border: 1px solid #CCC;
+  border-radius: 3px;
+  font-family: monospace;
+  overflow: auto;
+  padding: 16px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px
 }
 .code strong {
-	font-weight: bold;
-	display: block;
-	padding-bottom: 4px
+  font-weight: bold;
+  display: block;
+  padding-bottom: 4px
 }
 .profile_page {
-	width: 900px
+  width: 900px
 }
 .profile_page div.col_1_3 {
-	margin-top: 40px
+  margin-top: 40px
 }
 .row {
-	margin-bottom: 10px
+  margin-bottom: 10px
 }
 .metadata_row {
-	border-bottom: 1px solid #ccc
+  border-bottom: 1px solid #ccc
 }
 .metadata_row div.right {
-	color: #111;
-	font-size: 20px;
-	font-size: 2rem;
-	font-weight: 700;
-	font-weight: 300
+  color: #111;
+  font-size: 20px;
+  font-size: 2rem;
+  font-weight: 700;
+  font-weight: 300
 }
 .stats_row {
-	height: 130px;
-	background: #eee;
-	background: -moz-linear-gradient(top,rgba(238,238,238,1) 0,rgba(204,204,204,1) 100%);
-	background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,rgba(238,238,238,1)),color-stop(100%,rgba(204,204,204,1)));
-	background: -webkit-linear-gradient(top,rgba(238,238,238,1) 0,rgba(204,204,204,1) 100%);
-	background: -o-linear-gradient(top,rgba(238,238,238,1) 0,rgba(204,204,204,1) 100%);
-	background: -ms-linear-gradient(top,rgba(238,238,238,1) 0,rgba(204,204,204,1) 100%);
-	background: linear-gradient(top,rgba(238,238,238,1) 0,rgba(204,204,204,1) 100%);
-	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee',endColorstr='#cccccc',GradientType=0)
+  height: 130px;
+  background: #eee;
+  background: -moz-linear-gradient(top,rgba(238,238,238,1) 0,rgba(204,204,204,1) 100%);
+  background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,rgba(238,238,238,1)),color-stop(100%,rgba(204,204,204,1)));
+  background: -webkit-linear-gradient(top,rgba(238,238,238,1) 0,rgba(204,204,204,1) 100%);
+  background: -o-linear-gradient(top,rgba(238,238,238,1) 0,rgba(204,204,204,1) 100%);
+  background: -ms-linear-gradient(top,rgba(238,238,238,1) 0,rgba(204,204,204,1) 100%);
+  background: linear-gradient(top,rgba(238,238,238,1) 0,rgba(204,204,204,1) 100%);
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee',endColorstr='#cccccc',GradientType=0)
 }
 .inventory table {
-	height: 215px;
-	background: #45484d;
-	background: -moz-linear-gradient(top,rgba(69,72,77,1) 0,rgba(0,0,0,1) 100%);
-	background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,rgba(69,72,77,1)),color-stop(100%,rgba(0,0,0,1)));
-	background: -webkit-linear-gradient(top,rgba(69,72,77,1) 0,rgba(0,0,0,1) 100%);
-	background: -o-linear-gradient(top,rgba(69,72,77,1) 0,rgba(0,0,0,1) 100%);
-	background: -ms-linear-gradient(top,rgba(69,72,77,1) 0,rgba(0,0,0,1) 100%);
-	background: linear-gradient(top,rgba(69,72,77,1) 0,rgba(0,0,0,1) 100%);
-	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#45484d',endColorstr='#000000',GradientType=0)
+  height: 215px;
+  background: #45484d;
+  background: -moz-linear-gradient(top,rgba(69,72,77,1) 0,rgba(0,0,0,1) 100%);
+  background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,rgba(69,72,77,1)),color-stop(100%,rgba(0,0,0,1)));
+  background: -webkit-linear-gradient(top,rgba(69,72,77,1) 0,rgba(0,0,0,1) 100%);
+  background: -o-linear-gradient(top,rgba(69,72,77,1) 0,rgba(0,0,0,1) 100%);
+  background: -ms-linear-gradient(top,rgba(69,72,77,1) 0,rgba(0,0,0,1) 100%);
+  background: linear-gradient(top,rgba(69,72,77,1) 0,rgba(0,0,0,1) 100%);
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#45484d',endColorstr='#000000',GradientType=0)
 }
 .inventory td {
-	position: relative;
-	width: 55px;
-	height: 55px;
-	padding: 8px
+  position: relative;
+  width: 55px;
+  height: 55px;
+  padding: 8px
 }
 .inventory td small {
-	position: absolute;
-	font-size: 12px;
-	color: #777;
-	bottom: 10px;
-	right: 10px
+  position: absolute;
+  font-size: 12px;
+  color: #777;
+  bottom: 10px;
+  right: 10px
 }
 .inventory td a {
-	background: url(../img/error.png) no-repeat;
-	position: absolute;
-	font-size: 12px;
-	color: #777;
-	bottom: 10px;
-	left: 10px;
-	width: 16px;
-	height: 16px
+  background: url(../img/error.png) no-repeat;
+  position: absolute;
+  font-size: 12px;
+  color: #777;
+  bottom: 10px;
+  left: 10px;
+  width: 16px;
+  height: 16px
 }
 .listNav {
-	margin: 0 0 10px
+  margin: 0 0 10px
 }
 .ln-letters {
-	overflow: hidden
+  overflow: hidden
 }
 .ln-letters a {
-	font-size: .9em;
-	display: block;
-	float: left;
-	padding: 2px 6px;
-	border: 1px solid silver;
-	border-right: 0;
-	text-decoration: none;
-	color: white
+  font-size: .9em;
+  display: block;
+  float: left;
+  padding: 2px 6px;
+  border: 1px solid silver;
+  border-right: 0;
+  text-decoration: none;
+  color: white
 }
 .ln-letters a.ln-last {
-	border-right: 1px solid silver
+  border-right: 1px solid silver
 }
 .ln-letters a: hover,.ln-letters a.ln-selected {
-	background-color: #eaeaea
+  background-color: #eaeaea
 }
 .ln-letters a.ln-disabled {
-	color: #444
+  color: #444
 }
 .ln-letter-count {
-	text-align: center;
-	font-size: .8em;
-	line-height: 1;
-	margin-bottom: 3px;
-	color: #eee
+  text-align: center;
+  font-size: .8em;
+  line-height: 1;
+  margin-bottom: 3px;
+  color: #eee
 }
 #bukget .top_bar {
-	background-color: #333;
-	background-image: -o-linear-gradient(top,#333,#222);
-	background-image: -ms-linear-gradient(top,#333,#222);
-	background-image: -moz-linear-gradient(top,#333,#222);
-	background-image: -webkit-gradient(linear,left top,left bottom,from(#333),to(#222));
-	background-image: -webkit-linear-gradient(top,#333,#222);
-	background-image: linear-gradient(top,#333,#222);
-	-pie-background: linear-gradient(top,#333,#222);
-	font-size: 14px;
-	color: #fff;
-	height: 40px;
-	padding: 10px 0 10px 5px;
-	text-shadow: 0 1px 0 #000;
-	text-align: left;
-	position: relative
+  background-color: #333;
+  background-image: -o-linear-gradient(top,#333,#222);
+  background-image: -ms-linear-gradient(top,#333,#222);
+  background-image: -moz-linear-gradient(top,#333,#222);
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#333),to(#222));
+  background-image: -webkit-linear-gradient(top,#333,#222);
+  background-image: linear-gradient(top,#333,#222);
+  -pie-background: linear-gradient(top,#333,#222);
+  font-size: 14px;
+  color: #fff;
+  height: 40px;
+  padding: 10px 0 10px 5px;
+  text-shadow: 0 1px 0 #000;
+  text-align: left;
+  position: relative
 }
 #bukget .bukget_pagination {
-	margin: 11px 0 0 170px
+  margin: 11px 0 0 170px
 }
 #bukget .top_bar h2 {
-	background: url(../img/bukget.png) no-repeat center;
-	float: left;
-	height: 40px;
-	text-indent: -9999px;
-	width: 352px;
-	margin: 0 50px 0 0
+  background: url(../img/bukget.png) no-repeat center;
+  float: left;
+  height: 40px;
+  text-indent: -9999px;
+  width: 352px;
+  margin: 0 50px 0 0
 }
 #bukget .bukget_search {
-	width: 352px;
-	float: right
+  width: 352px;
+  float: right
 }
 #bukget li {
-	list-style-type: none;
-	font-size: 14px;
-	padding: 1px 6px 1px 12px;
-	border-bottom: 1px solid #ccc
+  list-style-type: none;
+  font-size: 14px;
+  padding: 1px 6px 1px 12px;
+  border-bottom: 1px solid #ccc
 }
 #bukget .binder {
-	background: #e8e8e8;
-	float: left;
-	width: 920px;
-	height: 600px;
-	position: relative
+  background: #e8e8e8;
+  float: left;
+  width: 920px;
+  height: 600px;
+  position: relative
 }
 #bukget .header {
-	background-color: #222;
-	background-image: -o-linear-gradient(top,#222,#111);
-	background-image: -ms-linear-gradient(top,#222,#111);
-	background-image: -moz-linear-gradient(top,#222,#111);
-	background-image: -webkit-gradient(linear,left top,left bottom,from(#222),to(#111));
-	background-image: -webkit-linear-gradient(top,#222,#111);
-	background-image: linear-gradient(top,#222,#111);
-	-pie-background: linear-gradient(top,#222,#111);
-	font-size: 14px;
-	color: #fff;
-	height: 60px;
-	padding: 10px 0 10px 5px;
-	text-shadow: 0 1px 0 #000;
-	text-align: center;
-	position: relative
+  background-color: #222;
+  background-image: -o-linear-gradient(top,#222,#111);
+  background-image: -ms-linear-gradient(top,#222,#111);
+  background-image: -moz-linear-gradient(top,#222,#111);
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#222),to(#111));
+  background-image: -webkit-linear-gradient(top,#222,#111);
+  background-image: linear-gradient(top,#222,#111);
+  -pie-background: linear-gradient(top,#222,#111);
+  font-size: 14px;
+  color: #fff;
+  height: 60px;
+  padding: 10px 0 10px 5px;
+  text-shadow: 0 1px 0 #000;
+  text-align: center;
+  position: relative
 }
 #bukget .header h3 {
-	margin-left: 40px;
-	font-size: 16px;
-	position: relative
+  margin-left: 40px;
+  font-size: 16px;
+  position: relative
 }
 #bukget .header h3 {
-	margin-left: 40px;
-	font-size: 16px;
-	position: relative
+  margin-left: 40px;
+  font-size: 16px;
+  position: relative
 }
 #bukget .bukget_filter {
-	position: absolute;
-	display: inline;
-	top: 10px;
-	right: 15px
+  position: absolute;
+  display: inline;
+  top: 10px;
+  right: 15px
 }
 #bukget .additional-block {
-	float: left;
-	width: 920px;
-	height: 600px;
-	position: absolute
+  float: left;
+  width: 920px;
+  height: 600px;
+  position: absolute
 }
 #bukget .menu {
-	max-height: 600px;
-	overflow-y: auto;
-	overflow-x: hidden
+  max-height: 600px;
+  overflow-y: auto;
+  overflow-x: hidden
 }
 #bukget .menu li {
-	background-color: #fff;
-	cursor: pointer
+  background-color: #fff;
+  cursor: pointer
 }
 #bukget .menu li.plugin {
-	background-color: #eaeaea;
-	cursor: pointer;
-	height: 32px;
-	overflow: hidden;
-	cursor: normal
+  background-color: #eaeaea;
+  cursor: pointer;
+  height: 32px;
+  overflow: hidden;
+  cursor: normal
 }
 #bukget .plugin .details {
-	position: relative;
-	top: 14px
+  position: relative;
+  top: 14px
 }
 #bukget .menu li.expanded {
-	height: auto;
-	background-color: #222;
-	background-image: -o-linear-gradient(top,#333,#111);
-	background-image: -ms-linear-gradient(top,#333,#111);
-	background-image: -moz-linear-gradient(top,#333,#111);
-	background-image: -webkit-gradient(linear,left top,left bottom,from(#333),to(#111));
-	background-image: -webkit-linear-gradient(top,#333,#111);
-	background-image: linear-gradient(top,#333,#111);
-	-pie-background: linear-gradient(top,#333,#111);
-	cursor: pointer;
-	color: #fefefe
+  height: auto;
+  background-color: #222;
+  background-image: -o-linear-gradient(top,#333,#111);
+  background-image: -ms-linear-gradient(top,#333,#111);
+  background-image: -moz-linear-gradient(top,#333,#111);
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#333),to(#111));
+  background-image: -webkit-linear-gradient(top,#333,#111);
+  background-image: linear-gradient(top,#333,#111);
+  -pie-background: linear-gradient(top,#333,#111);
+  cursor: pointer;
+  color: #fefefe
 }
 #bukget .menu li: hover {
-	background-color: #222;
-	background-image: -o-linear-gradient(top,#333,#111);
-	background-image: -ms-linear-gradient(top,#333,#111);
-	background-image: -moz-linear-gradient(top,#333,#111);
-	background-image: -webkit-gradient(linear,left top,left bottom,from(#333),to(#111));
-	background-image: -webkit-linear-gradient(top,#333,#111);
-	background-image: linear-gradient(top,#333,#111);
-	-pie-background: linear-gradient(top,#333,#111);
-	cursor: pointer;
-	color: #fefefe
+  background-color: #222;
+  background-image: -o-linear-gradient(top,#333,#111);
+  background-image: -ms-linear-gradient(top,#333,#111);
+  background-image: -moz-linear-gradient(top,#333,#111);
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#333),to(#111));
+  background-image: -webkit-linear-gradient(top,#333,#111);
+  background-image: linear-gradient(top,#333,#111);
+  -pie-background: linear-gradient(top,#333,#111);
+  cursor: pointer;
+  color: #fefefe
 }
 #bukget .menu li: hover a.has-child {
-	background: url('../img/arrow-hover.png') center right no-repeat
+  background: url('../img/arrow-hover.png') center right no-repeat
 }
 #bukget .menu li a {
-	display: block;
-	width: 880px;
-	color: inherit;
-	padding: 10px 0 10px 0
+  display: block;
+  width: 880px;
+  color: inherit;
+  padding: 10px 0 10px 0
 }
 #bukget .has-child {
-	background: url('../img/arrow.png') center right no-repeat
+  background: url('../img/arrow.png') center right no-repeat
 }
 #bukget .has-child: hover {
-	background: url('../img/arrow-hover.png') center right no-repeat
+  background: url('../img/arrow-hover.png') center right no-repeat
 }
 #bukget .back {
-	margin-top: .4em;
-	background: url('../img/prev.png') bottom left no-repeat;
-	position: absolute;
-	display: block;
-	height: 15px;
-	width: 50px;
-	cursor: pointer
+  margin-top: .4em;
+  background: url('../img/prev.png') bottom left no-repeat;
+  position: absolute;
+  display: block;
+  height: 15px;
+  width: 50px;
+  cursor: pointer
 }
 #bukget .biodata {
-	margin-left: 10px;
-	font-size: 12px
+  margin-left: 10px;
+  font-size: 12px
 }
 #Bukget .info {
-	color: #fff;
-	position: absolute;
-	text-align: right;
-	width: 400px;
-	margin-top: 15%;
-	font-size: 40px;
-	font-weight: bold;
-	line-height: .9em;
-	text-shadow: 0 2px 0 #000
+  color: #fff;
+  position: absolute;
+  text-align: right;
+  width: 400px;
+  margin-top: 15%;
+  font-size: 40px;
+  font-weight: bold;
+  line-height: .9em;
+  text-shadow: 0 2px 0 #000
 }
 #bukget .info a,#bukget .info a: visited,#bukget .info a: hover {
-	color: #fff
+  color: #fff
 }
 #bukget table td {
-	padding: 6px
+  padding: 6px
 }
 #bukget .plugin a {
-	width: 200px
+  width: 200px
 }
 #bukget .menu li.plugin a {
-	width: auto;
-	color: inherit
+  width: auto;
+  color: inherit
 }
 #bukget .plugin h4 {
-	font-weight: bold;
-	margin-right: 20px;
-	display: inline;
-	color: inherit
+  font-weight: bold;
+  margin-right: 20px;
+  display: inline;
+  color: inherit
 }
 #bukget .menu li: hover a.more,#bukget .menu li: hover a.button {
-	display: inline-block;
-	color: #333
+  display: inline-block;
+  color: #333
 }
 #bukget .plugin .button,#bukget .plugin .nobutton {
-	display: inline-block;
-	padding: .5em 1em
+  display: inline-block;
+  padding: .5em 1em
 }
 #bukget .menu li.expanded .button {
-	color: #333
+  color: #333
 }
 #bukget .menu li: hover a.nobutton,#bukget .menu li a.nobutton {
-	color: green
+  color: green
 }
 #bukget .plugin .more {
-	display: none;
-	padding: .5em 1em
+  display: none;
+  padding: .5em 1em
 }
 #bukget .menu li.expanded .button {
-	display: inline-block;
-	color: #333
+  display: inline-block;
+  color: #333
 }
 #bukget .plugin li: hover a.button: hover {
-	color: #fff
+  color: #fff
 }
 .bukget_information {
-	position: relative;
-	color: #777;
-	left: 4px;
-	margin-bottom:  3px
+  position: relative;
+  color: #777;
+  left: 4px;
+  margin-bottom:  3px
 }
 .triangle-border {
-	position: relative;
-	padding: 10px 9px;
-	margin: 1em 0 3em;
-	border: 5px solid #3058b8;
-	color: #333;
-	background: #fff;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px
+  position: relative;
+  padding: 10px 9px;
+  margin: 1em 0 3em;
+  border: 5px solid #3058b8;
+  color: #333;
+  background: #fff;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px
 }
 .triangle-border.left {
-	margin-left: 30px
+  margin-left: 30px
 }
 .triangle-border: before {
-	content: "";
-	position: absolute;
-	bottom: -20px;
-	left: 40px;
-	border-width: 20px 20px 0;
-	border-style: solid;
-	border-color: #3058b8 transparent;
-	display: block;
-	width: 0
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: 40px;
+  border-width: 20px 20px 0;
+  border-style: solid;
+  border-color: #3058b8 transparent;
+  display: block;
+  width: 0
 }
 .triangle-border: after {
-	content: "";
-	position: absolute;
-	bottom: -13px;
-	left: 47px;
-	border-width: 13px 13px 0;
-	border-style: solid;
-	border-color: #fff transparent;
-	display: block;
-	width: 0
+  content: "";
+  position: absolute;
+  bottom: -13px;
+  left: 47px;
+  border-width: 13px 13px 0;
+  border-style: solid;
+  border-color: #fff transparent;
+  display: block;
+  width: 0
 }
 .triangle-border.top: before {
-	top: -20px;
-	bottom: auto;
-	left: auto;
-	right: 40px;
-	border-width: 0 20px 20px
+  top: -20px;
+  bottom: auto;
+  left: auto;
+  right: 40px;
+  border-width: 0 20px 20px
 }
 .triangle-border.top: after {
-	top: -13px;
-	bottom: auto;
-	left: auto;
-	right: 47px;
-	border-width: 0 13px 13px
+  top: -13px;
+  bottom: auto;
+  left: auto;
+  right: 47px;
+  border-width: 0 13px 13px
 }
 .triangle-border.left: before {
-	top: 10px;
-	bottom: auto;
-	left: -30px;
-	border-width: 15px 30px 15px 0;
-	border-color: transparent #3058b8
+  top: 10px;
+  bottom: auto;
+  left: -30px;
+  border-width: 15px 30px 15px 0;
+  border-color: transparent #3058b8
 }
 .triangle-border.left: after {
-	top: 16px;
-	bottom: auto;
-	left: -21px;
-	border-width: 9px 21px 9px 0;
-	border-color: transparent #fff
+  top: 16px;
+  bottom: auto;
+  left: -21px;
+  border-width: 9px 21px 9px 0;
+  border-color: transparent #fff
 }
 .triangle-border.right: before {
-	top: 10px;
-	bottom: auto;
-	left: auto;
-	right: -30px;
-	border-width: 15px 0 15px 30px;
-	border-color: transparent #5a8f00
+  top: 10px;
+  bottom: auto;
+  left: auto;
+  right: -30px;
+  border-width: 15px 0 15px 30px;
+  border-color: transparent #5a8f00
 }
 .triangle-border.right: after {
-	top: 16px;
-	bottom: auto;
-	left: auto;
-	right: -21px;
-	border-width: 9px 0 9px 21px;
-	border-color: transparent #fff
+  top: 16px;
+  bottom: auto;
+  left: auto;
+  right: -21px;
+  border-width: 9px 0 9px 21px;
+  border-color: transparent #fff
 }
 .installation>div.col_1_3 {
-	text-align: center
+  text-align: center
 }
 .installation>div.col_1_3 img {
-	width: 150px;
-	height: 150px;
-	position: relative;
-	margin: 0 auto
+  width: 150px;
+  height: 150px;
+  position: relative;
+  margin: 0 auto
 }
 .installation>div.col_1_3 p {
-	text-align: center
+  text-align: center
 }

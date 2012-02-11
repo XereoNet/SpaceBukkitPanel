@@ -24,9 +24,8 @@ $('document').ready(function () {
         return false;
     });
 
-
     $(".console-button").click(function() {
-        $(".sidebar-wrap").each(function() { $(this).hide();}); 	
+        $(".sidebar-wrap").each(function() { $(this).hide();});   
         $("#sidebar-console-wrap").show();
     });
    
@@ -143,4 +142,4 @@ $('document').ready(function () {
         $("#content").fadeOut(700);
         $("#loading-container").fadeIn(700);
     }));
-});            
+});
