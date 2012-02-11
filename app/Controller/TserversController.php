@@ -123,13 +123,16 @@ class TServersController extends AppController {
 
         $tasks = array(
 
-		'Enable Whitelist' => array('method' => 'consoleCommand', 'args' => 'whitelist on'),
-		'Disable Whitelist' => array('method' => 'consoleCommand', 'args' => 'whitelist off'),
-		'Restart Server' => array('method' => 'restart', 'args' => 'true'),
-		'Save Worlds' => array('method' => 'consoleCommand', 'args' => 'save-all'),
-		'Run Console Command' => array('method' => 'consoleCommand', 'args' => 'needsargs'),
-		'Start Server' => array('method' => 'start', 'args' => false),
-		'Stop Server' => array('method' => 'stop', 'args' => false)
+		'Enable whitelist' => array('method' => 'consoleCommand', 'args' => 'whitelist on'),
+		'Disable whitelist' => array('method' => 'consoleCommand', 'args' => 'whitelist off'),
+		'Restart server' => array('method' => 'restart', 'args' => 'true'),
+        'Restart server if empty' => array('method' => 'restartIfEmpty', 'args' => false),
+        'Rotate server.log' => array('method' => 'rollOverLog', 'args' => false),
+		'Save worlds' => array('method' => 'consoleCommand', 'args' => 'save-all'),
+        'Say something' => array('method' => 'say', 'args' => true),
+		'Run console command' => array('method' => 'consoleCommand', 'args' => 'needsargs'),
+		'Start server' => array('method' => 'start', 'args' => false),
+		'Stop server' => array('method' => 'stop', 'args' => false)
 		
             );
 
