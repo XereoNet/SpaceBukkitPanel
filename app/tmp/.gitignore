@@ -2,3 +2,4 @@ cache/**/*
 logs/**/*
 sessions/**/*
 tests/**/*
+inst.txt
