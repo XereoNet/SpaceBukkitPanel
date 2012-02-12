@@ -54,6 +54,21 @@ class SchedulesController extends AppController {
         }
     }
 
+
+    function runTask($id) {
+        if ($this->request->is('ajax')) 
+        {
+
+        $this->disableCache();
+        Configure::write('debug', 0);
+        $this->autoRender = false;
+                
+        include("../spacebukkitcall.php");
+        $args = array($id);
+        $api->call('runJob', $args, true);
+        }
+    }
+
     function getTimes($id) {
       if ($this->request->is('ajax')) 
         {
