@@ -55,8 +55,10 @@ $('document').ready(function () {
                          
     $(document).bind('click', function(e) {
         var $clicked = $(e.target);
-        if (! $clicked.parents().hasClass("widget-reset"))
+        if (! $clicked.parents().hasClass("widget-reset")) {
         $(".sidebar-wrap").each(function() { $(this).hide();});
+        $(".widget-reset").find('a.active').removeClass('active');    
+    }
     });
 
   $('.console-controls ul li a').click(function(e) {

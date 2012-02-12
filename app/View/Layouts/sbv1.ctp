@@ -64,7 +64,7 @@
 							<h4>Console</h4>
 						    <p>(Latest on top)</p>
 							<form id="runcommand" class="runcommand" method="post" action="./global/runcommand">
-						        <input id="command" name="command" type="text" placeholder="<?php echo __('Enter Command'); ?>"/>
+						        <input class="commandarea" id="command" name="command" type="text" placeholder="<?php echo __('Enter Command'); ?>"/>
 						    	<input type="submit" class="button primary submit hidden" value="<?php echo __('Submit'); ?>">
 						    </form>
 							<section>
@@ -276,25 +276,6 @@ END;
     autoHideDelay:7000,
 	});
 
-	  /* attach a submit handler to the form */
-	  $(".runcommand").submit(function(event) {
-
-	    /* stop form from submitting normally */
-	    event.preventDefault(); 
-	        
-	    /* get some values from elements on the page: */
-	    var $form = $(this),
-	        term = $form.find( 'input[name="command"]' ).val(),
-	        url = $form.attr( 'action' );
-
-	    /* Send the data using post and put the results in a div */
-	    $.post(url, {command: term},
-	      function( data ) {
-	      	message = data;
-	        notifications.show({msg:data, icon:'img/win.png'});
-	      }
-	    );
-	  });
 
 $(document).ready(function() {
 	$("#stop").live('click', function() {
@@ -335,6 +316,28 @@ $(document).ready(function() {
     $(".chatarea").val('');
 
   });
+
+	  /* attach a submit handler to the form */
+	  $(".runcommand").submit(function(event) {
+
+	    /* stop form from submitting normally */
+	    event.preventDefault(); 
+	        
+	    /* get some values from elements on the page: */
+	    var $form = $(this),
+	        term = $form.find( 'input[name="command"]' ).val(),
+	        url = $form.attr( 'action' );
+
+	    /* Send the data using post and put the results in a div */
+	    $.post(url, {command: term},
+	      function( data ) {
+	      	message = data;
+	        notifications.show({msg:data, icon:'img/win.png'});
+	      }
+	    );
+   		$('.commandarea').val('');
+
+	  });  
   doAndRefresh('.chat_list', './dash/get_chat_players', 10000);
   doAndRefreshChat('.chat_chat', './dash/get_chat_new', 1000);
 
