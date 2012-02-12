@@ -129,7 +129,7 @@
 
     <p><font size=4>If you are running some other webserver not listed</font></p><br />
     
-    <p>Well then I can't help you here, visit our <a href="http://forums.xereo.net/">Forum</a> or this <a href="http://www.google.com/">fine site</a></p>
+    <p>Then I unfortunately can't help you here, visit our <a href="http://forums.xereo.net/">Forum</a> or try this <a href="http://www.google.com/">fine site</a></p>
 
     </div>
 
