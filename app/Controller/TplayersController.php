@@ -449,7 +449,7 @@ END;
 
         echo $name['name'].__(' was banned and added to blacklist.');
 
-        w_serverlog($this->Session->read("current_server"), __('[USERS]').$this->Auth->user('username').__(' banned ').$player);
+        w_serverlog($this->Session->read("current_server"), __('[USERS]').$this->Auth->user('username').__(' banned ').$name);
 
         }   
     }
@@ -469,7 +469,7 @@ END;
 
         echo $name.__(' was removed from blacklist.');
 
-        w_serverlog($this->Session->read("current_server"), __('[USERS]').$this->Auth->user('username').__(' unbanned ').$player);
+        w_serverlog($this->Session->read("current_server"), __('[USERS]').$this->Auth->user('username').__(' unbanned ').$name);
 
         }    
     }
@@ -491,7 +491,7 @@ END;
 
         echo $name['name'].__(' was added to whitelist.');
 
-        w_serverlog($this->Session->read("current_server"), __('[USERS]').$this->Auth->user('username').__(' added ').$player.__(' to whitelist'));
+        w_serverlog($this->Session->read("current_server"), __('[USERS]').$this->Auth->user('username').__(' added ').$name['name'].__(' to whitelist'));
 
         }
     }
@@ -511,7 +511,7 @@ END;
 
         echo $name.__(' was removed from whitelist.');
 
-        w_serverlog($this->Session->read("current_server"), __('[USERS]').$this->Auth->user('username').__(' removed ').$player.__(' from whitelist'));
+        w_serverlog($this->Session->read("current_server"), __('[USERS]').$this->Auth->user('username').__(' removed ').$name.__(' from whitelist'));
 
         }    
     }
