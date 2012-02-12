@@ -599,7 +599,7 @@ END;
             //stop the server
             $args = array();
             $api->call("hold", $args, true);
-            sleep(20);
+            sleep(10);
             //backup the world
             $args = array('bukkit.yml');
             $bukkit = $api->call('getFileContents', $args, true);
@@ -608,11 +608,14 @@ END;
             $api->call("backup", $args, true);
             sleep(5);
             //remove the world
-
+            $args = array($wc.'/'.$wrld);
+            $api->call('deleteDir', $args, true);
+            sleep(5);
             //start the server
             $args = array();
             $api->call('unhold', $args, true);
-            echo 'Hi!';
+            sleep(5);
+            echo 'World has been removed! A backup can be fould in the backups folder';
         }
     }
 

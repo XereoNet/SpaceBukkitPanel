@@ -127,7 +127,8 @@
     </header>
 
     <section>
-        <form id="saveconfig" method="post" action="./tservers/saveConfig">
+        <form id="ServerAddForm" method="post" action="./tservers/saveConfig">
+        <input type="submit" class="button primary submit leftsubmit" name="save" style="top: -48px" value="<?php echo __('Save') ?>">
         <div class="col left">
 
             <section>
@@ -332,7 +333,6 @@
                 <input id="enable-query" name="enable-query" type="checkbox" value="true" <?php if ($enable_query == "true") {echo " checked";}?>/>
               </div>
             </section>
-        <input type="submit" class="button primary submit leftsubmit" name="save" style="top: -48px" value="<?php echo __('Save') ?>">
 
         </div>
         </form>

@@ -135,7 +135,7 @@
 			        </select>
 			      </div>
 			    </section>
-		    	<input type="submit" class="button big primary submit" value="Run Chunkster">
+		    	<input type="submit" id="chunkster" class="button big primary submit" value="<?php echo __('Run Chunkster'); ?>">
 
 		    </form>
 		  </section> 
@@ -219,7 +219,7 @@
 			        <input id="blocks" name="blocks" type="text"/>
 			      </div>
 			    </section>
-		    <input type="submit" class="button big primary submit autotrim" value="<?php echo __('Run MapAutoTrim') ?>">
+		    <input type="submit" id="mapautotrim" class="button big primary submit autotrim" value="<?php echo __('Run MapAutoTrim') ?>">
 
 		    </form>
 		  </section> 
@@ -302,6 +302,8 @@ $.ajax({
 }));
 
 $("#mapautotrim").submit(function() {
+	$('.buttons').hide();
+	$('.bounce').hide();
     $('input[type=submit]', this).attr('disabled', 'disabled').addClass("disable");
     $("#autotrimloader").fadeIn(2000);
 	setTimeout( function() { 
@@ -315,6 +317,8 @@ $("#mapautotrim").submit(function() {
 });
 
 $("#chunkster").submit(function() {
+	$('.buttons').hide();
+	$('.bounce').hide();
     $('input[type=submit]', this).attr('disabled', 'disabled').addClass("disable");
     $("#chunksterloader").fadeIn(2000);
 	setTimeout( function() { 
