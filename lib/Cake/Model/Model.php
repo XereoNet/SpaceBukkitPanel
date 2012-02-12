@@ -19,12 +19,10 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
-/**
- * Included libs
- */
 App::uses('ClassRegistry', 'Utility');
 App::uses('Validation', 'Utility');
 App::uses('String', 'Utility');
+App::uses('Set', 'Utility');
 App::uses('BehaviorCollection', 'Model');
 App::uses('ModelBehavior', 'Model');
 App::uses('ConnectionManager', 'Model');
@@ -279,13 +277,13 @@ class Model extends Object {
  * ### Possible keys in association
  *
  * - `className`: the classname of the model being associated to the current model.
- *   If you’re defining a ‘Profile belongsTo User’ relationship, the className key should equal ‘User.’
+ *   If you're defining a 'Profile belongsTo User' relationship, the className key should equal 'User.'
  * - `foreignKey`: the name of the foreign key found in the current model. This is
  *   especially handy if you need to define multiple belongsTo relationships. The default
- *   value for this key is the underscored, singular name of the other model, suffixed with ‘_id’.
- * - `conditions`: An SQL fragment used to filter related model records. It’s good
- *   practice to use model names in SQL fragments: “User.active = 1” is always
- *   better than just “active = 1.”
+ *   value for this key is the underscored, singular name of the other model, suffixed with '_id'.
+ * - `conditions`: An SQL fragment used to filter related model records. It's good
+ *   practice to use model names in SQL fragments: 'User.active = 1' is always
+ *   better than just 'active = 1.'
  * - `type`: the type of the join to use in the SQL query, default is LEFT which
  *   may not fit your needs in all situations, INNER may be helpful when you want
  *   everything from your main and associated models or nothing at all!(effective
@@ -294,7 +292,7 @@ class Model extends Object {
  *   fetched. Returns all fields by default.
  * - `order`: An SQL fragment that defines the sorting order for the returned associated rows.
  * - `counterCache`: If set to true the associated Model will automatically increase or
- *   decrease the “[singular_model_name]_count” field in the foreign table whenever you do
+ *   decrease the "[singular_model_name]_count" field in the foreign table whenever you do
  *   a save() or delete(). If its a string then its the field name to use. The value in the
  *   counter field represents the number of related rows.
  * - `counterScope`: Optional conditions array to use for updating counter cache field.
@@ -326,18 +324,18 @@ class Model extends Object {
  * ### Possible keys in association
  *
  * - `className`: the classname of the model being associated to the current model.
- *   If you’re defining a ‘User hasOne Profile’ relationship, the className key should equal ‘Profile.’
+ *   If you're defining a 'User hasOne Profile' relationship, the className key should equal 'Profile.'
  * - `foreignKey`: the name of the foreign key found in the other model. This is
  *   especially handy if you need to define multiple hasOne relationships.
  *   The default value for this key is the underscored, singular name of the
- *   current model, suffixed with ‘_id’. In the example above it would default to 'user_id'.
- * - `conditions`: An SQL fragment used to filter related model records. It’s good
- *   practice to use model names in SQL fragments: “Profile.approved = 1” is
- *   always better than just “approved = 1.”
+ *   current model, suffixed with '_id'. In the example above it would default to 'user_id'.
+ * - `conditions`: An SQL fragment used to filter related model records. It's good
+ *   practice to use model names in SQL fragments: "Profile.approved = 1" is
+ *   always better than just "approved = 1."
  * - `fields`: A list of fields to be retrieved when the associated model data is
  *   fetched. Returns all fields by default.
  * - `order`: An SQL fragment that defines the sorting order for the returned associated rows.
- * - `dependent`: When the dependent key is set to true, and the model’s delete()
+ * - `dependent`: When the dependent key is set to true, and the model's delete()
  *   method is called with the cascade parameter set to true, associated model
  *   records are also deleted. In this case we set it true so that deleting a
  *   User will also delete her associated Profile.
@@ -369,13 +367,13 @@ class Model extends Object {
  * ### Possible keys in association
  *
  * - `className`: the classname of the model being associated to the current model.
- *   If you’re defining a ‘User hasMany Comment’ relationship, the className key should equal ‘Comment.’
+ *   If you're defining a 'User hasMany Comment' relationship, the className key should equal 'Comment.'
  * - `foreignKey`: the name of the foreign key found in the other model. This is
  *   especially handy if you need to define multiple hasMany relationships. The default
- *   value for this key is the underscored, singular name of the actual model, suffixed with ‘_id’.
- * - `conditions`: An SQL fragment used to filter related model records. It’s good
- *   practice to use model names in SQL fragments: “Comment.status = 1” is always
- *   better than just “status = 1.”
+ *   value for this key is the underscored, singular name of the actual model, suffixed with '_id'.
+ * - `conditions`: An SQL fragment used to filter related model records. It's good
+ *   practice to use model names in SQL fragments: "Comment.status = 1" is always
+ *   better than just "status = 1."
  * - `fields`: A list of fields to be retrieved when the associated model data is
  *   fetched. Returns all fields by default.
  * - `order`: An SQL fragment that defines the sorting order for the returned associated rows.
@@ -420,7 +418,7 @@ class Model extends Object {
  * ### Possible keys in association
  *
  * - `className`: the classname of the model being associated to the current model.
- *   If you're defining a ‘Recipe HABTM Tag' relationship, the className key should equal ‘Tag.'
+ *   If you're defining a 'Recipe HABTM Tag' relationship, the className key should equal 'Tag.'
  * - `joinTable`: The name of the join table used in this association (if the
  *   current table doesn't adhere to the naming convention for HABTM join tables).
  * - `with`: Defines the name of the model for the join table. By default CakePHP
@@ -430,11 +428,11 @@ class Model extends Object {
  * - `foreignKey`: the name of the foreign key found in the current model.
  *   This is especially handy if you need to define multiple HABTM relationships.
  *   The default value for this key is the underscored, singular name of the
- *   current model, suffixed with ‘_id'.
+ *   current model, suffixed with '_id'.
  * - `associationForeignKey`: the name of the foreign key found in the other model.
  *   This is especially handy if you need to define multiple HABTM relationships.
  *   The default value for this key is the underscored, singular name of the other
- *   model, suffixed with ‘_id'.
+ *   model, suffixed with '_id'.
  * - `unique`: If true (default value) cake will first delete existing relationship
  *   records in the foreign keys table before inserting new ones, when updating a
  *   record. So existing associations need to be passed again when updating.
@@ -536,7 +534,7 @@ class Model extends Object {
  */
 	protected $_associationKeys = array(
 		'belongsTo' => array('className', 'foreignKey', 'conditions', 'fields', 'order', 'counterCache'),
-		'hasOne' => array('className', 'foreignKey','conditions', 'fields','order', 'dependent'),
+		'hasOne' => array('className', 'foreignKey', 'conditions', 'fields', 'order', 'dependent'),
 		'hasMany' => array('className', 'foreignKey', 'conditions', 'fields', 'order', 'limit', 'offset', 'dependent', 'exclusive', 'finderQuery', 'counterQuery'),
 		'hasAndBelongsToMany' => array('className', 'joinTable', 'with', 'foreignKey', 'associationForeignKey', 'conditions', 'fields', 'order', 'limit', 'offset', 'unique', 'finderQuery', 'deleteQuery', 'insertQuery')
 	);
@@ -674,10 +672,7 @@ class Model extends Object {
 		}
 
 		if (is_subclass_of($this, 'AppModel')) {
-			$merge = array('findMethods');
-			if ($this->actsAs !== null || $this->actsAs !== false) {
-				$merge[] = 'actsAs';
-			}
+			$merge = array('actsAs', 'findMethods');
 			$parentClass = get_parent_class($this);
 			if ($parentClass !== 'AppModel') {
 				$this->_mergeVars($merge, $parentClass);
@@ -700,6 +695,11 @@ class Model extends Object {
 		} elseif ($this->table === false) {
 			$this->table = Inflector::tableize($this->name);
 		}
+
+		if ($this->tablePrefix === null) {
+			unset($this->tablePrefix);
+		}
+
 		$this->_createLinks();
 		$this->Behaviors->init($this->alias, $this->actsAs);
 	}
@@ -724,7 +724,7 @@ class Model extends Object {
 /**
  * Handles the lazy loading of model associations by looking in the association arrays for the requested variable
  *
- * @param string $name variable tested for existance in class
+ * @param string $name variable tested for existence in class
  * @return boolean true if the variable exists (if is a not loaded model association it will be created), false otherwise
  */
 	public function __isset($name) {
@@ -761,7 +761,7 @@ class Model extends Object {
 					}
 				}
 			}
-	    }
+		}
 
 		if (!$className) {
 			return false;
@@ -798,6 +798,13 @@ class Model extends Object {
 	public function __get($name) {
 		if ($name === 'displayField') {
 			return $this->displayField = $this->hasField(array('title', 'name', $this->primaryKey));
+		}
+		if ($name === 'tablePrefix') {
+			$this->setDataSource();
+			if (property_exists($this, 'tablePrefix') && !empty($this->tablePrefix)) {
+				return $this->tablePrefix;
+			}
+			return $this->tablePrefix = null;
 		}
 		if (isset($this->{$name})) {
 			return $this->{$name};
@@ -1142,7 +1149,17 @@ class Model extends Object {
 			$timeFields = array('H' => 'hour', 'i' => 'min', 's' => 'sec');
 			$date = array();
 
-			if (isset($data['hour']) && isset($data['meridian']) && $data['hour'] != 12 && 'pm' == $data['meridian']) {
+			if (isset($data['meridian']) && empty($data['meridian'])) {
+				return null;
+			}
+
+			if (
+				isset($data['hour']) &&
+				isset($data['meridian']) &&
+				!empty($data['hour']) &&
+				$data['hour'] != 12 &&
+				'pm' == $data['meridian']
+			) {
 				$data['hour'] = $data['hour'] + 12;
 			}
 			if (isset($data['hour']) && isset($data['meridian']) && $data['hour'] == 12 && 'am' == $data['meridian']) {
@@ -1152,9 +1169,7 @@ class Model extends Object {
 				foreach ($timeFields as $key => $val) {
 					if (!isset($data[$val]) || $data[$val] === '0' || $data[$val] === '00') {
 						$data[$val] = '00';
-					} elseif ($data[$val] === '') {
-						$data[$val] = '';
-					} else {
+					} elseif ($data[$val] !== '') {
 						$data[$val] = sprintf('%02d', $data[$val]);
 					}
 					if (!empty($data[$val])) {
@@ -1183,12 +1198,14 @@ class Model extends Object {
 				}
 			}
 
-			$format = $this->getDataSource()->columns[$type]['format'];
-			$day = empty($date['Y']) ? null : $date['Y'] . '-' . $date['m'] . '-' . $date['d'] . ' ';
-			$hour = empty($date['H']) ? null : $date['H'] . ':' . $date['i'] . ':' . $date['s'];
-			$date = new DateTime($day . $hour);
 			if ($useNewDate && !empty($date)) {
-				return $date->format($format);
+				$format = $this->getDataSource()->columns[$type]['format'];
+				foreach (array('m', 'd', 'H', 'i', 's') as $index) {
+					if (isset($date[$index])) {
+						$date[$index] = sprintf('%02d', $date[$index]);
+					}
+				}
+				return str_replace(array_keys($date), array_values($date), $format);
 			}
 		}
 		return $data;
@@ -1202,7 +1219,7 @@ class Model extends Object {
  * @return array Array of table metadata
  */
 	public function schema($field = false) {
-		if (!is_array($this->_schema) || $field === true) {
+		if ($this->useTable !== false && (!is_array($this->_schema) || $field === true)) {
 			$db = $this->getDataSource();
 			$db->cacheSources = ($this->cacheSources && $db->cacheSources);
 			if (method_exists($db, 'describe') && $this->useTable !== false) {
@@ -1394,7 +1411,7 @@ class Model extends Object {
  * Returns a list of fields from the database, and sets the current model
  * data (Model::$data) with the record found.
  *
- * @param mixed $fields String of single fieldname, or an array of fieldnames.
+ * @param mixed $fields String of single field name, or an array of field names.
  * @param mixed $id The ID of the record to read
  * @return array Array of database fields, or false if not found
  * @link http://book.cakephp.org/2.0/en/models/retrieving-your-data.html#model-read
@@ -1471,7 +1488,7 @@ class Model extends Object {
  * @param array $validate See $options param in Model::save(). Does not respect 'fieldList' key if passed
  * @return boolean See Model::save()
  * @see Model::save()
- * @link http://book.cakephp.org/2.0/en/models/retrieving-your-data.html#model-read
+ * @link http://book.cakephp.org/2.0/en/models/saving-your-data.html#model-savefield-string-fieldname-string-fieldvalue-validate-false
  */
 	public function saveField($name, $value, $validate = false) {
 		$id = $this->id;
@@ -1849,7 +1866,7 @@ class Model extends Object {
 	}
 
 /**
- * Backwards compatible passtrough method for:
+ * Backwards compatible passthrough method for:
  * saveMany(), validateMany(), saveAssociated() and validateAssociated()
  *
  * Saves multiple individual records for a single model; Also works with a single record, as well as
@@ -2001,11 +2018,11 @@ class Model extends Object {
  *
  * #### Options
  *
- * - validate: Set to false to disable validation, true to validate each record before saving,
- *   'first' to validate *all* records before any are saved (default),
- * - atomic: If true (default), will attempt to save all records in a single transaction.
+ * - `validate` Set to `false` to disable validation, `true` to validate each record before saving,
+ *   'first' to validate *all* records before any are saved(default),
+ * - `atomic` If true (default), will attempt to save all records in a single transaction.
  *   Should be set to false if database/table does not support transactions.
- * - fieldList: Equivalent to the $fieldList parameter in Model::save()
+ * - `fieldList` Equivalent to the $fieldList parameter in Model::save()
  *
  * @param array $data Record data to save. This should be an array indexed by association name.
  * @param array $options Options to use when saving record data, See $options above.
@@ -2019,7 +2036,7 @@ class Model extends Object {
 			$data = $this->data;
 		}
 
-		$options = array_merge(array('validate' => true, 'atomic' => true), $options);
+		$options = array_merge(array('validate' => 'first', 'atomic' => true), $options);
 		$this->validationErrors = $validationErrors = array();
 
 		if (empty($data) && $options['validate'] !== false) {
@@ -2136,7 +2153,7 @@ class Model extends Object {
 				if (in_array($associations[$association], array('belongsTo', 'hasOne'))) {
 					$validates = $this->{$association}->create($values) && $this->{$association}->validates($options);
 					$return[$association][] = $validates;
-				} elseif($associations[$association] === 'hasMany') {
+				} elseif ($associations[$association] === 'hasMany') {
 					$validates = $this->{$association}->validateMany($values, $options);
 					$return[$association] = $validates;
 				}
@@ -2249,11 +2266,17 @@ class Model extends Object {
 				if ($data['dependent'] === true) {
 
 					$model = $this->{$assoc};
-					$conditions = array($model->escapeField($data['foreignKey']) => $id);
-					if ($data['conditions']) {
-						$conditions = array_merge((array)$data['conditions'], $conditions);
+
+					if ($data['foreignKey'] === false && $data['conditions'] && in_array($this->name, $model->getAssociated('belongsTo'))) {
+						$model->recursive = 0;
+						$conditions = array($this->escapeField(null, $this->name) => $id);
+					} else {
+						$model->recursive = -1;
+						$conditions = array($model->escapeField($data['foreignKey']) => $id);
+						if ($data['conditions']) {
+							$conditions = array_merge((array)$data['conditions'], $conditions);
+						}
 					}
-					$model->recursive = -1;
 
 					if (isset($data['exclusive']) && $data['exclusive']) {
 						$model->deleteAll($conditions);
@@ -2399,7 +2422,7 @@ class Model extends Object {
  * Queries the datasource and returns a result set array.
  *
  * Also used to perform notation finds, where the first argument is type of find operation to perform
- * (all / first / count / neighbors / list / threaded ),
+ * (all / first / count / neighbors / list / threaded),
  * second parameter options for finding ( indexed array, including: 'conditions', 'limit',
  * 'recursive', 'page', 'fields', 'offset', 'order')
  *
@@ -2566,6 +2589,10 @@ class Model extends Object {
 	protected function _findCount($state, $query, $results = array()) {
 		if ($state === 'before') {
 			$db = $this->getDataSource();
+			$query['order'] = false;
+			if (!method_exists($db, 'calculate') || !method_exists($db, 'expression')) {
+				return $query;
+			}
 			if (empty($query['fields'])) {
 				$query['fields'] = $db->calculate($this, 'count');
 			} elseif (is_string($query['fields'])  && !preg_match('/count/i', $query['fields'])) {
@@ -2573,7 +2600,6 @@ class Model extends Object {
 					$db->expression($query['fields']), 'count'
 				));
 			}
-			$query['order'] = false;
 			return $query;
 		} elseif ($state === 'after') {
 			foreach (array(0, $this->alias) as $key) {
@@ -2905,7 +2931,7 @@ class Model extends Object {
 			$data = array();
 		}
 
-		$exists = $this->exists();
+		$exists = null;
 
 		$_validate = $this->validate;
 		$whitelist = $this->whitelist;
@@ -2947,81 +2973,85 @@ class Model extends Object {
 				}
 				$validator = array_merge($default, $validator);
 
-				if (
-					empty($validator['on']) || ($validator['on'] == 'create' &&
-					!$exists) || ($validator['on'] == 'update' && $exists
-				)) {
-					$valid = true;
-					$requiredFail = (
-						(!isset($data[$fieldName]) && $validator['required'] === true) ||
-						(
-							isset($data[$fieldName]) && (empty($data[$fieldName]) &&
-							!is_numeric($data[$fieldName])) && $validator['allowEmpty'] === false
-						)
-					);
+				if (!empty($validator['on'])) {
+					if ($exists === null) {
+						$exists = $this->exists();
+					}
+					if (($validator['on'] == 'create' && $exists) || ($validator['on'] == 'update' && !$exists)) {
+						continue;
+					}
+				}
 
-					if (!$requiredFail && array_key_exists($fieldName, $data)) {
-						if (empty($data[$fieldName]) && $data[$fieldName] != '0' && $validator['allowEmpty'] === true) {
-							break;
-						}
-						if (is_array($validator['rule'])) {
-							$rule = $validator['rule'][0];
-							unset($validator['rule'][0]);
-							$ruleParams = array_merge(array($data[$fieldName]), array_values($validator['rule']));
-						} else {
-							$rule = $validator['rule'];
-							$ruleParams = array($data[$fieldName]);
-						}
+				$valid = true;
+				$requiredFail = (
+					(!isset($data[$fieldName]) && $validator['required'] === true) ||
+					(
+						isset($data[$fieldName]) && (empty($data[$fieldName]) &&
+						!is_numeric($data[$fieldName])) && $validator['allowEmpty'] === false
+					)
+				);
 
-						if (in_array(strtolower($rule), $methods)) {
-							$ruleParams[] = $validator;
-							$ruleParams[0] = array($fieldName => $ruleParams[0]);
-							$valid = $this->dispatchMethod($rule, $ruleParams);
-						} elseif (in_array($rule, $behaviorMethods) || in_array(strtolower($rule), $behaviorMethods)) {
-							$ruleParams[] = $validator;
-							$ruleParams[0] = array($fieldName => $ruleParams[0]);
-							$valid = $this->Behaviors->dispatchMethod($this, $rule, $ruleParams);
-						} elseif (method_exists('Validation', $rule)) {
-							$valid = call_user_func_array(array('Validation', $rule), $ruleParams);
-						} elseif (!is_array($validator['rule'])) {
-							$valid = preg_match($rule, $data[$fieldName]);
-						} elseif (Configure::read('debug') > 0) {
-							trigger_error(__d('cake_dev', 'Could not find validation handler %s for %s', $rule, $fieldName), E_USER_WARNING);
-						}
+				if (!$requiredFail && array_key_exists($fieldName, $data)) {
+					if (empty($data[$fieldName]) && $data[$fieldName] != '0' && $validator['allowEmpty'] === true) {
+						break;
+					}
+					if (is_array($validator['rule'])) {
+						$rule = $validator['rule'][0];
+						unset($validator['rule'][0]);
+						$ruleParams = array_merge(array($data[$fieldName]), array_values($validator['rule']));
+					} else {
+						$rule = $validator['rule'];
+						$ruleParams = array($data[$fieldName]);
 					}
 
-					if ($requiredFail || !$valid || (is_string($valid) && strlen($valid) > 0)) {
-						if (is_string($valid)) {
-							$message = $valid;
-						} elseif (isset($validator['message'])) {
-							$args = null;
-							if (is_array($validator['message'])) {
-								$message = $validator['message'][0];
-								$args = array_slice($validator['message'], 1);
-							} else {
-								$message = $validator['message'];
-							}
-							if (is_array($validator['rule']) && $args === null) {
-								$args = array_slice($ruleSet[$index]['rule'], 1);
-							}
-							$message = __d($validationDomain, $message, $args);
-						} elseif (is_string($index)) {
-							if (is_array($validator['rule'])) {
-								$args = array_slice($ruleSet[$index]['rule'], 1);
-								$message = __d($validationDomain, $index, $args);
-							} else {
-								$message = __d($validationDomain, $index);
-							}
-						} elseif (!$requiredFail && is_numeric($index) && count($ruleSet) > 1) {
-							$message = $index + 1;
-						} else {
-							$message = __d('cake_dev', 'This field cannot be left blank');
-						}
+					if (in_array(strtolower($rule), $methods)) {
+						$ruleParams[] = $validator;
+						$ruleParams[0] = array($fieldName => $ruleParams[0]);
+						$valid = $this->dispatchMethod($rule, $ruleParams);
+					} elseif (in_array($rule, $behaviorMethods) || in_array(strtolower($rule), $behaviorMethods)) {
+						$ruleParams[] = $validator;
+						$ruleParams[0] = array($fieldName => $ruleParams[0]);
+						$valid = $this->Behaviors->dispatchMethod($this, $rule, $ruleParams);
+					} elseif (method_exists('Validation', $rule)) {
+						$valid = call_user_func_array(array('Validation', $rule), $ruleParams);
+					} elseif (!is_array($validator['rule'])) {
+						$valid = preg_match($rule, $data[$fieldName]);
+					} elseif (Configure::read('debug') > 0) {
+						trigger_error(__d('cake_dev', 'Could not find validation handler %s for %s', $rule, $fieldName), E_USER_WARNING);
+					}
+				}
 
-						$this->invalidate($fieldName, $message);
-						if ($validator['last']) {
-							break;
+				if ($requiredFail || !$valid || (is_string($valid) && strlen($valid) > 0)) {
+					if (is_string($valid)) {
+						$message = $valid;
+					} elseif (isset($validator['message'])) {
+						$args = null;
+						if (is_array($validator['message'])) {
+							$message = $validator['message'][0];
+							$args = array_slice($validator['message'], 1);
+						} else {
+							$message = $validator['message'];
 						}
+						if (is_array($validator['rule']) && $args === null) {
+							$args = array_slice($ruleSet[$index]['rule'], 1);
+						}
+						$message = __d($validationDomain, $message, $args);
+					} elseif (is_string($index)) {
+						if (is_array($validator['rule'])) {
+							$args = array_slice($ruleSet[$index]['rule'], 1);
+							$message = __d($validationDomain, $index, $args);
+						} else {
+							$message = __d($validationDomain, $index);
+						}
+					} elseif (!$requiredFail && is_numeric($index) && count($ruleSet) > 1) {
+						$message = $index + 1;
+					} else {
+						$message = __d('cake_dev', 'This field cannot be left blank');
+					}
+
+					$this->invalidate($fieldName, $message);
+					if ($validator['last']) {
+						break;
 					}
 				}
 			}
@@ -3066,6 +3096,7 @@ class Model extends Object {
 		}
 		return $valid;
 	}
+
 /**
  * Marks a field as invalid, optionally setting the name of validation
  * rule (in case of multiple validation for field) that was broken.
@@ -3145,11 +3176,7 @@ class Model extends Object {
 			return false;
 		}
 
-		foreach ($this->id as $id) {
-			return $id;
-		}
-
-		return false;
+		return current($this->id);
 	}
 
 /**

@@ -96,7 +96,7 @@ class ScaffoldViewTest extends CakeTestCase {
 	}
 
 /**
- * teardown method
+ * tearDown method
  *
  * @return void
  */
@@ -218,7 +218,7 @@ class ScaffoldViewTest extends CakeTestCase {
 			'pass' => array(),
 			'form' => array(),
 			'named' => array(),
-			'url' => array('url' =>'scaffold_mock'),
+			'url' => array('url' => 'scaffold_mock'),
 			'controller' => 'scaffold_mock',
 			'action' => 'index',
 		);
@@ -281,7 +281,7 @@ class ScaffoldViewTest extends CakeTestCase {
 		//TODO: add specific tests for fields.
 		$this->assertRegExp('/<a href="\/scaffold_users\/view\/1">1<\/a>/', $result); //belongsTo links
 		$this->assertRegExp('/<li><a href="\/scaffold_mock\/edit\/1">Edit Scaffold Mock<\/a>\s<\/li>/', $result);
-		$this->assertRegExp('/<li><a href="\/scaffold_mock\/delete\/1"[^>]*>Delete Scaffold Mock<\/a>\s*<\/li>/', $result);
+		$this->assertRegExp('/<a href="\#" onclick="if[^>]*>Delete Scaffold Mock<\/a>\s<\/li>/', $result);
 		//check related table
 		$this->assertRegExp('/<div class="related">\s*<h3>Related Scaffold Comments<\/h3>\s*<table cellpadding="0" cellspacing="0">/', $result);
 		$this->assertRegExp('/<li><a href="\/scaffold_comments\/add">New Comment<\/a><\/li>/', $result);
@@ -303,7 +303,7 @@ class ScaffoldViewTest extends CakeTestCase {
 			'pass' => array(1),
 			'form' => array(),
 			'named' => array(),
-			'url' => array('url' =>'scaffold_mock'),
+			'url' => array('url' => 'scaffold_mock'),
 			'controller' => 'scaffold_mock',
 			'action' => 'edit',
 		);
@@ -345,7 +345,7 @@ class ScaffoldViewTest extends CakeTestCase {
 			'form' => array(),
 			'named' => array(),
 			'prefix' => 'admin',
-			'url' => array('url' =>'admin/scaffold_mock'),
+			'url' => array('url' => 'admin/scaffold_mock'),
 			'controller' => 'scaffold_mock',
 			'action' => 'admin_index',
 			'admin' => 1,
@@ -388,7 +388,7 @@ class ScaffoldViewTest extends CakeTestCase {
 			'form' => array(),
 			'named' => array(),
 			'prefix' => 'admin',
-			'url' => array('url' =>'admin/scaffold_mock/edit/1'),
+			'url' => array('url' => 'admin/scaffold_mock/edit/1'),
 			'controller' => 'scaffold_mock',
 			'action' => 'admin_edit',
 			'admin' => 1,
@@ -429,7 +429,7 @@ class ScaffoldViewTest extends CakeTestCase {
 			'form' => array(),
 			'named' => array(),
 			'prefix' => 'member',
-			'url' => array('url' =>'member/scaffold_mock'),
+			'url' => array('url' => 'member/scaffold_mock'),
 			'controller' => 'scaffold_mock',
 			'action' => 'member_index',
 			'member' => 1,

@@ -121,7 +121,7 @@ class CakeSession {
 
 /**
  * Number of requests that can occur during a session time without the session being renewed.
- * This feature is only used when `Session.harden` is set to true.
+ * This feature is only used when config value `Session.autoRegenerate` is set to true.
  *
  * @var integer
  * @see CakeSession::_checkValid()
@@ -158,10 +158,10 @@ class CakeSession {
 			return;
 		}
 		if (strpos($base, 'index.php') !== false) {
-		   $base = str_replace('index.php', '', $base);
+			 $base = str_replace('index.php', '', $base);
 		}
 		if (strpos($base, '?') !== false) {
-		   $base = str_replace('?', '', $base);
+			 $base = str_replace('?', '', $base);
 		}
 		self::$path = $base;
 	}
@@ -633,14 +633,13 @@ class CakeSession {
 			$sessionConfig = Configure::read('Session');
 
 			if (self::_validAgentAndTime()) {
-				$time = $config['time'];
 				self::write('Config.time', self::$sessionTime);
 				if (isset($sessionConfig['autoRegenerate']) && $sessionConfig['autoRegenerate'] === true) {
 					$check = $config['countdown'];
 					$check -= 1;
 					self::write('Config.countdown', $check);
 
-					if (time() > ($time - ($sessionConfig['timeout'] * 60) + 2) || $check < 1) {
+					if ($check < 1) {
 						self::renew();
 						self::write('Config.countdown', self::$requestCountdown);
 					}

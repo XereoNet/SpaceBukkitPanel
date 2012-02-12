@@ -1291,6 +1291,7 @@ class SetTest extends CakeTestCase {
 		$this->assertSame($expected, $result);
 		$this->assertSame($result, Set::extract('{n}.B.field1', $items));
 	}
+
 /**
  * testExtractWithArrays method
  *
@@ -1464,7 +1465,7 @@ class SetTest extends CakeTestCase {
 		$this->assertEquals($expected, $result);
 
 		$result = Set::extract($a, '{n}.Article.title');
-		$expected = array( 'Article 1', 'Article 2', 'Article 3' );
+		$expected = array('Article 1', 'Article 2', 'Article 3');
 		$this->assertEquals($expected, $result);
 
 		$result = Set::extract($a, '1.Article.title');
@@ -1491,7 +1492,7 @@ class SetTest extends CakeTestCase {
 		);
 
 		$result = Set::extract($a, '{n}.Article.User.username');
-		$expected = array( 'mariano.iglesias', 'mariano.iglesias', 'phpnut' );
+		$expected = array('mariano.iglesias', 'mariano.iglesias', 'phpnut');
 		$this->assertEquals($expected, $result);
 
 		$a = array(
@@ -1518,7 +1519,7 @@ class SetTest extends CakeTestCase {
 		);
 
 		$result = Set::extract($a, '{n}.Article.Comment.{n}.id');
-		$expected = array (array(10, 11, 12), array(13, 14), null);
+		$expected = array(array(10, 11, 12), array(13, 14), null);
 		$this->assertEquals($expected, $result);
 
 		$result = Set::extract($a, '{n}.Article.Comment.{n}.title');
@@ -1545,7 +1546,7 @@ class SetTest extends CakeTestCase {
 
 		$a = array(
 			0 => array('pages' => array('name' => 'page')),
-			1 => array('fruites'=> array('name' => 'fruit')),
+			1 => array('fruites' => array('name' => 'fruit')),
 			'test' => array(array('name' => 'jippi')),
 			'dot.test' => array(array('name' => 'jippi'))
 		);
@@ -1946,11 +1947,11 @@ class SetTest extends CakeTestCase {
 		$this->assertEquals($expected, $result);
 
 		$result = Set::combine($a, '{n}.User.id', array('{0}: {1}', '{n}.User.Data.user', '{n}.User.Data.name'), '{n}.User.group_id');
-		$expected = array (
-			1 => array (
+		$expected = array(
+			1 => array(
 				2 => 'mariano.iglesias: Mariano Iglesias',
 				25 => 'gwoo: The Gwoo'),
-			2 => array (14 => 'phpnut: Larry E. Masters'));
+			2 => array(14 => 'phpnut: Larry E. Masters'));
 		$this->assertEquals($expected, $result);
 
 		$result = Set::combine($a, array('{0}: {1}', '{n}.User.Data.user', '{n}.User.Data.name'), '{n}.User.id');
@@ -2024,14 +2025,14 @@ class SetTest extends CakeTestCase {
 		$this->assertEquals($expected, $result);
 
 		$expected = array(
-			'Post' => array('id'=> 1, 'title' => 'First Post'),
+			'Post' => array('id' => 1, 'title' => 'First Post'),
 			'Comment' => array(
-				array('id'=> 1, 'title' => 'First Comment'),
-				array('id'=> 2, 'title' => 'Second Comment')
+				array('id' => 1, 'title' => 'First Comment'),
+				array('id' => 2, 'title' => 'Second Comment')
 			),
 			'Tag' => array(
-				array('id'=> 1, 'title' => 'First Tag'),
-				array('id'=> 2, 'title' => 'Second Tag')
+				array('id' => 1, 'title' => 'First Tag'),
+				array('id' => 2, 'title' => 'Second Tag')
 			),
 		);
 		$map = Set::map($expected);
@@ -2093,12 +2094,12 @@ class SetTest extends CakeTestCase {
 		$result = Set::reverse($map);
 		$this->assertEquals($expected, $result);
 
-		$expected = array('User' => array('psword'=> 'whatever', 'Icon' => array('id'=> 851)));
+		$expected = array('User' => array('psword' => 'whatever', 'Icon' => array('id' => 851)));
 		$map = Set::map($expected);
 		$result = Set::reverse($map);
 		$this->assertEquals($expected, $result);
 
-		$expected = array('User' => array('psword'=> 'whatever', 'Icon' => array('id'=> 851)));
+		$expected = array('User' => array('psword' => 'whatever', 'Icon' => array('id' => 851)));
 		$class = new stdClass;
 		$class->User = new stdClass;
 		$class->User->psword = 'whatever';
@@ -2107,7 +2108,7 @@ class SetTest extends CakeTestCase {
 		$result = Set::reverse($class);
 		$this->assertEquals($expected, $result);
 
-		$expected = array('User' => array('psword'=> 'whatever', 'Icon' => array('id'=> 851), 'Profile' => array('name' => 'Some Name', 'address' => 'Some Address')));
+		$expected = array('User' => array('psword' => 'whatever', 'Icon' => array('id' => 851), 'Profile' => array('name' => 'Some Name', 'address' => 'Some Address')));
 		$class = new stdClass;
 		$class->User = new stdClass;
 		$class->User->psword = 'whatever';
@@ -2120,8 +2121,8 @@ class SetTest extends CakeTestCase {
 		$result = Set::reverse($class);
 		$this->assertEquals($expected, $result);
 
-		$expected = array('User' => array('psword'=> 'whatever',
-						'Icon' => array('id'=> 851),
+		$expected = array('User' => array('psword' => 'whatever',
+						'Icon' => array('id' => 851),
 						'Profile' => array('name' => 'Some Name', 'address' => 'Some Address'),
 						'Comment' => array(
 								array('id' => 1, 'article_id' => 1, 'user_id' => 1, 'comment' => 'First Comment for First Article', 'published' => 'Y', 'created' => '2007-03-18 10:47:23', 'updated' => '2007-03-18 10:49:31'),
@@ -2156,8 +2157,8 @@ class SetTest extends CakeTestCase {
 		$result = Set::reverse($class);
 		$this->assertEquals($expected, $result);
 
-		$expected = array('User' => array('psword'=> 'whatever',
-						'Icon' => array('id'=> 851),
+		$expected = array('User' => array('psword' => 'whatever',
+						'Icon' => array('id' => 851),
 						'Profile' => array('name' => 'Some Name', 'address' => 'Some Address'),
 						'Comment' => array(
 								array('id' => 1, 'article_id' => 1, 'user_id' => 1, 'comment' => 'First Comment for First Article', 'published' => 'Y', 'created' => '2007-03-18 10:47:23', 'updated' => '2007-03-18 10:49:31'),
@@ -2200,7 +2201,7 @@ class SetTest extends CakeTestCase {
 		$class->Profile->name = 'Joe Mamma';
 
 		$result = Set::reverse($class);
-		$expected = array('User' => array('id' => '100'), 'someString'=> 'this is some string', 'Profile' => array('name' => 'Joe Mamma'));
+		$expected = array('User' => array('id' => '100'), 'someString' => 'this is some string', 'Profile' => array('name' => 'Joe Mamma'));
 		$this->assertEquals($expected, $result);
 
 		$class = new stdClass;
@@ -2361,7 +2362,7 @@ class SetTest extends CakeTestCase {
 					),
 					'meta' => array(
 							'keywords' => array('testing','tests'),
-							'description'=>'describe me',
+							'description' => 'describe me',
 					),
 					'get_vars' => '',
 					'post_vars' => array(),
@@ -2388,7 +2389,7 @@ class SetTest extends CakeTestCase {
 					),
 					'meta' => array(
 							'keywords' => array('testing','tests'),
-							'description'=>'describe me',
+							'description' => 'describe me',
 					),
 					'get_vars' => '',
 					'post_vars' => array(),
@@ -2403,7 +2404,7 @@ class SetTest extends CakeTestCase {
 		$mapped = Set::map($expected);
 		$ids = array();
 
-		foreach($mapped as $object)	 {
+		foreach ($mapped as $object) {
 			$ids[] = $object->id;
 		}
 		$this->assertEquals($ids, array(1, 2));
@@ -2451,7 +2452,7 @@ class SetTest extends CakeTestCase {
 
 		$ids = array();
 
-		foreach($mapped as $object)	 {
+		foreach ($mapped as $object) {
 			$ids[] = $object->id;
 		}
 		$this->assertEquals($ids, array(1, 2));
@@ -2715,37 +2716,37 @@ class SetTest extends CakeTestCase {
  * @return void
  */
 	public function testPushDiff() {
-		$array1 = array('ModelOne' => array('id'=>1001, 'field_one'=>'a1.m1.f1', 'field_two'=>'a1.m1.f2'));
-		$array2 = array('ModelTwo' => array('id'=>1002, 'field_one'=>'a2.m2.f1', 'field_two'=>'a2.m2.f2'));
+		$array1 = array('ModelOne' => array('id' => 1001, 'field_one' => 'a1.m1.f1', 'field_two' => 'a1.m1.f2'));
+		$array2 = array('ModelTwo' => array('id' => 1002, 'field_one' => 'a2.m2.f1', 'field_two' => 'a2.m2.f2'));
 
 		$result = Set::pushDiff($array1, $array2);
 
 		$this->assertEquals($result, $array1 + $array2);
 
-		$array3 = array('ModelOne' => array('id'=>1003, 'field_one'=>'a3.m1.f1', 'field_two'=>'a3.m1.f2', 'field_three'=>'a3.m1.f3'));
+		$array3 = array('ModelOne' => array('id' => 1003, 'field_one' => 'a3.m1.f1', 'field_two' => 'a3.m1.f2', 'field_three' => 'a3.m1.f3'));
 		$result = Set::pushDiff($array1, $array3);
 
-		$expected = array('ModelOne' => array('id'=>1001, 'field_one'=>'a1.m1.f1', 'field_two'=>'a1.m1.f2', 'field_three'=>'a3.m1.f3'));
+		$expected = array('ModelOne' => array('id' => 1001, 'field_one' => 'a1.m1.f1', 'field_two' => 'a1.m1.f2', 'field_three' => 'a3.m1.f3'));
 		$this->assertEquals($expected, $result);
 
 
 		$array1 = array(
-				0 => array('ModelOne' => array('id'=>1001, 'field_one'=>'s1.0.m1.f1', 'field_two'=>'s1.0.m1.f2')),
-				1 => array('ModelTwo' => array('id'=>1002, 'field_one'=>'s1.1.m2.f2', 'field_two'=>'s1.1.m2.f2')));
+				0 => array('ModelOne' => array('id' => 1001, 'field_one' => 's1.0.m1.f1', 'field_two' => 's1.0.m1.f2')),
+				1 => array('ModelTwo' => array('id' => 1002, 'field_one' => 's1.1.m2.f2', 'field_two' => 's1.1.m2.f2')));
 		$array2 = array(
-				0 => array('ModelOne' => array('id'=>1001, 'field_one'=>'s2.0.m1.f1', 'field_two'=>'s2.0.m1.f2')),
-				1 => array('ModelTwo' => array('id'=>1002, 'field_one'=>'s2.1.m2.f2', 'field_two'=>'s2.1.m2.f2')));
+				0 => array('ModelOne' => array('id' => 1001, 'field_one' => 's2.0.m1.f1', 'field_two' => 's2.0.m1.f2')),
+				1 => array('ModelTwo' => array('id' => 1002, 'field_one' => 's2.1.m2.f2', 'field_two' => 's2.1.m2.f2')));
 
 		$result = Set::pushDiff($array1, $array2);
 		$this->assertEquals($result, $array1);
 
-		$array3 = array(0 => array('ModelThree' => array('id'=>1003, 'field_one'=>'s3.0.m3.f1', 'field_two'=>'s3.0.m3.f2')));
+		$array3 = array(0 => array('ModelThree' => array('id' => 1003, 'field_one' => 's3.0.m3.f1', 'field_two' => 's3.0.m3.f2')));
 
 		$result = Set::pushDiff($array1, $array3);
 		$expected = array(
-					0 => array('ModelOne' => array('id'=>1001, 'field_one'=>'s1.0.m1.f1', 'field_two'=>'s1.0.m1.f2'),
-						'ModelThree' => array('id'=>1003, 'field_one'=>'s3.0.m3.f1', 'field_two'=>'s3.0.m3.f2')),
-					1 => array('ModelTwo' => array('id'=>1002, 'field_one'=>'s1.1.m2.f2', 'field_two'=>'s1.1.m2.f2')));
+					0 => array('ModelOne' => array('id' => 1001, 'field_one' => 's1.0.m1.f1', 'field_two' => 's1.0.m1.f2'),
+						'ModelThree' => array('id' => 1003, 'field_one' => 's3.0.m3.f1', 'field_two' => 's3.0.m3.f2')),
+					1 => array('ModelTwo' => array('id' => 1002, 'field_one' => 's1.1.m2.f2', 'field_two' => 's1.1.m2.f2')));
 		$this->assertEquals($expected, $result);
 
 		$result = Set::pushDiff($array1, null);
@@ -2814,26 +2815,26 @@ class SetTest extends CakeTestCase {
 
 		$string = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 		<rss version="2.0">
-		  <channel>
-		  <title>Cake PHP Google Group</title>
-		  <link>http://groups.google.com/group/cake-php</link>
-		  <description>Search this group before posting anything. There are over 20,000 posts and it&amp;#39;s very likely your question was answered before. Visit the IRC channel #cakephp at irc.freenode.net for live chat with users and developers of Cake. If you post, tell us the version of Cake, PHP, and database.</description>
-		  <language>en</language>
-		  	<item>
-			  <title>constructng result array when using findall</title>
-			  <link>http://groups.google.com/group/cake-php/msg/49bc00f3bc651b4f</link>
-			  <description>i&#39;m using cakephp to construct a logical data model array that will be &lt;br&gt; passed to a flex app. I have the following model association: &lt;br&gt; ServiceDay-&amp;gt;(hasMany)ServiceTi me-&amp;gt;(hasMany)ServiceTimePrice. So what &lt;br&gt; the current output from my findall is something like this example: &lt;br&gt; &lt;p&gt;Array( &lt;br&gt; [0] =&amp;gt; Array(</description>
-			  <guid isPermaLink="true">http://groups.google.com/group/cake-php/msg/49bc00f3bc651b4f</guid>
-			  <author>bmil...@gmail.com(bpscrugs)</author>
-			  <pubDate>Fri, 28 Dec 2007 00:44:14 UT</pubDate>
-			  </item>
-			  <item>
-			  <title>Re: share views between actions?</title>
-			  <link>http://groups.google.com/group/cake-php/msg/8b350d898707dad8</link>
-			  <description>Then perhaps you might do us all a favour and refrain from replying to &lt;br&gt; things you do not understand. That goes especially for asinine comments. &lt;br&gt; Indeed. &lt;br&gt; To sum up: &lt;br&gt; No comment. &lt;br&gt; In my day, a simple &amp;quot;RTFM&amp;quot; would suffice. I&#39;ll keep in mind to ignore any &lt;br&gt; further responses from you. &lt;br&gt; You (and I) were referring to the *online documentation*, not other</description>
-			  <guid isPermaLink="true">http://groups.google.com/group/cake-php/msg/8b350d898707dad8</guid>
-			  <author>subtropolis.z...@gmail.com(subtropolis zijn)</author>
-			  <pubDate>Fri, 28 Dec 2007 00:45:01 UT</pubDate>
+			<channel>
+			<title>Cake PHP Google Group</title>
+			<link>http://groups.google.com/group/cake-php</link>
+			<description>Search this group before posting anything. There are over 20,000 posts and it&amp;#39;s very likely your question was answered before. Visit the IRC channel #cakephp at irc.freenode.net for live chat with users and developers of Cake. If you post, tell us the version of Cake, PHP, and database.</description>
+			<language>en</language>
+				<item>
+				<title>constructng result array when using findall</title>
+				<link>http://groups.google.com/group/cake-php/msg/49bc00f3bc651b4f</link>
+				<description>i&#39;m using cakephp to construct a logical data model array that will be &lt;br&gt; passed to a flex app. I have the following model association: &lt;br&gt; ServiceDay-&amp;gt;(hasMany)ServiceTi me-&amp;gt;(hasMany)ServiceTimePrice. So what &lt;br&gt; the current output from my findall is something like this example: &lt;br&gt; &lt;p&gt;Array( &lt;br&gt; [0] =&amp;gt; Array(</description>
+				<guid isPermaLink="true">http://groups.google.com/group/cake-php/msg/49bc00f3bc651b4f</guid>
+				<author>bmil...@gmail.com(bpscrugs)</author>
+				<pubDate>Fri, 28 Dec 2007 00:44:14 UT</pubDate>
+				</item>
+				<item>
+				<title>Re: share views between actions?</title>
+				<link>http://groups.google.com/group/cake-php/msg/8b350d898707dad8</link>
+				<description>Then perhaps you might do us all a favour and refrain from replying to &lt;br&gt; things you do not understand. That goes especially for asinine comments. &lt;br&gt; Indeed. &lt;br&gt; To sum up: &lt;br&gt; No comment. &lt;br&gt; In my day, a simple &amp;quot;RTFM&amp;quot; would suffice. I&#39;ll keep in mind to ignore any &lt;br&gt; further responses from you. &lt;br&gt; You (and I) were referring to the *online documentation*, not other</description>
+				<guid isPermaLink="true">http://groups.google.com/group/cake-php/msg/8b350d898707dad8</guid>
+				<author>subtropolis.z...@gmail.com(subtropolis zijn)</author>
+				<pubDate>Fri, 28 Dec 2007 00:45:01 UT</pubDate>
 			 </item>
 		</channel>
 		</rss>';
@@ -2908,7 +2909,7 @@ class SetTest extends CakeTestCase {
 				'item' => array(
 					'@attr' => '123',
 					'titles' => 'list',
-					'@'  => 'textforitems'
+					'@' => 'textforitems'
 				)
 			)
 		);
@@ -2916,32 +2917,32 @@ class SetTest extends CakeTestCase {
 
 		$string = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 		<rss version="2.0" xmlns:dc="http://www.cakephp.org/">
-		  <channel>
-		  <title>Cake PHP Google Group</title>
-		  <link>http://groups.google.com/group/cake-php</link>
-		  <description>Search this group before posting anything. There are over 20,000 posts and it&amp;#39;s very likely your question was answered before. Visit the IRC channel #cakephp at irc.freenode.net for live chat with users and developers of Cake. If you post, tell us the version of Cake, PHP, and database.</description>
-		  <language>en</language>
-		  	<item>
-			  <title>constructng result array when using findall</title>
-			  <link>http://groups.google.com/group/cake-php/msg/49bc00f3bc651b4f</link>
-			  <description>i&#39;m using cakephp to construct a logical data model array that will be &lt;br&gt; passed to a flex app. I have the following model association: &lt;br&gt; ServiceDay-&amp;gt;(hasMany)ServiceTi me-&amp;gt;(hasMany)ServiceTimePrice. So what &lt;br&gt; the current output from my findall is something like this example: &lt;br&gt; &lt;p&gt;Array( &lt;br&gt; [0] =&amp;gt; Array(</description>
-			  	<dc:creator>cakephp</dc:creator>
+			<channel>
+			<title>Cake PHP Google Group</title>
+			<link>http://groups.google.com/group/cake-php</link>
+			<description>Search this group before posting anything. There are over 20,000 posts and it&amp;#39;s very likely your question was answered before. Visit the IRC channel #cakephp at irc.freenode.net for live chat with users and developers of Cake. If you post, tell us the version of Cake, PHP, and database.</description>
+			<language>en</language>
+				<item>
+				<title>constructng result array when using findall</title>
+				<link>http://groups.google.com/group/cake-php/msg/49bc00f3bc651b4f</link>
+				<description>i&#39;m using cakephp to construct a logical data model array that will be &lt;br&gt; passed to a flex app. I have the following model association: &lt;br&gt; ServiceDay-&amp;gt;(hasMany)ServiceTi me-&amp;gt;(hasMany)ServiceTimePrice. So what &lt;br&gt; the current output from my findall is something like this example: &lt;br&gt; &lt;p&gt;Array( &lt;br&gt; [0] =&amp;gt; Array(</description>
+					<dc:creator>cakephp</dc:creator>
 				<category><![CDATA[cakephp]]></category>
 				<category><![CDATA[model]]></category>
-			  <guid isPermaLink="true">http://groups.google.com/group/cake-php/msg/49bc00f3bc651b4f</guid>
-			  <author>bmil...@gmail.com(bpscrugs)</author>
-			  <pubDate>Fri, 28 Dec 2007 00:44:14 UT</pubDate>
-			  </item>
-			  <item>
-			  <title>Re: share views between actions?</title>
-			  <link>http://groups.google.com/group/cake-php/msg/8b350d898707dad8</link>
-			  <description>Then perhaps you might do us all a favour and refrain from replying to &lt;br&gt; things you do not understand. That goes especially for asinine comments. &lt;br&gt; Indeed. &lt;br&gt; To sum up: &lt;br&gt; No comment. &lt;br&gt; In my day, a simple &amp;quot;RTFM&amp;quot; would suffice. I&#39;ll keep in mind to ignore any &lt;br&gt; further responses from you. &lt;br&gt; You (and I) were referring to the *online documentation*, not other</description>
-			  	<dc:creator>cakephp</dc:creator>
+				<guid isPermaLink="true">http://groups.google.com/group/cake-php/msg/49bc00f3bc651b4f</guid>
+				<author>bmil...@gmail.com(bpscrugs)</author>
+				<pubDate>Fri, 28 Dec 2007 00:44:14 UT</pubDate>
+				</item>
+				<item>
+				<title>Re: share views between actions?</title>
+				<link>http://groups.google.com/group/cake-php/msg/8b350d898707dad8</link>
+				<description>Then perhaps you might do us all a favour and refrain from replying to &lt;br&gt; things you do not understand. That goes especially for asinine comments. &lt;br&gt; Indeed. &lt;br&gt; To sum up: &lt;br&gt; No comment. &lt;br&gt; In my day, a simple &amp;quot;RTFM&amp;quot; would suffice. I&#39;ll keep in mind to ignore any &lt;br&gt; further responses from you. &lt;br&gt; You (and I) were referring to the *online documentation*, not other</description>
+					<dc:creator>cakephp</dc:creator>
 				<category><![CDATA[cakephp]]></category>
 				<category><![CDATA[model]]></category>
-			  <guid isPermaLink="true">http://groups.google.com/group/cake-php/msg/8b350d898707dad8</guid>
-			  <author>subtropolis.z...@gmail.com(subtropolis zijn)</author>
-			  <pubDate>Fri, 28 Dec 2007 00:45:01 UT</pubDate>
+				<guid isPermaLink="true">http://groups.google.com/group/cake-php/msg/8b350d898707dad8</guid>
+				<author>subtropolis.z...@gmail.com(subtropolis zijn)</author>
+				<pubDate>Fri, 28 Dec 2007 00:45:01 UT</pubDate>
 			 </item>
 		</channel>
 		</rss>';

@@ -17,10 +17,6 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
-/**
- * Included libraries.
- *
- */
 App::uses('Folder', 'Utility');
 
 /**
@@ -337,7 +333,7 @@ class File {
 			$this->info();
 		}
 		if (isset($this->info['extension'])) {
-			return basename($this->name, '.'.$this->info['extension']);
+			return basename($this->name, '.' . $this->info['extension']);
 		} elseif ($this->name) {
 			return $this->name;
 		}

@@ -112,21 +112,21 @@ class NumberHelperTest extends CakeTestCase {
 		$expected = '&#163;100,100,100.00';
 		$this->assertEquals($expected, $result);
 
-		$result = $this->Number->currency($value, '', array('thousands' =>' ', 'wholeSymbol' => '€', 'wholePosition' => 'after', 'decimals' => ',', 'zero' => 'Gratuit'));
+		$result = $this->Number->currency($value, '', array('thousands' => ' ', 'wholeSymbol' => '€', 'wholePosition' => 'after', 'decimals' => ',', 'zero' => 'Gratuit'));
 		$expected = '100 100 100,00€';
 		$this->assertEquals($expected, $result);
 
-		$result = $this->Number->currency(1000.45, NULL, array('after'=>'øre','before'=>'Kr. ','decimals'=>',','thousands'=>'.'));
+		$result = $this->Number->currency(1000.45, NULL, array('after' => 'øre', 'before' => 'Kr. ', 'decimals' => ',', 'thousands' => '.'));
 		$expected = 'Kr. 1.000,45';
-		$this->assertEquals($expected,$result);
+		$this->assertEquals($expected, $result);
 
 		$result = $this->Number->currency(0.5, 'USD');
 		$expected = '50c';
-		$this->assertEquals($expected,$result);
+		$this->assertEquals($expected, $result);
 
-		$result = $this->Number->currency(0.5, NULL, array('after'=>'øre'));
+		$result = $this->Number->currency(0.5, NULL, array('after' => 'øre'));
 		$expected = '50øre';
-		$this->assertEquals($expected,$result);
+		$this->assertEquals($expected, $result);
 
 		$result = $this->Number->currency(1, null, array('wholeSymbol' => '$ '));
 		$expected = '$ 1.00';
@@ -136,11 +136,11 @@ class NumberHelperTest extends CakeTestCase {
 		$expected = '1.00 $';
 		$this->assertEquals($expected, $result);
 
-		$result = $this->Number->currency(.2, null, array('wholeSymbol' => ' $', 'wholePosition' => 'after', 'fractionSymbol' => 'cents'));
+		$result = $this->Number->currency(0.2, null, array('wholeSymbol' => ' $', 'wholePosition' => 'after', 'fractionSymbol' => 'cents'));
 		$expected = '20cents';
 		$this->assertEquals($expected, $result);
 
-		$result = $this->Number->currency(.2, null, array('wholeSymbol' => ' $', 'wholePosition' => 'after', 'fractionSymbol' => 'cents', 'fractionPosition' => 'before'));
+		$result = $this->Number->currency(0.2, null, array('wholeSymbol' => ' $', 'wholePosition' => 'after', 'fractionSymbol' => 'cents', 'fractionPosition' => 'before'));
 		$expected = 'cents20';
 		$this->assertEquals($expected, $result);
 
@@ -148,7 +148,7 @@ class NumberHelperTest extends CakeTestCase {
 		$expected = '311.00$';
 		$this->assertEquals($expected, $result);
 
-		$result = $this->Number->currency(.2, 'EUR');
+		$result = $this->Number->currency(0.2, 'EUR');
 		$expected = '&#8364;0,20';
 		$this->assertEquals($expected, $result);
 
@@ -156,11 +156,11 @@ class NumberHelperTest extends CakeTestCase {
 		$expected = '12.00 dollars';
 		$this->assertEquals($expected, $result);
 
-		$result = $this->Number->currency(.12, null, array('wholeSymbol' => ' dollars', 'wholePosition' => 'after', 'fractionSymbol' => ' cents', 'fractionPosition' => 'after'));
+		$result = $this->Number->currency(0.12, null, array('wholeSymbol' => ' dollars', 'wholePosition' => 'after', 'fractionSymbol' => ' cents', 'fractionPosition' => 'after'));
 		$expected = '12 cents';
 		$this->assertEquals($expected, $result);
 
-		$result = $this->Number->currency(.5, null, array('fractionSymbol' => false, 'fractionPosition' => 'before', 'wholeSymbol' => '$'));
+		$result = $this->Number->currency(0.5, null, array('fractionSymbol' => false, 'fractionPosition' => 'before', 'wholeSymbol' => '$'));
 		$expected = '$0.50';
 		$this->assertEquals($expected, $result);
 	}
@@ -174,15 +174,20 @@ class NumberHelperTest extends CakeTestCase {
 		$this->Number->addFormat('NOK', array('before' => 'Kr. '));
 		$result = $this->Number->currency(1000, 'NOK');
 		$expected = 'Kr. 1,000.00';
-		$this->assertEquals($expected,$result);
+		$this->assertEquals($expected, $result);
 
 		$this->Number->addFormat('Other', array('before' => '$$ ', 'after' => 'c!'));
 		$result = $this->Number->currency(0.22, 'Other');
 		$expected = '22c!';
-		$this->assertEquals($expected,$result);
+		$this->assertEquals($expected, $result);
 
 		$result = $this->Number->currency(-10, 'Other');
 		$expected = '($$ 10.00)';
+		$this->assertEquals($expected, $result);
+
+		$this->Number->addFormat('Other2', array('before' => '$ ', 'after' => false));
+		$result = $this->Number->currency(0.22, 'Other2');
+		$expected = '$ 0.22';
 		$this->assertEquals($expected,$result);
 	}
 
@@ -198,7 +203,7 @@ class NumberHelperTest extends CakeTestCase {
 		$expected = '$100,100,100.00';
 		$this->assertEquals($expected, $result);
 
-		$result = $this->Number->currency($value, 'USD', array('before'=> '#'));
+		$result = $this->Number->currency($value, 'USD', array('before' => '#'));
 		$expected = '#100,100,100.00';
 		$this->assertEquals($expected, $result);
 
@@ -239,15 +244,15 @@ class NumberHelperTest extends CakeTestCase {
 		$expected = '(&#163;100,100,100.00)';
 		$this->assertEquals($expected, $result);
 
-		$result = $this->Number->currency($value, 'USD', array('negative'=>'-'));
+		$result = $this->Number->currency($value, 'USD', array('negative' => '-'));
 		$expected = '-$100,100,100.00';
 		$this->assertEquals($expected, $result);
 
-		$result = $this->Number->currency($value, 'EUR', array('negative'=>'-'));
+		$result = $this->Number->currency($value, 'EUR', array('negative' => '-'));
 		$expected = '-&#8364;100.100.100,00';
 		$this->assertEquals($expected, $result);
 
-		$result = $this->Number->currency($value, 'GBP', array('negative'=>'-'));
+		$result = $this->Number->currency($value, 'GBP', array('negative' => '-'));
 		$expected = '-&#163;100,100,100.00';
 		$this->assertEquals($expected, $result);
 
@@ -294,15 +299,15 @@ class NumberHelperTest extends CakeTestCase {
 		$expected = '(99p)';
 		$this->assertEquals($expected, $result);
 
-		$result = $this->Number->currency($value, 'USD', array('negative'=>'-'));
+		$result = $this->Number->currency($value, 'USD', array('negative' => '-'));
 		$expected = '-99c';
 		$this->assertEquals($expected, $result);
 
-		$result = $this->Number->currency($value, 'EUR', array('negative'=>'-'));
+		$result = $this->Number->currency($value, 'EUR', array('negative' => '-'));
 		$expected = '-&#8364;0,99';
 		$this->assertEquals($expected, $result);
 
-		$result = $this->Number->currency($value, 'GBP', array('negative'=>'-'));
+		$result = $this->Number->currency($value, 'GBP', array('negative' => '-'));
 		$expected = '-99p';
 		$this->assertEquals($expected, $result);
 	}

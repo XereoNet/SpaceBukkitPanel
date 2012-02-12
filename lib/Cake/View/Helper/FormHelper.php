@@ -78,7 +78,6 @@ class FormHelper extends AppHelper {
  */
 	public $defaultModel = null;
 
-
 /**
  * Persistent default options used by input(). Set by FormHelper::create().
  *
@@ -87,7 +86,7 @@ class FormHelper extends AppHelper {
 	protected $_inputDefaults = array();
 
 /**
- * An array of fieldnames that have been excluded from
+ * An array of field names that have been excluded from
  * the Token hash used by SecurityComponent's validatePost method
  *
  * @see FormHelper::_secure()
@@ -275,6 +274,7 @@ class FormHelper extends AppHelper {
  *
  * @return mixed Either false when there or no errors, or the error
  *    string. The error string could be ''.
+ * @link http://book.cakephp.org/2.0/en/core-libraries/helpers/form.html#FormHelper::tagIsInvalid
  */
 	public function tagIsInvalid() {
 		$entity = $this->entity();
@@ -526,6 +526,7 @@ class FormHelper extends AppHelper {
  *
  * @param array $fields The list of fields to use when generating the hash
  * @return string A hidden input field with a security hash
+ * @link http://book.cakephp.org/2.0/en/core-libraries/helpers/form.html#FormHelper::secure
  */
 	public function secure($fields = array()) {
 		if (!isset($this->request['_Token']) || empty($this->request['_Token'])) {
@@ -591,7 +592,7 @@ class FormHelper extends AppHelper {
  *
  * @param boolean $lock Whether this field should be part of the validation
  *     or excluded as part of the unlockedFields.
- * @param mixed $field Reference to field to be secured.  Should be dot separted to indicate nesting.
+ * @param mixed $field Reference to field to be secured.  Should be dot separated to indicate nesting.
  * @param mixed $value Field value, if value should not be tampered with.
  * @return void
  */
@@ -736,8 +737,48 @@ class FormHelper extends AppHelper {
  * Returns a formatted LABEL element for HTML FORMs. Will automatically generate
  * a for attribute if one is not provided.
  *
+ * ### Options
+ *
+ * - `for` - Set the for attribute, if its not defined the for attribute 
+ *   will be generated from the $fieldName parameter using
+ *   FormHelper::domId().
+ *
+ * Examples:
+ *
+ * The text and for attribute are generated off of the fieldname
+ *
+ * {{{
+ * echo $this->Form->label('Post.published');
+ * <label for="PostPublished">Published</label>
+ * }}}
+ *
+ * Custom text:
+ *
+ * {{{
+ * echo $this->Form->label('Post.published', 'Publish');
+ * <label for="PostPublished">Publish</label>
+ * }}}
+ *
+ * Custom class name:
+ *
+ * {{{
+ * echo $this->Form->label('Post.published', 'Publish', 'required');
+ * <label for="PostPublished" class="required">Publish</label>
+ * }}}
+ *
+ * Custom attributes:
+ *
+ * {{{
+ * echo $this->Form->label('Post.published', 'Publish', array(
+ *		'for' => 'post-publish'
+ * ));
+ * <label for="post-publish">Publish</label>
+ * }}}
+ *
  * @param string $fieldName This should be "Modelname.fieldname"
- * @param string $text Text that will appear in the label field.
+ * @param string $text Text that will appear in the label field.  If 
+ *   $text is left undefined the text will be inflected from the 
+ *   fieldName.
  * @param mixed $options An array of HTML attributes, or a string, to be used as a class name.
  * @return string The formatted LABEL element
  * @link http://book.cakephp.org/2.0/en/core-libraries/helpers/form.html#FormHelper::label
@@ -799,6 +840,7 @@ class FormHelper extends AppHelper {
  * @param mixed $fields An array of fields to generate inputs for, or null.
  * @param array $blacklist a simple array of fields to not create inputs for.
  * @return string Completed form inputs.
+ * @link http://book.cakephp.org/2.0/en/core-libraries/helpers/form.html#FormHelper::inputs
  */
 	public function inputs($fields = null, $blacklist = null) {
 		$fieldset = $legend = true;
@@ -929,10 +971,10 @@ class FormHelper extends AppHelper {
 
 			if (isset($type)) {
 				$map = array(
-					'string'  => 'text',	 'datetime'  => 'datetime',
+					'string' => 'text', 'datetime' => 'datetime',
 					'boolean' => 'checkbox', 'timestamp' => 'datetime',
-					'text'	=> 'textarea', 'time'	  => 'time',
-					'date'	=> 'date',	 'float'	 => 'number',
+					'text' => 'textarea', 'time' => 'time',
+					'date' => 'date', 'float' => 'number',
 					'integer' => 'number'
 				);
 
@@ -1206,7 +1248,7 @@ class FormHelper extends AppHelper {
  */
 	public function checkbox($fieldName, $options = array()) {
 		$valueOptions = array();
-		if(isset($options['default'])){
+		if (isset($options['default'])) {
 			$valueOptions['default'] = $options['default'];
 			unset($options['default']);
 		}
@@ -1487,6 +1529,7 @@ class FormHelper extends AppHelper {
  * @param mixed $url URL as string or array
  * @param array $options Array of options and HTML attributes.
  * @return string A HTML button tag.
+ * @link http://book.cakephp.org/2.0/en/core-libraries/helpers/form.html#FormHelper::postButton
  */
 	public function postButton($title, $url, $options = array()) {
 		$out = $this->create(false, array('id' => false, 'url' => $url, 'style' => 'display:none;'));
@@ -1520,6 +1563,7 @@ class FormHelper extends AppHelper {
  * @param array $options Array of HTML attributes.
  * @param string $confirmMessage JavaScript confirmation message.
  * @return string An `<a />` element.
+ * @link http://book.cakephp.org/2.0/en/core-libraries/helpers/form.html#FormHelper::postLink
  */
 	public function postLink($title, $url = null, $options = array(), $confirmMessage = false) {
 		if (!empty($options['confirm'])) {
@@ -1752,10 +1796,6 @@ class FormHelper extends AppHelper {
 			unset($attributes['type']);
 		}
 
-		if (!isset($selected)) {
-			$selected = $attributes['value'];
-		}
-
 		if (!empty($attributes['multiple'])) {
 			$style = ($attributes['multiple'] === 'checkbox') ? 'checkbox' : null;
 			$template = ($style) ? 'checkboxmultiplestart' : 'selectmultiplestart';
@@ -1770,7 +1810,7 @@ class FormHelper extends AppHelper {
 				$select[] = $this->hidden(null, $hiddenAttributes);
 			}
 		} else {
- 			$tag = 'selectstart';
+			$tag = 'selectstart';
 		}
 
 		if (!empty($tag) || isset($template)) {
@@ -2457,17 +2497,9 @@ class FormHelper extends AppHelper {
 			case 'year':
 				$current = intval(date('Y'));
 
-				if (!isset($options['min'])) {
-					$min = $current - 20;
-				} else {
-					$min = $options['min'];
-				}
+				$min = !isset($options['min']) ? $current - 20 : (int)$options['min'];
+				$max = !isset($options['max']) ? $current + 20 : (int)$options['max'];
 
-				if (!isset($options['max'])) {
-					$max = $current + 20;
-				} else {
-					$max = $options['max'];
-				}
 				if ($min > $max) {
 					list($min, $max) = array($max, $min);
 				}
@@ -2503,6 +2535,9 @@ class FormHelper extends AppHelper {
 		}
 
 		$result = parent::_initInputField($field, $options);
+		if ($this->tagIsInvalid() !== false) {
+			$result = $this->addClass($result, 'form-error');
+		}
 		if ($secure === self::SECURE_SKIP) {
 			return $result;
 		}

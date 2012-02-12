@@ -550,6 +550,85 @@ class ModelDeleteTest extends BaseModelTest {
 	}
 
 /**
+ * testDeleteDependent method
+ *
+ * @return void
+ */
+	public function testDeleteDependent() {
+		$this->loadFixtures('Bidding', 'BiddingMessage');
+		$Bidding = new Bidding();
+		$result = $Bidding->find('all');
+		$expected = array(
+			array(
+				'Bidding' => array('id' => 1, 'bid' => 'One', 'name' => 'Bid 1'),
+				'BiddingMessage' => array('bidding' => 'One', 'name' => 'Message 1'),
+			),
+			array(
+				'Bidding' => array('id' => 2, 'bid' => 'Two', 'name' => 'Bid 2'),
+				'BiddingMessage' => array('bidding' => 'Two', 'name' => 'Message 2'),
+			),
+			array(
+				'Bidding' => array('id' => 3, 'bid' => 'Three', 'name' => 'Bid 3'),
+				'BiddingMessage' => array('bidding' => 'Three', 'name' => 'Message 3'),
+			),
+			array(
+				'Bidding' => array('id' => 4, 'bid' => 'Five', 'name' => 'Bid 5'),
+				'BiddingMessage' => array('bidding' => '', 'name' => ''),
+			),
+		);
+		$this->assertEquals($expected, $result);
+
+		$Bidding->delete(4, true);
+		$result = $Bidding->find('all');
+		$expected = array(
+			array(
+				'Bidding' => array('id' => 1, 'bid' => 'One', 'name' => 'Bid 1'),
+				'BiddingMessage' => array('bidding' => 'One', 'name' => 'Message 1'),
+			),
+			array(
+				'Bidding' => array('id' => 2, 'bid' => 'Two', 'name' => 'Bid 2'),
+				'BiddingMessage' => array('bidding' => 'Two', 'name' => 'Message 2'),
+			),
+			array(
+				'Bidding' => array('id' => 3, 'bid' => 'Three', 'name' => 'Bid 3'),
+				'BiddingMessage' => array('bidding' => 'Three', 'name' => 'Message 3'),
+			),
+		);
+		$this->assertEquals($expected, $result);
+
+		$Bidding->delete(2, true);
+		$result = $Bidding->find('all');
+		$expected = array(
+			array(
+				'Bidding' => array('id' => 1, 'bid' => 'One', 'name' => 'Bid 1'),
+				'BiddingMessage' => array('bidding' => 'One', 'name' => 'Message 1'),
+			),
+			array(
+				'Bidding' => array('id' => 3, 'bid' => 'Three', 'name' => 'Bid 3'),
+				'BiddingMessage' => array('bidding' => 'Three', 'name' => 'Message 3'),
+			),
+		);
+		$this->assertEquals($expected, $result);
+
+		$result = $Bidding->BiddingMessage->find('all', array('order' => array('BiddingMessage.name' => 'ASC')));
+		$expected = array(
+			array(
+				'BiddingMessage' => array('bidding' => 'One', 'name' => 'Message 1'),
+				'Bidding' => array('id' => 1, 'bid' => 'One', 'name' => 'Bid 1'),
+			),
+			array(
+				'BiddingMessage' => array('bidding' => 'Three', 'name' => 'Message 3'),
+				'Bidding' => array('id' => 3, 'bid' => 'Three', 'name' => 'Bid 3'),
+			),
+			array(
+				'BiddingMessage' => array('bidding' => 'Four', 'name' => 'Message 4'),
+				'Bidding' => array('id' => '', 'bid' => '', 'name' => ''),
+			),
+		);
+		$this->assertEquals($expected, $result);
+	}
+
+/**
  * test deleteLinks with Multiple habtm associations
  *
  * @return void
@@ -688,7 +767,7 @@ class ModelDeleteTest extends BaseModelTest {
 		)), true);
 
 		// Article 1 should have Tag.1 and Tag.2
-	    $before = $Article->find("all", array(
+		$before = $Article->find("all", array(
 			"conditions" => array("Article.id" => 1),
 		));
 		$this->assertEquals(count($before[0]['Tag']), 2, 'Tag count for Article.id = 1 is incorrect, should be 2 %s');
@@ -702,17 +781,17 @@ class ModelDeleteTest extends BaseModelTest {
 		);
 		$Tag->save($submitted_data);
 
-	    // One more submission (The other way around) to make sure the reverse save looks good.
-	    $submitted_data = array(
+		// One more submission (The other way around) to make sure the reverse save looks good.
+		$submitted_data = array(
 			"Article" => array("id" => 2, 'title' => 'second article'),
 			"Tag" => array(
 				"Tag" => array(2, 3)
 			)
 		);
-	    // ERROR:
-	    // Postgresql: DELETE FROM "articles_tags" WHERE tag_id IN ('1', '3')
-	    // MySQL: DELETE `ArticlesTag` FROM `articles_tags` AS `ArticlesTag` WHERE `ArticlesTag`.`article_id` = 2 AND `ArticlesTag`.`tag_id` IN (1, 3)
-	    $Article->save($submitted_data);
+		// ERROR:
+		// Postgresql: DELETE FROM "articles_tags" WHERE tag_id IN ('1', '3')
+		// MySQL: DELETE `ArticlesTag` FROM `articles_tags` AS `ArticlesTag` WHERE `ArticlesTag`.`article_id` = 2 AND `ArticlesTag`.`tag_id` IN (1, 3)
+		$Article->save($submitted_data);
 
 		// Want to make sure Article #1 has Tag #1 and Tag #2 still.
 		$after = $Article->find("all", array(

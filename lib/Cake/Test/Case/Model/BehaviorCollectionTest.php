@@ -254,6 +254,7 @@ class TestBehavior extends ModelBehavior {
 		}
 		echo "onError trigger success";
 	}
+
 /**
  * beforeTest method
  *
@@ -418,8 +419,21 @@ class BehaviorCollectionTest extends CakeTestCase {
  */
 	public $fixtures = array(
 		'core.apple', 'core.sample', 'core.article', 'core.user', 'core.comment',
-		'core.attachment', 'core.tag', 'core.articles_tag'
+		'core.attachment', 'core.tag', 'core.articles_tag', 'core.translate'
 	);
+
+/**
+ * Test load() with enabled => false
+ *
+ */
+	public function testLoadDisabled() {
+		$Apple = new Apple();
+		$this->assertSame($Apple->Behaviors->attached(), array());
+
+		$Apple->Behaviors->load('Translate', array('enabled' => false));
+		$this->assertTrue($Apple->Behaviors->attached('Translate'));
+		$this->assertFalse($Apple->Behaviors->enabled('Translate'));
+	}
 
 /**
  * Tests loading aliased behaviors
@@ -665,7 +679,7 @@ class BehaviorCollectionTest extends CakeTestCase {
 			array(
 				'Apple' => array('id' => 1),
 				'Child' => array(
-					array('id' => 2,'name' => 'Bright Red Apple', 'mytime' => '22:57:17'))),
+					array('id' => 2, 'name' => 'Bright Red Apple', 'mytime' => '22:57:17'))),
 			array(
 				'Apple' => array('id' => 2),
 				'Child' => array(
@@ -737,7 +751,7 @@ class BehaviorCollectionTest extends CakeTestCase {
 			array(
 				'Apple' => array('id' => 1),
 				'Child' => array(
-					array('id' => 2,'name' => 'Bright Red Apple', 'mytime' => '22:57:17'))),
+					array('id' => 2, 'name' => 'Bright Red Apple', 'mytime' => '22:57:17'))),
 			array(
 				'Apple' => array('id' => 2),
 				'Child' => array(
@@ -807,13 +821,13 @@ class BehaviorCollectionTest extends CakeTestCase {
 		$expected2 = array(
 			array(
 				'Apple' => array('id' => 1),
-				'Parent' => array('id' => 2,'name' => 'Bright Red Apple', 'mytime' => '22:57:17')),
+				'Parent' => array('id' => 2, 'name' => 'Bright Red Apple', 'mytime' => '22:57:17')),
 			array(
 				'Apple' => array('id' => 2),
 				'Parent' => array('id' => 1, 'name' => 'Red Apple 1', 'mytime' => '22:57:17')),
 			array(
 				'Apple' => array('id' => 3),
-				'Parent' => array('id' => 2,'name' => 'Bright Red Apple', 'mytime' => '22:57:17'))
+				'Parent' => array('id' => 2, 'name' => 'Bright Red Apple', 'mytime' => '22:57:17'))
 		);
 		$result2 = $Apple->find('all', array(
 			'fields' => array('Apple.id', 'Parent.id', 'Parent.name', 'Parent.mytime'),
@@ -889,7 +903,7 @@ class BehaviorCollectionTest extends CakeTestCase {
 		$Sample->create();
 		$result = $Sample->save($record);
 		$expected['Sample']['id'] = $Sample->id;
-		$this->assertEquals($result, $expected);
+		$this->assertEquals($expected, $result);
 
 		$Sample->Behaviors->attach('Test', array('beforeSave' => 'modify', 'afterSave' => 'modify'));
 		$expected = Set::merge($record, array('Sample' => array('name' => 'sample99 modified before modified after on create')));

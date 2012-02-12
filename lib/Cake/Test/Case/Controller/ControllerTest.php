@@ -35,12 +35,14 @@ class ControllerTestAppController extends Controller {
  * @var array
  */
 	public $helpers = array('Html');
+
 /**
  * uses property
  *
  * @var array
  */
 	public $uses = array('ControllerPost');
+
 /**
  * components property
  *
@@ -271,6 +273,21 @@ class TestController extends ControllerTestAppController {
 		);
 	}
 
+
+/**
+ * view method
+ *
+ * @param mixed $testId
+ * @param mixed $test2Id
+ * @return void
+ */
+	public function view($testId, $test2Id) {
+		$this->data = array(
+			'testId' => $testId,
+			'test2Id' => $test2Id
+		);
+	}
+
 	public function returner() {
 		return 'I am from the controller.';
 	}
@@ -305,6 +322,7 @@ class TestComponent extends Object {
  */
 	public function beforeRedirect() {
 	}
+
 /**
  * initialize method
  *
@@ -320,6 +338,7 @@ class TestComponent extends Object {
  */
 	public function startup(&$controller) {
 	}
+
 /**
  * shutdown method
  *
@@ -327,6 +346,7 @@ class TestComponent extends Object {
  */
 	public function shutdown(&$controller) {
 	}
+
 /**
  * beforeRender callback
  *
@@ -351,6 +371,7 @@ class AnotherTestController extends ControllerTestAppController {
  * @var string 'Name'
  */
 	public $name = 'AnotherTest';
+
 /**
  * uses property
  *
@@ -358,6 +379,11 @@ class AnotherTestController extends ControllerTestAppController {
  */
 	public $uses = null;
 
+/**
+ * merge parent
+ * 
+ * @var string
+ */
 	protected $_mergeParent = 'ControllerTestAppController';
 }
 
@@ -381,19 +407,21 @@ class ControllerTest extends CakeTestCase {
  * @return void
  */
 	public function setUp() {
+		parent::setUp();
 		App::objects('plugin', null, false);
 		App::build();
 		Router::reload();
 	}
 
 /**
- * teardown
+ * tearDown
  *
  * @return void
  */
-	public function teardown() {
+	public function tearDown() {
 		CakePlugin::unload();
 		App::build();
+		parent::tearDown();
 	}
 
 /**
@@ -965,10 +993,11 @@ class ControllerTest extends CakeTestCase {
 		$request = new CakeRequest('controller_posts/index');
 
 		$TestController = new TestController($request);
-		$TestController->setAction('index', 1, 2);
+		$TestController->setAction('view', 1, 2);
 		$expected = array('testId' => 1, 'test2Id' => 2);
 		$this->assertSame($expected, $TestController->request->data);
-		$this->assertSame('index', $TestController->view);
+		$this->assertSame('view', $TestController->request->params['action']);
+		$this->assertSame('view', $TestController->view);
 	}
 
 /**
@@ -1112,6 +1141,7 @@ class ControllerTest extends CakeTestCase {
 
 		$Controller->startupProcess();
 	}
+
 /**
  * Tests that the shutdown process calls the correct functions
  *
@@ -1291,7 +1321,7 @@ class ControllerTest extends CakeTestCase {
  */
 	public function testInvokeActionPrefixProtection() {
 		Router::reload();
-		Router::connect('/admin/:controller/:action/*', array('prefix'=>'admin'));
+		Router::connect('/admin/:controller/:action/*', array('prefix' => 'admin'));
 
 		$url = new CakeRequest('test/admin_add/');
 		$url->addParams(array('controller' => 'test_controller', 'action' => 'admin_add'));

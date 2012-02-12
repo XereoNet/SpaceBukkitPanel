@@ -104,10 +104,10 @@ class CakeRequest implements ArrayAccess {
 		'ajax' => array('env' => 'HTTP_X_REQUESTED_WITH', 'value' => 'XMLHttpRequest'),
 		'flash' => array('env' => 'HTTP_USER_AGENT', 'pattern' => '/^(Shockwave|Adobe) Flash/'),
 		'mobile' => array('env' => 'HTTP_USER_AGENT', 'options' => array(
-			'Android', 'AvantGo', 'BlackBerry', 'DoCoMo', 'Fennec', 'iPod', 'iPhone',
+			'Android', 'AvantGo', 'BlackBerry', 'DoCoMo', 'Fennec', 'iPod', 'iPhone', 'iPad',
 			'J2ME', 'MIDP', 'NetFront', 'Nokia', 'Opera Mini', 'Opera Mobi', 'PalmOS', 'PalmSource',
 			'portalmmm', 'Plucker', 'ReqwirelessWeb', 'SonyEricsson', 'Symbian', 'UP\\.Browser',
-			'webOS', 'Windows CE', 'Xiino'
+			'webOS', 'Windows CE', 'Windows Phone OS', 'Xiino'
 		))
 	);
 
@@ -222,7 +222,7 @@ class CakeRequest implements ArrayAccess {
 			$uri = substr($uri, strlen($base));
 		}
 		if (strpos($uri, '?') !== false) {
-			$uri = parse_url($uri, PHP_URL_PATH);
+			list($uri) = explode('?', $uri, 2);
 		}
 		if (empty($uri) || $uri == '/' || $uri == '//') {
 			return '/';
@@ -249,7 +249,7 @@ class CakeRequest implements ArrayAccess {
 		}
 
 		if (!$baseUrl) {
-			$base = dirname(env('SCRIPT_NAME'));
+			$base = dirname(env('PHP_SELF'));
 
 			if ($webroot === 'webroot' && $webroot === basename($base)) {
 				$base = dirname($base);
@@ -278,10 +278,10 @@ class CakeRequest implements ArrayAccess {
 		$docRootContainsWebroot = strpos($docRoot, $dir . '/' . $webroot);
 
 		if (!empty($base) || !$docRootContainsWebroot) {
-			if (strpos($this->webroot, $dir) === false) {
+			if (strpos($this->webroot, '/' . $dir . '/') === false) {
 				$this->webroot .= $dir . '/' ;
 			}
-			if (strpos($this->webroot, $webroot) === false) {
+			if (strpos($this->webroot, '/' . $webroot . '/') === false) {
 				$this->webroot .= $webroot . '/';
 			}
 		}
@@ -483,7 +483,7 @@ class CakeRequest implements ArrayAccess {
  * ### Callback detectors
  *
  * Callback detectors allow you to provide a 'callback' type to handle the check.  The callback will
- * recieve the request object as its only parameter.
+ * receive the request object as its only parameter.
  *
  * e.g `addDetector('custom', array('callback' => array('SomeClass', 'somemethod')));`
  *

@@ -22,7 +22,14 @@ App::uses('String', 'Utility');
 App::uses('Security', 'Utility');
 
 /**
- * SecurityComponent
+ * The Security Component creates an easy way to integrate tighter security in 
+ * your application. It provides methods for various tasks like:
+ *
+ * - Restricting which HTTP methods your application accepts.
+ * - CSRF protection.
+ * - Form tampering protection
+ * - Requiring that SSL be used.
+ * - Limiting cross controller communication.
  *
  * @package       Cake.Controller.Component
  * @link http://book.cakephp.org/2.0/en/core-libraries/components/security-component.html
@@ -373,7 +380,12 @@ class SecurityComponent extends Component {
 				if ($this->Session->check('_Token')) {
 					$tData = $this->Session->read('_Token');
 
-					if (!empty($tData['allowedControllers']) && !in_array($this->request->params['controller'], $tData['allowedControllers']) || !empty($tData['allowedActions']) && !in_array($this->request->params['action'], $tData['allowedActions'])) {
+					if (
+						!empty($tData['allowedControllers']) && 
+						!in_array($this->request->params['controller'], $tData['allowedControllers']) || 
+						!empty($tData['allowedActions']) && 
+						!in_array($this->request->params['action'], $tData['allowedActions'])
+					) {
 						if (!$this->blackHole($controller, 'auth')) {
 							return null;
 						}
@@ -423,8 +435,8 @@ class SecurityComponent extends Component {
 		$multi = array();
 
 		foreach ($fieldList as $i => $key) {
-			if (preg_match('/\.\d+$/', $key)) {
-				$multi[$i] = preg_replace('/\.\d+$/', '', $key);
+			if (preg_match('/(\.\d+)+$/', $key)) {
+				$multi[$i] = preg_replace('/(\.\d+)+$/', '', $key);
 				unset($fieldList[$i]);
 			}
 		}

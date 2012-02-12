@@ -529,7 +529,7 @@ class Set {
 				}
 				continue;
 			}
-			list(,$key,$op,$expected) = $match;
+			list(, $key, $op, $expected) = $match;
 			if (!isset($data[$key])) {
 				return false;
 			}
@@ -626,11 +626,11 @@ class Set {
 					}
 				}
 				return $tmp;
-			} elseif (false !== strpos($key,'{') && false !== strpos($key,'}')) {
+			} elseif (false !== strpos($key, '{') && false !== strpos($key, '}')) {
 				$pattern = substr($key, 1, -1);
 
 				foreach ($data as $j => $val) {
-					if (preg_match('/^'.$pattern.'/s', $j) !== 0) {
+					if (preg_match('/^' . $pattern . '/s', $j) !== 0) {
 						$tmpPath = array_slice($path, $i + 1);
 						if (empty($tmpPath)) {
 							$tmp[$j] = $val;
@@ -671,13 +671,16 @@ class Set {
 			if (is_numeric($key) && intval($key) > 0 || $key === '0') {
 				$key = intval($key);
 			}
-			if ($i === $count - 1) {
+			if ($i === $count - 1 && is_array($_list)) {
 				$_list[$key] = $data;
 			} else {
 				if (!isset($_list[$key])) {
 					$_list[$key] = array();
 				}
 				$_list =& $_list[$key];
+			}
+			if (!is_array($_list)) {
+				return array();
 			}
 		}
 		return $list;

@@ -86,7 +86,8 @@ class CacheHelper extends AppHelper {
  * @param string $file File to cache
  * @param string $out output to cache
  * @param boolean $cache Whether or not a cache file should be written.
- * @return string view ouput
+ * @return string view output
+ * @link http://book.cakephp.org/2.0/en/core-libraries/helpers/cache.html
  */
 	public function cache($file, $out, $cache = false) {
 		$cacheTime = 0;
@@ -270,6 +271,7 @@ class CacheHelper extends AppHelper {
 			";
 		} else {
 			$file .= "
+			App::uses('{$this->_View->plugin}AppController', '{$this->_View->plugin}.Controller');
 			App::uses('{$this->_View->name}Controller', '{$this->_View->plugin}.Controller');
 			";
 		}
@@ -280,9 +282,9 @@ class CacheHelper extends AppHelper {
 				$controller = new ' . $this->_View->name . 'Controller($request, $response);
 				$controller->plugin = $this->plugin = \'' . $this->_View->plugin . '\';
 				$controller->helpers = $this->helpers = unserialize(base64_decode(\'' . base64_encode(serialize($this->_View->helpers)) . '\'));
-				$controller->layout = $this->layout = \'' . $this->_View->layout. '\';
+				$controller->layout = $this->layout = \'' . $this->_View->layout . '\';
 				$controller->theme = $this->theme = \'' . $this->_View->theme . '\';
-				$controller->viewVars = $this->viewVars = unserialize(base64_decode(\'' . base64_encode(serialize($this->_View->viewVars)) . '\'));
+				$controller->viewVars = unserialize(base64_decode(\'' . base64_encode(serialize($this->_View->viewVars)) . '\'));
 				Router::setRequestInfo($controller->request);
 				$this->request = $request;';
 
@@ -293,10 +295,11 @@ class CacheHelper extends AppHelper {
 		}
 
 		$file .= '
+				$this->viewVars = $controller->viewVars;
 				$this->loadHelpers();
 				extract($this->viewVars, EXTR_SKIP);
 		?>';
-		$content = preg_replace("/(<\\?xml)/", "<?php echo '$1';?>",$content);
+		$content = preg_replace("/(<\\?xml)/", "<?php echo '$1';?>", $content);
 		$file .= $content;
 		return cache('views' . DS . $cache, $file, $timestamp);
 	}

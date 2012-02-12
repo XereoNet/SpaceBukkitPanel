@@ -230,6 +230,7 @@ class HttpSocketTest extends CakeTestCase {
 		$this->Socket->__construct('http://www.cakephp.org:23/');
 		$baseConfig['host'] = $baseConfig['request']['uri']['host'] = 'www.cakephp.org';
 		$baseConfig['port'] = $baseConfig['request']['uri']['port'] = 23;
+		$baseConfig['request']['uri']['scheme'] = 'http';
 		$baseConfig['protocol'] = getprotobyname($baseConfig['protocol']);
 		$this->assertEquals($this->Socket->config, $baseConfig);
 
@@ -287,9 +288,11 @@ class HttpSocketTest extends CakeTestCase {
 		);
 		$this->assertEquals($this->Socket->config, $expected);
 		$this->assertTrue($r);
+
 		$r = $this->Socket->configUri('/this-is-broken');
 		$this->assertEquals($this->Socket->config, $expected);
 		$this->assertFalse($r);
+
 		$r = $this->Socket->configUri(false);
 		$this->assertEquals($this->Socket->config, $expected);
 		$this->assertFalse($r);
@@ -317,7 +320,7 @@ class HttpSocketTest extends CakeTestCase {
 						'port' => 80,
 						'timeout' => 30,
 						'request' => array(
-							'uri' => array (
+							'uri' => array(
 								'scheme' => 'http',
 								'host' => 'www.cakephp.org',
 								'port' => 80
@@ -546,6 +549,46 @@ class HttpSocketTest extends CakeTestCase {
 		$request = array('method' => 'POST', 'uri' => 'http://www.cakephp.org/posts/add', 'body' => array('name' => 'HttpSocket-is-released', 'date' => 'today'));
 		$response = $this->Socket->request($request);
 		$this->assertEquals($this->Socket->request['body'], "name=HttpSocket-is-released&date=today");
+	}
+
+/**
+ * Test the scheme + port keys
+ *
+ * @return void
+ */
+	public function testGetWithSchemeAndPort() {
+		$this->Socket->reset();
+		$request = array(
+			'uri' => array(
+				'scheme' => 'http',
+				'host' => 'cakephp.org',
+				'port' => 8080,
+				'path' => '/',
+			),
+			'method' => 'GET'
+		);
+		$response = $this->Socket->request($request);
+		$this->assertContains('Host: cakephp.org:8080', $this->Socket->request['header']);
+	}
+
+/**
+ * Test urls like http://cakephp.org/index.php?somestring without key/value pair for query
+ *
+ * @return void
+ */
+	public function testRequestWithStringQuery() {
+		$this->Socket->reset();
+		$request = array(
+			'uri' => array(
+				'scheme' => 'http',
+				'host' => 'cakephp.org',
+				'path' => 'index.php',
+				'query' => 'somestring'
+			),
+			'method' => 'GET'
+		);
+		$response = $this->Socket->request($request);
+		$this->assertContains("GET /index.php?somestring HTTP/1.1", $this->Socket->request['line']);
 	}
 
 /**
@@ -872,11 +915,16 @@ class HttpSocketTest extends CakeTestCase {
 			->method('request')
 			->with(array('method' => 'GET', 'uri' => 'http://www.google.com/', 'version' => '1.0'));
 
+		$this->RequestSocket->expects($this->at(5))
+			->method('request')
+			->with(array('method' => 'GET', 'uri' => 'https://secure.example.com/test.php?one=two'));
+
 		$this->RequestSocket->get('http://www.google.com/');
 		$this->RequestSocket->get('http://www.google.com/', array('foo' => 'bar'));
 		$this->RequestSocket->get('http://www.google.com/', 'foo=bar');
 		$this->RequestSocket->get('http://www.google.com/?foo=bar', array('foobar' => '42', 'foo' => '23'));
 		$this->RequestSocket->get('http://www.google.com/', null, array('version' => '1.0'));
+		$this->RequestSocket->get('https://secure.example.com/test.php', array('one' => 'two'));
 	}
 
 /**

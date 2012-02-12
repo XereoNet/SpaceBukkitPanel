@@ -18,6 +18,6 @@
  */
 ?>
 <h4>Stack Trace</h4>
-<pre class="code">
+<pre>
 <?php echo $error->getTraceAsString(); ?>
 </pre>

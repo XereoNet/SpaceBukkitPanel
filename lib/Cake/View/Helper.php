@@ -65,7 +65,7 @@ class Helper extends Object {
 	public $plugin = null;
 
 /**
- * Holds the fields array('field_name' => array('type'=> 'string', 'length'=> 100),
+ * Holds the fields array('field_name' => array('type' => 'string', 'length' => 100),
  * primaryKey and validates array('field_name')
  *
  * @var array
@@ -188,7 +188,7 @@ class Helper extends Object {
 	}
 
 /**
- * Provides backwards compatiblity access for setting values to the request object.
+ * Provides backwards compatibility access for setting values to the request object.
  *
  * @param string $name Name of the property being accessed.
  * @param mixed $value
@@ -356,7 +356,7 @@ class Helper extends Object {
  * @param string $insertBefore String to be inserted before options.
  * @param string $insertAfter String to be inserted after options.
  * @return string Composed attributes.
- * @deprecated This method has been moved to HtmlHelper
+ * @deprecated This method will be moved to HtmlHelper in 3.0
  */
 	protected function _parseAttributes($options, $exclude = null, $insertBefore = ' ', $insertAfter = null) {
 		if (!is_string($options)) {
@@ -390,12 +390,12 @@ class Helper extends Object {
  * @param string $value The value of the attribute to create.
  * @param boolean $escape Define if the value must be escaped
  * @return string The composed attribute.
- * @deprecated This method has been moved to HtmlHelper
+ * @deprecated This method will be moved to HtmlHelper in 3.0
  */
 	protected function _formatAttribute($key, $value, $escape = true) {
 		$attribute = '';
 		if (is_array($value)) {
-			$value = '';
+			$value = implode(' ' , $value);
 		}
 
 		if (is_numeric($key)) {
@@ -504,7 +504,7 @@ class Helper extends Object {
 
 /**
  * Gets the currently-used model field of the rendering context.
- * Strips off fieldsuffixes such as year, month, day, hour, min, meridian
+ * Strips off field suffixes such as year, month, day, hour, min, meridian
  * when the current entity is longer than 2 elements.
  *
  * @return string
@@ -672,9 +672,6 @@ class Helper extends Object {
 		$options = $this->_name($options);
 		$options = $this->value($options);
 		$options = $this->domId($options);
-		if ($this->tagIsInvalid() !== false) {
-			$options = $this->addClass($options, 'form-error');
-		}
 		return $options;
 	}
 
@@ -811,7 +808,7 @@ class Helper extends Object {
 		$this->_cleaned = preg_replace('#(<[^>]+[\x00-\x20\"\'\/])(on|xmlns)[^>]*>#iUu', "$1>", $this->_cleaned);
 		$this->_cleaned = preg_replace('#([a-z]*)[\x00-\x20]*=[\x00-\x20]*([\`\'\"]*)[\\x00-\x20]*j[\x00-\x20]*a[\x00-\x20]*v[\x00-\x20]*a[\x00-\x20]*s[\x00-\x20]*c[\x00-\x20]*r[\x00-\x20]*i[\x00-\x20]*p[\x00-\x20]*t[\x00-\x20]*:#iUu', '$1=$2nojavascript...', $this->_cleaned);
 		$this->_cleaned = preg_replace('#([a-z]*)[\x00-\x20]*=([\'\"]*)[\x00-\x20]*v[\x00-\x20]*b[\x00-\x20]*s[\x00-\x20]*c[\x00-\x20]*r[\x00-\x20]*i[\x00-\x20]*p[\x00-\x20]*t[\x00-\x20]*:#iUu', '$1=$2novbscript...', $this->_cleaned);
-		$this->_cleaned = preg_replace('#([a-z]*)[\x00-\x20]*=*([\'\"]*)[\x00-\x20]*-moz-binding[\x00-\x20]*:#iUu','$1=$2nomozbinding...', $this->_cleaned);
+		$this->_cleaned = preg_replace('#([a-z]*)[\x00-\x20]*=*([\'\"]*)[\x00-\x20]*-moz-binding[\x00-\x20]*:#iUu', '$1=$2nomozbinding...', $this->_cleaned);
 		$this->_cleaned = preg_replace('#([a-z]*)[\x00-\x20]*=([\'\"]*)[\x00-\x20]*data[\x00-\x20]*:#Uu', '$1=$2nodata...', $this->_cleaned);
 		$this->_cleaned = preg_replace('#(<[^>]+)style[\x00-\x20]*=[\x00-\x20]*([\`\'\"]*).*expression[\x00-\x20]*\([^>]*>#iU', "$1>", $this->_cleaned);
 		$this->_cleaned = preg_replace('#(<[^>]+)style[\x00-\x20]*=[\x00-\x20]*([\`\'\"]*).*behaviour[\x00-\x20]*\([^>]*>#iU', "$1>", $this->_cleaned);

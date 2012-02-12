@@ -19,10 +19,6 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
-/**
- * Included libraries.
- *
- */
 App::uses('CakeLog', 'Log');
 App::uses('String', 'Utility');
 
@@ -245,6 +241,11 @@ class Debugger {
 				$error = 'Notice';
 				$level = LOG_NOTICE;
 			break;
+			case E_DEPRECATED:
+			case E_USER_DEPRECATED:
+				$error = 'Deprecated';
+				$level = LOG_NOTICE;
+			break;
 			default:
 				return;
 			break;
@@ -280,12 +281,12 @@ class Debugger {
 	public static function trace($options = array()) {
 		$_this = Debugger::getInstance();
 		$defaults = array(
-			'depth'   => 999,
-			'format'  => $_this->_outputFormat,
-			'args'    => false,
-			'start'   => 0,
-			'scope'   => null,
-			'exclude' => array('call_user_func_array', 'trigger_error')
+			'depth'		=> 999,
+			'format'	=> $_this->_outputFormat,
+			'args'		=> false,
+			'start'		=> 0,
+			'scope'		=> null,
+			'exclude'	=> array('call_user_func_array', 'trigger_error')
 		);
 		$options = Set::merge($defaults, $options);
 
@@ -457,13 +458,13 @@ class Debugger {
 				return get_class($var) . "\n" . self::_object($var);
 			case 'array':
 				$var = array_merge($var,  array_intersect_key(array(
-					'password' => '*****',
-					'login'  => '*****',
-					'host' => '*****',
-					'database' => '*****',
-					'port' => '*****',
-					'prefix' => '*****',
-					'schema' => '*****'
+					'password'	=> '*****',
+					'login'		=> '*****',
+					'host'		=> '*****',
+					'database'	=> '*****',
+					'port'		=> '*****',
+					'prefix'	=> '*****',
+					'schema'	=> '*****'
 				), $var));
 
 				$out = "array(";
@@ -650,7 +651,10 @@ class Debugger {
 		$data += $defaults;
 
 		$files = $this->trace(array('start' => $data['start'], 'format' => 'points'));
-		$code = $this->excerpt($files[0]['file'], $files[0]['line'] - 1, 1);
+		$code = '';
+		if (isset($files[0]['file'])) {
+			$code = $this->excerpt($files[0]['file'], $files[0]['line'] - 1, 1);
+		}
 		$trace = $this->trace(array('start' => $data['start'], 'depth' => '20'));
 		$insertOpts = array('before' => '{:', 'after' => '}');
 		$context = array();
@@ -717,5 +721,4 @@ class Debugger {
 			trigger_error(__d('cake_dev', 'Please change the value of \'Security.cipherSeed\' in app/Config/core.php to a numeric (digits only) seed value specific to your application'), E_USER_NOTICE);
 		}
 	}
-
 }

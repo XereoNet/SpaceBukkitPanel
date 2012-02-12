@@ -106,6 +106,9 @@ class BehaviorCollection extends ObjectCollection {
 			$alias = $behavior;
 			$behavior = $config['className'];
 		}
+		$configDisabled = isset($config['enabled']) && $config['enabled'] === false;
+		unset($config['enabled'], $config['className']);
+
 		list($plugin, $name) = pluginSplit($behavior, true);
 		if (!isset($alias)) {
 			$alias = $name;
@@ -165,7 +168,6 @@ class BehaviorCollection extends ObjectCollection {
 			}
 		}
 
-		$configDisabled = isset($config['enabled']) && $config['enabled'] === false;
 		if (!in_array($alias, $this->_enabled) && !$configDisabled) {
 			$this->enable($alias);
 		} elseif ($configDisabled) {
@@ -208,7 +210,7 @@ class BehaviorCollection extends ObjectCollection {
 /**
  * Dispatches a behavior method.  Will call either normal methods or mapped methods.
  *
- * If a method is not handeled by the BehaviorCollection, and $strict is false, a
+ * If a method is not handled by the BehaviorCollection, and $strict is false, a
  * special return of `array('unhandled')` will be returned to signal the method was not found.
  *
  * @param Model $model The model the method was originally called on.
@@ -253,8 +255,8 @@ class BehaviorCollection extends ObjectCollection {
  *
  * @param string $method The method to find.
  * @param boolean $callback Return the callback for the method.
- * @return mixed If $callback is false, a boolean will be returnned, if its true, an array
- *   containing callback information will be returnned.  For mapped methods the array will have 3 elements.
+ * @return mixed If $callback is false, a boolean will be returned, if its true, an array
+ *   containing callback information will be returned.  For mapped methods the array will have 3 elements.
  */
 	public function hasMethod($method, $callback = false) {
 		if (isset($this->_methods[$method])) {

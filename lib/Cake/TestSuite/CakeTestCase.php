@@ -83,7 +83,7 @@ abstract class CakeTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 /**
- * Called when a test case method is about to start (to be overriden when needed.)
+ * Called when a test case method is about to start (to be overridden when needed.)
  *
  * @param string $method Test method about to get executed.
  * @return void
@@ -92,7 +92,7 @@ abstract class CakeTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 /**
- * Called when a test case method has been executed (to be overriden when needed.)
+ * Called when a test case method has been executed (to be overridden when needed.)
  *
  * @param string $method Test method about that was executed.
  * @return void
@@ -147,6 +147,9 @@ abstract class CakeTestCase extends PHPUnit_Framework_TestCase {
 			ClassRegistry::flush();
 		}
 		Configure::write($this->_configure);
+		if (isset($_GET['debug']) && $_GET['debug']) {
+			ob_flush();
+		}
 	}
 
 /**
@@ -215,7 +218,7 @@ abstract class CakeTestCase extends PHPUnit_Framework_TestCase {
  *	)
  *
  * Important: This function is very forgiving about whitespace and also accepts any
- * permutation of attribute order. It will also allow whitespaces between specified tags.
+ * permutation of attribute order. It will also allow whitespace between specified tags.
  *
  * @param string $string An HTML/XHTML/XML string
  * @param array $expected An array, see above
