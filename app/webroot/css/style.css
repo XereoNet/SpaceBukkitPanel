@@ -217,7 +217,8 @@ a {
   width:26px;
 }
 
-#sidebar-widget a:hover.sidebar-button
+#sidebar-widget a:hover.sidebar-button, 
+#sidebar-widget a.active.sidebar-button
 {
   background-color:#333;
 }
