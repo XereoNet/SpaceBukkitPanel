@@ -1,6 +1,12 @@
 tmp/*
 config/database.php
-app/tmp/*
+app/tmp/cache/models/*
+app/tmp/cache/persistent/*
+app/tmp/cache/views/*
+app/tmp/logs
+app/tmp/sessions
+app/tmp/test
 app/webroot/server/*
 app/config/database.php
 !empty
+!.gitignore
