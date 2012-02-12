@@ -86,7 +86,7 @@ $('document').ready(function () {
         relative: "true"
     });
     $(".dtb").dataTable();
-    $('input[type="text"]').placeholderFunction('input-focused');
+    //$('input[type="text"]').placeholderFunction('input-focused');
     $(function () {
         var tabContainers = $('section#content > div.tab');
         tabContainers.hide().filter(':first').show();
