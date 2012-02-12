@@ -345,7 +345,7 @@ END;
             $chats = $api->call("getLatestChats", $args, false);
 
             //Generate Output
-            foreach ($chats as $time => $chat) {
+            foreach (array_reverse($chats) as $time => $chat) {
 
         	$time = substr($time, 0, -3); 
         	$time = date( "d/m/Y g:i:s A", $time);

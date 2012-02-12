@@ -60,8 +60,9 @@
 				<div id="sidebar-console-wrap" class="sidebar-wrap">
 					<div id="sidebar-console">
 
-						<div id="console-meta">
+						<div class="console-meta">
 							<h4>Console</h4>
+						    <p>(Latest on top)</p>
 							<form id="runcommand" class="runcommand" method="post" action="./global/runcommand">
 						        <input id="command" name="command" type="text" placeholder="<?php echo __('Enter Command'); ?>"/>
 						    	<input type="submit" class="button primary submit hidden" value="<?php echo __('Submit'); ?>">
@@ -85,18 +86,6 @@
 							</ul>
 						</div>
 
-						<!--
-					    <form id="runcommand" class="runcommand" method="post" action="./global/runcommand">
-					      <div>
-					        <input id="command" name="command" type="text" placeholder="<?php echo __('Enter Command'); ?>"/>
-					    	<input type="submit" class="button primary submit" value="<?php echo __('Submit'); ?>">
-					    	<small style="float: right">(latest on top)</small>
-					      </div>
-					    </form>
-					    <br />
-
-						<div id="console">
-						</div>-->
 					</div>
 					<span class="switcher-arrow"></span>
 				</div>
@@ -105,6 +94,39 @@
 				<div id="sidebar-chat-wrap" class="sidebar-wrap">
 					<div id="sidebar-chat">
 
+						<div class="console-meta">
+							<h4>Chat</h4>
+						    <p>(Latest on top)</p>							
+					        <form id="saysomething" class="saysomething" method="post" action="./dash/saysomething">
+						        <input id="say" name="say" type="text" class="chatarea" />
+						        <input type="submit" class="button primary hidden submit" value="<?php echo __('Say it') ?>">
+					        </form>			
+					        				
+						</div>
+												
+						<section class="chat">
+						    <div class="col left chatleft">
+						      <div class="chatwindow">
+						        <table class="zebra-striped chat_table">
+						          <tbody class="chat_chat">                      
+						          </tbody>
+						        </table>
+						      </div>
+
+						    </div>
+
+						    <div class="col right chatright ">
+						        <table class="zebra-striped chat_table">
+						          <tbody class="chat_list">  
+						            <tr>
+						            </tr>                    
+						          </tbody>
+						        </table>
+						    </div>
+
+						    <div class="clear"></div> 
+
+						  </section>
 					</div>
 					<span class="switcher-arrow"></span>
 				</div>				
@@ -293,7 +315,28 @@ $(document).ready(function() {
 
 	loadConsole();
 	doAndRefresh('#server-uptime', './global/getUpTime', 3000);
+  /* attach a submit handler to the form */
+  $(".saysomething").submit(function(event) {
 
+    /* stop form from submitting normally */
+    event.preventDefault(); 
+        
+    /* get some values from elements on the page: */
+    var $form = $(this),
+        term = $form.find( 'input[name="say"]' ).val(),
+        url = $form.attr( 'action' );
+
+    /* Send the data using post and put the results in a div */
+    $.post(url, {say: term},
+      function( data ) {
+         notifications.show(data);
+      }
+    );
+    $(".chatarea").val('');
+
+  });
+  doAndRefresh('.chat_list', './dash/get_chat_players', 10000);
+  doAndRefreshChat('.chat_chat', './dash/get_chat_new', 1000);
 
 });
 

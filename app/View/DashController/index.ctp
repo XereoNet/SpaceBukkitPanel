@@ -24,20 +24,8 @@
 </nav>
 <!-- End Navigation --> 
 
-
-<!-- Tabs -->
-<nav id="smalltabs">
-  <ul>
-    <li class="current"><a href="#tab1"><?php echo __('Start') ?></a></li>
-    <li><a href="#tab2"><?php echo __('Chat') ?></a></li>
-  </ul>
-</nav>
-<!-- End Tabs -->
-
 <!-- Content -->
 <section id="content" class="dashboard_content"> 
-
-<div class="tab" id="tab1">
 
 <div id="server_presentation">
     <header>
@@ -167,46 +155,7 @@
 
 </div>       <!-- End col right -->
 <div class="clear"></div>
-</div>
 
-
-  <div class="tab" id="tab2">
-
-  <section class="chat">
-
-    <div class="col left chatleft">
-      <div class="chatwindow">
-        <table class="zebra-striped chat_table">
-          <tbody class="chat_chat">                      
-          </tbody>
-        </table>
-      </div>
-      <div class="chatinput">
-      <form id="saysomething" class="saysomething" method="post" action="./dash/saysomething">
-      <div>
-      <input id="say" name="say" type="textarea" class="chatarea" rows="6" cols="20"/>
-      <input type="submit" class="button primary submit" value="<?php echo __('Say it') ?>">
-      </div>
-      </form>
-      </div>
-      <div class="clear"></div>
-
-    </div>
-
-    <div class="col right chatright ">
-        <table class="zebra-striped chat_table">
-          <tbody class="chat_list">  
-            <tr>
-            </tr>                    
-          </tbody>
-        </table>
-    </div>
-
-    <div class="clear"></div> 
-
-  </section>
- 
-   </div>
 </section>
          	
 <!-- End #content -->
@@ -214,31 +163,8 @@
 
 $(document).ready(function() {
   
-  /* attach a submit handler to the form */
-  $(".saysomething").submit(function(event) {
-
-    /* stop form from submitting normally */
-    event.preventDefault(); 
-        
-    /* get some values from elements on the page: */
-    var $form = $(this),
-        term = $form.find( 'input[name="say"]' ).val(),
-        url = $form.attr( 'action' );
-
-    /* Send the data using post and put the results in a div */
-    $.post(url, {say: term},
-      function( data ) {
-         notifications.show(data);
-      }
-    );
-    $(".chatarea").val('');
-
-  });
-
   doAndRefresh('#user_percentage', './dash/calculate_players', 3000);
   doAndRefresh('#java_percentage', './dash/calculate_java', 3000);
-  doAndRefresh('.chat_list', './dash/get_chat_players', 10000);
-  doAndRefreshChat('.chat_chat', './dash/get_chat_new', 3000);
   doAndRefresh('#log', './dash/get_log', 15000);
 
     });
