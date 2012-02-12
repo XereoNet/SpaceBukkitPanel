@@ -129,7 +129,7 @@ class TServersController extends AppController {
         'Restart server if empty' => array('method' => 'restartIfEmpty', 'args' => false),
         'Rotate server.log' => array('method' => 'rollOverLog', 'args' => false),
 		'Save worlds' => array('method' => 'consoleCommand', 'args' => 'save-all'),
-        'Say something' => array('method' => 'say', 'args' => true),
+        'Say something' => array('method' => 'say', 'args' => 'needsargs'),
 		'Run console command' => array('method' => 'consoleCommand', 'args' => 'needsargs'),
 		'Start server' => array('method' => 'start', 'args' => false),
 		'Stop server' => array('method' => 'stop', 'args' => false)
@@ -483,7 +483,7 @@ class TServersController extends AppController {
 
             $timeArg1 = $task[3];
             $timeArg2 = $task[4];
-            $actions = '<a href=\"./tservers/runTask/'.$task[0].'/'.$argument.'\" class=\"button icon approve\">'.__('Run now').'</a><a href=\"./tservers/removeTask/'.$id.'\" class=\"button icon remove danger\">'.__('Remove').'</a>';
+            $actions = '<a href=\"./tservers/runTask/'.$task[0].'/'.$argument.'\" class=\"button icon approve ajax_table1\">'.__('Run now').'</a><a href=\"./tservers/removeTask/'.$id.'\" class=\"button icon remove danger ajax_table1\">'.__('Remove').'</a>';
 
         ECHO <<<END
             [

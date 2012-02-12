@@ -66,6 +66,7 @@ class SchedulesController extends AppController {
         include("../spacebukkitcall.php");
         $args = array($id);
         $api->call('runJob', $args, true);
+        echo __('Ran task: ').$id;
         }
     }
 
@@ -235,7 +236,7 @@ class SchedulesController extends AppController {
 
         foreach ($tasks as $id => $task) {
 
-            $actions = '<a href=\"./schedules/runTask/'.$id.'\" class=\"button icon approve\">'.__('Run now').'</a><a href=\"./schedules/removeTask/'.$id.'\" class=\"button icon remove danger ajax_table1\">'.__('Remove').'</a>';
+            $actions = '<a href=\"./schedules/runTask/'.$id.'\" class=\"button icon approve ajax_table1\">'.__('Run now').'</a><a href=\"./schedules/removeTask/'.$id.'\" class=\"button icon remove danger ajax_table1\">'.__('Remove').'</a>';
 
             $commands = $task["1"]["0"];
 
