@@ -120,15 +120,15 @@
 </div>
 
 <div class="tab" id="tab2">
-<section class="box boxpad"> 
+<section class="box boxpad" style="position: relative"> 
     <header>
         <h2><?php echo __('Server properties') ?></h2> 
 
     </header>
 
     <section>
+        <form id="saveconfig" method="post" action="./tservers/saveConfig">
         <form id="ServerAddForm" method="post" action="./tservers/saveConfig">
-        <input type="submit" class="button primary submit leftsubmit" name="save" style="top: -48px" value="<?php echo __('Save') ?>">
         <div class="col left">
 
             <section>
@@ -333,7 +333,7 @@
                 <input id="enable-query" name="enable-query" type="checkbox" value="true" <?php if ($enable_query == "true") {echo " checked";}?>/>
               </div>
             </section>
-
+<input type="submit" value="Save" style="position: absolute; top: 13px; right: 10px;" name="save" class="button primary submit leftsubmit" id="saveprop">
         </div>
         </form>
 
@@ -484,6 +484,10 @@ END;
 <!-- End #content --> 
 <script>
 $('document').ready(function() {
+
+  $("#saveprop").live('click', function(){
+    showOverlay('Saving properties...');
+  });
 
    $('#arguments').hide();        
 
