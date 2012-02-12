@@ -300,6 +300,8 @@ class UsersController extends AppController {
             $this->request->data = $this->User->read(null, $id);
             unset($this->request->data['User']['password']);
             $this->set('edituser', $this->request->data);
+            $this->loadModel("Server");
+            $this->set('all_servers', $this->Server->find("all"));            
 
         /*
 
