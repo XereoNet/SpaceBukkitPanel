@@ -338,13 +338,13 @@ END;
           $runConsole = $api->call("consoleCommand", $args, true);  
           echo __('The command').' "' . $command . '" '.__('was executed!');
           //Sleep if command is 'stop'
-          if ($command['command'] == 'stop') {
+          if ($command == 'stop') {
              sleep(7);
           }
 
       } 
       }
-      w_serverlog($this->Session->read("current_server"), '[GLOBAL]'.$this->Auth->user('username').__(' executed the command "').$command['command'].'"');
+      w_serverlog($this->Session->read("current_server"), '[GLOBAL]'.$this->Auth->user('username').__(' executed the command "').$command.'"');
               
     }
 
