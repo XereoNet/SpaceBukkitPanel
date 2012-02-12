@@ -8,7 +8,7 @@
     <h3>Welcome to the SpaceBukkit Beta!</h3> 
     <p> 
         Please do report any bug to GitHub, located here: <a href="https://github.com/SpaceDev/SpaceBukkit/issues">GitHub</a><br />
-        You can contact us on our forums: <a href="forums.xereo.net">Forums</a><br />
+        You can contact us on our forums: <a href="http://forums.xereo.net">Forums</a><br />
         Have fun!
     </p> 
 </div>
