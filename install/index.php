@@ -103,28 +103,34 @@
 
     <div class="triangle-border left">
 
-    <p>It seems like your rewrite engine is not running! SpaceBukkit uses .htaccess files and rewrite to create it's URLs. Please enable your rewrite engine and restart your webserver.</p>
+    <p><b>It seems like either your rewrite engine is not running or you first need to add some rewrite-rules!<br />SpaceBukkit uses .htaccess files and rewrite to create it's URLs.<br />Please enable your rewrite engine and/or add the rewrite rules in the .htaccess file to your webservers config and restart your webserver.</b></p>
 
     <br>
     <hr>
 
-    <p><b>If you are on Apache (xampp, wampp, lampp, mampp or similar)</b></p>
+    <p><font size=4>If you are on Apache2 (xampp, wampp, lampp, mampp or similar)</font></p><br />
 
-    <p>In </p><pre class="code">"your_webservice_of_choice/apache/conf/httpd.conf"</pre> <p>search for </p> <pre class="code"> "#LoadModule rewrite_module modules/mod_rewrite.so" </pre> <p> and remove the #.</p>
-    <p>Also make sure that AllowOverride for your root directory is set to "All".</p> <p> Restart your webserver and refresh this page.</p>
+    <p>Usually the command "a2enmod rewrite" should enable the module, if not, there may be something wrong with your installation of Apache2.</p>
+    <p>Also make sure that AllowOverride for your root directory (NOT /) is set to "All".</p> <p> Restart your webserver and refresh this page.</p>
 
     <hr>
 
-    <p><b>If you are on IIS7</b></p>
+    <p><font size=4>If you are on IIS7</font></p><br />
 
     <p>Use Microsoft's Web Platform Installer to install the URL Rewrite Module 2.0</p>
-	<p>Restart your webserver and refresh this page.</p>
+	<p>After that you will need to convert the .htaccess files with a tool provided with the module.</p>
 
     <hr>
 
-    <p><b>If you are on Nginx</b></p>
+    <p><font size=4>If you are on Nginx</font></p><br />
+    
+    <p>You need to add some lines into your server config. Please refer to our <a href="http://spacebukkit.xereo.net/wiki/index.php?title=Installing#An_error_page_sent_me_hear.2C_about_that_Nginx_stuff">Wiki</a></p>
 
     <hr>
+
+    <p><font size=4>If you are running some other webserver not listed</font></p><br />
+    
+    <p>Well then I can't help you here. Go to hell. Or visit our <a href="http://forums.xereo.net/">Forum</a> or this <a href="http://www.google.com/">fine site</a></p>
 
     </div>
 
@@ -197,4 +203,3 @@
 	</body>
 
 </html>
-
