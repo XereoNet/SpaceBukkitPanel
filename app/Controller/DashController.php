@@ -344,6 +344,9 @@ END;
             $args = array();   
             $chats = $api->call("getLatestChats", $args, false);
 
+            if(!is_array($chats)) $chats = array($chats);
+		
+
             //Generate Output
             foreach (array_reverse($chats) as $time => $chat) {
 
