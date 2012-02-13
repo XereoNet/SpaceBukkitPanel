@@ -620,9 +620,9 @@ END;
 
     function addWorld() {
         if ($this->request->is('post')) {
-            $name = $_POST['name'];
-            $seed = $_POST['seed'];
-            $type = $_POST['type'];
+            $name = $this->request->data['name'];
+            $seed = $this->request->data['seed'];
+            $type = $this->request->data['type'];
             if($name == NULL || $type == NULL){
                 $this->redirect(array('controller' => 'tworlds', 'action' => 'index'));
             }else{
