@@ -1133,7 +1133,8 @@ p.description {
 }
 #rb_chooser div.rb_builds {
   margin: 0 auto;
-  position: relative
+  position: relative;
+  width: 675px
 }
 #rb_chooser div.rb {
   position: relative;
@@ -1142,7 +1143,7 @@ p.description {
   width: 85px;
   height: 40px;
   padding: 15px 0 0 0;
-  margin-left: 3%;
+  margin-left: 50px;
   text-align: center;
   font-size: 18px;
   color: #333;

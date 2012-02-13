@@ -162,11 +162,11 @@ class TServersController extends AppController {
 
             exit('Craftbukkit file does not exist');
 
-        } elseif (fopen($cburl1, "r") {
+        } elseif (fopen($cburl1, "r")) {
 
             $new_jar = $cburl1;
             
-        } elseif (fopen($cburl2, "r") {
+        } elseif (fopen($cburl2, "r")) {
 
             $new_jar = $cburl2;
             
