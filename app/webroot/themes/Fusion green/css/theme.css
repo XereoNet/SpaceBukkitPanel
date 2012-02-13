@@ -231,7 +231,6 @@ nav#mainnav ul li.current a
 }
 
 
-
 /*Define the icons in the upper section */
 
 
@@ -275,6 +274,28 @@ nav#mainnav ul li.current a
 {
 
 	background: url(../img/restart.png) no-repeat center;
+
+	float: left;
+
+}
+
+
+#fstop
+
+{
+
+	background: url(../img/fstop.png) no-repeat center;
+
+	float: left;
+
+}
+
+
+#frestart
+
+{
+
+	background: url(../img/frestart.png) no-repeat center;
 
 	float: left;
 
