@@ -124,7 +124,7 @@ class InstallController extends AppController{
 
     public function step2() {
 
-      require '../configuration.php';
+      require APP.'configuration.php';
       $this->layout = 'login';
 
       //if POST request, test database, add if OK, redirect accordingly
@@ -223,7 +223,7 @@ class InstallController extends AppController{
 
       //call API
 
-      include '../SpaceBukkitAPI.php';          // This line is used to include the ressources file.
+      include APP.'SpaceBukkitAPI.php';          // This line is used to include the ressources file.
       $api = new SpaceBukkitAPI($server, $p1, $p2, $salt);
 
       

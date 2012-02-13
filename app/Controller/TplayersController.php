@@ -66,7 +66,7 @@ class TPlayerscontroller extends AppController {
 
         */
 
-        include '../spacebukkitcall.php';
+        include APP.'Controller/spacebukkitcall.php';
         
         //CHECK IF SERVER IS RUNNING
 
@@ -107,7 +107,7 @@ class TPlayerscontroller extends AppController {
         Configure::write('debug', 0);
         $this->autoRender = false;
 
-        include '../spacebukkitcall.php';
+        include APP.'Controller/spacebukkitcall.php';
 
         //Get Players           
         $args = array();   
@@ -206,7 +206,7 @@ END;
         Configure::write('debug', 0);
         $this->autoRender = false;
 
-        include '../spacebukkitcall.php';
+        include APP.'Controller/spacebukkitcall.php';
 
         //Get if someone has joined in the last 10 seconds           
         $args = array(10);   
@@ -222,7 +222,7 @@ END;
         Configure::write('debug', 0);
         $this->autoRender = false;
 
-        include '../spacebukkitcall.php';
+        include APP.'Controller/spacebukkitcall.php';
         
         $args = array($plr, $mode);   
         $chmode = $api->call("setGameMode", $args, false);
@@ -245,7 +245,7 @@ END;
         Configure::write('debug', 0);
         $this->autoRender = false;
 
-        include '../spacebukkitcall.php';
+        include APP.'Controller/spacebukkitcall.php';
 
         //Get Players           
         $args = array();   
@@ -287,7 +287,7 @@ END;
         Configure::write('debug', 0);
         $this->autoRender = false;
 
-        include '../spacebukkitcall.php';
+        include APP.'Controller/spacebukkitcall.php';
 
         //Get Players           
         $args = array();   
@@ -328,7 +328,7 @@ END;
         Configure::write('debug', 0);
         $this->autoRender = false;
 
-        include '../spacebukkitcall.php';
+        include APP.'Controller/spacebukkitcall.php';
         
 		$args = array($player);   
 		$kill = $api->call("killPlayer", $args, false);
@@ -351,7 +351,7 @@ END;
         Configure::write('debug', 0);
         $this->autoRender = false;
 
-        include '../spacebukkitcall.php';
+        include APP.'Controller/spacebukkitcall.php';
         
 
 		$args = array($player, '20');   
@@ -374,7 +374,7 @@ END;
         Configure::write('debug', 0);
         $this->autoRender = false;
 
-        include '../spacebukkitcall.php';   
+        include APP.'Controller/spacebukkitcall.php';   
 
 		$args = array($player, '20');   
 		$sethealth = $api->call("setFoodLevel", $args, false);
@@ -395,7 +395,7 @@ END;
         Configure::write('debug', 0);
         $this->autoRender = false;
 
-        include '../spacebukkitcall.php';
+        include APP.'Controller/spacebukkitcall.php';
         
 		$args = array($player, 'Kicked by Admin');   
 		$sethealth = $api->call("kickPlayer", $args, false);
@@ -416,7 +416,7 @@ END;
         Configure::write('debug', 0);
         $this->autoRender = false;
 
-        include '../spacebukkitcall.php';
+        include APP.'Controller/spacebukkitcall.php';
 
 		$args = array($player);   
         $api->call("ban", $args, false);
@@ -442,7 +442,7 @@ END;
         $this->autoRender = false;
 
 
-        include '../spacebukkitcall.php';
+        include APP.'Controller/spacebukkitcall.php';
         $name = $this->request->data;
         $args = array($name['name']); 
         $api->call("ban", $args, false);
@@ -461,7 +461,7 @@ END;
         Configure::write('debug', 0);
         $this->autoRender = false;
 
-        include '../spacebukkitcall.php';
+        include APP.'Controller/spacebukkitcall.php';
 
         $args = array($name); 
 
@@ -484,7 +484,7 @@ END;
         $this->autoRender = false;
 
 
-        include '../spacebukkitcall.php';
+        include APP.'Controller/spacebukkitcall.php';
         $name = $this->request->data;
         $args = array($name['name']); 
         $api->call("addToWhitelist", $args, false);
@@ -503,7 +503,7 @@ END;
         Configure::write('debug', 0);
         $this->autoRender = false;
 
-        include '../spacebukkitcall.php';
+        include APP.'Controller/spacebukkitcall.php';
 
         $args = array($name); 
 
@@ -523,7 +523,7 @@ END;
         Configure::write('debug', 0);
         $this->autoRender = false;
 
-        include '../spacebukkitcall.php';
+        include APP.'Controller/spacebukkitcall.php';
 
         $args = array($name); 
 
@@ -543,7 +543,7 @@ END;
         Configure::write('debug', 0);
         $this->autoRender = false;
 
-        include '../spacebukkitcall.php';
+        include APP.'Controller/spacebukkitcall.php';
 
         $args = array($name); 
 
@@ -558,7 +558,7 @@ END;
 
     function inventory($name) {
 
-        include '../spacebukkitcall.php';
+        include APP.'Controller/spacebukkitcall.php';
 
         $args = array($name); 
         $items = $api->call("getInventory", $args, false);
