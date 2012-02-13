@@ -102,7 +102,7 @@ END;
 					</div>
 					<div id="userbuttons">
 						
-						<span><a href="#" class="account tip"><?php echo __('Hey there'); ?>, <?php echo $username; ?> :) </a></span>
+						<span><a href="#" class="account tip"><?php echo __('Welcome aboard'); ?>, <?php echo $username; ?>  </a></span>
 						<div class="tooltip white">
 							<ul>
 								<li><a href="./users/edit/" class="fancy"><?php echo __('Account Settings'); ?></a></li>
