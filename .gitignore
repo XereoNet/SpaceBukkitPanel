@@ -7,6 +7,5 @@ app/tmp/logs
 app/tmp/sessions
 app/tmp/test
 app/webroot/server/*
-app/config/database.php
 !empty
 !.gitignore
