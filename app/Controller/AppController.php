@@ -253,7 +253,6 @@ class AppController extends Controller {
  *   7)  Set roles for server. If the user role is not defined, change it to default
 ##################################################### */
 
-
         if (empty($user_data["ServersUsers"])) {
            
             $current_server = $this->Session->read("current_server");
@@ -262,6 +261,8 @@ class AppController extends Controller {
             if (empty($current_server)) {
                     $s = $this->Server->find("first");
                     $this->Session->write("current_server", $s['Server']['id']);
+                    $current_server = $s['Server']['id'];
+
             }  
             
         }  else {
@@ -272,11 +273,12 @@ class AppController extends Controller {
             if (empty($current_server)) {
 
                     $this->Session->write("current_server", $user_data['User']['favourite_server']);
-                   
+                    $current_server =  $user_data['User']['favourite_server'];
+                    echo 'lol';
+          
             }  
         }
                 
-
         //New variable "$usr" stores all data relative to the user, relative to the current server
         $conditions = array("ServersUsers.server_id" => $current_server, "ServersUsers.user_id" => $this->Auth->user("id"));
         $usr = $this->ServersUsers->find('first', array('conditions' => $conditions));    
@@ -331,12 +333,13 @@ class AppController extends Controller {
         } //end else user_data empty 
 
         $this->set('all_servers', $all_servers);
-        $this->set('current_server', $this->Session->read("current_server"));
+        $this->set('current_server', $current_server);
         $usr['Role']['is_super'] = $this->Auth->user('is_super');
         $this->set('glob_perm', $permissions);
         $this->set('current_server_name', $usr["Server"]["title"]);
         $this->set('user_data', $usr);
         $this->set('user_perm', $usr['Role']);
+
                       
         } //end else server count        
         } //endif logging        
