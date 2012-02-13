@@ -33,28 +33,25 @@
 <div class="screen_overlay">
  <div>text...</div>
 </div>
-<?php if(isset($spacebukkitbuildready)) {?>
+<?php if((isset($spacebukkitbuildready)) && ($user_perm['is_super'] == 1)) {?>
 <div class="top_message black slideDown">
-<p><?php echo __('A new SpaceBukkit update is ready for you to download! You\'re version is'); ?> <strong><?php echo $spacebukkitbuildcurrent; ?></strong> <?php echo __('while the new version is'); ?> <strong><?php echo $spacebukkitbuildnew; ?></strong> <a href="./update/"><?php echo __('Click here when you are ready'); ?></a></p>
+<p><?php echo __('A new SpaceBukkit update is ready for you to download! Your version is'); ?> <strong><?php echo $spacebukkitbuildcurrent; ?></strong> <?php echo __('while the new version is'); ?> <strong><?php echo $spacebukkitbuildfile; ?></strong> &nbsp; &nbsp;  <a class="button icon arrowright" href="<?php ?>"><?php echo __('Click here to get it'); ?></a></p>
 </div>
 <?php };?>
+
 <?php if(isset($antmessage)) {?>
 <div class="top_message <?php echo $antmessagetype; ?> slideDown">
 <p><?php echo $antmessage; ?></p>
 </div>
 <?php };?>
-<?php if (($user_perm['pages'] & $glob_perm['pages']['console']) || ($user_perm['is_super'] == 1)) { ?>
 
-
-<?php } ?>
 </div>
 
 	<div id="header">
 		<div id="container"> 
-<?php if (($user_perm['pages'] & $glob_perm['pages']['console']) || ($user_perm['is_super'] == 1)) { ?>
 		
-			<a class="trigger" href="#"></a>
 			<div id="sidebar-widget" class="widget-reset" style="display: none; ">
+<?php if (($user_perm['pages'] & $glob_perm['pages']['console']) || ($user_perm['is_super'] == 1)) { ?>
 
 				<a href="#" class="sidebar-button console-button" rel="nofollow">console</a>
 				<div id="sidebar-console-wrap" class="sidebar-wrap">
@@ -89,6 +86,7 @@
 					</div>
 					<span class="switcher-arrow"></span>
 				</div>
+<?php } ?>
 
 				<a href="#" class="sidebar-button chat-button" rel="nofollow">chat</a>
 				<div id="sidebar-chat-wrap" class="sidebar-wrap">
@@ -132,7 +130,6 @@
 				</div>				
 
 			</div>
-<?php } ?>
 
 			<!-- Logo -->
 			<div class="hheight"> 

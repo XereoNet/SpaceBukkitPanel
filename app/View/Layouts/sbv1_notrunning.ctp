@@ -21,35 +21,25 @@
 
 </head>
 
+
 <body>
-<?php if(isset($spacebukkitbuildready)) {?>
+<div class="screen_overlay">
+ <div>text...</div>
+</div>
+<?php if((isset($spacebukkitbuildready)) && ($user_perm['is_super'] == 1)) {?>
 <div class="top_message black slideDown">
-<p><?php echo __('A new SpaceBukkit update is ready for you to download! You\'re version is'); ?> <strong><?php echo $spacebukkitbuildcurrent; ?></strong> <?php echo __('while the new version is'); ?> <strong><?php echo $spacebukkitbuildnew; ?></strong> <a href="./update/"><?php echo __('Click here when you are ready'); ?></a></p>
+<p><?php echo __('A new SpaceBukkit update is ready for you to download! Your version is'); ?> <strong><?php echo $spacebukkitbuildcurrent; ?></strong> <?php echo __('while the new version is'); ?> <strong><?php echo $spacebukkitbuildfile; ?></strong> &nbsp; &nbsp;  <a class="button icon arrowright" href="<?php ?>"><?php echo __('Click here to get it'); ?></a></p>
 </div>
 <?php };?>
+
 <?php if(isset($antmessage)) {?>
 <div class="top_message <?php echo $antmessagetype; ?> slideDown">
 <p><?php echo $antmessage; ?></p>
 </div>
 <?php };?>
-<div class="panel">
 
-    <form id="runcommand" class="runcommand" method="post" action="./global/runcommand">
-      <div>
-        <input id="command" name="command" type="text" placeholder="Enter Command"/>
-    	<input type="submit" class="button primary submit" value="Submit">
-    	<small style="float: right"><?php echo __('(latest on top)'); ?></small>
-      </div>
-    </form>
-    <br />
-
-	<div id="console">
-	</div>
-	<div style="clear:both;"></div>
-</div>
 	<div id="header">
 		<div id="container"> 
-			<a class="trigger" href="#"></a>
 
 			<!-- Logo -->
 			<div class="hheight"> 

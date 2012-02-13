@@ -163,6 +163,7 @@ class AppController extends Controller {
                 
             $this->set('spacebukkitbuildready', "new");
             $this->set('spacebukkitbuildnew', $l_sb["BUILD"]["VERSION"]);
+            $this->set('spacebukkitbuildfile', $l_sb["BUILD"]["FILE"]);
 
         }
 

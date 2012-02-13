@@ -187,7 +187,7 @@ a {
   border-left:none;
   display:block!important;
   font:13px/17px Helvetica, Arial, sans-serif;
-  height:64px;
+  height: auto;
   left:0;
   position:fixed;
   top:100px;
