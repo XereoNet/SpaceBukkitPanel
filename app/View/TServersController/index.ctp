@@ -45,11 +45,8 @@
         
        <section>
        <p class="description">
-       This feature is temporarily disabled due to bukkit.org having shut down their jenkins.
        </p>
-       <?php
-       /*
-             
+
        <p class="description">
        <?php echo __('Hover over an RB to see it\'s details. Click on an RB to install it for this server. Installing another CraftBukkit build will stop the server during the process!') ?>  
        </p>
@@ -74,14 +71,15 @@
 
           foreach ($versions as $version) {
 
-            $version_number = get_string_between($version['link'], "dev-CraftBukkit/", "/");
+            $version_number = get_string_between($version['title'], "(build", ")");
+            $version_link = get_string_between($version['guid'], "view/", "/");
 
             $rb = "";
 
             if ($version_number == $c_bukkit_version) { $rb = "currentrb"; }
  
-            echo '<a href="./tservers/install_cb/'.$version_number.'" class="confirmCB"><div class="rb bounce tip '.$rb.'">'.$version_number.'</div></a>';
-            echo '<div class="tooltip">'.$version['description'].'</div>';
+            echo '<a href="./tservers/install_cb/'.$version_link.'" class="confirmCB"><div class="rb bounce tip '.$rb.'">'.$version_number.'</div></a>';
+            echo '<div class="tooltip">'.$version['title'].'</div>';
 
             if (++$i == 8) break;
           }
@@ -110,7 +108,7 @@
         </fieldset>
 
       </form>   
-               */?>
+
 
        </section> 
                         

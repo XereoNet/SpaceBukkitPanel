@@ -85,11 +85,11 @@ class TServersController extends AppController {
         $this->set('title_for_layout', __('Server'));
 
         //CraftBukkit chooser information
-/*
+
         $args = array();   
         $server = $api->call("getServer", $args, false);
 
-        $filename = 'http://ci.bukkit.org/other/latest_recommended.rss';
+        $filename = 'http://dl.bukkit.org/downloads/craftbukkit/feeds/latest-rb.rss';
         $bukkitxml = simplexml_load_file($filename);
          
         $json = json_encode($bukkitxml);
@@ -97,7 +97,7 @@ class TServersController extends AppController {
         
         $this->set('versions', $bukkitxml["channel"]["item"]);
         $this->set('server', $server);
-*/
+
         //CraftBukkit configuration information
 
         $args = array("server.properties");   
@@ -152,30 +152,26 @@ class TServersController extends AppController {
            $cb = $this->request->data["cb"];
         }            
 
-        //Check if version exists
+        //check if new files exist at all
+        //they are either called craftbukkit.jar or craftbukkit-dev.jar
 
-        //(c) Bertware 2011
-        //www.bertware.net
-        $url = 'http://ci.bukkit.org/job/dev-CraftBukkit/lastSuccessfulBuild/';
-        $file = fopen ($url,"r");
-        if (!$file) {
-        echo "<p>Unable to open remote file.\n";
-        exit;
-        }
-        while (!feof ($file)) {
-        $line = fgets ($file, 1024);
-        /* This only works if the title and its tags are on one line */
-        if (eregi ("<title>(.*)</title>", $line, $out)) {
-        $pieces = explode("#", $out[1]);
-        $latest_build = substr($pieces[1], -14, 4);
-         }
-        }
-        fclose($file);
+        $cburl1 = 'http://dl.bukkit.org/downloads/craftbukkit/get/'.$cb.'/craftbukkit-dev.jar';
+        $cburl2 = 'http://dl.bukkit.org/downloads/craftbukkit/get/'.$cb.'/craftbukkit.jar';
 
-        if($cb > $latest_build) {
-            exit("Build does not exist.");
+        if ((!(fopen($cburl1, "r"))) && (!(fopen($cburl2, "r")))) {
+
+            exit('Craftbukkit file does not exist');
+
+        } elseif (fopen($cburl1, "r") {
+
+            $new_jar = $cburl1;
+            
+        } elseif (fopen($cburl2, "r") {
+
+            $new_jar = $cburl2;
+            
         }
-   
+                  
         include("../spacebukkitcall.php");
 
         //stop the server
@@ -229,16 +225,6 @@ class TServersController extends AppController {
 
         $args = array($old_jar);   
         $api->call("deleteFile", $args, true);  
-     
-        //get new CB
-
-        $url = 'http://ci.bukkit.org/job/dev-CraftBukkit/'.$cb.'/';
-
-        $cibukkit = file_get_contents($url);
-
-        $jarfile = get_string_between($cibukkit, '<a href="artifact/target/', '">');
-
-        $new_jar = 'http://ci.bukkit.org/job/dev-CraftBukkit/'.$cb.'/artifact/target/'.$jarfile;
             
         //send new CB
 
@@ -336,63 +322,7 @@ class TServersController extends AppController {
         
     }
 
-    /*function saveConfig() {
-
-        include("../spacebukkitcall.php");
-
-        //Function to get strings
-        function get_string_between($string, $start, $end){
-        $string = " ".$string;
-        $ini = strpos($string,$start);
-        if ($ini == 0) return "";
-        $ini += strlen($start);
-        $len = strpos($string,$end,$ini) - $ini;
-        return substr($string,$ini,$len);
-        }
-
-        //load config
-     
-        $args = array("server.properties");   
-        $old = $api->call("getFileContents", $args); 
-
-        $new = $this->request->data;
-       
-        //replace config
-
-        foreach ($new as $config => $value) {
-                
-            $old_value = get_string_between($old, $config."=", "\n");
-
-            $old = str_replace($old_value, $value, $old);
-        }
-
-        //stop server
-        $args = array();
-        $api->call("stopServer", $args);       
-
-        //save config
-        
-        sleep(5);
-
-        $args = array("server.properties", $old);   
-        $api->call("setFileContents", $args);       
-
-        //start server
-        $args = array();
-        $api->call("startServer", $args);       
-
-        //Dummy call to listen for reload   
-        $args = array();   
-        $api->call("getWorlds", $args);
-
-        w_serverlog($this->Session->read("current_server"), __('[SERVERS] ').$this->Auth->user('username').__(' update the server.properties'));
-
-        $this->Session->write('Page.tab', 2);
-
-        $this->redirect($this->referer());
-        
-    }*/
-
+   
     function addTask() {
 
         if (!$this->request->is('post')) {
