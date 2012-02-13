@@ -97,7 +97,7 @@ END;
 					<!-- Start/Stop, Reload, Message, Logout -->
 
 					<div id="serverbuttons"> 
-						<a href="./global/start" id="start" class="bounce tip"></a> 
+						<a href="./global/start" id="start" class="bounce tip showOverlay" rel="Starting server..."></a> 
 							<div class="tooltip">Start server</div>						
 					</div>
 					<div id="userbuttons">

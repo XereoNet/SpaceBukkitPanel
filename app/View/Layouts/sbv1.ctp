@@ -187,12 +187,16 @@ END;
 					<!-- Start/Stop, Reload, Message, Logout -->
 
 					<div id="serverbuttons"> 
-						<a href="./global/stop" id="stop" class="bounce tip"></a> 
-							<div class="tooltip"><?php echo __('Stop server'); ?></div>						
-						<a href="./global/reload" id="reload" class="bounce tip reload"></a>
+						<a href="./global/stop" id="stop" class="bounce tip showOverlay" rel="Stopping server..."></a> 
+							<div class="tooltip"><?php echo __('Stop server'); ?></div>					
+						<a href="./global/fstop" id="fstop" class="bounce tip showOverlay" rel="Force-Stopping server..."></a> 
+							<div class="tooltip"><?php echo __('Force-Stop server'); ?></div>								
+						<a href="./global/reload" id="reload" class="bounce tip showOverlay reload" rel="Reloading server..."></a> 
 							<div class="tooltip"><?php echo __('Reload server'); ?></div>
-						<a href="./global/restart" id="restart" class="bounce tip restart"></a>
+						<a href="./global/restart" id="restart" class="bounce tip showOverlay restart" rel="Restarting server..."></a> 
 							<div class="tooltip"><?php echo __('Restart server'); ?></div>
+						<a href="./global/frestart" id="frestart" class="bounce tip showOverlay frestart" rel="Force-Restarting server..."></a> 
+							<div class="tooltip"><?php echo __('Force-Restart server'); ?></div>													
 					</div>
 					<div id="userbuttons">
 						
@@ -275,15 +279,7 @@ END;
 
 
 $(document).ready(function() {
-	$("#stop").live('click', function() {
-		showOverlay('Stopping server...');
-	});
-	$("#restart").live('click', function() {
-		showOverlay('Restarting server...');
-	});
-	$("#reload").live('click', function() {
-		showOverlay('Reloading server...');
-	});
+
 	 function loadConsole() {
 		console_wrapper = $('#console-list');
 		console_param = $(console_wrapper).attr("rel");

@@ -233,7 +233,23 @@ END;
         $this->redirect($this->referer());
   
       }
-      
+  
+      function frestart() {
+
+        include '../spacebukkitcall.php';
+
+        $args = array();   
+        $api->call("forceRestart", $args, true);  
+
+        w_serverlog($this->Session->read("current_server"), '[GLOBAL]'.$this->Auth->user('username').__(' forced a restart on the server'));
+
+        //Dummy call to listen for reload   
+        $args = array();   
+        $api->call("getWorlds", $args, true);
+
+        $this->redirect($this->referer());
+  
+      }    
       function stop() {
 
         include '../spacebukkitcall.php';
@@ -250,7 +266,23 @@ END;
         $this->redirect($this->referer());
 
       }
+      
+      function fstop() {
 
+        include '../spacebukkitcall.php';
+        $args = array();   
+        $running = $api->call("isServerRunning", $args, true);
+        if ($running == 'true') 
+        {
+        $api->call("forceStop", $args, true);
+        sleep(5);
+        }
+
+        w_serverlog($this->Session->read("current_server"), '[GLOBAL]'.$this->Auth->user('username').__(' forced the server to stop'));
+
+        $this->redirect($this->referer());
+
+      }
       function start() {
 
         include '../spacebukkitcall.php';

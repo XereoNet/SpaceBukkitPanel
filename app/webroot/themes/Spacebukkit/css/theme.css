@@ -280,6 +280,28 @@ nav#mainnav ul li.current a
 
 }
 
+
+#fstop
+
+{
+
+	background: url(../img/fstop.png) no-repeat center;
+
+	float: left;
+
+}
+
+
+#frestart
+
+{
+
+	background: url(../img/frestart.png) no-repeat center;
+
+	float: left;
+
+}
+
 #vanilla
 
 {

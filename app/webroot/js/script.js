@@ -37,7 +37,10 @@ $('document').ready(function () {
 
         return false;
     });
-   
+    $(".showOverlay").live('click', function() {
+        var text = $(this).attr('rel');
+        showOverlay(text);
+    });
 
     $(".chat-button").click(function() {
         $(".sidebar-wrap").each(function() { $(this).hide();});
