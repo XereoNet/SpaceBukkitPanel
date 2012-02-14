@@ -3,7 +3,12 @@ class InstallController extends AppController{
     
     function beforeFilter() {
         $this->Auth->allow('*');
-        parent::beforeFilter();       
+        parent::beforeFilter();  
+        $install = new File(TMP."inst.txt");
+        if (!$install->exists()) {
+          exit("You are not allowed to be here!");
+        }
+
     }
 
     function index() {
