@@ -52,10 +52,95 @@ class GlobalController extends AppController {
 
       function index() {
 
-    	$this->redirect($this->referer());
+      	$this->redirect($this->referer());
 
     }
 
+      function avatar($name = 'Antariano', $size = 100) {
+
+        $this->autoRender = false;
+
+        //1) check if avatar exists in /avatars
+
+        $avatar = new File(TMP . 'avatars' . DS . $name .'.png');
+
+        //2) check if it younger then 6h
+
+        if ($avatar->exists()) {
+
+          $last_modified = filemtime($avatar->path);
+
+          $current_time = time();
+
+          $dif = $current_time - $last_modified;
+
+        }
+
+        
+        //generate avatar if !1) || !2) and save him
+
+        if (!$avatar->exists() || !$dif > 21600 ) {
+
+          header("Content-type: image/png");
+
+          $src = @imagecreatefrompng("http://minecraft.net/skin/{$name}.png");
+
+          if (!$src) {
+            $src = @imagecreatefrompng("http://www.minecraft.net/images/char.png");
+          }
+
+          $dest   = imagecreatetruecolor(8, 8);
+          imagecopy($dest, $src, 0, 0, 8, 8, 8, 8);   // copy the face
+
+          // Check to see if the helm is not all same color
+          $bg_color = imagecolorat($src, 0, 0);
+
+          $no_helm = true;
+
+          // Check if there's any helm
+          for ($i = 1; $i <= 8; $i++) {
+            for ($j = 1; $j <= 4; $j++) {
+              // scanning helm area
+              if (imagecolorat($src, 40 + $i, 7 + $j) != $bg_color) {
+                $no_helm = false;
+              }
+            }
+
+            if (!$no_helm)
+              break;
+          }
+
+
+          if (!$no_helm) {
+            // copy the helm
+            imagecopy($dest, $src, 0, -1, 40, 7, 8, 4);
+          }
+
+          // now resize
+          $final = imagecreatetruecolor($size, $size);
+          imagecopyresized($final, $dest, 0, 0, 0, 0, $size, $size, 8, 8);
+
+          // cleanup time
+          imagepng($final, $avatar->path);
+          imagedestroy($dest);
+          imagedestroy($final);
+
+        } 
+
+          $final = file_get_contents($avatar->path);
+          $fp = fopen($avatar->path, 'rb');
+
+          // send the right headers
+          header("Content-Type: image/png");
+          header("Content-Length: " . filesize($avatar->path));
+
+          // dump the picture and stop the script
+          fpassthru($fp);
+          exit;
+
+
+      }
+      
       function getServer($id) {
 
       if ($this->request->is('ajax')) {
@@ -191,6 +276,7 @@ END;
             $args = array();   
             $time = $api->call("getUpTime", $args, false);
 
+            //echo date('d:h:m:s', $time);
             echo $time;
 
         } 

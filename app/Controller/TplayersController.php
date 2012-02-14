@@ -177,7 +177,7 @@ END;
             $actionText = '<span class=\'button-group\'><a href=\'./tplayers/heal/'.$name.'\'  class=\'button icon like ajax_table1\'>'.__('Heal').'</a> <a href=\'./tplayers/feed/'.$name.'\'  class=\'button icon like ajax_table1\'>'.__('Feed').'</a> <a href=\'./tplayers/inventory/'.$name.'\' class=\'button fancy icon user\'>'.__('Inventory').'</a></span> <span class=\'button-group\'> <a href=\'./tplayers/kill/'.$name.'\' class=\'button icon remove danger ajax_table1\'>'.__('Kill').'</a> <a href=\'./tplayers/kick/'.$name.'\' class=\'button icon remove danger ajax_table1\'>'.__('Kick').'</a> <a href=\'./tplayers/ban/'.$name.'\' class=\'button icon remove danger ajax_table3\'>'.__('Ban').'</a>  </span>';
             ECHO <<<END
                 [
-                  "<img src=\"http://minotar.net/avatar/$name/40\">",
+                  "<img src=\"./global/avatar/$name/40\">",
                   "$lifeText",
                   "$name",
                   "$gamemode",
@@ -263,7 +263,7 @@ END;
                 $action = '<span class=\"button-group\"><a href=\"./tplayers/whitelist_del/'.$w.'\"  class=\"button icon danger arrowdown ajax_table2\">'.__('Remove').'</a>';
             ECHO <<<END
                 [
-                  "<img src=\"http://minotar.net/avatar/$w/40\">",
+                  "<img src=\"./global/avatar/$w/40\">",
                   "$w",
                   "$action"
                 ]
@@ -304,7 +304,7 @@ END;
                 $action = '<span class=\"button-group\"><a href=\"./tplayers/blacklist_del/'.$b.'\"  class=\"button icon danger arrowdown ajax_table2\">'.__('Remove').'</a>';
             ECHO <<<END
                 [
-                  "<img src=\"http://minotar.net/avatar/$b/40\">",
+                  "<img src=\"./global/avatar/$b/40\">",
                   "$b",
                   "$action"
                 ]

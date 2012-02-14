@@ -6,6 +6,7 @@ app/tmp/cache/views/*
 app/tmp/logs
 app/tmp/sessions
 app/tmp/test
+app/tmp/avatars/*
 app/webroot/server/*
 !empty
 !.gitignore
