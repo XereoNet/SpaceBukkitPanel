@@ -45,7 +45,7 @@ class InstallController extends AppController{
 
       //check TMP folder
 
-      if (is_writable(TMP)):
+      if (is_writable(TMP))
       {
 
         $sting = '<p class="success">"app/tmp" folder is writable</p>';
@@ -57,14 +57,14 @@ class InstallController extends AppController{
 
         $sting = '<p class="failed">"app/tmp" folder is not writable</p>';
         $this->set('tmp_folder', $sting);
+        $this->set('result', '<p class="failed">'.__('You didn\'t pass all tests. Please go fix all issues to continue').'</p>');
+        $this->set('result_bool', 0);
 
-      $this->set('result', '<p class="failed">'.__('You didn\'t pass all tests. Please go fix all issues to continue').'</p>');
-      $this->set('result_bool', 0);
       }
 
       //check Webroot folder
 
-      if (is_writable(APP . 'webroot')):
+      if (is_writable(APP . 'webroot'))
       {
 
         $sting = '<p class="success">"app/webroot" folder is writable</p>';
@@ -83,7 +83,7 @@ class InstallController extends AppController{
 
       //check safe_mode
 
-      if ( ini_get('safe_mode')):
+      if ( ini_get('safe_mode'))
       {
 
         $sting = '<p class="success">PHP safe_mode disabled!</p>';
