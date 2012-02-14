@@ -4,11 +4,11 @@ class InstallController extends AppController{
     function beforeFilter() {
         $this->Auth->allow('*');
         parent::beforeFilter();  
-        $install = new File(TMP."inst.txt");       
+               
     }
 
     function index() {
-          if (!$install->exists()) exit("You are not allowed to be here!");
+       $install = new File(TMP."inst.txt");
   if (!$install->exists()) exit("You are not allowed to be here!");
       $this->layout = 'login';
      
@@ -16,7 +16,7 @@ class InstallController extends AppController{
 
     function step1() {
 
-          if (!$install->exists()) exit("You are not allowed to be here!");
+       $install = new File(TMP."inst.txt");
   if (!$install->exists()) exit("You are not allowed to be here!");
 
       $this->layout = 'login';
@@ -186,7 +186,7 @@ class InstallController extends AppController{
 
     public function step2() {
       
-          if (!$install->exists()) exit("You are not allowed to be here!");
+       $install = new File(TMP."inst.txt");
   if (!$install->exists()) exit("You are not allowed to be here!");
 
       require APP.'configuration.php';
@@ -270,7 +270,7 @@ class InstallController extends AppController{
 
     function step3() {
 
-          if (!$install->exists()) exit("You are not allowed to be here!");
+       $install = new File(TMP."inst.txt");
   if (!$install->exists()) exit("You are not allowed to be here!");
 
       $this->layout = 'login';
