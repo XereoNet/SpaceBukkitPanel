@@ -1319,6 +1319,8 @@ input[type="text"]: focus,form input[type="password"]: focus {
 form textarea {
   background: #111;
   color: #1b60e0
+  padding-top: 3px;
+  height: 350px
 }
 form input.xsmall {
   width: 10%
@@ -1331,10 +1333,6 @@ form input.medium {
 }
 form input.large {
   width: 69%
-}
-form textarea {
-  padding-top: 3px;
-  height: 150px
 }
 label.radio,label.checkbox {
   color: #404040;
