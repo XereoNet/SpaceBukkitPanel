@@ -8,14 +8,16 @@ class InstallController extends AppController{
     }
 
     function index() {
-      if (!$install->exists()) exit("You are not allowed to be here!");
+          if (!$install->exists()) exit("You are not allowed to be here!");
+  if (!$install->exists()) exit("You are not allowed to be here!");
       $this->layout = 'login';
      
     }
 
     function step1() {
 
-      if (!$install->exists()) exit("You are not allowed to be here!");
+          if (!$install->exists()) exit("You are not allowed to be here!");
+  if (!$install->exists()) exit("You are not allowed to be here!");
 
       $this->layout = 'login';
    
@@ -184,7 +186,8 @@ class InstallController extends AppController{
 
     public function step2() {
       
-      if (!$install->exists()) exit("You are not allowed to be here!");
+          if (!$install->exists()) exit("You are not allowed to be here!");
+  if (!$install->exists()) exit("You are not allowed to be here!");
 
       require APP.'configuration.php';
       $this->layout = 'login';
@@ -267,7 +270,8 @@ class InstallController extends AppController{
 
     function step3() {
 
-      if (!$install->exists()) exit("You are not allowed to be here!");
+          if (!$install->exists()) exit("You are not allowed to be here!");
+  if (!$install->exists()) exit("You are not allowed to be here!");
 
       $this->layout = 'login';
 
