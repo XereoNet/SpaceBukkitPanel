@@ -26,7 +26,11 @@
     <p>Seems like your php version <?php echo $php_version; ?></p><br />
     <p>Your configuration.php file <?php echo $configuration; ?></p><br />
     <p>Your database file is: <?php echo $database; ?></p><br />
-    <p>Seems like <?php echo $php_fopen; ?> and <?php echo $php_curl; ?>.</p><br />
+    <p><?php echo $php_fopen; ?></p><br />
+    <p><?php echo $php_curl; ?>.</p><br />
+    <p><?php echo $tmp_folder; ?>.</p><br />
+    <p><?php echo $webroot_folder; ?>.</p><br /><br />
+    <p><?php echo $safemode; ?>.</p><br />
 
     <p><?php echo $result; ?></p>
     </div>
