@@ -49,7 +49,7 @@ class SchedulesController extends AppController {
         Configure::write('debug', 0);
         $this->autoRender = false;
                 
-        include("../spacebukkitcall.php");
+        require APP . 'spacebukkitcall.php';
 
         }
     }
@@ -63,7 +63,7 @@ class SchedulesController extends AppController {
         Configure::write('debug', 0);
         $this->autoRender = false;
                 
-        include("../spacebukkitcall.php");
+        require APP . 'spacebukkitcall.php';
         $args = array($id);
         $api->call('runJob', $args, true);
         echo __('Ran task: ').$id;
@@ -175,7 +175,7 @@ class SchedulesController extends AppController {
             }
 
 
-            include("../spacebukkitcall.php");
+            require APP . 'spacebukkitcall.php';
             
             $args = array($data["name"], $action, $arguments, $timetype, $timeargs);
              
@@ -201,7 +201,7 @@ class SchedulesController extends AppController {
         Configure::write('debug', 0);
         $this->autoRender = false;
             
-            include("../spacebukkitcall.php");
+            require APP . 'spacebukkitcall.php';
    
             $args = array($name);
              
@@ -224,7 +224,7 @@ class SchedulesController extends AppController {
         Configure::write('debug', 0);
         $this->autoRender = false;
 
-        include("../spacebukkitcall.php");
+        require APP . 'spacebukkitcall.php';
 
         $args = array();   
         $tasks = $api->call("getJobs", $args, true);   

@@ -149,7 +149,7 @@ class GlobalController extends AppController {
             Configure::write('debug', 0);
             $this->autoRender = false;
 
-            include '../SpaceBukkitAPI.php';         
+            require APP . 'spacebukkitcall.php';        
 
             $bukkit = $this->Server->findById($id);
 
@@ -189,7 +189,7 @@ class GlobalController extends AppController {
         if ($this->request->is('ajax')) 
         {
             
-            include '../spacebukkitcall.php';
+            require APP . 'spacebukkitcall.php';
 
             $this->disableCache();
             Configure::write('debug', 0);
@@ -267,7 +267,7 @@ END;
         if ($this->request->is('ajax')) 
         {
             
-            include '../spacebukkitcall.php';
+            require APP . 'spacebukkitcall.php';
 
             $this->disableCache();
             Configure::write('debug', 0);
@@ -285,7 +285,7 @@ END;
 
       function reload() {
 
-        include '../spacebukkitcall.php';
+        require APP . 'spacebukkitcall.php';
 
         $args = array();   
         $api->call("reloadServer", $args, false);  
@@ -305,7 +305,7 @@ END;
 
       function restart() {
 
-        include '../spacebukkitcall.php';
+        require APP . 'spacebukkitcall.php';
 
         $args = array(true);   
         $api->call("restartServer", $args, true);  
@@ -322,7 +322,7 @@ END;
   
       function frestart() {
 
-        include '../spacebukkitcall.php';
+        require APP . 'spacebukkitcall.php';
 
         $args = array();   
         $api->call("forceRestart", $args, true);  
@@ -338,7 +338,7 @@ END;
       }    
       function stop() {
 
-        include '../spacebukkitcall.php';
+        require APP . 'spacebukkitcall.php';
         $args = array();   
         $running = $api->call("isServerRunning", $args, true);
         if ($running == 'true') 
@@ -355,7 +355,7 @@ END;
       
       function fstop() {
 
-        include '../spacebukkitcall.php';
+        require APP . 'spacebukkitcall.php';
         $args = array();   
         $running = $api->call("isServerRunning", $args, true);
         if ($running == 'true') 
@@ -371,7 +371,7 @@ END;
       }
       function start() {
 
-        include '../spacebukkitcall.php';
+        require APP . 'spacebukkitcall.php';
         $args = array();   
         $running = $api->call("isServerRunning", $args, true);
 
@@ -447,7 +447,7 @@ END;
 
           $command = $this->request->data;
 
-          include '../spacebukkitcall.php';     
+          require APP . 'spacebukkitcall.php';     
 
           $command = str_replace("/", "", $command['command']);
 
@@ -479,7 +479,7 @@ END;
 
             $data = $this->request->data;
 
-            include '../spacebukkitcall.php';     
+            require APP . 'spacebukkitcall.php';     
 
             $data['call'];
 
@@ -501,7 +501,7 @@ END;
             
             $data = $this->request->data;
 
-            include '../spacebukkitcall.php';     
+            require APP . 'spacebukkitcall.php';     
 
             $data['call'] = $call;
             $data['args'] = $arg;

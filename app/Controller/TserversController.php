@@ -55,7 +55,7 @@ class TServersController extends AppController {
 
         */
 
-        include '../spacebukkitcall.php';
+        require APP . 'spacebukkitcall.php';
         
         //CHECK IF SERVER IS RUNNING
 
@@ -172,7 +172,7 @@ class TServersController extends AppController {
             
         }
                   
-        include("../spacebukkitcall.php");
+        require APP . 'spacebukkitcall.php';
 
         //stop the server
 
@@ -252,7 +252,7 @@ class TServersController extends AppController {
 
         function saveConfig() {
 
-        include("../spacebukkitcall.php");
+        require APP . 'spacebukkitcall.php';
 
         //Function to get strings
         function get_string_between($string, $start, $end){
@@ -329,7 +329,7 @@ class TServersController extends AppController {
         throw new MethodNotAllowedException();
         } else {
 
-        include("../spacebukkitcall.php");
+        require APP . 'spacebukkitcall.php';
 
         $data = $this->request->data;
 
@@ -364,7 +364,7 @@ class TServersController extends AppController {
         Configure::write('debug', 0);
         $this->autoRender = false;
 
-        include("../spacebukkitcall.php");
+        require APP . 'spacebukkitcall.php';
 
         $args = array();   
         $tasks = $api->call("getTasks", $args, true);   
@@ -441,7 +441,7 @@ END;
 
     function removeTask($task) {
 
-        include("../spacebukkitcall.php");
+        require APP . 'spacebukkitcall.php';
 
         $args = array($task);   
         $tasks = $api->call("removeTask", $args, true);
@@ -454,7 +454,7 @@ END;
 
     function runTask($task, $param) {
 
-        include("../spacebukkitcall.php");
+        require APP . 'spacebukkitcall.php';
         $args = array();   
 
             if ($task == 1)  {

@@ -54,7 +54,7 @@ class DashController extends AppController {
 
     	*/
 
-        include '../spacebukkitcall.php';
+        require APP . 'spacebukkitcall.php';
         
         //CHECK IF SERVER IS RUNNING
 
@@ -242,7 +242,7 @@ class DashController extends AppController {
             Configure::write('debug', 0);
             $this->autoRender = false;
 
-   	    include("../spacebukkitcall.php");
+   	    require APP . 'spacebukkitcall.php';
 
 
 		//Function to get percentage	
@@ -275,7 +275,7 @@ class DashController extends AppController {
             Configure::write('debug', 0);
             $this->autoRender = false;
 
-   	    include("../spacebukkitcall.php");
+   	    require APP . 'spacebukkitcall.php';
 
 
 		//Function to get percentage	
@@ -337,7 +337,7 @@ END;
 
         if ($this->request->is('ajax')) 
         {
- 	      	include '../spacebukkitcall.php';     
+ 	      	require APP . 'spacebukkitcall.php';     
            
             $this->autoRender = false;
 		
@@ -380,7 +380,7 @@ END;
             
             $this->autoRender = false;
 	      	
-	      	include '../spacebukkitcall.php';     
+	      	require APP . 'spacebukkitcall.php';     
 
             $args = array();   
 
@@ -416,7 +416,7 @@ END;
 
 	      $say = $this->request->data;
 	      
-	      include '../spacebukkitcall.php';     
+	      require APP . 'spacebukkitcall.php';     
 
 	      $args = array('SpaceBukkit', "(".$this->Auth->user('username').") ".$say['say']);
 

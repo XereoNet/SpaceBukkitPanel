@@ -61,7 +61,7 @@ class TPluginsController extends AppController {
 
         */
 
-        include '../spacebukkitcall.php';
+        require APP . 'spacebukkitcall.php';
         
         //CHECK IF SERVER IS RUNNING
 
@@ -125,7 +125,7 @@ END;
         Configure::write('debug', 0);
         $this->autoRender = false;
 
-        include '../spacebukkitcall.php';
+        require APP . 'spacebukkitcall.php';
 
         //Get Plugins           
         $args = array();
@@ -224,7 +224,7 @@ END;
         Configure::write('debug', 0);
         $this->autoRender = false;
 
-        include '../spacebukkitcall.php';
+        require APP . 'spacebukkitcall.php';
 
         $args = array($plugin);   
         $plg = $api->call("getPluginInformations", $args, false);
@@ -283,7 +283,7 @@ END;
         Configure::write('debug', 0);
         $this->autoRender = false;
 
-        include '../spacebukkitcall.php';
+        require APP . 'spacebukkitcall.php';
     	
     	//Disable plugin		
     	$args = array($name);   
@@ -300,7 +300,7 @@ END;
         Configure::write('debug', 0);
         $this->autoRender = false;
 
-        include '../spacebukkitcall.php';
+        require APP . 'spacebukkitcall.php';
     			
 		//Disable plugin		
 		$args = array($name);   
@@ -313,7 +313,7 @@ END;
 
     function update_plugin($name) {
 
-        include '../spacebukkitcall.php';
+        require APP . 'spacebukkitcall.php';
                 
         //Disable plugin        
         $args = array($name);   
@@ -327,7 +327,7 @@ END;
 
     function config($name) {
 
-        include '../spacebukkitcall.php';
+        require APP . 'spacebukkitcall.php';
 
         //check if plugin has folder
 
@@ -372,7 +372,7 @@ END;
         
         $data = $this->request->data;
 
-        include '../spacebukkitcall.php';
+        require APP . 'spacebukkitcall.php';
 
         $path = "./plugins/".$data["plugin"]."/".$data["file"];
         $content = $data["config_content"];
@@ -423,7 +423,7 @@ END;
             throw new MethodNotAllowedException();
         } else {
 
-        include '../spacebukkitcall.php';
+        require APP . 'spacebukkitcall.php';
 
         $url = $this->request->data;
 
@@ -458,7 +458,7 @@ END;
 
     function remove_plugin($name) {
 
-        include '../spacebukkitcall.php';
+        require APP . 'spacebukkitcall.php';
 
         //DeInstall plugin        
         $args = array($name, false);   

@@ -54,7 +54,7 @@ class TWorldsController extends AppController {
 
         */
 
-        include '../spacebukkitcall.php';
+        require APP . 'spacebukkitcall.php';
         
         //CHECK IF SERVER IS RUNNING
 
@@ -122,7 +122,7 @@ class TWorldsController extends AppController {
             $this->autoRender = false;
 
             //call API
-            include '../spacebukkitcall.php';
+            require APP . 'spacebukkitcall.php';
             //set clear arguments
             $args = array();
             //get World Management Plugin
@@ -333,7 +333,7 @@ END;
     }
 
     function getTime($wrld){
-                include '../spacebukkitcall.php';
+                require APP . 'spacebukkitcall.php';
         //get world specific information
         $args = array($wrld);
         $worldInfo = $api->call("getWorldInformations", $args, true);
@@ -354,7 +354,7 @@ END;
             $this->autoRender = false;
         }
         //include API
-        include '../spacebukkitcall.php';
+        require APP . 'spacebukkitcall.php';
         $args = array();
         $wmpl = $this->getWMPL($api->call("getPlugins", $args, false));
         //import multiworld time command
@@ -380,7 +380,7 @@ END;
             Configure::write('debug', 0);
             $this->autoRender = false;
             //include API
-            include '../spacebukkitcall.php';
+            require APP . 'spacebukkitcall.php';
             $args = array();
             //get multiworld plugin
             $wmpl = $this->getWMPL($api->call("getPlugins", $args, false));
@@ -416,7 +416,7 @@ END;
             Configure::write('debug', 0);
             $this->autoRender = false;
             //include API
-            include '../spacebukkitcall.php';
+            require APP . 'spacebukkitcall.php';
             $args = array();
             //get multiworld plugin
             $wmpl = $this->getWMPL($api->call("getPlugins", $args, false));
@@ -453,7 +453,7 @@ END;
             Configure::write('debug', 0);
             $this->autoRender = false;
             //include API
-            include '../spacebukkitcall.php';
+            require APP . 'spacebukkitcall.php';
             $args = array();
             //get multiworld plugin
             $wmpl = $this->getWMPL($api->call("getPlugins", $args, false));
@@ -484,7 +484,7 @@ END;
     }
 
     function getWorldDiff($wrld) {
-        include '../spacebukkitcall.php';
+        require APP . 'spacebukkitcall.php';
         //get world specific information
         $args = array($wrld);
         $worldInfo = $api->call("getWorldInformations", $args, false);
@@ -497,7 +497,7 @@ END;
     function setWorldDiff($wrld, $diff) {
             $this->autoRender = false;
             //include API
-            include '../spacebukkitcall.php';
+            require APP . 'spacebukkitcall.php';
             $args = array();
             //get multiworld plugin
             $wmpl = $this->getWMPL($api->call("getPlugins", $args, false));
@@ -545,7 +545,7 @@ END;
             Configure::write('debug', 0);
             $this->autoRender = false;
             //include API
-            include '../spacebukkitcall.php';
+            require APP . 'spacebukkitcall.php';
             $args = array();
             //get multiworld plugin
             $wmpl = $this->getWMPL($api->call("getPlugins", $args, false));
@@ -570,7 +570,7 @@ END;
             Configure::write('debug', 0);
             $this->autoRender = false;
             //include API
-            include '../spacebukkitcall.php';
+            require APP . 'spacebukkitcall.php';
             $args = array();
             $wmpl = $this->getWMPL($api->call("getPlugins", $args, false));
             //give load command for said multiworld plugin
@@ -595,7 +595,7 @@ END;
             $this->disableCache();
             Configure::write('debug', 0);
             $this->autoRender = false;
-            include '../spacebukkitcall.php';
+            require APP . 'spacebukkitcall.php';
             //stop the server
             $args = array();
             $api->call("hold", $args, true);
@@ -627,7 +627,7 @@ END;
                 $this->redirect(array('controller' => 'tworlds', 'action' => 'index'));
             }else{
                 //include API
-                include '../spacebukkitcall.php';
+                require APP . 'spacebukkitcall.php';
                 $args = array();
                 $wmpl = $this->getWMPL($api->call("getPlugins", $args, false));
                 if($wmpl == 1){
@@ -657,7 +657,7 @@ END;
         }
 
 
-        include '../spacebukkitcall.php';
+        require APP . 'spacebukkitcall.php';
 
 		//notify users
 		$args = array('SpaceBukkit', '$bServer will shut down shortly due to map mainteniance with MapAutoTrim'); 
@@ -688,7 +688,7 @@ END;
         }
 
 
-        include '../spacebukkitcall.php';
+        require APP . 'spacebukkitcall.php';
 
         //notify users
         $args = array('SpaceBukkit', '$bServer will shut down shortly due to map mainteniance with Chunkster'); 

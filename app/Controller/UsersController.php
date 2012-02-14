@@ -168,7 +168,7 @@ class UsersController extends AppController {
 
         //get all languages
 
-        require '../configuration.php';
+        require APP . 'configuration.php';
 
         $this->set('languages', $languages);
 
@@ -268,7 +268,7 @@ class UsersController extends AppController {
 
         //get all languages
 
-        require '../configuration.php';
+        require APP 'configuration.php';
 
         $this->set('languages', $languages);
 
@@ -385,7 +385,7 @@ class UsersController extends AppController {
 
         //get all languages
 
-        require '../configuration.php';
+        require APP .'configuration.php';
 
         $this->set('languages', $languages);
 

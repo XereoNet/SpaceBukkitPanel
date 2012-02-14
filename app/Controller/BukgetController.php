@@ -50,7 +50,7 @@ class BukgetController extends AppController {
       $this->autoRender = false;
 
        //get all plugins installed
-      include '../spacebukkitcall.php';
+      require APP . 'spacebukkitcall.php';
 
       $args = array();   
       $installed = $api->call("getPlugins", $args, false); 
@@ -143,7 +143,7 @@ END;
       Configure::write('debug', 0);
       $this->autoRender = false;   
       
-      include '../spacebukkitcall.php';
+      require APP . 'spacebukkitcall.php';
 
       $args = array($name);   
       $api->call("pluginInstall", $args, true);    

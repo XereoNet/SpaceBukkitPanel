@@ -138,7 +138,7 @@ class AppController extends Controller {
  *   3)  Check for: messages, updates, doodles
 ##################################################### */
       
-      require '../configuration.php';
+      require APP.'configuration.php';
 
     if ($this->action == "index") {
 
