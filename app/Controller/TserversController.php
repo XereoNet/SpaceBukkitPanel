@@ -155,8 +155,8 @@ class TServersController extends AppController {
         //check if new files exist at all
         //they are either called craftbukkit.jar or craftbukkit-dev.jar
 
-        $cburl1 = 'http://dl.bukkit.org/downloads/craftbukkit/get/'.$cb.'/craftbukkit-dev.jar';
-        $cburl2 = 'http://dl.bukkit.org/downloads/craftbukkit/get/'.$cb.'/craftbukkit.jar';
+        $cburl1 = 'http://dl.bukkit.org/downloads/craftbukkit/get/build-'.$cb.'/craftbukkit-dev.jar';
+        $cburl2 = 'http://dl.bukkit.org/downloads/craftbukkit/get/build-'.$cb.'/craftbukkit.jar';
 
         if ((!(fopen($cburl1, "r"))) && (!(fopen($cburl2, "r")))) {
 
