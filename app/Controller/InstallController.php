@@ -81,25 +81,6 @@ class InstallController extends AppController{
       $this->set('result_bool', 0);
       }
 
-      //check safe_mode
-
-      if ( ini_get('safe_mode'))
-      {
-
-        $sting = '<p class="success">PHP safe_mode disabled!</p>';
-        $this->set('safemode', $sting);
-
-      }
-      else
-      {
-
-        $sting = '<p class="failed">PHP safe_mode enabled!</p>';
-        $this->set('safemode', $sting);
-
-      $this->set('result', '<p class="failed">'.__('You didn\'t pass all tests. Please go fix all issues to continue').'</p>');
-      $this->set('result_bool', 0);
-      }
-
       //check configuration writability
 
       $conf = new File(APP."configuration.php");

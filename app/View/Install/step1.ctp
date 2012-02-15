@@ -30,7 +30,6 @@
     <p><?php echo $php_curl; ?>.</p><br />
     <p><?php echo $tmp_folder; ?>.</p><br />
     <p><?php echo $webroot_folder; ?>.</p><br /><br />
-    <p><?php echo $safemode; ?>.</p><br />
 
     <p><?php echo $result; ?></p>
     </div>
