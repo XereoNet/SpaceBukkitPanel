@@ -158,9 +158,10 @@ class TServersController extends AppController {
         if(is_numeric($cb)) {
             $cburl1 = 'http://dl.bukkit.org/downloads/craftbukkit/get/build-'.$cb.'/craftbukkit-dev.jar';
             $cburl2 = 'http://dl.bukkit.org/downloads/craftbukkit/get/build-'.$cb.'/craftbukkit.jar';
+        } else {
+        	$cburl1 = 'http://dl.bukkit.org/downloads/craftbukkit/get/'.$cb.'/craftbukkit-dev.jar';
+        	$cburl2 = 'http://dl.bukkit.org/downloads/craftbukkit/get/'.$cb.'/craftbukkit.jar';	
         }
-        $cburl1 = 'http://dl.bukkit.org/downloads/craftbukkit/get/'.$cb.'/craftbukkit-dev.jar';
-        $cburl2 = 'http://dl.bukkit.org/downloads/craftbukkit/get/'.$cb.'/craftbukkit.jar';
 
         if ((!(fopen($cburl1, "r"))) && (!(fopen($cburl2, "r")))) {
 
