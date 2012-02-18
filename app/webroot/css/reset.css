@@ -48,5 +48,5 @@ table {
 }
 
 .floatright {
-	float: right;
+	float: right !important;
 }

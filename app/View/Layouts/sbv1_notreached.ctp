@@ -122,7 +122,7 @@ END;
 					<!-- Navigation -->
 					<nav id="mainnav">
 						<ul>
-					        <li class="bounce fadein"> <a href="./tsettings"> <span class="icon settings"></span> <?php echo __('Settings'); ?> </a> </li>
+					        <li class="bounce fadein floatright"> <a href="./tsettings"> <span class="icon settings"></span> <?php echo __('Settings'); ?> </a> </li>
 						</ul>
 					</nav>
 					<!-- End Navigation --> 

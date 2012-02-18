@@ -31,7 +31,7 @@
 
 <body>
 <div class="screen_overlay">
- <div>text...</div>
+ <div></div>
 </div>
 <?php if((isset($spacebukkitbuildready)) && ($user_perm['is_super'] == 1)) {?>
 <div class="top_message black slideDown">

@@ -58,6 +58,8 @@ class GlobalController extends AppController {
 
       function avatar($name = 'Antariano', $size = 100) {
 
+        header("Content-type: image/png");
+
         $this->autoRender = false;
 
         //1) check if avatar exists in /avatars
@@ -74,19 +76,15 @@ class GlobalController extends AppController {
 
           $dif = $current_time - $last_modified;
 
-        }
-
-        
+        }       
         //generate avatar if !1) || !2) and save him
 
         if (!$avatar->exists() || !$dif > 21600 ) {
 
-          header("Content-type: image/png");
-
           $src = @imagecreatefrompng("http://minecraft.net/skin/{$name}.png");
 
           if (!$src) {
-            $src = @imagecreatefrompng("http://www.minecraft.net/images/char.png");
+            $src = @imagecreatefrompng(APP . 'webroot/img/char.png');
           }
 
           $dest   = imagecreatetruecolor(8, 8);
@@ -122,22 +120,18 @@ class GlobalController extends AppController {
 
           // cleanup time
           imagepng($final, $avatar->path);
+
           imagedestroy($dest);
           imagedestroy($final);
+          readfile($avatar->path);
+          exit();
 
-        } 
+        } else {
+          
+          readfile($avatar->path);
+          exit();
 
-          $final = file_get_contents($avatar->path);
-          $fp = fopen($avatar->path, 'rb');
-
-          // send the right headers
-          header("Content-Type: image/png");
-          header("Content-Length: " . filesize($avatar->path));
-
-          // dump the picture and stop the script
-          fpassthru($fp);
-          exit;
-
+        }
 
       }
       

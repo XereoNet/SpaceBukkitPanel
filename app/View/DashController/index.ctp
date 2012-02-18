@@ -18,7 +18,7 @@
         <li class="bounce fadein"> <a href="./tservers"> <span class="icon server"></span><?php echo __(' Server ') ?></a> </li>
         <?php } ?>
         <?php if ($is_super == 1) { ?>
-        <li class="bounce fadein"> <a href="./tsettings"> <span class="icon settings"></span><?php echo __(' Settings ') ?></a> </li>
+        <li class="bounce fadein floatright"> <a href="./tsettings"> <span class="icon settings"></span><?php echo __(' Settings ') ?></a> </li>
         <?php } ?>
 	</ul>
 </nav>
