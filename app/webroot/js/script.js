@@ -31,6 +31,7 @@ $('document').ready(function () {
                 $(this).siblings('.active').removeClass('active');             
                 $(this).addClass('active');
                 $("#sidebar-console-wrap").show();
+                $('#console-list').html('<div class="preloader"><div><img src="./img/big_loader.gif" /></div></div>');
             } else {
                 $(this).removeClass('active');
             }
@@ -49,6 +50,8 @@ $('document').ready(function () {
                 $(this).siblings('.active').removeClass('active');
                 $(this).addClass('active');
                 $("#sidebar-chat-wrap").show();
+                $('.chat_chat').html('<div class="preloader"><div><img src="./img/big_loader.gif" /></div></div>');
+
             } else {
                 $(this).removeClass('active');
             }
@@ -71,8 +74,8 @@ $('document').ready(function () {
 
     $('.console-controls li').each(function () { $(this).removeClass('selected-1'); });
     $(this).parent('li').addClass('selected-1');
-    $('#console-list').attr('rel', rel).html('<div class="preloader"><div><img src="./img/big_loader.gif" /></div></div>');
-   
+    $('#console-list').attr('rel', rel).addClass('loading-console').html('<div class="preloader"><div><img src="./img/big_loader.gif" /></div></div>');
+
     e.preventDefault();  
     return false;
 

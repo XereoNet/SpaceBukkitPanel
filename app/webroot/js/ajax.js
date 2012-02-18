@@ -51,10 +51,17 @@ function doAndRefresh(container,source,interval) {
 };
 
 function doAndRefreshChat(container,source,interval) {
- $(container).html(ajax_load).load(source, function redoRefresh() {
-  setTimeout(function() {$(container).load(source, redoRefresh)} , interval);
-
-  });  
+  if ($('.chat-button').hasClass('active')) {
+       $(container).html(ajax_load).load(source, function redoRefresh2() {
+        setTimeout(function() {$(container).load(source, redoRefresh2)} , interval);
+        });  
+  } 
+  else
+  {
+        setTimeout(function() {
+        doAndRefreshChat(container, source, interval)
+      }, 1000);
+  }
 
 };
 

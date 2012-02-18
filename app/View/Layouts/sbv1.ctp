@@ -280,12 +280,50 @@ END;
 
 $(document).ready(function() {
 
-	 function loadConsole() {
-		console_wrapper = $('#console-list');
-		console_param = $(console_wrapper).attr("rel");
-		console_url = './global/getConsole/'+console_param;	 	
-		setTimeout(function() {$(console_wrapper).load(console_url, loadConsole)} , 5000); 
-	 } 
+
+	var console_wrapper = $('#console-list');
+
+	function loadConsole() {
+
+		if ($('.console-button').hasClass('active')) {
+
+		var console_param = $(console_wrapper).attr("rel");
+		var console_url = './global/getConsole/'+console_param;	 
+			
+		$.ajax({
+
+			  url: console_url,
+			  cache: false,
+			  success: function(data){
+			  	if (console_wrapper.hasClass("console-loading"))
+			  	{
+			  		$(this).removeClass("console-loading");
+
+						setTimeout(function() {
+						    loadConsole()
+						  }, 1000);
+
+			  	}
+			  	else
+			  	{
+			  		$(console_wrapper).html(data);
+
+						setTimeout(function() {
+						    loadConsole()
+						  }, 1000);
+			  	}
+
+			  }});
+
+		}
+		else 
+		{
+		setTimeout(function() {
+		    loadConsole()
+		  }, 1000);
+		}
+	} 
+
 
 	loadConsole();
 	doAndRefresh('#server-uptime', './global/getUpTime', 3000);
@@ -303,7 +341,7 @@ $(document).ready(function() {
     /* Send the data using post and put the results in a div */
     $.post(url, {say: term},
       function( data ) {
-         notifications.show(data);
+        
       }
     );
     $(".chatarea").val('');
@@ -331,7 +369,8 @@ $(document).ready(function() {
    		$('.commandarea').val('');
 
 	  });  
-  doAndRefresh('.chat_list', './dash/get_chat_players', 10000);
+
+  doAndRefreshChat('.chat_list', './dash/get_chat_players', 10000);
   doAndRefreshChat('.chat_chat', './dash/get_chat_new', 1000);
 
 });
