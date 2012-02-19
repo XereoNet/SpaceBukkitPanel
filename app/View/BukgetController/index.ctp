@@ -128,7 +128,7 @@ $("document").ready(function() {
 		selectedMenu		= selectedDiv+'_menu';
 		selectedLis 		= selectedMenu+' li';
 		source 				= "./bukget/getPlugins/"+$(this).attr('rel');
-		ajax_load 			= '<img src="./img/spinner-big.gif" alt="Loading..." />'; 
+		ajax_load 			= '<div class="preloader"><div><img src="./img/big_loader.gif" /></div></div>'; 
 		selectedMargin		= $(selectedDiv).css('margin-left');
 		selectedParent		= $(this).parents('.additional-block');
 		sliderMargin		= $('.slider').css('margin-left');
@@ -138,7 +138,7 @@ $("document").ready(function() {
 
 		$(selectedMenu).html(ajax_load).load(source, function() 
 		{
-			$(selectedMenu).listnav();
+			//$(selectedMenu).listnav();
 		});
 
 		$(selectedFilter).keyup(function(){

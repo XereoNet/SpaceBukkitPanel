@@ -21,6 +21,7 @@
 
 <!-- Load theme -->
 <link rel="stylesheet" href="<?php echo $this->webroot; ?>themes/<?php echo $current_theme?>/css/theme.css" /> 
+<link rel="stylesheet" href="<?php echo $this->webroot; ?>css/nyroModal.css" type="text/css" media="screen" />
 
 <!-- Load Jquery -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js" type="text/javascript"></script>
@@ -268,8 +269,10 @@ END;
 	<script src="<?php echo $this->webroot; ?>js/ajax.js"></script> 
 	<script src="<?php echo $this->webroot; ?>js/jquery.placeholder.js"></script> 
 	<script src="<?php echo $this->webroot; ?>js/jquery.tools.min.js"></script> 
-	<script src="<?php echo $this->webroot; ?>js/jquery.colorbox-min.js"></script>
-	<script src="<?php echo $this->webroot; ?>js/jquery.quicksand.js"></script>
+	<script src="<?php echo $this->webroot; ?>js/jquery.nyroModal.custom.js"></script>
+	<!--[if IE 6]>
+		<script type="text/javascript" src="<?php echo $this->webroot; ?>js/jquery.nyroModal-ie6.min.js"></script>
+	<![endif]-->
 	<script>
 	var notifications = $('body').ttwSimpleNotifications({
     position:'bottom right',

@@ -14,13 +14,10 @@ $('document').ready(function () {
     $('#mainnav a').click(function () {
         $("#loading").fadeIn();
     });
-    $('.fancy').live('click', function () {
-        $.fn.colorbox({
-            href: $(this).attr('href'),
-            open: true,
-            'top': '2%',
-            "scrolling": false
-        });
+
+    $('.fancy').live('click', function (e) {
+        href = $(this).attr('href');
+        $.nmManual(href);
         return false;
     });
   
@@ -35,9 +32,9 @@ $('document').ready(function () {
             } else {
                 $(this).removeClass('active');
             }
-
         return false;
     });
+
     $(".showOverlay").live('click', function() {
         var text = $(this).attr('rel');
         showOverlay(text);

@@ -35,7 +35,7 @@ class BukgetController extends AppController {
     function index() {
       
   	//get all categories
-  	$cats = json_decode(file_get_contents("http://bukget.org/api/categories"));
+  	$cats = json_decode(file_get_contents("http://api.bukget.org/api/categories"));
 
 	  //view-specific settings
     $this->layout = 'popup';
@@ -44,7 +44,7 @@ class BukgetController extends AppController {
     }
 
     function getPlugins($cat) {
-
+      set_time_limit(60);
       if ($this->request->is('ajax')) {
       $this->disableCache();
       $this->autoRender = false;
@@ -68,7 +68,7 @@ class BukgetController extends AppController {
       //get all plugins in the cat
 
       $cat = str_replace("#", "", $cat); 
-      $plugins = json_decode(file_get_contents("http://bukget.org/api/category/".$cat));
+      $plugins = json_decode(file_get_contents("http://api.bukget.org/api/category/".$cat));
 
       foreach ($plugins as $plugin) {
 

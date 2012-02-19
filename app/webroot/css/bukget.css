@@ -1,0 +1,15 @@
+#wrapper.bukget {
+  min-width: 700px;
+  min-height: 500px;
+  border-radius: 0;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  max-width: 960px;
+  background-color: #fefefe
+}
+.bukget-header {
+	background: url(../img/bukget/header-bg.png);
+	width: 100%;
+	height: 70px;
+	z-index: 99999;
+}
