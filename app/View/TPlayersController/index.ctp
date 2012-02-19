@@ -43,6 +43,7 @@
     <header>
 
       <h2><?php echo __('Online Players') ?></h2>
+      <a><input type="checkbox" onchange="refresh_check = this.checked" name="auto_refresh" value="1" checked>Auto refresh</a>
       <a href="#" id="update_players" class="button icon reload floatright" style="right: 250px"><?php echo __('Refresh') ?></a>
 
     </header>
@@ -217,6 +218,8 @@
 </section>
 <!-- End #content --> 
 <script>
+var refresh_check = true;
+
 $('document').ready(function() {
 
   Table1 = $('.adtb').dataTable( {
@@ -236,12 +239,15 @@ $('document').ready(function() {
   } );
 
   var refreshId = setInterval(function() {
-    $.get('./tplayers/shouldIgetPlayers', function(data) {
-    if(data == '1') {
-      Table1.fnReloadAjax("./tplayers/getPlayers")
-    } 
+    if(refresh_check === true){
+      $.get('./tplayers/shouldIgetPlayers', function(data) {
+      if(data == '1') {
+        Table1.fnReloadAjax("./tplayers/getPlayers")
+      } 
     });
+  }
 }, '8000');
+
 
   $('#update_players').click(function() {
     Table1.fnReloadAjax("./tplayers/getPlayers")
