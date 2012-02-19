@@ -31,6 +31,10 @@ class Bukget2Controller extends AppController {
     public $components = array('RequestHandler');
 
     function index() {
+      
+	  //get all categories
+	  $cats = json_decode(file_get_contents("http://api.bukget.org/api/categories"));
+	  $this->set('cats', $cats);
 
   	  //view-specific settings
       $this->layout = 'bukget';

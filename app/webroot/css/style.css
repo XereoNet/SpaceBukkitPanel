@@ -713,9 +713,9 @@ nav#smalltabs ul li.current a,nav#popuptabs ul li.current a {
 }
 .box, .table_container {
   background-color: #f7f7f7;
-  -webkit-box-shadow: 0 0 15px rgba(0,0,0,0.57);
-  -moz-box-shadow: 0 0 15px rgba(0,0,0,0.57);
-  box-shadow: 0 0 15px rgba(0,0,0,0.57);
+  -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
       -moz-border-top-left-radius: 5px;
@@ -1562,6 +1562,14 @@ a: focus {
   -webkit-border-radius: 0;
   max-width: 960px;
   background-color: #fefefe
+}
+#wrapper.bukget {
+  min-width: 960px;
+  min-height: 500px;
+  border-radius: 0;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  max-width: 960px;
 }
 #wrapper.popup #content {
   padding: 5px 15px 25px 15px;

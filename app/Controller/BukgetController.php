@@ -36,10 +36,10 @@ class BukgetController extends AppController {
       
   	//get all categories
   	$cats = json_decode(file_get_contents("http://api.bukget.org/api/categories"));
+    $this->set('cats', $cats);
 
 	  //view-specific settings
     $this->layout = 'popup';
-    $this->set('cats', $cats);
  
     }
 

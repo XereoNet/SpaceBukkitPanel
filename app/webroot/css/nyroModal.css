@@ -34,6 +34,7 @@
 	margin: 25px;
 	background: #fff;
 	z-index: 9999;
+	overflow: hidden !important;
 }
 .nyroModalCont iframe {
 	width: 600px;

@@ -1,15 +1,61 @@
-#wrapper.bukget {
-  min-width: 700px;
-  min-height: 500px;
-  border-radius: 0;
-  -moz-border-radius: 0;
-  -webkit-border-radius: 0;
-  max-width: 960px;
-  background-color: #fefefe
+.bukget-wrapper {
+  background: #fefefe url(../img/bukget/bg.png) repeat top left;
+  width: 960px;
+  height: 550px;
 }
 .bukget-header {
 	background: url(../img/bukget/header-bg.png);
 	width: 100%;
 	height: 70px;
 	z-index: 99999;
+}
+.bukget-header h1 {
+  background: url(../img/bukget/logo.png) no-repeat center;
+  float: left;
+  height: 41px;
+  text-indent: -9999px;
+  width: 243px;
+  margin: 15px 0 20px 10px;
+}
+.bukget-header input[type="text"] {
+  float: left;
+  background: ;
+  height: 25px;
+  text-indent: -9999px;
+  width: 250px;
+  margin: 25px 10px 20px 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+  -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+  -ms-transition: border linear 0.2s, box-shadow linear 0.2s;
+  -o-transition: border linear 0.2s, box-shadow linear 0.2s;
+  transition: border linear 0.2s, box-shadow linear 0.2s;
+  display: inline-block;
+  padding: 4px;
+  margin-bottom: 9px;
+  font-size: 13px;
+  line-height: 18px;
+  color: #555555;
+  border: 1px solid #ccc;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background: #fefefe;
+  float: right;
+}
+
+.bukget-header input[type="text"]:focus {
+  border-color: rgba(82, 168, 236, 0.8);
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+  outline: 0;
+  outline: thin dotted \9;
+  /* IE6-9 */
+}
+
+.bukget-content {
+  padding: 10px;
 }
