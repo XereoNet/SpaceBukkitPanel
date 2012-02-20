@@ -149,7 +149,7 @@ class AppController extends Controller {
  
         //get LATEST SpaceBukkit version
 
-        $filename = 'http://spacebukkit.xereo.net/build/build.xml';
+        $filename = 'http://dl.nope.bz/sb/build/build.xml';
         $l_sb = simplexml_load_file($filename); 
 
         $json = json_encode($l_sb);
@@ -169,7 +169,7 @@ class AppController extends Controller {
 
         //check for uncle Ant's messages
 
-        $filename = 'http://spacebukkit.xereo.net/build/message.xml';
+        $filename = 'http://dl.nope.bz/sb/build/message.xml';
         $message = simplexml_load_file($filename); 
 
         $json = json_encode($message);
@@ -198,7 +198,7 @@ class AppController extends Controller {
 
         if ($message["DOODLES"]["STATUS"] > 0) {
 
-            $this->set('doodle', "http://spacebukkit.xereo.net/build/".$message["DOODLES"]["IMAGE"]);
+            $this->set('doodle', "http://dl.nope.bz/sb/build/".$message["DOODLES"]["IMAGE"]);
         }
 
     }
