@@ -46,6 +46,7 @@ class BukgetController extends AppController {
     function getPlugins($cat) {
       set_time_limit(60);
       if ($this->request->is('ajax')) {
+      
       $this->disableCache();
       $this->autoRender = false;
 
@@ -83,53 +84,12 @@ class BukgetController extends AppController {
             <div class="first_row">
               <div class="col left col_2_3">
                 <h4>$plugin</h4>
-                <a href="#" class="button icon arrowdown more">More info</a>
               </div>
               <div class="col right col_1_3" style="text-align: right; margin-top: 3px">
                 $button
               </div>
             </div>
-            <div class="details">
-              <div class="col left">
-                 <table class="table"> 
-
-                        <tbody> 
-                            <tr> 
-                                <td>Authors</td> 
-                                <td class="ar"></td> 
-                            </tr> 
-                            <tr> 
-                                <td>Categories</td> 
-                                <td class="ar"></td> 
-                            </tr> 
-                            <tr> 
-                                <td>Bukkitdev</td> 
-                                <td class="ar"></td> 
-                            </tr> 
-                        </tbody> 
-
-                    </table>
-              </div>
-              <div class="col right">
-                 <table class="table"> 
-
-                        <tbody> 
-                            <tr> 
-                                <td>Status</td> 
-                                <td class="ar"></td> 
-                            </tr> 
-                            <tr> 
-                                <td>Hard Dependencies</td> 
-                                <td class="ar"></td> 
-                            </tr> 
-                            <tr> 
-                                <td>Soft Dependencies</td> 
-                                <td class="ar"></td> 
-                            </tr> 
-                        </tbody> 
-                    </table>
-              </div>            
-          </li>
+</li>
 END;
         } 
       }  

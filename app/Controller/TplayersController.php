@@ -301,7 +301,7 @@ END;
             echo '{ "aaData": [';  
                          
             foreach ($blacklist as $b) {
-                $action = '<span class=\"button-group\"><a href=\"./tplayers/blacklist_del/'.$b.'\"  class=\"button icon danger arrowdown ajax_table2\">'.__('Remove').'</a>';
+                $action = '<span class=\"button-group\"><a href=\"./tplayers/blacklist_del/'.$b.'\"  class=\"button icon danger arrowdown ajax_table3\">'.__('Remove').'</a>';
             ECHO <<<END
                 [
                   "<img src=\"./global/avatar/$b/40\" class=\"avatar\" />",

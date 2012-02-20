@@ -66,9 +66,7 @@
             
             <?php
 
-            if ($edituser["User"]["is_super"] == 1){
-
-                foreach ($all_servers as $server) {
+            foreach ($all_servers as $server) {
 
                   $check = "";
 
@@ -76,41 +74,10 @@
 
                   $output = '<option value="'.$server["Server"]['id'].'"'.$check.'>'.$server["Server"]['title'].'</option>';
                  
-                  echo $output;
-
-                }
-             
-            } else {
-
-                foreach ($all_servers as $server) {
-
-                    $check = "";
-
-                    foreach ($edituser["ServersUsers"] as $su) {
-                      
-                      if ($su["server_id"] == $server["Server"]['id']) {
-                        
-                        $output = '<option value="'.$server["Server"]['id'].'"'.$check.'>'.$server["Server"]['title'].'</option>';
-                        break;
-
-                      } else { 
-
-                        $output = '';
-
-                      }
-
-                    }
-                    
-                    echo $output;
-            
-                }          
+                  echo $output;   
 
             }
-            
-
-            
-            
-
+                     
             ?>
             </select>
       </div>

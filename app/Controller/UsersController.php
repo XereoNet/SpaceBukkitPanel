@@ -85,6 +85,8 @@ class UsersController extends AppController {
                 $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
             }
         }
+            $this->loadModel("Server");
+            $this->set('all_servers', $this->Server->find("all"));        
 
         /*
 

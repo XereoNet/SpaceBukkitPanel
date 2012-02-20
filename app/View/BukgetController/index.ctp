@@ -1,4 +1,3 @@
-<script src="<?php echo $this->webroot; ?>js/jquery.listnav.js"></script> 
 <div id="bukget">
 	<div class="top_bar">
 		<h2>
@@ -138,7 +137,7 @@ $("document").ready(function() {
 
 		$(selectedMenu).html(ajax_load).load(source, function() 
 		{
-			//$(selectedMenu).listnav();
+			$(selectedMenu).listnav();
 		});
 
 		$(selectedFilter).keyup(function(){
