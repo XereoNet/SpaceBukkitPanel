@@ -189,9 +189,7 @@ END;
 
 					<div id="serverbuttons"> 
 						<a href="./global/stop" id="stop" class="bounce tip showOverlay" rel="Stopping server..."></a> 
-							<div class="tooltip"><?php echo __('Stop server'); ?></div>					
-						<a href="./global/fstop" id="fstop" class="bounce tip showOverlay" rel="Force-Stopping server..."></a> 
-							<div class="tooltip"><?php echo __('Force-Stop server'); ?></div>								
+							<div class="tooltip"><?php echo __('Stop server'); ?></div>											
 						<a href="./global/reload" id="reload" class="bounce tip showOverlay reload" rel="Reloading server..."></a> 
 							<div class="tooltip"><?php echo __('Reload server'); ?></div>
 						<a href="./global/restart" id="restart" class="bounce tip showOverlay restart" rel="Restarting server..."></a> 
@@ -270,6 +268,7 @@ END;
 	<script src="<?php echo $this->webroot; ?>js/jquery.placeholder.js"></script> 
 	<script src="<?php echo $this->webroot; ?>js/jquery.tools.min.js"></script> 
 	<script src="<?php echo $this->webroot; ?>js/jquery.nyroModal.custom.js"></script>
+	<script src="<?php echo $this->webroot; ?>js/jquery.listnav.js"></script>
 	<!--[if IE 6]>
 		<script type="text/javascript" src="<?php echo $this->webroot; ?>js/jquery.nyroModal-ie6.min.js"></script>
 	<![endif]-->

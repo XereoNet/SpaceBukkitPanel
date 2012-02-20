@@ -20,7 +20,14 @@ $('document').ready(function () {
         $.nmManual(href);
         return false;
     });
-  
+
+
+    $('.bukget_pop').live('click', function (e) {
+        href = $(this).attr('href');
+        $.nmManual(href, {sizes: { W: 960, H: 648, initW: 960, initH: 648, hMargin: 0 }});
+        return false;
+    });
+     
     $(".console-button").click(function() {
         $(".sidebar-wrap").each(function() { $(this).hide();});
 

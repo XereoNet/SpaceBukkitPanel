@@ -35,6 +35,7 @@
 	background: #fff;
 	z-index: 9999;
 	overflow: hidden !important;
+	max-height: 650px !important;
 }
 .nyroModalCont iframe {
 	width: 600px;
