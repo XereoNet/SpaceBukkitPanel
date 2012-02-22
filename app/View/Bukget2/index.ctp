@@ -54,24 +54,21 @@ END;
 		Last Updated
 		</h3>
 	</div>
+	<div class="bukget-list">
 
-	<ul class="bukget-list">
-		<li>
-		<b>Plugin 1</b>
-		<p>Date modified</p>
-		</li>
-		<li>
-		<b>Plugin 2</b>
-		<p>Date modified</p>
-		</li>
-		<li>
-		<b>Plugin 3</b>
-		<p>Date modified</p>
-		</li>
-		<li>
-		<b>Plugin 4</b>
-		<p>Date modified</p>
-		</li>				
+	<ul>
+		<?php
+		    foreach ($latest as $change) 
+      {
+
+echo <<<END
+    <li>
+    <b>$change[plugin]</b>
+    <p>$change[version]</p>
+    </li>
+END;
+      } 
+		?>		
 	</ul>
-
+	</div>
 </div>

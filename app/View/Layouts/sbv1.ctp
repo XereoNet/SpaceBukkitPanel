@@ -140,7 +140,7 @@
 				<h1 id="logo">SpaceBukkit</h1>
 				</div>
 				<!-- Upper Bar -->
-				<div id="upperbar" class="col right col_2_3">
+				<div id="upperbar" class="col right">
 					<div id="serverbox">
 						<span class="dropdown_servers tip"><p><a href="#"><?php echo $current_server_name; ?></a></p></span>
 						<div class="tooltip white server_add_to_list" style="max-width: 190px">

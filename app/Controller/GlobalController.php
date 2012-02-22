@@ -189,8 +189,8 @@ class GlobalController extends AppController {
             Configure::write('debug', 0);
             $this->autoRender = false;
 
-            $args = array();   
-            $log = $api->call("getLatestConsoleLogs", $args, false);
+            $args = array(100);   
+            $log = $api->call("getLatestConsoleLogsWithLimit", $args, false);
             //var_dump($log);
 
             //Function to make array monodimensional
@@ -268,10 +268,27 @@ END;
             $this->autoRender = false;
 
             $args = array();   
-            $time = $api->call("getUpTime", $args, false);
+            $secs = $api->call("getUpTime", $args, false);
 
             //echo date('d:h:m:s', $time);
-            echo $time;
+           $times = array(3600, 60, 1);
+           $time = '';
+           $tmp = '';
+           for($i = 0; $i < 3; $i++) {
+              $tmp = floor($secs / $times[$i]);
+              if($tmp < 1) {
+                 $tmp = '00';
+              }
+              elseif($tmp < 10) {
+                 $tmp = '0' . $tmp;
+              }
+              $time .= $tmp;
+              if($i < 2) {
+                 $time .= ':';
+              }
+              $secs = $secs % $times[$i];
+           }
+           echo $time;
 
         } 
 

@@ -82,11 +82,7 @@
                <p class="nether_world rtip"><?php echo $worlds_count["nether"];?></p>   
                <div class="tooltip" >
                 <?php echo __('Nether Worlds') ?>
-               </div>      
-               <p class="skylands_world rtip"><?php echo $worlds_count["sky"];?></p>    
-               <div class="tooltip" >
-                <?php echo __('Skyland Worlds') ?>
-               </div>      
+               </div>        
                <p class="end_world rtip"><?php echo $worlds_count["end"];?></p>  
                <div class="tooltip" >
                 <?php echo __('End Worlds') ?>
@@ -107,9 +103,7 @@
             <div class="cell_data">
                <p><?php echo $c_bukkit_version; ?></p>
                <?php
-
-               // echo $m_bukkit_version; 
-
+                echo $m_bukkit_version; 
                ?>
                               
             </div>

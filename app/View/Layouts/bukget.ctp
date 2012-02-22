@@ -10,9 +10,16 @@ $("document").ready(function() {
 
 	*/
 
-	defaultWidth	= 650; //pixels
-	transition		= 500; //millisecond
-	
+	defaultWidth		= 650; //pixels
+	transition			= 500; //millisecond
+	det    				= $('.bukget-area2');
+	detheading			= $('.bukget-area2 div.bukget-heading');
+	detcontent			= $('.bukget-area2 div.bukget-list');
+	detsource1			= "./bukget2/getLatest";
+	detsource2			= "./bukget2/getHeading/";
+	detsource3			= "./bukget2/getDetails/";
+	ajax_load 			= '<div class="preloader"><div><img src="./img/big_loader.gif" /></div></div>'; 
+
 	function resetMargin(width) {
 			
 		divLeftMargin	= 0;
@@ -46,23 +53,24 @@ $("document").ready(function() {
 		event.preventDefault();
 		$(this).removeClass("unloaded").addClass("loaded");
 
-
 		selectedDiv			= $(this).attr('href');
 		selectedFilter		= selectedDiv+'_filter';
 		selectedMenu		= selectedDiv+'_menu';
 		selectedLis 		= selectedMenu+' li';
 		source 				= "./bukget2/getPlugins/"+$(this).attr('rel');
-		ajax_load 			= '<div class="preloader"><div><img src="./img/big_loader.gif" /></div></div>'; 
 		selectedMargin		= $(selectedDiv).css('margin-left');
 		selectedParent		= $(this).parents('.additional-block');
 		sliderMargin		= $('.slider').css('margin-left');
 		slidingMargin		= (parseInt(sliderMargin) - defaultWidth) + 'px';
-		
+
 		//load in the plugins with ajax
+
+		$(detheading).html('');
+		$(detcontent).html('<p class="greyed">Select a plugin for details...</p>');
 
 		$(selectedMenu).html(ajax_load).load(source, function() 
 		{
-			//$(selectedMenu).listnav();
+			
 		});
 
 		$(selectedFilter).keyup(function(){
@@ -70,8 +78,6 @@ $("document").ready(function() {
         // Retrieve the input field text and reset the count to zero
         var filter = $(this).val(), count = 0;
 
-
- 
         // Loop through the comment list
         $(selectedLis).each(function(){
  
@@ -90,12 +96,14 @@ $("document").ready(function() {
 		
 		if(selectedMargin.length > 0) {
 			
-			$(selectedDiv).show().children('.bukget-heading').prepend('<span class="back"></span>');
+			$(selectedDiv).children('.bukget-heading').prepend('<span class="back"></span>');
+
 			$("span.back").live('click', function () {
 		
 				selectedParent	= $(this).parents('.additional-block');
 				sliderMargin	= - (parseInt(selectedParent.css('margin-left')) - defaultWidth) + 'px';
-				$(selectedDiv).hide()
+				$(detheading).html('<h3>Last updated...</h3>');
+				$(detcontent).html(ajax_load).load(detsource1);
 				$('.slider').animate({marginLeft: sliderMargin}, transition);
 				
 			});
@@ -133,16 +141,26 @@ $("document").ready(function() {
 				selectedParent.after($(selectedDiv));
 				
 				resetMargin(defaultWidth);
-				$(selectedDiv).show()
 				$('.slider').animate({marginLeft: slidingMargin}, transition);
 			
 			} else {
-				$(selectedDiv).show()				
 				$('.slider').animate({marginLeft: slidingMargin}, transition);
 		
 			}
 		}
 
+
+	});
+
+	//script for details etc.
+
+	$('li.plugin').live("click", function() {
+		
+		$('li.plugin.selected').removeClass('selected');
+		var link = $(this).find('h4').html();
+		$(detheading).load(detsource2+link);
+		$(detcontent).html(ajax_load).load(detsource3+link);
+		$(this).addClass('selected');
 
 	});
 

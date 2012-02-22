@@ -43,7 +43,7 @@
     <header>
 
       <h2><?php echo __('Online Players') ?></h2>
-      <a><input type="checkbox" onchange="refresh_check = this.checked" name="auto_refresh" value="1" checked>Auto refresh</a>
+      <a style="color: white; position: relative;float: right;right: 500px; top: 5px; z-index: 100;"><input type="checkbox" onchange="refresh_check = this.checked" name="auto_refresh" value="1" checked="" style="opacity: 0; ">Auto refresh</a>
       <a href="#" id="update_players" class="button icon reload floatright" style="right: 250px"><?php echo __('Refresh') ?></a>
 
     </header>

@@ -28,7 +28,7 @@
         <ul>
                 <li class="current"><a href="#tab1">CraftBukkit</a></li>
                 <li><a href="#tab2"><?php echo __('Server properties') ?></a></li>
-                <li><a href="#tab3"><?php echo __('Shedules') ?></a></li>
+                <li><a href="#tab3"><?php echo __('Schedules') ?></a></li>
         </ul>
 </nav>
 <!-- End Tabs -->

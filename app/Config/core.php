@@ -293,6 +293,7 @@ Configure::write('Session', array(
  * If running via cli - apc is disabled by default. ensure it's available and enabled in this case
  *
  */
+ 
 $engine = 'File';
 if (extension_loaded('apc') && (php_sapi_name() !== 'cli' || ini_get('apc.enable_cli'))) {
 	$engine = 'Apc';
@@ -309,7 +310,8 @@ if (Configure::read('debug') >= 1) {
  * object listings, and translation cache files are stored with this configuration.
  */
 Cache::config('_cake_core_', array(
-	'engine' => $engine,
+	'engine' => 'File',
+	'mask' => 0666,
 	'prefix' => 'cake_core_',
 	'path' => CACHE . 'persistent' . DS,
 	'serialize' => ($engine === 'File'),

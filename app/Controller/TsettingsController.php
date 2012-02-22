@@ -183,7 +183,7 @@ END;
 
             } else {
             
-            $delete = '<form style=\"position: relative; display: inline;\" name=\"submitForm\" method=\"POST\" action=\"./roles/delete/$id\"><input type=\"hidden\" name=\"id\" value=\"$id\"><input type=\"submit\" value=\"Delete\" class=\"button danger\" style=\"float: right\"></form>';
+            $delete = '<form style=\"position: relative; display: inline;\" name=\"submitForm\" method=\"POST\" action=\"./roles/delete/'.$id.'\"><input type=\"hidden\" name=\"id\" value=\"'.$id.'\"><input type=\"submit\" value=\"Delete\" class=\"button danger\" style=\"float: right\"></form>';
             $default = ""; 
         }
         ECHO <<<END

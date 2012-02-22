@@ -242,21 +242,21 @@ class RolesController extends AppController {
 
     }
 
-    public function delete($id = null) {
+    function delete($id = null) {
       
         if (!$this->request->is('post')) {
             throw new MethodNotAllowedException();
         }
-        $this->Role->id = $id;
+
+        $data = $this->request->data;
+
+        $this->Role->id = $data['id'];
 
         if (!$this->Role->exists()) {
             throw new NotFoundException(__('Invalid role'));
         }
         $default = $this->Role->data;
-
-        if ($default["Role"]["fallback"] = 1) {
-            throw new NotFoundException(__('You cannot delete the default role'));
-        }        
+   
         if ($this->Role->delete()) {
             $this->Session->setFlash(__('Role deleted'));
             $this->redirect($this->referer());

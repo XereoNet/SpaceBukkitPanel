@@ -55,7 +55,7 @@ class SchedulesController extends AppController {
     }
 
 
-    function runTask($id) {
+    function runTask($name=null) {
         if ($this->request->is('ajax')) 
         {
 
@@ -64,9 +64,9 @@ class SchedulesController extends AppController {
         $this->autoRender = false;
                 
         require APP . 'spacebukkitcall.php';
-        $args = array($id);
+        $args = array($name);
         $api->call('runJob', $args, true);
-        echo __('Ran task: ').$id;
+        echo __('Ran task: ').$name;
         }
     }
 
@@ -181,9 +181,11 @@ class SchedulesController extends AppController {
              
             //debug($args);
      
-            $api->call("addJob", $args, true);   
+            if ($api->call("addJob", $args, true)) {
+                echo 'yes';
+            }
 
-           
+                       
             
           } 
         }                 

@@ -130,11 +130,10 @@ class DashController extends AppController {
 		$c_bukkit_version = get_string_between($server['Version'], "-b", "jnks");
 
 		//get LATEST craftbukkit version
-/*
-		$filename = 'http://ci.bukkit.org/other/latest_recommended.rss';
-		$load_bukkit_version = simplexml_load_file($filename); 
-		$link_to_latest = $load_bukkit_version->channel->item->link;
-		$l_bukkit_version = get_string_between($link_to_latest, "dev-CraftBukkit/", "/");
+
+		$filename = 'http://dl.bukkit.org/api/1.0/downloads/projects/craftbukkit/view/latest-rb/';
+		$load_bukkit_version = json_decode(file_get_contents($filename)); 
+		$l_bukkit_version = $load_bukkit_version->build_number;
 
 		//check if update is needed     			 
 		if ($c_bukkit_version > $l_bukkit_version) {
@@ -144,7 +143,7 @@ class DashController extends AppController {
 		} else {
 		    $m_bukkit_version = '<p class="cell_small fail"><a href="./tservers">'.__('Outdated!').'</a></p>';
 		}
-*/
+
 		//plugin stats
 		$args = array();   
 		$plugin_count = count($api->call("getPlugins", $args, false));
@@ -214,7 +213,7 @@ class DashController extends AppController {
 
 		//view-specific settings
     	$this->set('c_bukkit_version', $c_bukkit_version);
-       	//$this->set('m_bukkit_version', $m_bukkit_version);
+       	$this->set('m_bukkit_version', $m_bukkit_version);
     	$this->set('plugin_count', $plugin_count);
     	$this->set('dis_plugin_count', $dis_plugin_count);
     	$this->set('worlds_count', $worlds_count);

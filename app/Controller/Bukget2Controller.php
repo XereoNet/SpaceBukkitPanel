@@ -34,7 +34,10 @@ class Bukget2Controller extends AppController {
       
 	  //get all categories
 	  $cats = json_decode(file_get_contents("http://api.bukget.org/api/categories"));
-	  $this->set('cats', $cats);
+    $latest = json_decode(file_get_contents("http://api.bukget.org/api"), TRUE);
+
+    $this->set('cats', $cats);
+    $this->set('latest', $latest['changes']);
 
   	  //view-specific settings
       $this->layout = 'bukget';
@@ -89,6 +92,105 @@ class Bukget2Controller extends AppController {
 </li>
 END;
         } 
+      }  
+    }
+
+    function getLatest() {
+
+      if ($this->request->is('ajax')) {
+      $this->disableCache();
+      $this->autoRender = false;
+
+      $api = json_decode(file_get_contents("http://api.bukget.org/api"), TRUE);
+      
+      echo '<ul>';
+      
+      foreach ($api['changes'] as $plugin) 
+      {
+
+echo <<<END
+    <li>
+    <b>Plugin 1</b>
+    <p>Date modified</p>
+    </li>
+END;
+      } 
+
+      echo '</ul>';
+
+      }  
+    }
+
+   function getHeading($plugin) {
+
+      if ($this->request->is('ajax')) {
+      $this->disableCache();
+      $this->autoRender = false;
+
+      $api = json_decode(file_get_contents("http://api.bukget.org/api/plugin/".$plugin), TRUE);
+      
+      echo('<h3>'.$api['plugin_name'].'</h3> <a href="'.$api['bukkitdev_link'].'" target="_blank">(BukkitDev)</a>');
+
+      }  
+    }
+
+   function getDetails($plugin) {
+
+      if ($this->request->is('ajax')) {
+      $this->disableCache();
+      $this->autoRender = false;
+
+      $api = json_decode(file_get_contents("http://api.bukget.org/api/plugin/".$plugin), TRUE);
+      
+      //debug($api);
+
+      //Function to get strings
+      function get_string_between($string, $start, $end){
+        $string = " ".$string;
+        $ini = strpos($string,$start);
+        if ($ini == 0) return "";
+        $ini += strlen($start);
+        $len = strpos($string,$end,$ini) - $ini;
+        return substr($string,$ini,$len);
+      }
+
+      $authors      = implode(', ', $api['authors']);
+      $status       = $api['status'];
+      $categories   = implode(', ', $api['categories']);
+      $desc   = $api['desc'];
+
+      $data = file_get_contents($api['bukkitdev_link']);
+
+      
+
+      $img = get_string_between($data, 'data-full-src="', '"');
+
+      echo <<<END
+<ul>
+  <li>
+    <b>Authors</b>
+    <p>$authors</p>
+  </li>
+  <li>
+    <b>Status</b>
+    <p>$status</p>
+  </li>
+  <li>
+    <b>Categories</b>
+    <p>$categories</p>    
+  </li>
+  <li>
+    <b>Description</b>
+    <p>
+    <img src="$img" width="250px" />
+    $desc
+    </p>
+  </li>
+</ul>'
+
+
+END;
+
       }  
     }
 

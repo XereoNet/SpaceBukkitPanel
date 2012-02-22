@@ -644,6 +644,12 @@ nav#smalltabs ul li a,nav#popuptabs ul li a {
   text-decoration: none;
   text-shadow: 0 -1px 0 #282828
 }
+#upperbar {
+  min-width: 590px;
+}
+#serverbuttons {
+  padding-right: 15px;
+}
 nav#smalltabs ul li.current a,nav#popuptabs ul li.current a {
   background: #efefef;
   color: #222;

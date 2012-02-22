@@ -68,19 +68,36 @@
   background: #fefefe url(../img/bukget/bg.png) repeat top left;
   height: 580px;
   width: 33%;
+  position: relative;
+  z-index: 9999;
 }
 .bukget-list {
+  text-align: left;
+  overflow-y: auto;
+  max-height: 550px;
+}
+.bukget-list ul {
   padding: 0 10px;
 }
 .bukget-list li{
   padding: 5px 0;
   line-height: 20px;
 }
+.bukget-list img{
+  padding: 10px 0 0 10px;
+}
 
 .bukget-list li b{
   font-size: 18px;
   color: green;
   line-height: 20px;
+}
+.bukget-list p.greyed {
+color: #555;
+margin: 100px 74px;
+}
+.bukget-list p{
+color: #555;
 }
 .bukget-area .binder {
   background: #e8e8e8;
@@ -133,12 +150,16 @@
   border-top: 1px solid #ccc;
 }
 .bukget-area .menu li.plugin {
-  background-color: #eaeaea;
   cursor: pointer;
   height: 32px;
   overflow: hidden;
-  cursor: normal;
-  padding: 0 10px;
+  padding: 0 10px 0 10px;
+}
+.bukget-area .menu li.plugin.selected {
+  background-color: #eaeaea;
+}
+.bukget-area .menu li.plugin.selected > div > div.col.left{
+  margin-left: 12px;
 }
 .bukget-area .plugin .details {
   position: relative;
