@@ -164,7 +164,7 @@ class UsersController extends AppController {
 
         }
 
-        $themes = filelist("./themes/",1,1);
+        $themes = filelist(APP . "webroot/themes/",1,1);
         
         $this->set('themes', $themes);
 
@@ -264,7 +264,7 @@ class UsersController extends AppController {
 
         }
 
-        $themes = filelist("./themes/",1,1);
+        $themes = filelist(APP . "webroot/themes/",1,1);
         
         $this->set('themes', $themes);
 
@@ -381,7 +381,7 @@ class UsersController extends AppController {
 
         }
 
-        $themes = filelist("./themes/",1,1);
+        $themes = filelist(APP . "webroot/themes/",1,1);
         
         $this->set('themes', $themes);
 

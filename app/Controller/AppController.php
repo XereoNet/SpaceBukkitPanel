@@ -99,7 +99,7 @@ class AppController extends Controller {
 
         } else  { //not installation process, continue
 
-    $maintenance = new File("./.maintenance");
+    $maintenance = new File(APP."webroot/.maintenance");
     
     $allowed = array("maintenance");  
 
@@ -274,7 +274,6 @@ class AppController extends Controller {
 
                     $this->Session->write("current_server", $user_data['User']['favourite_server']);
                     $current_server =  $user_data['User']['favourite_server'];
-                    echo 'lol';
           
             }  
         }
@@ -361,7 +360,7 @@ class AppController extends Controller {
 
         $theme = $this->Session->read("current_theme");
 
-        $themefile = new File("./themes/".$theme."/theme.xml");
+        $themefile = new File(WWW_ROOT "themes/".$theme."/theme.xml");
     
         if ($themefile->exists()){
             $this->set('current_theme', $theme);

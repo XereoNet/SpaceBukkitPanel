@@ -66,7 +66,7 @@ class UpdateController extends AppController {
 
     function update() {
 
-        $maintenance = new File(WWW_ROOT.".maintenance");
+        $maintenance = new File(APP."webroot/.maintenance");
         $maintenance->create();
 
         require APP.'configuration.php';

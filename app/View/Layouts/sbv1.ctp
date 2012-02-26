@@ -216,6 +216,44 @@ END;
 
 			<!-- Main Content Start -->
 			<div id="wrapper"> 
+
+			<!-- Navigation -->
+			<nav id="mainnav">
+				<ul> 
+			        <?php if (($user_perm['pages'] & $glob_perm['pages']['dash']) || ($user_perm['is_super'] == 1)) { ?>
+			        <li class="<?php if ($this->name == "DashController") { echo "current" ; }  ?> bounce fadein"> 
+
+			        	<a href="<?php echo $this->Html->url('/dash', true); ?>"> <span class="icon dashboard"></span><?php echo __(' Dashboard') ?></a> 
+			        </li>
+			        <?php } ?>
+			        <?php if (($user_perm['pages'] & $glob_perm['pages']['users']) || ($user_perm['is_super'] == 1)) { ?>
+			        <li class="<?php if ($this->name == "TPlayersController") { echo "current" ; }  ?> bounce fadein"> 
+			        	<a href="<?php echo $this->Html->url('/tplayers', true); ?>"> <span class="icon users"></span><?php echo __(' Players ') ?></a> 
+			        </li>
+			        <?php } ?>
+			        <?php if (($user_perm['pages'] & $glob_perm['pages']['plugins']) || ($user_perm['is_super'] == 1)) { ?>
+			        <li class="<?php if ($this->name == "TPluginsController") { echo "current" ; }  ?> bounce fadein"> 
+			        	<a href="<?php echo $this->Html->url('/tplugins', true); ?>"> <span class="icon plugins"></span><?php echo __(' Plugins ') ?></a> 
+			        </li>
+			        <?php } ?>
+			        <?php if (($user_perm['pages'] & $glob_perm['pages']['worlds']) || ($user_perm['is_super'] == 1)) { ?>
+			        <li class="<?php if ($this->name == "TWorldsController") { echo "current" ; }  ?> bounce fadein"> 
+			        	<a href="<?php echo $this->Html->url('/tworlds', true); ?>"> <span class="icon world"></span><?php echo __(' Worlds ') ?></a> 
+			        </li>
+			        <?php } ?>
+			        <?php if (($user_perm['pages'] & $glob_perm['pages']['server']) || ($user_perm['is_super'] == 1)) { ?>
+			        <li class="<?php if ($this->name == "TServersController") { echo "current" ; }  ?> bounce fadein"> 
+			        	<a href="<?php echo $this->Html->url('/tservers', true); ?>"> <span class="icon server"></span><?php echo __(' Server ') ?></a> 
+			        </li>
+			        <?php } ?>
+			        <?php if ($is_super == 1) { ?>
+			        <li class="<?php if ($this->name == "Tsettings") { echo "current" ; }  ?> bounce fadein floatright"> 
+			        	<a href="<?php echo $this->Html->url('/tsettings', true); ?>"> <span class="icon settings"></span><?php echo __(' Settings ') ?></a> 
+			        </li>
+			        <?php } ?>
+				</ul>
+			</nav>
+			<!-- End Navigation --> 
 			
 			<?php echo $content_for_layout ?>
 			<div class="pushfooter"></div>
