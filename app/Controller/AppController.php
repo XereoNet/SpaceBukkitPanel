@@ -260,8 +260,8 @@ class AppController extends Controller {
             //Check if cookie for current server was set. If not, set it to default
             if (empty($current_server)) {
                     $s = $this->Server->find("first");
-                    $this->Session->write("current_server", $s['User']['favourite_server']);
-                    $current_server = $s['User']['favourite_server'];
+                    $this->Session->write("current_server", $s['Server']['id']);
+                    $current_server = $s['Server']['id'];
 
             }  
             
