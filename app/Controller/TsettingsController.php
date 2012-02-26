@@ -178,7 +178,7 @@ END;
         $id = $role['Role']['id'];
         if ($role["Role"]["fallback"] == 1) {
 
-            $default = '<img src=\"'. WWW_ROOT .'img/test-pass-icon.png\" />'; 
+            $default = '<img src=\"./img/test-pass-icon.png\" />'; 
             $delete = "";
 
             } else {

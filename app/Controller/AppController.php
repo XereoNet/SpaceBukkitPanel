@@ -360,7 +360,7 @@ class AppController extends Controller {
 
         $theme = $this->Session->read("current_theme");
 
-        $themefile = new File(WWW_ROOT "themes/".$theme."/theme.xml");
+        $themefile = new File(WWW_ROOT . "themes/".$theme."/theme.xml");
     
         if ($themefile->exists()){
             $this->set('current_theme', $theme);
