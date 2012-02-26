@@ -260,8 +260,8 @@ class AppController extends Controller {
             //Check if cookie for current server was set. If not, set it to default
             if (empty($current_server)) {
                     $s = $this->Server->find("first");
-                    $this->Session->write("current_server", $s['Server']['id']);
-                    $current_server = $s['Server']['id'];
+                    $this->Session->write("current_server", $s['User']['favourite_server']);
+                    $current_server = $s['User']['favourite_server'];
 
             }  
             
@@ -279,8 +279,9 @@ class AppController extends Controller {
         }
                 
         //New variable "$usr" stores all data relative to the user, relative to the current server
-        $conditions = array("ServersUsers.server_id" => $current_server, "ServersUsers.user_id" => $this->Auth->user("id"));
-        $usr = $this->ServersUsers->find('first', array('conditions' => $conditions));    
+        $conditions = array("ServersUsers.user_id" => $this->Auth->user("id"));
+        $usr = $this->ServersUsers->find('first', array('conditions' => $conditions));
+        $usr['AllowedServers'] = $this->ServersUsers->find('all', array('conditions' => $conditions));
 
         //If superuser, construct his "$usr" manually
 
