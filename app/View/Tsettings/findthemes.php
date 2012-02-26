@@ -94,7 +94,7 @@
 
 	}
 
-	$files = filelist("./themes/",1,1); // call the function
+	$files = filelist(APP . "/themes/",1,1); // call the function
 
 	foreach ($files as $list) {//print array
 
