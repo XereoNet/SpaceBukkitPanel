@@ -44,7 +44,20 @@ class UsersController extends AppController {
     */
     
     public function beforeFilter() {
-        parent::beforeFilter();       
+        parent::beforeFilter();   
+
+        $allowed_actions = array("index", "login", "logout", "edit", "theme");
+
+        if (!(in_array($this->action, $allowed_actions))) {
+
+          if ($this->Auth->user('is_super') != 1) {
+
+            throw new MethodNotAllowedException();
+
+          }
+
+        }
+
     }
 
     public function index() {
@@ -75,6 +88,7 @@ class UsersController extends AppController {
     }
 
     public function add() {
+
         if ($this->request->is('post')) {
             $this->User->create();
             if ($this->User->save($this->request->data)) {

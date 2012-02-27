@@ -19,8 +19,8 @@
 *
 */
 
-	$sbconf['app_version'] = "Open Beta 1.1";
-    $sbconf['app'] = "1";
+	$sbconf['app_version'] = "Open Beta 1.1-01";
+    $sbconf['app'] = "2";
     $sbconf['theme'] = "Spacebukkit";
 
     $languages = array();
