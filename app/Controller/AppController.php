@@ -280,7 +280,8 @@ class AppController extends Controller {
                 
         //New variable "$usr" stores all data relative to the user, relative to the current server
         $conditions = array("ServersUsers.server_id" => $current_server, "ServersUsers.user_id" => $this->Auth->user("id"));
-        $usr = $this->ServersUsers->find('first', array('conditions' => $conditions));    
+        $usr = $this->ServersUsers->find('first', array('conditions' => $conditions));
+        $usr['AllowedServers'] = $this->ServersUsers->find('all', array('conditions' => array("ServersUsers.user_id" => $this->Auth->user("id"))));
 
         //If superuser, construct his "$usr" manually
 

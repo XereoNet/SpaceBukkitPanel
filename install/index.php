@@ -110,7 +110,7 @@
     <p><font size=4>If you are on Apache2 (xampp, wampp, lampp, mampp or similar)</font></p><br />
 
     <p>Usually the command "a2enmod rewrite" should enable the module, if not, there may be something wrong with your installation of Apache2.</p>
-    <p>Also make sure that AllowOverride for your root directory (NOT /) is set to "All".</p> <p> Restart your webserver and refresh this page.</p>
+    <p>Also make sure that AllowOverride for your webroot directory (NOT /) is set to "All".</p> <p> Restart your webserver and refresh this page.</p>
 
     <hr>
 

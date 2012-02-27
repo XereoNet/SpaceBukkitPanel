@@ -169,7 +169,7 @@ END;
 
 					//if not superuser
 					
-					foreach ($user_data as $list) {
+					foreach ($user_data['AllowedServers'] as $sid => $list) {
 
 						$title = $list['Server']['title'];
 						$id = $list['Server']['id'];
