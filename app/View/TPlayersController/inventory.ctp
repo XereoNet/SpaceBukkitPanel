@@ -8,6 +8,7 @@
 		</div>
 
 		<div class="col right col_2_3 ar">
+
 		</div>
 
 	</div>
@@ -348,12 +349,7 @@ $( ".ui-snap" ).droppable({
 
 					//delete the image instance in the DOM
 					$(ui.draggable).remove();
-					$('tr').find("[data-pos='" + position +"'] div").prepend('<img src="./inventory/icons/0-0.png" />');	
-
 			    });
-
-
-				alert('You dropped the item with the id '+item+' from the position '+position+' in the recycle bin!');
 
 			}
 		});

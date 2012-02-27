@@ -563,9 +563,17 @@ END;
         $args = array($name); 
         $items = $api->call("getInventory", $args, false);
 
+        $dir = new Folder(WWW_ROOT . 'inventory/icons/');
+        $allitems = $dir->find('.+\.png'); 
+
+        foreach ($allitems as $slot => $item) {
+            $allitems[$slot] = substr($item, 0, -4);
+        }
+
         foreach ($items as $slot => $item) {
             $items[$slot]['comb'] = $items[$slot]['ID'].'-'.$items[$slot]['Data'];
             if ($item['Amount'] == 0) $items[$slot]['Amount'] = '';
+            if (!in_array($items[$slot]['comb'] , $allitems))  $items[$slot]['comb'] = 'none';
         }
 
         $this->set('name', $name);
