@@ -2196,3 +2196,106 @@ a: focus {
 .zebra-striped tbody tr:hover td, .zebra-striped tbody tr:hover th {
   background-color: #555;
 }
+.inventory_page {
+  width: 940px;
+  height: 500px;
+  background: url(../inventory/assets/bg.jpg) no-repeat top center;
+  padding: 15px 0; 
+}
+
+.inventory_page .black_bar{
+  width: 100%;
+  height: 50px;
+  background: url(../inventory/assets/trans.png) repeat;
+  margin: 0 0 15px 0;
+  padding: 0 15px;
+  line-height: 50px;  
+  color: #ddd;
+}
+
+.inventory_page .black_bar h3{
+  font-size: 35px;
+  line-height: 50px;
+  color: #ddd;
+}
+.inv-box {
+  background: #c6c6c6;
+  border: 5px solid #fff;
+  border-bottom-color: #555;
+  border-right-color: #555;
+  display: inline-block;
+  margin-right: 8px;
+  padding: 10px;
+}
+
+.inv-body {
+  width: 50px;
+  height: 220px;
+}
+
+.inv-inv {
+  width: 480px;
+  height: 220px;
+}
+
+.inventory_page > .col_2_3 section{
+  margin: 50px 0 15px 0;
+}
+
+.inv-trash {
+  width: 70px;
+  height: 70px;
+  float: right;
+  background: #c6c6c6 url(../inventory/assets/trash.png) 50% 50% no-repeat;
+}
+
+ .inv-table {
+  color: #fefefe;
+  width: 100%;
+  border-spacing: 10px 10px;
+ }
+
+ .inv-table1{
+  margin-bottom: 10px;
+ }
+
+ .inv-table3{
+  margin-left: -2px;
+ }
+
+ .inv-table tr {
+  width: 480px;
+  margin-bottom: 1px;
+ }
+
+ .inv-table td {
+  background: #8b8b8b ;
+  border: 2px solid #fff;
+  cursor: pointer;
+ }
+ .inv-table td:hover {
+  background: #999;
+ }
+
+ .inv-table td > div{
+  border-color: #555;
+  border-width: 2px 0 0 2px;
+  border-style: solid;
+  width: 32px;
+  height: 28px;
+  padding: 4px 8px 14px 8px;
+  position: relative;
+ }
+
+ .inv-table td > div small{
+  position: absolute;
+  bottom: -8px;
+  right: -8px;
+  font-size: 18px;
+  font-weight: bold;
+  text-shadow: 2px 2px 0 #353535;
+ }
+
+.inv-drop-hover {
+  background-color: #777;
+}

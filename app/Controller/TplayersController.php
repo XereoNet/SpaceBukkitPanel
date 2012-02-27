@@ -562,10 +562,32 @@ END;
 
         $args = array($name); 
         $items = $api->call("getInventory", $args, false);
+
+        foreach ($items as $slot => $item) {
+            $items[$slot]['comb'] = $items[$slot]['ID'].'-'.$items[$slot]['Data'];
+            if ($item['Amount'] == 0) $items[$slot]['Amount'] = '';
+        }
+
         $this->set('name', $name);
         $this->set('item', $items);
 
         $this->layout = 'popup';
+    }
+
+    function inventory_delete($name, $slot) {
+
+       if ($this->request->is('ajax')) {
+            $this->disableCache();
+            Configure::write('debug', 0);
+            $this->autoRender = false;
+
+            include APP.'spacebukkitcall.php';
+
+            $args = array($name, $slot); 
+            $items = $api->call("clearInventorySlot", $args, false);
+
+        }
+
     }
 
 }

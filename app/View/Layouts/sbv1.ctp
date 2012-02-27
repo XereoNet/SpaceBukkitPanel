@@ -5,6 +5,8 @@
 
 <!-- CSS -->
 <link rel="stylesheet" href="<?php echo $this->webroot; ?>css/import.css" /> 
+<link rel="stylesheet" href="<?php echo $this->webroot; ?>css/overcast/jquery-ui-1.8.18.custom.css" /> 
+
 
 <!--[if lt IE 9]>
 <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -293,6 +295,8 @@ END;
 		<!-- End #container --> 
 
 	<!-- Import JS -->
+
+	<script src="<?php echo $this->webroot; ?>js/jquery-ui-1.8.18.custom.min.js"></script> 
 	<script src="<?php echo $this->webroot; ?>js/ttw-simple-notifications-min.js"></script> 
 	<script src="<?php echo $this->webroot; ?>js/excanvas.js"></script> 
 	<script src="<?php echo $this->webroot; ?>js/jquery.uniform.min.js"></script> 
