@@ -127,6 +127,7 @@ END;
 			        		<li class="<?php if ($this->name == "DashController") { echo "current" ; }  ?> bounce fadein"> 
 							<a href="<?php echo $this->Html->url('/dash', true); ?>"> <span class="icon dashboard"></span><?php echo __(' Dashboard') ?></a> 
 			        		</li>
+			        		<?php } ?>
 					        </ul>
 					</nav>
 					<!-- End Navigation --> 
