@@ -123,13 +123,12 @@ END;
 					<!-- Navigation -->
 					<nav id="mainnav">
 						<ul>
-					        <li class="bounce fadein"> <a href="./dash"> <span class="icon dashboard"></span> <?php echo __('Dashboard'); ?> </a> </li>
-					        <li class="bounce fadein"> <a href="./tusers"> <span class="icon users"></span> <?php echo __('Users'); ?> </a> </li>
-					        <li class="bounce fadein"> <a href="./tplugins"> <span class="icon plugins"></span> <?php echo __('Plugins'); ?> </a> </li>
-					        <li class="bounce fadein"> <a href="./tworlds"> <span class="icon world"></span> <?php echo __('Worlds'); ?> </a> </li>
-					        <li class="bounce fadein"> <a href="./tservers"> <span class="icon server"></span> <?php echo __('Server'); ?> </a> </li>
-					        <li class="bounce fadein floatright"> <a href="./tsettings"> <span class="icon settings"></span> <?php echo __('Settings'); ?> </a> </li>
-						</ul>
+						<?php if (($user_perm['pages'] & $glob_perm['pages']['dash']) || ($user_perm['is_super'] == 1)) { ?>
+			        		<li class="<?php if ($this->name == "DashController") { echo "current" ; }  ?> bounce fadein"> 
+							<a href="<?php echo $this->Html->url('/dash', true); ?>"> <span class="icon dashboard"></span><?php echo __(' Dashboard') ?></a> 
+			        		</li>
+			        		<?php } ?>
+					        </ul>
 					</nav>
 					<!-- End Navigation --> 
 
