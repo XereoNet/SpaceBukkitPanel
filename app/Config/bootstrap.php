@@ -31,40 +31,43 @@ Configure::write('Spacebukkit.theme', "Spacebukkit");
 
 App::import('Vendor', 'serverlog'); 
 
-/**
- * The settings below can be used to set additional paths to models, views and controllers.
- *
- * App::build(array(
- *     'plugins' => array('/full/path/to/plugins/', '/next/full/path/to/plugins/'),
- *     'models' =>  array('/full/path/to/models/', '/next/full/path/to/models/'),
- *     'views' => array('/full/path/to/views/', '/next/full/path/to/views/'),
- *     'controllers' => array('/full/path/to/controllers/', '/next/full/path/to/controllers/'),
- *     'datasources' => array('/full/path/to/datasources/', '/next/full/path/to/datasources/'),
- *     'behaviors' => array('/full/path/to/behaviors/', '/next/full/path/to/behaviors/'),
- *     'components' => array('/full/path/to/components/', '/next/full/path/to/components/'),
- *     'helpers' => array('/full/path/to/helpers/', '/next/full/path/to/helpers/'),
- *     'vendors' => array('/full/path/to/vendors/', '/next/full/path/to/vendors/'),
- *     'shells' => array('/full/path/to/shells/', '/next/full/path/to/shells/'),
- *     'locales' => array('/full/path/to/locale/', '/next/full/path/to/locale/')
- * ));
- *
- */
+function perm($node, $perm, $user_perm, $message=false) {
 
-/**
- * Custom Inflector rules, can be set to correctly pluralize or singularize table, model, controller names or whatever other
- * string is passed to the inflection functions
- *
- * Inflector::rules('singular', array('rules' => array(), 'irregular' => array(), 'uninflected' => array()));
- * Inflector::rules('plural', array('rules' => array(), 'irregular' => array(), 'uninflected' => array()));
- *
- */
+	require APP.'configuration.php';
 
-/**
- * Plugins need to be loaded manually, you can either load them one by one or all of them in a single call
- * Uncomment one of the lines below, as you need. make sure you read the documentation on CakePlugin to use more
- * advanced ways of loading plugins
- *
- * CakePlugin::loadAll(); // Loads all plugins at once
- * CakePlugin::load('DebugKit'); //Loads a single plugin named DebugKit
- *
- */
+	if (($user_perm[$node] & $permissions[$node][$perm]) || ($user_perm['is_super'] == 1)) 
+	{
+		return true;
+	}
+	else 
+	{
+		if ($message) {
+			exit('Permission denied - you are not allowed to be here!');
+		}
+		else {
+		return false;	
+		}
+		
+	}
+
+}
+
+
+function perm_action($node, $perm, $user_perm, $value=null) {
+
+	require APP.'configuration.php';
+
+	if (($user_perm[$node] & $permissions[$node][$perm]) || ($user_perm['is_super'] == 1)) 
+	{
+
+		return $value;
+
+	}
+	else 
+	{
+		
+		return false;	
+		
+	}
+
+}

@@ -240,7 +240,6 @@ class AppController extends Controller {
         $this->loadModel('ServersUsers'); 
 
         $user_data = $this->User->findById($this->Auth->user("id"));
-
         $allowed_actions = array("no_servers_assoc", "logout");
 
         if (empty($user_data["ServersUsers"]) && !(in_array($this->action, $allowed_actions)) && ($this->Auth->user('is_super') < 1)) {
@@ -253,7 +252,7 @@ class AppController extends Controller {
  *   7)  Set roles for server. If the user role is not defined, change it to default
 ##################################################### */
 
-        if (empty($user_data["ServersUsers"])) {
+        if ( empty($user_data["ServersUsers"]) ) {
            
             $current_server = $this->Session->read("current_server");
 
@@ -272,8 +271,16 @@ class AppController extends Controller {
             //Check if cookie for current server was set. If not, set it to default
             if (empty($current_server)) {
 
+                if ( $user_data["User"]['favourite_server'] != 0 ) {
+
                     $this->Session->write("current_server", $user_data['User']['favourite_server']);
                     $current_server =  $user_data['User']['favourite_server'];
+                }
+                else {
+                    $s = $this->ServersUsers->find('first', array('conditions' => array("ServersUsers.user_id" => $this->Auth->user("id"))));
+                    $this->Session->write("current_server", $s['Server']['id']);
+                    $current_server = $s['Server']['id'];     
+                }
           
             }  
         }
@@ -297,7 +304,13 @@ class AppController extends Controller {
 
                 "id" => 99999,
                 "title" => "superuser",
-                "pages" => 256
+                "pages" => 255,
+                "global" => 255,
+                "dash" => 255,
+                "users" => 255,
+                "plugins" => 255,
+                "worlds" => 255,
+                "servers" => 255,
                 );
 
         }
@@ -339,8 +352,9 @@ class AppController extends Controller {
         $this->set('current_server_name', $usr["Server"]["title"]);
         $this->set('user_data', $usr);
         $this->set('user_perm', $usr['Role']);
+        $this->Session->write('glob_perm', $permissions);
+        $this->Session->write('user_perm', $usr['Role']);
 
-                      
         } //end else server count        
         } //endif logging        
         } //endif maintenance       

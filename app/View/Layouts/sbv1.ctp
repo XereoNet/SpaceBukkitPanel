@@ -38,7 +38,7 @@
 </div>
 <?php if((isset($spacebukkitbuildready)) && ($user_perm['is_super'] == 1)) {?>
 <div class="top_message black slideDown">
-<p><?php echo __('A new SpaceBukkit update is ready for you to download! Your version is'); ?> <strong><?php echo $spacebukkitbuildcurrent; ?></strong> <?php echo __('while the new version is'); ?> <strong><?php echo $spacebukkitbuildfile; ?></strong> &nbsp; &nbsp;  <a class="button icon arrowright" href="<?php ?>"><?php echo __('Click here to get it'); ?></a></p>
+<p><?php echo __('A new SpaceBukkit update is ready for you to download! Your version is'); ?> <strong><?php echo $spacebukkitbuildcurrent; ?></strong> <?php echo __('while the new version is'); ?> <strong><?php echo $spacebukkitbuildnew; ?></strong> &nbsp; &nbsp;  <a class="button icon arrowright" href="<?php echo $spacebukkitbuildfile; ?>"><?php echo __('Click here to get it'); ?></a></p>
 </div>
 <?php };?>
 
@@ -54,7 +54,7 @@
 		<div id="container"> 
 		
 			<div id="sidebar-widget" class="widget-reset" style="display: none; ">
-<?php if (($user_perm['pages'] & $glob_perm['pages']['console']) || ($user_perm['is_super'] == 1)) { ?>
+<?php if (perm('global', 'console', $user_perm)): ?>
 
 				<a href="#" class="sidebar-button console-button" rel="nofollow">console</a>
 				<div id="sidebar-console-wrap" class="sidebar-wrap">
@@ -89,7 +89,8 @@
 					</div>
 					<span class="switcher-arrow"></span>
 				</div>
-<?php } ?>
+<?php endif; ?>
+<?php if (perm('global', 'chat', $user_perm)): ?>
 
 				<a href="#" class="sidebar-button chat-button" rel="nofollow">chat</a>
 				<div id="sidebar-chat-wrap" class="sidebar-wrap">
@@ -131,6 +132,7 @@
 					</div>
 					<span class="switcher-arrow"></span>
 				</div>				
+<?php endif; ?>
 
 			</div>
 
@@ -209,8 +211,7 @@ END;
 								<li><a href="./users/logout"><?php echo __('Logout'); ?></a></li>
 							</ul>
 						</div>
-
-						
+											
 					</div>
 				</div>
 			</div>
@@ -222,32 +223,32 @@ END;
 			<!-- Navigation -->
 			<nav id="mainnav">
 				<ul> 
-			        <?php if (($user_perm['pages'] & $glob_perm['pages']['dash']) || ($user_perm['is_super'] == 1)) { ?>
+					<?php if (perm('pages', 'dash', $user_perm)): ?>
 			        <li class="<?php if ($this->name == "DashController") { echo "current" ; }  ?> bounce fadein"> 
 
 			        	<a href="<?php echo $this->Html->url('/dash', true); ?>"> <span class="icon dashboard"></span><?php echo __(' Dashboard') ?></a> 
 			        </li>
-			        <?php } ?>
-			        <?php if (($user_perm['pages'] & $glob_perm['pages']['users']) || ($user_perm['is_super'] == 1)) { ?>
+			        <?php endif; ?>
+					<?php if (perm('pages', 'users', $user_perm)): ?>
 			        <li class="<?php if ($this->name == "TPlayersController") { echo "current" ; }  ?> bounce fadein"> 
 			        	<a href="<?php echo $this->Html->url('/tplayers', true); ?>"> <span class="icon users"></span><?php echo __(' Players ') ?></a> 
 			        </li>
-			        <?php } ?>
-			        <?php if (($user_perm['pages'] & $glob_perm['pages']['plugins']) || ($user_perm['is_super'] == 1)) { ?>
+			        <?php endif; ?>
+					<?php if (perm('pages', 'plugins', $user_perm)): ?>
 			        <li class="<?php if ($this->name == "TPluginsController") { echo "current" ; }  ?> bounce fadein"> 
 			        	<a href="<?php echo $this->Html->url('/tplugins', true); ?>"> <span class="icon plugins"></span><?php echo __(' Plugins ') ?></a> 
 			        </li>
-			        <?php } ?>
-			        <?php if (($user_perm['pages'] & $glob_perm['pages']['worlds']) || ($user_perm['is_super'] == 1)) { ?>
+			        <?php endif; ?>
+					<?php if (perm('pages', 'worlds', $user_perm)): ?>
 			        <li class="<?php if ($this->name == "TWorldsController") { echo "current" ; }  ?> bounce fadein"> 
 			        	<a href="<?php echo $this->Html->url('/tworlds', true); ?>"> <span class="icon world"></span><?php echo __(' Worlds ') ?></a> 
 			        </li>
-			        <?php } ?>
-			        <?php if (($user_perm['pages'] & $glob_perm['pages']['server']) || ($user_perm['is_super'] == 1)) { ?>
+			        <?php endif; ?>
+					<?php if (perm('pages', 'servers', $user_perm)): ?>
 			        <li class="<?php if ($this->name == "TServersController") { echo "current" ; }  ?> bounce fadein"> 
 			        	<a href="<?php echo $this->Html->url('/tservers', true); ?>"> <span class="icon server"></span><?php echo __(' Server ') ?></a> 
 			        </li>
-			        <?php } ?>
+			        <?php endif; ?>
 			        <?php if ($is_super == 1) { ?>
 			        <li class="<?php if ($this->name == "Tsettings") { echo "current" ; }  ?> bounce fadein floatright"> 
 			        	<a href="<?php echo $this->Html->url('/tsettings', true); ?>"> <span class="icon settings"></span><?php echo __(' Settings ') ?></a> 

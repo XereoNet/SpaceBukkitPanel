@@ -626,7 +626,10 @@ input: focus {
   outline: 0
 }
 nav#smalltabs,nav#popuptabs {
-  height: 36px
+  height: 36px;
+}
+nav#popuptabs {
+    background: #111;
 }
 nav#smalltabs ul li,nav#popuptabs ul li {
   list-style: none;

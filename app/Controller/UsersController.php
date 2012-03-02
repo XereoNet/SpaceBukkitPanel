@@ -68,7 +68,8 @@ class UsersController extends AppController {
 
     if ($this->Auth->login()) {
         $this->Session->write("current_theme", $this->Auth->user('theme'));
-        $this->redirect($this->Auth->redirect());
+
+        $this->redirect(array('controller' => 'global', 'action' => 'login'));
 
     } else {
 
@@ -482,6 +483,10 @@ class UsersController extends AppController {
             throw new MethodNotAllowedException();
         }
         $this->ServersUsers->id = $id;
+        $data = $this->ServersUsers->findById($id);
+        $this->User->id = $data['User']['id'];
+        $this->User->saveField('favourite_server', 0);
+
         if (!$this->ServersUsers->exists()) {
             throw new NotFoundException(__('Invalid ServersUsers'));
         }
