@@ -38,64 +38,58 @@ class RolesController extends AppController {
 
         if ($this->request->is('post')) {
 
-            $data = $this->request->data;
+$data = $this->request->data;
+
             $pages = 0;
-            $global = 0;
             $dash = 0;
             $users = 0;
             $plugins = 0;
             $worlds = 0;
             $servers = 0;
-            $servertools = 0;
-            $console = 0;
+            $global = 0;
 
             foreach ($permissions["pages"] as $role => $value) {
                 $bit = (int)$value;
-                $multi = (int)$data["Role"][$role];
+                $multi = (int)$data[$role];
                 $pages = $pages+($bit*$multi);
-            }
-            /*
-            foreach ($permissions["global"] as $role => $value) {
-                $bit = (int)$value;
-                $multi = (int)$data["Role"][$role];
-                $global = $global+($bit*$multi);
             }
 
             foreach ($permissions["dash"] as $role => $value) {
                 $bit = (int)$value;
-                $multi = (int)$data["Role"][$role];
+                $multi = (int)$data[$role];
                 $dash = $dash+($bit*$multi);
             }
 
             foreach ($permissions["users"] as $role => $value) {
                 $bit = (int)$value;
-                $multi = (int)$data["Role"][$role];
+                $multi = (int)$data[$role];
                 $users = $users+($bit*$multi);
             }
 
             foreach ($permissions["plugins"] as $role => $value) {
                 $bit = (int)$value;
-                $multi = (int)$data["Role"][$role];
+                $multi = (int)$data[$role];
                 $plugins = $plugins+($bit*$multi);
             }
 
             foreach ($permissions["worlds"] as $role => $value) {
                 $bit = (int)$value;
-                $multi = (int)$data["Role"][$role];
+                $multi = (int)$data[$role];
                 $worlds = $worlds+($bit*$multi);
             }
 
             foreach ($permissions["servers"] as $role => $value) {
                 $bit = (int)$value;
-                $multi = (int)$data["Role"][$role];
+                $multi = (int)$data[$role];
                 $servers = $servers+($bit*$multi);
             }
 
-            foreach ($permissions["settings"] as $role => $value) {
+            foreach ($permissions["global"] as $role => $value) {
                 $bit = (int)$value;
-                $multi = (int)$data["Role"][$role];
-                $settings = $settings+($bit*$multi);
-            }*/
+                $multi = (int)$data[$role];
+                $global = $global+($bit*$multi);
+            }
+
             $result = array(
 
                 "title" => $data["rolename"],
@@ -105,11 +99,8 @@ class RolesController extends AppController {
                 "users" => $users,
                 "plugins" => $plugins,
                 "worlds" => $worlds,
-                "servers" => $servers,
-                "servertools" => $servertools,
-                "console" => $console
-
-                );
+                "servers" => $servers
+             );
 
                 $this->Role->create();
             if ($this->Role->save($result)) {
@@ -138,62 +129,55 @@ class RolesController extends AppController {
             $data = $this->request->data;
 
             $pages = 0;
-            $global = 0;
             $dash = 0;
             $users = 0;
             $plugins = 0;
             $worlds = 0;
             $servers = 0;
-            $servertools = 0;
-            $console = 0;
+            $global = 0;
 
             foreach ($permissions["pages"] as $role => $value) {
                 $bit = (int)$value;
                 $multi = (int)$data[$role];
                 $pages = $pages+($bit*$multi);
             }
-            /*
-            foreach ($permissions["global"] as $role => $value) {
-                $bit = (int)$value;
-                $multi = (int)$data["Role"][$role];
-                $global = $global+($bit*$multi);
-            }
 
             foreach ($permissions["dash"] as $role => $value) {
                 $bit = (int)$value;
-                $multi = (int)$data["Role"][$role];
+                $multi = (int)$data[$role];
                 $dash = $dash+($bit*$multi);
             }
 
             foreach ($permissions["users"] as $role => $value) {
                 $bit = (int)$value;
-                $multi = (int)$data["Role"][$role];
+                $multi = (int)$data[$role];
                 $users = $users+($bit*$multi);
             }
 
             foreach ($permissions["plugins"] as $role => $value) {
                 $bit = (int)$value;
-                $multi = (int)$data["Role"][$role];
+                $multi = (int)$data[$role];
                 $plugins = $plugins+($bit*$multi);
             }
 
             foreach ($permissions["worlds"] as $role => $value) {
                 $bit = (int)$value;
-                $multi = (int)$data["Role"][$role];
+                $multi = (int)$data[$role];
                 $worlds = $worlds+($bit*$multi);
             }
 
             foreach ($permissions["servers"] as $role => $value) {
                 $bit = (int)$value;
-                $multi = (int)$data["Role"][$role];
+                $multi = (int)$data[$role];
                 $servers = $servers+($bit*$multi);
             }
 
-            foreach ($permissions["settings"] as $role => $value) {
+            foreach ($permissions["global"] as $role => $value) {
                 $bit = (int)$value;
-                $multi = (int)$data["Role"][$role];
-                $settings = $settings+($bit*$multi);
-            }*/
+                $multi = (int)$data[$role];
+                $global = $global+($bit*$multi);
+            }
+
             $result = array(
 
                 "title" => $data["rolename"],
@@ -203,10 +187,8 @@ class RolesController extends AppController {
                 "users" => $users,
                 "plugins" => $plugins,
                 "worlds" => $worlds,
-                "servers" => $servers,
-                "servertools" => $servertools,
-                "console" => $console
-                );
+                "servers" => $servers
+             );
 
             if ($this->Role->save($result)) {
                 $this->Session->setFlash(__('The role has been saved'));
@@ -223,23 +205,35 @@ class RolesController extends AppController {
 
             $cst['title'] = $data['Role']['title'];
 
-            if ($data["Role"]['pages'] & $permissions['pages']['dash']) { $cst['dash'] = "checked"; } else {$cst['dash'] = ""; }
-            if ($data["Role"]['pages'] & $permissions['pages']['users']) { $cst['users'] = "checked"; } else {$cst['users'] = ""; }
-            if ($data["Role"]['pages'] & $permissions['pages']['plugins']) { $cst['plugins'] = "checked"; } else {$cst['plugins'] = ""; }
-            if ($data["Role"]['pages'] & $permissions['pages']['worlds']) { $cst['worlds'] = "checked"; } else {$cst['worlds'] = ""; }
-            if ($data["Role"]['pages'] & $permissions['pages']['server']) { $cst['server'] = "checked"; } else {$cst['server'] = ""; }
-            if ($data["Role"]['pages'] & $permissions['pages']['servertools']) { $cst['servertools'] = "checked"; } else {$cst['servertools'] = ""; }
-            if ($data["Role"]['pages'] & $permissions['pages']['console']) { $cst['console'] = "checked"; } else {$cst['console'] = ""; }
+            //foreach $permissions['name'] array, check the $data['Role']['name'] value and set $cst['value'] respectively
+
+            foreach ($permissions as $n => $node) 
+            {
+
+                foreach ($node as $name => $val) 
+                {
+
+                    if ($data["Role"][$n] & $node[$name]) 
+                    {
+                        $cst[$name] = "checked";
+                    }
+                    else 
+                    {
+                        $cst[$name] = "";
+                    }
+
+                }
+
+            }
 
             $this->set("cst", $cst);
 
+            $this->layout = 'popup';
+
             $this->set("permissions", $permissions);
         }
+
         $default = $this->Role->data;
-
-        $this->layout = 'popup';
-
-
     }
 
     function delete($id = null) {

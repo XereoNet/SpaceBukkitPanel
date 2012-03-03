@@ -54,11 +54,11 @@
 						<span class="dropdown_servers tip"><p><a href="#"><?php echo $current_server_name; ?></a></p></span>
 						<div class="tooltip white server_add_to_list" style="max-width: 190px">
 							<ul>
-								<?php 
+									<?php 
 
 					//get all servers and display them nicely :)
 
-					if ($is_super = 1) {
+					if ($is_super == 1) {
 
 					//if superuser
 					
@@ -76,7 +76,7 @@ END;
 
 					//if not superuser
 					
-					foreach ($user_data as $list) {
+					foreach ($user_data['AllowedServers'] as $sid => $list) {
 
 						$title = $list['Server']['title'];
 						$id = $list['Server']['id'];
@@ -104,13 +104,12 @@ END;
 						<span><a href="#" class="account tip"><?php echo __('Welcome aboard'); ?>, <?php echo $username; ?> </a></span>
 						<div class="tooltip white">
 							<ul>
-								<li><a href="./users/settings" class="fancy"><?php echo __('Account Settings'); ?></a></li>
+								<li><a href="./users/edit/<?php echo $current_user_id; ?>" class="fancy"><?php echo __('Account Settings'); ?></a></li>
 								<li><a href="./users/theme" class="fancy"><?php echo __('SpaceBukkit Theme'); ?></a></li>
 								<li><a href="./users/logout"><?php echo __('Logout'); ?></a></li>
 							</ul>
 						</div>
-
-						
+											
 					</div>
 				</div>
 			</div>
@@ -122,7 +121,11 @@ END;
 					<!-- Navigation -->
 					<nav id="mainnav">
 						<ul>
-					        <li class="bounce fadein floatright"> <a href="./tsettings"> <span class="icon settings"></span> <?php echo __('Settings'); ?> </a> </li>
+					        <?php if ($is_super == 1) { ?>
+					        <li class="<?php if ($this->name == "Tsettings") { echo "current" ; }  ?> bounce fadein floatright"> 
+					        	<a href="<?php echo $this->Html->url('/tsettings', true); ?>"> <span class="icon settings"></span><?php echo __(' Settings ') ?></a> 
+					        </li>
+					        <?php } ?>
 						</ul>
 					</nav>
 					<!-- End Navigation --> 

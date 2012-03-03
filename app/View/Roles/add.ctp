@@ -1,54 +1,107 @@
 <?php echo $this->Form->create('Role');?>
 
 <nav id="mainnav" class="popup">
-    <h3><?php echo __('Add new role'); ?></h3>
+    <h3>Add new Role</h3>
+</nav>
+<nav id="popuptabs">
+    <ul>
+      <li class="current"><a href="#tab100">General</a></li>
+            <?php
+
+      foreach ($permissions["pages"] as $desc => $perm) 
+      {
+
+      echo '<li><a href="#'.$desc.'">'.$desc.'</a></li>';
+
+      }
+
+?>
+    </ul>
 </nav>
 <!-- End Tabs -->
 
 <!-- Content -->
 <section id="content"> 
 <div class="error_box"></div>
+<div class="tab2" id="tab100">
+  <section>
 
-<section>
+      <section>
+          <label for="rolename">
+            <?php echo __('Role Name'); ?>
+          </label>
+        
+          <div>
+            <input type="text" id="rolename" name="rolename" />
+          </div>
+      </section>
+      <p>The following checkboxes allow you to configure "access" to pages and tools. If these are checked, users with this role can "see" the pages. Check the respective permissions on the next pages to allow them to "do" things.</p>
+      <?php
 
-    <section>
-        <label for="rolename">
-          <?php echo __('Role Name'); ?>
+      foreach ($permissions["pages"] as $desc => $perm) 
+      {
+
+    echo <<<END
+      <section>
+        <label for="$desc">
+        $desc
         </label>
-      
         <div>
-          <input type="text" id="rolename" name="rolename" />
+END;
+      echo '<input type="hidden" name="'.$desc.'" value="0">';
+      echo '<input name="'.$desc.'" type="checkbox" value="1">';
+      echo <<<END
         </div>
-    </section>
-<?php
-
-foreach ($permissions["pages"] as $desc => $perm) {
-
-    echo <<<END
-<section>
-      <label for="$desc">
-      $desc
-      </label>
-      <div>
+        </section>
 END;
-echo $this->Form->checkbox($desc); 
-    echo <<<END
-      </div>
-</section>
-END;
-}
+      }
+
 ?>
-</section>
+      </section>
+
+  </div>
+      <?php
+
+      foreach ($permissions["pages"] as $desc => $perm) 
+      {
+
+      echo '<div class="tab2" id="'.$desc.'">';
+      
+        foreach ($permissions[$desc] as $desc => $perm) 
+        {
+
+echo <<<END
+      <section>
+        <label for="$desc">
+        $desc
+        </label>
+        <div>
+END;
+      echo '<input type="hidden" name="'.$desc.'" value="0">';
+      echo '<input name="'.$desc.'" type="checkbox" value="1">';
+      echo <<<END
+        </div>
+        </section>
+END;
+
+        }
+      
+      echo '</div>';
+
+      }
+
+?>
 
 <div class="submit"><input type="submit" value="<?php echo __('Save role'); ?>" class="button"></div>
 </form>
+
 <div class="clear"></div>
 </div>
 
 <!-- End #content --> 
 <script>
 $('document').ready(function(){
-    var validator = new FormValidator('RoleAddForm', [{
+    var validator = new FormValidator('RoleEditForm', [{
         name: 'rolename',
         display: 'Role name',    
         rules: 'required'

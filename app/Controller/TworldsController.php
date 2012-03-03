@@ -40,9 +40,12 @@ class TWorldsController extends AppController {
         //check if user has rights to do this
         $user_perm = $this->Session->read("user_perm");
         $glob_perm = $this->Session->read("glob_perm");
-         if ($user_perm['pages'] &! $glob_perm['pages']['worlds']) { 
-            exit("access denied");
-         } 
+
+        if (!($user_perm['pages'] & $glob_perm['pages']['worlds'])) { 
+
+           exit("access denied");
+
+        } 
       }
 
     function index() {

@@ -44,8 +44,20 @@ class UsersController extends AppController {
     */
     
     public function beforeFilter() {
-        $this->Auth->allow('add', 'logout');
-        parent::beforeFilter();       
+        parent::beforeFilter();   
+
+        $allowed_actions = array("index", "login", "logout", "edit", "theme");
+
+        if (!(in_array($this->action, $allowed_actions))) {
+
+          if ($this->Auth->user('is_super') != 1) {
+
+            throw new MethodNotAllowedException();
+
+          }
+
+        }
+
     }
 
     public function index() {
@@ -56,7 +68,8 @@ class UsersController extends AppController {
 
     if ($this->Auth->login()) {
         $this->Session->write("current_theme", $this->Auth->user('theme'));
-        $this->redirect($this->Auth->redirect());
+
+        $this->redirect(array('controller' => 'global', 'action' => 'login'));
 
     } else {
 
@@ -76,6 +89,7 @@ class UsersController extends AppController {
     }
 
     public function add() {
+
         if ($this->request->is('post')) {
             $this->User->create();
             if ($this->User->save($this->request->data)) {
@@ -469,6 +483,10 @@ class UsersController extends AppController {
             throw new MethodNotAllowedException();
         }
         $this->ServersUsers->id = $id;
+        $data = $this->ServersUsers->findById($id);
+        $this->User->id = $data['User']['id'];
+        $this->User->saveField('favourite_server', 0);
+
         if (!$this->ServersUsers->exists()) {
             throw new NotFoundException(__('Invalid ServersUsers'));
         }

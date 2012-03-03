@@ -52,14 +52,17 @@ class TPlayerscontroller extends AppController {
         //check if user has rights to do this
         $user_perm = $this->Session->read("user_perm");
         $glob_perm = $this->Session->read("glob_perm");
-         if ($user_perm['pages'] &! $glob_perm['pages']['users']) { 
-            exit("access denied");
-         } 
+
+        if (!($user_perm['pages'] & $glob_perm['pages']['users'])) { 
+
+           exit("access denied");
+
+        } 
+
       }
 
     function index() {  
         
-
         /*
 
         *   Connection Check - Is the server running? Redirect accordingly.
@@ -104,7 +107,7 @@ class TPlayerscontroller extends AppController {
 
     if ($this->request->is('ajax')) {
         $this->disableCache();
-        Configure::write('debug', 0);
+        //Configure::write('debug', 0);
         $this->autoRender = false;
 
         include APP.'spacebukkitcall.php';
@@ -163,18 +166,34 @@ END;
             $lvl = $p['Level'];
             $gamemode = $p['GameMode'];
             if($p['GameMode'] == 'SURVIVAL') {
-                $gamemode = __('Survival').'  <span class=\'button-group\'><a href=\'./tplayers/gameMode/'.$name.'/1\'  class=\'button icon arrowup ajax_table1\'>'.__('Set to creative').'</a></span>';
-            }else if($p['GameMode'] == 'CREATIVE') {
-                $gamemode = __('Creative').'  <span class=\'button-group\'><a href=\'./tplayers/gameMode/'.$name.'/0\'  class=\'button icon arrowdown ajax_table1\'>'.__('Set to survival').'</a></span>';
+
+                $gamemode = __('Survival');
+                $gamemode .= perm_action('users', 'changeGamemode', $this->Session->read("user_perm"), '<span class=\'button-group\'><a href=\'./tplayers/gameMode/'.$name.'/1\'  class=\'button icon arrowdown ajax_table1\'>'.__('Set to creative').'</a></span>');
+
+
+            } elseif($p['GameMode'] == 'CREATIVE') {
+                $gamemode = __('Creative');
+                $gamemode .= perm_action('users', 'changeGamemode', $this->Session->read("user_perm"), '<span class=\'button-group\'><a href=\'./tplayers/gameMode/'.$name.'/0\'  class=\'button icon arrowdown ajax_table1\'>'.__('Set to survival').'</a></span>');
+
+
             }
             $exp = $p['TotalExperience'];
             if (in_array($name, $ops)) {
-                $op = __('Yes').'  <span class=\'button-group\'><a href=\'./tplayers/deop/'.$name.'\'  class=\'button icon arrowdown ajax_table1\'>'.__('Deop').'</a>';
+                $op = __('Yes');                 
+                $op .=  perm_action('users', 'op', $this->Session->read("user_perm"), '  <span class=\'button-group\'><a href=\'./tplayers/deop/'.$name.'\'  class=\'button icon arrowdown ajax_table1\'>'.__('Deop').'</a>');            
             } else {
-                $op = __('No').'  <span class=\'button-group\'><a href=\'./tplayers/op/'.$name.'\'  class=\'button icon arrowup ajax_table1\'>'.__('Op').'</a>';          
+                $op = __('No');                 
+                $op .=  perm_action('users', 'op', $this->Session->read("user_perm"), '  <span class=\'button-group\'><a href=\'./tplayers/op/'.$name.'\'  class=\'button icon arrowup ajax_table1\'>'.__('Op').'</a>');            
             }
-            $lifeText = '<div id=\'progress1\' class=\'sprogress green\'><span style=\'width: '.$life.'%\'><b> '.__('Health').' </b> </span></div><div id=\'progress1\' class=\'sprogress red\'><span style=\'width: '.$hunger.'%\'> <b> '.__('Food').' </b> </span></div> '.__('Lvl').': '.$lvl.' // '.__('Exp').': '.$exp.' <br />';
-            $actionText = '<span class=\'button-group\'><a href=\'./tplayers/heal/'.$name.'\'  class=\'button icon like ajax_table1\'>'.__('Heal').'</a> <a href=\'./tplayers/feed/'.$name.'\'  class=\'button icon like ajax_table1\'>'.__('Feed').'</a> <a href=\'./tplayers/inventory/'.$name.'\' class=\'button fancy icon user\'>'.__('Inventory').'</a></span> <span class=\'button-group\'> <a href=\'./tplayers/kill/'.$name.'\' class=\'button icon remove danger ajax_table1\'>'.__('Kill').'</a> <a href=\'./tplayers/kick/'.$name.'\' class=\'button icon remove danger ajax_table1\'>'.__('Kick').'</a> <a href=\'./tplayers/ban/'.$name.'\' class=\'button icon remove danger ajax_table3\'>'.__('Ban').'</a>  </span>';
+            $lifeText = '<div id=\'progress1\' class=\'sprogress green\'><span style=\'width: '.$life.'%\'><b> '.__('Health').' </b> </span></div><div id=\'progress1\' class=\'sprogress red\'><span style=\'width: '.$hunger.'%\'> <b> '.__('Food').' </b> </span></div> '.__('Lvl').': '.$lvl.' // '.__('Exp').': '.$exp.' <br />';           
+
+            $action1 = perm_action('users', 'healAndFeed', $this->Session->read("user_perm"), '<a href=\'./tplayers/heal/'.$name.'\'  class=\'button icon like ajax_table1\'>'.__('Heal').'</a><a href=\'./tplayers/feed/'.$name.'\'  class=\'button icon like ajax_table1\'>'.__('Feed').'</a>');
+            $action2 = perm_action('users', 'seeInventory', $this->Session->read("user_perm"), '<a href=\'./tplayers/inventory/'.$name.'\' class=\'button fancy icon user\'>'.__('Inventory').'</a>');
+            $action3 = perm_action('users', 'kill', $this->Session->read("user_perm"), '<a href=\'./tplayers/kill/'.$name.'\' class=\'button icon remove danger ajax_table1\'>'.__('Kill').'</a>');
+            $action4 = perm_action('users', 'kick', $this->Session->read("user_perm"), '<a href=\'./tplayers/kick/'.$name.'\' class=\'button icon remove danger ajax_table1\'>'.__('Kick').'</a>');
+            $action5 = perm_action('users', 'ban', $this->Session->read("user_perm"), '<a href=\'./tplayers/ban/'.$name.'\' class=\'button icon remove danger ajax_table3\'>'.__('Ban').'</a>');
+
+            $actionText = '<span class=\'button-group\'>'.$action1.$action2.'</span> <span class=\'button-group\'>'.$action3.$action4.$action5.'</span>';
             ECHO <<<END
                 [
                   "<img src=\"./global/avatar/$name/40\" class=\"avatar\" />",
@@ -194,8 +213,8 @@ END;
 
         }
          echo '] }';
-    }
-    }
+        }
+        }
     }
 
 
@@ -213,10 +232,13 @@ END;
         $hasjoined = $api->call("wasThereAConnection", $args, false);
         echo $hasjoined;
 
-}
-}
+        }
+    }
 
     function gameMode($plr, $mode) {
+
+        perm('users', 'changeGamemode', $this->Session->read("user_perm"), true);
+                
         if ($this->request->is('ajax')) {
         $this->disableCache();
         Configure::write('debug', 0);
@@ -259,8 +281,10 @@ END;
             $i = 1;
             echo '{ "aaData": [';  
                          
-            foreach ($whitelist as $w) {
-                $action = '<span class=\"button-group\"><a href=\"./tplayers/whitelist_del/'.$w.'\"  class=\"button icon danger arrowdown ajax_table2\">'.__('Remove').'</a>';
+            foreach ($whitelist as $w) {               
+
+                $action = perm_action('users', 'whitelist', $this->Session->read("user_perm"), '<span class=\"button-group\"><a href=\"./tplayers/whitelist_del/'.$w.'\"  class=\"button icon danger arrowdown ajax_table2\">'.__('Remove').'</a>');
+
             ECHO <<<END
                 [
                   "<img src=\"./global/avatar/$w/40\" class=\"avatar\" />",
@@ -301,7 +325,9 @@ END;
             echo '{ "aaData": [';  
                          
             foreach ($blacklist as $b) {
-                $action = '<span class=\"button-group\"><a href=\"./tplayers/blacklist_del/'.$b.'\"  class=\"button icon danger arrowdown ajax_table3\">'.__('Remove').'</a>';
+
+                $action = perm_action('users', 'ban', $this->Session->read("user_perm"), '<span class=\"button-group\"><a href=\"./tplayers/blacklist_del/'.$b.'\"  class=\"button icon danger arrowdown ajax_table3\">'.__('Remove').'</a>');
+
             ECHO <<<END
                 [
                   "<img src=\"./global/avatar/$b/40\" class=\"avatar\" />",
@@ -322,6 +348,8 @@ END;
     }
 
     function kill($player) {      
+
+    perm('users', 'kill', $this->Session->read("user_perm"), true);
 
     if ($this->request->is('ajax')) {
         $this->disableCache();
@@ -344,7 +372,9 @@ END;
     }
 
 
-    function heal($player) {      
+    function heal($player) {     
+
+    perm('users', 'healAndFeed', $this->Session->read("user_perm"), true);
 
     if ($this->request->is('ajax')) {
         $this->disableCache();
@@ -367,7 +397,9 @@ END;
     }
 
 
-    function feed($player) {      
+    function feed($player) {    
+
+    perm('users', 'healAndFeed', $this->Session->read("user_perm"), true);
 
     if ($this->request->is('ajax')) {
         $this->disableCache();
@@ -390,6 +422,8 @@ END;
 
     function kick($player) {      
 
+    perm('users', 'kick', $this->Session->read("user_perm"), true);
+
     if ($this->request->is('ajax')) {
         $this->disableCache();
         Configure::write('debug', 0);
@@ -410,6 +444,8 @@ END;
     }
 
     function ban($player) {      
+
+    perm('users', 'ban', $this->Session->read("user_perm"), true);
 
     if ($this->request->is('ajax')) {
         $this->disableCache();
@@ -433,6 +469,9 @@ END;
     }
 
     function blacklist_add() {
+
+    perm('users', 'ban', $this->Session->read("user_perm"), true);
+
         if (!$this->request->is('post')) {
             throw new MethodNotAllowedException();
         }
@@ -456,6 +495,8 @@ END;
 
     function blacklist_del($name) {
 
+    perm('users', 'ban', $this->Session->read("user_perm"), true);
+
          if ($this->request->is('ajax')) {
         $this->disableCache();
         Configure::write('debug', 0);
@@ -475,6 +516,9 @@ END;
     }
 
     function whitelist_add() {
+
+    perm('users', 'whitelist', $this->Session->read("user_perm"), true);
+
         if (!$this->request->is('post')) {
             throw new MethodNotAllowedException();
         }
@@ -498,6 +542,8 @@ END;
 
     function whitelist_del($name) {
 
+    perm('users', 'whitelist', $this->Session->read("user_perm"), true);
+
         if ($this->request->is('ajax')) {
         $this->disableCache();
         Configure::write('debug', 0);
@@ -517,6 +563,8 @@ END;
     }
 
     function op($name) {
+
+    perm('users', 'op', $this->Session->read("user_perm"), true);
 
         if ($this->request->is('ajax')) {
         $this->disableCache();
@@ -538,6 +586,8 @@ END;
 
     function deop($name) {
 
+    perm('users', 'op', $this->Session->read("user_perm"), true);
+
         if ($this->request->is('ajax')) {
         $this->disableCache();
         Configure::write('debug', 0);
@@ -558,14 +608,47 @@ END;
 
     function inventory($name) {
 
+    perm('users', 'seeInventory', $this->Session->read("user_perm"), true);
+
         include APP.'spacebukkitcall.php';
 
         $args = array($name); 
         $items = $api->call("getInventory", $args, false);
+
+        $dir = new Folder(WWW_ROOT . 'inventory/icons/');
+        $allitems = $dir->find('.+\.png'); 
+
+        foreach ($allitems as $slot => $item) {
+            $allitems[$slot] = substr($item, 0, -4);
+        }
+
+        foreach ($items as $slot => $item) {
+            $items[$slot]['comb'] = $items[$slot]['ID'].'-'.$items[$slot]['Data'];
+            if ($item['Amount'] == 0) $items[$slot]['Amount'] = '';
+            if (!in_array($items[$slot]['comb'] , $allitems))  $items[$slot]['comb'] = 'none';
+        }
+
         $this->set('name', $name);
         $this->set('item', $items);
 
         $this->layout = 'popup';
+    }
+
+    function inventory_delete($name, $slot) {
+    perm('users', 'seeInventory', $this->Session->read("user_perm"), true);
+
+       if ($this->request->is('ajax')) {
+            $this->disableCache();
+            Configure::write('debug', 0);
+            $this->autoRender = false;
+
+            include APP.'spacebukkitcall.php';
+
+            $args = array($name, $slot); 
+            $items = $api->call("clearInventorySlot", $args, false);
+
+        }
+
     }
 
 }

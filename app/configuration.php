@@ -19,8 +19,8 @@
 *
 */
 
-	$sbconf['app_version'] = "Open Beta 1.1";
-    $sbconf['app'] = "1";
+	$sbconf['app_version'] = "Open Beta 1.1-01";
+    $sbconf['app'] = "2";
     $sbconf['theme'] = "Spacebukkit";
 
     $languages = array();
@@ -34,71 +34,59 @@
     $permissions = array();
 
 	$permissions["pages"] = array(
-    'dash'      => 1, 
-    'users' 	=> 2, 
-    'plugins'   => 4, 
-    'worlds'    => 8, 
-    'server'    => 16, 
-    'servertools'    => 32,
-    'console'    => 64
+    'dash'                  => 1, 
+    'users' 	            => 2, 
+    'plugins'               => 4, 
+    'worlds'                => 8, 
+    'servers'               => 16,
+    'global'                => 32
     );
 
 	$permissions["global"] = array(
-    'addRemoveServer'      => 1, 
-    'stopStartServer' 	=> 2, 
-    'reloadServer'   => 4, 
-    'restartServer'    => 8, 
-    'vanillaMode'     => 16, 
-    'configureServer'    => 32
+    'addRemoveServer'       => 1, 
+    'stopStartServer' 	    => 2, 
+    'reloadServer'          => 4, 
+    'restartServer'         => 8, 
+    'forceRestartServer'    => 16,
+    'console'               => 32,
+    'chat'                  => 64
 	);
 
 	$permissions["dash"] = array(
-    'seeConsole'      => 1, 
-    'runCommand' 	=> 2, 
-    'Activity'   => 4, 
-    'Chat'    => 8, 
-    'Stats'     => 16
+    'Activity'              => 1, 
+    'Stats'                 => 2
 	);
 
 	$permissions["users"] = array(
-    'healAndFeed'      => 1, 
-    'kill' 	=> 2, 
-    'seeInventory'   => 4, 
-    'kick'    => 8, 
-    'ban'     => 16, 
-    'whitelist'    => 32, 
-    'op'    => 64, 
-    'editInventory'    => 128
+    'healAndFeed'           => 1, 
+    'kill'              	=> 2, 
+    'seeInventory'          => 4, 
+    'kick'                  => 8, 
+    'ban'                   => 16, 
+    'whitelist'             => 32, 
+    'op'                    => 64,
+    'changeGamemode'        => 128
 	);
 
 	$permissions["plugins"] = array(
-    'disablePlugin'      => 1, 
-    'removeAddPlugin' 	=> 2, 
-    'configurePlugin'   => 4, 
-    'removeAddAddons'    => 8, 
-    'updatePlugin'     => 16
+    'disablePlugin'         => 1, 
+    'removeAddPlugin' 	    => 2, 
+    'configurePlugin'       => 4, 
+    'updatePlugin'          => 8
 	);
 
 	$permissions["worlds"] = array(
-    'runChunkster'      => 1, 
-    'runMapAutoTrim' 	=> 2
+    'runChunkster'          => 1, 
+    'runMapAutoTrim' 	    => 2,
+    'removeAddWorld'        => 4,
+    'changeWorldSettings'   => 8,
+    'backupRestoreWorld'    => 16
 	);	
 
 	$permissions["servers"] = array(
-    'addRemoveShedule'      => 1, 
-    'changeBukkit' 	=> 2
-	);
-
-	$permissions["settings"] = array(
-    'seeUsers'      => 1, 
-    'editUser' 	=> 2, 
-    'addRemoveUser'   => 4, 
-    'seeRoles'    => 8, 
-    'addRemoveRoles'     => 16, 
-    'editRoles'    => 32, 
-    'seeThemes'    => 64, 
-    'installRemoveTheme'    => 128,
-    'editSpaceBukkit'    => 256
+    'Shedules'              => 1, 
+    'serverProperties'     	=> 2,
+    'bukkit'                => 4
 	);
 
 ?>

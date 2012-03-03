@@ -54,7 +54,64 @@ class GlobalController extends AppController {
 
       	$this->redirect($this->referer());
 
-    }
+      }
+
+      function login() {
+
+            $this->autoRender = false;
+
+            //check if the user has access to dash
+
+            $user_perm = $this->Session->read("user_perm");
+            $glob_perm = $this->Session->read("glob_perm");
+            
+            if ($user_perm['pages'] & $glob_perm['pages']['dash']) { 
+
+               $this->redirect($this->Auth->redirect());
+
+            } 
+
+            //if not, do a foreach with all "pages" perms to check what page is allowed
+
+            else {
+
+              if ($this->Auth->user('is_super') == 1) {
+
+                $redirect = 'dash';
+
+              } else {
+                         
+              foreach ($glob_perm['pages'] as $desc => $node) {
+
+                if ($user_perm['pages'] & $node) { 
+
+                   $redirect = $desc;
+
+                   break;
+
+                } 
+
+              }
+
+              }
+
+              if ($redirect == 'users') {
+                $this->redirect(array('controller' => 'tplayers', 'action' => 'index'));
+              } elseif ($redirect == 'dash') {
+                $this->redirect(array('controller' => 'dash', 'action' => 'index'));
+              } elseif ($redirect == 'plugins') {
+                $this->redirect(array('controller' => 'tplugins', 'action' => 'index'));
+              } elseif ($redirect == 'worlds') {
+                $this->redirect(array('controller' => 'tworlds', 'action' => 'index'));
+              } elseif ($redirect == 'servers') {
+                $this->redirect(array('controller' => 'tservers', 'action' => 'index'));
+              } else {
+                exit('You have absolutely no permissions on this Spacebukkit, sorry :(');
+              }
+
+            }                  
+
+      }
 
       function avatar($name = 'Antariano', $size = 100) {
 
