@@ -97,6 +97,8 @@ END;
 
 
     function installPlugin($name) {
+
+      perm('plugins', 'removeAddPlugin', $this->Session->read("user_perm"), true);
  
       if ($this->request->is('ajax')) {
       $this->disableCache();
