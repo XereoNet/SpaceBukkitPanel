@@ -101,7 +101,7 @@ END;
 					</div>
 					<div id="userbuttons">
 						
-						<span><a href="#" class="account tip"><?php echo __('Welcome aboard'); ?>, <?php echo $username; ?> </a></span>
+						<span><a href="#" class="account tip"><?php echo $username; ?> </a></span>
 						<div class="tooltip white">
 							<ul>
 								<li><a href="./users/edit/<?php echo $current_user_id; ?>" class="fancy"><?php echo __('Account Settings'); ?></a></li>
@@ -122,7 +122,7 @@ END;
 					<nav id="mainnav">
 						<ul>
 					        <?php if ($is_super == 1) { ?>
-					        <li class="<?php if ($this->name == "Tsettings") { echo "current" ; }  ?> bounce fadein floatright"> 
+					        <li class="<?php if ($this->name == "Tsettings") { echo "current" ; }  ?> fadein floatright"> 
 					        	<a href="<?php echo $this->Html->url('/tsettings', true); ?>"> <span class="icon settings"></span><?php echo __(' Settings ') ?></a> 
 					        </li>
 					        <?php } ?>

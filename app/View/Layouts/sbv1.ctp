@@ -141,9 +141,7 @@
 			<div class="hheight"> 
 
 				<!-- Logo -->
-				<div class="col left col_1_3">
 				<h1 id="logo">SpaceBukkit</h1>
-				</div>
 				<!-- Upper Bar -->
 				<div id="upperbar" class="col right">
 					<div id="serverbox">
@@ -204,7 +202,7 @@ END;
 					</div>
 					<div id="userbuttons">
 						
-						<span><a href="#" class="account tip"><?php echo __('Welcome aboard'); ?>, <?php echo $username; ?> </a></span>
+						<span><a href="#" class="account tip"><?php echo $username; ?> </a></span>
 						<div class="tooltip white">
 							<ul>
 								<li><a href="./users/edit/<?php echo $current_user_id; ?>" class="fancy"><?php echo __('Account Settings'); ?></a></li>
@@ -225,33 +223,33 @@ END;
 			<nav id="mainnav">
 				<ul> 
 					<?php if (perm('pages', 'dash', $user_perm)): ?>
-			        <li class="<?php if ($this->name == "DashController") { echo "current" ; }  ?> bounce fadein"> 
+			        <li class="<?php if ($this->name == "DashController") { echo "current" ; }  ?> fadein"> 
 
 			        	<a href="<?php echo $this->Html->url('/dash', true); ?>"> <span class="icon dashboard"></span><?php echo __(' Dashboard') ?></a> 
 			        </li>
 			        <?php endif; ?>
 					<?php if (perm('pages', 'users', $user_perm)): ?>
-			        <li class="<?php if ($this->name == "TPlayersController") { echo "current" ; }  ?> bounce fadein"> 
+			        <li class="<?php if ($this->name == "TPlayersController") { echo "current" ; }  ?> fadein"> 
 			        	<a href="<?php echo $this->Html->url('/tplayers', true); ?>"> <span class="icon users"></span><?php echo __(' Players ') ?></a> 
 			        </li>
 			        <?php endif; ?>
 					<?php if (perm('pages', 'plugins', $user_perm)): ?>
-			        <li class="<?php if ($this->name == "TPluginsController") { echo "current" ; }  ?> bounce fadein"> 
+			        <li class="<?php if ($this->name == "TPluginsController") { echo "current" ; }  ?> fadein"> 
 			        	<a href="<?php echo $this->Html->url('/tplugins', true); ?>"> <span class="icon plugins"></span><?php echo __(' Plugins ') ?></a> 
 			        </li>
 			        <?php endif; ?>
 					<?php if (perm('pages', 'worlds', $user_perm)): ?>
-			        <li class="<?php if ($this->name == "TWorldsController") { echo "current" ; }  ?> bounce fadein"> 
+			        <li class="<?php if ($this->name == "TWorldsController") { echo "current" ; }  ?> fadein"> 
 			        	<a href="<?php echo $this->Html->url('/tworlds', true); ?>"> <span class="icon world"></span><?php echo __(' Worlds ') ?></a> 
 			        </li>
 			        <?php endif; ?>
 					<?php if (perm('pages', 'servers', $user_perm)): ?>
-			        <li class="<?php if ($this->name == "TServersController") { echo "current" ; }  ?> bounce fadein"> 
+			        <li class="<?php if ($this->name == "TServersController") { echo "current" ; }  ?> fadein"> 
 			        	<a href="<?php echo $this->Html->url('/tservers', true); ?>"> <span class="icon server"></span><?php echo __(' Server ') ?></a> 
 			        </li>
 			        <?php endif; ?>
 			        <?php if ($is_super == 1) { ?>
-			        <li class="<?php if ($this->name == "Tsettings") { echo "current" ; }  ?> bounce fadein floatright"> 
+			        <li class="<?php if ($this->name == "Tsettings") { echo "current" ; }  ?> fadein floatright"> 
 			        	<a href="<?php echo $this->Html->url('/tsettings', true); ?>"> <span class="icon settings"></span><?php echo __(' Settings ') ?></a> 
 			        </li>
 			        <?php } ?>
