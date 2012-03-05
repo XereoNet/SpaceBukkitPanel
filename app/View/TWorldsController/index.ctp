@@ -14,7 +14,11 @@
 <section id="content"> 
 
 	<div class="tab" id="tab1">
-		<p class="bukget_information"><?php echo __('Attention: some or more features may not be supported be your multiworld plugin! If your using MultiVerse please make sure your worlds are imported at first, otherwise loading won\'t work!'); ?></p>	
+
+
+	<div class="alert alert-info">
+	<p><?php echo __('Attention: some or more features may not be supported be your multiworld plugin! If your using MultiVerse please make sure your worlds are imported at first, otherwise loading won\'t work!'); ?></p>
+	</div>
 
   <div class="table_container">
 

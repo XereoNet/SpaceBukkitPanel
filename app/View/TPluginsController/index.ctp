@@ -12,9 +12,12 @@
 <section id="content"> 
   
 	<div class="tab" id="tab1">
-	<p class="bukget_information"><?php echo __('Attention! This page might be slow with many plugins!'); ?></p>	
-	<p class="bukget_information"><?php echo __('Plugins with the <img src="img/bukget_enabled.png" /> Bukget Icon are automatically checked for Updates. Disabling a plugin will only disable it till the next reload or restart (we are working on a better solution :)') ?></p><br />
 
+	<div class="alert alert-info">
+	<p><?php echo __('This page might be slow with many plugins!'); ?></p>
+	<p><?php echo __('Plugins with the <img src="img/bukget_enabled.png" /> Bukget Icon are automatically checked for Updates. Disabling a plugin will only disable it till the next reload or restart (we are working on a better solution :)') ?></p>
+	</div>
+		
   <div class="table_container">
 
     <header>

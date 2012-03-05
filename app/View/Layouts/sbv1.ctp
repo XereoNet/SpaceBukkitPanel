@@ -266,9 +266,9 @@ END;
 			<div id="footer">
 
 				<div class="col left">
-
+					<p>
 				<?php echo __('SpaceBukkit version'); ?> <?php echo $spacebukkitbuildcurrent; ?> <?php echo __('proudly presented by the SpaceBukkit Team :)'); ?>
-
+					</p>
 				</div>
 
 				<div class="col right">

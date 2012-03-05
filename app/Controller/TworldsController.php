@@ -206,19 +206,19 @@ class TWorldsController extends AppController {
                         if ($wmpl == 2) {
                             //animals multiverse
                             if($worldInfo['AllowAnimals'] == 1){
-                                $animals = '<img src=\"img/circle_green.png\"> '
+                                $animals = '<img src=\"img/circle_green.png\"> ';
                                 $animals .= perm_action('worlds', 'changeWorldSettings', $this->Session->read("user_perm"), '<span class=\"button-group\"><a href=\"./tworlds/worldAnimals/0/'.$name.'\" class=\"button icon arrowdown ajax_table1\">'.__('Disable').'</a></span>');
                             }else{
-                                $animals = '<img src=\"img/circle_red.png\"> '
+                                $animals = '<img src=\"img/circle_red.png\"> ';
                                 $animals .= perm_action('worlds', 'changeWorldSettings', $this->Session->read("user_perm"), '<span class=\"button-group\"><a href=\"./tworlds/worldAnimals/1/'.$name.'\" class=\"button icon arrowup ajax_table1\">'.__('Enable').'</a></span>');
                             }
 
                             //monsters multiverse
                             if($worldInfo['AllowMonsters'] == 1){
-                                $hostiles = '<img src=\"img/circle_green.png\"> '
+                                $hostiles = '<img src=\"img/circle_green.png\"> ';
                                 $hostiles .= perm_action('worlds', 'changeWorldSettings', $this->Session->read("user_perm"), '<span class=\"button-group\"><a href=\"./tworlds/worldHostiles/0/'.$name.'\" class=\"button icon arrowdown ajax_table1\">'.__('Disable').'</a></span>');
                             }else{
-                                $hostiles = '<img src=\"img/circle_red.png\"> '
+                                $hostiles = '<img src=\"img/circle_red.png\"> ';
                                 $hostiles .= perm_action('worlds', 'changeWorldSettings', $this->Session->read("user_perm"), '<span class=\"button-group\"><a href=\"./tworlds/worldHostiles/1/'.$name.'\" class=\"button icon arrowup ajax_table1\">'.__('Enable').'</a></span>');
                             }
                         }else if($wmpl == 1) {
@@ -239,11 +239,11 @@ class TWorldsController extends AppController {
 
                         //set PVP
                         if($worldInfo['PVP'] == 1){
-                            $pvp = '<img src=\"img/circle_green.png\"> '
+                            $pvp = '<img src=\"img/circle_green.png\"> ';
                             $pvp .= perm_action('worlds', 'changeWorldSettings', $this->Session->read("user_perm"), '<span class=\"button-group\"><a href=\"./tworlds/worldPVP/0/'.$name.'\" class=\"button icon arrowdown ajax_table1\">'.__('Disable').'</a></span>');
                         }else{
-                            $pvp = '<img src=\"img/circle_red.png\"> '
-                            $pvp .= perm_action('worlds', 'changeWorldSettings', $this->Session->read("user_perm"), '<span class=\"button-group\"><a href=\"./tworlds/worldPVP/1/'.$name.'\" class=\"button icon arrowup ajax_table1\">'.__('Enable').'</a></span>')Ant;
+                            $pvp = '<img src=\"img/circle_red.png\"> ';
+                            $pvp .= perm_action('worlds', 'changeWorldSettings', $this->Session->read("user_perm"), '<span class=\"button-group\"><a href=\"./tworlds/worldPVP/1/'.$name.'\" class=\"button icon arrowup ajax_table1\">'.__('Enable').'</a></span>');
                         }
 
                         //set difficulty
