@@ -90,7 +90,7 @@ a {
 }
 #container {
   margin: 0 auto;
-  min-width: 960px;
+  min-width: 480px;
   max-width: 92%
 }
 #container.login {

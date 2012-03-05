@@ -6,6 +6,7 @@
 <!-- CSS -->
 <link rel="stylesheet" href="<?php echo $this->webroot; ?>css/import.css" /> 
 <link rel="stylesheet" href="<?php echo $this->webroot; ?>css/overcast/jquery-ui-1.8.18.custom.css" /> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
 <!--[if lt IE 9]>

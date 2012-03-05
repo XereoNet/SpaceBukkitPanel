@@ -38,7 +38,7 @@ class RolesController extends AppController {
 
         if ($this->request->is('post')) {
 
-$data = $this->request->data;
+        $data = $this->request->data;
 
             $pages = 0;
             $dash = 0;
