@@ -65,11 +65,15 @@
 }
 
 .dataTables_length {
-  display: none;
-	width: 75px;
 	float: left;
+	position: relative;
+	top: -12px;
+	left: 200px;
 }
 
+.nolength .dataTables_length {
+	display: none;
+}
 .dataTables_filter {
     float: right;
     position: relative;

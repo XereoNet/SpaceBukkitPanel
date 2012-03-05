@@ -112,9 +112,10 @@
   </div><!-- End tab2 -->
 
   <div class="tab" id="tab3">
-
-      <p class="bukget_information"><?php echo __('If you delete a role, every user with that role on a server will acquire the "fallback" role.') ?></p>
-     <div class="table_container">
+  <div class="alert alert-info">
+  <p><?php echo __('If you delete a role, every user with that role on a server will acquire the "fallback" role.') ?></p>
+  </div>
+  <div class="table_container">
 
     <header>
 

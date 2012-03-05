@@ -7,7 +7,7 @@
 <div class="colorbox blue">
     <h3>Welcome to the SpaceBukkit Beta!</h3> 
     <p> 
-        Please do report any bug to GitHub, located here: <a href="https://github.com/SpaceDev/SpaceBukkit/issues">GitHub</a><br />
+        Please do report any bug to GitHub, located here: <a href="https://github.com/SpaceDev/">GitHub</a><br />
         You can contact us on our forums: <a href="http://forums.xereo.net">Forums</a><br />
         Have fun!
     </p> 
@@ -34,7 +34,7 @@
         <div>
         <input type="text" id="UserUsername" maxlength="50" name="data[User][username]" placeholder="Enter username" class="login_user">
         <input type="password" id="UserPassword" name="data[User][password]" placeholder="Enter password" class="login_pass">
-        <input type="submit" class="button big primary submit loginkey" value="Login">
+        <input type="submit" class="button big primary submit loginkey pull-right" value="Login">
         </div>
     </form>
 

@@ -94,7 +94,7 @@
 
 	}
 
-	$files = filelist(APP . "/themes/",1,1); // call the function
+	$files = filelist("./themes/",1,1); // call the function
 
 	foreach ($files as $list) {//print array
 
@@ -121,15 +121,22 @@
 
 	        <td> 
 
-          <span class="button-group"> 
 END;
-if ($list["name"] != "Spacebukkit") {
+	
+		if ($list['name'] == "Spacebukkit") {
+   	   
+		} 
+		else {
+   	    echo <<<END
+	          <span class="button-group"> 
+END;
+          
 echo $this->Form->postLink(
-                'Delete',
+                'Remove Theme',
                 '/tsettings/delete_theme/'.$list['name'],
-                array('class' => 'button icon remove')
+                array('class' => 'button icon approve')
             );
-}                    
+	                    
    	    echo <<<END
 
 	          </span> 
@@ -138,7 +145,7 @@ echo $this->Form->postLink(
 
 	      </tr> 
 END;
-		
+		}
 
 
 

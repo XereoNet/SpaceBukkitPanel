@@ -125,6 +125,15 @@ class HttpResponse implements ArrayAccess {
 	}
 
 /**
+ * If return is a valid 3xx (Redirection)
+ *
+ * @return boolean
+ */
+	public function isRedirect() {
+		return in_array($this->code, array(301, 302, 303, 307)) && !is_null($this->getHeader('Location'));
+	}
+
+/**
  * Parses the given message and breaks it down in parts.
  *
  * @param string $message Message to parse
@@ -229,9 +238,7 @@ class HttpResponse implements ArrayAccess {
 			$chunkLength = hexdec($hexLength);
 			$chunk = substr($body, 0, $chunkLength);
 			if (!empty($chunkExtensionName)) {
-				/**
-				 * @todo See if there are popular chunk extensions we should implement
-				 */
+				 // @todo See if there are popular chunk extensions we should implement
 			}
 			$decodedBody .= $chunk;
 			if ($chunkLength !== 0) {
@@ -418,7 +425,6 @@ class HttpResponse implements ArrayAccess {
  * @return void
  */
 	public function offsetSet($offset, $value) {
-		return;
 	}
 
 /**
@@ -428,7 +434,6 @@ class HttpResponse implements ArrayAccess {
  * @return void
  */
 	public function offsetUnset($offset) {
-		return;
 	}
 
 /**
