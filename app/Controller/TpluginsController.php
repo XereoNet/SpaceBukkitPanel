@@ -174,18 +174,22 @@ END;
 
         if (($pname=="SpaceBukkit") || ($pname=="RemoteToolkitPlugin")){
             $enplg = '';
-        }
-        else {
+            $remplg = '';
+        } else {
 
-        if ($plg['IsEnabled'] == 1) {
-                    $enplg = '<a href=\"./tplugins/disable_plugin/' . $pname .'\" class=\"button icon remove danger ajax_table1\">'.__('Disable').'</a><a href=\"./tplugins/remove_plugin/' . $pname .'\" class=\"button icon trash dangera jax_table1\">'.__('Remove').'</a>';
-                } else {
-                    $enplg = '<a href=\"./tplugins/enable_plugin/' . $pname .'\" class=\"button icon reload ajax_table1\">'.__('Enable').'</a><a href=\"./tplugins/remove_plugin/' . $pname .'\" class=\"button icon trash dangera jax_table1\">'.__('Remove').'</a>';
-                }             
+            $remplg = perm_action('plugins', 'removeAddPlugin', $this->Session->read("user_perm"), '<a href=\"./tplugins/remove_plugin/' . $pname .'\" class=\"button icon trash dangera jax_table1\">'.__('Remove').'</a>');
+
+            if ($plg['IsEnabled'] == 1) {
+                $enplg = perm_action('plugins', 'disablePlugin', $this->Session->read("user_perm"), '<a href=\"./tplugins/disable_plugin/' . $pname .'\" class=\"button icon remove danger ajax_table1\">'.__('Disable').'</a>');
+            } else {
+                $enplg = perm_action('plugins', 'disablePlugin', $this->Session->read("user_perm"), '<a href=\"./tplugins/enable_plugin/' . $pname .'\" class=\"button icon reload ajax_table1\">'.__('Enable').'</a>');
+            }             
    
         }
 
-        $plgactions = $enplg.'<a href=\"./tplugins/config/' . $pconf .'\" class=\"button icon fancy edit \">'.__('Configure').'</a>';
+        $plgconf = perm_action('plugins', 'configurePlugin', $this->Session->read("user_perm"), '<a href=\"./tplugins/config/' . $pconf .'\" class=\"button icon fancy edit \">'.__('Configure').'</a>');
+
+        $plgactions = $enplg.$remplg.$plgconf;
             
         if ($plg['Website'] != "") { 
                     $plginfo = '<a href=\"'. $plg['Website'] .'\" target=\"_blank\" class=\"button icon home\">'.__('Website').'</a>';
@@ -237,7 +241,7 @@ END;
                 } else {
                 $status = '<img src="img/circle_red.png" />';
                 }        
-        if ($plg['Bukget'] != "null") {
+        if ($plg['Bukget'] == true) {
                 $bukget = '<img src="img/bukget_enabled.png" />';
                 $pname = $plg["Bukget"];
                 } else {
@@ -251,18 +255,22 @@ END;
 
         if (($pname=="SpaceBukkit") || ($pname=="RemoteToolkitPlugin")){
             $enplg = '';
-        }
-        else {
+            $remplg = '';
+        } else {
 
-        if ($plg['IsEnabled'] == 1) {
-                    $enplg = '<a href="./tplugins/disable_plugin/' . $pname .'" class="button icon remove danger ajax_table1">'.__('Disable').'</a><a href="./tplugins/remove_plugin/' . $pname .'" class="button icon trash dangera jax_table1">'.__('Remove').'</a>';
-                } else {
-                    $enplg = '<a href="./tplugins/enable_plugin/' . $pname .'" class="button icon reload ajax_table1">'.__('Enable').'</a><a href="./tplugins/remove_plugin/' . $pname .'" class="button icon trash dangera jax_table1">'.__('Remove').'</a>';
-                }             
+            $remplg = perm_action('plugins', 'removeAddPlugin', $this->Session->read("user_perm"), '<a href="./tplugins/remove_plugin/' . $plg["Name"] .'" class="button icon trash dangera jax_table1">'.__('Remove').'</a>');
+
+            if ($plg['IsEnabled'] == 1) {
+                $enplg = perm_action('plugins', 'disablePlugin', $this->Session->read("user_perm"), '<a href="./tplugins/disable_plugin/' . $plg["Name"] .'" class="button icon remove danger ajax_table1">'.__('Disable').'</a>');
+            } else {
+                $enplg = perm_action('plugins', 'disablePlugin', $this->Session->read("user_perm"), '<a href="./tplugins/enable_plugin/' . $plg["Name"] .'" class="button icon reload ajax_table1">'.__('Enable').'</a>');
+            }             
    
         }
 
-        $plgactions = $enplg.'<a href="./tplugins/config/' . $pconf .'" class="button icon fancy edit ">'.__('Configure').'</a>';
+        $plgconf = perm_action('plugins', 'configurePlugin', $this->Session->read("user_perm"), '<a href="./tplugins/config/' . $pconf .'" class="button icon fancy edit ">'.__('Configure').'</a>');
+
+        $plgactions = $enplg.$remplg.$plgconf;
             
         if ($plg['Website'] != "") { 
                     $plginfo = '<a href="'. $plg['Website'] .'" target="_blank" class="button icon home">'.__('Website').'</a>';
@@ -281,6 +289,8 @@ END;
 
     function disable_plugin($name) {
 
+        perm('plugins', 'disablePlugin', $this->Session->read("user_perm"), true);
+
     if ($this->request->is('ajax')) {
         $this->disableCache();
         Configure::write('debug', 0);
@@ -297,6 +307,8 @@ END;
     }
 
     function enable_plugin($name) {
+
+        perm('plugins', 'disablePlugin', $this->Session->read("user_perm"), true);
 
     if ($this->request->is('ajax')) {
         $this->disableCache();
@@ -316,6 +328,8 @@ END;
 
     function update_plugin($name) {
 
+        perm('plugins', 'updatePlugin', $this->Session->read("user_perm"), true);
+
         require APP . 'spacebukkitcall.php';
                 
         //Disable plugin        
@@ -329,6 +343,8 @@ END;
     }
 
     function config($name) {
+
+        perm('plugins', 'configurePlugin', $this->Session->read("user_perm"), true);
 
         require APP . 'spacebukkitcall.php';
 
@@ -368,6 +384,8 @@ END;
 
 
     function SaveConfig() {
+
+        perm('plugins', 'configurePlugin', $this->Session->read("user_perm"), true);
 
         if (!$this->request->is('post')) {
             throw new MethodNotAllowedException();
@@ -422,6 +440,8 @@ END;
 
     function URLinstall() {
 
+        perm('plugins', 'removeAddPlugin', $this->Session->read("user_perm"), true);
+
         if (!$this->request->is('post')) {
             throw new MethodNotAllowedException();
         } else {
@@ -460,6 +480,8 @@ END;
     }
 
     function remove_plugin($name) {
+
+        perm('plugins', 'removeAddPlugin', $this->Session->read("user_perm"), true);
 
         require APP . 'spacebukkitcall.php';
 

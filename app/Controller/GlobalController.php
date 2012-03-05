@@ -65,6 +65,8 @@ class GlobalController extends AppController {
             $user_perm = $this->Session->read("user_perm");
             $glob_perm = $this->Session->read("glob_perm");
             
+            debug($user_perm);
+            debug($glob_perm);
             if ($user_perm['pages'] & $glob_perm['pages']['dash']) { 
 
                $this->redirect($this->Auth->redirect());
