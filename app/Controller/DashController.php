@@ -224,7 +224,6 @@ class DashController extends AppController {
     	$this->set('whitelist_count', $whitelist_count);
     	$this->set('max_players', $max_players);
     	$this->set('connected_users', $connected_users);
-
     	$this->set('title_for_layout', 'Dashboard');
 
     	/*
@@ -246,23 +245,32 @@ class DashController extends AppController {
 
    	    require APP . 'spacebukkitcall.php';
 
-
-		//Function to get percentage	
-		function percent($num_amount, $num_total) {
-		$count1 = @($num_amount / $num_total);
-		$count2 = $count1 * 100;
-		$count = number_format($count2, 0);
-		return $count;
-		}
-
 		$args = array();   
 		$server = $api->call("getServer", $args, false);
-		$user_percentage = percent($server['OnlinePlayers'], $server['MaxPlayers']);
+
 		$user_online = $server['OnlinePlayers'];
 		$user_max = $server['MaxPlayers'];
         //Generate Output
 
-        echo '<div id="progress" class="progress"><span style="width: '.$user_percentage.'%;"></span><b> '.$user_online.'/'.$user_max.' '.__('Players').' </b></div>';
+        echo $user_online.' / '.$user_max;
+        } 	 
+    }
+    
+
+	function calculate_ticks() {
+
+        if ($this->request->is('ajax')) {
+            $this->disableCache();
+            Configure::write('debug', 0);
+            $this->autoRender = false;
+
+   	    require APP . 'spacebukkitcall.php';
+
+		$args = array();   
+		$tick = $api->call("getTicks", $args, false);
+
+		echo round($tick);
+
         } 	 
     }
 

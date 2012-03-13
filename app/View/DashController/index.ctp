@@ -5,7 +5,7 @@
 
     <div class="inner">
       
-      <h1>XereoCraft</h1>
+      <h1><?php echo $current_server_name; ?></h1>
 
       <pre><?php echo $motd; ?></pre>
     
@@ -14,7 +14,8 @@
     <table class="dash-bigstats">
       <tbody>
         <tr class="dash-players-ticks">
-          <td><?php echo $this->Html->image('dash-user.png')?><span>2 / 3</span></td><td><?php echo $this->Html->image('dash-ticks.png')?><span>2</span></td>
+          <td><?php echo $this->Html->image('dash-user.png')?><span id="players-count"> </span></td>
+          <td><?php echo $this->Html->image('dash-ticks.png')?><span id="ticks-count"> </span></td>
         </tr>
         <tr>
           <td>Craftbukkit</td><td>   <?php echo $c_bukkit_version; ?><br>
@@ -220,6 +221,8 @@ $(document).ready(function(){
   graphs('.timer3', './dash/calculate_java', 3000, 'jav')
   doAndRefresh('#activity-list ul', './dash/get_log', 30000);
   doAndRefresh('#online-list', './dash/get_admins', 30000);
+  doAndRefresh('#players-count', './dash/calculate_players', 30000);
+  doAndRefresh('#ticks-count', './dash/calculate_ticks', 30000);
 
 });
 

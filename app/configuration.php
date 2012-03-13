@@ -106,13 +106,11 @@
 
     'DashStatsRefreshTime'  => '', 
     ''                      => '', 
-    ''                      => ''
+    ''                      => '',
 
     //PLAYERS
 
-    'PlayersCheckTime'      => '', 
-
-
+    'PlayersCheckTime'      => ''
 
     );
 
