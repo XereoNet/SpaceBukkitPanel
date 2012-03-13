@@ -2,6 +2,7 @@
 App::uses('AuthComponent', 'Controller/Component');
 class User extends AppModel {
     public $name = 'User';
+    public $tablePrefix = 'space_'; 
 
     public $hasMany = array(
         'ServersUsers'  => array(     

@@ -255,10 +255,6 @@ class DashController extends AppController {
 		return $count;
 		}
 
-        $this->disableCache();
-        Configure::write('debug', 0);
-        $this->autoRender = false;
-
 		$args = array();   
 		$server = $api->call("getServer", $args, false);
 		$user_percentage = percent($server['OnlinePlayers'], $server['MaxPlayers']);
@@ -267,6 +263,63 @@ class DashController extends AppController {
         //Generate Output
 
         echo '<div id="progress" class="progress"><span style="width: '.$user_percentage.'%;"></span><b> '.$user_online.'/'.$user_max.' '.__('Players').' </b></div>';
+        } 	 
+    }
+
+	function calculate_ram() {
+
+        if ($this->request->is('ajax')) {
+            $this->disableCache();
+            Configure::write('debug', 0);
+            $this->autoRender = false;
+
+   	    require APP . 'spacebukkitcall.php';
+
+
+		//Function to get percentage	
+		function percent($num_amount, $num_total) {
+		$count1 = @($num_amount / $num_total);
+		$count2 = $count1 * 100;
+		$count = number_format($count2, 0);
+		return $count;
+		}
+		
+		$args = array();   
+		$ram = array();
+
+		$ram['tot'] = $api->call("getPhysicalMemoryTotal", $args, false);
+		$ram['used'] = $api->call("getPhysicalMemoryUsage", $args, false);
+		$ram['free'] = $api->call("getPhysicalMemoryFree", $args, false);
+		$ram['perc'] = percent($ram['used'], $ram['tot']);
+
+        //Generate Output
+
+		echo json_encode($ram);        
+        
+        } 	 
+    }
+
+	function calculate_cpu() {
+
+        if ($this->request->is('ajax')) {
+            $this->disableCache();
+            Configure::write('debug', 0);
+            $this->autoRender = false;
+
+   	    require APP . 'spacebukkitcall.php';
+	
+		//get the Java Memory
+		$args = array();   
+		$java = array();
+		$java['tot'] = $api->call("getNumCpus", $args, false);
+		//$java['used'] = $api->call("getCpuFrequency", $args, false);
+		$java['used'] = null;
+		$java['free'] = null;
+		$java['perc'] = $api->call("getCpuUsage", $args, false);
+
+        //Generate Outpu
+		echo json_encode($java);        
+        
         } 	 
     }
 
@@ -287,27 +340,22 @@ class DashController extends AppController {
 		$count = number_format($count2, 0);
 		return $count;
 		}
-
-        $this->disableCache();
-        Configure::write('debug', 0);
-        $this->autoRender = false;
-
-		
+	
 		//get the Java Memory
 		$args = array();   
-		$java_max = $api->call("getJavaMemoryMax", $args, false);
-		$java_used = $api->call("getJavaMemoryUsage", $args, false);
-		$java_percentage = percent($java_used, $java_max);
+		$java = array();
+		$java['tot'] = $api->call("getJavaMemoryMax", $args, false);
+		$java['used'] = $api->call("getJavaMemoryUsage", $args, false);
+		$java['free'] = $api->call("getJavaMemoryFree", $args, false);
+		$java['perc'] = 100;
 
         //Generate Output
 
-        echo '<div id="progress" class="progress"><span style="width: '.$java_percentage.'%;"></span><b> '.$java_percentage.'% '.__('Java Usage').' </b></div>';
-        
+		echo json_encode($java);        
         
         } 	 
     }
-
-	 function get_log() {
+	function get_log() {
 
         if ($this->request->is('ajax')) 
         {
@@ -320,22 +368,65 @@ class DashController extends AppController {
 
             //Generate Output
             foreach($logged as $line){
+            
+            $line = explode(']', $line, 2);
+
+            if (isset($line[1])) {
+
 echo <<<END
-            <tr class="chattr">
-                <td class="chattd">$line</td>
-            </tr>
+                      <li>
+                        <b>$line[0]</b> 
+                        <p class="console-info"> $line[1] </p>
+                      </li>
 
 END;
-		    if (++$i == 20) break;
+            	
+            }
+
+		    if (++$i == 30) break;
 
 			}
-            echo '</table>';
 
         } 
 
     }
 
-	 function get_chat_new() {
+	function get_admins() {
+
+        if ($this->request->is('ajax')) 
+        {
+            
+            $this->autoRender = false;
+			
+			$this->loadModel('User');
+
+			$users = $this->User->find('all');
+
+			foreach ($users as $user) {
+
+				$c = time();
+				$t = $user['User']['active'];
+
+            if (($c - $t) < 1800) {
+
+				$n = $user['User']['username'];
+
+echo <<<END
+                      <tr>
+                        <td> $n </td>
+                      </tr>
+
+END;
+            	
+            }
+
+			}
+
+        } 
+
+    }
+
+	function get_chat_new() {
 
         if ($this->request->is('ajax')) 
         {

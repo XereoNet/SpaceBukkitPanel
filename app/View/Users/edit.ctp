@@ -60,11 +60,7 @@
       <label for="fserver">
         Favourite Server
       </label>
-    <?php 
 
-    //debug($edituser["ServersUsers"]);
-
-    ?>
         <div><select name="favourite_server" id="favourite_server">
             
             <?php
@@ -125,19 +121,19 @@
       <label for="language">
         Default language
       </label>
-    
+
         <div>
             <select name="language" id="language">
 
             <?php
             
-            foreach ($languages as $name => $language) {
+            foreach ($languages as $n => $language) {
             
             $check = "";
             
-            if ($language == $edituser["User"]["langauge"]) { $check = 'selected'; }        
+            if ($language == $edituser["User"]["language"]) { $check = 'selected'; }        
 
-            echo '<option value="'.$language.'" '.$check.'>'.$name.'</option>';
+            echo '<option value="'.$language.'" '.$check.'>'.$n.'</option>';
             
             }
 

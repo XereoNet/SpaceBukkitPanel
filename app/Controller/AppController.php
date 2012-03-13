@@ -355,6 +355,19 @@ class AppController extends Controller {
         $this->Session->write('glob_perm', $permissions);
         $this->Session->write('user_perm', $usr['Role']);
 
+/* ####################################################
+ *   8b)  Write timestamp for "Admins online" section
+##################################################### */
+        $this->User->id = $this->Auth->User('id');
+
+        $data = array(
+           'User' => array(
+                        'active'          =>    time()
+           )
+        );
+
+        $this->User->save($data);
+
         } //end else server count        
         } //endif logging        
         } //endif maintenance       

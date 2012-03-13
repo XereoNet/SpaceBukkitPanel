@@ -18,6 +18,7 @@
 *
 */
 $this->loadModel('Server'); 
+$this->loadModel('Variables'); 
 
 //DATABASE SERVER RETRIVAL
 $id = $this->Session->read("current_server");

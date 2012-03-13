@@ -89,4 +89,31 @@
     'bukkit'                => 4
 	);
 
+    $variables = array(
+
+    //CONSOLE
+    'ConsoleRefreshTime'    => '', 
+    'ConsoleRows'           => '', 
+
+    //CHAT
+
+    'ChatRefreshTime'       => '', 
+    'ChatRows'              => '', 
+    'ChatColor'             => '', 
+    'ChatName'              => '', 
+
+    //DASHBOARD
+
+    'DashStatsRefreshTime'  => '', 
+    ''                      => '', 
+    ''                      => ''
+
+    //PLAYERS
+
+    'PlayersCheckTime'      => '', 
+
+
+
+    );
+
 ?>

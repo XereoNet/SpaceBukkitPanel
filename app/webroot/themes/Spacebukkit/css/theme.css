@@ -74,11 +74,6 @@ background: url(../img/consolebg.png) repeat-x #E1E1E1;
 
 }
 
-.dashboard_content {
-    
-    background: url(../img/dash_bg.png) no-repeat top center #fefefe;
-}
-
 a.trigger{
     
 	background: #111 url(../img/console.png) 45% 55% no-repeat;

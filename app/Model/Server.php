@@ -1,6 +1,7 @@
 <?php
 class Server extends AppModel {
     public $name = 'Server';
+    public $tablePrefix = 'space_'; 
 
     public $hasMany = array(
         'ServersUsers' => array(

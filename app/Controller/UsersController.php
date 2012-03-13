@@ -68,7 +68,8 @@ class UsersController extends AppController {
 
     if ($this->Auth->login()) {
         $this->Session->write("current_theme", $this->Auth->user('theme'));
-
+        $this->Session->write("current_server", $this->Auth->user("favourite_server"));
+       
         $this->redirect(array('controller' => 'global', 'action' => 'login'));
 
     } else {
