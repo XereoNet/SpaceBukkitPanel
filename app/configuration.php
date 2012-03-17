@@ -105,8 +105,10 @@
     //DASHBOARD
 
     'DashStatsRefreshTime'  => '', 
-    ''                      => '', 
-    ''                      => '',
+
+    //GLOBAL
+
+    'AdminOnlineCheckTimer' => '', 
 
     //PLAYERS
 
