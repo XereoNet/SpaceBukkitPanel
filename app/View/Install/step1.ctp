@@ -8,7 +8,7 @@
             <h2><?php echo __('Installing Spacebukkit') ?></h2> 
         </div>    
         <div class="col right" style="text-align: right">
-            <h2>2 of 5 | CHECKS</h2>
+            <h2>Step 2 of 5</h2>
         </div>
     </header>
 
@@ -22,14 +22,14 @@
      <div class="col right col_2_3">
 
     <div class="triangle-border left">
-    <p>First of all, we need to make sure everything is ok in your environment.</p><br />
-    <p>Seems like your php version <?php echo $php_version; ?></p><br />
-    <p>Your configuration.php file <?php echo $configuration; ?></p><br />
-    <p>Your database file is: <?php echo $database; ?></p><br />
-    <p><?php echo $php_fopen; ?></p><br />
-    <p><?php echo $php_curl; ?>.</p><br />
-    <p><?php echo $tmp_folder; ?>.</p><br />
-    <p><?php echo $webroot_folder; ?>.</p><br /><br />
+    <h2>Environment Compatibility Check</h2><br />
+    <p><?php echo $php_version; ?></p>
+    <p><?php echo $configuration; ?></p>
+    <p><?php echo $database; ?></p>
+    <p><?php echo $php_fopen; ?></p>
+    <p><?php echo $php_curl; ?></p>
+    <p><?php echo $tmp_folder; ?></p>
+    <p><?php echo $webroot_folder; ?></p>
 
     <p><?php echo $result; ?></p>
     </div>

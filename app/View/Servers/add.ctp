@@ -53,7 +53,7 @@
     <section>
       <label for="password">
         <?php echo __('Salt'); ?>
-        <small><?php echo __('This can be changed in the config.yml of your server'); ?></small>
+        <small><?php echo __('Found in the server\'s config.yml, and can be changed.'); ?></small>
       </label>
     
       <div>
@@ -67,14 +67,10 @@
       </label>
 
         <select name="default_role" id="default_role">
+        
         <?php
-
-        
-        foreach ($roles as $role) {
-
-        
-        echo '<option value="'.$role["Role"]['id'].'">'.$role["Role"]['title'].'</option>';
-        
+        foreach ($roles as $role) {        
+        	echo '<option value="'.$role["Role"]['id'].'">'.$role["Role"]['title'].'</option>';        
         }
 
         ?>

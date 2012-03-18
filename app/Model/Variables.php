@@ -1,6 +1,5 @@
 <?php
 class Variables extends AppModel {
     public $name = 'Variables';
-    public $tablePrefix = 'space_'; 
-
+    public $tablePrefix = 'space_';
 }

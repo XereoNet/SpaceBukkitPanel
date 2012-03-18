@@ -17,7 +17,7 @@
 
 
 	<div class="alert alert-info">
-	<p><?php echo __('Attention: some or more features may not be supported be your multiworld plugin! If your using MultiVerse please make sure your worlds are imported at first, otherwise loading won\'t work!'); ?></p>
+	<p><?php echo __('Attention: some features of your multiworld plugin may not be supported! If you\'re using MultiVerse, please make sure your worlds are imported first, otherwise loading won\'t work!'); ?></p>
 	</div>
 
   <div class="table_container">
@@ -81,8 +81,8 @@
 		<div class="colorbox blue">
 		    <h3><?php echo __('Chunkster') ?></h3> 
 		    <p> 
-	        <?php echo __('Use this utility if you are encountering chunk errors over and over in the error log and would like them repaired. This repairs an underlying issue of duplicate/bad pointers.
-	        No responsibility is taken if worlds get corrupted/destroyed by this tool. A backup is reccomended first!<br />
+	        <?php echo __('Use this utility if you are encountering chunk errors and would like them repaired. This repairs an underlying issue of duplicate/bad pointers.
+	        No responsibility is taken if worlds get corrupted/destroyed by this tool. A backup is recommended before you begin!<br />
 	        <a href="http://forums.bukkit.org/threads/admin-chunkster.8186/">Bukkit Thread</a>') ?>
 		    </p> 
 		</div>
@@ -146,8 +146,8 @@
 		<div class="colorbox blue">
 		    <h3><?php echo __('MapAutoTrim') ?></h3> 
 		    <p> 
-	    	<?php echo __('Useful tool to migrate to another version of bukkit and getting new terrain features without sacrificing structures.
-	        The aim is: delete as many old chunks as possible to be replaced by new chunks, while the chunks which contain structures remain.<br/>
+	    	<?php echo __('Useful tool to migrate to another version of Bukkit, and to get new terrain features without sacrificing structures.
+	        The aim is to delete as many old chunks as possible to be replaced by new chunks, while the chunks which contain structures remain.<br/>
 	        <a href="http://forums.bukkit.org/threads/tool-admin-minecraft-map-auto-trim-v0-2.37846/">Bukkit Thread</a>') ?>
 		    </p> 
 		</div>

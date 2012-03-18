@@ -28,7 +28,7 @@
         <ul>
                 <li class="current"><a href="#tab1">CraftBukkit</a></li>
                 <li><a href="#tab2"><?php echo __('Server properties') ?></a></li>
-                <li><a href="#tab3"><?php echo __('Shedules') ?></a></li>
+                <li><a href="#tab3"><?php echo __('Schedules') ?></a></li>
         </ul>
 </nav>
 <!-- End Tabs -->
@@ -46,7 +46,7 @@
        <section>
              
        <p class="description">
-       <?php echo __('Hover over an RB to see it\'s details. Click on an RB to install it for this server. Installing another CraftBukkit build will stop the server during the process!') ?>  
+       <?php echo __('Hover over an RB to see its details. Click on an RB to install it for this server. Installing another CraftBukkit build will stop the server during the process!') ?>  
        </p>
 
        <div id="rb_chooser">

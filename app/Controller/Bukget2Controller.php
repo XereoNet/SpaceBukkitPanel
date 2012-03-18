@@ -8,7 +8,7 @@
 *
 *   DESCRIPTION
 *
-*   This controller manages the BukGet interface and it's related functions
+*   This controller manages the BukGet interface and its related functions
 *
 *   TABLE OF CONTENTS
 *   

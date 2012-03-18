@@ -39,15 +39,10 @@
     
         <div>
             <select name="theme" id="theme">
-            <?php
-            
-            foreach ($themes as $theme) {
-
-            
-            echo '<option value="'.$theme['name'].'">'.$theme['name'].'</option>';
-            
-            }
-
+            <?php            
+	            foreach ($themes as $theme) {            
+	            	echo '<option value="'.$theme['name'].'">'.$theme['name'].'</option>';
+	            }
             ?>
             </select>   
       </div>

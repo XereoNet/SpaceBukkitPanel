@@ -5,10 +5,10 @@ class DATABASE_CONFIG {
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => '%host%',
-		'login' => '%login%',
-		'password' => '%password%',
-		'database' => '%database%',
+		'host' => 'localhost',
+		'login' => 'root',
+		'password' => 'root',
+		'database' => 'spacedb',
 		'prefix' => '',
 		'port' => NULL
 	);

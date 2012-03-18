@@ -8,7 +8,7 @@
             <h2><?php echo __('Installing Spacebukkit') ?></h2> 
         </div>    
         <div class="col right" style="text-align: right">
-            <h2>1 of 5 | WELCOME!</h2>
+            <h2>Step 1 of 5</h2>
         </div>
     </header>
 
@@ -22,10 +22,10 @@
     <div class="col right col_2_3">
 
     <div class="triangle-border left">
-    <p>Welcome to SpaceBukkit! </p>
+    <h2>Welcome to SpaceBukkit!</h2>
     <p>I hope your trip so far was delightful :)</p>
-    <p>In the following pages the SpaceBukkit team will guide you trough the installation of SpaceBukkit.</p><br />
-    <p>Have fun, and click NEXT when you're ready</p>  
+    <p>In the following steps, we're going to guide you through the installation of SpaceBukkit.</p>
+    <p>Have fun, and click next when you're ready.</p>
     </div>
 
     </div>

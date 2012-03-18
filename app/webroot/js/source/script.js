@@ -1,6 +1,6 @@
 
 $(window).load(function () {
-    $("#content").fadeIn(700);
+    $("#content").fadeIn(600);
 });
 $('document').ready(function () {
     
@@ -9,7 +9,7 @@ $('document').ready(function () {
         height: 'toggle'
     }, "slow");
     $(".fadein").each(function (i) {
-        $(this).delay(i * 150).fadeIn(500);
+        $(this).delay(i * 150).fadeIn(350);
     });
     $('#mainnav a').click(function () {
         $("#loading").fadeIn();

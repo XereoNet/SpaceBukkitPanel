@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title><?php echo $title_for_layout?> | SpaceBukkit by XereoNet | Bukkit Web Administration</title>
+<title><?php echo $title_for_layout?> | SpaceBukkit</title>
 
 <!-- CSS -->
 <link rel="stylesheet" href="<?php echo $this->webroot; ?>css/import.css" /> 
 <link rel="stylesheet" href="<?php echo $this->webroot; ?>css/overcast/jquery-ui-1.8.18.custom.css" /> 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width">
 
 
 <!--[if lt IE 9]>
@@ -27,7 +27,7 @@
 <link rel="stylesheet" href="<?php echo $this->webroot; ?>css/nyroModal.css" type="text/css" media="screen" />
 
 <!-- Load Jquery -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js" type="text/javascript"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="<?php echo $this->webroot; ?>js/script.js"></script> 
 <script src="<?php echo $this->webroot; ?>js/selectivizr.min.js"></script> 
 
@@ -189,23 +189,9 @@ END;
 	<!-- Import JS -->
 
 	<script src="<?php echo $this->webroot; ?>js/jquery-ui-1.8.18.custom.min.js"></script> 
-	<script src="<?php echo $this->webroot; ?>js/ttw-simple-notifications-min.js"></script> 
-	<script src="<?php echo $this->webroot; ?>js/excanvas.js"></script> 
-	<script src="<?php echo $this->webroot; ?>js/jquery.uniform.min.js"></script> 
-	<script src="<?php echo $this->webroot; ?>js/jquery.validate.min.js"></script> 
+	<script src="<?php echo $this->webroot; ?>js/compiled.js"></script> 
 	<script src="http://tab-slide-out.googlecode.com/files/jquery.tabSlideOut.v1.3.js"></script>
-	<script src="<?php echo $this->webroot; ?>js/jquery.livesearch.js"></script>
-	<script src="<?php echo $this->webroot; ?>js/jquery.visualize.js"></script> 
-	<script src="<?php echo $this->webroot; ?>js/jquery.datatables.js"></script>
-	<script src="<?php echo $this->webroot; ?>js/reload_dtb.js"></script>
-	<script src="<?php echo $this->webroot; ?>js/ajax.js"></script> 
-	<script src="<?php echo $this->webroot; ?>js/jquery.placeholder.js"></script> 
-	<script src="<?php echo $this->webroot; ?>js/jquery.tools.min.js"></script> 
-	<script src="<?php echo $this->webroot; ?>js/jquery.nyroModal.custom.js"></script>
-	<script src="<?php echo $this->webroot; ?>js/bootstrap-collapse.js"></script>
-	<script src="<?php echo $this->webroot; ?>js/bootstrap-typeahead.js"></script>
-	<script src="<?php echo $this->webroot; ?>js/jquery.listnav.js"></script>
-	<!--[if IE 6]>
+
 		<script type="text/javascript" src="<?php echo $this->webroot; ?>js/jquery.nyroModal-ie6.min.js"></script>
 	<![endif]-->
 	<?php 

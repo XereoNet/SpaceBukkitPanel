@@ -1314,7 +1314,7 @@ msgid "Server properties"
 msgstr "Propriétés du serveur"
 
 #: \View\TServersController\index.ctp:31;31
-msgid "Shedules"
+msgid "Schedules"
 msgstr "Événements"
 
 #: \View\TServersController\index.ctp:43;43
