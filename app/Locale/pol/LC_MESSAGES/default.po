@@ -1312,7 +1312,7 @@ msgid "Server properties"
 msgstr "Ustawienia Serwera"
 
 #: \View\TServersController\index.ctp:31;31
-msgid "Shedules"
+msgid "Schedules"
 msgstr "Harmonogramy"
 
 #: \View\TServersController\index.ctp:43;43

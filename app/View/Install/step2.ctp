@@ -8,7 +8,7 @@
             <h2><?php echo __('Installing Spacebukkit') ?></h2> 
         </div>    
         <div class='col right' style='text-align: right'>
-            <h2>3 of 5 | DATABASE</h2>
+            <h2>Step 3 of 5</h2>
         </div>
     </header>
 
@@ -30,30 +30,31 @@
 
     <div class='triangle-border left'>
 
-    <p>Now please enter your database settings below. The installer will test your settings after you click "next"!</p><br />
+    <h2>Database Settings</h2>
+    <p>Please enter your database settings below.</p><br />
 
 		<form action='<?php echo $this->Html->url('/install/step2', true); ?>' id='db' method='post'>
 
 			<table cellpadding='2'>
 				<tr>
-					<td>Hostname</td>
+					<td>Hostname </td>
 					<td><input type='text' name='host' id='hostname' value='' size='30' tabindex='1' placeholder='(usually localhost)'/></td>
 				</tr>
 				<tr>
-					<td>Username</td>
+					<td>Username </td>
 					<td><input type='text' name='login' id='username' value='' size='30' tabindex='2' /></td>
 					<td></td>
 				</tr>
 				<tr>
-					<td>Password</td>
+					<td>Password </td>
 					<td><input type='text' name='password' id='password' value='' size='30' tabindex='3' /></td>
 					<td></td>
 				</tr>
 				<tr>
-					<td>Database</td>
+					<td>Database </td>
 					<td><input type='text' name='database' id='database' value='' size='30' tabindex='4' /></td>
 				</tr>
-            </table>
+            </table><br>
 
     </div>
 

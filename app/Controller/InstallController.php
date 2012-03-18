@@ -16,13 +16,15 @@ class InstallController extends AppController{
 
     function step1() {
 
+    	$failed = "Some tests failed. Please correct the issues to advance.";
+
        $install = new File(TMP."inst.txt");
   if (!$install->exists()) exit("You are not allowed to be here!");
 
       $this->layout = 'login';
    
       //set results
-      $this->set('result', '<p class="success">'.__('You passed all tests, young jedi! You\'re ready for the next step! :P').'</p>');
+      $this->set('result', '<p>'.__('All tests successful! You may proceed to the next step.').'</p>');
       $this->set('result_bool', 1);
 
       //check PHP version
@@ -30,16 +32,16 @@ class InstallController extends AppController{
       if (strnatcmp(phpversion(),'5.2.6') >= 0)
       {
 
-        $sting = '<p class="success">'.phpversion().' > 5.2.6 - Check!</p>';
+        $sting = '<span class="success"><b>PHP: </b>'.phpversion().' > 5.2.6 &check;';
         $this->set('php_version', $sting);
 
       }
       else
       {
-        $sting = '<p class="failed">'.phpversion().' < 5.2.6 - '.__('Sorry, you can\' use SpaceBukkit here!').'</p>';
+        $sting = '<span class="failed">'.phpversion().' < 5.2.6'.__('Please update your PHP to at least 5.2.6.').'</p>';
         $this->set('php_version', $sting);
 
-      $this->set('result', '<p class="failed">'.__('You didn\'t pass all tests. Please go fix all issues to continue').'</p>');
+      $this->set('result', '<span class="failed">'.$failed.'</p>');
       $this->set('result_bool', 0);
       }
 
@@ -48,16 +50,16 @@ class InstallController extends AppController{
       if (is_writable(TMP))
       {
 
-        $sting = '<p class="success">"app/tmp" folder is writable</p>';
+        $sting = '<span class="success"><b>app/tmp</b> folder is writable &check;';
         $this->set('tmp_folder', $sting);
 
       }
       else
       {
 
-        $sting = '<p class="failed">"app/tmp" folder is not writable</p>';
+        $sting = '<span class="failed">Please CHMOD <b>app/tmp</b> so that it is writable';
         $this->set('tmp_folder', $sting);
-        $this->set('result', '<p class="failed">'.__('You didn\'t pass all tests. Please go fix all issues to continue').'</p>');
+        $this->set('result', '<span class="failed">'.__('You didn\'t pass all tests. Please go fix all issues to continue'));
         $this->set('result_bool', 0);
 
       }
@@ -67,17 +69,17 @@ class InstallController extends AppController{
       if (is_writable(APP . 'webroot'))
       {
 
-        $sting = '<p class="success">"app/webroot" folder is writable</p>';
+        $sting = '<span class="success"><b>app/webroot</b> folder is writable &check;</span>';
         $this->set('webroot_folder', $sting);
 
       }
       else
       {
 
-        $sting = '<p class="failed">"app/webroot" folder is not writable</p>';
+        $sting = '<span class="failed">"app/webroot" folder is not writable</span>';
         $this->set('webroot_folder', $sting);
 
-      $this->set('result', '<p class="failed">'.__('You didn\'t pass all tests. Please go fix all issues to continue').'</p>');
+      $this->set('result', '<span class="failed">'.$failed.'</p>');
       $this->set('result_bool', 0);
       }
 
@@ -88,17 +90,17 @@ class InstallController extends AppController{
       if ($conf->writable())
       {
 
-        $sting = '<p class="success">app/configuration.php '.__('is writable').'</p>';
+        $sting = '<span class="success"><b>app/configuration.php</b> is writable &check;</span>';
         $this->set('configuration', $sting);
 
       }
       else
       {
 
-        $sting = '<p class="failed">app/configuration.php '.('is not writable').'</p>';
+        $sting = '<span class="failed">app/configuration.php '.('is not writable').'</span>';
         $this->set('configuration', $sting);
 
-      $this->set('result', '<p class="failed">'.__('You didn\'t pass all tests. Please go fix all issues to continue').'</p>');
+      $this->set('result', '<span class="failed">'.__('You didn\'t pass all tests. Please go fix all issues to continue').'</span>');
       $this->set('result_bool', 0);
       }
 
@@ -109,17 +111,17 @@ class InstallController extends AppController{
       if ($dbd->writable())
       {
 
-        $sting = '<p class="success">app/Config/database.php '.__('is writable').'</p>';
+        $sting = '<span class="success"><b>app/Config/database.php</b> is writable &check;</span>';
         $this->set('database', $sting);
 
       }
       else
       {
 
-        $sting = '<p class="failed">app/Config/database.php '.__('is not writable').'</p>';
+        $sting = '<span class="failed">app/Config/database.php '.__('is not writable').'</span>';
         $this->set('database', $sting);
 
-      $this->set('result', '<p class="failed">'.__('You didn\'t pass all tests. Please go fix all issues to continue').'</p>');
+      $this->set('result', '<span class="failed">'.__('You didn\'t pass all tests. Please go fix all issues to continue').'</span>');
       $this->set('result_bool', 0);
       }
 
@@ -129,17 +131,17 @@ class InstallController extends AppController{
       if(ini_get('allow_url_fopen')) 
       {
 
-        $sting = '<p class="success">'.__('allow_url_fopen is enabled').'</p>';
+        $sting = '<span class="success">'.__('<b>allow_url_fopen</b> is enabled').' &check;</span>';
         $this->set('php_fopen', $sting);
 
       }
       else
       {
 
-        $sting = '<p class="failed">'.__('allow_url_fopen is disabled').'</p>';
+        $sting = '<span class="failed">'.__('allow_url_fopen is disabled').'</span>';
         $this->set('php_fopen', $sting);
 
-      $this->set('result', '<p class="failed">'.__('You didn\'t pass all tests. Please go fix all issues to continue').'</p>');
+      $this->set('result', '<span class="failed">'.__('You didn\'t pass all tests. Please go fix all issues to continue').'</span>');
       $this->set('result_bool', 0);
       }
 
@@ -148,17 +150,17 @@ class InstallController extends AppController{
     if  (in_array  ('curl', get_loaded_extensions())) 
       {
 
-        $sting = '<p class="success">'.__('CURL is enabled, make sure your provider doesn\'t block ports 2011 and 2012').'</p>';
+        $sting = '<span class="success">'.__('<b>CURL</b> is enabled. Make sure ports 2011 and 2012 are open').' &check;</span>';
         $this->set('php_curl', $sting);
 
       }
       else
       {
 
-        $sting = '<p class="failed">'.__('CURL is not enabled').'</p>';
+        $sting = '<span class="failed">'.__('CURL is not enabled').'</span>';
         $this->set('php_curl', $sting);
 
-      $this->set('result', '<p class="failed">'.__('You didn\'t pass all tests. Please go fix all issues to continue').'</p>');
+      $this->set('result', '<span class="failed">'.__('You didn\'t pass all tests. Please go fix all issues to continue').'</span>');
       $this->set('result_bool', 0);
       }
 
@@ -287,7 +289,7 @@ class InstallController extends AppController{
 
       if (is_null($running)) {
 
-          $this->set("result", __("The server was not reached. Please check your data."));
+          $this->set("result", __("The server was not reached. Please double check your data."));
                        
           } 
 
@@ -297,7 +299,7 @@ class InstallController extends AppController{
           $this->loadModel("Server");
             $this->Server->create();
             if ($this->Server->save($this->request->data)) {
-                $this->Session->setFlash(__('The Server has been saved'));
+                $this->Session->setFlash(__('The server has been saved!'));
 
                 //delete install file
 
@@ -305,7 +307,7 @@ class InstallController extends AppController{
 
                 $this->redirect(array('controller' => 'install', 'action' => 'step4'));
             } else {
-                $this->Session->setFlash(__('The Server could not be saved. Please, try again.'));
+                $this->Session->setFlash(__('The server could not be saved; please try again.'));
             }
         
         }    

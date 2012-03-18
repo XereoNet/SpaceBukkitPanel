@@ -8,7 +8,7 @@
             <h2><?php echo __('Installing Spacebukkit') ?></h2> 
         </div>    
         <div class="col right" style="text-align: right">
-            <h2>5 of 5 | FINISH</h2>
+            <h2>Step 5 of 5</h2>
         </div>
     </header>
 
@@ -25,18 +25,16 @@
     <div class="triangle-border left">
     <h2>Congratulations!</h2>
     <p>You have a fully operational SpaceBukkit installed.</p>
-<br />
+
     <p>Here are some links to get you started if you need help:</p>
-    <br /><br />
-        <a href="http://spacebukkit.xereo.net">SpaceBukkit Home</a><br />
-        <a href="http://spacebukkit.xereo.net/forums">SpaceBukkit Forums</a><br />
-        <a href="http://spacebukkit.xereo.net/wiki">SpaceBukkit Wiki</a><br />
-        <a href="http://bukkit.org">SpaceBukkit Home</a><br /><br /><br />
-    <p>Please note that Your login credentials are:</p><br />
-    <h3>"super" / "super"</h3>
-    <p class="failed">Once logged in immediatly change these credentials on the "Settings" page!</p><br />
-    <p>Allright!
-    Are you ready for awesomeness? Click next to begin your biggest adventure!</p> 
+        <a href="http://spacebukkit.xereo.net">SB Home</a><br />
+        <a href="http://spacebukkit.xereo.net/forums">SB Forums</a><br />
+        <a href="http://spacebukkit.xereo.net/wiki">SB Wiki</a><br />
+        <a href="http://bukkit.org">Bukkit Home</a><br />
+    <p>Note that your username and password are "super" - once you've logged in, immediately change these on the Settings page!
+
+    <p>Alright!
+    	Are you ready for awesomeness? Click next to begin your biggest adventure!</p> 
     </div>
 
     </div>

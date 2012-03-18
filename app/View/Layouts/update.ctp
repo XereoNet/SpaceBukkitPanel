@@ -14,9 +14,9 @@
 <link rel="stylesheet" href="<?php echo $this->webroot; ?>themes/<?php echo $current_theme?>/css/theme.css" /> 
 
 <!-- Load Jquery -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js" type="text/javascript"></script>
-<script src="<?php echo $this->webroot; ?>js/script.js"></script> 
-<?php 		echo $this->Html->css('cake.generic'); ?>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+<?php echo $this->Html->css('cake.generic'); ?>
 </head>
 
 <body>
@@ -33,9 +33,6 @@
 				</div>
 				
 			</div>
-			
-
-
 			<!-- Main Content Start -->
 			<div id="wrapper" class="update_bukkit"> 
 			
@@ -48,18 +45,9 @@
 		<!-- End #container --> 
 
 	<!-- Import JS -->
-	<script src="<?php echo $this->webroot; ?>js/ttw-simple-notifications-min.js"></script> 
-	<script src="<?php echo $this->webroot; ?>js/excanvas.js"></script> 
+	<script src="<?php echo $this->webroot; ?>js/compiled.js"></script> 
 	<script src="http://tab-slide-out.googlecode.com/files/jquery.tabSlideOut.v1.3.js"></script>
-	<script src="<?php echo $this->webroot; ?>js/jquery.livesearch.js"></script>
-	<script src="<?php echo $this->webroot; ?>js/jquery.visualize.js"></script> 
-	<script src="<?php echo $this->webroot; ?>js/jquery.validate.min.js"></script> 
-	<script src="<?php echo $this->webroot; ?>js/jquery.datatables.js"></script>
-	<script src="<?php echo $this->webroot; ?>js/reload_dtb.js"></script>
-	<script src="<?php echo $this->webroot; ?>js/ajax.js"></script> 
-	<script src="<?php echo $this->webroot; ?>js/jquery.placeholder.js"></script> 
-	<script src="<?php echo $this->webroot; ?>js/jquery.tools.min.js"></script> 
-	<script src="<?php echo $this->webroot; ?>js/jquery.fancybox-1.3.4.pack.js"></script>
+
 	<script>
 	var notifications = $('body').ttwSimpleNotifications({
     position:'bottom right',

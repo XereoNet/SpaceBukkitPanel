@@ -1310,7 +1310,7 @@ msgid "Server properties"
 msgstr ""
 
 #: \View\TServersController\index.ctp:31;31
-msgid "Shedules"
+msgid "Schedules"
 msgstr ""
 
 #: \View\TServersController\index.ctp:43;43

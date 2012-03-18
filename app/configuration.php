@@ -59,7 +59,7 @@
 
 	$permissions["users"] = array(
     'healAndFeed'           => 1, 
-    'kill'              	=> 2, 
+    'kill'              		=> 2, 
     'seeInventory'          => 4, 
     'kick'                  => 8, 
     'ban'                   => 16, 
@@ -84,7 +84,7 @@
 	);	
 
 	$permissions["servers"] = array(
-    'Shedules'              => 1, 
+    'Schedules'              => 1, 
     'serverProperties'     	=> 2,
     'bukkit'                => 4
 	);
@@ -96,22 +96,15 @@
     'ConsoleRows'           => '', 
 
     //CHAT
-
     'ChatRefreshTime'       => '', 
     'ChatRows'              => '', 
     'ChatColor'             => '', 
     'ChatName'              => '', 
 
     //DASHBOARD
-
     'DashStatsRefreshTime'  => '', 
 
-    //GLOBAL
-
-    'AdminOnlineCheckTimer' => '', 
-
     //PLAYERS
-
     'PlayersCheckTime'      => ''
 
     );

@@ -8,7 +8,7 @@
             <h2><?php echo __('Installing Spacebukkit') ?></h2> 
         </div>    
         <div class="col right" style="text-align: right">
-            <h2>4 of 5 | SERVER</h2>
+            <h2>Step 4 of 5</h2>
         </div>
     </header>
 
@@ -16,7 +16,7 @@
 
     <div class="col left col_1_3 ">
     <img src="<?php echo $this->Html->url('/img/neatdev.png', true); ?>" /><br />    
-    <p>Hi I'm NeatMonster, I'm a very neat coder.</p>
+    <p>Hi I'm NeatMonster, I'm a very neat coder.</p><!-- Oh, I've tidied up a fair bit of your code ;) -->
     <?php 
     if (isset($result)) {
       echo '<p class="failed">Your settings are invalid, the following errors occoured:</p>';
@@ -31,7 +31,8 @@
     <div class="col right col_2_3">
 
     <div class="triangle-border left">
-    <p>Now let's add a SpaceBukkit-ready server to this panel! (must be running)</p>
+    <h2>Add Server</h2>
+    <p>Now let's add a SpaceBukkit-ready server to this panel! Make sure that the server's online, first.</p>
     <form action='<?php echo $this->Html->url('/install/step3', true); ?>' id='server' method='post'>
 <div class="error_box"></div>
     <section>

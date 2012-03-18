@@ -38,19 +38,12 @@
     
         <div>
             <select name="theme" id="theme">
-            <?php
-            
-            foreach ($themes as $theme) {
-
-            $check = "";
-
-            if ($theme["name"] == $edituser["User"]["theme"]) { $check = 'selected'; }            
-
-            
-            echo '<option value="'.$theme['name'].'" '.$check.'>'.$theme['name'].'</option>';
-            
-            }
-
+            <?php            
+	            foreach ($themes as $theme) {
+		            $check = "";
+		            if ($theme["name"] == $edituser["User"]["theme"]) { $check = 'selected'; }
+		            echo '<option value="'.$theme['name'].'" '.$check.'>'.$theme['name'].'</option>';
+            	}
             ?>
             </select>   
       </div>
@@ -64,54 +57,29 @@
         <div><select name="favourite_server" id="favourite_server">
             
             <?php
-
-            if ($edituser["User"]["is_super"] == 1){
-
-                foreach ($all_servers as $server) {
-
-                  $check = "";
-
-                  if ($server["Server"]["id"] == $edituser["User"]["favourite_server"]) { $check = 'selected'; }    
-
-                  $output = '<option value="'.$server["Server"]['id'].'"'.$check.'>'.$server["Server"]['title'].'</option>';
-                 
-                  echo $output;
-
-                }
-             
-            } else {
-
-                foreach ($all_servers as $server) {
-
-                    $check = "";
-
-                    if ($server["Server"]["id"] == $edituser["User"]["favourite_server"]) { $check = 'selected'; }    
-
-                    foreach ($edituser["ServersUsers"] as $su) {
-                      
-                      if ($su["server_id"] == $server["Server"]['id']) {
-                        
-                        $output = '<option value="'.$server["Server"]['id'].'"'.$check.'>'.$server["Server"]['title'].'</option>';
-                        break;
-
-                      } else { 
-
-                        $output = '';
-
-                      }
-
-                    }
-                    
-                    echo $output;
-            
-                }          
-
-            }
-            
-
-            
-            
-
+	            if ($edituser["User"]["is_super"] == 1){
+	                foreach ($all_servers as $server) {
+	                  $check = "";
+	                  if ($server["Server"]["id"] == $edituser["User"]["favourite_server"]) { $check = 'selected'; }
+	                  $output = '<option value="'.$server["Server"]['id'].'"'.$check.'>'.$server["Server"]['title'].'</option>';
+	                  echo $output;
+	                }
+	             
+	            } else {
+	                foreach ($all_servers as $server) {
+	                    $check = "";
+	                    if ($server["Server"]["id"] == $edituser["User"]["favourite_server"]) { $check = 'selected'; }
+	                    foreach ($edituser["ServersUsers"] as $su) {                      
+	                      if ($su["server_id"] == $server["Server"]['id']) {                        
+	                        $output = '<option value="'.$server["Server"]['id'].'"'.$check.'>'.$server["Server"]['title'].'</option>';
+	                        break;
+	                      } else { 
+	                        $output = '';
+	                      }
+	                    }                    
+	                    echo $output;            
+	                }
+	            }
             ?>
             </select>
       </div>
@@ -124,21 +92,13 @@
 
         <div>
             <select name="language" id="language">
-
             <?php
-            
-            foreach ($languages as $n => $language) {
-            
-            $check = "";
-            
-            if ($language == $edituser["User"]["language"]) { $check = 'selected'; }        
-
-            echo '<option value="'.$language.'" '.$check.'>'.$n.'</option>';
-            
-            }
-
+	            foreach ($languages as $n => $language) {
+		            $check = "";
+		            if ($language == $edituser["User"]["language"]) { $check = 'selected'; }
+		            echo '<option value="'.$language.'" '.$check.'>'.$n.'</option>';
+            	}
             ?>
-
             </select>        
         </div>
     </section>  
@@ -154,8 +114,6 @@
  </div>
     </section> 
      <?php } ?>
-
-
 
 <input type="submit" class="button primary submit" value="Submit">
 </form>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Error: <?php echo $title_for_layout?> | SpaceBukkit by XereoNet | Bukkit Web Administration</title>
+<title>Error: <?php echo $title_for_layout?> | SpaceBukkit</title>
 
 <!-- CSS -->
 <link rel="stylesheet" href="<?php echo $this->webroot; ?>css/import.css" /> 

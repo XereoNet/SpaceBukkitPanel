@@ -2389,17 +2389,17 @@ a: focus {
   margin-right: 10px;
 }
 
-p.fail a {
+.fail {
   color: #b50505 !important;
   text-decoration: underline
 }
-p.win a {
+.win {
   color: #0080ff !important;
 }
-p.success a {
+.success {
   color: green !important;
 }
-p.failed a {
+.failed {
   color: red !important;
 }
 .dbox {

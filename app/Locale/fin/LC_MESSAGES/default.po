@@ -1313,7 +1313,7 @@ msgid "Server properties"
 msgstr "Palvelimen asetukset"
 
 #: \View\TServersController\index.ctp:31;31
-msgid "Shedules"
+msgid "Schedules"
 msgstr "Aikataulut"
 
 #: \View\TServersController\index.ctp:43;43
