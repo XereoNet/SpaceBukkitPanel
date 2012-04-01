@@ -87,6 +87,46 @@ class TServersController extends AppController {
 
         $this->set('title_for_layout', __('Server'));
 
+        //Server Information
+
+        $args = array();
+        $ServerSpecs = array();
+        $ServerSpecs['CPU'] = $api->call('getNumCpus', $args, false).' cores at '.$api->call('getCpuFrequency', $args, false).'GHz';
+
+        $ServerSpecs['arch'] = $api->call('getArch', $args, false);
+
+        $ServerSpecs['RAM'] = round(intval($api->call('getPhysicalMemoryTotal', $args, false)) / 1024, 2).' GB';
+
+        $Dused = round(intval($api->call('getDiskUsage', $args, false)) / 1073741824, 2);
+        $Dtotal = round(intval($api->call('getDiskSize', $args, false)) / 1073741824, 2);
+        $Dfree = round(intval($api->call('getDiskFreeSpace', $args, false)) / 1073741824, 2);
+        $ServerSpecs['Disk'] = 'Used: '.$Dused.'GB/'.$Dtotal.'GB Free: '.$Dfree.'GB';
+
+        $ServerSpecs['OS'] = $api->call('getOsName', $args, false);
+
+        $ServerSpecs['Java'] = '1.SPAAACEEEE-R01-SNAPSHOT';
+
+        $ServerSpecs['Web'] = $_SERVER['SERVER_SOFTWARE'];
+
+        $ServerSpecs['SpaceBukkit'] = 'Module: '.$api->call('getSpaceModuleVersion', $args, true).', RTK: '.$api->call('getVersion', $args, true);
+        $this->set('ServerSpecs', $ServerSpecs);
+
+        //Bukkit Properties Info
+        $bukkit = array();
+
+        $bukkit['spawn-radius'] = 16;
+        $bukkit['update-folder'] = 'update';
+        $bukkit['permissions-file'] = 'permissiosn.yml';
+        $bukkit['connection-throttle'] = 4000;
+        $bukkit['animal-spawns'] = 400;
+        $bukkit['monster-spawns'] = 1;
+        $bukkit['allow-end'] = true;
+        $bukkit['warn-on-overload'] = true;
+        $bukkit['use-exact-login-location'] = true;
+        $bukkit['plugin-profiling'] = false;
+
+        $this->set('bukkit', $bukkit);
+
         //CraftBukkit chooser information
 
         $args = array();   

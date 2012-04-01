@@ -342,7 +342,8 @@ END;
     }
 
     function getTime($wrld){
-                require APP . 'spacebukkitcall.php';
+        perm('worlds', 'changeWorldSettings', $this->Session->read("user_perm"), true);
+        require APP . 'spacebukkitcall.php';
         //get world specific information
         $args = array($wrld);
         $worldInfo = $api->call("getWorldInformations", $args, true);
@@ -353,6 +354,7 @@ END;
     }
 
     function setTime($wrld = NULL, $time = NULL) {
+        perm('worlds', 'changeWorldSettings', $this->Session->read("user_perm"), true);
         if($this->request->is('post')) {
             $info = $this->request->data;
             $time = $info['time'];
@@ -384,6 +386,7 @@ END;
     }
 
     function worldAnimals($an, $wrld) {
+        perm('worlds', 'changeWorldSettings', $this->Session->read("user_perm"), true);
         if ($this->request->is('ajax')) {
             $this->disableCache();
             Configure::write('debug', 0);
@@ -420,6 +423,7 @@ END;
     }
 
     function worldHostiles($hos, $wrld) {
+        perm('worlds', 'changeWorldSettings', $this->Session->read("user_perm"), true);
         if ($this->request->is('ajax')) {
             $this->disableCache();
             Configure::write('debug', 0);
@@ -457,6 +461,7 @@ END;
     }
 
     function worldPVP($pvp, $wrld) {
+        perm('worlds', 'changeWorldSettings', $this->Session->read("user_perm"), true);
         if ($this->request->is('ajax')) {
             $this->disableCache();
             Configure::write('debug', 0);
@@ -493,6 +498,7 @@ END;
     }
 
     function getWorldDiff($wrld) {
+        perm('worlds', 'changeWorldSettings', $this->Session->read("user_perm"), true);
         require APP . 'spacebukkitcall.php';
         //get world specific information
         $args = array($wrld);
@@ -504,6 +510,7 @@ END;
     }
 
     function setWorldDiff($wrld, $diff) {
+        perm('worlds', 'changeWorldSettings', $this->Session->read("user_perm"), true);
             $this->autoRender = false;
             //include API
             require APP . 'spacebukkitcall.php';
@@ -549,6 +556,7 @@ END;
     }
 
     function unloadWorld($wrld) {
+        perm('worlds', 'changeWorldSettings', $this->Session->read("user_perm"), true);
         if ($this->request->is('ajax')) {
             $this->disableCache();
             Configure::write('debug', 0);
@@ -574,6 +582,7 @@ END;
     }
 
     function loadWorld($wrld) {
+        perm('worlds', 'changeWorldSettings', $this->Session->read("user_perm"), true);
         if ($this->request->is('ajax')) {
             $this->disableCache();
             Configure::write('debug', 0);
@@ -600,6 +609,7 @@ END;
 
 
     function deleteWorld($wrld) {
+        perm('worlds', 'removeAddWorld', $this->Session->read("user_perm"), true);
         if ($this->request->is('ajax')) {
             $this->disableCache();
             Configure::write('debug', 0);
@@ -638,6 +648,7 @@ END;
     }
 
     function addWorld() {
+        perm('worlds', 'removeAddWorld', $this->Session->read("user_perm"), true);
         if ($this->request->is('post')) {
             $name = $this->request->data['name'];
             $seed = $this->request->data['seed'];
@@ -668,9 +679,19 @@ END;
         }
         $this->layout = 'popup';
     }
+
+    function backup() {
+        perm('worlds', 'backupRestoreWorld', $this->Session->read("user_perm"), true);
+        echo 'Nope (.bz)';
+    }
+
+    function restore() {
+        perm('worlds', 'backupRestoreWorld', $this->Session->read("user_perm"), true);
+        echo 'Nope (.bz)';
+    }
 //autotrim tab functions
     function mapautotrim() {
-
+        perm('worlds', 'runMapAutoTrim', $this->Session->read("user_perm"), true);
         if (!$this->request->is('post')) {
             throw new MethodNotAllowedException();
         }
@@ -701,7 +722,7 @@ END;
     }
 //chunkster tab functions
     function chunkster() {
-
+        perm('worlds', 'runChunkster', $this->Session->read("user_perm"), true);
         if (!$this->request->is('post')) {
             throw new MethodNotAllowedException();
         }

@@ -1,9 +1,11 @@
 <!-- Tabs -->
 <nav id="smalltabs">
         <ul>
-                <li class="current"><a href="#tab1">CraftBukkit</a></li>
-                <li><a href="#tab2"><?php echo __('Server properties') ?></a></li>
-                <li><a href="#tab3"><?php echo __('Schedules') ?></a></li>
+                <li class="current"><a href="#tab1">Server Overview</a></li>
+                <li><a href="#tab2">CraftBukkit</a></li>
+                <li><a href="#tab3"><?php echo __('Server properties') ?></a></li>
+                <li><a href="#tab4"><?php echo __('Bukkit properties') ?></a></li>
+                <li><a href="#tab5"><?php echo __('Schedules') ?></a></li>
         </ul>
 </nav>
 <!-- End Tabs -->
@@ -12,6 +14,105 @@
 <section id="content"> 
 
 <div class="tab" id="tab1">
+<section class="box boxpad"> 
+ 
+        <header>
+            <h2><?php echo __('Server Overview') ?></h2> 
+        </header>
+        
+       <section>
+       <p class="description">
+       <?php echo __('Server Specs? Server Awesomeness? Server Space? SPAAAAACE!!') ?>  
+       </p>
+
+       <div class="col left">
+            <img style="float: right;" src="http://aux.iconpedia.net/uploads/184603595.png" />
+       </div>
+       
+       <div class="col right">
+        <section>
+          <label for="CPU">
+            CPU: 
+          </label>
+
+          <div>
+            - <?php echo $ServerSpecs['CPU']; ?><br>
+          </div>
+        </section>
+        <section>
+          <label for="Architecture">
+            Architecture: 
+          </label>
+
+          <div>
+            - <?php echo $ServerSpecs['arch']; ?><br>
+          </div>
+        </section>
+        <section>
+          <label for="Memory">
+            Memory: 
+          </label>
+
+          <div>
+            - <?php echo $ServerSpecs['RAM']; ?><br>
+          </div>
+        </section>
+        <section>
+          <label for="Disk">
+            Disk Space: 
+          </label>
+
+          <div>
+            - <?php echo $ServerSpecs['Disk']; ?><br>
+          </div>
+        </section>
+        <section>
+          <label for="OS">
+            Operating System: 
+          </label>
+
+          <div>
+            - <?php echo $ServerSpecs['OS']; ?><br>
+          </div>
+        </section>
+        <section>
+          <label for="Java">
+            Java Version: 
+          </label>
+
+          <div>
+            - <?php echo $ServerSpecs['Java']; ?><br>
+          </div>
+        </section>
+        <section>
+          <label for="Web">
+            Webserver Version: 
+          </label>
+
+          <div>
+            - <?php echo $ServerSpecs['Web']; ?><br>
+          </div>
+        </section>
+        <section>
+          <label for="SB">
+            SpaceBukkit Version: 
+          </label>
+
+          <div>
+            - <?php echo $ServerSpecs['SpaceBukkit']; ?><br>
+          </div>
+        </section>
+       </div>
+       <div class="clear"></div>
+
+     </section>
+                        
+</section>
+<div class="clear"></div>
+
+</div>
+
+<div class="tab" id="tab2">
 <section class="box boxpad"> 
  
         <header>
@@ -92,7 +193,7 @@
 
 </div>
 
-<div class="tab" id="tab2">
+<div class="tab" id="tab3">
 <section class="box boxpad" style="position: relative"> 
     <header>
         <h2><?php echo __('Server properties') ?></h2> 
@@ -319,7 +420,129 @@
 </div>       <!-- End col right -->
 <div class="clear"></div>
 
-<div class="tab" id="tab3">
+<div class="tab" id="tab4">
+<section class="box boxpad" style="position: relative"> 
+    <header>
+        <h2><?php echo __('Bukkit Properties') ?></h2> 
+
+    </header>
+
+    <section>
+        <form id="savebukkitconfig" method="post" action="./tservers/saveBukkitConfig">
+        <form id="ServerBukkitAddForm" method="post" action="./tservers/saveBukkitConfig">
+          <div class="col left">
+            
+            <section>
+              <label for="title">
+                <?php echo __('Spawn radius') ?>
+              </label>
+            
+              <div>
+                <input id="spawn-radius" name="spawn-radius" type="text" value="<?php echo $bukkit['spawn-radius'] ;?>"/>
+              </div>
+            </section>
+            <section>
+              <label for="title">
+                <?php echo __('Update folder') ?>
+              </label>
+            
+              <div>
+                <input id="update-folder" name="update-folder" type="text" value="<?php echo $bukkit['update-folder'] ;?>"/>
+              </div>
+            </section>
+            <section>
+              <label for="title">
+                <?php echo __('Permissions file') ?>
+              </label>
+            
+              <div>
+                <input id="permissions-file" name="permissions-file" type="text" value="<?php echo $bukkit['permissions-file'] ;?>"/>
+              </div>
+            </section>
+            <section>
+              <label for="title">
+                <?php echo __('Connection throttle') ?>
+              </label>
+            
+              <div>
+                <input id="connection-throttle" name="connection-throttle" type="text" value="<?php echo $bukkit['connection-throttle'] ;?>"/>
+              </div>
+            </section>
+
+          </div>
+
+          
+            
+          <div class="col right">
+            <section>
+              <label for="title">
+                <?php echo __('Ticks per animal spawns') ?>
+              </label>
+            
+              <div>
+                <input id="animal-spawns" name="animal-spawns" type="text" value="<?php echo $bukkit['animal-spawns'] ;?>"/>
+              </div>
+            </section>
+            <section>
+              <label for="title">
+                <?php echo __('Ticks per monster spawns') ?>
+              </label>
+            
+              <div>
+                <input id="monster-spawns" name="monster-spawns" type="text" value="<?php echo $bukkit['monster-spawns'] ;?>"/>
+              </div>
+            </section>
+            <section>
+              <label for="title">
+                <?php echo __('Allow The End') ?>
+              </label>
+            
+              <div>
+                <input id="allow-end" name="allow-end" type="checkbox" value="true" <?php if ($bukkit['allow-end'] == "true") {echo " checked";}?>/>
+              </div>
+            </section>
+            <section>
+              <label for="title">
+                <?php echo __('Warn on overload') ?>
+              </label>
+            
+              <div>
+                <input id="warn-on-overload" name="warn-on-overload" type="checkbox" value="true" <?php if ($bukkit['warn-on-overload'] == "true") {echo " checked";}?>/>
+              </div>
+            </section>
+            <section>
+              <label for="title">
+                <?php echo __('Use exact login location') ?>
+              </label>
+            
+              <div>
+                <input id="use-exact-login-location" name="use-exact-login-location" type="checkbox" value="true" <?php if ($bukkit['use-exact-login-location'] == "true") {echo " checked";}?>/>
+              </div>
+            </section>
+            <section>
+              <label for="title">
+                <?php echo __('Plugin profiling') ?>
+              </label>
+            
+              <div>
+                <input id="plugin-profiling" name="plugin-profiling" type="checkbox" value="true" <?php if ($bukkit['plugin-profiling'] == "true") {echo " checked";}?>/>
+              </div>
+            </section>
+               
+            <input type="submit" value="Save" style="position: absolute; top: 13px; right: 10px;" name="save" class="button primary submit leftsubmit" id="saveprop">
+          </div>
+        </form>
+
+        <div class="clear"></div>
+
+    </section> 
+                        
+ </section>
+
+</div>       <!-- End col right -->
+<div class="clear"></div>
+
+<div class="tab" id="tab5">
   <section class="box boxpad"> 
        
     <header>
