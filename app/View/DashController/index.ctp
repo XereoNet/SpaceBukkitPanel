@@ -32,15 +32,16 @@
           </td>
         </tr>
         <tr>
-          <td>Plugins</td><td>          <p><?php echo $plugin_count; ?> | <span class="greyed"><?php echo $dis_plugin_count; ?> </span></p>
-               <p class="cell_medium">
-               <b class="cell_left"><?php echo __('installed') ?></b>  
-               <b class="cell_right greyed"><?php echo __('disabled') ?></b>
-               </p></td>
+          <td>Plugins</td><td>          
+              <p><?php echo $plugin_count; ?> | <span class="greyed"><?php echo $dis_plugin_count; ?> </span></p>
+              <p class="cell_medium">
+                <b class="cell_left"><?php echo __('installed') ?></b>  
+                <b class="cell_right greyed"><?php echo __('disabled') ?></b>
+              </p></td>
         </tr>                
         <tr>
           <td>Staff</td><td><p><?php echo $connected_users; ?></span></p>
-               <p class="cell_medium"><?php echo __(' linked to this server') ?></p></td>
+              <p class="cell_medium"><?php echo __(' linked to this server') ?></p></td>
         </tr>
       </tbody>
     </table>
@@ -139,65 +140,58 @@
 
 <script>
 
-      var timer;
-      var timerCurrent;
-      var timerFinish;
-      var timerSeconds;
+    var timer;
+    var timerCurrent;
+    var timerFinish;
+    var timerSeconds;
 
-      function drawTimer(container, percent){
-        $(container).html('<div class="percent"></div><div class="slice"'+(percent > 50?' class="gt50"':'')+'><div class="pie"></div>'+(percent > 50?'<div class="pie fill"></div>':'')+'</div>');
-        var deg = 360/100*percent;
-        var slice = container + ' .slice';
-        var con = container + ' .slice .pie';
-        var per = container + ' .percent';
-        $(con).css({
-          '-moz-transform':'rotate('+deg+'deg)',
-          '-webkit-transform':'rotate('+deg+'deg)',
-          '-o-transform':'rotate('+deg+'deg)',
-          'transform':'rotate('+deg+'deg)'
-        });
-        $(per).html(Math.round(percent)+'%');
+    function drawTimer(container, percent){
+      $(container).html('<div class="percent"></div><div class="slice"'+(percent > 50?' class="gt50"':'')+'><div class="pie"></div>'+(percent > 50?'<div class="pie fill"></div>':'')+'</div>');
+      var deg = 360/100*percent;
+      var slice = container + ' .slice';
+      var con = container + ' .slice .pie';
+      var per = container + ' .percent';
+      $(con).css({
+        '-moz-transform':'rotate('+deg+'deg)',
+        '-webkit-transform':'rotate('+deg+'deg)',
+        '-o-transform':'rotate('+deg+'deg)',
+        'transform':'rotate('+deg+'deg)'
+      });
+      $(per).html(Math.round(percent)+'%');
 
-        if (percent <= 19) {
-          $(con).css({'border-color': '#1284f6'})
-        }
-        else if (percent > 20 && percent <= 39) 
-        {
-          $(con).css({'border-color': '#2d6bc6'})
-        } 
-        else if (percent >= 40 && percent <= 49) 
-        {
-          $(con).css({'border-color': '#3563b6'})
-        }
-        else if (percent >= 50 && percent <= 59) 
-        {
-          $(con).css({'border-color': '#514985'})
-        }
-        else if (percent >= 60 && percent <= 69) 
-        {
-          $(con).css({'border-color': '#5d3e6f'})
-        }
-        else if (percent >= 70 && percent <= 79) 
-        {
-          $(con).css({'border-color': '#7d2036'})
-        }
-        else if (percent >= 80 && percent <= 100) 
-        {
-          $(con).css({'border-color': '#900d13'})
-        }
-        if (percent > 50) 
-        {
-          $(slice).css({'clip': 'rect(0px,1em,1em,0em)'});
-        }
+      if (percent <= 19) {
+        $(con).css({'border-color': '#1284f6'})
       }
-      
-$(document).ready(function(){
-
-  $('input[type=button]#percent').click(function(e){
-    e.preventDefault();
-    drawTimer('.timer1', $('input[type=text]#percent').val());
-  });
-
+      else if (percent > 20 && percent <= 39) 
+      {
+        $(con).css({'border-color': '#2d6bc6'})
+      } 
+      else if (percent >= 40 && percent <= 49) 
+      {
+        $(con).css({'border-color': '#3563b6'})
+      }
+      else if (percent >= 50 && percent <= 59) 
+      {
+        $(con).css({'border-color': '#514985'})
+      }
+      else if (percent >= 60 && percent <= 69) 
+      {
+        $(con).css({'border-color': '#5d3e6f'})
+      }
+      else if (percent >= 70 && percent <= 79) 
+      {
+        $(con).css({'border-color': '#7d2036'})
+      }
+      else if (percent >= 80 && percent <= 100) 
+      {
+        $(con).css({'border-color': '#900d13'})
+      }
+      if (percent > 50) 
+      {
+        $(slice).css({'clip': 'rect(0px,1em,1em,0em)'});
+      }
+    }
+ 
   function graphs(graph,source,interval,type) {
 
     var c1    = $(graph);
@@ -212,13 +206,23 @@ $(document).ready(function(){
       free.html(data.free);
       used.html(data.used);
       drawTimer(graph, data.perc);
-      setTimeout(graphs(graph,source,interval,type) , interval); 
+
     });
  
   };
-  graphs('.timer1', './dash/calculate_ram', 3000, 'ram')
-  graphs('.timer2', './dash/calculate_cpu', 3000, 'cpu')
-  graphs('.timer3', './dash/calculate_java', 3000, 'jav')
+
+$(document).ready(function(){
+
+  $('input[type=button]#percent').click(function(e){
+    e.preventDefault();
+    drawTimer('.timer1', $('input[type=text]#percent').val());
+  });
+
+
+  setInterval("graphs('.timer1', './dash/calculate_ram', 3000, 'ram')", 3000);
+  setInterval("graphs('.timer2', './dash/calculate_cpu', 3000, 'cpu')", 3000);
+  setInterval("graphs('.timer3', './dash/calculate_java', 3000, 'jav')", 3000);
+
   doAndRefresh('#activity-list ul', './dash/get_log', 30000);
   doAndRefresh('#online-list', './dash/get_admins', 30000);
   doAndRefresh('#players-count', './dash/calculate_players', 30000);

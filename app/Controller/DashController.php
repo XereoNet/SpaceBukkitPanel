@@ -354,8 +354,8 @@ class DashController extends AppController {
 		$java = array();
 		$java['tot'] = $api->call("getJavaMemoryMax", $args, false);
 		$java['used'] = $api->call("getJavaMemoryUsage", $args, false);
-		$java['free'] = $api->call("getJavaMemoryFree", $args, false);
-		$java['perc'] = 100;
+		$java['free'] = $java['tot'] - $java['used'];
+		$java['perc'] = percent($java['used'], $java['tot']);
 
         //Generate Output
 
