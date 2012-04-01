@@ -2580,3 +2580,27 @@ p.failed a {
 #activity-list b {
   color: #ccc;
 }
+/* SERVER */ 
+ 
+.server-details > div.col { 
+  width: 33.333333333%; 
+} 
+ 
+.server-details > div.col > section { 
+  border: 1px solid; 
+  border-color: #333 #151515 #151515 #333; 
+  padding: 10px; 
+  position: relative; 
+  background-color: #222; 
+  text-align: center; 
+  color: #eee; 
+  font-size: 15px; 
+  height: 61px; 
+} 
+ 
+.server-details > div.col > section label { 
+  color: #1284F6; 
+  line-height: 30px; 
+  font-size: 17px; 
+  font-weight: bold; 
+}
