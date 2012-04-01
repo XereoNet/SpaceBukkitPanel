@@ -125,18 +125,27 @@
 		</div>
 
 		<div id="chunksterloader" class="col right" style="text-align: center; display: none;">
-		<br />
-		<br />
-		<img src="img/big_loader.gif" /><br /><br />
-		<div class="progress"><span id="chunkster_progress" style="width: 33%;"><b>1/3</b></span></div>	
-		<span id="chunkster_message"><?php echo __('Notifying players of shutdown...') ?><span/>	
+			
+			<br />
+			<br />
+			<p></p>
+			<br />
+			<br />		
 
-		<div class="clear"></div>
+			<div class="progress-new progress-striped active">
+			  <div class="bar" id="chunkster_progress"></div>
+			</div>
+
+			<div class="colorbox blue">
+			<span id="chunkster_message"><?php echo __('Notifying players of shutdown...') ?><span/>	
+			</div>
+
+			<div class="clear"></div>
 
 		</div>
 
 		<div class="clear"></div>
-				<br />
+		<br />
 
 	<div class="clear"></div>
 	</div>
@@ -209,13 +218,22 @@
 		</div>
 
 		<div id="autotrimloader" class="col right" style="text-align: center; display: none;">
-		<br />
-		<br />
-		<img src="img/big_loader.gif" /><br /><br />
-		<div class="progress"><span id="autotrim_progress" style="width: 33%;"><b>1/3</b></span></div>	
-		<span id="autotrim_message"><?php echo __('Notifying players of shutdown...') ?><span/>	
+			
+			<br />
+			<br />
+			<p></p>
+			<br />
+			<br />		
 
-		<div class="clear"></div>
+			<div class="progress-new progress-striped active">
+			  <div class="bar" id="autotrim_progress"></div>
+			</div>
+
+			<div class="colorbox blue">
+			<span id="autotrim_message"><?php echo __('Notifying players of shutdown...') ?><span/>	
+			</div>
+
+			<div class="clear"></div>
 
 		</div>
 
@@ -281,18 +299,20 @@ $.ajax({
 
 }));
 
-$("#mapautotrim").submit(function() {
+$("#autotrim").submit(function() {
 	$('.buttons').hide();
 	$('.bounce').hide();
     $('input[type=submit]', this).attr('disabled', 'disabled').addClass("disable");
     $("#autotrimloader").fadeIn(2000);
+	$('#autotrim_progress').animate({width: '33%'}, 1000);    
+    $("#autotrimloader p").activity({'color' : 'white'});
 	setTimeout( function() { 
 	$('#autotrim_message').html('Shutting server down...');
-	$('#autotrim_progress').animate({width: '66%'}, 1000).html('<b>2/3</b>');
+	$('#autotrim_progress').animate({width: '66%'}, 1000);
 	}, 10000 );
 	setTimeout( function() { 
-	$('#autotrim_message').html('Running MapAutoTrim...');
-	$('#autotrim_progress').animate({width: '100%'}, 1000).html('<b>3/3</b>');
+	$('#autotrim_message').html('Running autotrim...');
+	$('#autotrim_progress').animate({width: '100%'}, 1000);
 	}, 20000 );
 });
 
@@ -301,13 +321,15 @@ $("#chunkster").submit(function() {
 	$('.bounce').hide();
     $('input[type=submit]', this).attr('disabled', 'disabled').addClass("disable");
     $("#chunksterloader").fadeIn(2000);
+	$('#chunkster_progress').animate({width: '33%'}, 1000);    
+    $("#chunksterloader p").activity({'color' : 'white'});
 	setTimeout( function() { 
 	$('#chunkster_message').html('Shutting server down...');
-	$('#chunkster_progress').animate({width: '66%'}, 1000).html('<b>2/3</b>');
+	$('#chunkster_progress').animate({width: '66%'}, 1000);
 	}, 10000 );
 	setTimeout( function() { 
 	$('#chunkster_message').html('Running Chunkster...');
-	$('#chunkster_progress').animate({width: '100%'}, 1000).html('<b>3/3</b>');
+	$('#chunkster_progress').animate({width: '100%'}, 1000);
 	}, 20000 );
 });
 

@@ -124,54 +124,19 @@ $('document').ready(function () {
         relative: "true"
     });
     $(".dtb").dataTable();
-    //$('input[type="text"]').placeholderFunction('input-focused');
+
     $(function () {
         var tabContainers = $('section#content > div.tab');
         tabContainers.hide().filter(':first').show();
         $('nav#smalltabs ul li a').click(function () {
             tabContainers.hide();
-            tabContainers.filter(this.hash).show();
+            tabContainers.filter(this.hash).fadeIn(700);
             $("nav#smalltabs ul li").removeClass("current");
             $(this).parent().addClass("current");
             return false;
         }).filter(':first').click();
     });
-    var colors = ['#005ba8', '#EE1F10', '#92d5ea', '#1175c9', '#8d10ee', '#5a3b16', '#26a4ed', '#f45a90', '#e9e744'];
-    $('.barchart').visualize({
-        type: 'bar',
-        colors: colors
-    });
-    $('.linechart').visualize({
-        type: 'line',
-        lineWeight: 2,
-        colors: colors
-    });
-    $('.areachart').visualize({
-        type: 'area',
-        lineWeight: 1,
-        colors: colors
-    });
-    $('.piechart').visualize({
-        type: 'pie',
-        colors: colors
-    });
-    $('.barchart, .linechart, .areachart, .piechart').hide();
-    $(".ajax_btn").live('click', (function () {
-        var source = $(this).attr("href");
-        var btn = $(this);
-        $(this).addClass("disable");
-        $.ajax({
-            url: source,
-            success: function (data) {
-                notifications.show({
-                    msg: data,
-                    icon: 'img/win.png'
-                });
-                $(btn).removeClass("disable");
-            }
-        });
-        return false;
-    }));
+
     $(".cdis").live('click', (function () {
         $(this).addClass("disable");
     }));
