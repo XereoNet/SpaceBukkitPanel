@@ -175,7 +175,7 @@ END;
 
             if (!isset($api)) {require APP.'spacebukkitcall.php';}
 
-            $args = array('SetRankPEX');
+            /*$args = array('Multiverse-Core');
             $plugin = $api->call('getPluginInformations', $args, false);
 
             foreach ($plugin['Permissions'] as $perm){
@@ -184,7 +184,9 @@ END;
 
                 $perms[$p] = $d;
 
-            }
+            }*/
+
+            $perms = array('srpex.reload' => 'Reloads SRPEX', 'srpex.setrank.group' => 'set\'s rank for group');
             
             return $perms;
         }
