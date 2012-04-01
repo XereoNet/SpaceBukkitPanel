@@ -12,6 +12,9 @@ display: block;
   display: none!important;
   visibility: hidden!important;
 }
+.tristate:hover {
+  cursor: pointer;
+}
 .screen_overlay {
   position: absolute;
   top: 0;
