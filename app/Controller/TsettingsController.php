@@ -41,11 +41,19 @@ class TsettingsController extends AppController {
       {
         parent::beforeFilter();
 
+        $allowed_actions = array("update_theme");
+
         //check if user has rights to do this
-         if ($this->Auth->user('is_super') != 1) { 
-            exit("access denied");
-         } 
-      }
+        if (!(in_array($this->action, $allowed_actions))) {
+
+          if ($this->Auth->user('is_super') != 1) {
+
+            throw new MethodNotAllowedException();
+
+          }
+
+        }
+    }
 
     function index() 
 
@@ -388,7 +396,7 @@ END;
                 $this->Session->setFlash(__('The theme has been saved'));
                 $this->Session->delete('current_theme');
                 $this->Session->write('current_theme', $name);
-                $this->redirect(array('controller' => 'tsettings', 'action' => 'index'));
+                $this->redirect($this->referer());
             } else {
                 $this->Session->setFlash(__('The theme could not be saved. Please, try again.'));
             }
