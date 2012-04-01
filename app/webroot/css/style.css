@@ -27,15 +27,19 @@ display: block;
   -moz-opacity: 0.75;       /* mozilla, netscape */
   opacity: 0.75;           /* fx, safari, opera */
   text-align: center;
-  background: grey url(../img/big_loader.gif) no-repeat center;
+  background: #999;
   display: none;
 }
-.screen_overlay div{
+.screen_overlay > div.overlay-text {
   margin: 200px auto 0;
   background: #eee;
   border: 1px solid #ddd;
   width: 200px;
   padding: 10px;
+}
+.screen_overlay > p {
+  position: relative;
+  top: 50px;
 }
 .cake-debug {
   background: #fefefe
@@ -1364,6 +1368,11 @@ em {
 }
 #content {
   padding: 20px 0;
+  position: relative;
+  opacity: 0;
+  left: 20px;
+  -moz-opacity: 0;
+  filter:alpha(opacity=0);
   background: transparent;
   border-radius: 7px;
   -moz-border-radius: 7px;
@@ -2297,6 +2306,30 @@ a: focus {
   margin-top: 5px;
 }
 
+/* SERVER */
+
+.server-details > div.col {
+  width: 33.333333333%;
+}
+
+.server-details > div.col > section {
+  border: 1px solid;
+  border-color: #333 #151515 #151515 #333;
+  padding: 10px;
+  position: relative;
+  background-color: #222;
+  text-align: center;
+  color: #eee;
+  font-size: 15px;
+  height: 61px;
+}
+
+.server-details > div.col > section label {
+  color: #1284F6;
+  line-height: 30px;
+  font-size: 17px;
+  font-weight: bold;
+}
 
 /* DASHBOARD */
 

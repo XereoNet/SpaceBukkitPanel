@@ -205,6 +205,8 @@ END;
 	<script src="<?php echo $this->webroot; ?>js/bootstrap-collapse.js"></script>
 	<script src="<?php echo $this->webroot; ?>js/bootstrap-typeahead.js"></script>
 	<script src="<?php echo $this->webroot; ?>js/jquery.listnav.js"></script>
+	<script src="<?php echo $this->webroot; ?>js/jquery.activity-indicator-1.0.0.min.js"></script>
+	
 	<!--[if IE 6]>
 		<script type="text/javascript" src="<?php echo $this->webroot; ?>js/jquery.nyroModal-ie6.min.js"></script>
 	<![endif]-->

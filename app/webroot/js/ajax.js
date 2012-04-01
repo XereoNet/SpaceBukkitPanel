@@ -71,6 +71,7 @@ function showOverlay(text) {
 
     $(overlay).find('div').html(text);
     $(overlay).fadeIn();
+    $(overlay).find('p').activity();
 }
 
 function hideOverlay() {

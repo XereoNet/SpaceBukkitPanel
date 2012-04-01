@@ -3,6 +3,13 @@ $(window).load(function () {
     $("#content").fadeIn(700);
 });
 $('document').ready(function () {
+
+    $('#content').animate({
+            opacity: 1,
+            left: '0'
+          }, 800, function() {
+            // Animation complete.
+      });
     
     $('.slideDown').animate({
         opacity: 'toggle',

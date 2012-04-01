@@ -14,99 +14,105 @@
 <section id="content"> 
 
 <div class="tab" id="tab1">
-<section class="box boxpad"> 
- 
-        <header>
-            <h2><?php echo __('Server Overview') ?></h2> 
-        </header>
-        
-       <section>
-       <p class="description">
-       <?php echo __('Server Specs? Server Awesomeness? Server Space? SPAAAAACE!!') ?>  
-       </p>
 
-       <div class="col left">
-            <img style="float: right;" src="http://aux.iconpedia.net/uploads/184603595.png" />
-       </div>
-       
-       <div class="col right">
-        <section>
-          <label for="CPU">
-            CPU: 
-          </label>
+<section class="server-details"> 
 
-          <div>
-            - <?php echo $ServerSpecs['CPU']; ?><br>
-          </div>
-        </section>
-        <section>
-          <label for="Architecture">
-            Architecture: 
-          </label>
+  <div class="col col_1_3 left">
 
-          <div>
-            - <?php echo $ServerSpecs['arch']; ?><br>
-          </div>
-        </section>
-        <section>
-          <label for="Memory">
-            Memory: 
-          </label>
+    <section>
+      <label for="CPU">
+        CPU: 
+      </label>
 
-          <div>
-            - <?php echo $ServerSpecs['RAM']; ?><br>
-          </div>
-        </section>
-        <section>
-          <label for="Disk">
-            Disk Space: 
-          </label>
+      <div>
+        <?php echo $ServerSpecs['CPU']; ?><br>
+      </div>
+    </section>
 
-          <div>
-            - <?php echo $ServerSpecs['Disk']; ?><br>
-          </div>
-        </section>
+    <section>
+      <label for="Java">
+        Java Version: 
+      </label>
+
+      <div>
+        <?php echo $ServerSpecs['Java']; ?><br>
+      </div>
+    </section>
+
+  </div>
+
+
+  <div class="col col_1_3 left">
+
+      <section>
+        <label for="Architecture">
+          Architecture: 
+        </label>
+
+        <div>
+          <?php echo $ServerSpecs['arch']; ?><br>
+        </div>
+      </section>
         <section>
           <label for="OS">
             Operating System: 
           </label>
 
           <div>
-            - <?php echo $ServerSpecs['OS']; ?><br>
+            <?php echo $ServerSpecs['OS']; ?><br>
           </div>
         </section>
-        <section>
-          <label for="Java">
-            Java Version: 
-          </label>
 
-          <div>
-            - <?php echo $ServerSpecs['Java']; ?><br>
-          </div>
-        </section>
-        <section>
-          <label for="Web">
-            Webserver Version: 
-          </label>
-
-          <div>
-            - <?php echo $ServerSpecs['Web']; ?><br>
-          </div>
-        </section>
         <section>
           <label for="SB">
             SpaceBukkit Version: 
           </label>
 
           <div>
-            - <?php echo $ServerSpecs['SpaceBukkit']; ?><br>
+            <?php echo $ServerSpecs['SpaceBukkit']; ?><br>
+          </div>
+       <div class="clear"></div>
+          </section>           
+  </div>
+
+
+  <div class="col col_1_3 left">
+
+    <section>
+      <label for="Memory">
+        Memory: 
+      </label>
+
+      <div>
+        <?php echo $ServerSpecs['RAM']; ?><br>
+      </div>
+    </section>
+
+    <section>
+      <label for="Disk">
+        Disk Space: 
+      </label>
+
+      <div>
+        <?php echo $ServerSpecs['Disk']; ?><br>
+      </div>
+    </section>
+
+
+        <section>
+          <label for="Web">
+            Webserver Version: 
+          </label>
+
+          <div>
+            <?php echo $ServerSpecs['Web']; ?><br>
           </div>
         </section>
-       </div>
-       <div class="clear"></div>
+  </div>
 
-     </section>
-                        
+  <div class="clear"></div>
+       
+       
 </section>
 <div class="clear"></div>
 
