@@ -605,25 +605,35 @@ END;
             Configure::write('debug', 0);
             $this->autoRender = false;
             require APP . 'spacebukkitcall.php';
+            $args = array();
+            //remove from multiverse
+            $wmpl = $this->getWMPL($api->call("getPlugins", $args, false));
+            if ($wmpl == 2){
+                $args = array("mvremove ".$wrld);
+                $info = $api->call('consoleCommand', $args, true);
+            }
             //stop the server
             $args = array();
             $api->call("hold", $args, true);
+            sleep(5);
             //backup the world
-            $args = array('bukkit.yml');
-            $bukkit = $api->call('getFileContents', $args, true);
-            $wc = $this->get_string_between($bukkit, "world-container: ", "\n");
+            $args = array('./SpaceModule/configuration.yml');
+            $config = $api->call('getFileContent', $args, true);
+            $wc = $this->get_string_between($config, "WorldContainer: ", "\n");
             $args = array($wc.'/'.$wrld);
             $api->call("backup", $args, true);
+            sleep(5);
             //remove the world
-            $args = array($wc.'/'.$wrld);
+            $args1 = array($wc.'/'.$wrld);
             $api->call('deleteDir', $args, true);
+            sleep(5);
             //start the server
             $args = array();
             $api->call('unhold', $args, true);
             while(!$api->call('isServerRunning', $args, true)){
                 sleep(1);
             }
-            echo 'World has been removed! A backup can be fould in the backups folder';
+            echo 'World has been removed! A backup can be found in the backups folder!';
         }
     }
 
