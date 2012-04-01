@@ -50,7 +50,6 @@ class TServersController extends AppController {
       }
 
     function index() {
-        
 
         /*
 
@@ -108,29 +107,33 @@ class TServersController extends AppController {
 
         $ServerSpecs['Web'] = $_SERVER['SERVER_SOFTWARE'];
 
+        $server = $api->call('getServer', $args, false);
+
+        $ServerSpecs['Bukkit'] = $server['Version'];
+
         $ServerSpecs['SpaceBukkit'] = 'Module: '.$api->call('getSpaceModuleVersion', $args, true).', RTK: '.$api->call('getVersion', $args, true);
         $this->set('ServerSpecs', $ServerSpecs);
 
         //Bukkit Properties Info
         $bukkit = array();
 
-        $bukkit['spawn-radius'] = 16;
-        $bukkit['update-folder'] = 'update';
-        $bukkit['permissions-file'] = 'permissiosn.yml';
-        $bukkit['connection-throttle'] = 4000;
-        $bukkit['animal-spawns'] = 400;
-        $bukkit['monster-spawns'] = 1;
-        $bukkit['allow-end'] = true;
-        $bukkit['warn-on-overload'] = true;
-        $bukkit['use-exact-login-location'] = true;
-        $bukkit['plugin-profiling'] = false;
+        $args = array("bukkit.yml");   
+        $bukkityml = $api->call("getFileContent", $args, true);
+
+        $bukkit['spawn-radius'] = $this->get_string_between($bukkityml, 'spawn-radius: ', "\n");
+        $bukkit['update-folder'] = $this->get_string_between($bukkityml, 'update-folder: ', "\n");
+        $bukkit['permissions-file'] = $this->get_string_between($bukkityml, 'permissions-file: ', "\n");
+        $bukkit['connection-throttle'] = $this->get_string_between($bukkityml, 'connection-throttle: ', "\n");
+        $bukkit['animal-spawns'] = $this->get_string_between($bukkityml, 'animal-spawns: ', "\n");
+        $bukkit['monster-spawns'] = $this->get_string_between($bukkityml, 'monster-spawns: ', "\n");
+        $bukkit['allow-end'] = $this->get_string_between($bukkityml, 'allow-end: ', "\n");
+        $bukkit['warn-on-overload'] = $this->get_string_between($bukkityml, 'warn-on-overload: ', "\n");
+        $bukkit['use-exact-login-location'] = $this->get_string_between($bukkityml, 'use-exact-login-location: ', "\n");
+        $bukkit['plugin-profiling'] = $this->get_string_between($bukkityml, 'plugin-profiling: ', "\n");
 
         $this->set('bukkit', $bukkit);
 
         //CraftBukkit chooser information
-
-        $args = array();   
-        $server = $api->call("getServer", $args, false);
 
         $filename = 'http://dl.bukkit.org/downloads/craftbukkit/feeds/latest-rb.rss';
         $bukkitxml = simplexml_load_file($filename);
@@ -187,7 +190,18 @@ class TServersController extends AppController {
         
     }
 
+    //Function to get strings
+    function get_string_between($string, $start, $end){
+        $string = " ".$string;
+        $ini = strpos($string,$start);
+        if ($ini == 0) return "";
+        $ini += strlen($start);
+        $len = strpos($string,$end,$ini) - $ini;
+        return substr($string,$ini,$len);
+    }
+
     function install_cb($cb = null) {
+        perm('servers', 'bukkit', $this->Session->read("user_perm"), true);
 
         set_time_limit(300);
 
@@ -237,17 +251,9 @@ class TServersController extends AppController {
         $args = array("toolkit/wrapper.properties");   
         $config = $api->call("getFileContent", $args, true);
                
-        //Function to get strings
-        function get_string_between($string, $start, $end){
-        $string = " ".$string;
-        $ini = strpos($string,$start);
-        if ($ini == 0) return "";
-        $ini += strlen($start);
-        $len = strpos($string,$end,$ini) - $ini;
-        return substr($string,$ini,$len);
-        }
+        
 
-        $old_jar = trim(get_string_between($config, "minecraft-server-jar=", "\n"));
+        $old_jar = trim($this->get_string_between($config, "minecraft-server-jar=", "\n"));
 
         $i = 1;
         while ($i < 10) {
@@ -299,18 +305,9 @@ class TServersController extends AppController {
     }
 
         function saveConfig() {
+            perm('servers', 'serverProperties', $this->Session->read("user_perm"), true);
 
         require APP . 'spacebukkitcall.php';
-
-        //Function to get strings
-        function get_string_between($string, $start, $end){
-        $string = " ".$string;
-        $ini = strpos($string,$start);
-        if ($ini == 0) return "";
-        $ini += strlen($start);
-        $len = strpos($string,$end,$ini) - $ini;
-        return substr($string,$ini,$len);
-        }
 
         //request replacement data
         $new = $this->request->data;
@@ -364,14 +361,65 @@ class TServersController extends AppController {
 
         w_serverlog($this->Session->read("current_server"), __(__('[SERVERS] ')).$this->Auth->user('username').__(' update the server.properties'));
 
-        $this->Session->write('Page.tab', 2);
+        $this->Session->write('Page.tab', 3);
 
         $this->redirect($this->referer());
         
     }
 
+    function saveBukkitConfig() {
+        perm('servers', 'serverProperties', $this->Session->read("user_perm"), true);
+        require APP . 'spacebukkitcall.php';
+
+        //request replacement data
+        $new = $this->request->data;
+
+        $bukkit = array();
+        unset($new['save']);
+
+        $args = array("bukkit.yml");   
+        $bukkityml = $api->call("getFileContent", $args, true);
+        $old['spawn-radius'] = $this->get_string_between($bukkityml, 'spawn-radius: ', "\n");
+        $old['update-folder'] = $this->get_string_between($bukkityml, 'update-folder: ', "\n");
+        $old['permissions-file'] = $this->get_string_between($bukkityml, 'permissions-file: ', "\n");
+        $old['connection-throttle'] = $this->get_string_between($bukkityml, 'connection-throttle: ', "\n");
+        $old['animal-spawns'] = $this->get_string_between($bukkityml, 'animal-spawns: ', "\n");
+        $old['monster-spawns'] = $this->get_string_between($bukkityml, 'monster-spawns: ', "\n");
+        $old['allow-end'] = $this->get_string_between($bukkityml, 'allow-end: ', "\n");
+        $old['warn-on-overload'] = $this->get_string_between($bukkityml, 'warn-on-overload: ', "\n");
+        $old['use-exact-login-location'] = $this->get_string_between($bukkityml, 'use-exact-login-location: ', "\n");
+        $old['plugin-profiling'] = $this->get_string_between($bukkityml, 'plugin-profiling: ', "\n");
+
+        if(NULL == isset($new['allow-end'])) {
+            $new['allow-end'] = 'false';
+        }
+        if(NULL == isset($new['warn-on-overload'])) {
+            $new['warn-on-overload'] = 'false';
+        }
+        if(NULL == isset($new['use-exact-login-location'])) {
+            $new['use-exact-login-location'] = 'false';
+        }
+        if(NULL == isset($new['plugin-profiling'])) {
+            $new['plugin-profiling'] = 'false';
+        }
+
+        foreach ($new as $name => $value) {
+            $init = $name.': '.$old[$name];
+            $result = $name.': '.$value;
+            $bukkityml = str_replace($init, $result, $bukkityml);
+        }
+
+        $args = array("bukkit.yml", $bukkityml);
+        $api->call("setFileContent", $args, true);
+
+        w_serverlog($this->Session->read("current_server"), __(__('[SERVERS] ')).$this->Auth->user('username').__(' updated the bukkit.yml'));
+        $this->Session->write('Page.tab', 4);
+        $this->redirect($this->referer());
+    }
+
    
     function addTask() {
+        perm('servers', 'Schedules', $this->Session->read("user_perm"), true);
 
         if (!$this->request->is('post')) {
         throw new MethodNotAllowedException();
@@ -398,7 +446,7 @@ class TServersController extends AppController {
                     
         $api->call("addTask", $args, true);   
 
-        $this->Session->write('Page.tab', 3);
+        $this->Session->write('Page.tab', 5);
 
         $this->redirect($this->referer());
 
@@ -461,7 +509,7 @@ class TServersController extends AppController {
 
             $timeArg1 = $task[3];
             $timeArg2 = $task[4];
-            $actions = '<a href=\"./tservers/runTask/'.$task[0].'/'.$argument.'\" class=\"button icon approve ajax_table1\">'.__('Run now').'</a><a href=\"./tservers/removeTask/'.$id.'\" class=\"button icon remove danger ajax_table1\">'.__('Remove').'</a>';
+            $actions = perm_action('servers', 'Schedules', $this->Session->read("user_perm"), '<a href=\"./tservers/runTask/'.$task[0].'/'.$argument.'\" class=\"button icon approve ajax_table1\">'.__('Run now').'</a><a href=\"./tservers/removeTask/'.$id.'\" class=\"button icon remove danger ajax_table1\">'.__('Remove').'</a>');
 
         ECHO <<<END
             [
@@ -488,19 +536,21 @@ END;
     }
 
     function removeTask($task) {
+        perm('servers', 'Schedules', $this->Session->read("user_perm"), true);
 
         require APP . 'spacebukkitcall.php';
 
         $args = array($task);   
         $tasks = $api->call("removeTask", $args, true);
 
-        $this->Session->write('Page.tab', 3);
+        $this->Session->write('Page.tab', 5);
 
         $this->redirect($this->referer());
    
     }
 
     function runTask($task, $param) {
+        perm('servers', 'Schedules', $this->Session->read("user_perm"), true);
 
         require APP . 'spacebukkitcall.php';
         $args = array();   
@@ -555,7 +605,7 @@ END;
             }      
 
 
-        $this->Session->write('Page.tab', 3);
+        $this->Session->write('Page.tab', 5);
 
         $this->redirect($this->referer());
    

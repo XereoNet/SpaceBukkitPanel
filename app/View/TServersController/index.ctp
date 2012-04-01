@@ -39,6 +39,16 @@
       </div>
     </section>
 
+    <section>
+      <label for="Bukkit">
+        Bukkit Version: 
+      </label>
+
+      <div>
+        <?php echo $ServerSpecs['Bukkit']; ?><br>
+      </div>
+    </section>
+
   </div>
 
 
@@ -413,7 +423,7 @@
                 <input id="enable-query" name="enable-query" type="checkbox" value="true" <?php if ($enable_query == "true") {echo " checked";}?>/>
               </div>
             </section>
-<input type="submit" value="Save" style="position: absolute; top: 13px; right: 10px;" name="save" class="button primary submit leftsubmit" id="saveprop">
+<input type="submit" value="Save" style="position: absolute; top: 13px; right: 10px;" name="save" class="button primary submit leftsubmit showOverlay" rel="Saving server.properties..." id="saveprop">
         </div>
         </form>
 
@@ -535,7 +545,7 @@
               </div>
             </section>
                
-            <input type="submit" value="Save" style="position: absolute; top: 13px; right: 10px;" name="save" class="button primary submit leftsubmit" id="saveprop">
+            <input type="submit" value="Save" style="position: absolute; top: 13px; right: 10px;" name="save" class="button primary submit leftsubmit showOverlay" rel="Saving bukkit.yml..." id="savebuk">
           </div>
         </form>
 
@@ -686,10 +696,6 @@ END;
 <!-- End #content --> 
 <script>
 $('document').ready(function() {
-
-  $("#saveprop").live('click', function(){
-    showOverlay('Saving properties...');
-  });
 
    $('#arguments').hide();        
 
