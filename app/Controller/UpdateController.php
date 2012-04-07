@@ -30,7 +30,7 @@ class UpdateController extends AppController {
 
     function index() {
 
-        require APP .'configuration.php';
+        require APP .'webroot/configuration.php';
 
         //get CURRENT SpaceBukkit version
 
@@ -69,7 +69,7 @@ class UpdateController extends AppController {
         $maintenance = new File(APP."webroot/.maintenance");
         $maintenance->create();
 
-        require APP.'configuration.php';
+        require APP.'webroot/configuration.php';
 
         //get CURRENT SpaceBukkit version
 

@@ -93,7 +93,7 @@
 				    <tbody> 
 				        <tr> 
 				            <td><?php echo __('Via Bukget (Recommended)') ?></td> 
-				            <td class="ar"><a href="./bukget2" class="button icon arrowright fancy big"><?php echo __('Bukget') ?></a></td> 
+				            <td class="ar"><a href="./bukget" class="button icon arrowright fancy big"><?php echo __('Bukget') ?></a></td> 
 				        </tr> 
 				        <tr> 
 				            <td>Via URL</td> 

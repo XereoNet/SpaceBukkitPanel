@@ -24,7 +24,7 @@
     <div class="triangle-border left">
     <p>First of all, we need to make sure everything is ok in your environment.</p><br />
     <p>Seems like your php version <?php echo $php_version; ?></p><br />
-    <p>Your configuration.php file <?php echo $configuration; ?></p><br />
+    <p>Your webroot/configuration.php file <?php echo $configuration; ?></p><br />
     <p>Your database file is: <?php echo $database; ?></p><br />
     <p><?php echo $php_fopen; ?></p><br />
     <p><?php echo $php_curl; ?>.</p><br />

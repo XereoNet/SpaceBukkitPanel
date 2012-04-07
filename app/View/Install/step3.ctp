@@ -1,114 +1,115 @@
 <!-- Content -->
-<section id="content"> 
+<section id="content" class="installer"> 
 
 <section class="box boxpad"> 
  
     <header>
         <div class="col left">
-            <h2><?php echo __('Installing Spacebukkit') ?></h2> 
-        </div>    
-        <div class="col right" style="text-align: right">
-            <h2>4 of 5 | SERVER</h2>
+            <h2>SpaceBukkit Installer</h2>
         </div>
     </header>
 
     <section class="installation">
 
-    <div class="col left col_1_3 ">
-    <img src="<?php echo $this->Html->url('/img/neatdev.png', true); ?>" /><br />    
-    <p>Hi I'm NeatMonster, I'm a very neat coder.</p>
-    <?php 
-    if (isset($result)) {
-      echo '<p class="failed">Your settings are invalid, the following errors occoured:</p>';
-      echo '<div class="code">'.$result.'</div>';
+    <div class="col left install-left">
 
-    }
-?>
-<div class="error_box"></div>
+        <div class="install-inner">
+
+            <span>
+
+                <h2>Step 3</h2>
+
+                <h3>Administration</h3>
+
+            </span>
+
+        </div>
 
     </div>
 
-    <div class="col right col_2_3">
+    <div class="col right install-right">
 
-    <div class="triangle-border left">
-    <p>Now let's add a SpaceBukkit-ready server to this panel! (must be running)</p>
-    <form action='<?php echo $this->Html->url('/install/step3', true); ?>' id='server' method='post'>
-<div class="error_box"></div>
-    <section>
-      <label for="title">
-        Title
-      </label>
-    
-      <div>
-        <input id="title" name="title" type="text" placeholder="My Cool Server"/>
-      </div>
-    </section>
-  
-    <section>
-      <label for="address">
-        Address
-        <small>Port doesn't matter</small>
-      </label>
-    
-      <div>
-        <input type="text" id="address" name="address" placeholder="example.minecraft.com" />
-      </div>
-    </section>
+        <div class="install-inner">
 
-    <section>
-      <label for="port1">
-        Spacebukkit port
-        <small>This can be changed in the config.yml of your server</small>
-      </label>
-    
-      <div>
-        <input type="text" id="port1" name="port1" placeholder="Usually 2011" />
-      </div>
-    </section>
+            <div class="install-block">
 
-    <section>
-      <label for="port1">
-        SpacebukkitRTK port
-      </label>
-    
-      <div>
-        <input type="text" id="port2" name="port2" placeholder="Usually 2012" />
-      </div>
-    </section>
-  
-    <section>
-      <label for="password">
-        Salt
-        <small>This can be changed in the config.yml of your server</small>
-      </label>
-    
-      <div>
-        <input placeholder="Salty Pretzels!" name="password" id="password" type="password" />
-      </div>
-    </section>   
-    <section>
-      <label for="default_role">
-        Default Role
-        <small>All new users will have this role on this server</small>
-      </label>
+                <h2>Create a SuperUser</h2>
 
-        <select name="default_role" id="default_role">
-        <?php
+                <div>
 
-        
-        foreach ($roles as $role) {
+                    <p> Now let's add a SuperUser to SpaceBukkit. A SuperUser is a user with special rights: </p>
+                    <p> He has access to any part of the panel and can do whatever he pleases. Actually, his life is pretty sweet, if you think about it. </p>
+                    <p> Jokes aside, SuperUser is just another word for Root or Administrator. You get the idea. </p>
 
-        
-        echo '<option value="'.$role["Role"]['id'].'">'.$role["Role"]['title'].'</option>';
-        
-        }
+                </div>
 
-        ?>
-        </select>   
+                <h2>Information needed</h2>
 
-    </section>      
-<br />
-    </div>
+                <div>
+
+                <form action='<?php echo $this->Html->url('/install/step3', true); ?>' id='server' method='post' class="installform" >
+
+                    <div class="error_box"></div>
+
+                    <section>
+
+                      <label for="title">
+                        
+                        Username
+
+                      </label>
+                    
+                      <div>
+
+                        <input id="username" name="username" type="text" />
+
+                      </div>
+
+                    </section>
+
+                    <section>
+
+                      <label for="title">
+                        
+                        Password
+
+                      </label>
+                    
+                      <div>
+
+                        <input id="password" name="password" type="text" />
+
+                      </div>
+
+                    </section>
+
+                    <section>
+
+                      <label for="title">
+                        
+                        Language
+
+                      </label>
+                    
+                      <div>
+
+                        <select id="password" name="password" >
+                            <option>test</option>
+                            <option>test2</option>
+                        </select>
+                        <p class="help-block">Your language is not here? You can help us translating SpaceBukkit <a href="#">here</a>.</p>
+
+                      </div>
+
+                    </section>    
+
+                </form>
+
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
 
@@ -117,45 +118,8 @@
     </section> 
       
     <header>
-       <a href='<?php echo $this->Html->url('/install/step2', true); ?>' class='button icon arrowleft'>Previous</a>
-       <input type='submit' id='submit' value='Next' tabindex='5' class='button leftsubmit' />
-        
-    </form>
-    </header>                   
- </section>
+       <a href="<?php echo $this->Html->url('/install/step2', true); ?>" class="button icon arrowleft">Previous</a>        
+       <a href="<?php echo $this->Html->url('/install/step4', true); ?>" class="button icon arrowright leftsubmit">Next</a>
+    </header>   
 
-<div class="clear"></div>
-</section>
-<!-- End #content --> 
-<script>
-$('document').ready(function(){
-    var validator = new FormValidator('server', [{
-    name: 'address',
-    display: 'Address',    
-    rules: 'required'
-}, {
-    name: 'port1',
-    display: 'SpaceBukkit Port',    
-    rules: 'required|numeric'
-}, {
-    name: 'port2',
-    display: 'SpaceBukkit RTK',    
-    rules: 'required|numeric'
-}, {
-    name: 'password',
-    display: 'Salt',    
-    rules: 'required'
-}], function(errors, event) {    
-        var SELECTOR_ERRORS = $('.error_box');     
-        
-        if (errors.length > 0) {        
-          SELECTOR_ERRORS.empty();        
-          SELECTOR_ERRORS.append(errors.join('<br />'));
-          SELECTOR_ERRORS.fadeIn(200);   
-          event.preventDefault();    
-          } else {        
-          SELECTOR_ERRORS.css({ display: 'none' });       
-          }        
-    });
-    });
-</script>
+ </section>

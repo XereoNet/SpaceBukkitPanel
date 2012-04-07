@@ -15,7 +15,7 @@
 
 <div class="tab" id="tab1">
 
-<section class="server-details"> 
+<section class="grid_view"> 
 
   <div class="col col_1_3 left">
 
@@ -161,7 +161,9 @@
 
           $c_bukkit_version = get_string_between($server['Version'], "-b", "jnks");
 
-          foreach ($versions as $version) {
+          $tmp = 0;
+
+          foreach ($versions as $version) if ($tmp++ < 5) {
 
             $version_number = get_string_between($version['title'], "(build", ")");
             $version_link = get_string_between($version['guid'], "view/", "/");

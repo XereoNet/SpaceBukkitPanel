@@ -138,7 +138,7 @@ class AppController extends Controller {
  *   3)  Check for: messages, updates, doodles
 ##################################################### */
       
-      require APP.'configuration.php';
+      require APP.'webroot/configuration.php';
 
     if ($this->action == "index") {
 
@@ -149,7 +149,7 @@ class AppController extends Controller {
  
         //get LATEST SpaceBukkit version
 
-        $filename = 'http://dl.nope.bz/sb/build/build.xml';
+        $filename = 'build.xml';
         $l_sb = simplexml_load_file($filename); 
 
         $json = json_encode($l_sb);
@@ -275,11 +275,14 @@ class AppController extends Controller {
 
                     $this->Session->write("current_server", $user_data['User']['favourite_server']);
                     $current_server =  $user_data['User']['favourite_server'];
+
                 }
-                else {
+                else 
+                {
                     $s = $this->ServersUsers->find('first', array('conditions' => array("ServersUsers.user_id" => $this->Auth->user("id"))));
                     $this->Session->write("current_server", $s['Server']['id']);
                     $current_server = $s['Server']['id'];     
+
                 }
           
             }  
@@ -314,6 +317,16 @@ class AppController extends Controller {
                 );
 
         }
+
+        $conditions = array("Server.id" => $current_server);
+        $s = $this->Server->find('first', array('conditions' => $conditions));
+
+        //write server config to session
+
+        $this->Session->write('Server.address', $s['Server']['address']);
+        $this->Session->write('Server.salt', $s['Server']['password']);
+        $this->Session->write('Server.p1', $s['Server']['port1']);
+        $this->Session->write('Server.p2', $s['Server']['port2']);
 
         //security reset to fallback role if role does not exist
 

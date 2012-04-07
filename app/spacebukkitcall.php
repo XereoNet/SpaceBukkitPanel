@@ -17,16 +17,14 @@
 *
 *
 */
-$this->loadModel('Server'); 
-$this->loadModel('Variables'); 
+
 
 //DATABASE SERVER RETRIVAL
-$id = $this->Session->read("current_server");
-$getserver = $this->Server->findById($id);
-$server = $getserver['Server']['address'];
-$salt = $getserver['Server']['password'];
-$p1 = $getserver['Server']['port1'];
-$p2 = $getserver['Server']['port2'];
+
+$server = $this->Session->read("Server.address");
+$salt 	= $this->Session->read("Server.salt");
+$p1 	= $this->Session->read("Server.p1");
+$p2 	= $this->Session->read("Server.p2");
 
 //call API
 

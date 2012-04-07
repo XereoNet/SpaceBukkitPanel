@@ -34,7 +34,7 @@ class RolesController extends AppController {
 
     function add() {
 
-        include APP . 'configuration.php';
+        include APP . 'webroot/configuration.php';
 
         if ($this->request->is('post')) {
 
@@ -118,7 +118,7 @@ class RolesController extends AppController {
     }
 
     public function edit($id = null) {
-        include APP . 'configuration.php';
+        include APP . 'webroot/configuration.php';
 
         $this->Role->id = $id;
         if (!$this->Role->exists()) {

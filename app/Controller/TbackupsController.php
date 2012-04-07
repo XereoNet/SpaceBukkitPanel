@@ -1,10 +1,10 @@
 <?php
 
-class TPermissionsController extends AppController {
+class TBackupsController extends AppController {
 
     public $helpers = array ('Html','Form');
 
-    public $name = 'TPermissionsController';
+    public $name = 'TBackupsController';
 
     public function beforeFilter()
 
@@ -12,14 +12,6 @@ class TPermissionsController extends AppController {
         parent::beforeFilter();
 
         //check if user has rights to do this
-        $user_perm = $this->Session->read("user_perm");
-        $glob_perm = $this->Session->read("glob_perm");
-
-        if (!($user_perm['pages'] & $glob_perm['pages']['users'])) { 
-
-           exit("access denied");
-
-        } 
 
       }
 

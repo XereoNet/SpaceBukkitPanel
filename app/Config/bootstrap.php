@@ -33,7 +33,7 @@ App::import('Vendor', 'serverlog');
 
 function perm($node, $perm, $user_perm, $message=false) {
 
-	require APP.'configuration.php';
+	require APP.'webroot/configuration.php';
 
 	if (($user_perm[$node] & $permissions[$node][$perm]) || ($user_perm['is_super'] == 1)) 
 	{
@@ -55,7 +55,7 @@ function perm($node, $perm, $user_perm, $message=false) {
 
 function perm_action($node, $perm, $user_perm, $value=null) {
 
-	require APP.'configuration.php';
+	require APP.'webroot/configuration.php';
 
 	if (($user_perm[$node] & $permissions[$node][$perm]) || ($user_perm['is_super'] == 1)) 
 	{

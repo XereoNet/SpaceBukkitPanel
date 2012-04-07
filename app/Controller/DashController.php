@@ -84,7 +84,7 @@ class DashController extends AppController {
 
     	//IF IT'S RUNNING, CONTINUE WITH THE PROGRAM
 
-    	require APP . 'configuration.php';
+    	require APP . 'webroot/configuration.php';
         $this->layout = 'sbv1';  
 	
 		//get the data

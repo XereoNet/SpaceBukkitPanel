@@ -97,7 +97,7 @@ a {
 }
 #container {
   margin: 0 auto;
-  min-width: 480px;
+  min-width: 980px;
   max-width: 92%
 }
 #container.login {
@@ -183,6 +183,20 @@ a {
 }
 .signin-dropdown .textbox input {
   width: 200px
+}
+
+input[type="text"], form input[type="password"] {
+  background: white url("../img/input-bg.gif") repeat-x;
+  font: 14px "Lucida Sans Unicode","Lucida Grande","Arial",sans-serif;
+  color: #5A5A5A;
+  padding: 0 7px;
+  height: 32px;
+  border: 1px solid silver;
+  width: 250px;
+  margin: 0;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
 }
 
 /* Console, Chat */
@@ -667,9 +681,6 @@ nav#mainnav span.icon {
   width: 25px;
   padding: 20px 0
 }
-input: focus {
-  outline: 0
-}
 nav#smalltabs,nav#popuptabs {
   height: 36px;
 }
@@ -697,7 +708,16 @@ nav#smalltabs ul li a,nav#popuptabs ul li a {
   min-width: 590px;
   position: absolute !important;
   right: 4%;
+  background: #eeeeee; /* Old browsers */
+  background: -moz-linear-gradient(top,  #eeeeee 0%, #cccccc 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#cccccc)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* IE10+ */
+  background: linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
 }
+
 #serverbuttons {
   padding-right: 15px;
 }
@@ -1263,19 +1283,7 @@ form section label small {
   margin-top: 4px;
   text-transform: none
 }
-input[type="text"],form input[type="password"] {
-  background: white url("../img/input-bg.gif") repeat-x;
-  font: 14px "Lucida Sans Unicode","Lucida Grande","Arial",sans-serif;
-  color: #5a5a5a;
-  padding: 0 7px;
-  height: 32px;
-  border: 1px solid silver;
-  width: 250px;
-  margin: 0;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px
-}
+
 .dataTables_filter input[type="text"] {
   height: 20px;
   width: auto
@@ -1530,6 +1538,8 @@ a: focus {
   max-width: 960px;
 }
 #wrapper.popup #content {
+  opacity: 1;
+  left: 0;
   padding: 5px 15px 25px 15px;
   background: 0;
   border-radius: 0!important;
@@ -1570,66 +1580,100 @@ a: focus {
   color: #fefefe;
   font-weight: bold
 }
-.top_message {
-  background-color: #EEE;
-  -moz-box-shadow: inset 0 1px 0 #FFF,0 1px 3px rgba(0,0,0,0.15);
-  -webkit-box-shadow: inset 0 1px 0 #FFF,0 1px 3px rgba(0,0,0,0.15);
-  box-shadow: inset 0 1px 0 #FFF,0 1px 3px rgba(0,0,0,0.15);
-  height: 40px;
-  padding: 30px 20px 10px 20px;
-  text-align: left;
-  border-bottom: 1px solid #555;
-  color: rgba(255,255,255,0.8)!important;
-  color: white;
-  font-size: 14px;
-  text-decoration: none;
-  text-shadow: 0 2px 3px rgba(0,0,0,0.35);
-  display: none
+.top-message {
+  position:relative;
+  padding: 15px;
+  margin: 0 0 3em;
+  color: #fff;
+  display: none;
+  background:#075698; /* default background for browsers without gradient support */
+  /* css3 */
+  background:-webkit-gradient(linear, 0 0, 0 100%, from(#2e88c4), to(#075698));
+  background:-moz-linear-gradient(#2e88c4, #075698);
+  background:-o-linear-gradient(#2e88c4, #075698);
+  background:linear-gradient(#2e88c4, #075698);
+  -webkit-border-radius:10px;
+  -moz-border-radius:10px;
+  border-radius:10px;
+  box-shadow: 0 0 4px #000;
+  -webkit-box-shadow: 0 0 5px #222;
+  -moz-box-shadow: 0 0 5px #222;
 }
-.top_message.black {
-  background: #333;
-  background: -moz-linear-gradient(top,rgba(51,51,51,1) 0,rgba(0,0,0,1) 100%);
-  background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,rgba(51,51,51,1)),color-stop(100%,rgba(0,0,0,1)));
-  background: -webkit-linear-gradient(top,rgba(51,51,51,1) 0,rgba(0,0,0,1) 100%);
-  background: -o-linear-gradient(top,rgba(51,51,51,1) 0,rgba(0,0,0,1) 100%);
-  background: -ms-linear-gradient(top,rgba(51,51,51,1) 0,rgba(0,0,0,1) 100%);
-  background: linear-gradient(top,rgba(51,51,51,1) 0,rgba(0,0,0,1) 100%);
-  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#333333',endColorstr='#000000',GradientType=0)
+
+.top-message:after {
+  content:"";
+  position:absolute;
+  top:-20px; /* value = - border-top-width - border-bottom-width */
+  left:50px; /* controls horizontal position */
+  border-width:20px  0 0 20px; /* vary these values to change the angle of the vertex */
+  border-style:solid;
+  border-color:transparent #2e88c4; 
+    /* reduce the damage in FF3.0 */
+    display:block; 
+    width:0;
 }
-.top_message.green {
-  background: #008a00;
-  background: -moz-linear-gradient(top,rgba(0,138,0,1) 0,rgba(0,36,0,1) 100%);
-  background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,rgba(0,138,0,1)),color-stop(100%,rgba(0,36,0,1)));
-  background: -webkit-linear-gradient(top,rgba(0,138,0,1) 0,rgba(0,36,0,1) 100%);
-  background: -o-linear-gradient(top,rgba(0,138,0,1) 0,rgba(0,36,0,1) 100%);
-  background: -ms-linear-gradient(top,rgba(0,138,0,1) 0,rgba(0,36,0,1) 100%);
-  background: linear-gradient(top,rgba(0,138,0,1) 0,rgba(0,36,0,1) 100%);
-  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#008a00',endColorstr='#002400',GradientType=0)
+
+/* Variant : top
+------------------------------------------ */
+.top-message.black {
+  color: #fff;
+  background:#020202; /* default background for browsers without gradient support */
+  /* css3 */
+  background:-webkit-gradient(linear, 0 0, 0 100%, from(#232323), to(#020202));
+  background:-moz-linear-gradient(#232323, #020202);
+  background:-o-linear-gradient(#232323, #020202);
+  background:linear-gradient(#232323, #020202);
 }
-.top_message.red {
-  background: #a90329;
-  background: -moz-linear-gradient(top,#a90329 0,#8f0222 44%,#6d0019 100%);
-  background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#a90329),color-stop(44%,#8f0222),color-stop(100%,#6d0019));
-  background: -webkit-linear-gradient(top,#a90329 0,#8f0222 44%,#6d0019 100%);
-  background: -o-linear-gradient(top,#a90329 0,#8f0222 44%,#6d0019 100%);
-  background: -ms-linear-gradient(top,#a90329 0,#8f0222 44%,#6d0019 100%);
-  background: linear-gradient(top,#a90329 0,#8f0222 44%,#6d0019 100%);
-  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#a90329',endColorstr='#6d0019',GradientType=0)
+.top-message.black:after {
+  border-color:transparent #232323; 
 }
-.top_message.blue {
-  background: #207cca;
-  background: -moz-linear-gradient(top,rgba(32,124,202,1) 0,rgba(30,87,153,1) 100%);
-  background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,rgba(32,124,202,1)),color-stop(100%,rgba(30,87,153,1)));
-  background: -webkit-linear-gradient(top,rgba(32,124,202,1) 0,rgba(30,87,153,1) 100%);
-  background: -o-linear-gradient(top,rgba(32,124,202,1) 0,rgba(30,87,153,1) 100%);
-  background: -ms-linear-gradient(top,rgba(32,124,202,1) 0,rgba(30,87,153,1) 100%);
-  background: linear-gradient(top,rgba(32,124,202,1) 0,rgba(30,87,153,1) 100%);
-  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#207cca',endColorstr='#1e5799',GradientType=0)
+.top-message.green {
+  color: #fff;
+  background:#020202; /* default background for browsers without gradient support */
+  /* css3 */
+  background:-webkit-gradient(linear, 0 0, 0 100%, from(#232323), to(#020202));
+  background:-moz-linear-gradient(#232323, #020202);
+  background:-o-linear-gradient(#232323, #020202);
+  background:linear-gradient(#232323, #020202);
 }
-.top_message p {
-  text-align: center
+.top-message.green:after {
+  border-color:transparent #232323; 
 }
-.top_message strong {
+.top-message.red {
+  color: #fff;
+  background: #8f0b2a; /* Old browsers */
+  background: -moz-linear-gradient(top,  #8f0b2a 0%, #5f051a 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#8f0b2a), color-stop(100%,#5f051a)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #8f0b2a 0%,#5f051a 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #8f0b2a 0%,#5f051a 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #8f0b2a 0%,#5f051a 100%); /* IE10+ */
+  background: linear-gradient(top,  #8f0b2a 0%,#5f051a 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8f0b2a', endColorstr='#5f051a',GradientType=0 ); /* IE6-9 */
+
+}
+.top-message.red:after {
+  border-color:transparent #8f0b2a; 
+}
+.top-message-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 50px;
+  background: white url(../img/top-message-arrow.png) no-repeat 50% 50%;
+  -webkit-border-bottom-right-radius:10px;
+  -moz-border-bottom-right-radius:10px;
+  border-bottom-right-radius:10px;  
+  -webkit-border-top-right-radius:10px;
+  -moz-border-top-right-radius:10px;
+  border-top-right-radius:10px;
+  box-shadow:inset 3px 0 7px rgba(0, 0, 0, 0.5);
+}
+.top-message-button:hover {
+  background: white url(../img/top-message-arrow.png) no-repeat 50% 50%;
+  box-shadow:inset 3px 0 10px rgba(0, 0, 0, 0.8);
+}
+.top-message strong {
   font-weight: bold
 }
 #wrapper.update_bukkit nav {
@@ -2254,13 +2298,14 @@ a: focus {
 
 .alert {
   padding: 8px 35px 8px 14px;
-  margin-bottom: 18px;
+  margin-bottom: 15px;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
   background-color: #fcf8e3;
   border: 1px solid #fbeed5;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
+  display: block;
 }
 .alert, .alert-heading {
   color: #c09853;
@@ -2425,17 +2470,17 @@ a: focus {
   margin-right: 10px;
 }
 
-p.fail a {
+.fail, .fail a {
   color: #b50505 !important;
   text-decoration: underline
 }
-p.win a {
+.win, .win a {
   color: #0080ff !important;
 }
-p.success a {
+.success a {
   color: green !important;
 }
-p.failed a {
+.failed a {
   color: red !important;
 }
 .dbox {
@@ -2613,13 +2658,13 @@ p.failed a {
 #activity-list b {
   color: #ccc;
 }
-/* SERVER */ 
+/* GRID VIEW */ 
  
-.server-details > div.col { 
+.grid_view > div.col { 
   width: 33.333333333%; 
 } 
  
-.server-details > div.col > section { 
+.grid_view > div.col > section { 
   border: 1px solid; 
   border-color: #333 #151515 #151515 #333; 
   padding: 10px; 
@@ -2631,7 +2676,7 @@ p.failed a {
   height: 61px; 
 } 
  
-.server-details > div.col > section label { 
+.grid_view > div.col > section label { 
   color: #1284F6; 
   line-height: 30px; 
   font-size: 17px; 
@@ -2818,4 +2863,97 @@ p.failed a {
   background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+}
+
+
+/* NEW INSTALLATION */
+.installer .installation {
+  padding: 0;
+  border: none;
+  background: #ccc;  
+}
+.install-inner {
+  margin: 20px;
+}
+.install-left {
+  background: #ccc;
+  min-height: 400px;
+  width: 20%;
+}
+.install-left span {
+}
+.install-left h2 {
+  display: block;
+  font-size: 42px;
+}
+.install-left h3 {
+  display: inline;
+  font-size: 18px;
+}
+.install-right {
+  min-height: 400px;  
+  float: right;
+  border-left: 1px solid #bbb;
+  width: 79%;
+  background-color: #f7f7f7;
+}
+.install-block h2 {
+  font-size: 23px;  
+  color: #888;
+}
+
+.install-block p {
+  font-size: 15px;
+  color: #555;
+  line-height: 20px;
+}
+
+.help-block {
+  display: block;
+  margin-top: 9px;
+  color: #777;
+}
+.installform section > div {
+  margin-left: 150px;
+}
+.installform section > label {
+  margin-right: 0;
+  width: 70px;
+}
+.installform input {
+  width: 300px;
+  height: 30px;
+  padding: 4px;
+  margin-bottom: 9px;
+  font-size: 15px;
+  line-height: 30px;
+  color: #555;
+  border: 1px solid #CCC;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+  -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+  -ms-transition: border linear 0.2s, box-shadow linear 0.2s;
+  -o-transition: border linear 0.2s, box-shadow linear 0.2s;
+  transition: border linear 0.2s, box-shadow linear 0.2s;  
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;  
+}
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333333;
+}
+.installform input:focus {
+  border-color: rgba(82, 168, 236, 0.8);
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+  outline: 0;
+  outline: thin dotted \9;
+  /* IE6-9 */
+
 }

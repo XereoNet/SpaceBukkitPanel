@@ -1,43 +1,112 @@
 <!-- Content -->
-<section id="content"> 
+<section id="content" class="installer"> 
 
 <section class="box boxpad"> 
  
     <header>
         <div class="col left">
-            <h2><?php echo __('Installing Spacebukkit') ?></h2> 
-        </div>    
-        <div class="col right" style="text-align: right">
-            <h2>5 of 5 | FINISH</h2>
+            <h2>SpaceBukkit Installer</h2>
         </div>
     </header>
 
     <section class="installation">
 
-    <div class="col left col_1_3 ">
-    <img src="http://it.gravatar.com/userimage/14500596/3ed9d114c731abc87cf4985212671b87.png?size=150" /><br />
-    <img src="<?php echo $this->Html->url('/img/jamydev.png', true); ?>" /><br />    
-    <img src="<?php echo $this->Html->url('/img/neatdev.png', true); ?>" /><br />    
+    <div class="col left install-left">
+
+        <div class="install-inner">
+
+            <span>
+
+                <h2>Step 4</h2>
+
+                <h3>Server</h3>
+
+            </span>
+
+        </div>
+
     </div>
 
-    <div class="col right col_2_3">
+    <div class="col right install-right">
 
-    <div class="triangle-border left">
-    <h2>Congratulations!</h2>
-    <p>You have a fully operational SpaceBukkit installed.</p>
-<br />
-    <p>Here are some links to get you started if you need help:</p>
-    <br /><br />
-        <a href="http://spacebukkit.xereo.net">SpaceBukkit Home</a><br />
-        <a href="http://spacebukkit.xereo.net/forums">SpaceBukkit Forums</a><br />
-        <a href="http://spacebukkit.xereo.net/wiki">SpaceBukkit Wiki</a><br />
-        <a href="http://bukkit.org">SpaceBukkit Home</a><br /><br /><br />
-    <p>Please note that Your login credentials are:</p><br />
-    <h3>"super" / "super"</h3>
-    <p class="failed">Once logged in immediatly change these credentials on the "Settings" page!</p><br />
-    <p>Allright!
-    Are you ready for awesomeness? Click next to begin your biggest adventure!</p> 
-    </div>
+        <div class="install-inner">
+
+            <div class="install-block">
+
+                <h2>Create a SuperUser</h2>
+
+                <div>
+
+                    <p> Welcome to the final, last step of installation. </p>
+                    <p> It is finally time to connect this panel to a server! </p>
+                    <p> You can, of course, add more servers later on, if you want. For now, let's just add one. </p>
+                    <p class="fail"> Remember: to add a server it has to be running! </p>
+
+                </div>
+
+                <h2>Information needed</h2>
+
+                <div>
+
+                <form action='<?php echo $this->Html->url('/install/step3', true); ?>' id='server' method='post' class="installform" >
+
+                    <div class="error_box"></div>
+
+                    <section>
+
+                      <label for="title">
+                        
+                        Name
+
+                      </label>
+                    
+                      <div>
+
+                        <input id="name" name="name" type="text" />
+
+                      </div>
+
+                    </section>
+
+                    <section>
+
+                      <label for="title">
+                        
+                        Address
+
+                      </label>
+                    
+                      <div>
+
+                        <input id="address" name="address" type="text" />
+
+                      </div>
+
+                    </section>
+
+                    <section>
+
+                      <label for="title">
+                        
+                        Salt
+
+                      </label>
+                    
+                      <div>
+
+                        <input id="salt" name="salt" type="text" />
+
+                      </div>
+
+                    </section>
+
+                </form>
+
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
 
@@ -46,10 +115,8 @@
     </section> 
       
     <header>
-       <a href="<?php echo $this->Html->url('/dash', true); ?>" class="button icon arrowright leftsubmit">Start!</a>
-    </header>                   
- </section>
+       <a href="<?php echo $this->Html->url('/install/step2', true); ?>" class="button icon arrowleft">Previous</a>        
+       <a href="<?php echo $this->Html->url('/install/step4', true); ?>" class="button icon arrowright leftsubmit">Next</a>
+    </header>   
 
-<div class="clear"></div>
-</section>
-<!-- End #content --> 
+ </section>

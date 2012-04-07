@@ -40,17 +40,6 @@
  <p>
  </p>
 </div>
-<?php if((isset($spacebukkitbuildready)) && ($user_perm['is_super'] == 1)) {?>
-<div class="top_message black slideDown">
-<p><?php echo __('A new SpaceBukkit update is ready for you to download! Your version is'); ?> <strong><?php echo $spacebukkitbuildcurrent; ?></strong> <?php echo __('while the new version is'); ?> <strong><?php echo $spacebukkitbuildnew; ?></strong> &nbsp; &nbsp;  <a class="button icon arrowright" href="<?php echo $spacebukkitbuildfile; ?>"><?php echo __('Click here to get it'); ?></a></p>
-</div>
-<?php };?>
-
-<?php if(isset($antmessage)) {?>
-<div class="top_message <?php echo $antmessagetype; ?> slideDown">
-<p><?php echo $antmessage; ?></p>
-</div>
-<?php };?>
 
 </div>
 
@@ -221,6 +210,19 @@ END;
 
 			<!-- Main Content Start -->
 			<div id="wrapper"> 
+
+			<?php if((isset($spacebukkitbuildready)) && ($user_perm['is_super'] == 1)) {?>
+			<div class="top-message slideDown">
+			<p><?php echo __('A new SpaceBukkit version has been released! Your version is '); ?> <strong><?php echo $spacebukkitbuildcurrent; ?></strong> <?php echo __('while the new version is'); ?> <strong><?php echo $spacebukkitbuildnew; ?></strong>
+				<a class="top-message-button" href="<?php echo $spacebukkitbuildfile; ?>"></a></p>
+			</div>
+			<?php };?>
+
+			<?php if(isset($antmessage)) {?>
+			<div class="top-message <?php echo $antmessagetype; ?> slideDown">
+			<p><?php echo $antmessage; ?></p>
+			</div>
+			<?php };?>
 
 			<!-- Navigation -->
 			<nav id="mainnav">

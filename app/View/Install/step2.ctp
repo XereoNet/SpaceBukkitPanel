@@ -1,104 +1,191 @@
 <!-- Content -->
-<section id='content'> 
+<section id="content" class="installer"> 
 
-<section class='box boxpad'> 
+<section class="box boxpad"> 
  
     <header>
-        <div class='col left'>
-            <h2><?php echo __('Installing Spacebukkit') ?></h2> 
-        </div>    
-        <div class='col right' style='text-align: right'>
-            <h2>3 of 5 | DATABASE</h2>
+        <div class="col left">
+            <h2>SpaceBukkit Installer</h2>
         </div>
     </header>
 
-    <section class='installation'>
+    <section class="installation">
 
-    <div class='col left col_1_3 '>
-    <img src='<?php echo $this->Html->url('http://dl.dropbox.com/u/23235766/avatar.png', true); ?>' /><br />    <p>Hi I'm Jamy, I do all sorts of stuff :D!</p>
-        <?php 
-    if (isset($result)) {
-    	echo '<p class="failed">Your settings are invalid, the following errors occoured:</p>';
-    	echo '<div class="code">'.$result.'</div>';
+    <div class="col left install-left">
 
-    }
-?><div class="error_box"></div>
+        <div class="install-inner">
 
-    </div>
- 
-    <div class='col right col_2_3'>
+            <span>
 
-    <div class='triangle-border left'>
+                <h2>Step 2</h2>
 
-    <p>Now please enter your database settings below. The installer will test your settings after you click "next"!</p><br />
+                <h3>Database</h3>
 
-		<form action='<?php echo $this->Html->url('/install/step2', true); ?>' id='db' method='post'>
+            </span>
 
-			<table cellpadding='2'>
-				<tr>
-					<td>Hostname</td>
-					<td><input type='text' name='host' id='hostname' value='' size='30' tabindex='1' placeholder='(usually localhost)'/></td>
-				</tr>
-				<tr>
-					<td>Username</td>
-					<td><input type='text' name='login' id='username' value='' size='30' tabindex='2' /></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>Password</td>
-					<td><input type='text' name='password' id='password' value='' size='30' tabindex='3' /></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>Database</td>
-					<td><input type='text' name='database' id='database' value='' size='30' tabindex='4' /></td>
-				</tr>
-            </table>
+        </div>
 
     </div>
 
+    <div class="col right install-right">
+
+        <div class="install-inner">
+
+            <div class="install-block">
+
+                <h2>Database</h2>
+
+                <div>
+
+                    <p> Now we'll need to connect to a database. A database is required by SpaceBukkit to store it's data. Currently, we support MySQL and SQLite. </p>
+                    <p> To make a MySQL database, you'll need to set it up first. </p>
+                    <p> For a SQLite database no setup is required. </p><br>
+
+                    <p>
+                      
+                        <select name="database_type" id="database_type">
+
+                          <option value="0">Choose a database type...</option>
+                          <option value="1">MySQL</option>
+                          <option value="2">SQLite</option>
+
+                        </select>   
+
+                    </p>
+
+                </div>
+
+                <div style="display: none" id="mysql_forms">
+
+                    <h2>MySQL - Information needed</h2>
+
+                    <form action='<?php echo $this->Html->url('/install/step3', true); ?>' id='server' method='post' class="installform" >
+
+                    <div class="error_box"></div>
+
+                    <section>
+
+                      <label for="title">
+                        
+                        Hostname
+
+                      </label>
+                    
+                      <div>
+
+                        <input id="hostname" name="hostname" type="text" />
+                        <p class="help-block">This is usually localhost.</p>
+
+                      </div>
+
+                    </section>
+
+                    <section>
+
+                      <label for="title">
+                        
+                        Database
+
+                      </label>
+                    
+                      <div>
+
+                        <input id="database" name="database" type="text" />
+                        <p class="help-block">This is how you called the database on which you want to install SpaceBukkit.</p>
+
+                      </div>
+
+                    </section>
+
+                    <section>
+
+                      <label for="title">
+                        
+                        Username
+
+                      </label>
+                    
+                      <div>
+
+                        <input id="username" name="username" type="text" />
+                        <p class="help-block">This can be the defaul MySQL username "root" or a username you created / was provided by your hoster. </p>
+
+                      </div>
+
+                    </section>
+
+                    <section>
+
+                      <label for="title">
+                        
+                        Password
+
+                      </label>
+                    
+                      <div>
+
+                        <input id="password" name="password" type="text"/>
+                        <p class="help-block">This is the password associated with your username for MySQL.</p>
+
+                      </div>
+
+                    </section>                                                               
+                    </form>
+
+                </div>
+
+                <div style="display: none" id="sqlite_forms">
+
+                    <h2>SQLite</h2>
+
+                    <p>Nothing more is required for SQLite to work. Click next when you want to continue! </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
 
-    <div class='clear'></div>
+    <div class="clear"></div>
 
     </section> 
       
     <header>
-       <a href='<?php echo $this->Html->url('/install/step1', true); ?>' class='button icon arrowleft'>Previous</a>
-       <input type='submit' id='submit' value='Next' tabindex='5' class='button leftsubmit' />
-		
-	</form>
-    </header>                   
+       <a href="<?php echo $this->Html->url('/install', true); ?>" class="button icon arrowleft">Previous</a>        
+       <a href="<?php echo $this->Html->url('/install/step3', true); ?>" class="button icon arrowright leftsubmit">Next</a>
+    </header>   
+
  </section>
 
-<div class='clear'></div>
-</section>
-<!-- End #content --> 
-<script>
-$('document').ready(function(){
-    var validator = new FormValidator('db', [{
-        name: 'hostname',
-        display: 'hostname',    
-        rules: 'required'
-    }, {
-        name: 'username',
-        display: 'username',    
-        rules: 'required'
-    }, {
-        name: 'database',
-        display: 'database',    
-        rules: 'required'
-    }], function(errors, event) {    
-            var SELECTOR_ERRORS = $('.error_box');     
-            
-            if (errors.length > 0) {        
-              SELECTOR_ERRORS.empty();        
-              SELECTOR_ERRORS.append(errors.join('<br />'));
-              SELECTOR_ERRORS.fadeIn(200);   
-              event.preventDefault();    
-              } else {        
-              SELECTOR_ERRORS.css({ display: 'none' });       
-              }        
+ <script>
+
+    $('document').ready(function () {
+
+        var select          = $('#database_type');
+        var mysql_forms     = $('#mysql_forms');
+        var sqlite_forms    = $('#sqlite_forms');
+
+        select.change(function() {
+
+            if ($(this).val() == 1 ) 
+            {
+                
+                sqlite_forms.hide();
+                mysql_forms.fadeIn();
+
+            }
+
+            if ($(this).val() == 2 ) 
+            {
+                                
+                mysql_forms.hide();
+                sqlite_forms.fadeIn();
+            }
+
+        });
+
     });
-});
-</script>
+
+ </script>
