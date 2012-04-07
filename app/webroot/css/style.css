@@ -643,7 +643,7 @@ nav#mainnav ul li a {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
-  margin: 10px;
+  margin: 6px;
 }
 nav#mainnav ul li.current a {
 background: #070707;
@@ -2636,6 +2636,10 @@ a: focus {
   -moz-border-radius:0.5em;
   -webkit-border-radius:0.5em; 
   border-radius:0.5em; 
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
 }
 .timer > .slice > .pie.fill {
   -moz-transform:rotate(180deg) !important;

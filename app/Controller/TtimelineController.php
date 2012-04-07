@@ -1,10 +1,10 @@
 <?php
 
-class TBackupsController extends AppController {
+class TTimelineController extends AppController {
 
     public $helpers = array ('Html','Form');
 
-    public $name = 'TBackupsController';
+    public $name = 'TTimelineController';
 
     public function beforeFilter()
 

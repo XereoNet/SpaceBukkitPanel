@@ -70,21 +70,42 @@
                     <p class="ram_tot">Total: <span>3</span> MB</p>
                     <p class="ram_used">Used: <span>2</span> MB</p>
                     <p class="ram_free">Free: <span>1</span> MB</p>
-                    <div class="timer timer1"></div>
+                    <div class="timer timer1">
+
+                      <div class="percent">Calculating...</div>
+                        <div class="slice">
+                          <div class="pie"></div>
+                        </div>
+                      </div>
+
                   </div>
                   <div>
                     <h3>CPU</h3>
                     <p class="cpu_tot">CPUs: <span>3</span></p>
                     <p class="cpu_used">Frequency: <span>2</span></p>
                     <p class="cpu_free"><span></span></p>
-                    <div class="timer timer2"></div>
+                    <div class="timer timer2">
+
+                      <div class="percent">Calculating...</div>
+                        <div class="slice">
+                          <div class="pie"></div>
+                        </div>
+
+                    </div>
                   </div>
                   <div>
                     <h3>JAVA</h3>
                     <p class="jav_tot">Total: <span></span> MB</p>
                     <p class="jav_used">Used: <span></span> MB</p>
                     <p class="jav_free">Free: <span></span> MB</p>
-                    <div class="timer timer3"></div>
+                    <div class="timer timer3">
+
+                      <div class="percent">Calculating...</div>
+                        <div class="slice">
+                          <div class="pie"></div>
+                        </div>
+
+                    </div>
                   </div>
                 </div>
               </div>
@@ -146,7 +167,6 @@
     var timerSeconds;
 
     function drawTimer(container, percent){
-      $(container).html('<div class="percent"></div><div class="slice"'+(percent > 50?' class="gt50"':'')+'><div class="pie"></div>'+(percent > 50?'<div class="pie fill"></div>':'')+'</div>');
       var deg = 360/100*percent;
       var slice = container + ' .slice';
       var con = container + ' .slice .pie';

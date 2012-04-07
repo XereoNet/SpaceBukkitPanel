@@ -186,6 +186,30 @@ nav#mainnav ul li.current a
 }
 
 
+.icon.backup
+
+{
+
+	background-image: url(../img/backups.png)
+
+}
+
+
+.icon.perms
+
+{
+
+	background-image: url(../img/perms.png)
+
+}
+
+.icon.time
+
+{
+
+	background-image: url(../img/time.png)
+
+}
 
 .icon.debug
 {

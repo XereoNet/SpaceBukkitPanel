@@ -253,6 +253,21 @@ END;
 			        	<a href="<?php echo $this->Html->url('/tservers', true); ?>"> <span class="icon server"></span><?php echo __(' Server ') ?></a> 
 			        </li>
 			        <?php endif; ?>
+					<?php if (perm('pages', 'servers', $user_perm)): ?>
+			        <li class="<?php if ($this->name == "TBackupsController") { echo "current" ; }  ?> fadein"> 
+			        	<a href="<?php echo $this->Html->url('/tbackups', true); ?>"> <span class="icon backup"></span><?php echo __(' Backups ') ?></a> 
+			        </li>
+			        <?php endif; ?>
+			        <?php if (perm('pages', 'servers', $user_perm)): ?>
+			        <li class="<?php if ($this->name == "TPermissionsController") { echo "current" ; }  ?> fadein"> 
+			        	<a href="<?php echo $this->Html->url('/tpermissions', true); ?>"> <span class="icon perms"></span><?php echo __(' Permissions ') ?></a> 
+			        </li>
+			        <?php endif; ?>
+			        <?php if (perm('pages', 'servers', $user_perm)): ?>
+			        <li class="<?php if ($this->name == "TTimelineController") { echo "current" ; }  ?> fadein"> 
+			        	<a href="<?php echo $this->Html->url('/ttimeline', true); ?>"> <span class="icon time"></span><?php echo __(' Timeline ') ?></a> 
+			        </li>
+			        <?php endif; ?>			        
 			        <?php if ($is_super == 1) { ?>
 			        <li class="<?php if ($this->name == "Tsettings") { echo "current" ; }  ?> fadein floatright"> 
 			        	<a href="<?php echo $this->Html->url('/tsettings', true); ?>"> <span class="icon settings"></span><?php echo __(' Settings ') ?></a> 
