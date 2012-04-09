@@ -21,6 +21,18 @@
 
                 <h3>Database</h3>
 
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+
+                <div id="inst_activity"></div>
+
             </span>
 
         </div>
@@ -59,9 +71,11 @@
 
                     <h2>MySQL - Information needed</h2>
 
-                    <form action='<?php echo $this->Html->url('/install/step3', true); ?>' id='server' method='post' class="installform" >
+                    <form action='<?php echo $this->Html->url('/install/step2', true); ?>' id='db_form' method='post' class="installform" >
 
                     <div class="error_box"></div>
+
+                    <input type="hidden" name="type" value="mysql">
 
                     <section>
 
@@ -140,6 +154,10 @@
 
                     <p>Nothing more is required for SQLite to work. Click next when you want to continue! </p>
 
+                    <form action='<?php echo $this->Html->url('/install/step2', true); ?>' id='db_form2' method='post' class="installform" >
+                    <input type="hidden" name="type" value="mysql">                                                       
+                    </form>
+
                 </div>
 
             </div>
@@ -154,7 +172,7 @@
       
     <header>
        <a href="<?php echo $this->Html->url('/install', true); ?>" class="button icon arrowleft">Previous</a>        
-       <a href="<?php echo $this->Html->url('/install/step3', true); ?>" class="button icon arrowright leftsubmit">Next</a>
+       <a href="<?php echo $this->Html->url('/install/step3', true); ?>" class="button icon arrowright leftsubmit" style="display: none" id="submit">Next</a>
     </header>   
 
  </section>
@@ -166,14 +184,20 @@
         var select          = $('#database_type');
         var mysql_forms     = $('#mysql_forms');
         var sqlite_forms    = $('#sqlite_forms');
+        var action          = $('#submit');
 
         select.change(function() {
+
+            action.removeClass("mysql");
+            action.hide();
 
             if ($(this).val() == 1 ) 
             {
                 
                 sqlite_forms.hide();
                 mysql_forms.fadeIn();
+                action.addClass("mysql");
+                action.fadeIn();
 
             }
 
@@ -182,8 +206,65 @@
                                 
                 mysql_forms.hide();
                 sqlite_forms.fadeIn();
+                action.fadeIn();
+
             }
 
+        });
+
+        /* AJAX SUBMIT FORMS, AND LISTEN FOR RESPONSE */
+
+        // this is the id of the submit button
+        $("#submit").click(function() {
+
+          if ($(this).hasClass('mysql')) {
+
+            var form  = $('#db_form');
+            var url   = form.attr('action'); // the script where you handle the form input.
+            var act   = $('#inst_activity');
+
+            //show processing on the left
+
+            act.html("");
+
+            act.activity();
+
+            //submit
+
+            $.ajax({
+                   type: "POST",
+                   url: url,
+                   data: form.serialize(), // serializes the form's elements.
+                   success: function(d)
+                   
+                   {
+                      
+                      //if data is correct (response: true) redirect
+
+                      if (d == "true")
+                      {
+
+                        window.location.replace("<?php echo $this->Html->url('/install/step3', true); ?>");
+
+                      }
+                      else
+                      {
+
+                      //if data is false, show error on the left
+
+                      act.activity();
+
+                      act.html(d);
+
+                      }
+
+                   }
+
+                 });
+
+            return false; // avoid to execute the actual submit of the form.
+
+          }
         });
 
     });

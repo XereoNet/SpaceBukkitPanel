@@ -21,11 +21,24 @@
 
                 <h3>Server</h3>
 
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+
+                <div id="inst_activity"></div>
+
             </span>
 
         </div>
 
     </div>
+
 
     <div class="col right install-right">
 
@@ -33,7 +46,7 @@
 
             <div class="install-block">
 
-                <h2>Create a SuperUser</h2>
+                <h2>Connecting a Server</h2>
 
                 <div>
 
@@ -48,7 +61,7 @@
 
                 <div>
 
-                <form action='<?php echo $this->Html->url('/install/step3', true); ?>' id='server' method='post' class="installform" >
+                <form action='<?php echo $this->Html->url('/install/step4', true); ?>' id='serverform' method='post' class="installform" >
 
                     <div class="error_box"></div>
 
@@ -63,6 +76,7 @@
                       <div>
 
                         <input id="name" name="name" type="text" />
+                        <p class="help-block">Give your server a name. </p>
 
                       </div>
 
@@ -79,6 +93,7 @@
                       <div>
 
                         <input id="address" name="address" type="text" />
+                        <p class="help-block">The address of your server (without ports). If Panel and server are on the same machine, use localhost. </p>
 
                       </div>
 
@@ -95,11 +110,61 @@
                       <div>
 
                         <input id="salt" name="salt" type="text" />
+                        <p class="help-block">The Salt is a randomly generated password that secures the connection between server and panel.</p>
+                        <p class="help-block">It is located in SpaceModule/configuration.yml (NOT plugins/SpaceModule)</p>
 
                       </div>
 
                     </section>
 
+                    <section>
+
+                      <label for="title">
+                        
+                        Ports
+
+                      </label>
+                    
+                      <div>
+
+                        <input id="port1" name="port1" type="text" style="width: 100px" placeholder="2011" />
+                        <input id="port2" name="port2" type="text" style="width: 100px" placeholder="2012" />
+                        <p class="help-block">SpaceBukkit needs two ports to connect to your server. By default it's 2011 and 2012.</p>
+                        <p class="help-block">You can change those in the SpaceBukkit configuration, located in SpaceModule/configuration.yml (NOT plugins/SpaceModule)</p>
+
+                      </div>
+
+                    </section>
+
+                    <section>
+
+                      <label for="title">
+                        
+                        Default Role
+
+                      </label>
+                    
+                      <div>
+
+                        <select>
+
+                          <?php 
+
+                          foreach ($roles as $k => $r) {
+
+                            echo '<option value="'.$r['Role']['id'].'">'.$r['Role']['title'].'</option>';
+
+                          }
+
+                          ?>
+
+                        </select>
+                        <p class="help-block">Roles are like permission groups. You can define what a user in a role can or can't do on the panel.</p>
+                        <p class="help-block">Here you can set what role a user gets by default on this server.</p>
+
+                      </div>
+
+                    </section>                    
                 </form>
 
                 </div>
@@ -115,8 +180,69 @@
     </section> 
       
     <header>
-       <a href="<?php echo $this->Html->url('/install/step2', true); ?>" class="button icon arrowleft">Previous</a>        
-       <a href="<?php echo $this->Html->url('/install/step4', true); ?>" class="button icon arrowright leftsubmit">Next</a>
+       <a href="<?php echo $this->Html->url('/install/step3', true); ?>" class="button icon arrowleft">Previous</a>        
+       <a href="<?php echo $this->Html->url('/install/step5', true); ?>" class="button icon arrowright leftsubmit" id="submit" >Next</a>
     </header>   
 
  </section>
+
+
+ <script>
+
+  $('document').ready(function () {
+
+        /* AJAX SUBMIT FORMS, AND LISTEN FOR RESPONSE */
+
+      // this is the id of the submit button
+      $("#submit").click(function() {
+
+          var form  = $('#serverform');
+          var url   = form.attr('action'); // the script where you handle the form input.
+          var act   = $('#inst_activity');
+
+          //show processing on the left
+
+          act.html("");
+
+          act.activity();
+
+          //submit
+
+          $.ajax({
+                 type: "POST",
+                 url: url,
+                 data: form.serialize(), // serializes the form's elements.
+                 success: function(d)
+                 
+                 {
+                    
+                    //if data is correct (response: true) redirect
+
+                    if (d == "true")
+                    {
+
+                      window.location.replace("<?php echo $this->Html->url('/install/step5', true); ?>");
+
+                    }
+                    else
+                    {
+
+                    //if data is false, show error on the left
+
+                    act.activity();
+
+                    act.html(d);
+
+                    }
+
+                 }
+
+               });
+
+          return false; // avoid to execute the actual submit of the form.
+
+      });
+
+  });
+
+ </script>

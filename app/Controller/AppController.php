@@ -149,7 +149,7 @@ class AppController extends Controller {
  
         //get LATEST SpaceBukkit version
 
-        $filename = 'build.xml';
+        $filename = 'http://dl.nope.bz/sb/build/build.xml';
         $l_sb = simplexml_load_file($filename); 
 
         $json = json_encode($l_sb);

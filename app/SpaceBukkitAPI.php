@@ -19,12 +19,23 @@ class SpaceBukkitAPI {
         else
         	$port = $this->spacebukkit_port;       
 		$url = sprintf("http://%s:%s/call?method=%s&args=%s&key=%s", $this->hostname, $port, rawurlencode($method), rawurlencode(json_encode($args)), hash('sha256', $method . $this->salt));
+
 		if ($method == "downloadWorld")
 			return $url;
 		else {
 			$value = $this->curl($url, $port);
+
+			if ($value == "Incorrect Salt supplied. Access denied!") {
+
+				return 'salt';
+				
+			} else {
+
 			return json_decode($value, true);
+
+			}
 		}
+
 	}
 	
 	private function curl($url, $port) {

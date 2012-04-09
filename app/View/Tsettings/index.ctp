@@ -6,7 +6,8 @@
     <li><a href="#tab2"><?php echo __('Servers') ?></a></li>
     <li><a href="#tab3"><?php echo __('Roles') ?></a></li>
     <li><a href="#tab4"><?php echo __('Themes') ?></a></li>
-		<li><a href="#tab5"><?php echo __('SpaceBukkit\'s Settings') ?></a></li>
+    <li><a href="#tab5"><?php echo __('SpaceBukkit') ?></a></li>
+    <li><a href="#tab5"><?php echo __('Database') ?></a></li>
 	</ul>
 </nav>
 <!-- End Tabs -->
@@ -175,6 +176,15 @@
 
   <div class="tab" id="tab5">
 
+    //WIP
+
+  <div class="clear"></div>
+
+  </div>
+  <!-- End tab5 -->
+
+  <div class="tab" id="tab5">
+
     <div class="col left col_2_3">
 
         <section class="box boxpad"> 
@@ -255,8 +265,7 @@
   <div class="clear"></div>
 
   </div>
-  <!-- End tab5 -->
-
+  <!-- End tab6 -->
 
 </section>
 <!-- End #content --> 

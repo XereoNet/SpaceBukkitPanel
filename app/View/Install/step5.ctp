@@ -37,7 +37,7 @@
 
                 <div>
 
-                    <p> Now let's add a server to the db </p>
+                    <p> You have successfully installed SpaceBukkit! </p>
 
                 </div>
 
@@ -45,7 +45,15 @@
 
                 <div>
 
-                    <p> Links to forums, donation etc. </p>
+                    <p> Before you start your adventure with SpaceBukkit, we'd like to give you these last few links: </p>
+                    <ul>
+
+                        <li><a href="http://forums.xereo.net">SpaceBukkit Forums</a></li>
+                        <li><a href="http://spacebukkit.xereo.net">SpaceBukkit Homepage</a></li>
+                        <li><a href="http://spacebukkit.xereo.net">SpaceBukkit Documentation</a></li>
+                        <li><a href="http://spacebukkit.xereo.net">SpaceBukkit</a></li>
+
+                    </ul>
 
                 </div>
 
