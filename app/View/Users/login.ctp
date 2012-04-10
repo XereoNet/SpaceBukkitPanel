@@ -8,15 +8,14 @@
 
     .new-login {
         border-radius: 7px;
-background: #3979b1; /* Old browsers */
-background: -moz-linear-gradient(top,  #3979b1 0%, #315987 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3979b1), color-stop(100%,#315987)); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top,  #3979b1 0%,#315987 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top,  #3979b1 0%,#315987 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top,  #3979b1 0%,#315987 100%); /* IE10+ */
-background: linear-gradient(top,  #3979b1 0%,#315987 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3979b1', endColorstr='#315987',GradientType=0 ); /* IE6-9 */
-
+        background: #3979b1; /* Old browsers */
+        background: -moz-linear-gradient(top,  #3979b1 0%, #315987 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3979b1), color-stop(100%,#315987)); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top,  #3979b1 0%,#315987 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top,  #3979b1 0%,#315987 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top,  #3979b1 0%,#315987 100%); /* IE10+ */
+        background: linear-gradient(top,  #3979b1 0%,#315987 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3979b1', endColorstr='#315987',GradientType=0 ); /* IE6-9 */
         -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.75);
         -moz-box-shadow: 0 0 5px rgba(0,0,0,0.75);
         box-shadow: 0 0 5px rgba(0,0,0,0.75);
@@ -42,8 +41,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3979b1', end
         background-image: linear-gradient(to bottom, white, #c2c2c2);
         height: 100%;
     }
-    .new-login > div > div {
+    .new-login > div div {
         margin: 30px;
+    }
+    .login-news > div {
+        margin: 10px 30px;
     }
     .new-login > div h2 {
         font-size: 40px;
@@ -100,7 +102,55 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3979b1', end
         line-height: 15px;
     }
 
-
+    .login-news {
+        margin-top: 30px;
+        border: 1px solid #171717;
+        border-top: 1px solid #252525;
+        background: #2D2D2D;
+        background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzJkMmQyZCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMyMTIxMjEiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+        background: -moz-linear-gradient(top, #2D2D2D 0%, #212121 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#2D2D2D), color-stop(100%,#212121));
+        background: -webkit-linear-gradient(top, #2D2D2D 0%,#212121 100%);
+        background: -o-linear-gradient(top, #2D2D2D 0%,#212121 100%);
+        background: -ms-linear-gradient(top, #2D2D2D 0%,#212121 100%);
+        background: linear-gradient(top, #2D2D2D 0%,#212121 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2d2d2d', endColorstr='#212121',GradientType=0 );
+        border: 1px solid;
+        border-top-color: #444;
+        border-bottom: transparent;
+        border-left-width: 0;
+        border-right-width: 0;
+        border-radius: 7px;
+        box-shadow: 0 2px 3px 0 #111;
+        -moz-border-radius: 7px;
+        -webkit-border-radius: 7px;
+        -webkit-box-shadow: 0 2px 3px 0 #111;
+        height: auto;
+        -moz-box-shadow: 0 2px 3px 0 #111;
+        padding-bottom: 30px;
+        color: white;
+        font-size: 15px;
+    }
+    .login-news > div h2 {
+        font-size: 21px;
+        margin: 14px 0;
+        text-shadow: 0 1px 0 #555;
+        color: #eee;
+    }
+    .login-news > div a {
+        display: inline-block;
+        padding-top: 10px;
+        position: relative;
+        float: left;
+        color: #3979B1;
+    }  
+    .login-news > div span {
+        display: inline-block;
+        padding-top: 10px;
+        position: relative;
+        float: right;
+        color: #777;
+    }  
 </style>
 
 <section id="content"> 
@@ -154,3 +204,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3979b1', end
         </div>
 
     </div>
+
+    <div class="login-news">
+
+        <div>
+            <h2><?php echo $message['TITLE']; ?></h2>
+            <p><?php echo $message['TEXT']; ?></p>
+
+            <a href="<?php echo $message['LINK']; ?>"><?php echo $message['LTEXT']; ?></a><span><?php echo $message['DATE']; ?></span>
+
+        </div>
+
+    </div>
+
+</section>

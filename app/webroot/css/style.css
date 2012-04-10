@@ -1447,7 +1447,10 @@ em {
 }
 .table td,th {
   border-right: 1px solid #cdcdcd;
-  padding: 12px
+  padding: 12px;
+}
+td > .button, td > .button-group {
+  vertical-align: middle !important;
 }
 .consoletd {
   min-width: 810px;

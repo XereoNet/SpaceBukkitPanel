@@ -186,7 +186,7 @@ nav#mainnav ul li.current a
 }
 
 
-.icon.backup
+.icon.backups
 
 {
 
@@ -214,7 +214,7 @@ nav#mainnav ul li.current a
 .icon.debug
 {
 
-	background-image: url(../img/debug.png)
+	background-image: url(../img/debugs.png)
 
 }
 

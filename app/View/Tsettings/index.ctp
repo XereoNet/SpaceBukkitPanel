@@ -28,9 +28,9 @@
 
   <small class="bukget_information"><?php echo __('From here you can assign users to servers and a role for each user, on each server. To start, select a user. Then, start adding him to a server, and assing a role to that server.') ?></small>
   <div class="clear"></div>
-  <div class="col left col_1_3" style="padding: 30px 60px 0 0; width: 300px; min-height: 500px;background: url(./img/fancy_nav_right.png) no-repeat 95% 50%">
+  <div class="col left col_1_3 nofilter" style="padding: 30px 60px 0 0; width: 300px; min-height: 500px;background: url(./img/fancy_nav_right.png) no-repeat 95% 50%">
 
-     <table class="datatable dtb1 notitle" id="settings_users" style="cursor: pointer"> 
+     <table class=" datatable dtb1 notitle" id="settings_users" style="cursor: pointer"> 
       <thead> 
         <tr> 
           <th><?php echo __('Name ') ?>

@@ -561,8 +561,18 @@ div.box {
 	background-color: #E5E5FF;
 }
 
+.nofilter .dataTables_length{
+	display: none;
+}
 
-.dataTables_wrapper table { border: 1px solid #d4d4d4; background: none; width: 100%; margin-bottom: 4px;}
+.dataTables_wrapper table { 
+	border: 1px solid #D4D4D4;
+	background: none;
+	width: 100%;
+	margin-bottom: 4px;
+	top: -5px;
+	position: relative;
+}
 
 .dataTables_wrapper tbody tr td { padding: 8px 9px !important; }
 

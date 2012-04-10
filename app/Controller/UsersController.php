@@ -77,6 +77,23 @@ class UsersController extends AppController {
 
     }
 
+
+    //check for uncle Ant's news
+
+    $filename = 'http://dl.nope.bz/sb/build/news.xml';
+    $message = simplexml_load_file($filename); 
+
+    $json = json_encode($message);
+    $message = json_decode($json, TRUE);
+
+    //set the message
+
+    if ($message["NEWS"]["STATUS"] > 0) {
+
+        $this->set('message', $message["NEWS"]);
+
+    }
+
     $this->set('title_for_layout', __('Login to SpaceBukkit'));
     $this->set('flash', $this->Session->read('auth'));
 

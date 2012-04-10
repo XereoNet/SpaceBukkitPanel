@@ -134,11 +134,11 @@ END;
 					<!-- Navigation -->
 					<nav id="mainnav">
 						<ul>
-						<?php if (perm('pages', 'dash')) ?>
+						<?php if (perm('pages', 'dash')) {?>
 			        		<li class="<?php if ($this->name == "DashController") { echo "current" ; }  ?> bounce fadein"> 
 							<a href="<?php echo $this->Html->url('/dash', true); ?>"> <span class="icon dashboard"></span><?php echo __(' Dashboard') ?></a> 
 			        		</li>
-		        		<?php endif; ?>
+		        		<?php } ?>
 				        <?php if ($is_super == 1) { ?>
 					        <li class="<?php if ($this->name == "Tsettings") { echo "current" ; }  ?> bounce fadein floatright"> 
 					        	<a href="<?php echo $this->Html->url('/tsettings', true); ?>"> <span class="icon settings"></span><?php echo __(' Settings ') ?></a> 

@@ -255,7 +255,7 @@ END;
 			        <?php endif; ?>
 					<?php if (perm('pages', 'servers', $user_perm)): ?>
 			        <li class="<?php if ($this->name == "TBackupsController") { echo "current" ; }  ?> fadein"> 
-			        	<a href="<?php echo $this->Html->url('/tbackups', true); ?>"> <span class="icon backup"></span><?php echo __(' Backups ') ?></a> 
+			        	<a href="<?php echo $this->Html->url('/tbackups', true); ?>"> <span class="icon backups"></span><?php echo __(' Backups ') ?></a> 
 			        </li>
 			        <?php endif; ?>
 			        <?php if (perm('pages', 'servers', $user_perm)): ?>
