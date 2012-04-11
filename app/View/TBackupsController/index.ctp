@@ -382,7 +382,6 @@ function refreshProgressb() {
   $.ajax({
     url: source,
     success: function(data) {
-      data = '45%';
       if (data === 'false') {
         $("#runningPB").fadeOut();
         $("#runningTop").fadeOut();
