@@ -190,6 +190,81 @@ class TServersController extends AppController {
         
     }
 
+    //get the server log
+    function getServerlog() {
+
+        if ($this->request->is('ajax')) {
+
+            $this->disableCache();
+            //Configure::write('debug', 0);
+            $this->autoRender = false;
+
+            require APP . 'spacebukkitcall.php';
+
+            $args = array('server.log');
+
+            echo "\n<pre class=\"cake-debug\">\n";
+
+            $var = print_r($api->call('getFileContent', $args, true), true);
+            echo $var . "\n</pre>\n";
+
+        }
+
+    }
+
+    //delete the server log
+    function delServerlog() {
+
+        if ($this->request->is('ajax')) {
+            
+            $this->disableCache();
+            Configure::write('debug', 0);
+            $this->autoRender = false;
+
+            require APP . 'spacebukkitcall.php';
+
+            $args = array('server.log');
+
+            debug($api->call('deleteFile', $args, true));
+
+        }
+
+    }
+    //delete the server log
+    function rollServerlog() {
+
+        if ($this->request->is('ajax')) {
+            
+            $this->disableCache();
+            Configure::write('debug', 0);
+            $this->autoRender = false;
+
+            require APP . 'spacebukkitcall.php';
+
+            $args = array('server.log');
+
+            debug($api->call('deleteFile', $args, true));
+
+        }
+
+    }    
+    //download the server log
+    function dlServerlog() {
+
+            
+            $this->disableCache();
+
+            $this->autoRender = false;
+
+            require APP . 'spacebukkitcall.php';
+
+            $args = array('server.log');
+
+            debug($api->call('sendFile', $args, true));
+
+        
+
+    }
     //Function to get strings
     function get_string_between($string, $start, $end){
         $string = " ".$string;

@@ -3,9 +3,8 @@
 <!-- Tabs -->
 <nav id="smalltabs">
 	<ul>
-	<li class="current"><a href="#tab1"><?php echo __('24h') ?></a></li>
-    <li><a href="#tab2"><?php echo __('1 Week') ?></a></li>
-    <li><a href="#tab3"><?php echo __('1 Month') ?></a></li>
+	<li class="current"><a href="#tab1"><?php echo __('Server Events') ?></a></li>
+    <li><a href="#tab2"><?php echo __('Game Events') ?></a></li>
 	</ul>
 </nav>
 <!-- End Tabs -->
