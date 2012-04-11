@@ -6,6 +6,7 @@
                 <li><a href="#tab3"><?php echo __('Server properties') ?></a></li>
                 <li><a href="#tab4"><?php echo __('Bukkit properties') ?></a></li>
                 <li><a href="#tab5"><?php echo __('Schedules') ?></a></li>
+                <li><a href="#tab6"><?php echo __('server.log') ?></a></li>
         </ul>
 </nav>
 <!-- End Tabs -->
@@ -673,31 +674,83 @@ END;
 
 
     </header>
-<table class="datatable dtb1 notitle" id="schedules_table"> 
-<thead> 
-  <tr> 
-    <th>ID</th>
-    <th>Command</th>
-    <th>Arguments</th>
-    <th>Time type</th>
-    <th>Time</th>
-    <th>Actions</th>
-  </tr> 
-</thead> 
+    <table class="datatable dtb1 notitle" id="schedules_table"> 
+    <thead> 
+      <tr> 
+        <th>ID</th>
+        <th>Command</th>
+        <th>Arguments</th>
+        <th>Time type</th>
+        <th>Time</th>
+        <th>Actions</th>
+      </tr> 
+    </thead> 
 
-<tbody>
+    <tbody>
 
-</tbody> 
+    </tbody> 
 
-</table>
+    </table>
+  </div>
+<div class="clear"></div>
+
 </div>
-</div>
+
+<div class="tab" id="tab6">
+
+
+  <section class="box boxpad"> 
+ 
+        <header>
+            <h2><?php echo __('server.log') ?></h2> 
+            <span class="button-group pull-right">
+              <a href="#" id="reloadlog" class="button icon reload">Reload</a>                     
+            </span>        
+        </header>
+        
+        <section>
+
+          <p class="code" style="font-size: 15px; color: #333; overflow: auto; max-height: 400px; max-width: 100%;" id="serverlog">
+
+          </p>
+
+        </section>
+
+  </section>
 
 <div class="clear"></div>
+
+</div>
+
 </section>
 <!-- End #content --> 
 <script>
 $('document').ready(function() {
+
+  /* server.log */
+  loadServerlog();
+  var serverlog     = $('#serverlog');
+
+  function loadServerlog() {
+
+    var serverurl     = "<?php echo $this->Html->url(array('controller' => 'tservers', 'action' => 'getServerlog' )); ?>";
+
+
+    $('#serverlog').activity();
+
+    $('#serverlog').load(serverurl);
+
+  }
+
+
+  $('#reloadlog').click(function() {  
+    
+      loadServerlog();
+      return false;
+
+  });
+
+  /* schedules */
 
    $('#arguments').hide();        
 

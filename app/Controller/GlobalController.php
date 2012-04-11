@@ -60,6 +60,21 @@ class GlobalController extends AppController {
 
             $this->autoRender = false;
 
+            //GET request to XereoNet for statistics
+
+            include APP . 'webroot/configuration.php';
+
+            $this->loadModel('Server');
+
+            $url = 'api.xereo.net/Spacebukkit/store/'.$sbconf['token'].'/'.$this->Server->find('count');
+
+            $c = curl_init($url);
+            curl_setopt($c, CURLOPT_PORT, 80);
+            curl_setopt($c, CURLOPT_HEADER, false);
+            curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
+            curl_exec($c);
+            curl_close($c);
+
             //check if the user has access to dash
 
             $user_perm = $this->Session->read("user_perm");
