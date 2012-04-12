@@ -172,6 +172,7 @@
 
     <div class="col right">
 
+      <div>
 
         <section class="b-now">
 
@@ -217,6 +218,8 @@
             <br><br>
 
         </section>
+
+      </div>
 
     </div>
 
