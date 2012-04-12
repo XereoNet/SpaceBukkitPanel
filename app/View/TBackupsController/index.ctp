@@ -89,10 +89,10 @@
 <!-- Tabs -->
 <nav id="smalltabs">
 	<ul>
-		<li class="current"><a href="#tab1"><?php echo __('Overview') ?></a></li>
-		<li><a href="#tab2"><?php echo __('Worlds') ?></a></li>
-    <li><a href="#tab3"><?php echo __('Plugins') ?></a></li>
-    <li><a href="#tab4"><?php echo __('Server') ?></a></li>
+		<li class="current"><a href="#tab1" id="noTop"><?php echo __('Overview') ?></a></li>
+		<li><a href="#tab2" id="yesTop"><?php echo __('Worlds') ?></a></li>
+    <li><a href="#tab3" id="yesTop"><?php echo __('Plugins') ?></a></li>
+    <li><a href="#tab4" id="yesTop"><?php echo __('Server') ?></a></li>
 	</ul>
 </nav>
 <!-- End Tabs -->
@@ -100,6 +100,14 @@
 <!-- Content -->
 <section id="content"> 
 
+  <div class="b-now" id="runningTop" style="width: 50%; margin-left: auto; margin-right: auto;">
+    <div class="darkwell">
+        <div class="progress-new progress-striped active" style="margin: 7px;">
+          <div class="bar" id="PBbartop" style="width: 0%"></div>
+        </div>
+    </div>
+  </div>
+<br>
 <div class="tab" id="tab1">
 
   <section class="b-home">
@@ -116,19 +124,15 @@
             <div class="darkwell">
 
               <section>
+                <div id="runningNow">
 
-                <h3>Backup of world "home_the_end"</h3>
+                Fetching...
 
-                <div class="b-what">Started 20 minutes ago</div>
-                <div class="b-in">(12th Feb 2012 20:40)</div>
-                <div class="b-when">Currently 20 MB</div>
-                <div class="clear"></div>
+              </div>
+              <div class="clear"></div>
 
                 <br><br>
-
-                <div class="progress-new progress-striped active">
-                  <div class="bar" style="width: 40%"></div>
-                </div>
+                <div id="runningPB" class="progress-new progress-striped active"><div class="bar" id="PBbar" style="width: 0%"></div></div>
 
               </section>
 
@@ -168,7 +172,51 @@
 
     <div class="col right">
 
-      <div>Stats</div>
+
+        <section class="b-now">
+
+          <h2>Backup Stats:</h2>
+
+
+            <div class="darkwell">
+
+              <section>
+                <div id="runningNow2">
+                  <img src="./img/info.png" />
+                  <h3>No backups found!</h3>
+                  <div class="b-what">...!</div>
+              </div>
+              <div class="clear"></div><br><br>
+
+              </section>
+
+            </div>
+
+      <section class="b-now">
+
+          <h2>Previous Backups:</h2>
+
+            <div class="darkwell">
+
+              <section>
+                <div class="b-what">World "home"</div>
+                <div class="b-in">250MB</div>
+                <div class="b-when">12th Feb 2012 21:00</div>
+              </section>
+              <section>
+                <div class="b-what">Complete Server</div>
+                <div class="b-in">789MB</div>
+                <div class="b-when">12th Feb 2012 21:30</div>
+              </section>
+              <section>
+                <div class="b-what">World "home_nether"</div>
+                <div class="b-in">10MB</div>
+                <div class="b-when">12th Feb 2012 22:00</div>
+              </section>
+            </div>
+            <br><br>
+
+        </section>
 
     </div>
 
@@ -191,7 +239,7 @@
       </label>
 
       <div>
-        <?php echo $ServerSpecs['CPU']; ?><br>
+        <br>
       </div>
     </section>
 
@@ -201,7 +249,7 @@
       </label>
 
       <div>
-        <?php echo $ServerSpecs['Java']; ?><br>
+        <br>
       </div>
     </section>
 
@@ -211,7 +259,7 @@
       </label>
 
       <div>
-        <?php echo $ServerSpecs['Bukkit']; ?><br>
+        <br>
       </div>
     </section>
 
@@ -226,7 +274,7 @@
         </label>
 
         <div>
-          <?php echo $ServerSpecs['arch']; ?><br>
+          <br>
         </div>
       </section>
         <section>
@@ -235,7 +283,7 @@
           </label>
 
           <div>
-            <?php echo $ServerSpecs['OS']; ?><br>
+            <br>
           </div>
         </section>
 
@@ -245,7 +293,7 @@
           </label>
 
           <div>
-            <?php echo $ServerSpecs['SpaceBukkit']; ?><br>
+            <br>
           </div>
        <div class="clear"></div>
           </section>           
@@ -260,7 +308,7 @@
       </label>
 
       <div>
-        <?php echo $ServerSpecs['RAM']; ?><br>
+        <br>
       </div>
     </section>
 
@@ -270,7 +318,7 @@
       </label>
 
       <div>
-        <?php echo $ServerSpecs['Disk']; ?><br>
+        <br>
       </div>
     </section>
 
@@ -281,7 +329,7 @@
           </label>
 
           <div>
-            <?php echo $ServerSpecs['Web']; ?><br>
+            <br>
           </div>
         </section>
   </div>
@@ -314,117 +362,51 @@
 <!-- End #content --> 
 <script type="text/javascript" src="./js/tristate.js"></script>
 <script>
-/* Get the rows which are currently selected */
-function fnGetSelected( oTableLocal )
-{
-  var aReturn = new Array();
-  var aTrs = oTableLocal.fnGetNodes();
-  
-  for ( var i=0 ; i<aTrs.length ; i++ )
-  {
-    if ( $(aTrs[i]).hasClass('row_selected') )
-    {
-      aReturn.push( aTrs[i] );
+
+function refreshRunning() {
+
+  var source = './tbackups/getRunning';
+  $.ajax({
+    url: source,
+    success: function(data) {
+      $("div#runningNow").html(data);
     }
-  }
-  return aReturn;
-}
+
+  });
+        return false;
+};
+
+function refreshProgressb() {
+  var source = './tbackups/getPB';
+  $.ajax({
+    url: source,
+    success: function(data) {
+      if (data === 'false') {
+        $("#runningPB").fadeOut();
+        $("#runningTop").fadeOut();
+      } else {
+        $("#runningPB").fadeIn();
+        $('#PBbar').animate({width: data}, 10);
+        $('#PBbartop').animate({width: data}, 10);
+        
+      };
+    }
+  });
+        return false;
+};
 
 $('document').ready(function() {
-
-  var user;
-
-  /* Add a click handler to the rows - this could be used as a callback */
-    $("#groups_groups tbody").click(function(event) {
-      $(Table1.fnSettings().aoData).each(function (){
-        $(this.nTr).removeClass('row_selected');
-      });
-      $(event.target.parentNode).addClass('row_selected');
-
-      group = $(".row_selected span").text();
-
-      var plugins = './tpermissions/getPlugins/'; 
-
-      $('.dtb2').fadeIn(700);
-      $('#c1desc').text("").hide();
-      $('#groups_perm').fadeOut(700);
-
-      Table2 = $('.dtb2').dataTable( {
-      "bDestroy": true,   
-      "bProcessing": true,
-      "sAjaxSource": plugins
-      });
-
-    });
-
-    $("#groups_plugin tbody").click(function(event) {
-      $(Table2.fnSettings().aoData).each(function (){
-        $(this.nTr).removeClass('row2_selected');
-      });
-      $(event.target.parentNode).addClass('row2_selected');
-
-      var group = $(".row_selected span").text();
-
-      var plugin = $(".row2_selected span").text();
-
-      var perms = './tpermissions/getGaPPerms/'+group+'/'+plugin; 
-
-      $('#groups_perm').html(ajax_load).load(perms, function() {
-        supernifty_tristate.init();
-        $(".tip").tooltip({
-          position: "bottom center",
-          effect: "fade",
-          relative: "true"
-        }, function() { console.log('tip');});
-      }).show().uniform();
-    });
-
-    
-      
-  //initiate Tables
-  Table1 = $('.dtb1').dataTable( {
-      "bProcessing": true,
-      "sAjaxSource": './tpermissions/getgroups'
+  $("#runningTop").fadeOut(0);
+  refreshProgressb()
+  refreshRunning()
+  setInterval("refreshRunning()", 1000);
+  setInterval("refreshProgressb()", 500);
+  $('#yesTop').click(function(){
+    $("#runningTop").fadeIn();
   });
-
-  function update_tristate(id) {
-          var group = $(".row_selected span").text();
-
-      var perm = $(this).attr('id');
-
-      var newState = $(this).children('input[type="hidden"]').val();
-
-      var url = './tpermissions/saveGaPPerm/' + group + '/' + perm + '/' + newState;
-
-      $.ajax({url: url, complete: function(data){
-        console.log(data.responseText);
-        if (data.responseText === 'true'){
-          supernifty_tristate.update(id);
-        }
-      }});
-  }
-
-     
-   //listen for change of select box
-  $('#roleSelect').live("change", function() {
-    $('#groups_sav_perm').text("Saving...").fadeIn();
-          
-      /* get some values from elements on the page: */
-      var $form = $("#role_select"),
-          server_id = $form.find( 'input[name="server_id"]' ).val(),
-          user_id = $form.find( 'input[name="user_id"]' ).val(),
-          role_id = $form.find( 'select[name="role_id"]' ).val(),
-          url = $form.attr( 'action' );
-
-      /* Send the data using post and put the results in a div */
-      $.post(url, {server_id: server_id, user_id: user_id, role_id: role_id},
-        function( data ) {
-          $('#groups_sav_perm').text(data).delay(2000).fadeOut();
-          }
-      );
-
+  $('#noTop').click(function(){
+    $("#runningTop").fadeOut(0);
   });
-
 });
 
 </script>
