@@ -74,11 +74,13 @@ class TBackupsController extends AppController {
 
             $bInfo = $api->call('getBackupInfo', $args, true);
 
+            $messageTime = round(($bInfo[2] / 1000) + 240);
+
             if ($status) {
                 $size = round((intval($bInfo[7]) / 1048576), 2);
                 $title = '<h3>'.'Backing up '.$bInfo[0].'</h3>';
                 $timeRunning = '<div class="b-what">'.$bInfo[6].'/'.$bInfo[5].'</div>';
-                $startTime = '<div class="b-in">'.date('(l, dS F Y \a\t H:i)', round($bInfo[2] / 1000)).'</div>';
+                $startTime = '<br><div class="b-in">(Started on '.date('l, dS F Y \a\t H:i)', round($bInfo[2] / 1000)).'</div>';
                 $bSize = '<div class="b-when">Currently '.$size.' MB</div>';
 
                 echo<<<END
@@ -87,7 +89,12 @@ $timeRunning
 $startTime
 $bSize
 END;
+            } else if($messageTime >= time()) {
+                echo '<img src="./img/win.png" />';
+                echo '<h3>Backup finished!</h3>';
+                echo '<div class="b-what">Backup of '.$bInfo[0].' finished '.round((240 + time() - $bInfo[2] / 1000) / 60, 0, PHP_ROUND_HALF_DOWN).' minutes ago!</div>';
             }else{
+                echo '<img src="./img/info.png" />';
                 echo '<h3>No backups running!</h3>'."\n".'<div class="b-what">All your backups are completed!</div>';
 
             }

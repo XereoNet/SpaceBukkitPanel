@@ -172,6 +172,26 @@
 
     <div class="col right">
 
+
+        <section class="b-now">
+
+          <h2>Backup Stats:</h2>
+
+
+            <div class="darkwell">
+
+              <section>
+                <div id="runningNow2">
+                  <img src="./img/info.png" />
+                  <h3>No backups found!</h3>
+                  <div class="b-what">...!</div>
+              </div>
+              <div class="clear"></div><br><br>
+
+              </section>
+
+            </div>
+
       <section class="b-now">
 
           <h2>Previous Backups:</h2>
@@ -193,27 +213,6 @@
                 <div class="b-in">10MB</div>
                 <div class="b-when">12th Feb 2012 22:00</div>
               </section>
-              <section>
-                <div class="b-what">World "home"</div>
-                <div class="b-in">250MB</div>
-                <div class="b-when">12th Feb 2012 21:00</div>
-              </section>
-              <section>
-                <div class="b-what">Complete Server</div>
-                <div class="b-in">789MB</div>
-                <div class="b-when">12th Feb 2012 21:30</div>
-              </section>
-              <section>
-                <div class="b-what">World "home_nether"</div>
-                <div class="b-in">10MB</div>
-                <div class="b-when">12th Feb 2012 22:00</div>
-              </section>
-              <section>
-                <div class="b-what">World "home"</div>
-                <div class="b-in">250MB</div>
-                <div class="b-when">12th Feb 2012 21:00</div>
-              </section>
-
             </div>
             <br><br>
 
