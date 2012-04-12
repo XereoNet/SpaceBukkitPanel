@@ -25,6 +25,7 @@
  */
 
 // Setup a 'default' cache configuration for use in the application.
+
 Cache::config('default', array('engine' => 'File'));
 
 Configure::write('Spacebukkit.theme', "Spacebukkit");
@@ -52,7 +53,6 @@ function perm($node, $perm, $user_perm, $message=false) {
 
 }
 
-
 function perm_action($node, $perm, $user_perm, $value=null) {
 
 	require APP.'webroot/configuration.php';
@@ -71,3 +71,19 @@ function perm_action($node, $perm, $user_perm, $value=null) {
 	}
 
 }
+
+/* LOAD SPACEBUKKIT CONFIGURATION */
+
+require APP . 'webroot/system.php';
+
+Configure::write('debug', $system[0]['val']);
+
+Configure::write('Cache.disable',  $system[1]['val']);
+
+Configure::write('Security.salt',  $system[2]['val']);
+
+Configure::write('Security.cipherSeed',  $system[3]['val']);
+
+date_default_timezone_set( $system[4]['val']);
+
+?>

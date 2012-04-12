@@ -236,17 +236,16 @@ $(document).ready(function(){
   $('input[type=button]#percent').click(function(e){
     e.preventDefault();
     drawTimer('.timer1', $('input[type=text]#percent').val());
-  });
+  });          
 
+  setInterval("graphs('.timer1', './dash/calculate_ram', 3000, 'ram')", '<?php echo $this->Session->read("Sbvars.5"); ?>');
+  setInterval("graphs('.timer2', './dash/calculate_cpu', 3000, 'cpu')", '<?php echo $this->Session->read("Sbvars.5"); ?>');
+  setInterval("graphs('.timer3', './dash/calculate_java', 3000, 'jav')", '<?php echo $this->Session->read("Sbvars.5"); ?>');
 
-  setInterval("graphs('.timer1', './dash/calculate_ram', 3000, 'ram')", 3000);
-  setInterval("graphs('.timer2', './dash/calculate_cpu', 3000, 'cpu')", 3000);
-  setInterval("graphs('.timer3', './dash/calculate_java', 3000, 'jav')", 3000);
-
-  doAndRefresh('#activity-list ul', './dash/get_log', 30000);
-  doAndRefresh('#online-list', './dash/get_admins', 30000);
-  doAndRefresh('#players-count', './dash/calculate_players', 30000);
-  doAndRefresh('#ticks-count', './dash/calculate_ticks', 30000);
+  doAndRefresh('#activity-list ul', './dash/get_log', '<?php echo $this->Session->read("Sbvars.6"); ?>');
+  doAndRefresh('#online-list', './dash/get_admins', '<?php echo $this->Session->read("Sbvars.6"); ?>');
+  doAndRefresh('#players-count', './dash/calculate_players', '<?php echo $this->Session->read("Sbvars.4"); ?>');
+  doAndRefresh('#ticks-count', './dash/calculate_ticks', '<?php echo $this->Session->read("Sbvars.4"); ?>');
 
 });
 

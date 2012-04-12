@@ -7,7 +7,9 @@
     <li><a href="#tab3"><?php echo __('Roles') ?></a></li>
     <li><a href="#tab4"><?php echo __('Themes') ?></a></li>
     <li><a href="#tab5"><?php echo __('SpaceBukkit') ?></a></li>
-    <li><a href="#tab5"><?php echo __('Database') ?></a></li>
+    <li><a href="#tab6"><?php echo __('Database') ?></a></li>
+    <li><a href="#tab7"><?php echo __('System') ?></a></li>
+
 	</ul>
 </nav>
 <!-- End Tabs -->
@@ -176,14 +178,46 @@
 
   <div class="tab" id="tab5">
 
-    //WIP
+    <section class="box boxpad"> 
+     
+      <header>
+            <h2><?php echo __('SpaceBukkit Settings') ?></h2> 
+      </header>
+        
+      <section>
+
+        <form action='#' id='vars1' method='post'>
+
+            <div class="error_box"></div>
+
+            <section>
+
+              <label for="title">
+                
+                Username
+
+              </label>
+            
+              <div>
+
+                <input id="username" name="username" type="text" />
+
+              </div>
+
+            </section>
+
+        </form>
+
+      </section>
+    
+    </section>
 
   <div class="clear"></div>
 
   </div>
   <!-- End tab5 -->
 
-  <div class="tab" id="tab5">
+   <div class="tab" id="tab6">
 
     <div class="col left col_2_3">
 
@@ -266,6 +300,51 @@
 
   </div>
   <!-- End tab6 -->
+  
+ <div class="tab" id="tab7">
+
+    <section class="box boxpad"> 
+     
+      <header>
+            <h2><?php echo __('System Settings') ?></h2> 
+      </header>
+        
+      <section>
+
+        <div class="alert alert-danger">
+        <p><?php echo __('Only change these settings if you know what you\'re doing!'); ?></p>
+        </div>
+
+        <form action='#' id='vars1' method='post'>
+
+            <div class="error_box"></div>
+
+            <section>
+
+              <label for="title">
+                
+                Username
+
+              </label>
+            
+              <div>
+
+                <input id="username" name="username" type="text" />
+
+              </div>
+
+            </section>
+
+        </form>
+
+      </section>
+    
+    </section>
+
+  <div class="clear"></div>
+
+  </div>
+  <!-- End tab7 -->
 
 </section>
 <!-- End #content --> 

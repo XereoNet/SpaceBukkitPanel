@@ -261,7 +261,7 @@ class GlobalController extends AppController {
             Configure::write('debug', 0);
             $this->autoRender = false;
 
-            $args = array(100);   
+            $args = array($this->Session->read("Sbvars.1"));   
             $log = $api->call("getLatestConsoleLogsWithLimit", $args, false);
             //var_dump($log);
 

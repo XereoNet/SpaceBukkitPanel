@@ -66,7 +66,6 @@ class TsettingsController extends AppController {
         $this->set('configurations', $dataSource);    
         $this->layout = 'sbv1';
 
-
 	    }
         
    function getUsers() {

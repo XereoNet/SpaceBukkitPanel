@@ -124,6 +124,16 @@ class AppController extends Controller {
  *   2.1)  If Post, do nothing. If not...
 ##################################################### */
 
+    /* STORE SPACEBUKKIT VARIABLES TO SESSION */
+
+    require APP . 'webroot/vars.php';
+
+    foreach ($variables as $k => $var) {
+
+        $this->Session->write("Sbvars.".$k, $var['val']);
+
+    }
+
       if (!($this->request->is('post'))) {
            
 /* ####################################################
@@ -380,7 +390,7 @@ class AppController extends Controller {
         );
 
         $this->User->save($data);
-
+        
         } //end else server count        
         } //endif logging        
         } //endif maintenance       
@@ -396,7 +406,6 @@ class AppController extends Controller {
 	function beforeRender()
 
 	  {
-        
         //Check if current theme exists. If not, set it to default
 
         $theme = $this->Session->read("current_theme");

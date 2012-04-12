@@ -34,6 +34,8 @@
 </head>
 
 <body>
+
+
 <div class="screen_overlay">
  <div class="overlay-text">
  </div>
@@ -394,7 +396,7 @@ $(document).ready(function() {
 
 
 	loadConsole();
-	doAndRefresh('#server-uptime', './global/getUpTime', 3000);
+	doAndRefresh('#server-uptime', './global/getUpTime', '<?php echo $this->Session->read("Sbvars.0"); ?>');
   /* attach a submit handler to the form */
   $(".saysomething").submit(function(event) {
 
@@ -416,30 +418,31 @@ $(document).ready(function() {
 
   });
 
-	  /* attach a submit handler to the form */
-	  $(".runcommand").submit(function(event) {
+  /* attach a submit handler to the form */
+  $(".runcommand").submit(function(event) {
 
-	    /* stop form from submitting normally */
-	    event.preventDefault(); 
-	        
-	    /* get some values from elements on the page: */
-	    var $form = $(this),
-	        term = $form.find( 'input[name="command"]' ).val(),
-	        url = $form.attr( 'action' );
+    /* stop form from submitting normally */
+    event.preventDefault(); 
+        
+    /* get some values from elements on the page: */
+    var $form = $(this),
+        term = $form.find( 'input[name="command"]' ).val(),
+        url = $form.attr( 'action' );
 
-	    /* Send the data using post and put the results in a div */
-	    $.post(url, {command: term},
-	      function( data ) {
-	      	message = data;
-	        notifications.show({msg:data, icon:'img/win.png'});
-	      }
-	    );
-   		$('.commandarea').val('');
+    /* Send the data using post and put the results in a div */
+    $.post(url, {command: term},
+      function( data ) {
+      	message = data;
+        notifications.show({msg:data, icon:'img/win.png'});
+      }
+    );
+		$('.commandarea').val('');
 
-	  });  
+  }); 
 
-  doAndRefreshChat('.chat_list', './dash/get_chat_players', 10000);
-  doAndRefreshChat('.chat_chat', './dash/get_chat_new', 1000);
+  doAndRefreshChat('.chat_chat', './dash/get_chat_new', '<?php echo $this->Session->read("Sbvars.2"); ?>');
+
+  doAndRefreshChat('.chat_list', './dash/get_chat_players', '<?php echo $this->Session->read("Sbvars.2"); ?>');
 
 });
 

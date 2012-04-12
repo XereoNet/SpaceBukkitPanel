@@ -221,7 +221,7 @@ $('document').ready(function() {
       } 
     });
   }
-}, '8000');
+}, '<?php echo $this->Session->read("Sbvars.4"); ?>');
 
 
   $('#update_players').click(function() {

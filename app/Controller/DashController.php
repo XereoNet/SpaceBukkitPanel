@@ -442,8 +442,8 @@ END;
            
             $this->autoRender = false;
 		
-            $args = array();   
-            $chats = $api->call("getLatestChats", $args, false);
+            $args = array($this->Session->read("Sbvars.3"));   
+            $chats = $api->call("getLatestChatsWithLimit", $args, false);
 
             if(!is_array($chats)) $chats = array($chats);
 		

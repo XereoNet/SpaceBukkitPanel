@@ -176,20 +176,6 @@ a {
   width: 200px
 }
 
-input[type="text"], form input[type="password"] {
-  background: white url("../img/input-bg.gif") repeat-x;
-  font: 14px "Lucida Sans Unicode","Lucida Grande","Arial",sans-serif;
-  color: #5A5A5A;
-  padding: 0 7px;
-  height: 32px;
-  border: 1px solid silver;
-  width: 250px;
-  margin: 0;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-}
-
 /* Console, Chat */
 
 #sidebar-widget
@@ -1278,20 +1264,6 @@ form section label small {
 .dataTables_filter input[type="text"] {
   height: 20px;
   width: auto
-}
-input[type="text"]: hover,form input[type="password"]: hover {
-  background: #fff;
-  -moz-box-shadow: #b2b2b2 0 0 5px;
-  -webkit-box-shadow: #b2b2b2 0 0 5px;
-  box-shadow: #b2b2b2 0 0 5px
-}
-input[type="text"]: focus,form input[type="password"]: focus {
-  background: #fff;
-  border-color: #175e7c;
-  color: #5a5a5a;
-  -moz-box-shadow: #b2b2b2 0 0 5px;
-  -webkit-box-shadow: #b2b2b2 0 0 5px;
-  box-shadow: #b2b2b2 0 0 5px
 }
 form textarea {
   background: #111;
@@ -2926,7 +2898,7 @@ a: focus {
   margin-right: 0;
   width: 70px;
 }
-.installform input {
+.installform input, input[type="text"], input[type="password"] {
   width: 300px;
   height: 30px;
   padding: 4px;
@@ -2953,7 +2925,7 @@ label {
   margin-bottom: 5px;
   color: #333333;
 }
-.installform input:focus {
+.installform input:focus, input[type="text"]:focus, input[type="password"]:focus {
   border-color: rgba(82, 168, 236, 0.8);
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
   -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
