@@ -142,25 +142,82 @@
 
         <section class="b-now">
 
+          <h2>Backup Stats:</h2>
+
+
+            <div class="darkwell" id="tab1Stats">
+              <section>
+                <div>
+                  Fetching...
+                </div>
+                <div class="clear"></div>
+              </section>
+            </div>
+        </section>
+
+      </div>
+
+    </div>
+
+    <div class="col right">
+
+      <div>
+
+        <section class="b-now">
+
           <h2>Next Backups:</h2>
+
+            <div class="darkwell" id="tab1Next">
+              <section>
+                <div>
+                  Fetching...
+                </div>
+              </section>
+            </div>
+
+        </section>
+
+      <section class="b-now">
+
+          <h2>Previous Backups:</h2>
+
+            <div class="darkwell" id="tab1Prev">
+              <section>
+                <div>
+                  Fetching...
+                </div>
+              </section>
+            </div>
+            <br><br>
+
+        </section>
+
+      </div>
+
+    </div>
+
+    <div class="clear"></div>
+
+  </section>
+
+</div>
+
+<div class="tab" id="tab2">
+
+  <section class="b-home">
+
+    <div class="col left">
+
+      <div>
+
+        <section class="b-now">
+
+          <h2>Backup Worlds:</h2>
+
 
             <div class="darkwell">
 
-              <section>
-                <div class="b-what">World "home"</div>
-                <div class="b-in">in 20 minutes...</div>
-                <div class="b-when">12th Feb 2012 21:00</div>
-              </section>
-              <section>
-                <div class="b-what">Complete Server</div>
-                <div class="b-in">in 50 minutes...</div>
-                <div class="b-when">12th Feb 2012 21:30</div>
-              </section>
-              <section>
-                <div class="b-what">World "home_nether"</div>
-                <div class="b-in">in 1 hour...</div>
-                <div class="b-when">12th Feb 2012 22:00</div>
-              </section>
+              <?php echo $backupWorlds; ?>
 
             </div>
 
@@ -176,19 +233,15 @@
 
         <section class="b-now">
 
-          <h2>Backup Stats:</h2>
+          <h2>Next Backups:</h2>
 
 
-            <div class="darkwell">
+            <div class="darkwell" id="tab2Next">
 
               <section>
-                <div id="runningNow2">
-                  <img src="./img/info.png" />
-                  <h3>No backups found!</h3>
-                  <div class="b-what">...!</div>
-              </div>
-              <div class="clear"></div><br><br>
-
+                <div>
+                  Fetching...
+                </div>
               </section>
 
             </div>
@@ -197,25 +250,15 @@
 
           <h2>Previous Backups:</h2>
 
-            <div class="darkwell">
+          <div class="darkwell" id="tab2Prev">
 
-              <section>
-                <div class="b-what">World "home"</div>
-                <div class="b-in">250MB</div>
-                <div class="b-when">12th Feb 2012 21:00</div>
-              </section>
-              <section>
-                <div class="b-what">Complete Server</div>
-                <div class="b-in">789MB</div>
-                <div class="b-when">12th Feb 2012 21:30</div>
-              </section>
-              <section>
-                <div class="b-what">World "home_nether"</div>
-                <div class="b-in">10MB</div>
-                <div class="b-when">12th Feb 2012 22:00</div>
-              </section>
-            </div>
-            <br><br>
+            <section>
+              <div>
+                Fetching...
+              </div>
+            </section>
+
+          </div>
 
         </section>
 
@@ -227,136 +270,146 @@
 
   </section>
 
-
-</div>
-
-<div class="tab" id="tab2">
-
-  <section class="grid_view"> 
-
-  <div class="col col_1_3 left">
-
-    <section>
-      <label for="CPU">
-        CPU: 
-      </label>
-
-      <div>
-        <br>
-      </div>
-    </section>
-
-    <section>
-      <label for="Java">
-        Java Version: 
-      </label>
-
-      <div>
-        <br>
-      </div>
-    </section>
-
-    <section>
-      <label for="Bukkit">
-        Bukkit Version: 
-      </label>
-
-      <div>
-        <br>
-      </div>
-    </section>
-
-  </div>
-
-
-  <div class="col col_1_3 left">
-
-      <section>
-        <label for="Architecture">
-          Architecture: 
-        </label>
-
-        <div>
-          <br>
-        </div>
-      </section>
-        <section>
-          <label for="OS">
-            Operating System: 
-          </label>
-
-          <div>
-            <br>
-          </div>
-        </section>
-
-        <section>
-          <label for="SB">
-            SpaceBukkit Version: 
-          </label>
-
-          <div>
-            <br>
-          </div>
-       <div class="clear"></div>
-          </section>           
-  </div>
-
-
-  <div class="col col_1_3 left">
-
-    <section>
-      <label for="Memory">
-        Memory: 
-      </label>
-
-      <div>
-        <br>
-      </div>
-    </section>
-
-    <section>
-      <label for="Disk">
-        Disk Space: 
-      </label>
-
-      <div>
-        <br>
-      </div>
-    </section>
-
-
-        <section>
-          <label for="Web">
-            Webserver Version: 
-          </label>
-
-          <div>
-            <br>
-          </div>
-        </section>
-  </div>
-
-  <div class="clear"></div>
-       
-       
-</section>
-
-  <div class="clear"></div>
-
 </div>
 
 
 <div class="tab" id="tab3">
 
-  <div class="clear"></div>
+  <section class="b-home">
+
+    <div class="col left">
+
+      <div>
+
+        <section class="b-now">
+
+          <h2>Backup Plugins:</h2>
+
+
+            <div class="darkwell">
+
+              <?php echo $backupPlugins; ?>
+
+            </div>
+
+        </section>
+
+      </div>
+
+    </div>
+
+    <div class="col right">
+
+      <div>
+
+        <section class="b-now">
+
+          <h2>Next Backups:</h2>
+
+
+            <div class="darkwell" id="tab3Next">
+
+              <section>
+                <div>
+                  Fetching...
+                </div>
+              </section>
+
+            </div>
+
+      <section class="b-now">
+
+          <h2>Previous Backups:</h2>
+
+            <div class="darkwell" id="tab3Prev">
+
+              <section>
+                <div>
+                  Fetching...
+                </div>
+              </section>
+
+            </div>
+
+        </section>
+
+      </div>
+
+    </div>
+
+    <div class="clear"></div>
+
+  </section>
 
 </div>
 
 
 <div class="tab" id="tab4">
 
-  <div class="clear"></div>
+  <section class="b-home">
+
+    <div class="col left">
+
+      <div>
+
+        <section class="b-now">
+
+          <h2>Backup Server:</h2>
+
+            <div class="darkwell">
+              <section>
+                Restart: "yes/no"<br>
+                Backup button
+              </section>
+            </div>
+
+        </section>
+
+      </div>
+
+    </div>
+
+    <div class="col right">
+
+      <div>
+
+        <section class="b-now">
+
+          <h2>Next Backups:</h2>
+
+
+            <div class="darkwell" id="tab4Next">
+
+              <section>
+                <div>
+                  Fetching...
+                </div>
+              </section>
+
+            </div>
+
+      <section class="b-now">
+
+          <h2>Previous Backups:</h2>
+
+            <div class="darkwell" id="tab4Prev">
+
+              <section>
+                <div>
+                  Fetching...
+                </div>
+              </section>
+            </div>
+
+        </section>
+
+      </div>
+
+    </div>
+
+    <div class="clear"></div>
+
+  </section>
 
 </div>
 </section>
@@ -366,49 +419,199 @@
 <script type="text/javascript" src="./js/tristate.js"></script>
 <script>
 
-function refreshRunning() {
+var running = 'false';
 
-  var source = './tbackups/getRunning';
+//prev/next backup parse amounts
+var pa = 3;
+var pw = 3;
+var pp = 3;
+var ps = 3;
+
+var na = 3;
+var nw = 3;
+var np = 3;
+var ns = 3;
+
+//global functions
+function isRunning() {
+  var source = './tbackups/isRunning';
   $.ajax({
     url: source,
     success: function(data) {
-      $("div#runningNow").html(data);
+      running = data;
     }
-
   });
         return false;
+}
+
+function refreshRunning() {
+    var source = './tbackups/getRunning';
+    $.ajax({
+      url: source,
+      success: function(data) {
+        $("div#runningNow").html(data);
+      }
+    });
+  return false;
 };
 
 function refreshProgressb() {
   var source = './tbackups/getPB';
-  $.ajax({
-    url: source,
-    success: function(data) {
-      if (data === 'false') {
-        $("#runningPB").fadeOut();
-        $("#runningTop").fadeOut();
-      } else {
-        $("#runningPB").fadeIn();
-        $('#PBbar').animate({width: data}, 10);
-        $('#PBbartop').animate({width: data}, 10);
-        
-      };
-    }
-  });
-        return false;
+  if(running === 'true') {
+    $.ajax({
+      url: source,
+      success: function(data) {
+          $("#runningPB").fadeIn();
+          $('#PBbar').animate({width: data}, 10);
+          $('#PBbartop').animate({width: data}, 10);
+      }
+    });
+  } else {
+    $("#runningPB").fadeOut(0);
+    $("#runningTop").fadeOut(0);
+  }
+  return false;
 };
 
+function refreshPrevBackups() {
+  $.ajax({
+      url: './tbackups/getPrevBackups/All/'+pa,
+      success: function(data) {
+        $("div#tab1Prev").html(data);
+      }
+    });
+  $.ajax({
+      url: './tbackups/getPrevBackups/Worlds/'+pw,
+      success: function(data) {
+        $("div#tab2Prev").html(data);
+      }
+    });
+  $.ajax({
+      url: './tbackups/getPrevBackups/Plugins/'+pp,
+      success: function(data) {
+        $("div#tab3Prev").html(data);
+      }
+    });
+  $.ajax({
+      url: './tbackups/getPrevBackups/Server/'+ps,
+      success: function(data) {
+        $("div#tab4Prev").html(data);
+      }
+    });
+}
+
+function refreshNextBackups() {
+  $.ajax({
+      url: './tbackups/getNextBackups/All/'+na,
+      success: function(data) {
+        $("div#tab1Next").html(data);
+      }
+    });
+  $.ajax({
+      url: './tbackups/getNextBackups/Worlds/'+nw,
+      success: function(data) {
+        $("div#tab2Next").html(data);
+      }
+    });
+  $.ajax({
+      url: './tbackups/getNextBackups/Plugins/'+np,
+      success: function(data) {
+        $("div#tab3Next").html(data);
+      }
+    });
+  $.ajax({
+      url: './tbackups/getNextBackups/Server/'+ns,
+      success: function(data) {
+        $("div#tab4Next").html(data);
+      }
+    });
+}
+
+function refreshStats() {
+  $.ajax({
+      url: './tbackups/getBackupStats',
+      success: function(data) {
+        $("div#tab1Stats").html(data);
+      }
+    });
+}
+
 $('document').ready(function() {
+
   $("#runningTop").fadeOut(0);
-  refreshProgressb()
-  refreshRunning()
-  setInterval("refreshRunning()", 1000);
+  //init all boxes
+  //refreshProgressb();
+  refreshRunning();
+  refreshNextBackups();
+  refreshPrevBackups();
+  refreshStats();
+
+  //set update intervals
+  setInterval("isRunning()", 1000);
+  setInterval("refreshRunning()", 2000);
   setInterval("refreshProgressb()", 500);
+  setInterval("refreshNextBackups()", 10000);
+  setInterval("refreshPrevBackups()", 10000);
+  setInterval("refreshStats()", 10000);
+
+  //check for clicks on stuff
   $('#yesTop').click(function(){
-    $("#runningTop").fadeIn();
+    if(running === 'true'){
+      $("#runningTop").fadeIn();
+    }
   });
+
   $('#noTop').click(function(){
     $("#runningTop").fadeOut(0);
+  });
+
+  //more buttons checks
+  $('#updatepa').live('click', function(){
+    pa = pa+3;
+    refreshPrevBackups();
+  });
+  $('#updatepw').live('click', function(){
+    pw = pw+3;
+    refreshPrevBackups();
+  });
+  $('#updatepp').live('click', function(){
+    pp = pp+3;
+    refreshPrevBackups();
+  });
+  $('#updateps').live('click', function(){
+    ps = ps+3;
+    refreshPrevBackups();
+  });
+  $('#updatena').live('click', function(){
+    na = na+3;
+    refreshNextBackups();
+  });
+  $('#updatenw').live('click', function(){
+    nw = nw+3;
+    refreshNextBackups();
+  });
+  $('#updatenp').live('click', function(){
+    np = np+3;
+    refreshNextBackups();
+  });
+  $('#updatens').live('click', function(){
+    ns = ns+3;
+    refreshNextBackups();
+  });
+
+  $('.backup').live('click', function(){
+    $('#noTop').click();
+    var href = $(this).attr('href');
+    $.ajax({
+      url: href,
+      success: function(data) {
+        isRunning();
+        refreshRunning();
+        refreshProgressb();
+      }
+    });
+
+    return false;
   });
 });
 
