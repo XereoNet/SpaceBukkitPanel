@@ -12,6 +12,14 @@ class TBackupsController extends AppController {
         parent::beforeFilter();
 
         //check if user has rights to do this
+        $user_perm = $this->Session->read("user_perm");
+        $glob_perm = $this->Session->read("glob_perm");
+
+        if (!($user_perm['pages'] & $glob_perm['pages']['backups'])) { 
+
+           exit("access denied");
+
+        } 
 
       }
 
@@ -21,32 +29,56 @@ class TBackupsController extends AppController {
             require APP . 'spacebukkitcall.php';  
         }
 
-        $args = array();
-        $allWorlds = $api->call('getAllWorlds', $args, true);
-        $backupWorlds = '';
-        foreach ($allWorlds as $Wname) {
-            $backupWorlds .= "<section>\n<div class=\"b-what\">".$Wname."</div>\n<div class=\"b-when\"><a class=\"button icon like backup\" href=\"./tbackups/backup/World/".$Wname."\">Backup</a></div>\n</section>\n\n";
-        }
-        $this->set('backupWorlds', $backupWorlds);
-
-        $allPlugins = $api->call('getPlugins', $args, false);
-        $bPlugins = '';
-        $bPlugins .= "<section>\n<div> <a href=\"./tbackups/backup/Plugins\" class=\"button icon like backup\">Backup All Plugins</a></div>\n</section>";
-        foreach ($allPlugins as $p) {
-            $bPlugins .= "<section>\n<h3>".$p."\n</section>";
-        }
-        $this->set('backupPlugins', $bPlugins);
+        $args = array();   
+        $running = $api->call("isServerRunning", $args, true);
         
-        $this->layout = 'sbv1';  
+        $this->set('running', $running);
 
-        $this->set('title_for_layout', 'Backups');
+        //IF "FALSE", IT'S STOPPED. IF "NULL" THERE WAS A CONNECTION ERROR
+
+        if (is_null($running)) {
+
+        $this->layout = 'sbv1_notreached'; 
+                     
+        } else {
+
+            $args = array();
+
+            //Parse worldlist and add backup buttons
+            $allWorlds = $api->call('getAllWorlds', $args, true);
+            $backupWorlds = '';
+            foreach ($allWorlds as $Wname) {
+                $backupWorlds .= "<section>\n<div class=\"b-what\">".$Wname."</div>\n<div class=\"b-when\"><a class=\"button icon like backup\" href=\"./tbackups/backup/World/".$Wname."\">Backup</a></div>\n</section>\n\n";
+            }
+            $this->set('backupWorlds', $backupWorlds);
+            //parse plugin list
+            $bPlugins = '';
+                $bPlugins .= "<section>\n<div> <a href=\"./tbackups/backup/Plugins\" class=\"button icon like backup\">Backup All Plugins</a></div>\n</section>";
+            if (!$running) {
+                $bPlugins = 'Couldn\'t load plugins list (Server is turned off)';
+            } else {
+                $allPlugins = $api->call('getPlugins', $args, false);
+                foreach ($allPlugins as $p) {
+                    $bPlugins .= "<section>\n<h3>".$p."\n</section>";
+                }
+            }
+            $this->set('backupPlugins', $bPlugins);
+            
+            $this->layout = 'sbv1';  
+
+            $this->set('title_for_layout', 'Backups');
+        }
     }
 
     function sort_array($array) {
         $sorter = array();
         $new = array();
         foreach ($array as $int => $array2) {
-            $sorter[$array2[3]] = $int;
+            $k = $array2[3];
+            while (array_key_exists($k, $sorter)) {
+                $k++;
+            }
+            $sorter[$k] = $int;
         }
         ksort($sorter);
         foreach ($sorter as $key) {
@@ -96,7 +128,23 @@ class TBackupsController extends AppController {
             }
 
             $args = array($type, $name);
-            var_dump($api->call('backup', $args, true));
+            $api->call('backup', $args, true);
+        }
+    }
+
+    function restore($type, $fileName) {
+        if ($this->request->is('ajax') || true) {
+            $this->disableCache();
+            //Configure::write('debug', 0);
+            $this->autoRender = false;
+            require APP . 'spacebukkitcall.php';
+
+            $args = array('SpaceBukkit', 'Server is shutting down to restore a backups!');
+            $api->call('broadcastWithName', $args, false);
+            sleep(3);
+
+            $args = array($name);
+            $api->call('restore', $args, true);
         }
     }
 
@@ -186,7 +234,7 @@ END;
                 $e = 0;
             } else {
                 $backups = $this->sort_array($backups); //reverse array, newest on top
-                $i = 0; //How many lines?
+                $i = 0; //Write how many lines?
                 $e = 0; //How many lines were written?
                 foreach ($backups as $b) {
                     if ($i >= $amount) {
@@ -195,8 +243,8 @@ END;
                         if ($b[1] == 'Server' && ($type == 'All' || $type == 'Server')) {
                             $e++;
                             echo '<section>';
-                            echo '<div class="b-what">Complete Server</div>';
-                            echo '<div class="b-in">'.round($b[2] / 8388608, 2).'MB</div>';
+                            echo '<div class="b-what"><a href="./tbackups/restore/Server/'.$b[0].'" class="button icon move backup">Restore</a> Complete Server</div>';
+                            echo '<div class="b-in">'.round($b[2] / 1048576, 2).'MB</div>';
                             echo '<div class="b-when">'.date('l, dS F Y \a\t H:i', $b[3] / 1000).'</div>';
                             echo '</section>';
                         }
@@ -204,18 +252,18 @@ END;
                         else if ($b[1] == 'Plugins' && ($type == 'All' || $type == 'Plugins')) {
                             $e++;
                             echo '<section>';
-                            echo '<div class="b-what">All Plugins</div>';
-                            echo '<div class="b-in">'.round($b[2] / 8388608, 2).'MB</div>';
+                            echo '<div class="b-what"><a href="./tbackups/restore/Plugins/'.$b[0].'" class="button icon move backup">Restore</a> All Plugins</div>';
+                            echo '<div class="b-in">'.round($b[2] / 1048576, 2).'MB</div>';
                             echo '<div class="b-when">'.date('l, dS F Y \a\t H:i', $b[3] / 1000).'</div>';
                             echo '</section>';
                         }
 
-                        else if ($b[1] == 'Worlds' && ($type == 'All' || $type == 'Worlds')) {
+                        else if ($b[1] != 'Plugins' && $b[1] != 'Server' && ($type == 'All' || $type == 'Worlds')) {
                             $e++;
                             echo '<section>';
                             $wn = explode('-', $b[1]);
-                            echo '<div class="b-what">'.$wn[0].' "'.$wn[1].'"</div>';
-                            echo '<div class="b-in">'.round($b[2] / 8388608, 2).'MB</div>';
+                            echo '<div class="b-what"><a href="./tbackups/restore/Worlds/'.$b[0].'" class="button icon move backup">Restore</a> '.$wn[0].' "'.$wn[1].'"</div>';
+                            echo '<div class="b-in">'.round($b[2] / 1048576, 2).'MB</div>';
                             echo '<div class="b-when">'.date('l, dS F Y \a\t H:i', $b[3] / 1000).'</div>';
                             echo '</section>';
                         }
@@ -228,7 +276,7 @@ END;
                 echo '<section>';
                 echo '<h3>No backups found!</h3>'; //Name
                 echo '</section>';
-            } elseif(count($backups) > $amount) {
+            } else {
                 echo '<section>';
                 if ($type == 'All') {
                     echo '<div class="b-what"><a href="#" class="button icon add" id="updatepa">More...</a></div>'; //Name
@@ -268,13 +316,18 @@ END;
             $args = array();
             $backups = $api->call('getBackups', $args, true);
             $bnum = count($backups);
+            $bsize = 0;
+
+            foreach ($backups as $b) {
+                $bsize += round($b[2] / 1048576, 2);
+            }
 
             echo '<section>';
-            echo '<h3>Aantal backups: '.$bnum.'</h3>'; //Name
+            echo '<h3>Backup count: '.$bnum.'</h3>'; //Name
             echo '</section>';
 
             echo '<section>';
-            echo '<h3>Aantal backups: '.$bnum.'</h3>'; //Name
+            echo '<h3>Total size: '.$bsize.'MB</h3>'; //Name
             echo '</section>';
             
         }

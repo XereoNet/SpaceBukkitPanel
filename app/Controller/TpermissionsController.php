@@ -15,7 +15,7 @@ class TPermissionsController extends AppController {
         $user_perm = $this->Session->read("user_perm");
         $glob_perm = $this->Session->read("glob_perm");
 
-        if (!($user_perm['pages'] & $glob_perm['pages']['users'])) { 
+        if (!($user_perm['pages'] & $glob_perm['pages']['permissions'])) { 
 
            exit("access denied");
 

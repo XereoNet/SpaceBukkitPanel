@@ -358,8 +358,7 @@
 
             <div class="darkwell">
               <section>
-                Restart: "yes/no"<br>
-                Backup button
+                <a href="./tbackups/backup" class="button icon like backup">Backup Complete Server</a>
               </section>
             </div>
 
