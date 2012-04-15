@@ -704,6 +704,9 @@ END;
         <header>
             <h2><?php echo __('server.log') ?></h2> 
             <span class="button-group pull-right">
+              <a href="./tservers/rollserverlog" id="rollLog" class="button icon reload ajax">Rollover server.log</a>  
+              <a href="./tservers/dlserverlog" id="downloadlog" class="button icon arrowdown ajax">Download server.log</a>  
+              <a href="./tservers/delserverlog" id="delLog" class="button icon remove danger ajax">Delete server.log</a>  
               <a href="#" id="reloadlog" class="button icon reload">Reload</a>                     
             </span>        
         </header>
@@ -954,6 +957,16 @@ $.ajax({
       return false;
 
 }));
+
+  $('.ajax').live('click', function() {
+    var href = $(this).attr('href');
+    $.ajax({
+      url: href,
+      success: function(data) {
+      }
+    });
+    return false;
+  });
 
 });
 

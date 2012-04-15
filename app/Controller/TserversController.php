@@ -241,9 +241,9 @@ class TServersController extends AppController {
 
             require APP . 'spacebukkitcall.php';
 
-            $args = array('server.log');
+            $args = array();
 
-            debug($api->call('deleteFile', $args, true));
+            debug($api->call('rollOverLog', $args, true));
 
         }
 
