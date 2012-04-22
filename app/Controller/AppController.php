@@ -420,8 +420,8 @@ class AppController extends Controller {
 
         }
 
-            $this->set('gototab', $this->Session->read('Page.tab'));
-            $this->Session->delete('Page.tab');
+        $this->set('gototab', $this->Session->read('Page.tab'));
+        $this->Session->delete('Page.tab');
  
       }
 

@@ -80,10 +80,10 @@ Configure::write('debug', $system[0]['val']);
 
 Configure::write('Cache.disable',  $system[1]['val']);
 
-Configure::write('Security.salt',  $system[2]['val']);
+Configure::write('Security.salt',  "Oijasfdj544dsASd44dsh9a9sdASdgjyky8455s1as8w789q");
 
-Configure::write('Security.cipherSeed',  $system[3]['val']);
+Configure::write('Security.cipherSeed',  "3196725290708910560802715405054");
 
-date_default_timezone_set( $system[4]['val']);
+date_default_timezone_set( $system[2]['val']);
 
 ?>
