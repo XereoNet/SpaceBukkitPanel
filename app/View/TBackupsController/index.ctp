@@ -474,25 +474,25 @@ function refreshProgressb() {
 
 function refreshPrevBackups() {
   $.ajax({
-      url: './tbackups/getPrevBackups/All/'+pa,
+      url: './tbackups/getPrevBackups/a/'+pa,
       success: function(data) {
         $("div#tab1Prev").html(data);
       }
     });
   $.ajax({
-      url: './tbackups/getPrevBackups/Worlds/'+pw,
+      url: './tbackups/getPrevBackups/w/'+pw,
       success: function(data) {
         $("div#tab2Prev").html(data);
       }
     });
   $.ajax({
-      url: './tbackups/getPrevBackups/Plugins/'+pp,
+      url: './tbackups/getPrevBackups/p/'+pp,
       success: function(data) {
         $("div#tab3Prev").html(data);
       }
     });
   $.ajax({
-      url: './tbackups/getPrevBackups/Server/'+ps,
+      url: './tbackups/getPrevBackups/s/'+ps,
       success: function(data) {
         $("div#tab4Prev").html(data);
       }
@@ -501,25 +501,25 @@ function refreshPrevBackups() {
 
 function refreshNextBackups() {
   $.ajax({
-      url: './tbackups/getNextBackups/All/'+na,
+      url: './tbackups/getNextBackups/a/'+na,
       success: function(data) {
         $("div#tab1Next").html(data);
       }
     });
   $.ajax({
-      url: './tbackups/getNextBackups/Worlds/'+nw,
+      url: './tbackups/getNextBackups/w/'+nw,
       success: function(data) {
         $("div#tab2Next").html(data);
       }
     });
   $.ajax({
-      url: './tbackups/getNextBackups/Plugins/'+np,
+      url: './tbackups/getNextBackups/p/'+np,
       success: function(data) {
         $("div#tab3Next").html(data);
       }
     });
   $.ajax({
-      url: './tbackups/getNextBackups/Server/'+ns,
+      url: './tbackups/getNextBackups/s/'+ns,
       success: function(data) {
         $("div#tab4Next").html(data);
       }

@@ -70,23 +70,7 @@ class TBackupsController extends AppController {
         }
     }
 
-    function sort_array($array) {
-        $sorter = array();
-        $new = array();
-        foreach ($array as $int => $array2) {
-            $k = $array2[3];
-            while (array_key_exists($k, $sorter)) {
-                $k++;
-            }
-            $sorter[$k] = $int;
-        }
-        ksort($sorter);
-        foreach ($sorter as $key) {
-            $new[] = $array[$key];
-        }
-        $new = array_reverse($new);
-        return $new;
-    }
+    
 
     function test() {
         $this->disableCache();
@@ -99,7 +83,7 @@ class TBackupsController extends AppController {
 
         $test = $api->call('getBackups', $args, true);
 
-        debug($test);
+        debug(preg_match("/World-.*/", 'Server'));
     }
 
     function backup($type = 'Server', $name = '*', $restart = false) {
@@ -127,7 +111,7 @@ class TBackupsController extends AppController {
                 sleep(3);
             }
 
-            $args = array($type, $name);
+            $args = array($type, $name, false);
             $api->call('backup', $args, true);
         }
     }
@@ -212,7 +196,7 @@ END;
             } else if($messageTime >= time()) {
                 echo '<div class="col left col_1_3"><img src="./img/win.png" /></div>';
                 echo '<div class="col right col_2_3"><h3>Backup finished!</h3>';
-                echo '<div class="b-what">Backup of '.$bInfo[0].' finished '.round((240 + time() - $bInfo[2] / 1000) / 60, 0, PHP_ROUND_HALF_DOWN).' minutes ago!</div></div>';
+                echo '<div class="b-what">Backup of '.$bInfo[0].' finished '.round((time() - $bInfo[2] / 1000) / 60, 0, PHP_ROUND_HALF_DOWN).' minutes ago!</div></div>';
             }else{
                 echo '<div class="col left col_1_3"><img src="./img/info.png" /></div>';
                 echo '<div class="col right col_2_3"><h3>No backups running!</h3>'."\n".'<div class="b-what">All your backups are completed!</div></div>';
@@ -221,8 +205,42 @@ END;
         }
     }
 
-    function getPrevBackups($type = 'All', $amount = 3) {
-        if ($this->request->is('ajax')) {
+    function getPrevBackups($type = 'a', $amount = 3) {
+
+        function backup_type_count($array) {
+            $types = array('w' => array(), 'p' => array(), 's' => array());
+            foreach ($array as $key => $backup) {
+                if (preg_match("/World-.*/", $backup[1])) {
+                    $types['w'][] = $key;
+                } else if ($backup[1] == 'Plugins') {
+                    $types['p'][] = $key;
+                } else if ($backup[1] == 'Server'){
+                    $types['s'][] = $key;
+                }
+                $types['a'] = $array;
+            }
+            return $types;
+        }
+
+        function time_sort_array($array) {
+            $sorter = array();
+            $new = array();
+            foreach ($array as $int => $array2) {
+                $k = intval($array2[3] / 10000);
+                while (array_key_exists($k, $sorter)) {
+                    $k++;
+                }
+                $sorter[$k] = $int;
+            }
+            ksort($sorter);
+            foreach ($sorter as $key) {
+                $new[] = $array[$key];
+            }
+            $new = array_reverse($new);
+            return $new;
+        }
+
+        if ($this->request->is('ajax') || true) {
             $this->disableCache();
             //Configure::write('debug', 0);
             $this->autoRender = false;
@@ -233,63 +251,69 @@ END;
             if (empty($backups)) {
                 $e = 0;
             } else {
-                $backups = $this->sort_array($backups); //reverse array, newest on top
-                $i = 0; //Write how many lines?
-                $e = 0; //How many lines were written?
-                foreach ($backups as $b) {
+                $e = count($backups);
+                $backups = time_sort_array($backups); //reverse array, newest on top
+                $types = backup_type_count($backups); //Count the backup types
+                $bToWrite = array();
+                if ($type == 'a') {
+                    $bToWrite = $backups;
+                } else if ($type == 'w') {
+                    foreach ($types['w'] as $z) {
+                        $bToWrite[] = $backups[$z];
+                    }
+                } else if ($type == 'p') {
+                    foreach ($types['p'] as $z) {
+                        $bToWrite[] = $backups[$z];
+                    }
+                } else if ($type == 's') {
+                    foreach ($types['s'] as $z) {
+                        $bToWrite[] = $backups[$z];
+                    }
+                } else {
+                    echo 'Unsupported backup type!';
+                }
+
+                $i = 0;
+                foreach ($bToWrite as $b) {
                     if ($i >= $amount) {
                         echo '';
                     } else {
-                        if ($b[1] == 'Server' && ($type == 'All' || $type == 'Server')) {
-                            $e++;
-                            echo '<section>';
-                            echo '<div class="b-what"><a href="./tbackups/restore/Server/'.$b[0].'" class="button icon move backup">Restore</a> Complete Server</div>';
-                            echo '<div class="b-in">'.round($b[2] / 1048576, 2).'MB</div>';
-                            echo '<div class="b-when">'.date('l, dS F Y \a\t H:i', $b[3] / 1000).'</div>';
-                            echo '</section>';
-                        }
-
-                        else if ($b[1] == 'Plugins' && ($type == 'All' || $type == 'Plugins')) {
-                            $e++;
-                            echo '<section>';
-                            echo '<div class="b-what"><a href="./tbackups/restore/Plugins/'.$b[0].'" class="button icon move backup">Restore</a> All Plugins</div>';
-                            echo '<div class="b-in">'.round($b[2] / 1048576, 2).'MB</div>';
-                            echo '<div class="b-when">'.date('l, dS F Y \a\t H:i', $b[3] / 1000).'</div>';
-                            echo '</section>';
-                        }
-
-                        else if ($b[1] != 'Plugins' && $b[1] != 'Server' && ($type == 'All' || $type == 'Worlds')) {
-                            $e++;
+                        if (preg_match("/[aw]/", $type) && preg_match("/World-.*/", $b[1])) {
                             echo '<section>';
                             $wn = explode('-', $b[1]);
                             echo '<div class="b-what"><a href="./tbackups/restore/Worlds/'.$b[0].'" class="button icon move backup">Restore</a> '.$wn[0].' "'.$wn[1].'"</div>';
                             echo '<div class="b-in">'.round($b[2] / 1048576, 2).'MB</div>';
                             echo '<div class="b-when">'.date('l, dS F Y \a\t H:i', $b[3] / 1000).'</div>';
                             echo '</section>';
+                            $i++;
+                        } else if (preg_match("/[ap]/", $type) && preg_match("/Plugins/", $b[1])) {
+                            echo '<section>';
+                            echo '<div class="b-what"><a href="./tbackups/restore/Plugins/'.$b[0].'" class="button icon move backup">Restore</a> All Plugins</div>';
+                            echo '<div class="b-in">'.round($b[2] / 1048576, 2).'MB</div>';
+                            echo '<div class="b-when">'.date('l, dS F Y \a\t H:i', $b[3] / 1000).'</div>';
+                            echo '</section>';
+                            $i++;
+                        } else if (preg_match("/[as]/", $type) && preg_match("/Server/", $b[1])) {
+                            echo '<section>';
+                            echo '<div class="b-what"><a href="./tbackups/restore/Server/'.$b[0].'" class="button icon move backup">Restore</a> Complete Server</div>';
+                            echo '<div class="b-in">'.round($b[2] / 1048576, 2).'MB</div>';
+                            echo '<div class="b-when">'.date('l, dS F Y \a\t H:i', $b[3] / 1000).'</div>';
+                            echo '</section>';
+                            $i++;
                         }
                     }
-                    $i++;
                 }
             }
-
             if ($e == 0) {
                 echo '<section>';
                 echo '<h3>No backups found!</h3>'; //Name
                 echo '</section>';
-            } else {
+            } else if (count($types[$type]) > $i) {
                 echo '<section>';
-                if ($type == 'All') {
-                    echo '<div class="b-what"><a href="#" class="button icon add" id="updatepa">More...</a></div>'; //Name
-                } elseif ($type == 'Worlds') {
-                    echo '<div class="b-what"><a href="#" class="button icon add" id="updatepw">More...</a></div>'; //Name
-                } elseif ($type == 'Plugins') {
-                    echo '<div class="b-what"><a href="#" class="button icon add" id="updatepp">More...</a></div>'; //Name
-                } elseif ($type == 'Server') {
-                    echo '<div class="b-what"><a href="#" class="button icon add" id="updateps">More...</a></div>'; //Name
-                }
+                echo '<div class="b-what"><a href="#" class="button icon add" id="updatep'.$type.'">More...</a></div>'; //Name
                 echo '<div class="b-in"></div>'; //Size
                 echo '<div class="b-when"></div>'; //date
-                echo '</section>';            
+                echo '</section>';
             }
         }
     }
