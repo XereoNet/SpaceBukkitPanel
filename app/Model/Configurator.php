@@ -91,7 +91,7 @@ class Configurator extends AppModel {
 
     //Save config
 
-    function saveSys($values) {
+    function saveSys($new) {
 
 
       $file       = APP . 'webroot/system.php';
@@ -116,9 +116,6 @@ class Configurator extends AppModel {
       $fp=fopen($file,'w');
 
       fwrite($fp, $str, strlen($str));    
-
-      debug($old);
-      debug($new);
 
     }
 

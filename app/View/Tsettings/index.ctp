@@ -201,17 +201,21 @@
 
                   $var_input = '<input id="'.$id.'" name="'.$id.'" type="text" value="'.$var['val'].'"/>';
 
+                } else {
+
+                  $options = '';
+        
+                  foreach ($var['vars'] as $desc => $val) {
+
+                    $options .= '<option value="'.$val.'">'.$desc.'</option>';
+
+                  }
+
+                  $var_input = '<select id="'.$id.'" name="'.$id.'">'.$options.'</select>';
+
                 }
 
-                echo '<section><label for="'.$id.'">'.$var['name'].'</label>';
-                echo '<div>';
-                echo $var_input;
-                echo '<p class="help-block">'.$var['desc'].'</p>';
-                echo '</div>';
-                echo '</section>';
-
               }
-
 
             ?>
              
@@ -344,7 +348,16 @@
         
                   foreach ($var['vars'] as $desc => $val) {
 
-                    $options .= '<option value="'.$val.'">'.$desc.'</option>';
+                    if ($var['val'] == $val) 
+                    { 
+                      $sel = " selected"; 
+                    } 
+                    else 
+                    { 
+                      $sel = " "; 
+                    }
+
+                    $options .= '<option value="'.$val.'"'.$sel.'>'.$desc.'</option>';
 
                   }
 

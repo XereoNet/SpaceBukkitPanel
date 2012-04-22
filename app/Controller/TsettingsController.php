@@ -94,7 +94,8 @@ class TsettingsController extends AppController {
 
               $data = $this->request->data;
               $this->Configurator->saveSys($data);
-              $debug($data);
+              $this->redirect($this->referer());
+              $this->Session->write('Page.tab', 7);
 
         }
 
