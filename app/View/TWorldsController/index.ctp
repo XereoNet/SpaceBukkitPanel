@@ -73,8 +73,13 @@
 	
 	</header>
 	<section>
-		<div>
-			<iframe src="<?php echo $dynmapurl; ?>"></iframe>
+		<div><?php if ($dynmap) { ?>
+			<iframe src="<?php echo $dynmapurl; ?>" style="width: 100%; height: 100%;"></iframe>
+			<?php } else { ?>
+			<div class="alert alert-info"> 
+	        <?php echo __('Dynmap not found, please install it if you want to use the map feature!') ?>
+		    </div> 
+		    <?php } ?>
 		</div>
 	</section>
   </div>

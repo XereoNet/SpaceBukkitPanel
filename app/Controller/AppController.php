@@ -324,6 +324,9 @@ class AppController extends Controller {
                 "plugins" => 255,
                 "worlds" => 255,
                 "servers" => 255,
+                "backups" => 255,
+                "permissions" => 255,
+                "timeline" => 255,
                 );
 
         }
