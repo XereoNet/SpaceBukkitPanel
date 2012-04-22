@@ -95,8 +95,11 @@ class TWorldsController extends AppController {
         $this->set("enWorlds", $enWorlds);
         $wmpl = $this->getWMPL($api->call("getPlugins", $args, false));
         $this->set("wmpl", $wmpl);
+        $dynmapurl = 'http://'.$this->Session->read('Server.external_address').':'.$api->call('dynmapPort', $args, false);
+        $this->set('dynmapurl', $dynmapurl);
         }
     }
+    
     //Function to get strings
     function get_string_between($string, $start, $end){
         $ini = strpos($string, $start); 

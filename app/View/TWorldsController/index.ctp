@@ -72,7 +72,11 @@
       <h2><?php echo __('Map') ?></h2>
 	
 	</header>
-	<section><center><p class="description">Coming soon to a SpaceBukkit enabled server near you!</p></center></section>
+	<section>
+		<div>
+			<iframe src="<?php echo $dynmapurl; ?>"></iframe>
+		</div>
+	</section>
   </div>
 		</div>
 	<div class="clear"></div>
