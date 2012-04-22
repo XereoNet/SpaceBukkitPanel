@@ -65,10 +65,42 @@ class TsettingsController extends AppController {
         $this->set('title_for_layout', 'Settings');    
         $this->set('configurations', $dataSource);    
         $this->layout = 'sbv1';
+        include(APP . 'webroot/vars.php');
+        include(APP . 'webroot/system.php');
+        $this->set('variables', $variables);    
+        $this->set('system', $system);    
 
 	    }
-        
-   function getUsers() {
+
+    function sb_config_save() {
+
+        if ($this->request->is('post')) {
+
+              $this->loadModel('Configurator');
+
+              $data = $this->request->data;
+              $this->Configurator->saveVars($data);
+              $this->redirect($this->referer());
+              $this->Session->write('Page.tab', 5);
+        }
+
+    }
+   
+    function sb_system_save() {
+
+        if ($this->request->is('post')) {
+
+              $this->loadModel('Configurator');
+
+              $data = $this->request->data;
+              $this->Configurator->saveSys($data);
+              $debug($data);
+
+        }
+
+    }
+            
+    function getUsers() {
 
     if ($this->request->is('ajax')) {
         $this->disableCache();

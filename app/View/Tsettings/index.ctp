@@ -186,25 +186,37 @@
         
       <section>
 
-        <form action='#' id='vars1' method='post'>
+        <form id="SbConfig" method="post" action="./tsettings/sb_config_save">
 
             <div class="error_box"></div>
 
-            <section>
+            <?php
 
-              <label for="title">
-                
-                Username
 
-              </label>
-            
-              <div>
+              foreach ($variables as $num => $var) {
 
-                <input id="username" name="username" type="text" />
+                $id = $num;
 
-              </div>
+                if (is_null($var['vars'])) {
 
-            </section>
+                  $var_input = '<input id="'.$id.'" name="'.$id.'" type="text" value="'.$var['val'].'"/>';
+
+                }
+
+                echo '<section><label for="'.$id.'">'.$var['name'].'</label>';
+                echo '<div>';
+                echo $var_input;
+                echo '<p class="help-block">'.$var['desc'].'</p>';
+                echo '</div>';
+                echo '</section>';
+
+              }
+
+
+            ?>
+             
+          <input type="submit" class="pull-right button primary submit" value="<?php echo __('Submit') ?>">
+  <div class="clear"></div>
 
         </form>
 
@@ -310,32 +322,53 @@
       </header>
         
       <section>
-
-        <div class="alert alert-danger">
-        <p><?php echo __('Only change these settings if you know what you\'re doing!'); ?></p>
-        </div>
-
-        <form action='#' id='vars1' method='post'>
+ 
+        <form id="SbSystem" method="post" action="./tsettings/sb_system_save">
 
             <div class="error_box"></div>
 
-            <section>
+            <?php
 
-              <label for="title">
-                
-                Username
 
-              </label>
-            
-              <div>
+              foreach ($system as $num => $var) {
 
-                <input id="username" name="username" type="text" />
+                $id = $num;
 
-              </div>
+                if (is_null($var['vars'])) {
 
-            </section>
+                  $var_input = '<input id="'.$id.'" name="'.$id.'" type="text" value="'.$var['val'].'"/>';
+
+                } else {
+
+                  $options = '';
+        
+                  foreach ($var['vars'] as $desc => $val) {
+
+                    $options .= '<option value="'.$val.'">'.$desc.'</option>';
+
+                  }
+
+                  $var_input = '<select id="'.$id.'" name="'.$id.'">'.$options.'</select>';
+
+                }
+
+                echo '<section><label for="'.$id.'">'.$var['name'].'</label>';
+                echo '<div>';
+                echo $var_input;
+                echo '<p class="help-block">'.$var['desc'].'</p>';
+                echo '</div>';
+                echo '</section>';
+
+              }
+
+
+            ?>
+             
+          <input type="submit" class="pull-right button primary submit" value="<?php echo __('Submit') ?>">
+  <div class="clear"></div>
 
         </form>
+
 
       </section>
     

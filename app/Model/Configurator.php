@@ -45,13 +45,16 @@ class Configurator extends AppModel {
     function saveVars($new) {
 
       $file       = APP . 'webroot/vars.php';
+      include $file;
+
       $contents   = file_get_contents($file);
 
       $old = array();
 
-      foreach ($new as $num => $value) {
+      foreach ($variables as $key => $var) {
 
-        $old[$num] = $this->get_string_between($contents, "/*".$num."*/'", "'");
+        $old[$key] = "/*".$key."*/'".$var['val']."'";
+        $new[$key] = "/*".$key."*/'".$new[$key]."'";
 
       }
 
@@ -63,10 +66,6 @@ class Configurator extends AppModel {
       $fp=fopen($file,'w');
 
       fwrite($fp, $str, strlen($str));     
-      
-      debug($old);
-      debug($new);
-      debug($contents);
 
     }
 
@@ -94,12 +93,32 @@ class Configurator extends AppModel {
 
     function saveSys($values) {
 
-      $file = file_get_contents(APP . 'webroot/system.php');
 
-      $matches =$this->get_string_between($file, "'0'", "'");
+      $file       = APP . 'webroot/system.php';
+      include $file;
 
-      debug($file);
-      debug($matches);
+      $contents   = file_get_contents($file);
+
+      $old = array();
+
+      foreach ($system as $key => $var) {
+
+        $old[$key] = "/*".$key."*/'".$var['val']."'";
+        $new[$key] = "/*".$key."*/'".$new[$key]."'";
+
+      }
+
+      $new_file = implode(file($file));     
+   
+      $str = str_replace($old,$new,$new_file);
+
+      //now, TOTALLY rewrite the file
+      $fp=fopen($file,'w');
+
+      fwrite($fp, $str, strlen($str));    
+
+      debug($old);
+      debug($new);
 
     }
 
