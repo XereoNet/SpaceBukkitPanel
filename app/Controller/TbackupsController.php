@@ -70,14 +70,6 @@ class TBackupsController extends AppController {
         }
     }
 
-    function test() {
-        $this->disableCache();
-        $this->autoRender = false;
-        $user_perm = $this->Session->read("user_perm");
-        $glob_perm = $this->Session->read("glob_perm");
-        debug($user_perm);
-    }
-
     function backup($type = 'Server', $name = '*', $restart = false) {
         perm('backups', 'backup', $this->Session->read("user_perm"), true);
         if ($this->request->is('ajax')) {
