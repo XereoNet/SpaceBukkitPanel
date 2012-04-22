@@ -70,8 +70,6 @@ class TBackupsController extends AppController {
         }
     }
 
-    
-
     function test() {
         $this->disableCache();
         //Configure::write('debug', 0);
@@ -87,7 +85,7 @@ class TBackupsController extends AppController {
     }
 
     function backup($type = 'Server', $name = '*', $restart = false) {
-        if ($this->request->is('ajax') || true) {
+        if ($this->request->is('ajax')) {
             $this->disableCache();
             //Configure::write('debug', 0);
             $this->autoRender = false;
@@ -95,13 +93,9 @@ class TBackupsController extends AppController {
 
             if ($type == 'Server') {
                 $name = '*';
-            }
-
-            elseif ($type == 'Plugins') {
+            } else if ($type == 'Plugins') {
                 $name = 'plugins';
-            }
-
-            elseif ($type == 'World') {
+            } else if ($type == 'World') {
                     $type = 'World-'.$name;
             }
 
@@ -111,13 +105,13 @@ class TBackupsController extends AppController {
                 sleep(3);
             }
 
-            $args = array($type, $name, false);
+            $args = array($type, $name, $restart);
             $api->call('backup', $args, true);
         }
     }
 
     function restore($type, $fileName) {
-        if ($this->request->is('ajax') || true) {
+        if ($this->request->is('ajax')) {
             $this->disableCache();
             //Configure::write('debug', 0);
             $this->autoRender = false;
@@ -133,7 +127,7 @@ class TBackupsController extends AppController {
     }
 
     function isRunning() {
-        if ($this->request->is('ajax') || true) {
+        if ($this->request->is('ajax')) {
             $this->disableCache();
             //Configure::write('debug', 0);
             $this->autoRender = false;
@@ -240,7 +234,7 @@ END;
             return $new;
         }
 
-        if ($this->request->is('ajax') || true) {
+        if ($this->request->is('ajax')) {
             $this->disableCache();
             //Configure::write('debug', 0);
             $this->autoRender = false;
@@ -328,7 +322,66 @@ END;
             echo '<h3>No scheduled backups found!</h3>'; //Name
             echo '</section>';
 
+            echo '<section>';
+            echo '<div class="b-what"><a href="./tbackups/schedule" class="button icon add fancy" id="schedb">Schedule backup</a></div>'; //Name
+            echo '<div class="b-in"></div>'; //Size
+            echo '<div class="b-when"></div>'; //date
+            echo '</section>';
+
         }
+    }
+
+    function schedule(){
+        if ($this->request->is('post')) { 
+
+            $data = $this->request->data;
+
+            $type = $data["type"];
+            $timetype = $data["timeType"];
+            $id = $data["name"];
+            $bname = $type;
+
+            if ($type == 'world') {
+                $bname = 'World-'.$data['sworlds'];
+                $fold = $data['sworlds'];
+            } else if ($type == 'server') {
+                $bname = 'Server';
+                $fold = '*';
+            } else if ($type == 'plugins') {
+                $bname = 'Plugins';
+                $fold = 'plugins';
+            }
+
+            $arguments = array($bname, $fold, false);
+
+            if (!(isset($data["timeArgs2"]))) {
+                $data["timeArgs2"] = 'null';
+            }
+
+            if ($data['timeArgs2'] == "null") {
+
+               $timeargs = $data["timeArgs1"];
+                
+            } else {
+               
+               $timeargs = $data["timeArgs1"].':'.$data['timeArgs2'];
+
+            }
+
+
+            require APP . 'spacebukkitcall.php';
+            
+            $args = array($data["name"], 'backup', $arguments, $timetype, $timeargs);
+     
+            $api->call("addJob", $args, true);
+        } else {
+            require APP . 'spacebukkitcall.php';
+            //get world specific information
+            $args = array();
+            $worlds = $api->call("allWorlds", $args, true);
+            $this->set('worlds', $worlds);
+        }
+        $this->layout = 'popup';
     }
 
     function getBackupStats() {
