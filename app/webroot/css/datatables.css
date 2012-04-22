@@ -32,8 +32,19 @@
 
  @-moz-document url-prefix() {
 
-	.dataTables_wrapper { top: 0px; !important }
-
+	.dataTables_wrapper { 
+		top: 0px !important;
+	}
+    .dataTable {
+        left: -41px;
+        margin-top: 5px;
+    }
+    .dataTables_filter {
+    	margin-top: -7px;
+    }
+    .dataTables_length {
+    	top: -42px !important;
+    }    
 }
 
 .notitle{
