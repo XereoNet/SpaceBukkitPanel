@@ -318,9 +318,38 @@ END;
             //Configure::write('debug', 0);
             $this->autoRender = false;
 
-            echo '<section>';
-            echo '<h3>No scheduled backups found!</h3>'; //Name
-            echo '</section>';
+            require APP . 'spacebukkitcall.php';
+            $args = array();
+            $jobs = $api->call('getJobs', $args, true);
+            $nbackups = array();
+            foreach ($jobs as $name => $info) {
+                if ($info[0] == 'backup') {
+                    $nbackups[$name] = array('type' => $info[1][0][0], 'fold' => $info[1][0][1], 'timeType' => $info[2], 'timeArg' => $info[3]);
+                }
+            }
+            if (empty($nbackups)) {
+                echo '<section>';
+                echo '<h3>No scheduled backups found!</h3>'; //Name
+                echo '</section>';
+            } else {
+                $i = 0;
+                foreach ($nbackups as $bname => $binfo) {
+                    if (preg_match("/EVERYXHOURS/", $binfo['timeType'])) {
+                        $when = 'Every '.$binfo['timeArg'].' hours';
+                    } else if (preg_match("/EVERYXMINUTES/", $binfo['timeType'])) {
+                        $when = 'Every '.$binfo['timeArg'].' minutes';
+                    } else if (preg_match("/ONCEPERDAYAT/", $binfo['timeType'])) {
+                        $when = 'Once per day at: '.$binfo['timeArg'];
+                    } else if (preg_match("/XMINUTESPASTEVERYHOUR/", $binfo['timeType'])) {
+                        $when = $binfo['timeArg'].' minutes past every hour';
+                    }
+                    echo '<section>';
+                    echo '<div class="b-what">'.$bname.'</a></div>'; //Name
+                    echo '<div class="b-in">contents: '.$binfo['type'].', folder: '.$binfo['fold'].'</div>'; //Size
+                    echo '<div class="b-when">'.$when.'</div>'; //date
+                    echo '</section>';
+                }
+            }
 
             echo '<section>';
             echo '<div class="b-what"><a href="./tbackups/schedule" class="button icon add fancy" id="schedb">Schedule backup</a></div>'; //Name
