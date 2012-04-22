@@ -82,21 +82,31 @@ class TWorldsController extends AppController {
 
         elseif ($running) {
 
-        //IF IT'S RUNNING, CONTINUE WITH THE PROGRAM
+            //IF IT'S RUNNING, CONTINUE WITH THE PROGRAM
 
-		$this->set('title_for_layout', __('Worlds'));
-		
-        $this->layout = 'sbv1';  
+    		$this->set('title_for_layout', __('Worlds'));
+    		
+            $this->layout = 'sbv1';  
 
-		$args = array();   
-		$worlds = $api->call("getAllWorlds", $args, true);		
-   		$this->set('worlds', $worlds);
-        $enWorlds = $api->call("getWorlds", $args, false);
-        $this->set("enWorlds", $enWorlds);
-        $wmpl = $this->getWMPL($api->call("getPlugins", $args, false));
-        $this->set("wmpl", $wmpl);
+    		$args = array();   
+    		$worlds = $api->call("getAllWorlds", $args, true);		
+       		$this->set('worlds', $worlds);
+            $enWorlds = $api->call("getWorlds", $args, false);
+            $this->set("enWorlds", $enWorlds);
+            $plugins = $api->call("getPlugins", $args, false);
+            $wmpl = $this->getWMPL($plugins);
+            $this->set("wmpl", $wmpl);
+            if (in_array('dynmap', $plugins)) {
+                $dynmap = true;
+                $dynmapurl = 'http://'.$this->Session->read('Server.external_address').':'.$api->call('dynmapPort', $args, false);
+                $this->set('dynmapurl', $dynmapurl);
+            } else {
+                $dynmap = false;
+            }
+            $this->set('dynmap', $dynmap);
         }
     }
+    
     //Function to get strings
     function get_string_between($string, $start, $end){
         $ini = strpos($string, $start); 

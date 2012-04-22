@@ -94,9 +94,11 @@
 	);
 
     $permissions["backups"] = array(
-    'backupServer'          => 1,
-    'backupPlugins'         => 2,
-    'backupWorlds'          => 3
+    'backup'                => 1,
+    'backupServer'          => 2,
+    'backupPlugins'         => 4,
+    'backupWorlds'          => 8,
+    'restore'               => 16
     );
 
     $permissions["permissions"] = array(

@@ -72,7 +72,16 @@
       <h2><?php echo __('Map') ?></h2>
 	
 	</header>
-	<section><center><p class="description">Coming soon to a SpaceBukkit enabled server near you!</p></center></section>
+	<section>
+		<div><?php if ($dynmap) { ?>
+			<iframe src="<?php echo $dynmapurl; ?>" style="width: 100%; height: 100%;"></iframe>
+			<?php } else { ?>
+			<div class="alert alert-info"> 
+	        <?php echo __('Dynmap not found, please install it if you want to use the map feature!') ?>
+		    </div> 
+		    <?php } ?>
+		</div>
+	</section>
   </div>
 		</div>
 	<div class="clear"></div>

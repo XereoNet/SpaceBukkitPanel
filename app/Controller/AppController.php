@@ -324,6 +324,9 @@ class AppController extends Controller {
                 "plugins" => 255,
                 "worlds" => 255,
                 "servers" => 255,
+                "backups" => 255,
+                "permissions" => 255,
+                "timeline" => 255,
                 );
 
         }
@@ -334,6 +337,7 @@ class AppController extends Controller {
         //write server config to session
 
         $this->Session->write('Server.address', $s['Server']['address']);
+        $this->Session->write('Server.external_address', $s['Server']['external_address']);
         $this->Session->write('Server.salt', $s['Server']['password']);
         $this->Session->write('Server.p1', $s['Server']['port1']);
         $this->Session->write('Server.p2', $s['Server']['port2']);
