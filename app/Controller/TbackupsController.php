@@ -334,20 +334,25 @@ END;
             } else {
                 $i = 0;
                 foreach ($nbackups as $bname => $binfo) {
-                    if (preg_match("/EVERYXHOURS/", $binfo['timeType'])) {
-                        $when = 'Every '.$binfo['timeArg'].' hours';
-                    } else if (preg_match("/EVERYXMINUTES/", $binfo['timeType'])) {
-                        $when = 'Every '.$binfo['timeArg'].' minutes';
-                    } else if (preg_match("/ONCEPERDAYAT/", $binfo['timeType'])) {
-                        $when = 'Once per day at: '.$binfo['timeArg'];
-                    } else if (preg_match("/XMINUTESPASTEVERYHOUR/", $binfo['timeType'])) {
-                        $when = $binfo['timeArg'].' minutes past every hour';
+                    if ($i >= 3) {
+                        echo '';
+                    } else {
+                        if (preg_match("/EVERYXHOURS/", $binfo['timeType'])) {
+                            $when = 'Every '.$binfo['timeArg'].' hours';
+                        } else if (preg_match("/EVERYXMINUTES/", $binfo['timeType'])) {
+                            $when = 'Every '.$binfo['timeArg'].' minutes';
+                        } else if (preg_match("/ONCEPERDAYAT/", $binfo['timeType'])) {
+                            $when = 'Once per day at: '.$binfo['timeArg'];
+                        } else if (preg_match("/XMINUTESPASTEVERYHOUR/", $binfo['timeType'])) {
+                            $when = $binfo['timeArg'].' minutes past every hour';
+                        }
+                        echo '<section>';
+                        echo '<div class="b-what">'.$bname.'</a></div>'; //Name
+                        echo '<div class="b-in">contents: '.$binfo['type'].', folder: '.$binfo['fold'].'</div>'; //Size
+                        echo '<div class="b-when">'.$when.'</div>'; //date
+                        echo '</section>';
+                        $i++;
                     }
-                    echo '<section>';
-                    echo '<div class="b-what">'.$bname.'</a></div>'; //Name
-                    echo '<div class="b-in">contents: '.$binfo['type'].', folder: '.$binfo['fold'].'</div>'; //Size
-                    echo '<div class="b-when">'.$when.'</div>'; //date
-                    echo '</section>';
                 }
             }
 
