@@ -42,8 +42,7 @@
     'servers'               => 16,
     'global'                => 32,
     'backups'               => 64,
-    'permissions'           => 128,
-    'timeline'              => 256
+    'permissions'           => 128
     );
 
 	$permissions["global"] = array(
