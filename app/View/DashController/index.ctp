@@ -67,9 +67,9 @@
                 <div class="accordion-inner">
                   <div>
                     <h3>RAM</h3>
-                    <p class="ram_tot">Total: <span>3</span> MB</p>
-                    <p class="ram_used">Used: <span>2</span> MB</p>
-                    <p class="ram_free">Free: <span>1</span> MB</p>
+                    <p class="ram_tot">Total: <span></span> MB</p>
+                    <p class="ram_used">Used: <span></span> MB</p>
+                    <p class="ram_free">Free: <span></span> MB</p>
                     <div class="timer timer1">
 
                       <div class="percent">Calculating...</div>
@@ -81,8 +81,8 @@
                   </div>
                   <div>
                     <h3>CPU</h3>
-                    <p class="cpu_tot">CPUs: <span>3</span></p>
-                    <p class="cpu_used">Frequency: <span>2</span></p>
+                    <p class="cpu_tot">CPUs: <span></span></p>
+                    <p class="cpu_used">Frequency: <span></span></p>
                     <p class="cpu_free"><span></span></p>
                     <div class="timer timer2">
 
@@ -95,9 +95,9 @@
                   </div>
                   <div>
                     <h3>JAVA</h3>
-                    <p class="jav_tot">Total: <span></span> MB</p>
-                    <p class="jav_used">Used: <span></span> MB</p>
-                    <p class="jav_free">Free: <span></span> MB</p>
+                    <p class="java_tot">Total: <span></span> MB</p>
+                    <p class="java_used">Used: <span></span> MB</p>
+                    <p class="java_free">Free: <span></span> MB</p>
                     <div class="timer timer3">
 
                       <div class="percent">Calculating...</div>
@@ -211,41 +211,55 @@
         $(slice).css({'clip': 'rect(0px,1em,1em,0em)'});
       }
     }
- 
-  function graphs(graph,source,interval,type) {
 
-    var c1    = $(graph);
-    var t  = '.'+type;
-    var tot   = $(t + '_tot span' );
-    var free  = $(t + '_free span');
-    var used  = $(t + '_used span');
+  function graphs() {
+    $.getJSON('./dash/graphs', function(data) {
+      //Ram
+      $('.ram_tot span').html(data.ram.tot);
+      $('.ram_free span').html(data.ram.free);
+      $('.ram_used span').html(data.ram.used);
+      drawTimer('.timer1', data.ram.perc);
 
-    $.getJSON(source, function(data) {
+      //cpu
+      $('.cpu_tot span').html(data.cpu.tot);
+      $('.cpu_used span').html(data.cpu.used);
+      drawTimer('.timer2', data.cpu.perc);
 
-      tot.html(data.tot);
-      free.html(data.free);
-      used.html(data.used);
-      drawTimer(graph, data.perc);
-
+      //java
+      $('.java_tot span').html(data.java.tot);
+      $('.java_free span').html(data.java.free);
+      $('.java_used span').html(data.java.used);
+      drawTimer('.timer3', data.java.perc);
     });
- 
+  };
+
+  function serverInfo() {
+    $.getJSON('./dash/serverInfo', function(data) {
+      $('#players-count').html(data.players);
+      $('#ticks-count').html(data.ticks);
+    });
+  };
+
+  function panelInfo() {
+    $.getJSON('./dash/panelInfo', function(data) {
+      $('activity-list ul').html(data.serverlog);
+      $('#online-list').html(data.admins);
+    });
   };
 
 $(document).ready(function(){
+  graphs();
+  serverInfo();
+  panelInfo();
 
   $('input[type=button]#percent').click(function(e){
     e.preventDefault();
     drawTimer('.timer1', $('input[type=text]#percent').val());
   });          
 
-  setInterval("graphs('.timer1', './dash/calculate_ram', 3000, 'ram')", '<?php echo $this->Session->read("Sbvars.5"); ?>');
-  setInterval("graphs('.timer2', './dash/calculate_cpu', 3000, 'cpu')", '<?php echo $this->Session->read("Sbvars.5"); ?>');
-  setInterval("graphs('.timer3', './dash/calculate_java', 3000, 'jav')", '<?php echo $this->Session->read("Sbvars.5"); ?>');
-
-  doAndRefresh('#activity-list ul', './dash/get_log', '<?php echo $this->Session->read("Sbvars.6"); ?>');
-  doAndRefresh('#online-list', './dash/get_admins', '<?php echo $this->Session->read("Sbvars.6"); ?>');
-  doAndRefresh('#players-count', './dash/calculate_players', '<?php echo $this->Session->read("Sbvars.4"); ?>');
-  doAndRefresh('#ticks-count', './dash/calculate_ticks', '<?php echo $this->Session->read("Sbvars.4"); ?>');
+  setInterval("serverInfo()", '<?php echo $this->Session->read("Sbvars.4"); ?>');
+  setInterval("graphs()", '<?php echo $this->Session->read("Sbvars.5"); ?>');
+  setInterval("panelInfo()", '<?php echo $this->Session->read("Sbvars.6"); ?>');
 
 });
 

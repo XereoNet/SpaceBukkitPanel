@@ -13,15 +13,17 @@
 *   TABLE OF CONTENTS
 *   
 *   1)  index
-*   2)  calculate_players
-*   3)  calculate_java
+*	Active functions: (ajax updates)
+*   	2)  graphs
+*   	3)  panelInfo (logs, admins, etc.)
+*		4)	serverInfo (users, ticks)
 *   4)  get_chat
 *   5)  get_log
 *   6)  saysomething
 *   
 *   
-* @copyright  Copyright (c) 20011 XereoNet and SpaceBukkit (http://spacebukkit.xereo.net)
-* @version    Last edited by Antariano
+* @copyright  Copyright (c) 2012 XereoNet and SpaceBukkit (http://spacebukkit.xereo.net)
+* @version    Last edited by Antariano/Jamy
 * @since      File available since Release 1.0
 *
 *
@@ -234,204 +236,113 @@ class DashController extends AppController {
 
      	}   
  	}
-    
 
-	function calculate_players() {
+    // --------------------------------------------------------------------------------------------------
+    // | Active functions (ajax invoked functions)                                                      |
+    // --------------------------------------------------------------------------------------------------
 
-        if ($this->request->is('ajax')) {
+    function graphs() {
+    	if ($this->request->is('ajax')) {
             $this->disableCache();
             Configure::write('debug', 0);
             $this->autoRender = false;
 
-   	    require APP . 'spacebukkitcall.php';
+            require APP . 'spacebukkitcall.php';
+            $args = array();
+            // Ram
+            //Function to get percentage	
+			function percent($num_amount, $num_total) {
+				$count1 = @($num_amount / $num_total);
+				$count2 = $count1 * 100;
+				$count = number_format($count2, 0);
+				return $count;
+			}   
+			$ram = array();
 
-		$args = array();   
-		$server = $api->call("getServer", $args, false);
+			$ram['tot'] = $api->call("getPhysicalMemoryTotal", $args, false);
+			$ram['used'] = $api->call("getPhysicalMemoryUsage", $args, false);
+			$ram['free'] = $api->call("getPhysicalMemoryFree", $args, false);
+			$ram['perc'] = percent($ram['used'], $ram['tot']);
 
-		$user_online = $server['OnlinePlayers'];
-		$user_max = $server['MaxPlayers'];
-        //Generate Output
+            // CPU
+			//get the cpu 
+			$cpu = array();
+			$cpu['tot'] = $api->call("getNumCpus", $args, false);
+			//$cpu['used'] = $api->call("getCpuFrequency", $args, false);
+			$cpu['perc'] = $api->call("getCpuUsage", $args, false);
 
-        echo $user_online.' / '.$user_max;
-        } 	 
-    }
-    
+            // Java
+            $java = array();
+			$java['tot'] = $api->call("getJavaMemoryMax", $args, false);
+			$java['used'] = $api->call("getJavaMemoryUsage", $args, false);
+			$java['free'] = $java['tot'] - $java['used'];
+			$java['perc'] = percent($java['used'], $java['tot']);
 
-	function calculate_ticks() {
-
-        if ($this->request->is('ajax')) {
-            $this->disableCache();
-            Configure::write('debug', 0);
-            $this->autoRender = false;
-
-   	    require APP . 'spacebukkitcall.php';
-
-		$args = array();   
-		$tick = $api->call("getTicks", $args, false);
-
-		echo round($tick);
-
-        } 	 
-    }
-
-	function calculate_ram() {
-
-        if ($this->request->is('ajax')) {
-            $this->disableCache();
-            Configure::write('debug', 0);
-            $this->autoRender = false;
-
-   	    require APP . 'spacebukkitcall.php';
-
-
-		//Function to get percentage	
-		function percent($num_amount, $num_total) {
-		$count1 = @($num_amount / $num_total);
-		$count2 = $count1 * 100;
-		$count = number_format($count2, 0);
-		return $count;
+			// Combine
+			$result = array("ram" => $ram, "cpu" => $cpu, "java" => $java);
+			echo json_encode($result);
 		}
-		
-		$args = array();   
-		$ram = array();
-
-		$ram['tot'] = $api->call("getPhysicalMemoryTotal", $args, false);
-		$ram['used'] = $api->call("getPhysicalMemoryUsage", $args, false);
-		$ram['free'] = $api->call("getPhysicalMemoryFree", $args, false);
-		$ram['perc'] = percent($ram['used'], $ram['tot']);
-
-        //Generate Output
-
-		echo json_encode($ram);        
-        
-        } 	 
     }
 
-	function calculate_cpu() {
-
-        if ($this->request->is('ajax')) {
-            $this->disableCache();
-            Configure::write('debug', 0);
+    function panelInfo() {
+    	if ($this->request->is('ajax')) {
             $this->autoRender = false;
 
-   	    require APP . 'spacebukkitcall.php';
-	
-		//get the Java Memory
-		$args = array();   
-		$java = array();
-		$java['tot'] = $api->call("getNumCpus", $args, false);
-		//$java['used'] = $api->call("getCpuFrequency", $args, false);
-		$java['used'] = null;
-		$java['free'] = null;
-		$java['perc'] = $api->call("getCpuUsage", $args, false);
-
-        //Generate Outpu
-		echo json_encode($java);        
-        
-        } 	 
-    }
-
-	function calculate_java() {
-
-        if ($this->request->is('ajax')) {
-            $this->disableCache();
-            Configure::write('debug', 0);
-            $this->autoRender = false;
-
-   	    require APP . 'spacebukkitcall.php';
-
-
-		//Function to get percentage	
-		function percent($num_amount, $num_total) {
-		$count1 = @($num_amount / $num_total);
-		$count2 = $count1 * 100;
-		$count = number_format($count2, 0);
-		return $count;
-		}
-	
-		//get the Java Memory
-		$args = array();   
-		$java = array();
-		$java['tot'] = $api->call("getJavaMemoryMax", $args, false);
-		$java['used'] = $api->call("getJavaMemoryUsage", $args, false);
-		$java['free'] = $java['tot'] - $java['used'];
-		$java['perc'] = percent($java['used'], $java['tot']);
-
-        //Generate Output
-
-		echo json_encode($java);        
-        
-        } 	 
-    }
-	function get_log() {
-
-        if ($this->request->is('ajax')) 
-        {
-            
-            $this->autoRender = false;
-			$log = r_serverlog($this->Session->read("current_server"));
+            //serverlog
+            $log = r_serverlog($this->Session->read("current_server"));
 			$logged = array_reverse( preg_split("/(\r?\n)/", $log) );
-
 			$i = 0;
+			$serverlog = '';
 
-            //Generate Output
-            foreach($logged as $line){
-            
-            $line = explode(']', $line, 2);
-
-            if (isset($line[1])) {
-
-echo <<<END
-                      <li>
-                        <b>$line[0]</b> 
-                        <p class="console-info"> $line[1] </p>
-                      </li>
-
-END;
-            	
-            }
-
-		    if (++$i == 30) break;
-
+			foreach ($logged as $line) {
+				$line = explode(']', $line, 2);
+				if (isset($line[1])) {
+					$serverlog .= '<li><b>'.$line[0].'</b> <p class="console-info"> '.$line[1].' </p></li>';
+				}
+				if (++$i == 30) break;
 			}
 
-        } 
-
-    }
-
-	function get_admins() {
-
-        if ($this->request->is('ajax')) 
-        {
-            
-            $this->autoRender = false;
-			
+			//admins
+			$admins = '';
 			$this->loadModel('User');
-
 			$users = $this->User->find('all');
-
 			foreach ($users as $user) {
-
 				$c = time();
 				$t = $user['User']['active'];
-
-            if (($c - $t) < 1800) {
-
-				$n = $user['User']['username'];
-
-echo <<<END
-                      <tr>
-                        <td> $n </td>
-                      </tr>
-
-END;
-            	
-            }
-
+				if (($c - $t) < 1800) {
+					$n = $user['User']['username'];;
+					$admins .= '<tr><td> '.$n.'</td></tr>';
+				}
 			}
 
-        } 
+			//combine
+			$result = array("serverlog" => $serverlog, "admins" => $admins);
+			echo json_encode($result);
+        }
+    }
 
+    function serverInfo() {
+    	if ($this->request->is('ajax')) {
+            $this->disableCache();
+            Configure::write('debug', 0);
+            $this->autoRender = false;
+            require APP . 'spacebukkitcall.php';
+            $args = array();
+
+            //players
+            $server = $api->call("getServer", $args, false);
+			$players_online = $server['OnlinePlayers'];
+			$players_max = $server['MaxPlayers'];
+			$players = $players_online.' / '.$players_max;
+
+			//ticks
+			$ticks = $api->call("getTicks", $args, false);
+			$ticks = round($ticks);
+
+			//combine
+			$result = array("players" => $players, "ticks" => $ticks);
+			echo json_encode($result);
+        }
     }
 
 	function get_chat_new() {

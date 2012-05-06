@@ -13,14 +13,6 @@
 <!-- Content -->
 <section id="content"> 
 
-  <div class="b-now" id="runningTop" style="width: 50%; margin-left: auto; margin-right: auto;">
-    <div class="darkwell">
-        <div class="progress-new progress-striped active" style="margin: 7px;">
-          <div class="bar" id="PBbartop" style="width: 0%"></div>
-        </div>
-    </div>
-  </div>
-<br>
 <div class="tab" id="tab1">
 
   <section class="b-home">
@@ -345,170 +337,84 @@ var np = 3;
 var ns = 3;
 
 //global functions
-function isRunning() {
-  var source = './tbackups/isRunning';
-  $.ajax({
-    url: source,
-    success: function(data) {
-      running = data;
-    }
-  });
-        return false;
-}
-
-function refreshRunning() {
-    var source = './tbackups/getRunning';
+function getRunning() {
     $.ajax({
-      url: source,
+      url: './tbackups/getRunning',
       success: function(data) {
-        $("div#runningNow").html(data);
-      }
-    });
-  return false;
-};
-
-function refreshProgressb() {
-  var source = './tbackups/getPB';
-  if(running === 'true') {
-    $.ajax({
-      url: source,
-      success: function(data) {
+        var info = $.parseJSON(data);
+        if (info.running === 'no' || info.running === 'done') {
+          $("#runningPB").fadeOut(0);
+          $('#PBbar').animate({width: '0%'}, 10);
+        } else {
           $("#runningPB").fadeIn();
-          $('#PBbar').animate({width: data}, 10);
-          $('#PBbartop').animate({width: data}, 10);
+          $('#PBbar').animate({width: info.pb}, 10);
+        }
+        $("div#runningNow").html(info.data);
       }
     });
-  } else {
-    $("#runningPB").fadeOut(0);
-    $("#runningTop").fadeOut(0);
-  }
-  return false;
 };
 
-function refreshPrevBackups() {
+function getBackups() {
   $.ajax({
-      url: './tbackups/getPrevBackups/a/'+pa,
+      url: './tbackups/getBackups/'+pa+','+pw+','+pp+','+ps,
       success: function(data) {
-        $("div#tab1Prev").html(data);
-      }
-    });
-  $.ajax({
-      url: './tbackups/getPrevBackups/w/'+pw,
-      success: function(data) {
-        $("div#tab2Prev").html(data);
-      }
-    });
-  $.ajax({
-      url: './tbackups/getPrevBackups/p/'+pp,
-      success: function(data) {
-        $("div#tab3Prev").html(data);
-      }
-    });
-  $.ajax({
-      url: './tbackups/getPrevBackups/s/'+ps,
-      success: function(data) {
-        $("div#tab4Prev").html(data);
-      }
-    });
-}
+        var info = $.parseJSON(data);
+        $("div#tab1Stats").html(info.info);
 
-function refreshNextBackups() {
-  $.ajax({
-      url: './tbackups/getNextBackups/a/'+na,
-      success: function(data) {
-        $("div#tab1Next").html(data);
-      }
-    });
-  $.ajax({
-      url: './tbackups/getNextBackups/w/'+nw,
-      success: function(data) {
-        $("div#tab2Next").html(data);
-      }
-    });
-  $.ajax({
-      url: './tbackups/getNextBackups/p/'+np,
-      success: function(data) {
-        $("div#tab3Next").html(data);
-      }
-    });
-  $.ajax({
-      url: './tbackups/getNextBackups/s/'+ns,
-      success: function(data) {
-        $("div#tab4Next").html(data);
-      }
-    });
-}
+        $("div#tab1Prev").html(info.prev.a);
+        $("div#tab2Prev").html(info.prev.w);
+        $("div#tab3Prev").html(info.prev.p);
+        $("div#tab4Prev").html(info.prev.s);
 
-function refreshStats() {
-  $.ajax({
-      url: './tbackups/getBackupStats',
-      success: function(data) {
-        $("div#tab1Stats").html(data);
+        $("div#tab1Next").html(info.next);
+        $("div#tab2Next").html(info.next);
+        $("div#tab3Next").html(info.next);
+        $("div#tab4Next").html(info.next);
       }
     });
-}
+};
 
 $('document').ready(function() {
 
-  $("#runningTop").fadeOut(0);
-  //init all boxes
-  //refreshProgressb();
-  refreshRunning();
-  refreshNextBackups();
-  refreshPrevBackups();
-  refreshStats();
+  getRunning();
+  getBackups();
 
   //set update intervals
-  setInterval("isRunning()", 1000);
-  setInterval("refreshRunning()", 2000);
-  setInterval("refreshProgressb()", 500);
-  setInterval("refreshNextBackups()", 10000);
-  setInterval("refreshPrevBackups()", 10000);
-  setInterval("refreshStats()", 10000);
-
-  //check for clicks on stuff
-  $('#yesTop').click(function(){
-    if(running === 'true'){
-      $("#runningTop").fadeIn();
-    }
-  });
-
-  $('#noTop').click(function(){
-    $("#runningTop").fadeOut(0);
-  });
+  setInterval("getRunning()", 1000);
+  setInterval("getBackups()", 10000);
 
   //more buttons checks
   $('#updatepa').live('click', function(){
     pa = pa+3;
-    refreshPrevBackups();
+    getBackups();
   });
   $('#updatepw').live('click', function(){
     pw = pw+3;
-    refreshPrevBackups();
+    getBackups();
   });
   $('#updatepp').live('click', function(){
     pp = pp+3;
-    refreshPrevBackups();
+    getBackups();
   });
   $('#updateps').live('click', function(){
     ps = ps+3;
-    refreshPrevBackups();
+    getBackups();
   });
   $('#updatena').live('click', function(){
     na = na+3;
-    refreshNextBackups();
+    getBackups();
   });
   $('#updatenw').live('click', function(){
     nw = nw+3;
-    refreshNextBackups();
+    getBackups();
   });
   $('#updatenp').live('click', function(){
     np = np+3;
-    refreshNextBackups();
+    getBackups();
   });
   $('#updatens').live('click', function(){
     ns = ns+3;
-    refreshNextBackups();
+    getBackups();
   });
 
   $('.backup').live('click', function(){
@@ -517,9 +423,7 @@ $('document').ready(function() {
     $.ajax({
       url: href,
       success: function(data) {
-        isRunning();
-        refreshRunning();
-        refreshProgressb();
+        getRunning();
       }
     });
 
