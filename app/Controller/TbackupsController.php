@@ -1,5 +1,36 @@
 <?php
 
+/**
+*
+*   ####################################################
+*   TbackupsController.php 
+*   ####################################################
+*
+*   DESCRIPTION
+*
+*   This controller is relative to the "Dash" page and all it's related functions.
+*
+*   TABLE OF CONTENTS
+*   
+*   1)  index
+*
+*   Active functions: (ajax updates)
+*       2)  getRunning
+*       3)  getBackups
+*
+*   Passive functions: (after user invocation)
+*       4)  backup
+*       5)  restore
+*       6)  schedule
+*   
+*   
+* @copyright  Copyright (c) 2012 XereoNet and SpaceBukkit (http://spacebukkit.xereo.net)
+* @version    Last edited by Jamy
+* @since      File available since Release 1.2
+*
+*
+*/
+
 class TBackupsController extends AppController {
 
     public $helpers = array ('Html','Form');
@@ -23,7 +54,7 @@ class TBackupsController extends AppController {
 
       }
 
-    function index() {  
+    function index() {      // index function 
 
         if (!isset($api)){
             require APP . 'spacebukkitcall.php';  
@@ -68,129 +99,71 @@ class TBackupsController extends AppController {
 
             $this->set('title_for_layout', 'Backups');
         }
-    }
+    }   // end of index
 
-    function backup($type = 'Server', $name = '*', $restart = false) {
-        perm('backups', 'backup', $this->Session->read("user_perm"), true);
+    // --------------------------------------------------------------------------------------------------
+    // | Active functions (ajax invoked functions)                                                      |
+    // --------------------------------------------------------------------------------------------------
+
+    function getRunning() {     // ajax function to get the info for the running backup
         if ($this->request->is('ajax')) {
             $this->disableCache();
             //Configure::write('debug', 0);
             $this->autoRender = false;
             require APP . 'spacebukkitcall.php';
 
-            if ($type == 'Server') {
-                perm('backups', 'backupServer', $this->Session->read("user_perm"), true);
-                $name = '*';
-            } else if ($type == 'Plugins') {
-                perm('backups', 'backupPlugins', $this->Session->read("user_perm"), true);
-                $name = 'plugins';
-            } else if ($type == 'World') {
-                perm('backups', 'backupWorlds', $this->Session->read("user_perm"), true);
-                $type = 'World-'.$name;
-            }
-
-            if ($restart) {
-                $args = array('SpaceBukkit', 'Server is shutting down for backup!');
-                $api->call('broadcastWithName', $args, false);
-                sleep(3);
-            }
-
-            $args = array($type, $name, $restart);
-            $api->call('backup', $args, true);
-        }
-    }
-
-    function restore($type, $fileName) {
-        perm('backups', 'restore', $this->Session->read("user_perm"), true);
-        if ($this->request->is('ajax')) {
-            $this->disableCache();
-            //Configure::write('debug', 0);
-            $this->autoRender = false;
-            require APP . 'spacebukkitcall.php';
-
-            $args = array('SpaceBukkit', 'Server is shutting down to restore a backups!');
-            $api->call('broadcastWithName', $args, false);
-            sleep(3);
-
-            $args = array($name);
-            $api->call('restore', $args, true);
-        }
-    }
-
-    function isRunning() {
-        if ($this->request->is('ajax')) {
-            $this->disableCache();
-            //Configure::write('debug', 0);
-            $this->autoRender = false;
-
-            require APP . 'spacebukkitcall.php';
+            // --------------------------------------------------------------------------------------------------
+            // | Is a backup running? yes / no / done and Current info                                          |
+            // --------------------------------------------------------------------------------------------------
 
             $args = array();
             $status = $api->call('isBackupRunning', $args, true);
-            if($status) {
-                echo 'true';
-            } else {
-                echo 'false';
-            }
-        }
-    }
-
-    function getPB() {
-        if ($this->request->is('ajax')) {
-            $this->disableCache();
-            //Configure::write('debug', 0);
-            $this->autoRender = false;
-
-            require APP . 'spacebukkitcall.php';
-
-            $args = array();
             $bInfo = $api->call('getBackupInfo', $args, true);
-            echo $bInfo[3].'%';
-        }
-    }
-
-    function getRunning() {
-        if ($this->request->is('ajax')) {
-            $this->disableCache();
-            //Configure::write('debug', 0);
-            $this->autoRender = false;
-
-            require APP . 'spacebukkitcall.php';
-
-            $args = array();
-
-            $status = $api->call('isBackupRunning', $args, true);
-
-            $bInfo = $api->call('getBackupInfo', $args, true);
-
-            $messageTime = round(($bInfo[2] / 1000) + 240);
-
+            $data = '';
             if ($status) {
+                $r = 'yes';
                 $size = round((intval($bInfo[7]) / 1048576), 2);
-                $title = '<h3>'.'Backing up '.$bInfo[0].'</h3>';
-                $timeRunning = '<div class="b-what">'.$bInfo[6].$bInfo[5].'</div>';
-                $startTime = '<br><div class="b-in">(Started on '.date('l, dS F Y \a\t H:i)', round($bInfo[2] / 1000)).'</div>';
-                $bSize = '<div class="b-when">Currently '.$size.' MB</div>';
-
-                echo<<<END
-$title
-$timeRunning
-$startTime
-$bSize
-END;
-            } else if($messageTime >= time()) {
-                echo '<div class="col left col_1_3"><img src="./img/win.png" /></div>';
-                echo '<div class="col right col_2_3"><h3>Backup finished!</h3>';
-                echo '<div class="b-what">Backup of '.$bInfo[0].' finished '.round((time() - $bInfo[2] / 1000) / 60, 0, PHP_ROUND_HALF_DOWN).' minutes ago!</div></div>';
-            }else{
-                echo '<div class="col left col_1_3"><img src="./img/info.png" /></div>';
-                echo '<div class="col right col_2_3"><h3>No backups running!</h3>'."\n".'<div class="b-what">All your backups are completed!</div></div>';
-
+                $data .= '<h3>'.'Backing up '.$bInfo[0].'</h3>';
+                $data .= '<div class="b-what">'.$bInfo[6].$bInfo[5].'</div>';
+                $data .= '<br><div class="b-in">(Started on '.date('l, dS F Y \a\t H:i)', round($bInfo[2] / 1000)).'</div>';
+                $data .= '<div class="b-when">Currently '.$size.' MB</div>';
+            } else if(($bInfo[2]/1000)+300 >= time()) {
+                $r = 'done';
+                $data .= '<div class="col left col_1_3"><img src="./img/win.png" /></div>';
+                $data .= '<div class="col right col_2_3"><h3>Backup finished!</h3>';
+                $data .= '<div class="b-what">Backup of '.$bInfo[0].' finished '.round((time() - $bInfo[2] / 1000) / 60, 0, PHP_ROUND_HALF_DOWN).' minutes ago!</div></div>';
+            }else {
+                $r = 'no';
+                $data .= '<div class="col left col_1_3"><img src="./img/info.png" /></div>';
+                $data .= '<div class="col right col_2_3"><h3>No backups running!</h3>'."\n".'<div class="b-what">All your backups are completed!</div></div>';
             }
-        }
-    }
 
-    function getPrevBackups($type = 'a', $amount = 3) {
+            // --------------------------------------------------------------------------------------------------
+            // | Progressbar                                                                                    |
+            // --------------------------------------------------------------------------------------------------
+
+            $pb = $bInfo[3].'%';
+
+            // --------------------------------------------------------------------------------------------------
+            // | Combine call result                                                                            |
+            // --------------------------------------------------------------------------------------------------
+
+            $result = array("running" => $r, "data" => $data, "pb" => $pb);
+            echo json_encode($result);
+        }
+
+    }   // end of getRunning
+
+    function getBackups($prevAmount = '3,3,3,3') {      // ajax function that return a json with the data for previous and scheduled backups ans well as the backup stats
+        if ($this->request->is('ajax')) {
+            $this->disableCache();
+            //Configure::write('debug', 0);
+            $this->autoRender = false;
+            require APP . 'spacebukkitcall.php';
+
+        // --------------------------------------------------------------------------------------------------
+        // | Functions to aid in parsing previous backups!                                                  |
+        // --------------------------------------------------------------------------------------------------
 
         function backup_type_count($array) {
             $types = array('w' => array(), 'p' => array(), 's' => array());
@@ -225,12 +198,11 @@ END;
             return $new;
         }
 
-        if ($this->request->is('ajax')) {
-            $this->disableCache();
-            //Configure::write('debug', 0);
-            $this->autoRender = false;
-
-            require APP . 'spacebukkitcall.php';
+            // --------------------------------------------------------------------------------------------------
+            // | Previous Backups                                                                               |
+            // --------------------------------------------------------------------------------------------------
+            
+            $tyToWrite = explode(',', $prevAmount);
             $args = array();
             $backups = $api->call('getBackups', $args, true);
             if (empty($backups)) {
@@ -239,79 +211,96 @@ END;
                 $e = count($backups);
                 $backups = time_sort_array($backups); //reverse array, newest on top
                 $types = backup_type_count($backups); //Count the backup types
-                $bToWrite = array();
-                if ($type == 'a') {
-                    $bToWrite = $backups;
-                } else if ($type == 'w') {
-                    foreach ($types['w'] as $z) {
-                        $bToWrite[] = $backups[$z];
-                    }
-                } else if ($type == 'p') {
-                    foreach ($types['p'] as $z) {
-                        $bToWrite[] = $backups[$z];
-                    }
-                } else if ($type == 's') {
-                    foreach ($types['s'] as $z) {
-                        $bToWrite[] = $backups[$z];
-                    }
-                } else {
-                    echo 'Unsupported backup type!';
-                }
 
+                $prevOutput = array("a" => '', "w" => '', "p" => '', "s" => '');
+                $wrote = array("a" => 0, "w" => 0, "p" => 0, "s" => 0);
+    
                 $i = 0;
-                foreach ($bToWrite as $b) {
-                    if ($i >= $amount) {
-                        echo '';
-                    } else {
-                        if (preg_match("/[aw]/", $type) && preg_match("/World-.*/", $b[1])) {
-                            echo '<section>';
-                            $wn = explode('-', $b[1]);
-                            echo '<div class="b-what">'.perm_action('backups', 'restore', $this->Session->read("user_perm"), '<a href="./tbackups/restore/Worlds/'.$b[0].'" class="button icon move backup">Restore</a> ').$wn[0].' "'.$wn[1].'"</div>';
-                            echo '<div class="b-in">'.round($b[2] / 1048576, 2).'MB</div>';
-                            echo '<div class="b-when">'.date('l, dS F Y \a\t H:i', $b[3] / 1000).'</div>';
-                            echo '</section>';
-                            $i++;
-                        } else if (preg_match("/[ap]/", $type) && preg_match("/Plugins/", $b[1])) {
-                            echo '<section>';
-                            echo '<div class="b-what">'.perm_action('backups', 'restore', $this->Session->read("user_perm"), '<a href="./tbackups/restore/Plugins/'.$b[0].'" class="button icon move backup">Restore</a> ').'All Plugins</div>';
-                            echo '<div class="b-in">'.round($b[2] / 1048576, 2).'MB</div>';
-                            echo '<div class="b-when">'.date('l, dS F Y \a\t H:i', $b[3] / 1000).'</div>';
-                            echo '</section>';
-                            $i++;
-                        } else if (preg_match("/[as]/", $type) && preg_match("/Server/", $b[1])) {
-                            echo '<section>';
-                            echo '<div class="b-what">'.perm_action('backups', 'restore', $this->Session->read("user_perm"), '<a href="./tbackups/restore/Server/'.$b[0].'" class="button icon move backup">Restore</a> ').'Complete Server</div>';
-                            echo '<div class="b-in">'.round($b[2] / 1048576, 2).'MB</div>';
-                            echo '<div class="b-when">'.date('l, dS F Y \a\t H:i', $b[3] / 1000).'</div>';
-                            echo '</section>';
-                            $i++;
+                foreach ($backups as $b) {
+                    if (preg_match("/World-.*/", $b[1])) {
+                        $text = '';
+                        $text .= '<section>';
+                        $wn = explode('-', $b[1]);
+                        $text .= '<div class="b-what">'.perm_action('backups', 'restore', $this->Session->read("user_perm"), '<a href="./tbackups/restore/Worlds/'.$b[0].'" class="button icon move backup">Restore</a> ').$wn[0].' "'.$wn[1].'"</div>';
+                        $text .= '<div class="b-in">'.round($b[2] / 1048576, 2).'MB</div>';
+                        $text .= '<div class="b-when">'.date('l, dS F Y \a\t H:i', $b[3] / 1000).'</div>';
+                        $text .= '</section>';
+
+                        if ($wrote["w"] < $tyToWrite[1]) {
+                            $prevOutput["w"] .= $text;
+                            $wrote["w"]++;
+                        }
+                        if ($wrote["a"] < $tyToWrite[0]) {
+                            $prevOutput["a"] .= $text;
+                            $wrote["a"]++;
+                        }
+                    } else if (preg_match("/Plugins/", $b[1])) {
+                        $text = '';
+                        $text .= '<section>';
+                        $text .= '<div class="b-what">'.perm_action('backups', 'restore', $this->Session->read("user_perm"), '<a href="./tbackups/restore/Plugins/'.$b[0].'" class="button icon move backup">Restore</a> ').'All Plugins</div>';
+                        $text .= '<div class="b-in">'.round($b[2] / 1048576, 2).'MB</div>';
+                        $text .= '<div class="b-when">'.date('l, dS F Y \a\t H:i', $b[3] / 1000).'</div>';
+                        $text .= '</section>';
+
+                        if ($wrote["p"] < $tyToWrite[2]) {
+                            $prevOutput["p"] .= $text;
+                            $wrote["p"]++;
+                        }
+                        if ($wrote["a"] < $tyToWrite[0]) {
+                            $prevOutput["a"] .= $text;
+                            $wrote["a"]++;
+                        }
+                    } else if (preg_match("/Server/", $b[1])) {
+                        $text = '';
+                        $text .= '<section>';
+                        $text .= '<div class="b-what">'.perm_action('backups', 'restore', $this->Session->read("user_perm"), '<a href="./tbackups/restore/Server/'.$b[0].'" class="button icon move backup">Restore</a> ').'Complete Server</div>';
+                        $text .= '<div class="b-in">'.round($b[2] / 1048576, 2).'MB</div>';
+                        $text .= '<div class="b-when">'.date('l, dS F Y \a\t H:i', $b[3] / 1000).'</div>';
+                        $text .= '</section>';
+
+                        if ($wrote["s"] < $tyToWrite[3]) {
+                            $prevOutput["s"] .= $text;
+                            $wrote["s"]++;
+                        }
+                        if ($wrote["a"] < $tyToWrite[0]) {
+                            $prevOutput["a"] .= $text;
+                            $wrote["a"]++;
                         }
                     }
                 }
             }
             if ($e == 0) {
-                echo '<section>';
-                echo '<h3>No backups found!</h3>'; //Name
-                echo '</section>';
-            } else if (count($types[$type]) > $i) {
-                echo '<section>';
-                echo '<div class="b-what"><a href="#" class="button icon add" id="updatep'.$type.'">More...</a></div>'; //Name
-                echo '<div class="b-in"></div>'; //Size
-                echo '<div class="b-when"></div>'; //date
-                echo '</section>';
+                $text = '';
+                $text .= '<section>';
+                $text .= '<h3>No backups found!</h3>'; //Name
+                $text .= '</section>';
+                $prevOutput["a"] = $text;
+                $prevOutput["w"] = $text;
+                $prevOutput["p"] = $text;
+                $prevOutput["s"] = $text;
+            } else {
+                
+                if (count($types["a"] >= $wrote["a"])) {
+                    $prevOutput["a"] .= '<section><div class="b-what"><a href="#" class="button icon add" id="updatepa">More...</a></div><div class="b-in"></div><div class="b-when"></div></section>';
+                }
+                if (count($types["w"] >= $wrote["w"])) {
+                    $prevOutput["w"] .= '<section><div class="b-what"><a href="#" class="button icon add" id="updatepw">More...</a></div><div class="b-in"></div><div class="b-when"></div></section>';
+                }
+                if (count($types["p"] >= $wrote["p"])) {
+                    $prevOutput["p"] .= '<section><div class="b-what"><a href="#" class="button icon add" id="updatepp">More...</a></div><div class="b-in"></div><div class="b-when"></div></section>';
+                }
+                if (count($types["s"] >= $wrote["s"])) {
+                    $prevOutput["s"] .= '<section><div class="b-what"><a href="#" class="button icon add" id="updateps">More...</a></div><div class="b-in"></div><div class="b-when"></div></section>';
+                }        
             }
-        }
-    }
 
-    function getNextBackups($type = 'All', $amount = 3) {
-        if ($this->request->is('ajax')) {
-            $this->disableCache();
-            //Configure::write('debug', 0);
-            $this->autoRender = false;
-
-            require APP . 'spacebukkitcall.php';
+            // --------------------------------------------------------------------------------------------------
+            // | Scheduled Backups                                                                              |
+            // --------------------------------------------------------------------------------------------------
+            
             $args = array();
             $jobs = $api->call('getJobs', $args, true);
+            $schedOutput = '';
             $nbackups = array();
             foreach ($jobs as $name => $info) {
                 if ($info[0] == 'backup') {
@@ -319,9 +308,9 @@ END;
                 }
             }
             if (empty($nbackups)) {
-                echo '<section>';
-                echo '<h3>No scheduled backups found!</h3>'; //Name
-                echo '</section>';
+                $schedOutput .= '<section>';
+                $schedOutput .= '<h3>No scheduled backups found!</h3>'; //Name
+                $schedOutput .= '</section>';
             } else {
                 $i = 0;
                 foreach ($nbackups as $bname => $binfo) {
@@ -337,24 +326,103 @@ END;
                         } else if (preg_match("/XMINUTESPASTEVERYHOUR/", $binfo['timeType'])) {
                             $when = $binfo['timeArg'].' minutes past every hour';
                         }
-                        echo '<section>';
-                        echo '<div class="b-what">'.$bname.'</a></div>'; //Name
-                        echo '<div class="b-in">contents: '.$binfo['type'].', folder: '.$binfo['fold'].'</div>'; //Size
-                        echo '<div class="b-when">'.$when.'</div>'; //date
-                        echo '</section>';
+                        $schedOutput .= '<section>';
+                        $schedOutput .= '<div class="b-what">'.$bname.'</a></div>'; //Name
+                        $schedOutput .= '<div class="b-in">contents: '.$binfo['type'].', folder: '.$binfo['fold'].'</div>'; //Size
+                        $schedOutput .= '<div class="b-when">'.$when.'</div>'; //date
+                        $schedOutput .= '</section>';
                         $i++;
                     }
                 }
             }
+            $schedOutput .= '<section>';
+            $schedOutput .= '<div class="b-what"><a href="./tbackups/schedule" class="button icon add fancy" id="schedb">Schedule backup</a></div>'; //Name
+            $schedOutput .= '<div class="b-in"></div>'; //Size
+            $schedOutput .= '<div class="b-when"></div>'; //date
+            $schedOutput .= '</section>';
 
-            echo '<section>';
-            echo '<div class="b-what"><a href="./tbackups/schedule" class="button icon add fancy" id="schedb">Schedule backup</a></div>'; //Name
-            echo '<div class="b-in"></div>'; //Size
-            echo '<div class="b-when"></div>'; //date
-            echo '</section>';
+            // --------------------------------------------------------------------------------------------------
+            // | Backup information                                                                             |
+            // --------------------------------------------------------------------------------------------------
 
+            $args = array();
+            $backupInfo = '';
+            $backups = $api->call('getBackups', $args, true);
+            $bnum = count($backups);
+            $bsize = 0;
+
+            foreach ($backups as $b) {
+                $bsize += round($b[2] / 1048576, 2);
+            }
+
+            $backupInfo .= '<section>';
+            $backupInfo .= '<h3>Backup count: '.$bnum.'</h3>'; //Name
+            $backupInfo .= '</section>';
+            $backupInfo .= '<section>';
+            $backupInfo .= '<h3>Total size: '.round($bsize, 2).'MB</h3>'; //Name
+            $backupInfo .= '</section>';
+
+            // --------------------------------------------------------------------------------------------------
+            // | Combine call result                                                                            |
+            // --------------------------------------------------------------------------------------------------
+
+            $result = array("prev" => $prevOutput, "next" => $schedOutput, "info" => $backupInfo);
+            echo json_encode($result);
         }
-    }
+    } // end of getBackups
+
+
+    // --------------------------------------------------------------------------------------------------
+    // | Passive functions (user invoked)                                                               |
+    // --------------------------------------------------------------------------------------------------
+            
+
+    function backup($type = 'Server', $name = '*', $restart = false) {      // function used to make a backup
+        perm('backups', 'backup', $this->Session->read("user_perm"), true);
+        if ($this->request->is('ajax')) {
+            $this->disableCache();
+            //Configure::write('debug', 0);
+            $this->autoRender = false;
+            require APP . 'spacebukkitcall.php';
+
+            if ($type == 'Server') {
+                perm('backups', 'backupServer', $this->Session->read("user_perm"), true);
+                $name = '*';
+            } else if ($type == 'Plugins') {
+                perm('backups', 'backupPlugins', $this->Session->read("user_perm"), true);
+                $name = 'plugins';
+            } else if ($type == 'World') {
+                perm('backups', 'backupWorlds', $this->Session->read("user_perm"), true);
+                $type = 'World-'.$name;
+            }
+
+            if ($restart) {
+                $args = array('SpaceBukkit', 'Server is shutting down for backup!');
+                $api->call('broadcastWithName', $args, false);
+                sleep(3);
+            }
+
+            $args = array($type, $name, $restart);
+            $api->call('backup', $args, true);
+        }
+    }   // end of backup
+
+    function restore($type, $fileName) {    // function to restore a certain backup
+        perm('backups', 'restore', $this->Session->read("user_perm"), true);
+        if ($this->request->is('ajax')) {
+            $this->disableCache();
+            //Configure::write('debug', 0);
+            $this->autoRender = false;
+            require APP . 'spacebukkitcall.php';
+
+            $args = array('SpaceBukkit', 'Server is shutting down to restore a backups!');
+            $api->call('broadcastWithName', $args, false);
+            sleep(3);
+
+            $args = array($name);
+            $api->call('restore', $args, true);
+        }
+    }   // end of restore
 
     function schedule(){
         if ($this->request->is('post')) { 
@@ -376,29 +444,22 @@ END;
                 $bname = 'Plugins';
                 $fold = 'plugins';
             }
-
             $arguments = array($bname, $fold, false);
-
             if (!(isset($data["timeArgs2"]))) {
                 $data["timeArgs2"] = 'null';
             }
-
             if ($data['timeArgs2'] == "null") {
-
-               $timeargs = $data["timeArgs1"];
-                
-            } else {
-               
+               $timeargs = $data["timeArgs1"];   
+            } else { 
                $timeargs = $data["timeArgs1"].':'.$data['timeArgs2'];
-
             }
-
 
             require APP . 'spacebukkitcall.php';
             
             $args = array($data["name"], 'backup', $arguments, $timetype, $timeargs);
      
             $api->call("addJob", $args, true);
+
         } else {
             require APP . 'spacebukkitcall.php';
             //get world specific information
@@ -407,31 +468,5 @@ END;
             $this->set('worlds', $worlds);
         }
         $this->layout = 'popup';
-    }
-
-    function getBackupStats() {
-        if ($this->request->is('ajax')) {
-            $this->disableCache();
-            //Configure::write('debug', 0);
-            $this->autoRender = false;
-            require APP . 'spacebukkitcall.php';
-            $args = array();
-            $backups = $api->call('getBackups', $args, true);
-            $bnum = count($backups);
-            $bsize = 0;
-
-            foreach ($backups as $b) {
-                $bsize += round($b[2] / 1048576, 2);
-            }
-
-            echo '<section>';
-            echo '<h3>Backup count: '.$bnum.'</h3>'; //Name
-            echo '</section>';
-
-            echo '<section>';
-            echo '<h3>Total size: '.$bsize.'MB</h3>'; //Name
-            echo '</section>';
-            
-        }
     }
 }
