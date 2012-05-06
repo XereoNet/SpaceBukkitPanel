@@ -77,9 +77,20 @@
 
 			    <div class="darkwell" id="tree">
 
-			      <section class="f-row">
-			      		Tree......
-			      </section>
+				<li>
+
+				    <a href="some_value_here">Node title</a>
+
+				    <!-- UL node only needed for children - omit if there are no children -->
+
+				    <ul>
+
+				        <!-- Children LI nodes here -->
+
+				    </ul>
+
+				</li>
+
 			    </div>
 
 	        </section>
@@ -166,9 +177,21 @@ $('document').ready(function() {
 
 	//function that loads a directory view
 
-	function loadDir(path) {
+	function loadDir(path, tree) {
+
+		//set up some variables
 
 		var url = './tfiles/loadDir/'+path;
+
+		//if loadDir was not called from the tree, we need to load the tree as well
+
+		if (tree) {
+
+			//load tree
+
+		}
+
+		//load the directory
 
 		list.html('<h2>Fetching directory...</h2>').activity().load(url);
 
@@ -193,6 +216,49 @@ $('document').ready(function() {
 	});
 
 	loadDir('.@@');
+
+	/* TREE FUNCTIONS */
+
+	//initialize the tree
+
+	$("#tree")
+
+	//load the tree
+
+	.jstree({ 
+
+		"core" : { "initially_open" : [ "root" ] },
+
+		"json_data" : {
+			"ajax" : {
+				"url" : "./tfiles/loadTree/",
+				"data" : function (n) { 
+					return { path : n.attr ? n.attr("data-path") : '.@@' }; 
+				}
+			}
+		},
+
+		"plugins" : [ "themes", "json_data", "ui" ],
+
+		"themes" : {
+			"theme" : "apple",
+			"dots" : true,
+			"icons" : true
+		}
+
+	})
+
+	//function to refresh the tree
+
+	//function to open a specific node
+
+	//listen for node clicks to load the manager
+
+	.bind("select_node.jstree", function (event, data) {
+        // `data.rslt.obj` is the jquery extended node that was clicked
+        alert(data.rslt.obj.attr("data-path"));
+    })
+
 
 });
 

@@ -173,6 +173,55 @@ END;
 
     }
 
+    //load tree view of a directory
+
+    function loadTree() {
+
+        if ($this->request->is('ajax')) {
+
+            $this->disableCache();
+            //Configure::write('debug', 0);
+            $this->autoRender = false;
+
+            require APP . 'spacebukkitcall.php';
+
+            $path = urldecode($this->params['url']['path']);
+
+            //construct path
+
+            $p =  str_replace("@@", "/", $path);
+
+            $args = array($p);
+
+            $dirs = $api->call('listDirectories', $args, true);
+
+            $data = array();
+
+            foreach ($dirs as $n => $dir) {
+
+                $full = $p . '/' . $dir;
+
+                $full =  str_replace("/", "@@", $full);
+                $full =  str_replace("@@@@", "@@", $full);
+
+                $data[$n] = array(
+
+                    'attr'  => array('data-path' => $full, 'id' => $full),
+                    'data'  => $dir,
+                    'state' => 'closed'
+
+                );
+
+            }
+
+            //output the json encoded object
+
+            echo json_encode($data);
+
+        }
+
+    }
+
     //load file
 
     //move file
