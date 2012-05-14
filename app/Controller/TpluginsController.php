@@ -102,21 +102,41 @@ class TPluginsController extends AppController {
 
     function checkPluginUpdates() {
         
-        if ($this->request->is('ajax')) {
-        $this->disableCache();
-        Configure::write('debug', 0);
-        $this->autoRender = false;
-        $temp = __('Feature temporarily disabled');
-ECHO <<<END
-{ "aaData": [
-[
-"",
-"$temp"
-]
-] }
-END;
-        
+        if ($this->request->is('ajax') || true) {
+            $this->disableCache();
+            Configure::write('debug', 0);
+            $this->autoRender = false;
 
+            require APP . 'spacebukkitcall.php';
+
+            $args = array();
+            $plugins = $api->call('getPlugins', $args, false);
+
+            $bplugins = array();
+
+            foreach ($plugins as $p) {
+                $args = array($p);
+                $info = $api->call('getPluginInformations', $args, false);
+                echo $info['Bukget'].'<br>';
+                if ($info['Bukget']) {
+                    $bplugins[] = $info['FullName'];
+                }
+            }
+            var_dump($bplugins);
+            foreach ($bplugins as $p) {
+                $args = array($p);
+                $bgInfo = $api->call('checkForUpdates', $args, true);
+
+                if (preg_match("/NOTONBUKKITDEV/", $bgInfo) || preg_match("/FILENOTFOUND/", $bgInfo)) {
+                    echo 'not on bukkitdev ';
+                } else {
+                    $plug = explode(',', $bgInfo);
+                    if (preg_match("/UPTODATE/", $plug[1])) {
+                        echo 'up to date ';
+                    }
+                }
+            }
+            
 		}
     
     }
