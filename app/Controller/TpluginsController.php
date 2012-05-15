@@ -102,12 +102,14 @@ class TPluginsController extends AppController {
 
     function checkPluginUpdates() {
         
-        if ($this->request->is('ajax') || true) {
+        if ($this->request->is('ajax')) {
             $this->disableCache();
             Configure::write('debug', 0);
             $this->autoRender = false;
 
             require APP . 'spacebukkitcall.php';
+
+            //NOT FINISHED YET
 
             $args = array();
             $plugins = $api->call('getPlugins', $args, false);
@@ -122,7 +124,6 @@ class TPluginsController extends AppController {
                     $bplugins[] = $info['FullName'];
                 }
             }
-            var_dump($bplugins);
             foreach ($bplugins as $p) {
                 $args = array($p);
                 $bgInfo = $api->call('checkForUpdates', $args, true);
