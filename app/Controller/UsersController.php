@@ -95,7 +95,12 @@ class UsersController extends AppController {
     }
 
     $this->set('title_for_layout', __('Login to SpaceBukkit'));
-    $this->set('flash', $this->Session->read('auth'));
+    if (!empty($this->Auth->request->data)) {
+      $this->set('flash', $this->Auth->loginError);
+    } else {
+      $this->set('flash', $this->Session->read('auth'));
+    }
+    
 
     $this->layout = 'login';
     

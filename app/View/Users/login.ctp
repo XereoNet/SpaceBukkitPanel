@@ -184,7 +184,7 @@
               <div class="error_box"></div>
                 <?php  
 
-                if($flash != false) {
+                if(!empty($flash)) {
                 ?>
                 <div class="colorbox red">
 
