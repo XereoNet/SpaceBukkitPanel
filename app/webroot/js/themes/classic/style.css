@@ -18,8 +18,6 @@
 .jstree-classic .jstree-open > a .jstree-icon { background-position:-56px -36px; }
 .jstree-classic a.jstree-loading .jstree-icon { background:url("throbber.gif") center center no-repeat !important; }
 
-.jstree-classic.jstree-focused { background:white; }
-
 .jstree-classic .jstree-no-dots li, 
 .jstree-classic .jstree-no-dots .jstree-leaf > ins { background:transparent; }
 .jstree-classic .jstree-no-dots .jstree-open > ins { background-position:-18px 0; }
@@ -49,9 +47,9 @@
 #vakata-contextmenu.jstree-classic-context, 
 #vakata-contextmenu.jstree-classic-context li ul { background:#f0f0f0; border:1px solid #979797; -moz-box-shadow: 1px 1px 2px #999; -webkit-box-shadow: 1px 1px 2px #999; box-shadow: 1px 1px 2px #999; }
 #vakata-contextmenu.jstree-classic-context li { }
-#vakata-contextmenu.jstree-classic-context a { color:black; }
+#vakata-contextmenu.jstree-classic-context a { color:white; }
 #vakata-contextmenu.jstree-classic-context a:hover, 
-#vakata-contextmenu.jstree-classic-context .vakata-hover > a { padding:0 5px; background:#e8eff7; border:1px solid #aecff7; color:black; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px; }
+#vakata-contextmenu.jstree-classic-context .vakata-hover > a { padding:0 5px; background:#222; border:1px solid #333; color:black; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px; }
 #vakata-contextmenu.jstree-classic-context li.jstree-contextmenu-disabled a, 
 #vakata-contextmenu.jstree-classic-context li.jstree-contextmenu-disabled a:hover { color:silver; background:transparent; border:0; padding:1px 4px; }
 #vakata-contextmenu.jstree-classic-context li.vakata-separator { background:white; border-top:1px solid #e0e0e0; margin:0; }

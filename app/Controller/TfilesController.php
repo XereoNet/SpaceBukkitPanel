@@ -201,12 +201,15 @@ END;
 
                 $full = $p . '/' . $dir;
 
+                $id   = str_replace("//", "/", $full);
+                $id   = str_replace(".", "root_", $id);
+
                 $full =  str_replace("/", "@@", $full);
                 $full =  str_replace("@@@@", "@@", $full);
 
                 $data[$n] = array(
 
-                    'attr'  => array('data-path' => $full, 'id' => $full),
+                    'attr'  => array('data-path' => $full, 'id' => $id),
                     'data'  => $dir,
                     'state' => 'closed'
 

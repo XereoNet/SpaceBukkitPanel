@@ -38,7 +38,7 @@
         'name'              => 'Dashboard Graphs refresh time',
         'desc'              => 'The amount of time SpaceBukkit waits before refreshing the dashboard statistics.',
         'vars'              => null,
-        'val'               => /*5*/'10000'
+        'val'               => /*5*/'1000'
         ), 
     array(
         'name'              => 'Admin online refresh time',

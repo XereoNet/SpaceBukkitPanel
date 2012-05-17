@@ -24,10 +24,10 @@ class Configurator extends AppModel {
         $new = array();
 
         $new['type']        = $type;
-        $new['username']    = $host;
-        $new['password']    = $login;
-        $new['database']    = $password;
-        $new['host']        = $database;
+        $new['username']    = $login;
+        $new['password']    = $password;
+        $new['database']    = $database;
+        $new['host']        = $host;
 
         $new_file = implode(file($template));     
      

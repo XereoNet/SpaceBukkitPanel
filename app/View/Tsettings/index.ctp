@@ -207,7 +207,16 @@
         
                   foreach ($var['vars'] as $desc => $val) {
 
-                    $options .= '<option value="'.$val.'">'.$desc.'</option>';
+                    if ($var['val'] == $val) 
+                    { 
+                      $sel = " selected"; 
+                    } 
+                    else 
+                    { 
+                      $sel = " "; 
+                    }
+
+                    $options .= '<option value="'.$val.'"'.$sel.'>'.$desc.'</option>';
 
                   }
 
@@ -215,7 +224,15 @@
 
                 }
 
+                echo '<section><label for="'.$id.'">'.$var['name'].'</label>';
+                echo '<div>';
+                echo $var_input;
+                echo '<p class="help-block">'.$var['desc'].'</p>';
+                echo '</div>';
+                echo '</section>';
+
               }
+
 
             ?>
              
@@ -245,7 +262,17 @@
             
           <section>
             <form id="ServerAddForm" method="post" action="./tsettings/update_config">
-  
+    
+              <section>
+                <label for="type">
+                  <?php echo __('Type*') ?>
+                </label>
+              
+                <div>
+                  <input id="type" name="type" type="text" value="<?php echo $configurations->config['datasource']; ?>"/>
+                </div>
+              </section>
+
               <section>
                 <label for="host">
                   <?php echo __('Host*') ?>

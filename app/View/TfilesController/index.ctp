@@ -209,12 +209,6 @@ $('document').ready(function() {
 
 	});
 
-	$('#test').click(function() {
-
-		loadDir('.@@');
-
-	});
-
 	loadDir('.@@');
 
 	/* TREE FUNCTIONS */
@@ -241,7 +235,7 @@ $('document').ready(function() {
 		"plugins" : [ "themes", "json_data", "ui" ],
 
 		"themes" : {
-			"theme" : "apple",
+			"theme" : "classic",
 			"dots" : true,
 			"icons" : true
 		}
@@ -256,8 +250,16 @@ $('document').ready(function() {
 
 	.bind("select_node.jstree", function (event, data) {
         // `data.rslt.obj` is the jquery extended node that was clicked
-        alert(data.rslt.obj.attr("data-path"));
+        var path = data.rslt.obj.attr("data-path");
+
+		loadDir(path);
+
     })
+
+    .bind("loaded.jstree", function () { 
+
+    }); 		
+
 
 
 });

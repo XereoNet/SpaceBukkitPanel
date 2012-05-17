@@ -504,33 +504,15 @@ END;
 
     function update_config() {
 
-        $config = APP.'Config/database.php'; 
-        $template = APP.'Config/database.php.default';
+        if ($this->request->is('post')) {
 
-        $old = array();
+              $this->loadModel('Configurator');
 
-        $old['username'] = '%login%';
-        $old['password'] = '%password%';
-        $old['database'] = '%database%';
-        $old['host'] = '%host%';
-
-        $new = array();
-
-        $new['username'] = $this->request->data['login'];
-        $new['password'] = $this->request->data['password'];
-        $new['database'] = $this->request->data['database'];
-        $new['host'] = $this->request->data['host'];
-
-        $new_file = implode(file($template));     
-     
-        $str = str_replace($old,$new,$new_file);
-
-        //now, TOTALLY rewrite the file
-        $fp=fopen($config,'w');
-
-        fwrite($fp,$str,strlen($str));
-
-        $this->redirect(array('controller' => 'Tsettings', 'action' => 'index'));
+              $data = $this->request->data;
+              $this->Configurator->saveDb($data['type'], $data['host'], $data['login'], $data['password'], $data['database']);
+              $this->redirect($this->referer());
+              $this->Session->write('Page.tab', 5);
+        }
 
     }
   
