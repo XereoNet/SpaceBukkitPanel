@@ -66,7 +66,9 @@
 		<table class="datatable adtb2"> 
 		<thead> 
 		  <tr> 
-		    <th><?php echo __('Name') ?></th> 
+		    <th><?php echo __('Name') ?></th>
+		    <th><?php echo __('Version') ?></th>
+		    <th><?php echo __('New Version') ?></th>
 		    <th><?php echo __('Actions') ?></th> 
 		  </tr> 
 		</thead> 

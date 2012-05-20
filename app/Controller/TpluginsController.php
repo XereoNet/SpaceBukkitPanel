@@ -108,36 +108,38 @@ class TPluginsController extends AppController {
             $this->autoRender = false;
 
             require APP . 'spacebukkitcall.php';
-
-            //NOT FINISHED YET
-
             $args = array();
             $plugins = $api->call('getPlugins', $args, false);
-
+            $json['aaData'] = array();
             $bplugins = array();
 
             foreach ($plugins as $p) {
                 $args = array($p);
-                $info = $api->call('getPluginInformations', $args, false);
-                echo $info['Bukget'].'<br>';
-                if ($info['Bukget']) {
-                    $bplugins[] = $info['FullName'];
+                $info = $api->call('pluginInformations', $args, true);
+                if (!empty($info)) {
+                    $bplugins[] = $p;
                 }
             }
+
             foreach ($bplugins as $p) {
                 $args = array($p);
-                $bgInfo = $api->call('checkForUpdates', $args, true);
-
-                if (preg_match("/NOTONBUKKITDEV/", $bgInfo) || preg_match("/FILENOTFOUND/", $bgInfo)) {
-                    echo 'not on bukkitdev ';
-                } else {
-                    $plug = explode(',', $bgInfo);
-                    if (preg_match("/UPTODATE/", $plug[1])) {
-                        echo 'up to date ';
+                $info = $api->call('getPluginInformations', $args, false);
+                $upd = $api->call('checkForUpdates', $args, true);
+                $upd = explode(',', $upd);
+                if (!preg_match("/NOTONBUKKITDEV/", $upd[0]) && !preg_match("/FILENOTFOUND/", $upd[0]) && !preg_match("/UPTODATE/", $upd[0])) {
+                    if (preg_match("/UNKNOWN/", $upd[0]) || preg_match("/OUTDATED/", $upd[0])) {
+                        $ver = str_replace("NEWVERSION=", "", $upd[1]);
+                        $ver = str_replace("v", "", preg_replace("/(?i)".$p."/", "", $ver));
+                        if (!is_int(strpos($ver, $info['Version'])) && !is_int(strpos($info['Version'], $ver))) {
+                            $json['aaData'][] = array($p, $info['Version'], $ver, perm_action('plugins', 'updatePlugin', $this->Session->read("user_perm"), '<a href="./tplugins/update_plugin/' . $p .'" class="button icon arrowup showOverlay" rel="Updating '.$p.'...">'.__('Update!').'</a>'));
+                        }
                     }
                 }
             }
-            
+            if (empty($json['aaData'])) {
+                $json['aaData'][] = array('', 'All plugins are up to date!', '', '');
+            }
+            echo json_encode($json);
 		}
     
     }
@@ -354,8 +356,13 @@ END;
         require APP . 'spacebukkitcall.php';
                 
         //Disable plugin        
-        $args = array($name);   
+        $args = array($name, true);   
         $api->call("pluginUpdate", $args, true);
+        $w = $api->call('getWorlds', array(), false);
+        while(empty($w)) {
+            sleep(2);
+            $w = $api->call('getWorlds', array(), false);
+        }
         w_serverlog($this->Session->read("current_server"), __('[PLUGINS]').$this->Auth->user('username').__(' updated ').$name);
 
         $this->redirect(array('controller' => 'Tplugins', 'action' => 'index'));
