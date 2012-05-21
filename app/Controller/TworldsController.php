@@ -693,7 +693,13 @@ END;
 
     function backup($w) {
         perm('worlds', 'backupRestoreWorld', $this->Session->read("user_perm"), true);
-        $this->requestAction('/tbackups/backup/world/'.$w);
+        if ($this->request->is('ajax')) {
+            $this->disableCache();
+            Configure::write('debug', 0);
+            $this->autoRender = false;
+            $this->requestAction('/tbackups/backup/world/'.$w);
+            echo "Backup of ".$w." finished!";
+        }
     }
 
 //autotrim tab functions

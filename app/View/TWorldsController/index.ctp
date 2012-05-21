@@ -267,7 +267,21 @@ $('document').ready(function() {
 
   $(".backup").live('click', (function(){
   	
-  	window.alert('Function will be available soon!');
+  		// Create overlay and append to body:
+    	showOverlay('Backing up...');
+    	
+  		var source = $(this).attr("href");
+  
+		$.ajax({
+  			url: source,
+  			success: function(data) {
+	     		notifications.show(data);
+	      		hideOverlay();
+  			}
+		
+		});
+  	
+  	return false;
 
   }));
 
@@ -282,7 +296,7 @@ $('document').ready(function() {
 		$.ajax({
   			url: source,
   			success: function(data) {
-	     		notifications.show(data);
+	     		notifications.show({msg:data, icon:'img/win.png'});
 	      		Table1.fnReloadAjax("./tworlds/getWorlds")
 	      		hideOverlay();
   			}
