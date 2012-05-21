@@ -404,6 +404,7 @@ class TBackupsController extends AppController {
 
             $args = array($type, $name, $restart);
             $api->call('backup', $args, true);
+            w_serverlog($this->Session->read("current_server"), __('[BACKUPS]').$this->Auth->user('username').__(' made a backup of ').$type);
         }
     }   // end of backup
 
@@ -421,6 +422,7 @@ class TBackupsController extends AppController {
 
             $args = array($name);
             $api->call('restore', $args, true);
+            w_serverlog($this->Session->read("current_server"), __('[WORLDS]').$this->Auth->user('username').__(' restored ').$name);
         }
     }   // end of restore
 

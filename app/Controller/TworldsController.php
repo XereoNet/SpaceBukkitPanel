@@ -325,7 +325,7 @@ class TWorldsController extends AppController {
                 
                 //$actions = '<center> '.$load.' <span class=\"button-group\"><a href=\"#\"  class=\"button icon like ajax_table1\">'.__('Backup').'</a><a href=\"#\" class=\"button icon remove danger ajax_table1\">'.__('Delete!').'</a></span></center>';
                 
-                $actions = '<center><span class=\"button-group\"> '.$load.'</span> <span class=\"button-group\"><a href=\"#\"  class=\"button icon like backup\">'.__('Backup').'</a><a href=\"./tworlds/deleteWorld/'.$name.'\" class=\"button icon remove danger remove\">'.__('Delete!').'</a></span></center>';
+                $actions = '<center><span class=\"button-group\"> '.$load.'</span> <span class=\"button-group\"><a href=\"./tworlds/backup/'.$w.'\"  class=\"button icon like backup\">'.__('Backup').'</a><a href=\"./tworlds/deleteWorld/'.$name.'\" class=\"button icon remove danger remove\">'.__('Delete!').'</a></span></center>';
                 
                 //send to table
                 ECHO <<<END
@@ -640,7 +640,7 @@ END;
             $args = array('./SpaceModule/configuration.yml');
             $config = $api->call('getFileContent', $args, true);
             $wc = $this->get_string_between($config, "WorldContainer: ", "\n");
-            $args = array($wc.'/'.$wrld);
+            $args = array('World-'.$wrld, $wrld, false);
             $api->call("backup", $args, true);
             sleep(5);
             //remove the world
@@ -653,6 +653,7 @@ END;
             while(!$api->call('isServerRunning', $args, true)){
                 sleep(1);
             }
+            w_serverlog($this->Session->read("current_server"), __('[WORLDS]').$this->Auth->user('username').__(' deleted ').$wrld);
             echo 'World has been removed! A backup can be found in the backups folder!';
         }
     }
@@ -690,15 +691,11 @@ END;
         $this->layout = 'popup';
     }
 
-    function backup() {
+    function backup($w) {
         perm('worlds', 'backupRestoreWorld', $this->Session->read("user_perm"), true);
-        echo 'Nope (.bz)';
+        $this->requestAction('/tbackups/backup/world/'.$w);
     }
 
-    function restore() {
-        perm('worlds', 'backupRestoreWorld', $this->Session->read("user_perm"), true);
-        echo 'Nope (.bz)';
-    }
 //autotrim tab functions
     function mapautotrim() {
         perm('worlds', 'runMapAutoTrim', $this->Session->read("user_perm"), true);
