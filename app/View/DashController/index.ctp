@@ -24,7 +24,7 @@
                ?></td>
         </tr>
         <tr>
-          <td>Players</td><td> <p><?php echo $whitelist_count; ?>  | <span class="greyed"><?php echo $ban_count; ?> </span></p>
+          <td><?php echo __('Players'); ?></td><td> <p><?php echo $whitelist_count; ?>  | <span class="greyed"><?php echo $ban_count; ?> </span></p>
                <p class="cell_medium">
                <b class="cell_left"><?php echo __('whitelist') ?></b>  
                <b class="cell_right greyed"><?php echo __('banned') ?></b>
@@ -32,7 +32,7 @@
           </td>
         </tr>
         <tr>
-          <td>Plugins</td><td>          
+          <td><?php echo __('Plugins'); ?></td><td>          
               <p><?php echo $plugin_count; ?> | <span class="greyed"><?php echo $dis_plugin_count; ?> </span></p>
               <p class="cell_medium">
                 <b class="cell_left"><?php echo __('installed') ?></b>  
@@ -40,8 +40,8 @@
               </p></td>
         </tr>                
         <tr>
-          <td>Staff</td><td><p><?php echo $connected_users; ?></span></p>
-              <p class="cell_medium"><?php echo __(' linked to this server') ?></p></td>
+          <td><?php echo __('Staff'); ?></td><td><p><?php echo $connected_users; ?></span></p>
+              <p class="cell_medium"><?php echo ' '.__('linked to this server') ?></p></td>
         </tr>
       </tbody>
     </table>
@@ -60,19 +60,19 @@
             <div class="accordion-group">
               <div class="accordion-heading">
                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-                  Statistics
+                  <?php echo __('Statistics'); ?>
                 </a>
               </div>
               <div id="collapseOne" class="accordion-body collapse in">
                 <div class="accordion-inner">
                   <div>
-                    <h3>RAM</h3>
-                    <p class="ram_tot">Total: <span></span> MB</p>
-                    <p class="ram_used">Used: <span></span> MB</p>
-                    <p class="ram_free">Free: <span></span> MB</p>
+                    <h3><?php echo __('RAM'); ?></h3>
+                    <p class="ram_tot"><?php echo __('Total'); ?>: <span></span> <?php echo __('MB'); ?></p>
+                    <p class="ram_used"><?php echo __('Used'); ?>: <span></span> <?php echo __('MB'); ?></p>
+                    <p class="ram_free"><?php echo __('Free'); ?>: <span></span> <?php echo __('MB'); ?></p>
                     <div class="timer timer1">
 
-                      <div class="percent">Calculating...</div>
+                      <div class="percent"><?php echo __('Calculating...'); ?></div>
                         <div class="slice">
                           <div class="pie"></div>
                         </div>
@@ -80,13 +80,13 @@
 
                   </div>
                   <div>
-                    <h3>CPU</h3>
-                    <p class="cpu_tot">CPUs: <span></span></p>
-                    <p class="cpu_used">Frequency: <span></span></p>
+                    <h3><?php echo __('CPU'); ?></h3>
+                    <p class="cpu_tot"><?php echo __('CPUs'); ?>: <span></span></p>
+                    <p class="cpu_used"><?php echo __('Frequency') ?>: <span></span></p>
                     <p class="cpu_free"><span></span></p>
                     <div class="timer timer2">
 
-                      <div class="percent">Calculating...</div>
+                      <div class="percent"><?php echo __('Calculating'); ?>...</div>
                         <div class="slice">
                           <div class="pie"></div>
                         </div>
@@ -94,13 +94,13 @@
                     </div>
                   </div>
                   <div>
-                    <h3>JAVA</h3>
-                    <p class="java_tot">Total: <span></span> MB</p>
-                    <p class="java_used">Used: <span></span> MB</p>
-                    <p class="java_free">Free: <span></span> MB</p>
+                    <h3><?php echo __('JAVA'); ?></h3>
+                    <p class="java_tot"><?php echo __('Total'); ?>: <span></span> <?php echo __('MB'); ?></p>
+                    <p class="java_used"><?php echo __('Used'); ?>: <span></span> <?php echo __('MB'); ?></p>
+                    <p class="java_free"><?php echo __('Free'); ?>: <span></span> <?php echo __('MB'); ?></p>
                     <div class="timer timer3">
 
-                      <div class="percent">Calculating...</div>
+                      <div class="percent"><?php echo ('Calculating'); ?>...</div>
                         <div class="slice">
                           <div class="pie"></div>
                         </div>
@@ -113,7 +113,7 @@
             <div class="accordion-group">
               <div class="accordion-heading">
                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-                  Activity
+                  <?php echo __('Activity'); ?>
                 </a>
               </div>
               <div id="collapseTwo" class="accordion-body collapse">
@@ -130,7 +130,7 @@
             <div class="accordion-group">
               <div class="accordion-heading">
                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
-                  Admins online
+                  <?php echo __('Admins online'); ?>
                 </a>
               </div>
               <div id="collapseThree" class="accordion-body collapse">
