@@ -178,7 +178,7 @@ color: #555;
   cursor: pointer;
   color: #fefefe
 }
-.bukget-area .menu li: hover {
+.bukget-area .menu li:hover {
   background-color: #222;
   background-image: -o-linear-gradient(top,#333,#111);
   background-image: -ms-linear-gradient(top,#333,#111);
@@ -190,20 +190,23 @@ color: #555;
   cursor: pointer;
   color: #fefefe
 }
-.bukget-area .menu li: hover a.has-child {
-  background: url('../img/arrow-hover.png') center right no-repeat
+.bu-ba-bu {
+  line-height: 30px;
+  top: 4px;
+  position: relative;
+}
+.bukget-area .menu li:hover a.has-child {
+  background: url('../img/arrow-hover.png') 98% 50% no-repeat
 }
 .bukget-area .menu li > a {
   display: block;
   width: 632px;
   color: inherit;
   padding: 10px;
+  background-color: #fff;  
 }
 .bukget-area .has-child {
-  background: url('../img/arrow.png') 97% 50% no-repeat
-}
-.bukget-area .has-child: hover {
-  background: url('../img/arrow-hover.png') center right no-repeat
+  background: #fff url('../img/arrow.png') 97% 50% no-repeat
 }
 .bukget-area .back {
   top: 4px;

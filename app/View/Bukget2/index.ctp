@@ -16,33 +16,13 @@
 
 					$id[$cat] = str_replace(" ", "_", $cat);
 						
-						echo '<li><a href="#'.$id[$cat].'" class="has-child unloaded" rel="'.$id[$cat].'">'.$cat.'</a></li>';
+						echo '<li><a href="./bukget2/cat/'.$id[$cat].'" class="fancy has-child unloaded" rel="'.$id[$cat].'">'.$cat.'</a></li>';
 
 					}
 
 ?>
 				</ul>
 			</div>
-<?php
-foreach ($cats as $cat) {
-
-echo <<<END
-	<div id="$id[$cat]" class="additional-block">
-				<div class="bukget-heading">
-					<h3>
-					$cat
-					</h3>
-				</div>
-				<ul class="menu" id="$id[$cat]_menu">
-					
-				</ul>
-			</div>
-
-END;
-
-}
-
-?>	
 		</div>
 	</div>
 </div>
