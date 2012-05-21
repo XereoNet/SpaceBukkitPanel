@@ -328,7 +328,7 @@ class TBackupsController extends AppController {
                         }
                         $schedOutput .= '<section>';
                         $schedOutput .= '<div class="b-what">'.$bname.'</a></div>'; //Name
-                        $schedOutput .= '<div class="b-in">'.__('contents').': '.$binfo['type'].', '.__('folder')).': '.$binfo['fold'].'</div>'; //Size
+                        $schedOutput .= '<div class="b-in">'.__('contents').': '.$binfo['type'].', '.__('folder').': '.$binfo['fold'].'</div>'; //Size
                         $schedOutput .= '<div class="b-when">'.$when.'</div>'; //date
                         $schedOutput .= '</section>';
                         $i++;
