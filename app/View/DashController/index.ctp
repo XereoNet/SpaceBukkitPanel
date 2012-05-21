@@ -120,7 +120,8 @@
                 <div class="accordion-inner">
 
                   <div id="activity-list">
-                    <ul>                
+                    <ul>
+                    <li><?php echo __('Fetching...'); ?></li>               
                     </ul>
                 </div>
 
@@ -242,7 +243,7 @@
 
   function panelInfo() {
     $.getJSON('./dash/panelInfo', function(data) {
-      $('activity-list ul').html(data.serverlog);
+      $('#activity-list ul').html(data.serverlog);
       $('#online-list').html(data.admins);
     });
   };
@@ -251,6 +252,18 @@ $(document).ready(function(){
   graphs();
   serverInfo();
   panelInfo();
+
+  $('#clearlog').live('click', function(){
+    var href = $(this).attr('href');
+    $.ajax({
+      url: href,
+      success: function(data) {
+        panelInfo();
+      }
+    });
+
+    return false;
+  });
 
   $('input[type=button]#percent').click(function(e){
     e.preventDefault();

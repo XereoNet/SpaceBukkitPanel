@@ -286,6 +286,8 @@ class DashController extends AppController {
 
     function panelInfo() {
     	if ($this->request->is('ajax')) {
+    		$this->disableCache();
+            Configure::write('debug', 0);
             $this->autoRender = false;
 
             //serverlog
@@ -297,11 +299,11 @@ class DashController extends AppController {
 			foreach ($logged as $line) {
 				$line = explode(']', $line, 2);
 				if (isset($line[1])) {
-					$serverlog .= '<li><b>'.$line[0].'</b> <p class="console-info"> '.$line[1].' </p></li>';
+					$serverlog .= '<li><b>'.$line[0].']</b><p class="console-info"> '.$line[1].' </p></li>';
 				}
 				if (++$i == 30) break;
 			}
-
+			$serverlog .= '<a href="./servers/clearLog" class="right" style="float: right; font-size: 10px;" id="clearlog">'.__('Clear log!').'</a>';
 			//admins
 			$admins = '';
 			$this->loadModel('User');

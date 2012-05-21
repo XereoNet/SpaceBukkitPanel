@@ -83,5 +83,17 @@ class ServersController extends AppController {
         $this->Session->setFlash(__('Server was not deleted'));
         $this->redirect($this->referer());
     }
+    public function clearLog() {
+        if ($this->request->is('ajax')) {
+            $server = $this->Session->read("current_server");
+            $logfile = TMP . "server/".$server.".log";
+            
+            $file = new File($logfile);
 
+            if ($file->exists()) {
+                $log = $file->delete();
+                return $log;
+            }
+        }
+    }
 }
