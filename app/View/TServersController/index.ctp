@@ -753,6 +753,13 @@ $('document').ready(function() {
 
   });
 
+  $('#downloadlog').click(function() {  
+      var source = $(this).attr("href");
+      window.open(source, 'Download');
+      return false;
+
+  });
+
   /* schedules */
 
    $('#arguments').hide();        

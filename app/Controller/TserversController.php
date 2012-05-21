@@ -251,8 +251,8 @@ class TServersController extends AppController {
     //download the server log
     function dlServerlog() {
 
-            
             $this->disableCache();
+            
 
             $this->autoRender = false;
 
@@ -260,10 +260,10 @@ class TServersController extends AppController {
 
             $args = array('server.log');
 
-            debug($api->call('sendFile', $args, true));
-
-        
-
+            $content = $api->call('getFileContent', $args, true);
+            $this->response->type('text/plain');
+            $this->response->download('server.log');
+            $this->response->body($content);
     }
     //Function to get strings
     function get_string_between($string, $start, $end){
