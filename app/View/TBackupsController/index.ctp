@@ -23,7 +23,7 @@
 
         <section class="b-now">
 
-          <h2>Running now:</h2>
+          <h2><?php echo __('Running now:') ?></h2>
 
 
             <div class="darkwell">
@@ -31,7 +31,7 @@
               <section>
                 <div id="runningNow">
 
-                Fetching...
+                <?php echo __('Fetching...') ?>
 
               </div>
               <div class="clear"></div>
@@ -47,13 +47,13 @@
 
         <section class="b-now">
 
-          <h2>Backup Stats:</h2>
+          <h2><?php echo __('Backup Stats:') ?></h2>
 
 
             <div class="darkwell" id="tab1Stats">
               <section>
                 <div>
-                  Fetching...
+                  <?php echo __('Fetching...') ?>
                 </div>
                 <div class="clear"></div>
               </section>
@@ -70,12 +70,12 @@
 
         <section class="b-now">
 
-          <h2>Next Backups:</h2>
+          <h2><?php echo __('Next Backups:') ?></h2>
 
             <div class="darkwell" id="tab1Next">
               <section>
                 <div>
-                  Fetching...
+                  <?php echo __('Fetching...') ?>
                 </div>
               </section>
             </div>
@@ -84,12 +84,12 @@
 
       <section class="b-now">
 
-          <h2>Previous Backups:</h2>
+          <h2><?php echo __('Previous Backups:') ?></h2>
 
             <div class="darkwell" id="tab1Prev">
               <section>
                 <div>
-                  Fetching...
+                  <?php echo __('Fetching...') ?>
                 </div>
               </section>
             </div>
@@ -117,7 +117,7 @@
 
         <section class="b-now">
 
-          <h2>Backup Worlds:</h2>
+          <h2><?php echo __('Backup Worlds:') ?></h2>
 
 
             <div class="darkwell">
@@ -138,14 +138,14 @@
 
         <section class="b-now">
 
-          <h2>Next Backups:</h2>
+          <h2><?php echo __('Next Backups:') ?></h2>
 
 
             <div class="darkwell" id="tab2Next">
 
               <section>
                 <div>
-                  Fetching...
+                  <?php echo __('Fetching...') ?>
                 </div>
               </section>
 
@@ -153,13 +153,13 @@
 
       <section class="b-now">
 
-          <h2>Previous Backups:</h2>
+          <h2><?php echo __('Previous Backups:') ?></h2>
 
           <div class="darkwell" id="tab2Prev">
 
             <section>
               <div>
-                Fetching...
+                <?php echo __('Fetching...') ?>
               </div>
             </section>
 
@@ -188,7 +188,7 @@
 
         <section class="b-now">
 
-          <h2>Backup Plugins:</h2>
+          <h2><?php echo __('Backup Plugins:') ?></h2>
 
 
             <div class="darkwell">
@@ -209,14 +209,14 @@
 
         <section class="b-now">
 
-          <h2>Next Backups:</h2>
+          <h2><?php echo __('Next Backups:') ?></h2>
 
 
             <div class="darkwell" id="tab3Next">
 
               <section>
                 <div>
-                  Fetching...
+                  <?php echo __('Fetching...') ?>
                 </div>
               </section>
 
@@ -224,13 +224,13 @@
 
       <section class="b-now">
 
-          <h2>Previous Backups:</h2>
+          <h2><?php echo __('Previous Backups:') ?></h2>
 
             <div class="darkwell" id="tab3Prev">
 
               <section>
                 <div>
-                  Fetching...
+                  <?php echo __('Fetching...') ?>
                 </div>
               </section>
 
@@ -259,7 +259,7 @@
 
         <section class="b-now">
 
-          <h2>Backup Server:</h2>
+          <h2><?php echo __('Backup Server:') ?></h2>
 
             <div class="darkwell">
               <section>
@@ -279,14 +279,14 @@
 
         <section class="b-now">
 
-          <h2>Next Backups:</h2>
+          <h2><?php echo __('Next Backups:') ?></h2>
 
 
             <div class="darkwell" id="tab4Next">
 
               <section>
                 <div>
-                  Fetching...
+                  <?php echo __('Fetching...') ?>
                 </div>
               </section>
 
@@ -294,13 +294,13 @@
 
       <section class="b-now">
 
-          <h2>Previous Backups:</h2>
+          <h2><?php echo __('Previous Backups:') ?></h2>
 
             <div class="darkwell" id="tab4Prev">
 
               <section>
                 <div>
-                  Fetching...
+                  <?php echo __('Fetching...') ?>
                 </div>
               </section>
             </div>

@@ -79,14 +79,14 @@ class TBackupsController extends AppController {
             $allWorlds = $api->call('getAllWorlds', $args, true);
             $backupWorlds = '';
             foreach ($allWorlds as $Wname) {
-                $backupWorlds .= "<section>\n<div class=\"b-what\">".$Wname."</div>\n<div class=\"b-when\">".perm_action('backups', 'backupWorlds', $this->Session->read("user_perm"), "<a class=\"button icon like backup\" href=\"./tbackups/backup/World/".$Wname."\">Backup</a>")."</div>\n</section>\n\n";
+                $backupWorlds .= "<section>\n<div class=\"b-what\">".$Wname."</div>\n<div class=\"b-when\">".perm_action('backups', 'backupWorlds', $this->Session->read("user_perm"), "<a class=\"button icon like backup\" href=\"./tbackups/backup/World/".$Wname."\">".__('Backup')."</a>")."</div>\n</section>\n\n";
             }
             $this->set('backupWorlds', $backupWorlds);
             //parse plugin list
             $bPlugins = '';
-                $bPlugins .= perm_action('backups', 'backupPlugins', $this->Session->read("user_perm"), "<section>\n<div> <a href=\"./tbackups/backup/Plugins\" class=\"button icon like backup\">Backup All Plugins</a></div>\n</section>");
+                $bPlugins .= perm_action('backups', 'backupPlugins', $this->Session->read("user_perm"), "<section>\n<div> <a href=\"./tbackups/backup/Plugins\" class=\"button icon like backup\">".__('Backup All Plugins')."</a></div>\n</section>");
             if (!$running) {
-                $bPlugins = 'Couldn\'t load plugins list (Server is turned off)';
+                $bPlugins = __('Couldn\'t load plugins list (Server is turned off)');
             } else {
                 $allPlugins = $api->call('getPlugins', $args, false);
                 foreach ($allPlugins as $p) {
@@ -123,19 +123,19 @@ class TBackupsController extends AppController {
             if ($status) {
                 $r = 'yes';
                 $size = round((intval($bInfo[7]) / 1048576), 2);
-                $data .= '<h3>'.'Backing up '.$bInfo[0].'</h3>';
+                $data .= '<h3>'.__('Backing up').' '.$bInfo[0].'</h3>';
                 $data .= '<div class="b-what">'.$bInfo[6].$bInfo[5].'</div>';
                 $data .= '<br><div class="b-in">(Started on '.date('l, dS F Y \a\t H:i)', round($bInfo[2] / 1000)).'</div>';
-                $data .= '<div class="b-when">Currently '.$size.' MB</div>';
+                $data .= '<div class="b-when">'.__('Currently').' '.$size.' '.__('MB').'</div>';
             } else if(($bInfo[2]/1000)+300 >= time()) {
                 $r = 'done';
                 $data .= '<div class="col left col_1_3"><img src="./img/win.png" /></div>';
-                $data .= '<div class="col right col_2_3"><h3>Backup finished!</h3>';
-                $data .= '<div class="b-what">Backup of '.$bInfo[0].' finished '.round((time() - $bInfo[2] / 1000) / 60, 0, PHP_ROUND_HALF_DOWN).' minutes ago!</div></div>';
+                $data .= '<div class="col right col_2_3"><h3>'.__('Backup finished!').'</h3>';
+                $data .= '<div class="b-what">'.__('Backup of').' '.$bInfo[0].' '.__('finished').' '.round((time() - $bInfo[2] / 1000) / 60, 0, PHP_ROUND_HALF_DOWN).' '.__('minutes ago!').'</div></div>';
             }else {
                 $r = 'no';
                 $data .= '<div class="col left col_1_3"><img src="./img/info.png" /></div>';
-                $data .= '<div class="col right col_2_3"><h3>No backups running!</h3>'."\n".'<div class="b-what">All your backups are completed!</div></div>';
+                $data .= '<div class="col right col_2_3"><h3>'.__('No backups running!').'</h3>'."\n".'<div class="b-what">'.__('All your backups are completed!').'</div></div>';
             }
 
             // --------------------------------------------------------------------------------------------------
@@ -221,8 +221,8 @@ class TBackupsController extends AppController {
                         $text = '';
                         $text .= '<section>';
                         $wn = explode('-', $b[1]);
-                        $text .= '<div class="b-what">'.perm_action('backups', 'restore', $this->Session->read("user_perm"), '<a href="./tbackups/restore/Worlds/'.$b[0].'" class="button icon move backup">Restore</a> ').$wn[0].' "'.$wn[1].'"</div>';
-                        $text .= '<div class="b-in">'.round($b[2] / 1048576, 2).'MB</div>';
+                        $text .= '<div class="b-what">'.perm_action('backups', 'restore', $this->Session->read("user_perm"), '<a href="./tbackups/restore/Worlds/'.$b[0].'" class="button icon move backup">'.__('Restore').'</a> ').$wn[0].' "'.$wn[1].'"</div>';
+                        $text .= '<div class="b-in">'.round($b[2] / 1048576, 2).__('MB').'</div>';
                         $text .= '<div class="b-when">'.date('l, dS F Y \a\t H:i', $b[3] / 1000).'</div>';
                         $text .= '</section>';
 
@@ -237,8 +237,8 @@ class TBackupsController extends AppController {
                     } else if (preg_match("/Plugins/", $b[1])) {
                         $text = '';
                         $text .= '<section>';
-                        $text .= '<div class="b-what">'.perm_action('backups', 'restore', $this->Session->read("user_perm"), '<a href="./tbackups/restore/Plugins/'.$b[0].'" class="button icon move backup">Restore</a> ').'All Plugins</div>';
-                        $text .= '<div class="b-in">'.round($b[2] / 1048576, 2).'MB</div>';
+                        $text .= '<div class="b-what">'.perm_action('backups', 'restore', $this->Session->read("user_perm"), '<a href="./tbackups/restore/Plugins/'.$b[0].'" class="button icon move backup">'.__('Restore').'</a> ').__('All Plugins').'</div>';
+                        $text .= '<div class="b-in">'.round($b[2] / 1048576, 2).__('MB').'</div>';
                         $text .= '<div class="b-when">'.date('l, dS F Y \a\t H:i', $b[3] / 1000).'</div>';
                         $text .= '</section>';
 
@@ -253,7 +253,7 @@ class TBackupsController extends AppController {
                     } else if (preg_match("/Server/", $b[1])) {
                         $text = '';
                         $text .= '<section>';
-                        $text .= '<div class="b-what">'.perm_action('backups', 'restore', $this->Session->read("user_perm"), '<a href="./tbackups/restore/Server/'.$b[0].'" class="button icon move backup">Restore</a> ').'Complete Server</div>';
+                        $text .= '<div class="b-what">'.perm_action('backups', 'restore', $this->Session->read("user_perm"), '<a href="./tbackups/restore/Server/'.$b[0].'" class="button icon move backup">'.__('Restore').'</a> ').__('Complete Server').'</div>';
                         $text .= '<div class="b-in">'.round($b[2] / 1048576, 2).'MB</div>';
                         $text .= '<div class="b-when">'.date('l, dS F Y \a\t H:i', $b[3] / 1000).'</div>';
                         $text .= '</section>';
@@ -272,7 +272,7 @@ class TBackupsController extends AppController {
             if ($e == 0) {
                 $text = '';
                 $text .= '<section>';
-                $text .= '<h3>No backups found!</h3>'; //Name
+                $text .= '<h3>'.__('No backups found!').'</h3>'; //Name
                 $text .= '</section>';
                 $prevOutput["a"] = $text;
                 $prevOutput["w"] = $text;
@@ -281,16 +281,16 @@ class TBackupsController extends AppController {
             } else {
                 
                 if (count($types["a"] >= $wrote["a"])) {
-                    $prevOutput["a"] .= '<section><div class="b-what"><a href="#" class="button icon add" id="updatepa">More...</a></div><div class="b-in"></div><div class="b-when"></div></section>';
+                    $prevOutput["a"] .= '<section><div class="b-what"><a href="#" class="button icon add" id="updatepa">'.__('More...').'</a></div><div class="b-in"></div><div class="b-when"></div></section>';
                 }
                 if (count($types["w"] >= $wrote["w"])) {
-                    $prevOutput["w"] .= '<section><div class="b-what"><a href="#" class="button icon add" id="updatepw">More...</a></div><div class="b-in"></div><div class="b-when"></div></section>';
+                    $prevOutput["w"] .= '<section><div class="b-what"><a href="#" class="button icon add" id="updatepw">'.__('More...').'</a></div><div class="b-in"></div><div class="b-when"></div></section>';
                 }
                 if (count($types["p"] >= $wrote["p"])) {
-                    $prevOutput["p"] .= '<section><div class="b-what"><a href="#" class="button icon add" id="updatepp">More...</a></div><div class="b-in"></div><div class="b-when"></div></section>';
+                    $prevOutput["p"] .= '<section><div class="b-what"><a href="#" class="button icon add" id="updatepp">'.__('More...').'</a></div><div class="b-in"></div><div class="b-when"></div></section>';
                 }
                 if (count($types["s"] >= $wrote["s"])) {
-                    $prevOutput["s"] .= '<section><div class="b-what"><a href="#" class="button icon add" id="updateps">More...</a></div><div class="b-in"></div><div class="b-when"></div></section>';
+                    $prevOutput["s"] .= '<section><div class="b-what"><a href="#" class="button icon add" id="updateps">'.__('More...').'</a></div><div class="b-in"></div><div class="b-when"></div></section>';
                 }        
             }
 
@@ -309,7 +309,7 @@ class TBackupsController extends AppController {
             }
             if (empty($nbackups)) {
                 $schedOutput .= '<section>';
-                $schedOutput .= '<h3>No scheduled backups found!</h3>'; //Name
+                $schedOutput .= '<h3>'.__('No scheduled backups found!').'</h3>'; //Name
                 $schedOutput .= '</section>';
             } else {
                 $i = 0;
@@ -318,17 +318,17 @@ class TBackupsController extends AppController {
                         echo '';
                     } else {
                         if (preg_match("/EVERYXHOURS/", $binfo['timeType'])) {
-                            $when = 'Every '.$binfo['timeArg'].' hours';
+                            $when = __('Every').' '.$binfo['timeArg'].' '.__('hours');
                         } else if (preg_match("/EVERYXMINUTES/", $binfo['timeType'])) {
-                            $when = 'Every '.$binfo['timeArg'].' minutes';
+                            $when = __('Every').' '.$binfo['timeArg'].' '.__('minutes');
                         } else if (preg_match("/ONCEPERDAYAT/", $binfo['timeType'])) {
-                            $when = 'Once per day at: '.$binfo['timeArg'];
+                            $when = __('Once per day at:').' '.$binfo['timeArg'];
                         } else if (preg_match("/XMINUTESPASTEVERYHOUR/", $binfo['timeType'])) {
-                            $when = $binfo['timeArg'].' minutes past every hour';
+                            $when = $binfo['timeArg'].' '.__('minutes past every hour');
                         }
                         $schedOutput .= '<section>';
                         $schedOutput .= '<div class="b-what">'.$bname.'</a></div>'; //Name
-                        $schedOutput .= '<div class="b-in">contents: '.$binfo['type'].', folder: '.$binfo['fold'].'</div>'; //Size
+                        $schedOutput .= '<div class="b-in">'.__('contents').': '.$binfo['type'].', '.__('folder')).': '.$binfo['fold'].'</div>'; //Size
                         $schedOutput .= '<div class="b-when">'.$when.'</div>'; //date
                         $schedOutput .= '</section>';
                         $i++;
@@ -336,7 +336,7 @@ class TBackupsController extends AppController {
                 }
             }
             $schedOutput .= '<section>';
-            $schedOutput .= '<div class="b-what"><a href="./tbackups/schedule" class="button icon add fancy" id="schedb">Schedule backup</a></div>'; //Name
+            $schedOutput .= '<div class="b-what"><a href="./tbackups/schedule" class="button icon add fancy" id="schedb">'.__('Schedule backup').'</a></div>'; //Name
             $schedOutput .= '<div class="b-in"></div>'; //Size
             $schedOutput .= '<div class="b-when"></div>'; //date
             $schedOutput .= '</section>';
@@ -356,10 +356,10 @@ class TBackupsController extends AppController {
             }
 
             $backupInfo .= '<section>';
-            $backupInfo .= '<h3>Backup count: '.$bnum.'</h3>'; //Name
+            $backupInfo .= '<h3>'.__('Backup count').': '.$bnum.'</h3>'; //Name
             $backupInfo .= '</section>';
             $backupInfo .= '<section>';
-            $backupInfo .= '<h3>Total size: '.round($bsize, 2).'MB</h3>'; //Name
+            $backupInfo .= '<h3>'.__('Total size').': '.round($bsize, 2).__('MB').'</h3>'; //Name
             $backupInfo .= '</section>';
 
             // --------------------------------------------------------------------------------------------------
