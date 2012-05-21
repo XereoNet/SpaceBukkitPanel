@@ -373,7 +373,7 @@ END;
         $args = array();   
         $api->call("reloadServer", $args, false);  
 
-        w_serverlog($this->Session->read("current_server"), '[GLOBAL]'.$this->Auth->user('username').__(' reloaded the server'));
+        w_serverlog($this->Session->read("current_server"), '[GLOBAL] '.$this->Auth->user('username').' '.__('reloaded the server.'));
 
         //Dummy call to listen for reload   
         $args = array();   
@@ -393,7 +393,7 @@ END;
         $args = array(true);   
         $api->call("restartServer", $args, true);  
 
-        w_serverlog($this->Session->read("current_server"), '[GLOBAL]'.$this->Auth->user('username').__(' restarted the server'));
+        w_serverlog($this->Session->read("current_server"), '[GLOBAL] '.$this->Auth->user('username').' '.__('restarted the server.'));
 
         //Dummy call to listen for reload   
         $args = array();   
@@ -410,7 +410,7 @@ END;
         $args = array();   
         $api->call("forceRestart", $args, true);  
 
-        w_serverlog($this->Session->read("current_server"), '[GLOBAL]'.$this->Auth->user('username').__(' forced a restart on the server'));
+        w_serverlog($this->Session->read("current_server"), '[GLOBAL] '.$this->Auth->user('username').' '.__('forced a restart on the server.'));
 
         //Dummy call to listen for reload   
         $args = array();   
@@ -430,7 +430,7 @@ END;
         sleep(5);
         }
 
-        w_serverlog($this->Session->read("current_server"), '[GLOBAL]'.$this->Auth->user('username').__(' stopped the server'));
+        w_serverlog($this->Session->read("current_server"), '[GLOBAL] '.$this->Auth->user('username').' '.__('stopped the server.'));
 
         $this->redirect($this->referer());
 
@@ -447,7 +447,7 @@ END;
         sleep(5);
         }
 
-        w_serverlog($this->Session->read("current_server"), '[GLOBAL]'.$this->Auth->user('username').__(' forced the server to stop'));
+        w_serverlog($this->Session->read("current_server"), '[GLOBAL] '.$this->Auth->user('username').' '.__('forced the server to stop.'));
 
         $this->redirect($this->referer());
 
@@ -465,7 +465,7 @@ END;
         }
         $this->redirect($this->referer());
 
-        w_serverlog($this->Session->read("current_server"), '[GLOBAL]'.$this->Auth->user('username').__(' started the server'));
+        w_serverlog($this->Session->read("current_server"), '[GLOBAL] '.$this->Auth->user('username').' '.__('started the server.'));
 
       }
 
@@ -493,15 +493,15 @@ END;
     function delserver($id = null) {
         $this->Server->id = $id;
         if (!$this->Server->exists()) {
-            throw new NotFoundException(__('Invalid server'));
+            throw new NotFoundException(__('Invalid server!'));
         }
         if ($this->Server->delete()) {
-            $this->Session->setFlash(__('Server deleted'));
+            $this->Session->setFlash(__('The server has been deleted!'));
             $getserver = $this->Server->find('first');
             $this->Session->write("current_server", $getserver['Server']['title']);
             $this->redirect($this->referer());
         }
-        $this->Session->setFlash(__('Server was not deleted'));
+        $this->Session->setFlash(__('The server was not deleted!'));
         $this->redirect($this->referer());
     }
 
@@ -509,7 +509,7 @@ END;
       
         if ($this->request->is('post')) { 
             if ($this->Server->save($this->request->data)) {
-                $this->Session->setFlash(__('The Server has been added!'));
+                $this->Session->setFlash(__('The server has been added!'));
             }
         }
                    $this->redirect($this->referer());
@@ -545,7 +545,7 @@ END;
 
       } 
       }
-      w_serverlog($this->Session->read("current_server"), '[GLOBAL]'.$this->Auth->user('username').__(' executed the command "').$command.'"');
+      w_serverlog($this->Session->read("current_server"), '[GLOBAL] '.$this->Auth->user('username').' '.__('executed the command').' "'.$command.'"');
               
     }
 

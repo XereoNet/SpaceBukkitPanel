@@ -85,7 +85,7 @@ class TfilesController extends AppController {
 
                 if ($link == '.') { $link .= '@@'; }
 
-                echo '<section class="f-row" id="back" data-p="$filepath"><a href="'.$link.'" class="button icon arrowleft explore">Go back one dir...</a></section>';
+                echo '<section class="f-row" id="back" data-p="$filepath"><a href="'.$link.'" class="button icon arrowleft explore">'.__('Go back one dir...').'</a></section>';
 
             }
 
@@ -130,7 +130,7 @@ class TfilesController extends AppController {
                     $fileimage = 'folder.png';
                     $type = 'dir';
                     $filemime = 'folder';
-                    $factions = '<span class="button-group"><a class="button icon arrowright explore" href="'.$filepath.'">Explore</a></span>';
+                    $factions = '<span class="button-group"><a class="button icon arrowright explore" href="'.$filepath.'">'.__('Explore').'</a></span>';
 
                 } else {
 
@@ -149,17 +149,17 @@ class TfilesController extends AppController {
                         $filename
                     </div>
                     <div class="f-mime">
-                        $filesize KB, $filemime
+                        $filesize __('KB'), $filemime
                     </div>
                     <div class="f-btns">
 
                         $factions
 
                         <span class="button-group">
-                            <a class="button icon log" href="#">Edit</a>
-                            <a class="button icon move" href="#">Move</a>
-                            <a class="button icon edit" href="#">Rename</a>
-                            <a class="button icon remove danger" href="#">Delete</a>               
+                            <a class="button icon log" href="#">__('Edit')</a>
+                            <a class="button icon move" href="#">__('Move')</a>
+                            <a class="button icon edit" href="#">__('Rename')</a>
+                            <a class="button icon remove danger" href="#">__('Delete')</a>               
                         </span>
 
                     </div>

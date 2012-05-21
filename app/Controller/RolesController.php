@@ -104,10 +104,10 @@ class RolesController extends AppController {
 
                 $this->Role->create();
             if ($this->Role->save($result)) {
-                $this->Session->setFlash(__('The role has been saved'));
+                $this->Session->setFlash(__('The role has been saved!'));
                 $this->redirect(array('controller' => 'tsettings', 'action' => 'index'));
             } else {
-                $this->Session->setFlash(__('The role could not be saved. Please, try again.'));
+                $this->Session->setFlash(__('The role could not be saved, please try again.'));
             }
 
         }
@@ -191,10 +191,10 @@ class RolesController extends AppController {
              );
 
             if ($this->Role->save($result)) {
-                $this->Session->setFlash(__('The role has been saved'));
+                $this->Session->setFlash(__('The role has been saved!'));
                 $this->redirect(array('controller' => 'tsettings', 'action' => 'index'));
             } else {
-                $this->Session->setFlash(__('The role could not be saved. Please, try again.'));
+                $this->Session->setFlash(__('The role could not be saved, please try again.'));
             }
         } else {
 
@@ -252,10 +252,10 @@ class RolesController extends AppController {
         $default = $this->Role->data;
    
         if ($this->Role->delete()) {
-            $this->Session->setFlash(__('Role deleted'));
+            $this->Session->setFlash(__('The role has been deleted!'));
             $this->redirect($this->referer());
         }
-        $this->Session->setFlash(__('Role was not deleted'));
+        $this->Session->setFlash(__('The role was not deleted!'));
         $this->redirect($this->referer());
     }
 

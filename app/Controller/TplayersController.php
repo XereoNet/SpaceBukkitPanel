@@ -140,7 +140,7 @@ class TPlayerscontroller extends AppController {
 
         if ($server['OnlinePlayers'] == 0) 
         { 
-            $noPl = __('Noone is online');
+            $noPl = __('There are no players online!');
             ECHO <<<END
 { "aaData": [
 [
@@ -255,7 +255,7 @@ END;
         }
         echo $plr.__('was set to ').$mode."!";
 
-        w_serverlog($this->Session->read("current_server"), __('[USERS]').$this->Auth->user('username').__(' set ').$plr.__(' to ').$mode); 
+        w_serverlog($this->Session->read("current_server"), __('[USERS] ').$this->Auth->user('username').' '.__('set').' '.$plr.' '.__('to').' '.$mode); 
         }
             
     }
@@ -366,7 +366,7 @@ END;
          
         echo $say;
 
-        w_serverlog($this->Session->read("current_server"), __('[USERS]').$this->Auth->user('username').__(' killed ').$player);
+        w_serverlog($this->Session->read("current_server"), __('[USERS] ').$this->Auth->user('username').' '.__('killed').' '.$player);
 
         } 
     }
@@ -391,7 +391,7 @@ END;
         $api->call("broadcastWithName", $args, false);  
         echo $say;
 
-        w_serverlog($this->Session->read("current_server"), __('[USERS]').$this->Auth->user('username').__(' healed ').$player);
+        w_serverlog($this->Session->read("current_server"), __('[USERS] ').$this->Auth->user('username').' '.__('healed').' '.$player);
         
         } 	 
     }
@@ -415,7 +415,7 @@ END;
         $api->call("broadcastWithName", $args, false);  
         echo $say;
 
-        w_serverlog($this->Session->read("current_server"), __('[USERS]').$this->Auth->user('username').__(' fed ').$player);
+        w_serverlog($this->Session->read("current_server"), __('[USERS] ').$this->Auth->user('username').' '.__('fed').' '.$player);
         
         } 	 
     }
@@ -438,7 +438,7 @@ END;
         $api->call("broadcastWithName", $args, false);  
         echo $say;
 
-        w_serverlog($this->Session->read("current_server"), __('[USERS]').$this->Auth->user('username').__(' kicked ').$player);
+        w_serverlog($this->Session->read("current_server"), __('[USERS] ').$this->Auth->user('username').' '.__('kicked').' '.$player);
         
         } 	 
     }
@@ -463,7 +463,7 @@ END;
         $api->call("broadcastWithName", $args, false);  
         echo $say;
 
-        w_serverlog($this->Session->read("current_server"), __('[USERS]').$this->Auth->user('username').__(' banned ').$player);
+        w_serverlog($this->Session->read("current_server"), __('[USERS] ').$this->Auth->user('username').' '.__('banned').' '.$player);
         
         } 	 
     }
@@ -488,7 +488,7 @@ END;
 
         echo $name['name'].__(' was banned and added to blacklist.');
 
-        w_serverlog($this->Session->read("current_server"), __('[USERS]').$this->Auth->user('username').__(' banned ').$name);
+        w_serverlog($this->Session->read("current_server"), __('[USERS] ').$this->Auth->user('username').' '.__('banned').' '.$name);
 
         }   
     }
@@ -510,7 +510,7 @@ END;
 
         echo $name.__(' was removed from blacklist.');
 
-        w_serverlog($this->Session->read("current_server"), __('[USERS]').$this->Auth->user('username').__(' unbanned ').$name);
+        w_serverlog($this->Session->read("current_server"), __('[USERS] ').$this->Auth->user('username').' '.__('unbanned').' '.$name);
 
         }    
     }
@@ -535,7 +535,7 @@ END;
 
         echo $name['name'].__(' was added to whitelist.');
 
-        w_serverlog($this->Session->read("current_server"), __('[USERS]').$this->Auth->user('username').__(' added ').$name['name'].__(' to whitelist'));
+        w_serverlog($this->Session->read("current_server"), __('[USERS] ').$this->Auth->user('username').' '.__('added').' '.$name['name'].__('to the whitelist'));
 
         }
     }
@@ -557,7 +557,7 @@ END;
 
         echo $name.__(' was removed from whitelist.');
 
-        w_serverlog($this->Session->read("current_server"), __('[USERS]').$this->Auth->user('username').__(' removed ').$name.__(' from whitelist'));
+        w_serverlog($this->Session->read("current_server"), __('[USERS] ').$this->Auth->user('username').' '.__('removed').' '.$name.' '.__('from the whitelist'));
 
         }    
     }
@@ -579,7 +579,7 @@ END;
 
         echo $name.__(' was opped!');
 
-        w_serverlog($this->Session->read("current_server"), __('[USERS]').$this->Auth->user('username').__(' opped ').$name);
+        w_serverlog($this->Session->read("current_server"), __('[USERS] ').$this->Auth->user('username').' '.__('opped').' '.$name);
 
         }    
     }
@@ -601,7 +601,7 @@ END;
 
         echo $name.__(' was deopped!');
 
-        w_serverlog($this->Session->read("current_server"), __('[USERS]').$this->Auth->user('username').__(' deopped ').$name);
+        w_serverlog($this->Session->read("current_server"), __('[USERS] ').$this->Auth->user('username').' '.__('deopped').' '.$name);
 
         }    
     }

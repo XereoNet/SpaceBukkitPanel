@@ -44,7 +44,7 @@
         'name'              => 'Admin online refresh time',
         'desc'              => 'The amount of time SpaceBukkit waits before refreshing the dashboard "admins online" section.',
         'vars'              => null,
-        'val'               => /*6*/'1000'
+        'val'               => /*6*/'10000'
         ), 
     array(
         'name'              => 'Players check time',

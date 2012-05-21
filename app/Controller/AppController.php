@@ -79,8 +79,8 @@ class AppController extends Controller {
 
 	{
 
-   $this->Auth->loginError = "This message shows up when the wrong credentials are used";    
-   $this->Auth->authError = "This error shows up when the user tries to access a part of the website that is protected.";       
+   $this->Auth->loginError = __('This usernames/password combination was not found, did you enter the correct password?');    
+   $this->Auth->authError = __('This error shows up when the user tries to access a part of the website that is protected.');       
 /* ####################################################
  *   4)  If not logged in, do nothing. If yes...
 ##################################################### */

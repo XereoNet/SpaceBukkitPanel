@@ -82,26 +82,26 @@ class SchedulesController extends AppController {
         
         if ($id == 1) {
 
-            echo '[{"optionValue": 1, "optionDisplay": "Every hour"}, ';
+            echo '[{"optionValue": 1, "optionDisplay": "'.__('Every hour').'"}, ';
             
             for ($i = 2; $i <= 167; $i++) {
-                echo '{"optionValue": '.$i.', "optionDisplay": "Every '.$i.' hours"}, ';
+                echo '{"optionValue": '.$i.', "optionDisplay": "'.__('Every').' '.$i.' '.__('hours').'"}, ';
                 $id++;
             }
 
-            echo '{"optionValue": 168, "optionDisplay": "Every 168 hours (1 week)"}]';
+            echo '{"optionValue": 168, "optionDisplay": "'.__('Every 168 hours (1 week)').'"}]';
 
             
         } elseif ($id == 2) {
             
-            echo '[{"optionValue": 1, "optionDisplay": "Every minute"}, ';
+            echo '[{"optionValue": 1, "optionDisplay": "'.__('Every minute').'"}, ';
             
             for ($i = 2; $i <= 59; $i++) {
-                echo '{"optionValue": '.$i.', "optionDisplay": "Every '.$i.' minutes"}, ';
+                echo '{"optionValue": '.$i.', "optionDisplay": "'.__('Every').' '.$i.' '.__('minutes').'"}, ';
                 $id++;
             }
 
-            echo '{"optionValue": 60, "optionDisplay": "Every 60 minutes (1 hour)"}]';
+            echo '{"optionValue": 60, "optionDisplay": "'.__('Every 60 minutes (1 hour)').'"}]';
 
         } elseif ($id == 3) {
 
@@ -182,7 +182,7 @@ class SchedulesController extends AppController {
             //debug($args);
      
             if ($api->call("addJob", $args, true)) {
-                echo 'yes';
+                echo __('yes');
             }
 
                        
@@ -211,7 +211,7 @@ class SchedulesController extends AppController {
      
             $api->call("removeJob", $args, true);  
             
-            echo 'The schedule '.$name.' was removed!';
+            echo __('The schedule').' '.$name.' '.__('was removed!');
                       
         }                 
     }
@@ -263,9 +263,5 @@ END;
          echo '] }';
 
         }
-
-
-
     }
-
 }

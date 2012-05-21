@@ -402,7 +402,7 @@ END;
 
 			if (count($players) == 0) {
 
-			echo '<tr><td>'.__('Nobody online :').'(</td></tr>';
+			echo '<tr><td>'.__('Nobody online').' :(</td></tr>';
 
 			} else {
 

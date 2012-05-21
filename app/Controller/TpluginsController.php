@@ -324,7 +324,7 @@ END;
     	//Disable plugin		
     	$args = array($name);   
     	$api->call("disablePluginTemporarily", $args, false);
-        w_serverlog($this->Session->read("current_server"), __('[PLUGINS]').$this->Auth->user('username').__(' disabled ').$name);
+        w_serverlog($this->Session->read("current_server"), __('[PLUGINS] ').$this->Auth->user('username').' '.__('disabled').' '.$name);
         echo $name.__(' has been disabled.');
     }
     }
@@ -343,7 +343,7 @@ END;
 		//Disable plugin		
 		$args = array($name);   
 		$api->call("enablePluginTemporarily", $args, FALSE);
-        w_serverlog($this->Session->read("current_server"), __('[PLUGINS]').$this->Auth->user('username').__(' enabled ').$name);
+        w_serverlog($this->Session->read("current_server"), __('[PLUGINS] ').$this->Auth->user('username').' '.__('enabled').' '.$name);
         echo $name.__(' has been enabled.');
 
     }
@@ -363,7 +363,7 @@ END;
             sleep(2);
             $w = $api->call('getWorlds', array(), false);
         }
-        w_serverlog($this->Session->read("current_server"), __('[PLUGINS]').$this->Auth->user('username').__(' updated ').$name);
+        w_serverlog($this->Session->read("current_server"), __('[PLUGINS] ').$this->Auth->user('username').' '.__('updated').' '.$name);
 
         $this->redirect(array('controller' => 'Tplugins', 'action' => 'index'));
 

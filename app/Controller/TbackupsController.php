@@ -86,7 +86,7 @@ class TBackupsController extends AppController {
             $bPlugins = '';
                 $bPlugins .= perm_action('backups', 'backupPlugins', $this->Session->read("user_perm"), "<section>\n<div> <a href=\"./tbackups/backup/Plugins\" class=\"button icon like backup\">".__('Backup All Plugins')."</a></div>\n</section>");
             if (!$running) {
-                $bPlugins = __('Couldn\'t load plugins list (Server is turned off)');
+                $bPlugins = __("Couldn't load plugins list (Server is turned off)");
             } else {
                 $allPlugins = $api->call('getPlugins', $args, false);
                 foreach ($allPlugins as $p) {
@@ -404,7 +404,7 @@ class TBackupsController extends AppController {
 
             $args = array($type, $name, $restart);
             $api->call('backup', $args, true);
-            w_serverlog($this->Session->read("current_server"), __('[BACKUPS]').$this->Auth->user('username').__(' made a backup of ').$type);
+            w_serverlog($this->Session->read("current_server"), __('[BACKUPS] ').$this->Auth->user('username').' '.__('made a backup of').' '.$type);
         }
     }   // end of backup
 
@@ -422,7 +422,7 @@ class TBackupsController extends AppController {
 
             $args = array($name);
             $api->call('restore', $args, true);
-            w_serverlog($this->Session->read("current_server"), __('[WORLDS]').$this->Auth->user('username').__(' restored ').$name);
+            w_serverlog($this->Session->read("current_server"), __('[WORLDS] ').$this->Auth->user('username').' '.__('restored').' '.$name);
         }
     }   // end of restore
 

@@ -36,10 +36,10 @@ class ServersController extends AppController {
         if ($this->request->is('post')) {
             $this->Server->create();
             if ($this->Server->save($this->request->data)) {
-                $this->Session->setFlash(__('The Server has been saved'));
+                $this->Session->setFlash(__('The server has been saved!'));
                 $this->redirect(array('controller' => 'tsettings', 'action' => 'index'));
             } else {
-                $this->Session->setFlash(__('The Server could not be saved. Please, try again.'));
+                $this->Session->setFlash(__('The server could not be saved, please try again.'));
             }
         }
         $this->layout = 'popup';
@@ -57,10 +57,10 @@ class ServersController extends AppController {
         }
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->Server->save($this->request->data)) {
-                $this->Session->setFlash(__('The Server has been saved'));
+                $this->Session->setFlash(__('The server has been saved!'));
                 $this->redirect(array('controller' => 'tsettings', 'action' => 'index'));
             } else {
-                $this->Session->setFlash(__('The Server could not be saved. Please, try again.'));
+                $this->Session->setFlash(__('The server could not be saved, please try again.'));
             }
         } else {
             $this->set('editserver', $this->Server->read(null, $id));
@@ -77,10 +77,10 @@ class ServersController extends AppController {
             throw new NotFoundException(__('Invalid Server'));
         }
         if ($this->Server->delete()) {
-            $this->Session->setFlash(__('Server deleted'));
+            $this->Session->setFlash(__('The server has been deleted!'));
             $this->redirect($this->referer());
         }
-        $this->Session->setFlash(__('Server was not deleted'));
+        $this->Session->setFlash(__('The server was not deleted!'));
         $this->redirect($this->referer());
     }
     public function clearLog() {
