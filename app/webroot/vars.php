@@ -51,7 +51,19 @@
         'desc'              => 'The amount of time SpaceBukkit waits before checking if someone has joined the server recently. If yes, the player list get\'s reloaded',
         'vars'              => null,
         'val'               => /*7*/'5000'
+        ),
+    array(
+        'name'              => 'Backup progress check time',
+        'desc'              => 'The amount of time SpaceBukkit waits before rechecking the current backup status',
+        'vars'              => null,
+        'val'               => /*8*/'750'
         ), 
+    array(
+        'name'              => 'Previous/Scheduled backups reload time',
+        'desc'              => 'The amount of time SpaceBukkit waits before reloading the previous and scheduled backups',
+        'vars'              => null,
+        'val'               => /*9*/'10000'
+        ),  
     ); 
 
 

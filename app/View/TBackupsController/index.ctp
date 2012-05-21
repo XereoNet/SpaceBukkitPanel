@@ -380,8 +380,8 @@ $('document').ready(function() {
   getBackups();
 
   //set update intervals
-  setInterval("getRunning()", 1000);
-  setInterval("getBackups()", 10000);
+  setInterval("getRunning()", '<?php echo $this->Session->read("Sbvars.8"); ?>');
+  setInterval("getBackups()", '<?php echo $this->Session->read("Sbvars.9"); ?>');
 
   //more buttons checks
   $('#updatepa').live('click', function(){
