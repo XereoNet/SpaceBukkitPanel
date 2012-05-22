@@ -86,34 +86,6 @@ class TServersController extends AppController {
 
         $this->set('title_for_layout', __('Server'));
 
-        //Server Information
-
-        $args = array();
-        $ServerSpecs = array();
-        $ServerSpecs['CPU'] = $api->call('getNumCpus', $args, false).' cores at '.$api->call('getCpuFrequency', $args, false).'GHz';
-
-        $ServerSpecs['arch'] = $api->call('getArch', $args, false);
-
-        $ServerSpecs['RAM'] = round(intval($api->call('getPhysicalMemoryTotal', $args, false)) / 1024, 2).' GB';
-
-        $Dused = round(intval($api->call('getDiskUsage', $args, false)) / 1073741824, 2);
-        $Dtotal = round(intval($api->call('getDiskSize', $args, false)) / 1073741824, 2);
-        $Dfree = round(intval($api->call('getDiskFreeSpace', $args, false)) / 1073741824, 2);
-        $ServerSpecs['Disk'] = 'Used: '.$Dused.'GB/'.$Dtotal.'GB Free: '.$Dfree.'GB';
-
-        $ServerSpecs['OS'] = $api->call('getOsName', $args, false);
-
-        $ServerSpecs['Java'] = '1.SPAAACEEEE-R01-SNAPSHOT';
-
-        $ServerSpecs['Web'] = $_SERVER['SERVER_SOFTWARE'];
-
-        $server = $api->call('getServer', $args, false);
-
-        $ServerSpecs['Bukkit'] = $server['Version'];
-
-        $ServerSpecs['SpaceBukkit'] = 'Module: '.$api->call('getSpaceModuleVersion', $args, true).', RTK: '.$api->call('getVersion', $args, true);
-        $this->set('ServerSpecs', $ServerSpecs);
-
         //Bukkit Properties Info
         $bukkit = array();
 
@@ -210,6 +182,152 @@ class TServersController extends AppController {
 
         }
 
+    }
+
+    function getServerOverview() {
+    if ($this->request->is('ajax') || true) {
+            
+            $this->disableCache();
+            Configure::write('debug', 0);
+            $this->autoRender = false;
+
+        //Server Information
+            require APP . 'spacebukkitcall.php';
+
+        $args = array();
+        $ServerSpecs = array();
+        $ServerSpecs['CPU'] = $api->call('getNumCpus', $args, false).' cores at '.$api->call('getCpuFrequency', $args, false).'GHz';
+
+        $ServerSpecs['arch'] = $api->call('getArch', $args, false);
+
+        $ServerSpecs['RAM'] = round(intval($api->call('getPhysicalMemoryTotal', $args, false)) / 1024, 2).' GB';
+
+        $Dused = round(intval($api->call('getDiskUsage', $args, false)) / 1073741824, 2);
+        $Dtotal = round(intval($api->call('getDiskSize', $args, false)) / 1073741824, 2);
+        $Dfree = round(intval($api->call('getDiskFreeSpace', $args, false)) / 1073741824, 2);
+        $ServerSpecs['Disk'] = 'Used: '.$Dused.'GB/'.$Dtotal.'GB Free: '.$Dfree.'GB';
+
+        $ServerSpecs['OS'] = $api->call('getOsName', $args, false);
+
+        $ServerSpecs['Java'] = '1.SPAAACEEEE-R01-SNAPSHOT';
+
+        $ServerSpecs['Web'] = $_SERVER['SERVER_SOFTWARE'];
+
+        $server = $api->call('getServer', $args, false);
+
+        $ServerSpecs['Bukkit'] = $server['Version'];
+
+        $ServerSpecs['SpaceBukkit'] = 'Module: '.$api->call('getSpaceModuleVersion', $args, true).', RTK: '.$api->call('getVersion', $args, true);
+        $this->set('ServerSpecs', $ServerSpecs);
+
+
+        echo <<<END
+<div class="col col_1_3 left">
+
+    <section>
+      <label for="CPU">
+        CPU: 
+      </label>
+
+      <div>
+        $ServerSpecs[CPU]<br>
+      </div>
+    </section>
+
+    <section>
+      <label for="Java">
+        Java Version: 
+      </label>
+
+      <div>
+        $ServerSpecs[Java]<br>
+      </div>
+    </section>
+
+    <section>
+      <label for="Bukkit">
+        Bukkit Version: 
+      </label>
+
+      <div>
+        $ServerSpecs[Bukkit]<br>
+      </div>
+    </section>
+
+  </div>
+
+
+  <div class="col col_1_3 left">
+
+      <section>
+        <label for="Architecture">
+          Architecture: 
+        </label>
+
+        <div>
+          $ServerSpecs[arch]<br>
+        </div>
+      </section>
+        <section>
+          <label for="OS">
+            Operating System: 
+          </label>
+
+          <div>
+            $ServerSpecs[OS]<br>
+          </div>
+        </section>
+
+        <section>
+          <label for="SB">
+            SpaceBukkit Version: 
+          </label>
+
+          <div>
+            $ServerSpecs[SpaceBukkit]<br>
+          </div>
+       <div class="clear"></div>
+          </section>           
+  </div>
+
+
+  <div class="col col_1_3 left">
+
+    <section>
+      <label for="Memory">
+        Memory: 
+      </label>
+
+      <div>
+        $ServerSpecs[RAM]<br>
+      </div>
+    </section>
+
+    <section>
+      <label for="Disk">
+        Disk Space: 
+      </label>
+
+      <div>
+        $ServerSpecs[Disk]<br>
+      </div>
+    </section>
+
+
+        <section>
+          <label for="Web">
+            Webserver Version: 
+          </label>
+
+          <div>
+            $ServerSpecs[Web]<br>
+          </div>
+        </section>
+  </div>
+
+  <div class="clear"></div>
+END;
+        }
     }
 
     //delete the server log

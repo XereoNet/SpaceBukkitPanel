@@ -77,7 +77,7 @@
 			<iframe src="<?php echo $dynmapurl; ?>" style="width: 100%; height: 100%;"></iframe>
 			<?php } else { ?>
 			<div class="alert alert-info"> 
-	        <?php echo __('Dynmap not found, please install it if you want to use the map feature!') ?>
+	        <?php echo __('Dynmap not found!').' <a href="./bukget2/installPlugin/dynmap" class="button icon arrowdown ajax_table1">Install Dynmap</a>' ?>
 		    </div> 
 		    <?php } ?>
 		</div>
