@@ -225,7 +225,7 @@ class TServersController extends AppController {
 
             $args = array('server.log');
 
-            debug($api->call('deleteFile', $args, true));
+            $api->call('deleteFile', $args, true);
 
         }
 
@@ -243,7 +243,7 @@ class TServersController extends AppController {
 
             $args = array();
 
-            debug($api->call('rollOverLog', $args, true));
+            $api->call('rollOverLog', $args, true);
 
         }
 

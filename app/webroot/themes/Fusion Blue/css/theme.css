@@ -200,6 +200,34 @@ nav#mainnav ul li.current a
 
 }
 
+.icon.permissions
+{
+
+	background-image: url(../img/permissions.png)
+
+}
+
+.icon.files
+{
+
+	background-image: url(../img/files.png)
+
+}
+
+.icon.backups
+{
+
+	background-image: url(../img/backups.png)
+
+}
+
+.icon.timeline
+{
+
+	background-image: url(../img/timeline.png)
+
+}
+
 
 .badge
 
