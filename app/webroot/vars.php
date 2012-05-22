@@ -64,6 +64,12 @@
         'vars'              => null,
         'val'               => /*9*/'10000'
         ),  
+    array(
+        'name'              => 'Server notifications name',
+        'desc'              => 'The name used for server notifications',
+        'vars'              => null,
+        'val'               => /*10*/'SpaceBukkit'
+        ), 
     ); 
 
 

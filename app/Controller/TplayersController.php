@@ -360,8 +360,8 @@ END;
         
 		$args = array($player);   
 		$kill = $api->call("killPlayer", $args, false);
-		$say = $player . __(' has been killed from orbit'); 
-		$args = array('SpaceBukkit', $say);   
+		$say = $player .' '. __('has been killed from orbit'); 
+		$args = array($this->Session->read("Sbvars.10"), $say);   
         $api->call("broadcastWithName", $args, false); 
          
         echo $say;

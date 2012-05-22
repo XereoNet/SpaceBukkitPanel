@@ -713,7 +713,7 @@ END;
         require APP . 'spacebukkitcall.php';
 
 		//notify users
-		$args = array('SpaceBukkit', '$bServer will shut down shortly due to map mainteniance with MapAutoTrim'); 
+		$args = array($this->Session->read("Sbvars.10"), '$bServer will shut down shortly due to map mainteniance with MapAutoTrim'); 
 		  
         $api->call("broadcastWithName", $args, false);  
 
@@ -744,7 +744,7 @@ END;
         require APP . 'spacebukkitcall.php';
 
         //notify users
-        $args = array('SpaceBukkit', '$bServer will shut down shortly due to map mainteniance with Chunkster'); 
+        $args = array($this->Session->read("Sbvars.10"), '$bServer will shut down shortly due to map mainteniance with Chunkster'); 
           
         $api->call("broadcastWithName", $args, false);  
 

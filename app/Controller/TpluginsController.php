@@ -443,7 +443,7 @@ END;
 
         } elseif ($method == "restart") {
 
-        $args2 = array("SpaceBukkit", "Server will restart due to plugin configuration save...");
+        $args2 = array($this->Session->read("Sbvars.10"), "Server will restart due to plugin configuration save...");
         $api->call("broadcastWithName", $args2, false);
         sleep(5);
         

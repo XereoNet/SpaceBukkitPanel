@@ -369,7 +369,7 @@ class DashController extends AppController {
 
         	$chat = explode(':', $chat, 2);
 
-        	if ($chat[0] == "SpaceBukkit") {
+        	if ($chat[0] == $this->Session->read("Sbvars.10")) {
         		$classes = "blue";
         	} else { $classes = "";}
 
@@ -432,7 +432,7 @@ END;
 	      
 	      require APP . 'spacebukkitcall.php';     
 
-	      $args = array('SpaceBukkit', "(".$this->Auth->user('username').") ".$say['say']);
+	      $args = array($this->Session->read("Sbvars.10"), "(".$this->Auth->user('username').") ".$say['say']);
 
 	      $runConsole = $api->call("broadcastWithName", $args, false);  
 	      echo __('You said ').$say['say'];

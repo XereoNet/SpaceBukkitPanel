@@ -397,7 +397,7 @@ class TBackupsController extends AppController {
             }
 
             if ($restart) {
-                $args = array('SpaceBukkit', 'Server is shutting down for backup!');
+                $args = array($this->Session->read("Sbvars.10"), 'Server is shutting down for backup!');
                 $api->call('broadcastWithName', $args, false);
                 sleep(3);
             }
@@ -416,7 +416,7 @@ class TBackupsController extends AppController {
             $this->autoRender = false;
             require APP . 'spacebukkitcall.php';
 
-            $args = array('SpaceBukkit', 'Server is shutting down to restore a backups!');
+            $args = array($this->Session->read("Sbvars.10"), 'Server is shutting down to restore a backups!');
             $api->call('broadcastWithName', $args, false);
             sleep(3);
 
