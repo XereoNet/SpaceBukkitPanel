@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Machine: localhost
--- Genereertijd: 22 Mei 2012 om 00:17
+-- Genereertijd: 22 Mei 2012 om 21:48
 -- Serverversie: 5.5.8
 -- PHP-Versie: 5.3.5
 
@@ -31,24 +31,23 @@ CREATE TABLE IF NOT EXISTS `space_roles` (
   `pages` smallint(6) DEFAULT NULL,
   `global` smallint(6) DEFAULT NULL,
   `dash` smallint(6) DEFAULT NULL,
-  `space_users` smallint(6) DEFAULT NULL,
+  `users` smallint(6) DEFAULT NULL,
   `plugins` smallint(6) DEFAULT NULL,
   `worlds` smallint(6) DEFAULT NULL,
-  `space_servers` smallint(6) DEFAULT NULL,
+  `servers` smallint(6) DEFAULT NULL,
   `settings` smallint(6) DEFAULT NULL,
   `fallback` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Gegevens worden uitgevoerd voor tabel `space_roles`
 --
 
-INSERT INTO `space_roles` (`id`, `title`, `pages`, `global`, `dash`, `space_users`, `plugins`, `worlds`, `space_servers`, `settings`, `fallback`) VALUES
-(1, 'Owner', 63, 0, 0, 0, 0, 0, 0, 0, 0),
-(2, 'Administrator', 63, 0, 0, 0, 0, 0, 0, NULL, 0),
-(3, 'Moderator', 7, 0, 0, 0, 0, 0, 0, NULL, 0),
-(4, 'Viewer', 1, 0, 0, 0, 0, 0, 0, NULL, 1);
+INSERT INTO `space_roles` (`id`, `title`, `pages`, `global`, `dash`, `users`, `plugins`, `worlds`, `servers`, `settings`, `fallback`) VALUES
+(6, 'Viewer', 11, 0, 0, 0, 0, 0, 0, NULL, 1),
+(7, 'Moderator', 47, 64, 0, 191, 12, 24, 0, NULL, NULL),
+(8, 'Administrator', 255, 127, 3, 255, 15, 31, 7, NULL, NULL);
 
 -- --------------------------------------------------------
 
