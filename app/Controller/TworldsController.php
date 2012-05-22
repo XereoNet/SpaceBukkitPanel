@@ -390,7 +390,7 @@ END;
         //send command, pop-up a message, add to log
         $info = $api->call("consoleCommand", $args, true);
         if($info == TRUE){
-            w_serverlog($this->Session->read("current_server"), __('[WORLDS]').$this->Auth->user('username').__(" Changed time in ").$wrld);
+            w_serverlog($this->Session->read("current_server"), __('[WORLDS] ').$this->Auth->user('username').' '.__("Changed time in").' '.$wrld);
             echo __(__('You')).__(" changed time in ").$wrld;
         }else{echo __('error while setting variable in ').$wrld;}
     }
@@ -413,7 +413,7 @@ END;
                 }else if($wmpl == 2){
                     $args = array("mvm set animals true ".$wrld);
                 }
-                $mesg = __(' enabled animals on ');
+                $mesg = ' '.__('enabled animals on').' ';
             }else{
                 //import multiworld mob command
                 if($wmpl == 1){
@@ -421,14 +421,14 @@ END;
                 }else if($wmpl == 2){
                     $args = array("mvm set animals false ".$wrld);
                 }
-                $mesg = __(' disabled animals on ');
+                $mesg = ' '.__('disabled animals on').' ';
             }
             //send command, pop-up a message, add to log
             $info = $api->call("consoleCommand", $args, true);
             if($info == TRUE){
-                w_serverlog($this->Session->read("current_server"), __('[WORLDS]').$this->Auth->user('username').$mesg.$wrld);
+                w_serverlog($this->Session->read("current_server"), __('[WORLDS] ').$this->Auth->user('username').$mesg.$wrld);
                 echo __(__('You')).$mesg.$wrld;
-            }else{echo __('error while setting variable in ').$wrld;}
+            }else{echo __('error while setting variable in').' '.$wrld;}
         }
     }
 
@@ -450,7 +450,7 @@ END;
                 }else if($wmpl == 2){
                     $args = array("mvm set monsters true ".$wrld);
                 }
-                $mesg = __(' enabled hostiles on ');
+                $mesg = ' '.__('enabled hostiles on').' ';
             }else{
                 //import multiworld mob command
                 if($wmpl == 1){
@@ -458,12 +458,12 @@ END;
                 }else if($wmpl == 2){
                     $args = array("mvm set monsters false ".$wrld);
                 }
-                $mesg = __(' disabled hostiles on ');
+                $mesg = ' '.__('disabled hostiles on').' ';
             }
             //send command, pop-up a message, add to log
             $info = $api->call("consoleCommand", $args, true);
             if($info == TRUE){
-                w_serverlog($this->Session->read("current_server"), __('[WORLDS]').$this->Auth->user('username').$mesg.$wrld);
+                w_serverlog($this->Session->read("current_server"), __('[WORLDS] ').$this->Auth->user('username').$mesg.$wrld);
                 echo __(__('You')).$mesg.$wrld;
             }else{echo __('error while setting variable in ').$wrld;}
         }
@@ -488,7 +488,7 @@ END;
                 }else if($wmpl == 2){
                     $args = array("mvm set pvp true ".$wrld);
                 }
-                $mesg = __(' enabled PVP on ');
+                $mesg = ' '.__('enabled PVP on').' ';
             }else{
                 //import multiworld mob command
                 if($wmpl == 1){
@@ -496,12 +496,12 @@ END;
                 }else if($wmpl == 2){
                     $args = array("mvm set pvp false ".$wrld);
                 }
-                $mesg = (' disabled PVP on ');
+                $mesg = ' '.('disabled PVP on').' ';
             }
             //send command, pop-up a message, add to log
             $info = $api->call("consoleCommand", $args, true);
             if($info == TRUE){
-                w_serverlog($this->Session->read("current_server"), __('[WORLDS]').$this->Auth->user('username').$mesg.$wrld);
+                w_serverlog($this->Session->read("current_server"), __('[WORLDS] ').$this->Auth->user('username').$mesg.$wrld);
                 echo __('You').$mesg.$wrld;
             }else{echo __('error while setting variable in ').$wrld;}
         }
@@ -533,36 +533,36 @@ END;
                 }else if($wmpl == 2){
                     $args = array("mvm set diff peaceful ".$wrld);
                 }
-                $mesg = __(' changed difficulty to peaceful in ');
+                $mesg = ' '.__('changed difficulty to peaceful in').' ';
             }else if($diff == 1) {
                 if($wmpl == 1){
                     $args = array("world difficulty easy ".$wrld);
                 }else if($wmpl == 2){
                     $args = array("mvm set diff easy ".$wrld);
                 }
-                $mesg = __(' changed difficulty to easy in ');
+                $mesg = ' '.__('changed difficulty to easy in').' ';
             }else if($diff == 2) {
                 if($wmpl == 1){
                     $args = array("world difficulty normal ".$wrld);
                 }else if($wmpl == 2){
                     $args = array("mvm set diff normal ".$wrld);
                 }
-                $mesg = __(' changed difficulty to normal in ');
+                $mesg = ' '.__('changed difficulty to normal in').' ';
             }else if($diff == 3) {
                 if($wmpl == 1){
                     $args = array("world difficulty hard ".$wrld);
                 }else if($wmpl == 2){
                     $args = array("mvm set diff hard ".$wrld);
                 }
-                $mesg = __(' changed difficulty to hard in ');
+                $mesg = ' '.__('changed difficulty to hard in').' ';
             }
 
             //send command, pop-up a message, add to log
             $info = $api->call("consoleCommand", $args, true);
             if($info == TRUE){
-                w_serverlog($this->Session->read("current_server"), __('[WORLDS]').$this->Auth->user('username').$mesg.$wrld);
+                w_serverlog($this->Session->read("current_server"), __('[WORLDS] ').$this->Auth->user('username').$mesg.$wrld);
                 echo __('You').$mesg.$wrld;
-            }else{echo __('error while setting variable in ').$wrld;}
+            }else{echo __('error while setting variable in').' '.$wrld;}
     }
 
     function unloadWorld($wrld) {
@@ -585,9 +585,9 @@ END;
             //send command, pop-up a message, add to log
             $info = $api->call("consoleCommand", $args, true);
             if($info == TRUE){
-                w_serverlog($this->Session->read("current_server"), __('[WORLDS]').$this->Auth->user('username').__(' unloaded ').$wrld);
-                echo $wrld.__(' has been unloaded.');
-            }else{echo __('error while unloading ').$wrld;}
+                w_serverlog($this->Session->read("current_server"), __('[WORLDS] ').$this->Auth->user('username').__(' unloaded ').$wrld);
+                echo $wrld.' '.__('has been unloaded.');
+            }else{echo __('error while unloading').' '.$wrld;}
             }
     }
 
@@ -610,9 +610,9 @@ END;
             //send command, pop-up a message, add to log
             $info = $api->call("consoleCommand", $args, true);
             if($info == TRUE){
-                w_serverlog($this->Session->read("current_server"), __('[WORLDS]').$this->Auth->user('username').__(' loaded ').$wrld);
-                echo $wrld.__(' has been loaded.');
-            }else{echo __('error while loading ').$wrld;}  
+                w_serverlog($this->Session->read("current_server"), __('[WORLDS] ').$this->Auth->user('username').' '.__('loaded').' '.$wrld);
+                echo $wrld.' '.__('has been loaded.');
+            }else{echo __('error while loading').' '.$wrld;}  
         }
     }
 
@@ -653,8 +653,8 @@ END;
             while(!$api->call('isServerRunning', $args, true)){
                 sleep(1);
             }
-            w_serverlog($this->Session->read("current_server"), __('[WORLDS]').$this->Auth->user('username').__(' deleted ').$wrld);
-            echo 'World has been removed! A backup can be found in the backups folder!';
+            w_serverlog($this->Session->read("current_server"), __('[WORLDS] ').$this->Auth->user('username').' '.__('deleted').' '.$wrld);
+            echo __('World has been removed! A backup can be found in the backups folder!');
         }
     }
 
@@ -683,7 +683,7 @@ END;
                 }
                 $out = $api->call("consoleCommand", $args, true);
                 if($out){
-                    w_serverlog($this->Session->read("current_server"), __('[WORLDS]').$this->Auth->user('username').__(' created ').$wrld);
+                    w_serverlog($this->Session->read("current_server"), __('[WORLDS] ').$this->Auth->user('username').' '.__('created').' '.$wrld);
                     $this->redirect(array('controller' => 'tworlds', 'action' => 'index'));
                 }
             } 
@@ -698,7 +698,7 @@ END;
             Configure::write('debug', 0);
             $this->autoRender = false;
             $this->requestAction('/tbackups/backup/world/'.$w);
-            echo "Backup of ".$w." finished!";
+            echo __("Backup of")." ".$w." ".__('finished!');
         }
     }
 
@@ -727,7 +727,7 @@ END;
 
         sleep(5);
 
-        w_serverlog($this->Session->read("current_server"), __('[WORLDS]').$this->Auth->user('username').__(' ran MapAutoTrim on ').$vars['world']);
+        w_serverlog($this->Session->read("current_server"), __('[WORLDS] ').$this->Auth->user('username').' '.__('ran MapAutoTrim on').' '.$vars['world']);
 
     	$this->redirect($this->referer());
 
@@ -758,7 +758,7 @@ END;
 
         sleep(5);
 
-        w_serverlog($this->Session->read("current_server"), __('[WORLDS]').$this->Auth->user('username').__(' ran Chunkster on ').$vars['world']);        
+        w_serverlog($this->Session->read("current_server"), __('[WORLDS] ').$this->Auth->user('username').' '.__('ran Chunkster on').' '.$vars['world']);        
 
         $this->redirect($this->referer());
 

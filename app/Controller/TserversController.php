@@ -372,7 +372,7 @@ class TServersController extends AppController {
         $args = array();   
         $api->call("getOPs", $args, false);
 
-        w_serverlog($this->Session->read("current_server"), __('[SERVERS] ').$this->Auth->user('username').__(' installed CraftBukkit v').$cb);
+        w_serverlog($this->Session->read("current_server"), __('[SERVERS] ').$this->Auth->user('username').' '.__('installed CraftBukkit').' '.$cb);
         sleep(2);
 
         $this->redirect($this->referer());
@@ -434,7 +434,7 @@ class TServersController extends AppController {
             $api->call("editPropertiesFile", $args, false);
         }
 
-        w_serverlog($this->Session->read("current_server"), __(__('[SERVERS] ')).$this->Auth->user('username').__(' update the server.properties'));
+        w_serverlog($this->Session->read("current_server"), __(__('[SERVERS] ')).$this->Auth->user('username').' '.__('updated the server.properties'));
 
         $this->Session->write('Page.tab', 3);
 
@@ -487,7 +487,7 @@ class TServersController extends AppController {
         $args = array("bukkit.yml", $bukkityml);
         $api->call("setFileContent", $args, true);
 
-        w_serverlog($this->Session->read("current_server"), __(__('[SERVERS] ')).$this->Auth->user('username').__(' updated the bukkit.yml'));
+        w_serverlog($this->Session->read("current_server"), __(__('[SERVERS] ')).$this->Auth->user('username').' '.__('updated the bukkit.yml'));
         $this->Session->write('Page.tab', 4);
         $this->redirect($this->referer());
     }

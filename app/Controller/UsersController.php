@@ -491,7 +491,7 @@ class UsersController extends AppController {
                 $this->Session->setFlash(__('The server has been saved'));
                 $this->redirect(array('controller' => 'tsettings', 'action' => 'index'));
             } else {
-                $this->Session->setFlash(__('The server could not be saved. Please, try again.'));
+                $this->Session->setFlash(__('The server could not be saved, please try again.'));
             }
         }
         $this->redirect($this->referer());
