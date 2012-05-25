@@ -136,7 +136,7 @@ END;
 						<ul>
 					        <?php if ($is_super == 1) { ?>
 					        <li class="<?php if ($this->name == "Tsettings") { echo "current" ; }  ?> fadein floatright"> 
-					        	<a href="<?php echo $this->Html->url('/tsettings', true); ?>"> <span class="icon settings"></span><?php echo __(' Settings ') ?></a> 
+					        	<a href="<?php echo $this->Html->url('/tsettings', true); ?>"> <span class="icon settings"></span><?php echo ' '.__('Settings').' ' ?></a> 
 					        </li>
 					        <?php } ?>
 						</ul>
@@ -149,7 +149,7 @@ END;
 					<!-- End Tabs -->
 
 					<div class="colorbox red">
-					    <h3><?php echo __('Server was not reached! Maybe it crashed, maybe the ports are not open. Who knows? You should. Go fix it!'); ?></h3> 
+					    <h3><?php echo __('Server was not reached! Is it running?'); ?></h3> 
 					</div>
 				
 						</div>

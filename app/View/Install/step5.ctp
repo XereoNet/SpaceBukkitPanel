@@ -69,7 +69,7 @@
       
     <header>
        <a href="<?php echo $this->Html->url('/install/step3', true); ?>" class="button icon arrowleft">Previous</a>        
-       <a href="<?php echo $this->Html->url('/install/step5', true); ?>" class="button icon arrowright leftsubmit">Next</a>
+       <a href="<?php echo $this->Html->url('/install/step5/true', true); ?>" class="button icon arrowright leftsubmit">Next</a>
     </header>   
 
  </section>

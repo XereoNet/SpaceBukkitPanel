@@ -206,6 +206,7 @@
                                 
                 mysql_forms.hide();
                 sqlite_forms.fadeIn();
+                action.addClass("sqlite");
                 action.fadeIn();
 
             }
@@ -264,6 +265,38 @@
 
             return false; // avoid to execute the actual submit of the form.
 
+          } else if ($(this).hasClass('sqlite')) {
+            var form  = $('#db_form');
+            var url   = form.attr('action'); // the script where you handle the form input.
+            var act   = $('#inst_activity');
+
+            //show processing on the left
+
+            act.html("");
+
+            act.activity();
+
+            //submit
+
+            $.ajax({
+              url: url,
+              success: function(d)
+              {
+                if (d == "true")
+                {
+                  window.location.replace("<?php echo $this->Html->url('/install/step3', true); ?>");
+                } 
+                else 
+                {
+                  //if data is false, show error on the left
+
+                      act.activity();
+
+                      act.html(d);
+                }
+              }
+            });
+            return false; // avoid to execute the actual submit of the form.
           }
         });
 

@@ -72,7 +72,7 @@
                     <p class="ram_free"><?php echo __('Free'); ?>: <span></span> <?php echo __('MB'); ?></p>
                     <div class="timer timer1">
 
-                      <div class="percent"><?php echo __('Calculating...'); ?></div>
+                      <div class="percent"><?php echo __('Calculating'); ?>...</div>
                         <div class="slice">
                           <div class="pie"></div>
                         </div>

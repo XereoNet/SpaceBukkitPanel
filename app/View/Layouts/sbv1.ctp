@@ -63,15 +63,15 @@
 						    	<input type="submit" class="button primary submit hidden" value="<?php echo __('Submit'); ?>">
 						    </form>
 							<section>
-							<p>Server running since</p>
-							<pre id="server-uptime">122 h 12m</pre>
+							<p><?php echo __('Server running since'); ?></p>
+							<pre id="server-uptime">00h 00m</pre>
 
 							<div class="console-controls splitter">
 								<ul>
-									<li class="segment-1 selected-1"><a href="#" rel="all">Everything</a></li>
-									<li class="segment-0"><a href="#" rel="info">Info</a></li>
-									<li class="segment-0"><a href="#" rel="warning">Warning</a></li>
-									<li class="segment-2"><a href="#" rel="severe">Severe</a></li>
+									<li class="segment-1 selected-1"><a href="#" rel="all"><?php echo __('Everything'); ?></a></li>
+									<li class="segment-0"><a href="#" rel="info"><?php echo __('Info'); ?></a></li>
+									<li class="segment-0"><a href="#" rel="warning"><?php echo __('Warning'); ?></a></li>
+									<li class="segment-2"><a href="#" rel="severe"><?php echo __('Severe'); ?></a></li>
 								</ul>
 							</div>
 							</section>
@@ -87,13 +87,13 @@
 <?php endif; ?>
 <?php if (perm('global', 'chat', $user_perm)): ?>
 
-				<a href="#" class="sidebar-button chat-button" rel="nofollow">chat</a>
+				<a href="#" class="sidebar-button chat-button" rel="nofollow"><?php echo __('chat'); ?></a>
 				<div id="sidebar-chat-wrap" class="sidebar-wrap">
 					<div id="sidebar-chat">
 
 						<div class="console-meta">
-							<h4>Chat</h4>
-						    <p>(Latest on top)</p>							
+							<h4><?php echo __('Chat'); ?></h4>
+						    <p>(<?php echo __('Latest on top'); ?>)</p>							
 					        <form id="saysomething" class="saysomething" method="post" action="./dash/saysomething">
 						        <input id="say" name="say" type="text" class="chatarea" />
 						        <input type="submit" class="button primary hidden submit" value="<?php echo __('Say it') ?>">
@@ -185,13 +185,13 @@ END;
 					<!-- Start/Stop, Reload, Message, Logout -->
 
 					<div id="serverbuttons"> 
-						<a href="./global/stop" id="stop" class="bounce tip showOverlay" rel="Stopping server..."></a> 
+						<a href="./global/stop" id="stop" class="bounce tip showOverlay" rel="<?php echo __('Stopping server'); ?>..."></a> 
 							<div class="tooltip"><?php echo __('Stop server'); ?></div>											
-						<a href="./global/reload" id="reload" class="bounce tip showOverlay reload" rel="Reloading server..."></a> 
+						<a href="./global/reload" id="reload" class="bounce tip showOverlay reload" rel="<?php echo __('Reloading server'); ?>..."></a> 
 							<div class="tooltip"><?php echo __('Reload server'); ?></div>
-						<a href="./global/restart" id="restart" class="bounce tip showOverlay restart" rel="Restarting server..."></a> 
+						<a href="./global/restart" id="restart" class="bounce tip showOverlay restart" rel="<?php echo __('Restarting server'); ?>..."></a> 
 							<div class="tooltip"><?php echo __('Restart server'); ?></div>
-						<a href="./global/frestart" id="frestart" class="bounce tip showOverlay frestart" rel="Force-Restarting server..."></a> 
+						<a href="./global/frestart" id="frestart" class="bounce tip showOverlay frestart" rel="<?php echo __('Force-Restarting server'); ?>..."></a> 
 							<div class="tooltip"><?php echo __('Force-Restart server'); ?></div>													
 					</div>
 					<div id="userbuttons">
@@ -215,7 +215,7 @@ END;
 
 			<?php if((isset($spacebukkitbuildready)) && ($user_perm['is_super'] == 1)) {?>
 			<div class="top-message slideDown">
-			<p><?php echo __('A new SpaceBukkit version has been released! Your version is '); ?> <strong><?php echo $spacebukkitbuildcurrent; ?></strong> <?php echo __('while the new version is'); ?> <strong><?php echo $spacebukkitbuildnew; ?></strong>
+			<p><?php echo __('A new SpaceBukkit version has been released! Your version is').' '; ?> <strong><?php echo $spacebukkitbuildcurrent; ?></strong> <?php echo __('while the new version is'); ?> <strong><?php echo $spacebukkitbuildnew; ?></strong>
 				<a class="top-message-button" href="<?php echo $spacebukkitbuildfile; ?>"></a></p>
 			</div>
 			<?php };?>
@@ -232,37 +232,37 @@ END;
 					<?php if (perm('pages', 'dash', $user_perm)): ?>
 			        <li class="<?php if ($this->name == "DashController") { echo "current" ; }  ?> fadein"> 
 
-			        	<a href="<?php echo $this->Html->url('/dash', true); ?>"> <span class="icon dashboard"></span><?php echo __(' Dashboard') ?></a> 
+			        	<a href="<?php echo $this->Html->url('/dash', true); ?>"> <span class="icon dashboard"></span><?php echo ' '.__('Dashboard').' ' ?></a> 
 			        </li>
 			        <?php endif; ?>
 					<?php if (perm('pages', 'users', $user_perm)): ?>
 			        <li class="<?php if ($this->name == "TPlayersController") { echo "current" ; }  ?> fadein"> 
-			        	<a href="<?php echo $this->Html->url('/tplayers', true); ?>"> <span class="icon users"></span><?php echo __(' Players ') ?></a> 
+			        	<a href="<?php echo $this->Html->url('/tplayers', true); ?>"> <span class="icon users"></span><?php echo ' '.__('Players').' ' ?></a> 
 			        </li>
 			        <?php endif; ?>
 					<?php if (perm('pages', 'plugins', $user_perm)): ?>
 			        <li class="<?php if ($this->name == "TPluginsController") { echo "current" ; }  ?> fadein"> 
-			        	<a href="<?php echo $this->Html->url('/tplugins', true); ?>"> <span class="icon plugins"></span><?php echo __(' Plugins ') ?></a> 
+			        	<a href="<?php echo $this->Html->url('/tplugins', true); ?>"> <span class="icon plugins"></span><?php echo ' '.__('Plugins').' ' ?></a> 
 			        </li>
 			        <?php endif; ?>
 					<?php if (perm('pages', 'worlds', $user_perm)): ?>
 			        <li class="<?php if ($this->name == "TWorldsController") { echo "current" ; }  ?> fadein"> 
-			        	<a href="<?php echo $this->Html->url('/tworlds', true); ?>"> <span class="icon world"></span><?php echo __(' Worlds ') ?></a> 
+			        	<a href="<?php echo $this->Html->url('/tworlds', true); ?>"> <span class="icon world"></span><?php echo ' '.__('Worlds').' ' ?></a> 
 			        </li>
 			        <?php endif; ?>
 					<?php if (perm('pages', 'servers', $user_perm)): ?>
 			        <li class="<?php if ($this->name == "TServersController") { echo "current" ; }  ?> fadein"> 
-			        	<a href="<?php echo $this->Html->url('/tservers', true); ?>"> <span class="icon server"></span><?php echo __(' Server ') ?></a> 
+			        	<a href="<?php echo $this->Html->url('/tservers', true); ?>"> <span class="icon server"></span><?php echo ' '.__('Server').' ' ?></a> 
 			        </li>
 			        <?php endif; ?>
 					<?php if (perm('pages', 'backups', $user_perm)): ?>
 			        <li class="<?php if ($this->name == "TBackupsController") { echo "current" ; }  ?> fadein"> 
-			        	<a href="<?php echo $this->Html->url('/tbackups', true); ?>"> <span class="icon backups"></span><?php echo __(' Backups ') ?></a> 
+			        	<a href="<?php echo $this->Html->url('/tbackups', true); ?>"> <span class="icon backups"></span><?php echo ' '.__('Backups').' ' ?></a> 
 			        </li>
 			        <?php endif; ?>
 			        <?php if ($is_super == 1) { ?>
 			        <li class="<?php if ($this->name == "Tsettings") { echo "current" ; }  ?> fadein floatright"> 
-			        	<a href="<?php echo $this->Html->url('/tsettings', true); ?>"> <span class="icon settings"></span><?php echo __(' Settings ') ?></a> 
+			        	<a href="<?php echo $this->Html->url('/tsettings', true); ?>"> <span class="icon settings"></span><?php echo ' '.__('Settings').' ' ?></a> 
 			        </li>
 			        <?php } ?>
 				</ul>

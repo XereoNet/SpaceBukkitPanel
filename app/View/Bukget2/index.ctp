@@ -31,7 +31,7 @@
 
 	<div class="bukget-heading">
 		<h3>
-		Last Updated
+		<?php echo __('Last Updated'); ?>
 		</h3>
 	</div>
 	<div class="bukget-list">

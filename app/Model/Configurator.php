@@ -36,7 +36,9 @@ class Configurator extends AppModel {
         //now, TOTALLY rewrite the file
         $fp=fopen($config,'w');
 
-        fwrite($fp,$str,strlen($str));     
+        fwrite($fp,$str,strlen($str));  
+
+        return $str;   
 
     }
 

@@ -1,7 +1,7 @@
 <div id="bukget">
 	<div class="top_bar">
 		<h2>
-		Welcome to Bukget :)
+		<?php echo __('Welcome to Bukget :)'); ?>
 		</h2>
 		<div class="bukget_search">
 		<form method="get">
@@ -15,7 +15,7 @@
 			<div id="first" class="additional-block">
 				<div class="header">
 					<h3>
-					Categories
+					<?php echo __('Categories'); ?>
 					</h3>
 				</div>
 				<ul class="menu">

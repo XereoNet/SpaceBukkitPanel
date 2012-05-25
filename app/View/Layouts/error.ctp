@@ -44,7 +44,7 @@
 				 
 				<header>
 				    	<img src="./img/warning-icon.png" style="display: inline;width: 40px;height: 40px;">
-				        <h2 style="display: inline; position: relative; top: -16px; left: 10px;background: none;">Sorry, SpaceBukkit has encountered an error</h2> 
+				        <h2 style="display: inline; position: relative; top: -16px; left: 10px;background: none;"><?php echo __('Sorry, SpaceBukkit has encountered an error'); ?></h2> 
 
 				    </header>
 
@@ -53,7 +53,7 @@
 				    <?php echo $content_for_layout ?>
 
 				    <p>
-						<h3>You can always get support following one of these links:</h3>
+						<h3><?php echo __('You can always get support following one of these links:'); ?></h3>
 						<ul>
 							<li><a href="http://forums.xereo.net">SpaceBukkit Forums</a></li>
 							<li><a href="http://spacebukkit.xereo.net/wiki">SpaceBukkit Wiki</a></li>
