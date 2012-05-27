@@ -35,7 +35,7 @@
 
   <form id="configure" method="post" action="./tplugins/SaveConfig">
     
-<textarea id="codemirror$i" cols="100" rows="300" width="700px" name="config_content" class="codemirror">$content[content]</textarea>
+<textarea id="codemirror$i" cols="100" rows="300" width="700px" style="height: 500px;" name="config_content" class="codemirror">$content[content]</textarea>
   <br />
   <input type="hidden" id="plugin" name="plugin" value="$plugin_name">
   <input type="hidden" id="file" name="file" value="$content[file]">

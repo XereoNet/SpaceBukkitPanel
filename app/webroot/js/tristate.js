@@ -39,7 +39,9 @@ var supernifty_tristate = function() {
     },
 
     update: function(id) {
-      var group = $(".row_selected span").text();
+
+      var world = $(".row_selected td")[0].textContent;
+      var group = $(".row_selected td")[1].textContent;
 
       var state = document.getElementById( id + "_frm" ).value, next;
       // yes -> no -> none -> yes
@@ -53,7 +55,7 @@ var supernifty_tristate = function() {
         next = YES;
       }
 
-      var url = './tpermissions/saveGaPPerm/' + group + '/' + id + '/' + next.state;
+      var url = './tpermissions/saveGaPPerm/' + world + '/' + group + '/' + id + '/' + next.state;
 
       $.ajax({url: url, complete: function(data){
         console.log(data.responseText);

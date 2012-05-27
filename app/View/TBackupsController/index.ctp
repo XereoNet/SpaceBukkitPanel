@@ -326,15 +326,15 @@
 var running = 'false';
 
 //prev/next backup parse amounts
-var pa = 3;
-var pw = 3;
-var pp = 3;
-var ps = 3;
+var pa = 7;
+var pw = 7;
+var pp = 7;
+var ps = 7;
 
-var na = 3;
-var nw = 3;
-var np = 3;
-var ns = 3;
+var na = 7;
+var nw = 7;
+var np = 7;
+var ns = 7;
 
 //global functions
 function getRunning() {

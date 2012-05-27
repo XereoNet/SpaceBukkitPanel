@@ -24,13 +24,15 @@
 
   <small class="bukget_information"><?php echo __('From here you can add permissions per group/per plugin.') ?></small>
   <div class="clear"></div>
-  <div class="col left col_1_3" style="padding: 30px 60px 0 0; width: 300px; min-height: 500px;background: url(./img/fancy_nav_right.png) no-repeat 95% 50%">
+  <div class="col left col_1_3" style="padding: 30px 60px 0 0; width: 400px; min-height: 500px;background: url(./img/fancy_nav_right.png) no-repeat 95% 50%">
 
-     <table class="datatable dtb1 notitle" id="groups_groups" style="cursor: pointer"> 
+     <table class="datatable groups-groups notitle" id="groups_groups" style="cursor: pointer"> 
       <thead> 
         <tr> 
-          <th><?php echo __('Group ') ?>
-          <a href="./Tpermissions/addGroup" class="fancy" style="float: right; margin-right: 5px"><?php echo __('Add new group') ?></a>
+          <th><?php echo __('World') ?></th>
+          <th><?php echo __('Group') ?></th>
+          <th width="140px"><?php echo __('Actions') ?>
+            <a href="./Tpermissions/addGroup" class="fancy" style="float: right; margin-right: 5px"><?php echo __('Add'); ?></a>
           </th>
         </tr> 
       </thead> 
@@ -43,11 +45,11 @@
   </div>
   <div class="col left col_1_3" style="padding: 30px 60px 0 0; width: 300px; min-height: 500px;background: url(./img/fancy_nav_right.png) no-repeat 95% 50%">
       <p class="column_desc" id="c1desc"><?php echo __('Select a group first!') ?></p>
-     <table class="datatable dtb2 notitle" id="groups_plugin" style="cursor: pointer; display: none; width: 300px"> 
+     <table class="datatable groups-plugins notitle" id="groups_plugin" style="cursor: pointer; display: none; width: 300px"> 
       <thead> 
         <tr> 
           <th>
-            <?php echo __('Plugin ') ?>
+            <?php echo __('Plugin') ?>
             
             <div class="tooltip white server_add_to_list">
               <ul id="server_ad_to_list">
@@ -123,20 +125,20 @@ $('document').ready(function() {
 
   /* Add a click handler to the rows - this could be used as a callback */
     $("#groups_groups tbody").click(function(event) {
-      $(Table1.fnSettings().aoData).each(function (){
+      $(TableGG.fnSettings().aoData).each(function (){
         $(this.nTr).removeClass('row_selected');
       });
       $(event.target.parentNode).addClass('row_selected');
 
-      group = $(".row_selected span").text();
+      group = $(".row_selected td")[0].textContent;
 
       var plugins = './tpermissions/getPlugins/'; 
 
-      $('.dtb2').fadeIn(700);
+      $('.groups-plugins').fadeIn(700);
       $('#c1desc').text("").hide();
       $('#groups_perm').fadeOut(700);
 
-      Table2 = $('.dtb2').dataTable( {
+      TableGP = $('.groups-plugins').dataTable( {
       "bDestroy": true,   
       "bProcessing": true,
       "sAjaxSource": plugins
@@ -145,16 +147,18 @@ $('document').ready(function() {
     });
 
     $("#groups_plugin tbody").click(function(event) {
-      $(Table2.fnSettings().aoData).each(function (){
+      $(TableGP.fnSettings().aoData).each(function (){
         $(this.nTr).removeClass('row2_selected');
       });
       $(event.target.parentNode).addClass('row2_selected');
 
-      var group = $(".row_selected span").text();
+      var world = $(".row_selected td")[0].textContent;
 
-      var plugin = $(".row2_selected span").text();
+      var group = $(".row_selected td")[1].textContent;
 
-      var perms = './tpermissions/getGaPPerms/'+group+'/'+plugin; 
+      var plugin = $(".row2_selected td").textContent;
+
+      var perms = './tpermissions/getGaPPerms/'+world+'/'+group+'/'+plugin; 
 
       $('#groups_perm').html(ajax_load).load(perms, function() {
         supernifty_tristate.init();
@@ -166,52 +170,28 @@ $('document').ready(function() {
       }).show().uniform();
     });
 
+$('#newperm').live('keyup', function(e) {
+
+    if ( e.keyCode === 13 ) { // 13 is enter key
+
+        var world = $(".row_selected td")[0].textContent;
+
+        var group = $(".row_selected td")[1].textContent;
+
+        var plugin = $(".row2_selected td").textContent;
+
+        var perm = this.value;
+
+
+    }
+});
     
       
   //initiate Tables
-  Table1 = $('.dtb1').dataTable( {
+  TableGG = $('.groups-groups').dataTable( {
       "bProcessing": true,
       "sAjaxSource": './tpermissions/getgroups'
   });
-
-  function update_tristate(id) {
-          var group = $(".row_selected span").text();
-
-      var perm = $(this).attr('id');
-
-      var newState = $(this).children('input[type="hidden"]').val();
-
-      var url = './tpermissions/saveGaPPerm/' + group + '/' + perm + '/' + newState;
-
-      $.ajax({url: url, complete: function(data){
-        console.log(data.responseText);
-        if (data.responseText === 'true'){
-          supernifty_tristate.update(id);
-        }
-      }});
-  }
-
-     
-   //listen for change of select box
-  $('#roleSelect').live("change", function() {
-    $('#groups_sav_perm').text("Saving...").fadeIn();
-          
-      /* get some values from elements on the page: */
-      var $form = $("#role_select"),
-          server_id = $form.find( 'input[name="server_id"]' ).val(),
-          user_id = $form.find( 'input[name="user_id"]' ).val(),
-          role_id = $form.find( 'select[name="role_id"]' ).val(),
-          url = $form.attr( 'action' );
-
-      /* Send the data using post and put the results in a div */
-      $.post(url, {server_id: server_id, user_id: user_id, role_id: role_id},
-        function( data ) {
-          $('#groups_sav_perm').text(data).delay(2000).fadeOut();
-          }
-      );
-
-  });
-
 });
 
 </script>

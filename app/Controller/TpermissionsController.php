@@ -74,33 +74,22 @@ class TPermissionsController extends AppController {
             $this->autoRender = false;
 
             //this is static for now
-            $groups = array('Guest', 'Member', 'Builder', 'Moderator', 'Donator', 'Admin', 'Owner');
+            $worlds = array(
+                'Global' => array('Guest', 'Member', 'Builder', 'Moderator', 'Donator', 'Admin', 'Owner'), 
+                'world' => array('Guest', 'Member'),
+                'world-nether' => array('Builder', 'Moderator'), 
+                'world-the-end' => array('Member', 'Donator')
+            );
+            $json = array('aaData' => array());
 
-            $i = 1;
-            $num = count($groups);
-
-            echo '{ "aaData": [';
-
-            foreach ($groups as $group) {
-                $edit = './tpermissions/edit_group/';
-                $delete = './tpermissions/delete_group/';
-
-                $buttons = '<a href=\"'.$edit.$group.'\" class=\"button icon edit fancy\" style=\"float: right\">Edit</a><form style=\"position: relative; display: inline;\" name=\"submitForm\" method=\"POST\" action=\"'.$delete.$group.'\"><input type=\"hidden\" name=\"id\" value=\"'.$group.'\"><input type=\"submit\" value=\"Delete\" class=\"button danger\" style=\"float: right\"></form>';
-
-            ECHO <<<END
-            [
-              "<span>$group</span>$buttons"
-            ]
-        
-END;
-
-            if($i < $num) {
-                echo ",";
+            foreach ($worlds as $w => $groups) {
+                foreach ($groups as $g) {
+                    $buttons = '<a href="./tpermissions/edit_group/'.$g.'" class="button icon edit fancy">Edit</a><a href="./tpermissions/delete_group/'.$g.'" class="button icon remove danger">Delete!</a>';
+                    $json['aaData'][] = array($w, $g, $buttons);
+                }
             }
-                $i++;
 
-            }
-            echo '] }';
+            echo json_encode($json);
         }
     }
 
@@ -113,27 +102,13 @@ END;
             //this is static for now
             $plugins = array('All', 'Essentials', 'SetRankPEX');
 
-            $i = 1;
-            $num = count($plugins);
+            $json = array('aaData' => array());
 
-            echo '{ "aaData": [';
-
-            foreach ($plugins as $plugin) {
-
-            ECHO <<<END
-            [
-              "<span>$plugin</span>"
-            ]
-        
-END;
-
-            if($i < $num) {
-                echo ",";
+            foreach ($plugins as $p) {
+                $json['aaData'][] = array($p);
             }
-                $i++;
 
-            }
-            echo '] }';
+            echo json_encode($json);
         }
     }
 
@@ -163,7 +138,7 @@ END;
         }
     }
 
-    function getGroupPerms($group, $api) {
+    function getGroupPerms($world, $group, $api) {
         if ($this->request->is('ajax')) {
             $this->disableCache();
             //Configure::write('debug', 0);
@@ -178,7 +153,7 @@ END;
         }
     }
 
-    function getGaPPerms($group, $plugin) {
+    function getGaPPerms($world, $group, $plugin) {
         if ($this->request->is('ajax')) {
             $this->disableCache();
             //Configure::write('debug', 0);
@@ -189,7 +164,7 @@ END;
 
             $Pperms = $this->getPluginPerms($plugin, $api);
 
-            $Gperms = $this->getGroupPerms($group, $api);
+            $Gperms = $this->getGroupPerms($world, $group, $api);
 
             foreach($Pperms as $perm => $expl){
                 if (array_key_exists($perm, $Gperms)) {
@@ -204,13 +179,12 @@ END;
                 <br>
 END;
             }
-
-            
+            echo '<br><input style="height: 20px; font-size: 15px;" id="newperm" placeholder="Enter new permission" name="newperm" type="text">';
         }
 
     }
 
-    function saveGaPPerm($group, $perm, $state) {
+    function saveGaPPerm($world, $group, $perm, $state) {
         if ($this->request->is('ajax')) {
             $this->disableCache();
             //Configure::write('debug', 0);
