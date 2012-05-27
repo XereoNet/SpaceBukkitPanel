@@ -69,9 +69,10 @@
 	}
 
 	.jstree-classic .jstree-clicked {
-		background: 222;
+		background: #222;
 		padding: 5px;
 		color: white;
+		border: none;
 	}
 
 </style>
@@ -153,7 +154,39 @@ $('document').ready(function() {
 
 	//button clicks
 
-	$('.faction').live('click', function(event) {
+	$('.faction1').live('click', function(event) {
+
+		event.preventDefault();
+
+		//get the data
+
+		var href 		= $(this).attr('href');
+		var question 	= $(this).data('prompt');
+
+		var answer		= prompt(question);
+
+		$.get(href+'/'+answer, function(suc) {
+
+		  if(suc == 'true') {
+
+		  	p = currentPath();
+
+			loadDir(p);
+
+		  } else {
+
+		  	var action = $(this).html();
+
+		  	notifications.show({msg:'Failed to perform action: '+action, icon:'img/fail.png'});
+
+		  }
+
+		});
+		
+
+	});
+
+	$('.faction2').live('click', function(event) {
 
 		event.preventDefault();
 

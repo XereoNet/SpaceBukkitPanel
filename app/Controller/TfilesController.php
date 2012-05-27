@@ -131,12 +131,14 @@ class TfilesController extends AppController {
                     $type = 'dir';
                     $filemime = 'folder';
                     $factions = '<span class="button-group"><a class="button icon arrowright explore" href="'.$filepath.'">'.__('Explore').'</a></span>';
+                    $edit = '';
 
                 } else {
 
                     $fileimage = str_replace("/", "-", $filemime).'.png';
                     $type = 'file';
                     $factions = '';
+                    $edit = '<a class="button fancy fedi icon log" href="./tfiles/edit/'.$filepath.'">Edit</a>';
 
                 }
 
@@ -156,10 +158,10 @@ class TfilesController extends AppController {
                         $factions
 
                         <span class="button-group">
-                            <a class="button faction fedi icon log" href="./tfiles/edit/$filepath/$type">Edit</a>
-                            <a class="button faction fmov icon move" href="./tfiles/move/$filepath/$type">Move</a>
-                            <a class="button faction dren icon edit" href="./tfiles/rename/$filepath/$type">Rename</a>
-                            <a class="button faction fdel icon remove danger" href="./tfiles/delete/$filepath/$type">Delete</a>               
+                            $edit;
+                            <a class="button faction1 fmov icon move" href="./tfiles/move/$filepath/$type" data-prompt="Enter new location for ''$data[Path]''">Move</a>
+                            <a class="button faction1 dren icon edit" href="./tfiles/rename/$filepath/$type" data-prompt="Enter new name for ''$filename''">Rename</a>
+                            <a class="button faction2 fdel icon remove danger" href="./tfiles/delete/$filepath/$type">Delete</a>               
                         </span>
 
                     </div>
