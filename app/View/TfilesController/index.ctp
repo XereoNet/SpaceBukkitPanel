@@ -68,6 +68,12 @@
 		color: #222;
 	}
 
+	.jstree-classic .jstree-clicked {
+		background: 222;
+		padding: 5px;
+		color: white;
+	}
+
 </style>
 
 <!-- Content -->
@@ -145,6 +151,37 @@ $('document').ready(function() {
 	var list			 = $('#list');
 	var config			 = $('#config');
 
+	//button clicks
+
+	$('.faction').live('click', function(event) {
+
+		event.preventDefault();
+
+		//get the data
+
+		var href = $(this).attr('href');
+	
+		$.get(href, function(suc) {
+
+		  if(suc == 'true') {
+
+		  	p = currentPath();
+
+			loadDir(p);
+
+		  } else {
+
+		  	var action = $(this).html();
+
+		  	notifications.show({msg:'Failed to perform action: '+action, icon:'img/fail.png'});
+
+		  }
+
+		});
+		
+
+	});
+
 	//hover effects for file row
 
 	f_row.live({
@@ -203,6 +240,12 @@ $('document').ready(function() {
 
 	}
 
+	function currentPath() {
+
+		return $('#config').data('path');
+
+	}
+
 	// "explore" click event 
 
 	$('.explore').live('click', function() {
@@ -215,7 +258,7 @@ $('document').ready(function() {
 
 	});
 
-	loadDir('.@@');
+	loadDir('.@@test');
 
 	/* TREE FUNCTIONS */
 
@@ -247,10 +290,6 @@ $('document').ready(function() {
 		}
 
 	})
-
-	//function to refresh the tree
-
-	//function to open a specific node
 
 	//listen for node clicks to load the manager
 

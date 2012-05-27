@@ -156,10 +156,10 @@ class TfilesController extends AppController {
                         $factions
 
                         <span class="button-group">
-                            <a class="button icon log" href="#">Edit</a>
-                            <a class="button icon move" href="#">Move</a>
-                            <a class="button icon edit" href="#">Rename</a>
-                            <a class="button icon remove danger" href="#">Delete</a>               
+                            <a class="button faction fedi icon log" href="./tfiles/edit/$filepath/$type">Edit</a>
+                            <a class="button faction fmov icon move" href="./tfiles/move/$filepath/$type">Move</a>
+                            <a class="button faction dren icon edit" href="./tfiles/rename/$filepath/$type">Rename</a>
+                            <a class="button faction fdel icon remove danger" href="./tfiles/delete/$filepath/$type">Delete</a>               
                         </span>
 
                     </div>
@@ -230,6 +230,57 @@ END;
     //move file
 
     //delete file
+
+    function delete($path, $type) {
+
+        if ($this->request->is('ajax')) {
+
+            $this->disableCache();
+            //Configure::write('debug', 0);
+            $this->autoRender = false;
+
+            require APP . 'spacebukkitcall.php';
+
+            $p =  str_replace("@@", "/", $path);
+
+            $args = array($p);
+
+            if ($type == 'dir') { //it's a file
+                
+                if($api->call('deleteDirectory', $args, true)) {
+                   
+                    echo 'true';
+
+                }   
+
+                else {
+
+                    echo 'false';
+
+                }     
+
+            }
+
+            elseif ($type == 'file') { //it's a folder
+                
+                if($api->call('deleteFile', $args, true)) {
+                   
+                    echo 'true';
+
+                }   
+
+                else {
+
+                    echo 'false';
+
+                }     
+
+            } 
+   
+
+        }
+
+    }
 
     //rename file
 
