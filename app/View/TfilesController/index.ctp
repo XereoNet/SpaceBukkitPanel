@@ -60,12 +60,18 @@
   	margin-top: 47px;
   }
 
+	.jstree a {
+		color: white;
+	}
+
+	.jstree a:hover {
+		color: #222;
+	}
+
 </style>
 
 <!-- Content -->
 <section id="content"> 
-
-	<a href="#" id="test">Test</a>
 
 	<section class="b-home">
 
