@@ -1,8 +1,8 @@
 <!-- Tabs -->
 <nav id="smalltabs">
         <ul>
-                <li class="current"><a href="#tab1">Server Overview</a></li>
-                <li><a href="#tab2">CraftBukkit</a></li>
+                <li class="current"><a href="#tab1"><?php echo __('Server Overview'); ?></a></li>
+                <li><a href="#tab2"><?php echo __('CraftBukkit'); ?></a></li>
                 <li><a href="#tab3"><?php echo __('Server properties') ?></a></li>
                 <li><a href="#tab4"><?php echo __('Bukkit properties') ?></a></li>
                 <li><a href="#tab5"><?php echo __('Schedules') ?></a></li>
@@ -17,7 +17,110 @@
 <div class="tab" id="tab1">
 
 <section class="grid_view" id="serveroverview"> 
-       
+<div class="col col_1_3 left">
+
+    <section>
+      <label for="CPU">
+        CPU: 
+      </label>
+
+      <div>
+        Loading...<br>
+      </div>
+    </section>
+
+    <section>
+      <label for="Java">
+        Java Version: 
+      </label>
+
+      <div>
+        Loading...<br>
+      </div>
+    </section>
+
+    <section>
+      <label for="Bukkit">
+        Bukkit Version: 
+      </label>
+
+      <div>
+        Loading...<br>
+      </div>
+    </section>
+
+  </div>
+
+
+  <div class="col col_1_3 left">
+
+      <section>
+        <label for="Architecture">
+          Architecture: 
+        </label>
+
+        <div>
+          Loading...<br>
+        </div>
+      </section>
+        <section>
+          <label for="OS">
+            Operating System: 
+          </label>
+
+          <div>
+            Loading...<br>
+          </div>
+        </section>
+
+        <section>
+          <label for="SB">
+            SpaceBukkit Version: 
+          </label>
+
+          <div>
+            Loading...<br>
+          </div>
+       <div class="clear"></div>
+          </section>           
+  </div>
+
+
+  <div class="col col_1_3 left">
+
+    <section>
+      <label for="Memory">
+        Memory: 
+      </label>
+
+      <div>
+        Loading...<br>
+      </div>
+    </section>
+
+    <section>
+      <label for="Disk">
+        Disk Space: 
+      </label>
+
+      <div>
+        Loading...<br>
+      </div>
+    </section>
+
+
+        <section>
+          <label for="Web">
+            Webserver Version: 
+          </label>
+
+          <div>
+            Loading...<br>
+          </div>
+        </section>
+  </div>
+
+  <div class="clear"></div>
 </section>
 <div class="clear"></div>
 
