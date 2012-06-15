@@ -140,4 +140,20 @@ $("document").ready(function() {
 
 	});
 
+	$(".installer").live('click', (function(){
+
+	  var source = $(this).attr("href");
+	  var btn = $(this);
+
+
+	  $(this).addClass("disable");
+	  $.ajax({
+	    url: source,
+	    success: function(data) {
+	        $(btn).removeClass("disable button favorite").addClass("nobutton approve").text("Installed! Reload or Restart to load it.");
+	    }
+	  });
+	  return false;
+
+	}));
 });

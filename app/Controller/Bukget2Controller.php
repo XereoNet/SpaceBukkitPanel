@@ -195,14 +195,15 @@ END;
       perm('plugins', 'removeAddPlugin', $this->Session->read("user_perm"), true);
  
       if ($this->request->is('ajax')) {
-      $this->disableCache();
-      Configure::write('debug', 0);
-      $this->autoRender = false;   
-      
-      require APP . 'spacebukkitcall.php';
+          
+        $this->disableCache();
+        Configure::write('debug', 0);
+        $this->autoRender = false;   
+        
+        require APP . 'spacebukkitcall.php';
 
-      $args = array($name);   
-      $api->call("pluginInstall", $args, true);    
+        $args = array($name);   
+        $api->call("pluginInstall", $args, true);    
 
       }   
     }
