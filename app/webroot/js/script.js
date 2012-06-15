@@ -123,6 +123,7 @@ $('document').ready(function () {
         effect: "fade",
         relative: "true"
     });
+    
     $(".dtb").dataTable();
 
     $(function () {

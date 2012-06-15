@@ -35,12 +35,11 @@
 
 <body>
 
-
 <div class="screen_overlay">
- <div class="overlay-text">
- </div>
- <p>
- </p>
+	<div class="overlay-text">
+	</div>
+	<p>
+	</p>
 </div>
 
 </div>
@@ -49,7 +48,7 @@
 		<div id="container"> 
 		
 			<div id="sidebar-widget" class="widget-reset" style="display: none; ">
-<?php if (perm('global', 'console', $user_perm)): ?>
+			<?php if (perm('global', 'console', $user_perm)): ?>
 
 				<a href="#" class="sidebar-button console-button" rel="nofollow">console</a>
 				<div id="sidebar-console-wrap" class="sidebar-wrap">
@@ -58,13 +57,15 @@
 						<div class="console-meta">
 							<h4>Console</h4>
 						    <p>(Latest on top)</p>
+
 							<form id="runcommand" class="runcommand" method="post" action="./global/runcommand">
 						        <input class="commandarea" id="command" name="command" type="text" placeholder="<?php echo __('Enter Command'); ?>"/>
 						    	<input type="submit" class="button primary submit hidden" value="<?php echo __('Submit'); ?>">
 						    </form>
+
 							<section>
 							<p><?php echo __('Server running since'); ?></p>
-							<pre id="server-uptime">00h 00m</pre>
+							<pre id="server-uptime"></pre>
 
 							<div class="console-controls splitter">
 								<ul>
@@ -74,8 +75,10 @@
 									<li class="segment-2"><a href="#" rel="severe"><?php echo __('Severe'); ?></a></li>
 								</ul>
 							</div>
+
 							</section>
 						</div>
+
 						<div id="console-list" rel="all">
 							<ul>
 							</ul>
@@ -84,6 +87,7 @@
 					</div>
 					<span class="switcher-arrow"></span>
 				</div>
+
 <?php endif; ?>
 <?php if (perm('global', 'chat', $user_perm)): ?>
 
@@ -92,6 +96,7 @@
 					<div id="sidebar-chat">
 
 						<div class="console-meta">
+
 							<h4><?php echo __('Chat'); ?></h4>
 						    <p>(<?php echo __('Latest on top'); ?>)</p>							
 					        <form id="saysomething" class="saysomething" method="post" action="./dash/saysomething">
@@ -116,7 +121,7 @@
 						        <table class="zebra-striped chat_table">
 						          <tbody class="chat_list">  
 						            <tr>
-						            </tr>                    
+						            </tr>
 						          </tbody>
 						        </table>
 						    </div>
@@ -139,8 +144,17 @@
 				<!-- Upper Bar -->
 				<div id="upperbar" class="col right">
 					<div id="serverbox">
+						<span class="loc_conf tip"></span>
+						<div class="tooltip server_add_to_list">
+							<ul>
+
+								<li><a href="#"><?php echo $current_server_name; ?>'s Users</a></li>
+								<li><a href="#"><?php echo $current_server_name; ?>'s Servers</a></li>
+
+							</ul>
+						</div>
 						<span class="dropdown_servers tip"><p><a href="#"><?php echo $current_server_name; ?></a></p></span>
-						<div class="tooltip white server_add_to_list" style="max-width: 190px">
+						<div class="tooltip server_add_to_list" style="max-width: 190px">
 							<ul>
 									<?php 
 

@@ -284,17 +284,11 @@ END;
 
     }
 
-    //rename file
+    //--rename file/folder
 
-    //create file
+    //create file/folder
 
-    //create folder
-
-    //move folder
-
-    //delete folder
-
-    //rename folder
+    //move file
 
     //upload file
 
