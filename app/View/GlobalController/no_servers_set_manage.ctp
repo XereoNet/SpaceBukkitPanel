@@ -196,7 +196,6 @@
 	<script src="<?php echo $this->webroot; ?>js/ajax.js"></script> 
 	<script src="<?php echo $this->webroot; ?>js/jquery.placeholder.js"></script> 
 	<script src="<?php echo $this->webroot; ?>js/jquery.tools.min.js"></script> 
-	<script src="<?php echo $this->webroot; ?>js/jquery.colorbox-min.js"></script>
 	<?php 
 if (isset($doodle)) {
 ?>
