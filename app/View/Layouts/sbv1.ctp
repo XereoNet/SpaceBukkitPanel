@@ -149,7 +149,6 @@
 							<ul>
 
 								<li><a href="#"><?php echo $current_server_name; ?>'s Users</a></li>
-								<li><a href="#"><?php echo $current_server_name; ?>'s Servers</a></li>
 
 							</ul>
 						</div>
