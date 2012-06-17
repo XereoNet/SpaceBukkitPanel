@@ -144,7 +144,7 @@
     </section> 
       
     <header>
-       <a href="<?php echo $this->Html->url('/install/step2', true); ?>" class="button icon arrowright leftsubmit">Next</a>
+       <a href="<?php echo $this->Html->url('/install/upgrade', true); ?>" class="button icon arrowright leftsubmit">Next</a>
     </header>   
 
  </section>

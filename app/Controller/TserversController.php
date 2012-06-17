@@ -185,7 +185,7 @@ class TServersController extends AppController {
     }
 
     function getServerOverview() {
-    if ($this->request->is('ajax') || true) {
+    if ($this->request->is('ajax')) {
             
             $this->disableCache();
             Configure::write('debug', 0);

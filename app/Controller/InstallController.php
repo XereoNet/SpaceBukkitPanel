@@ -1,187 +1,399 @@
 <?php
 class InstallController extends AppController{
-    
-    function beforeFilter() {
-        $this->Auth->allow('*');
-        parent::beforeFilter();  
-        $install = new File(TMP."inst.txt");
+	
+	function beforeFilter() {
+		$this->Auth->allow('*');
+		parent::beforeFilter();  
+		$install = new File(TMP."inst.txt");
 
-        if (!$install->exists()) exit("You are not allowed to be here!");
-        
-    }
+		if (!$install->exists()) exit("You are not allowed to be here!");
+		
+	}
 
-    function index() {
+	function index() {
 
 
-      $this->layout = 'install';
+		$this->layout = 'install';
 
-      /* Check environment */
-     
-    }
+		/* Check environment */
 
-    function step2() {
-        $this->loadModel('Configurator');
-        if ($this->request->is('post')) { 
-            $this->disableCache();
-            Configure::write('debug', 0);
-            $this->autoRender = false;  
+	}
 
-            $datasource = "Database/Mysql";
-            $hostname   = $this->request->data["hostname"];
-            $username   = $this->request->data["username"]; 
-            $password   = $this->request->data["password"]; 
-            $database   = $this->request->data["database"]; 
+	function upgrade($db = false) {
+		if($this->request->is('post')) {
+			$this->loadModel('Configurator');
+			$this->disableCache();
+			Configure::write('debug', 0);
+			$this->autoRender = false;
 
-            $link = mysql_connect("$hostname", "$username", "$password");
-            if (!$link) {
-                $result = mysql_error();
-            }
-            if ($database) {
-                $dbcheck = mysql_select_db("$database");
-                if (!$dbcheck) {
-                    $result .= "<br />".mysql_error();
-                } else {
-                    //the settings are correct. Set the DB variables and install the database
-                    $this->Configurator->saveDb($datasource, $hostname, $username, $password, $database);
+		  //get all the data from the old database
+			$hostname   = $this->request->data["hostname"];
+			$username   = $this->request->data["username"]; 
+			$password   = $this->request->data["password"]; 
+			$database   = $this->request->data["database"]; 
+		  //connect to old database
+			$mysqli = new mysqli("$hostname", "$username", "$password", "$database");
+			if ($mysqli->connect_errno) {
+				$status =  "Failed to connect to MySQL: " . $mysqli->connect_error;
+				$ret = array('status' => $status);
+			} else { 
+				$status = 'true';
+				$mysql['users'] = $mysqli->query("SELECT * FROM `users` ORDER BY `users`.`id` ASC");
+				if ($mysql['users']) {
+					while ($row = $mysql['users']->fetch_array(MYSQLI_ASSOC)) {
+						$users[] = $row;
+					}
+				} else {$status = '<br>Table \'users\' not found!';}
 
-                    //now run the sql file
-                    function executeSQLScript($db, $fileName) {
-                        $statements = file_get_contents($fileName);
-                        $statements = explode(';', $statements);
+			//fetch servers
+				$mysql['servers'] = $mysqli->query("SELECT * FROM `servers` ORDER BY `servers`.`id` ASC");
+				if ($mysql['servers']) {
+					while ($row = $mysql['servers']->fetch_array(MYSQLI_ASSOC)) {
+						$servers[] = $row;
+					}
+				} else {$status .= '<br>Table \'servers\' not found!';}
+			//fetch roles
+				$mysql['roles'] = $mysqli->query("SELECT * FROM `roles` ORDER BY `roles`.`id` ASC");
+				if ($mysql['roles']) {
+					while ($row = $mysql['roles']->fetch_array(MYSQLI_ASSOC)) {
+						$roles[] = $row;
+					}
+				} else {$status .= '<br>Table \'roles\' not found!';}
+				$mysql['servers_users'] = $mysqli->query("SELECT * FROM `servers_users` ORDER BY `servers_users`.`id` ASC");
+				if ($mysql['servers_users']) {
+					while ($row = $mysql['servers_users']->fetch_array(MYSQLI_ASSOC)) {
+						$servers_users[] = $row;
+					}
+				} else {$status .= '<br>Table \'servers_users\' not found!<br>Did you choose the correct database?';}
 
-                        foreach ($statements as $statement) {
-                            if (trim($statement) != '') {
-                                $db->query($statement);
-                            }
-                        }
-                    }
-                    App::uses('ConnectionManager', 'Model');
-      
-                    $db = ConnectionManager::getDataSource('default');
-                    $test = executeSQLScript($db, WWW_ROOT.'app.sql');
+		  //insert into mysql database
+				if ($db == 'mysql') {
+					$this->Configurator->saveDb('Database/Mysql', $hostname, $username, $password, $database);
+			//delete all tables
+					$mysqli->query("DROP TABLE  `servers_users`");
+					$mysqli->query("DROP TABLE  `servers`");
+					$mysqli->query("DROP TABLE  `users`");
+					$mysqli->query("DROP TABLE  `roles`");
+			//import new database layout
 
-                    echo "true";
-                }
-            }
-        } else if ($this->request->is('ajax')) {
-          $this->disableCache();
-            Configure::write('debug', 0);
-            $this->autoRender = false;  
-            $this->Configurator->saveDb("Database/Sqlite", "", "", "", '../spacebukkit.sqlite');
-          
-            echo "true";
-        }
-        $this->layout = 'install';  
-    }    
-  
-    function step3() {
+					function executeSQLScript($db, $fileName) {
+						$statements = file_get_contents($fileName);
+						$statements = explode(';', $statements);
 
-      if ($this->request->is('post')) {
+						foreach ($statements as $statement) {
+							if (trim($statement) != '') {
+								$db->query($statement);
+							}
+						}
+					}
+					App::uses('ConnectionManager', 'Model');
 
-          $this->disableCache();
-          Configure::write('debug', 0);
-          $this->autoRender = false;   
+					$db = ConnectionManager::getDataSource('default');
+					$test = executeSQLScript($db, WWW_ROOT.'app.sql');
 
-          $data = $this->request->data;
-          $data['id'] = 1;
+					$mysqli->query("TRUNCATE TABLE  `space_servers_users`");
+					$mysqli->query("TRUNCATE TABLE  `space_servers`");
+					$mysqli->query("TRUNCATE TABLE  `space_users`");
+					$mysqli->query("TRUNCATE TABLE  `space_roles`");
 
-          $this->loadModel('User');
+					foreach ($users as $u) {
+						$query = "INSERT INTO  `space_users` (`id` ,`favourite_server` ,`username` ,`password` ,`created` ,`modified` ,`theme` ,`language` ,`is_super` ,`active`) VALUES ('$u[id]',  '$u[favourite_server]',  '$u[username]',  '$u[password]', NULL , NULL ,  '$u[theme]',  '$u[language]',  '$u[is_super]',  NULL);";
+						$mysqli->query($query);
+					}
+					foreach ($servers as $s) {
+						if (preg_match("/localhost/", $s['address']) || preg_match("/127.0.0.1/", $s['address']) || preg_match("/::1/", $s['address'])) {
+							$s['external_address'] = file_get_contents("http://automation.whatismyip.com/n09230945.asp");
+						} else {
+							$s['external_address'] = $s['address'];
+						}
+						$query = "INSERT INTO  `space_servers` (`id` ,`title` ,`address` ,`password` ,`port1` ,`port2` ,`default_role` ,`external_address`) VALUES ('$s[id]',  '$s[title]',  '$s[address]',  '$s[password]',  '$s[port1]',  '$s[port2]',  '$s[default_role]',  '$s[external_address]');";
+						$mysqli->query($query);
+					}
+					foreach ($roles as $r) {
+						$query = "INSERT INTO  `space_roles` (`id` ,`title` ,`pages` ,`global` ,`dash` ,`users` ,`plugins` ,`worlds` ,`servers` ,`settings` ,`fallback`) VALUES ('$r[id]',  '$r[title]',  '$r[pages]',  '$r[global]',  '$r[dash]',  '$r[users]',  '$r[plugins]',  '$r[worlds]',  '$r[servers]',  '$r[settings]',  '$r[fallback]');";
+						$mysqli->query($query);
+					}
+					foreach ($servers_users as $su) {
+						$query = "INSERT INTO  `servers_users` (`id` ,`user_id` ,`server_id` ,`role_id`) VALUES ('$su[id]',  '$su[user_id]',  '$su[server_id]',  '$su[role_id]');";
+						$mysqli->query($query);
+					}
 
-          $this->User->create();
-          if ($this->User->save($this->request->data)) {
-              $this->Session->setFlash(__('The user has been saved'));
-              
-              echo 'true';
 
-          } else {
-              echo 'The user could not be saved. Please, try again.';
-          }
-      }
+				} else if ($db == 'sqlite') {
+					$this->Configurator->saveDb("Database/Sqlite", "", "", "", '../spacebukkit.sqlite');
+					$db = ConnectionManager::getDataSource('default');
+			//clear all tables
+					$db->query("DELETE FROM  `space_servers_users`");
+					$db->query("DELETE FROM  `space_users`");
+					$db->query("DELETE FROM  `space_servers`");
+					$db->query("DELETE FROM  `space_roles`");
 
-      $this->layout = 'install';
-        
-      require(APP. 'webroot/configuration.php');
+			//import old db
+					foreach ($users as $u) {
+						$db->query("INSERT INTO  `space_users` (`id` ,`favourite_server` ,`username` ,`password` ,`created` ,`modified` ,`theme` ,`language` ,`is_super` ,`active`) VALUES ('$u[id]',  '$u[favourite_server]',  '$u[username]',  '$u[password]', NULL , NULL ,  '$u[theme]',  '$u[language]',  '$u[is_super]',  NULL);");
+					}
+					foreach ($servers as $s) {
+						if (preg_match("/localhost/", $s['address']) || preg_match("/127.0.0.1/", $s['address']) || preg_match("/::1/", $s['address'])) {
+							$s['external_address'] = file_get_contents("http://automation.whatismyip.com/n09230945.asp");
+						} else {
+							$s['external_address'] = $s['address'];
+							$db->query("INSERT INTO  `space_servers` (`id` ,`title` ,`address` ,`password` ,`port1` ,`port2` ,`default_role` ,`external_address`) VALUES ('$s[id]',  '$s[title]',  '$s[address]',  '$s[password]',  '$s[port1]',  '$s[port2]',  '$s[default_role]',  '$s[external_address]');");              
+						}
+						foreach ($roles as $r) {
+							$db->query("INSERT INTO  `space_roles` (`id` ,`title` ,`pages` ,`global` ,`dash` ,`users` ,`plugins` ,`worlds` ,`servers` ,`settings` ,`fallback`) VALUES ('$r[id]',  '$r[title]',  '$r[pages]',  '$r[global]',  '$r[dash]',  '$r[users]',  '$r[plugins]',  '$r[worlds]',  '$r[servers]',  '$r[settings]',  '$r[fallback]');");
+						}
+						foreach ($servers_users as $su) {
+							$db->query("INSERT INTO  `servers_users` (`id` ,`user_id` ,`server_id` ,`role_id`) VALUES ('$su[id]',  '$su[user_id]',  '$su[server_id]',  '$su[role_id]');");
+						}
 
-      $this->set('language', $languages);
+					}
 
-    }
+				}
 
-    function step4() {
+				echo $status;
+			}
+		} else {
+				$this->layout = 'install';
+		}
+	}
 
-      if ($this->request->is('post')) {
+		function getOldMysql() {
+			if ($this->request->is('post')) { 
+				$this->disableCache();
+				Configure::write('debug', 0);
+				$this->autoRender = false;
 
-          $this->disableCache();
-          Configure::write('debug', 3);
-          $this->autoRender = false;   
+				$hostname   = $this->request->data["hostname"];
+				$username   = $this->request->data["username"]; 
+				$password   = $this->request->data["password"]; 
+				$database   = $this->request->data["database"]; 
+		  //connect to old database
+				$mysqli = new mysqli("$hostname", "$username", "$password", "$database");
+				if ($mysqli->connect_errno) {
+					$status =  "Failed to connect to MySQL: " . $mysqli->connect_error;
+					$ret = array('status' => $status);
+				} else { 
+					$status = 'true';
 
-          $data = $this->request->data;
-          if (preg_match("/localhost/", $data['address']) || preg_match("/127.0.0.1/", $data['address']) || preg_match("/::1/", $data['address'])) {
-            $data['external_address'] = file_get_contents("http://automation.whatismyip.com/n09230945.asp");
-          } else {
-            $data['external_address'] = $data['address'];
-          }
+			//fetch users
+					$mysql['users'] = $mysqli->query("SELECT * FROM `users` ORDER BY `users`.`id` ASC");
+					if ($mysql['users']) {
+						while ($row = $mysql['users']->fetch_array(MYSQLI_ASSOC)) {
+							$users[] = $row;
+						}
+					} else {$status = '<br>Table \'users\' not found!';}
 
-          $add = array('title' => $data['name'], 'address' => $data['address'], 'password' => $data['salt'], 'port1' => $data['port1'], 'port2' => $data['port2'], 'external_address' => $data['external_address']);
-          
-          $server   = $data['address'];
-          $salt     = $data['salt'];
-          $p1       = $data['port1'];
-          $p2       = $data['port2'];
+			//fetch servers
+					$mysql['servers'] = $mysqli->query("SELECT * FROM `servers` ORDER BY `servers`.`id` ASC");
+					if ($mysql['servers']) {
+						while ($row = $mysql['servers']->fetch_array(MYSQLI_ASSOC)) {
+							$servers[] = $row;
+						}
+					} else {$status .= '<br>Table \'servers\' not found!';}
+			//fetch roles
+					$mysql['roles'] = $mysqli->query("SELECT * FROM `roles` ORDER BY `roles`.`id` ASC");
+					if ($mysql['roles']) {
+						while ($row = $mysql['roles']->fetch_array(MYSQLI_ASSOC)) {
+							$roles[] = $row;
+						}
+					} else {$status .= '<br>Table \'roles\' not found!<br>Did you choose the correct database?';}
 
-          //call API
+			//parse users
+					$userOutput = '';
+					foreach ($users as $u) {
+						$userOutput .= "<section><div class=\"b-what\">$u[username]</div></section>";
+					}
 
-          include APP.'SpaceBukkitAPI.php';          // This line is used to include the ressources file.
-          $api = new SpaceBukkitAPI($server, $p1, $p2, $salt);
+					$serverOutput = '';
+					foreach ($servers as $s) {
+						$serverOutput .= "<section><div class=\"b-what\">$s[title]</div></section>";
+					}
 
-          
-          //CHECK IF SERVER IS RUNNING
+					$roleOutput = '';
+					foreach ($roles as $r) {
+						if (!(preg_match("/Administrator/", $r['title']) ||
+							preg_match("/Owner/", $r['title']) ||
+							preg_match("/Moderator/", $r['title']) ||
+							preg_match("/Viewer/", $r['title']))
+							) {
+							$roleOutput .= "<section><div class=\"b-what\">$r[title]</div></section>";
+					}
+					if ($roleOutput == '') {
+						$roleOutput = '<section><div class="b-what">No custom roles found!</div></section>';
+					}
+				}
 
-          $args = array();   
-          $running = $api->call("isServerRunning", $args, true);
-        
-          $this->set('running', $running);
+				$ret = array('status' => $status, 'users' => $userOutput, 'servers' => $serverOutput, 'roles' => $roleOutput);
 
-          if (is_null($running)) {
 
-            $answer = 'Server was not reached. Is the address correct, are the ports open?';
+			}
+			echo json_encode($ret);
+		}
+	}
 
-          } elseif ($running == "true") {
-            $this->loadModel('Server');
-            if ($this->Server->save($add)) {
-                $answer = 'true';
-            } else {
-                $answer = 'The server could not be saved, please try again.';
-            }
+	function step2() {
+		$this->loadModel('Configurator');
+		if ($this->request->is('post')) { 
+			$this->disableCache();
+			Configure::write('debug', 0);
+			$this->autoRender = false;  
 
-            
+			$datasource = "Database/Mysql";
+			$hostname   = $this->request->data["hostname"];
+			$username   = $this->request->data["username"]; 
+			$password   = $this->request->data["password"]; 
+			$database   = $this->request->data["database"]; 
 
-          } elseif ($running == "salt") {
+			$link = mysql_connect("$hostname", "$username", "$password");
+			if (!$link) {
+				$result = mysql_error();
+			}
+			if ($database) {
+				$dbcheck = mysql_select_db("$database");
+				if (!$dbcheck) {
+					$result .= "<br />".mysql_error();
+				} else {
+					//the settings are correct. Set the DB variables and install the database
+					$this->Configurator->saveDb($datasource, $hostname, $username, $password, $database);
 
-            $answer = 'Incorrect Salt supplied. If you changed it in the config, make sure you restarted Remote Toolkit with ".stopwrapper" and "sh rtoolkit.sh".';
+					//now run the sql file
+					function executeSQLScript($db, $fileName) {
+						$statements = file_get_contents($fileName);
+						$statements = explode(';', $statements);
 
-          }
+						foreach ($statements as $statement) {
+							if (trim($statement) != '') {
+								$db->query($statement);
+							}
+						}
+					}
+					App::uses('ConnectionManager', 'Model');
 
-          echo $answer;
+					$db = ConnectionManager::getDataSource('default');
+					$test = executeSQLScript($db, WWW_ROOT.'app.sql');
 
-      }
+					echo "true";
+				}
+			}
+		} else if ($this->request->is('ajax')) {
+			$this->disableCache();
+			Configure::write('debug', 0);
+			$this->autoRender = false;  
+			$this->Configurator->saveDb("Database/Sqlite", "", "", "", '../spacebukkit.sqlite');
 
-      $this->layout = 'install';
+			echo "true";
+		}
+		$this->layout = 'install';  
+	}    
 
-      $this->loadModel('Role'); 
+	function step3() {
 
-      $this->set('roles', $this->Role->find("all"));      
-     
-    }
+		if ($this->request->is('post')) {
 
-    function step5($next = false) {
-      if ($next) {
-        $file = new File(TMP.'inst.txt');
-        $file->delete();  
-        $this->redirect(array('controller' => 'users', 'action' => 'logout'));
-      }
-      
+			$this->disableCache();
+			Configure::write('debug', 0);
+			$this->autoRender = false;   
 
-      $this->layout = 'install';
-     
-    }    
+			$data = $this->request->data;
+			$data['id'] = 1;
+
+			$this->loadModel('User');
+
+			$this->User->create();
+			if ($this->User->save($this->request->data)) {
+				$this->Session->setFlash(__('The user has been saved'));
+
+				echo 'true';
+
+			} else {
+				echo 'The user could not be saved. Please, try again.';
+			}
+		}
+
+		$this->layout = 'install';
+		
+		require(APP. 'webroot/configuration.php');
+
+		$this->set('language', $languages);
+
+	}
+
+	function step4() {
+
+		if ($this->request->is('post')) {
+
+			$this->disableCache();
+			Configure::write('debug', 3);
+			$this->autoRender = false;   
+
+			$data = $this->request->data;
+			if (preg_match("/localhost/", $data['address']) || preg_match("/127.0.0.1/", $data['address']) || preg_match("/::1/", $data['address'])) {
+				$data['external_address'] = file_get_contents("http://automation.whatismyip.com/n09230945.asp");
+			} else {
+				$data['external_address'] = $data['address'];
+			}
+
+			$add = array('title' => $data['name'], 'address' => $data['address'], 'password' => $data['salt'], 'port1' => $data['port1'], 'port2' => $data['port2'], 'external_address' => $data['external_address']);
+
+			$server   = $data['address'];
+			$salt     = $data['salt'];
+			$p1       = $data['port1'];
+			$p2       = $data['port2'];
+
+		  //call API
+
+		  include APP.'SpaceBukkitAPI.php';          // This line is used to include the ressources file.
+		  $api = new SpaceBukkitAPI($server, $p1, $p2, $salt);
+
+		  
+		  //CHECK IF SERVER IS RUNNING
+
+		  $args = array();   
+		  $running = $api->call("isServerRunning", $args, true);
+
+		  $this->set('running', $running);
+
+		  if (is_null($running)) {
+
+		  	$answer = 'Server was not reached. Is the address correct, are the ports open?';
+
+		  } elseif ($running == "true") {
+		  	$this->loadModel('Server');
+		  	if ($this->Server->save($add)) {
+		  		$answer = 'true';
+		  	} else {
+		  		$answer = 'The server could not be saved, please try again.';
+		  	}
+
+
+
+		  } elseif ($running == "salt") {
+
+		  	$answer = 'Incorrect Salt supplied. If you changed it in the config, make sure you restarted Remote Toolkit with ".stopwrapper" and "sh rtoolkit.sh".';
+
+		  }
+
+		  echo $answer;
+
+		}
+
+		$this->layout = 'install';
+
+		$this->loadModel('Role'); 
+
+		$this->set('roles', $this->Role->find("all"));      
+
+	}
+
+	function step5($next = false) {
+		if ($next) {
+			$file = new File(TMP.'inst.txt');
+			$file->delete();  
+			$this->redirect(array('controller' => 'users', 'action' => 'logout'));
+		}
+
+
+		$this->layout = 'install';
+
+	}    
 }
