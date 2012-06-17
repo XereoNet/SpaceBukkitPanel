@@ -680,6 +680,8 @@ nav#smalltabs,nav#popuptabs {
 }
 nav#popuptabs {
     background: #111;
+    height: 50px;
+    padding: 0 10px;
 }
 nav#smalltabs ul li,nav#popuptabs ul li {
   list-style: none;

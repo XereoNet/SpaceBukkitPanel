@@ -41,8 +41,7 @@
     'worlds'                => 8, 
     'servers'               => 16,
     'global'                => 32,
-    'backups'               => 64,
-    'permissions'           => 128
+    'backups'               => 64
     );
 
 	$permissions["global"] = array(
@@ -98,18 +97,6 @@
     'backupPlugins'         => 4,
     'backupWorlds'          => 8,
     'restore'               => 16
-    );
-
-    $permissions["permissions"] = array(
-    'addGroup'              => 1,
-    'addUser'               => 2,
-    'editGroupPermissions'  => 4,
-    'editUserPermissions'   => 8,
-    );
-
-    $permissions["timeline"] = array(
-    'foo'                   => 1,
-    'bar'                   => 2
     );
 
 ?>

@@ -92,7 +92,7 @@ END;
 
 ?>
 
-<div class="submit"><input type="submit" value="<?php echo __('Save role'); ?>" class="button"></div>
+<div class="submit" style="position: absolute; bot: 10px; right: 10px"><input type="submit" value="<?php echo __('Save role'); ?>" class="button"></div>
 </form>
 
 <div class="clear"></div>
