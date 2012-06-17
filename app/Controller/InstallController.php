@@ -264,7 +264,7 @@ class InstallController extends AppController{
 							}
 						}
 					}
-					App::uses('ConnectionManager', 'Model');
+					
 
 					$db = ConnectionManager::getDataSource('default');
 					$test = executeSQLScript($db, WWW_ROOT.'app.sql');
