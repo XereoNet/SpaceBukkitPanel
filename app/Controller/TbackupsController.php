@@ -280,18 +280,24 @@ class TBackupsController extends AppController {
                 $prevOutput["s"] = $text;
             } else {
                 
-                if (count($types["a"] >= $wrote["a"])) {
+                if (count($types["a"]) > $wrote["a"]) {
                     $prevOutput["a"] .= '<section><div class="b-what"><a href="#" class="button icon add" id="updatepa">'.__('More...').'</a></div><div class="b-in"></div><div class="b-when"></div></section>';
                 }
-                if (count($types["w"] >= $wrote["w"])) {
+                if (count($types["w"]) > $wrote["w"]) {
                     $prevOutput["w"] .= '<section><div class="b-what"><a href="#" class="button icon add" id="updatepw">'.__('More...').'</a></div><div class="b-in"></div><div class="b-when"></div></section>';
+                } else if ($wrote["w"] == 0) {
+                    $prevOutput["w"] .= '<section><h3>No world backups found!</h3></section>';
                 }
-                if (count($types["p"] >= $wrote["p"])) {
+                if (count($types["p"]) > $wrote["p"]) {
                     $prevOutput["p"] .= '<section><div class="b-what"><a href="#" class="button icon add" id="updatepp">'.__('More...').'</a></div><div class="b-in"></div><div class="b-when"></div></section>';
+                } else if ($wrote["p"] == 0) {
+                    $prevOutput["p"] .= '<section><h3>No plugin backups found!</h3></section>';
                 }
-                if (count($types["s"] >= $wrote["s"])) {
+                if (count($types["s"]) > $wrote["s"]) {
                     $prevOutput["s"] .= '<section><div class="b-what"><a href="#" class="button icon add" id="updateps">'.__('More...').'</a></div><div class="b-in"></div><div class="b-when"></div></section>';
-                }        
+                } else if ($wrote["s"] == 0) {
+                    $prevOutput["s"] .= '<section><h3>No server backups found!</h3></section>';
+                }      
             }
 
             // --------------------------------------------------------------------------------------------------
