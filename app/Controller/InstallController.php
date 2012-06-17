@@ -66,15 +66,11 @@ class InstallController extends AppController{
 					}
 				} else {$status .= '<br>Table \'servers_users\' not found!<br>Did you choose the correct database?';}
 
-		  //insert into mysql database
+		  		//insert into mysql database
 				if ($db == 'mysql') {
 					$this->Configurator->saveDb('Database/Mysql', $hostname, $username, $password, $database);
-			//delete all tables
-					$mysqli->query("DROP TABLE  `servers_users`");
-					$mysqli->query("DROP TABLE  `servers`");
-					$mysqli->query("DROP TABLE  `users`");
-					$mysqli->query("DROP TABLE  `roles`");
-			//import new database layout
+					
+					//import new database layout
 
 					function executeSQLScript($db, $fileName) {
 						$statements = file_get_contents($fileName);
@@ -208,6 +204,7 @@ class InstallController extends AppController{
 					foreach ($servers as $s) {
 						$serverOutput .= "<section><div class=\"b-what\">$s[title]</div></section>";
 					}
+					if($serverOutput == '') $serverOutput == '<section><div class="b-what">No servers found!</div></section>';
 
 					$roleOutput = '';
 					foreach ($roles as $r) {
