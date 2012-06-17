@@ -13,8 +13,7 @@ $("document").ready(function() {
 	defaultWidth		= 650; //pixels
 	transition			= 500; //millisecond
 	det    				= $('.bukget-area2');
-	detheading			= $('.bukget-area2 div.bukget-heading');
-	detcontent			= $('.bukget-area2 div.bukget-list');
+	search 				= $('.bukget-search-container');
 	detsource1			= "./bukget2/getLatest";
 	detsource2			= "./bukget2/getHeading/";
 	detsource3			= "./bukget2/getDetails/";
@@ -24,10 +23,16 @@ $("document").ready(function() {
 
 	$('li.plugin').live("click", function() {
 		
+		detheading			= $('.bukget-area2.secure div.bukget-heading');
+		detcontent			= $('.bukget-area2.secure div.bukget-list');
+
 		$('li.plugin.selected').removeClass('selected');
+
 		var link = $(this).find('h4').html();
+
 		$(detheading).load(detsource2+link);
 		$(detcontent).html(ajax_load).load(detsource3+link);
+
 		$(this).addClass('selected');
 
 	});
@@ -48,6 +53,14 @@ $("document").ready(function() {
 	  return false;
 
 	}));
+
+	$('#se_all > form').submit(function(event) {
+
+		event.preventDefault();
+ 		var arg = $('#se_all input').val();
+		search.activity().load("./bukget2/search/"+arg);
+
+	});
 	
 });
 </script> 
@@ -59,11 +72,15 @@ $("document").ready(function() {
 			<div class="col left">
 				<h1>Bukget 2.0</h1>
 			</div>
-			<div class="col right">
-				<form>
-				<input id="se_all" name="se_all" type="text" style="display: block;" placeholder="Search plugins...">
+			<div class="col right" id="se_all">
+				<form action="#">
+					<input type="text" name="string" placeholder="Search for plugin...">
 				</form>
 			</div>
+		</div>
+
+		<div class="bukget-search-container">
+
 		</div>
 
 		<div class="bukget-content">

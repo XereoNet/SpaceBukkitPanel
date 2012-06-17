@@ -210,7 +210,7 @@ END;
 					<div id="userbuttons">
 						
 						<span><a href="#" class="account tip"><?php echo $username; ?> </a></span>
-						<div class="tooltip white">
+						<div class="tooltip">
 							<ul>
 								<li><a href="./users/edit/<?php echo $current_user_id; ?>" class="fancy"><?php echo __('Account Settings'); ?></a></li>
 								<li><a href="./users/theme" class="fancy"><?php echo __('SpaceBukkit Theme'); ?></a></li>

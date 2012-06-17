@@ -2,14 +2,14 @@
 	<div class="binder">
 		<div class="slider">
 
-			<div id="<?php echo $cat; ?>" class="additional-block">
+			<div id="<?php echo $string; ?>" class="additional-block">
 				<div class="bukget-heading">
 					<a href="./bukget2" class="fancy bu-ba-bu"> <?php echo $this->Html->image('prev.png')?> </a>
 					<h3>
-					<?php echo $cat; ?>
+					Search results for: <?php echo $string; ?>
 					</h3>
 				</div>
-				<ul class="menu" id="<?php echo $cat; ?>_menu">
+				<ul class="menu" id="<?php echo $string; ?>_menu">
 					<?php echo $output; ?>
 				</ul>
 			</div>

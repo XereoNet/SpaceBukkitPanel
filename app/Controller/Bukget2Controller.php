@@ -44,6 +44,54 @@ class Bukget2Controller extends AppController {
  
     }
 
+    function search($string) {
+
+      set_time_limit(60);
+      $this->layout = 'ajax';
+
+       //get all plugins installed
+      require APP . 'spacebukkitcall.php';
+
+      $args = array();   
+      $installed = $api->call("getPlugins", $args, false); 
+
+      function arraytolower(array $array, $round = 0){ 
+        return unserialize(strtolower(serialize($array))); 
+      }    
+
+      $installed2 = arraytolower($installed);
+
+      $output = '';
+          
+      $installed3 = str_replace("", " ", $installed);
+          
+      $installed4 = str_replace("-", " ", $installed);    
+      
+      //get all plugins in the cat
+
+      $string = str_replace("#", "", $string); 
+      $plugins = json_decode(file_get_contents("http://api.bukget.org/api/search/name/like/".$string));
+
+      foreach ($plugins as $plugin) {
+
+      if (in_array($plugin, $installed) || in_array($plugin, $installed2) || in_array($plugin, $installed3) || in_array($plugin, $installed4) ) {
+        $button = '<a href="#" class="nobutton approve">'.__('Installed!').'</a>';
+      } else {
+        $button = '<a href="./bukget2/installPlugin/'.$plugin.'" class="button icon favorite installer">'.__('Install').'</a>';
+      }
+        
+      $output .= '<li class="plugin"><div class="first_row"><div class="col left col_2_3"><h4>'.$plugin.'</h4></div><div class="col right col_1_3" style="text-align: right; margin-top: 3px">
+                '.$button.'</div></div></li>';
+
+        } 
+
+      $this->set('output', $output);
+
+
+      $this->set('string', $string);
+
+    }
+
     function cat($cat) {
 
       set_time_limit(60);
@@ -83,12 +131,13 @@ class Bukget2Controller extends AppController {
       $output .= '<li class="plugin"><div class="first_row"><div class="col left col_2_3"><h4>'.$plugin.'</h4></div><div class="col right col_1_3" style="text-align: right; margin-top: 3px">
                 '.$button.'</div></div></li>';
 
+        } 
+
       $this->set('output', $output);
 
 
       $this->set('cat', $cat);
 
-        } 
     }
 
     function getLatest() {
