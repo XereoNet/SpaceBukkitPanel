@@ -42,6 +42,36 @@ class Configurator extends AppModel {
 
     }
 
+    //Generate configuration.php token
+
+    function saveCore() {
+
+        $config = APP.'webroot/configuration.php'; 
+
+        $old = array();
+
+        $old['token']        = '%*TOKEN*%';
+
+        $new = array();
+
+        $c = uniqid (rand(), true);
+
+        $md5c = md5($c);
+
+        $new['token']        = $md5c;
+
+        $new_file = implode(file($config));     
+     
+        $str = str_replace($old,$new,$new_file);
+
+        //now, TOTALLY rewrite the file
+        $fp=fopen($config,'w');
+
+        fwrite($fp,$str,strlen($str));  
+
+        return $str;   
+
+    }
     //Save config
 
     function saveVars($new) {

@@ -386,6 +386,9 @@ class InstallController extends AppController{
 		if ($next) {
 			$file = new File(TMP.'inst.txt');
 			$file->delete();  
+            $this->loadModel('Configurator');
+            $this->Configurator->saveCore();
+
 			$this->redirect(array('controller' => 'users', 'action' => 'logout'));
 		}
 
