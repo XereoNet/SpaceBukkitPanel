@@ -608,30 +608,36 @@ END;
 
     function inventory($name) {
 
-    perm('users', 'seeInventory', $this->Session->read("user_perm"), true);
+       if ($this->request->is('ajax')) {
+            $this->disableCache();
 
-        include APP.'spacebukkitcall.php';
+            perm('users', 'seeInventory', $this->Session->read("user_perm"), true);
 
-        $args = array($name); 
-        $items = $api->call("getInventory", $args, false);
+            include APP.'spacebukkitcall.php';
 
-        $dir = new Folder(WWW_ROOT . 'inventory/icons/');
-        $allitems = $dir->find('.+\.png'); 
+            $args = array($name); 
+            $items = $api->call("getInventory", $args, false);
 
-        foreach ($allitems as $slot => $item) {
-            $allitems[$slot] = substr($item, 0, -4);
+            $dir = new Folder(WWW_ROOT . 'inventory/icons/');
+            $allitems = $dir->find('.+\.png'); 
+
+            foreach ($allitems as $slot => $item) {
+                $allitems[$slot] = substr($item, 0, -4);
+            }
+
+            debug($items);
+            /*
+            foreach ($items as $slot => $item) {
+                $items[$slot]['comb'] = $items[$slot]['ID'].'-'.$items[$slot]['Data'];
+                if ($item['Amount'] == 0) $items[$slot]['Amount'] = '';
+                if (!in_array($items[$slot]['comb'] , $allitems))  $items[$slot]['comb'] = 'none';
+            }
+            */
+            $this->set('name', $name);
+            $this->set('item', $items);
+
+            $this->layout = 'popup';
         }
-
-        foreach ($items as $slot => $item) {
-            $items[$slot]['comb'] = $items[$slot]['ID'].'-'.$items[$slot]['Data'];
-            if ($item['Amount'] == 0) $items[$slot]['Amount'] = '';
-            if (!in_array($items[$slot]['comb'] , $allitems))  $items[$slot]['comb'] = 'none';
-        }
-
-        $this->set('name', $name);
-        $this->set('item', $items);
-
-        $this->layout = 'popup';
     }
 
     function inventory_delete($name, $slot) {
