@@ -84,7 +84,7 @@ class TBackupsController extends AppController {
             $this->set('backupWorlds', $backupWorlds);
             //parse plugin list
             $bPlugins = '';
-                $bPlugins .= perm_action('backups', 'backupPlugins', $this->Session->read("user_perm"), "<section>\n<div> <a href=\"./tbackups/backup/Plugins\" class=\"button icon like backup\">".__('Backup All Plugins')."</a></div>\n</section>");
+                $bPlugins .= perm_action('backups', 'backupPlugins', $this->Session->read("user_perm"), "<section>\n<div> <a href=\"./tbackups/backup/Plugins/plugins\" class=\"button icon like backup\">".__('Backup All Plugins')."</a></div>\n</section>");
             if (!$running) {
                 $bPlugins = __("Couldn't load plugins list (Server is turned off)");
             } else {
@@ -414,7 +414,7 @@ class TBackupsController extends AppController {
         }
     }   // end of backup
 
-    function restore($type, $fileName) {    // function to restore a certain backup
+    function restore($type, $fileName, $overwrite) {    // function to restore a certain backup
         perm('backups', 'restore', $this->Session->read("user_perm"), true);
         if ($this->request->is('ajax')) {
             $this->disableCache();
@@ -422,7 +422,7 @@ class TBackupsController extends AppController {
             $this->autoRender = false;
             require APP . 'spacebukkitcall.php';
 
-            $args = array($this->Session->read("Sbvars.10"), 'Server is shutting down to restore a backups!');
+            $args = array($this->Session->read("Sbvars.10"), 'Server is shutting down to restore a backup!');
             $api->call('broadcastWithName', $args, false);
             sleep(3);
 
@@ -431,6 +431,10 @@ class TBackupsController extends AppController {
             w_serverlog($this->Session->read("current_server"), __('[WORLDS] ').$this->Auth->user('username').' '.__('restored').' '.$name);
         }
     }   // end of restore
+
+    function delete($file) {
+        perm('backups', 'restore', $this->Session->read("user_perm"), true);
+    }
 
     function schedule(){
         if ($this->request->is('post')) { 

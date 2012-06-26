@@ -263,7 +263,7 @@
 
             <div class="darkwell">
               <section>
-                <a href="./tbackups/backup" class="button icon like backup">Backup Complete Server</a>
+                <a href="./tbackups/backup/Server/*" class="button icon like backup">Backup Complete Server</a>
               </section>
             </div>
 
@@ -418,15 +418,30 @@ $('document').ready(function() {
   });
 
   $('.backup').live('click', function(){
+    var alertmsg = confirm("Do you want to stop the server while creating the backup?");
     $('#noTop').click();
-    var href = $(this).attr('href');
+    var href = $(this).attr('href') + '/' + alertmsg;
     $.ajax({
       url: href,
       success: function(data) {
         getRunning();
       }
     });
+    return false;
+  });
 
+  $('.restore').live('click', function () {
+    if (confirm("The server will be stopped while restoring the backup!")) {
+      var alertmsg = confirm("Do you want delete the folder before restoring?");
+      $('#noTop').click();
+      var href = $(this).attr('href') + '/' + alertmsg;
+      $.ajax({
+        url: href,
+        success: function(data) {
+          getRunning();
+        }
+      });
+    }
     return false;
   });
 });

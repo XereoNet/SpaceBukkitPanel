@@ -102,8 +102,8 @@
 				            <td class="ar">
 							    <form id="installPluginURL" class="installPluginURL" method="post" action="./tplugins/URLinstall">
 							      <div>
-							        <input id="url" name="url" type="text" style="width: 60%;"/>
-							    	<input type="submit" class="button primary submit" value="<?php echo __('Install') ?>">
+							        <input id="url" name="url" onFocus="$(this).val('');" type="text" placeholder="" style="width: 60%;"/>
+							    	<input type="submit" class="button primary submit installURL" value="<?php echo __('Install') ?>">
 							      </div>
 							    </form>
 				            </td> 
@@ -163,6 +163,33 @@ $('document').ready(function() {
 	      return false;
 
 	}));
+
+	$('.installURL').live('click', function (e) {
+		e.preventDefault();
+		$(this).addClass('disable');
+		$("#url").addClass('disabled');
+		var form = $('#installPluginURL');
+		var file = form.find( 'input[name=url] ').val();
+		form.find( 'input[name=url] ').val("Installing...");
+		var url = form.attr('action');
+
+		$.ajax({
+			type: 'POST', 
+			url: url, 
+			data: {url: file}, 
+			success: function (d) {
+				var data = $.parseJSON(d);
+				if (data.ret) {
+					notifications.show({msg:data.msg, icon:'img/win.png'});
+					form.find( 'input[name=url] ').val("Installed!");
+				} else {
+					notifications.show({msg:data.msg, icon:'img/fail.png'});
+					form.find( 'input[name=url] ').val("Error!");
+				}
+				$('.installURL').removeClass('disable');
+			}
+		});
+	});
 
 });
 </script>

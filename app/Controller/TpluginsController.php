@@ -473,37 +473,41 @@ END;
         if (!$this->request->is('post')) {
             throw new MethodNotAllowedException();
         } else {
+            $this->disableCache();
+            Configure::write('debug', 0);
+            $this->autoRender = false;
 
-        require APP . 'spacebukkitcall.php';
+            require APP . 'spacebukkitcall.php';
 
-        $url = $this->request->data;
+            $url = $this->request->data;
 
-        $name = basename($url['url']);
+            $name = basename($url['url']);
 
-        $ext = substr($name, strrpos($name, '.') + 1);
+            $ext = substr($name, strrpos($name, '.') + 1);
 
-        if (!(($ext=="zip") || ($ext=="jar"))){
-            exit("Invalid file format!");
-        }
+            if (!(($ext=="zip") || ($ext=="jar"))){
+                $jsonout = array("ret" => false, "msg" => "Invalid file format!");
+                exit(json_encode($jsonout));
+            }
 
-        //Check if it exists      
-        $args = array('plugins');   
-        $plugins = $api->call("listFiles", $args, true);
-        
-        if (in_array($name, $plugins)) {
-            exit("File already installed!");
-        }
+            //Check if it exists      
+            $args = array('plugins');   
+            $plugins = $api->call("listFiles", $args, true);
+            
+            if (in_array($name, $plugins)) {
+                $jsonout = array("ret" => false, "msg" => "File already installed!");
+                exit(json_encode($jsonout));
+            }
 
-        //Install plugin        
-        $args = array($url["url"], $name);   
-        $api->call("pluginInstallByURL", $args, true);
+            //Install plugin        
+            $args = array($url["url"], $name);   
+            $ret = $api->call("pluginInstallByURL", $args, true);
 
-        //Dummy call to listen for reload   
-        $args = array();   
-        $api->call("getOPs", $args);
-
-        $this->redirect(array('controller' => 'Tplugins', 'action' => 'index'));
-
+            //Dummy call to listen for reload   
+            $args = array();   
+            $api->call("getOPs", $args, false);
+            $jsonout = array("ret" => true, "msg" => "Plugin installed!");
+            echo json_encode($jsonout);
         }
     }
 
