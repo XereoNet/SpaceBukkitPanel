@@ -621,6 +621,7 @@ END;
             $dir = new Folder(WWW_ROOT . 'inventory/icons/');
             $allitems = $dir->find('.+\.png'); 
 
+
             foreach ($allitems as $slot => $item) {
                 $allitems[$slot] = substr($item, 0, -4);
             }

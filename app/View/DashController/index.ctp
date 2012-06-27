@@ -49,7 +49,7 @@
   </div>
 
 
-  <div class="col right">
+  <div class="col right" id="dabg">
 
     <div class="inner">
       
@@ -162,6 +162,15 @@
 
 <script>
 
+    jQuery.extend({
+      random: function(X) {
+          return Math.floor(X * (Math.random() % 1));
+      },
+      randomBetween: function(MinV, MaxV) {
+        return MinV + jQuery.random(MaxV - MinV + 1);
+      }
+    });
+
     var timer;
     var timerCurrent;
     var timerFinish;
@@ -248,7 +257,20 @@
     });
   };
 
+  function dabg() {
+
+    var num = $.randomBetween(0, 12);
+
+    var img = 'url(./img/wallpaper/'+num+'.jpg) no-repeat top left';
+
+    $('#dabg').css("background", img);  
+
+  };
+
 $(document).ready(function(){
+
+  dabg();
+
   graphs();
   serverInfo();
   panelInfo();

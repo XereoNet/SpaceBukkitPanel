@@ -2393,7 +2393,7 @@ a: focus {
 
 .dashboard_content > div.right{
   width: 80%;
-  background: url(../img/dash.jpg) no-repeat top left;
+  background-color: black;
 
 }
 
