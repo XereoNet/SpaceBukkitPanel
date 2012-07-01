@@ -8,7 +8,7 @@
 *
 *   DESCRIPTION
 *
-*   This controller is relative to the "Dash" page and all it's related functions.
+*   This controller is relative to the "Backups" page and all it's related functions.
 *
 *   TABLE OF CONTENTS
 *   
