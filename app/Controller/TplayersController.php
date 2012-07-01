@@ -621,19 +621,22 @@ END;
             $dir = new Folder(WWW_ROOT . 'inventory/icons/');
             $allitems = $dir->find('.+\.png'); 
 
-
             foreach ($allitems as $slot => $item) {
                 $allitems[$slot] = substr($item, 0, -4);
             }
-
-            debug($items);
-            /*
+            
             foreach ($items as $slot => $item) {
-                $items[$slot]['comb'] = $items[$slot]['ID'].'-'.$items[$slot]['Data'];
-                if ($item['Amount'] == 0) $items[$slot]['Amount'] = '';
-                if (!in_array($items[$slot]['comb'] , $allitems))  $items[$slot]['comb'] = 'none';
+                if(isset($item['id'])) {
+                    $items[$slot]['comb'] = $items[$slot]['id'].'-'.$items[$slot]['data'];
+                    if ($item['amount'] == 0) $items[$slot]['amount'] = '';     
+                    if (!in_array($items[$slot]['comb'] , $allitems))  $items[$slot]['comb'] = 'none';       
+                } else {
+                    $items[$slot]['comb'] = '0-0';
+                    $items[$slot]['amount'] = '';
+                }
+                
             }
-            */
+
             $this->set('name', $name);
             $this->set('item', $items);
 

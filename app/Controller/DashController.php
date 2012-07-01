@@ -158,50 +158,7 @@ class DashController extends AppController {
 
 		$current_server_id = $this->Server->findById($this->Session->read("current_server"));
 
-		$connected_users = count($current_server_id['ServersUsers']);
-
-		//worlds stats
-
-		//get all worlds
-		$args = array();   	
-        $worlds = $api->call("getAllWorlds", $args, true);
-        //get the enabled worlds
-        $loadedWorlds = $api->call("getWorlds", $args, false);  
-
-        if (!(is_array($loadedWorlds))) {
-        	
-        	$loadedWorlds = array();
-
-        }
-
-        $worlds_count = array();
-        $worlds_count["normal"] = 0;
-        $worlds_count["nether"] = 0;
-        $worlds_count["sky"] = 0;
-        $worlds_count["end"] = 0;
-
-		foreach ($worlds as $w) {
-
-            //if the world is loaded get all info
-            if(in_array($w, $loadedWorlds) != NULL){
-            
-            $args = array($w);
-            $worldInfo = $api->call("getWorldInformations", $args, false);  
-            
-            //count worlds
-			if ($worldInfo['Environment'] == "NORMAL") {
-			    $worlds_count["normal"] = $worlds_count["normal"]+1;
-			} elseif ($worldInfo['Environment'] == "NETHER") {
-			    $worlds_count["nether"] = $worlds_count["nether"]+1; 
-			} elseif ($worldInfo['Environment'] == "SKYLANDS") {
-			    $worlds_count["sky"] = $worlds_count["sky"]+1; 
-			} elseif ($worldInfo['Environment'] == "THE_END") {
-			    $worlds_count["end"] = $worlds_count["end"]+1; 
-			}
-			
-        	}
-    	}
-                  
+		$connected_users = count($current_server_id['ServersUsers']);               
 
 		//player stats
         $args = array();   
@@ -221,7 +178,6 @@ class DashController extends AppController {
        	$this->set('m_bukkit_version', $m_bukkit_version);
     	$this->set('plugin_count', $plugin_count);
     	$this->set('dis_plugin_count', $dis_plugin_count);
-    	$this->set('worlds_count', $worlds_count);
     	$this->set('ban_count', $ban_count);
     	$this->set('whitelist_count', $whitelist_count);
     	$this->set('max_players', $max_players);
