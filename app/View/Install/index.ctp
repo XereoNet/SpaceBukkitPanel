@@ -120,7 +120,7 @@
 </p>                       
 <p>
     <?php
-        if (is_writable(APP . 'Config/database.php ')):
+        if (is_writable(APP . 'Config/database.php')):
             echo '<span class="alert alert-success">';
                 echo __('The app/Config/database file is writable.');
             echo '</span>';
