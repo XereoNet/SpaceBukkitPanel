@@ -752,9 +752,6 @@ $('document').ready(function() {
 
     var serverurl     = "<?php echo $this->Html->url(array('controller' => 'tservers', 'action' => 'getServerlog' )); ?>";
 
-
-    $('#serverlog').activity();
-
     $('#serverlog').load(serverurl);
 
   }
