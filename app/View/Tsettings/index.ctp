@@ -55,7 +55,7 @@
           <th>
             <?php echo __('Name ') ?>
             <a href="#" class="tip" style="float: right; margin-right: 5px"><?php echo __('Add to a server') ?></a>
-            <div class="tooltip white server_add_to_list">
+            <div class="tooltip server_add_to_list">
               <ul id="server_ad_to_list">
                 <?php echo __('loading') ?>
               </ul>
