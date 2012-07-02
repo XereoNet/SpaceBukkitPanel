@@ -363,7 +363,6 @@ class InstallController extends AppController{
 		  	}
 
 
-
 		  } elseif ($running == "salt") {
 
 		  	$answer = 'Incorrect Salt supplied. If you changed it in the config, make sure you restarted Remote Toolkit with ".stopwrapper" and "sh rtoolkit.sh".';

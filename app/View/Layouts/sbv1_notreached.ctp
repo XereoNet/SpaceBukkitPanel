@@ -149,10 +149,14 @@ END;
 					<!-- End Tabs -->
 
 					<div class="colorbox red">
-					    <h3><?php echo __('Server was not reached! Is it running?'); ?></h3> 
+					    <h3><?php echo __('Server was not reached!'); ?></h3> 					  
+					</div>
+
+					<div class="colorbox blue" id="serverConnectionInfo">
+					    <h3><?php echo __('Loading additional information...'); ?></h3> 					  
 					</div>
 				
-						</div>
+				</div>
 			<!-- End #wrapper --> 
 
 			<div id="footer">
@@ -215,8 +219,9 @@ if (isset($doodle)) {
 ?>
 <script>
 $(document).ready(function() {
-var doodle = "url(<?php echo $doodle; ?>)";
-$("#logo").css("background-image", doodle);  
+
+	var doodle = "url(<?php echo $doodle; ?>)";
+	$("#logo").css("background-image", doodle);  
 
 });
 </script>
@@ -224,5 +229,10 @@ $("#logo").css("background-image", doodle);
 <?php 
 }
 ?>
+<script>
+
+	$('#serverConnectionInfo').load('./global/serverConnectionInfo/'+<?php echo $current_server; ?>);
+
+</script>
 	</body>
 </html>

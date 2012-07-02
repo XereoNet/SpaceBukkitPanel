@@ -28,9 +28,9 @@
         <section>
 
 
-  <small class="bukget_information"><?php echo __('From here you can assign users to servers and a role for each user, on each server. To start, select a user. Then, start adding him to a server, and assing a role to that server.') ?></small>
+  <small class="bukget_information"><?php echo __('From here you can assign users to servers and a role for each user, on each server. To start, select a user. Then, start adding him to a server, and assign a role to that server.') ?></small>
   <div class="clear"></div>
-  <div class="col left col_1_3 nofilter" style="padding: 30px 60px 0 0; width: 300px; min-height: 500px;background: url(./img/fancy_nav_right.png) no-repeat 95% 50%">
+  <div class="col left col_1_3 nofilter" style="padding: 30px 60px 0 0; width: 300px; min-height: 500px;background: url(./img/fancy_nav_right.png) no-repeat 95% 25%">
 
      <table class=" datatable dtb1 notitle" id="settings_users" style="cursor: pointer"> 
       <thead> 
@@ -47,8 +47,8 @@
       </table>
 
   </div>
-  <div class="col left col_1_3" style="padding: 30px 60px 0 0; width: 300px; min-height: 500px;background: url(./img/fancy_nav_right.png) no-repeat 95% 50%">
-      <p class="column_desc" id="c1desc"><?php echo __('Select a user first!') ?></p>
+  <div class="col left col_1_3 nofilter" style="padding: 30px 60px 0 0; width: 300px; min-height: 500px;background: url(./img/fancy_nav_right.png) no-repeat 95% 25%">
+     <p class="column_desc" style="margin-top: 2%" id="c1desc"><?php echo __('Select a user first!') ?></p>
      <table class="datatable dtb2 notitle" id="settings_server" style="cursor: pointer; display: none; width: 300px"> 
       <thead> 
         <tr> 
@@ -70,9 +70,11 @@
 
   </div>
 
-  <div class="col left col_1_3" style="padding: 150px 0 0 30px; width: 100px; font-size: 23px;">
+  <div class="col left col_1_3" style="padding: 125px 0 0 30px; width: 100px; font-size: 23px;">
+
 
     <div id="settings_role" style="display: none;">
+
     </div>
     <div id="saving_role" style="display: none;"><?php echo __('Saving....') ?></div>
 
@@ -480,7 +482,12 @@ $('document').ready(function() {
 
       var role = './tsettings/getRole/'+usr; 
 
-      $('#settings_role').html(ajax_load).load(role).show().uniform();
+      $('#settings_role').html(ajax_load).load(role, function() {
+
+        $('#settings_role').show();
+        $('#settings_role').children('form').children('select').uniform();
+
+      });
 
     });
       

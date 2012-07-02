@@ -642,5 +642,77 @@ debug($result, true, false);
       $this->layout = 'ajax'; 
              
     }
+
+    function serverConnectionInfo($id) {
+
+      if ($this->request->is('ajax')) {
+        
+        $this->disableCache();
+        Configure::write('debug',3);
+        $this->layout = 'ajax'; 
+
+        $this->loadModel('Server');
+
+        $server = $this->Server->findById($id);
+
+        $this->set('server', $server);
+
+        //check ports
+
+        $string1 = $server['Server']['address'].':'.$server['Server']['port1'].'/ping';
+        $string2 = $server['Server']['address'].':'.$server['Server']['port2'].'/ping';
+
+
+        if($this->get_data_curl($string1) == "Pong!" ) {
+          $this->set('port1', 'Pinged successfully');
+        } else {
+          $this->set('port1', 'Could not ping port. is it forwarded correctly, is it being used at all by SpaceBukkit?');
+        }
+
+        if($this->get_data_curl($string2) == "Pong!" ) {
+          $this->set('port2', 'Pinged successfully');
+        } else {
+          $this->set('port2', 'Could not ping port. is it forwarded correctly, is it being used at all by SpaceBukkit?');
+        }
+
+        //check salt
+
+        include APP.'spacebukkitcall.php';          
+        
+        $args = array();   
+        $running = $api->call("isServerRunning", $args, true);
+
+        $this->set('running', $running);
+
+        if (is_null($running)) {
+
+          $answer = 'Server was not reached. Could not check Salt.';
+
+        } elseif ($running == "salt") {
+
+          $answer = 'Incorrect Salt supplied. If you changed it in the config, make sure you restarted Remote Toolkit with ".stopwrapper" and "sh rtoolkit.sh".';
+
+        } elseif ($running == 'true' || $running == 'false') {
+
+          $answer = 'Correct Salt supplied.';
+
+        }
+
+        $this->set('salt', $answer);
+
+      }
+             
+    }
+
+    function get_data_curl($url)
+    {
+      $c = curl_init($url);
+      curl_setopt($c, CURLOPT_HEADER, false);
+      curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
+      $result = curl_exec($c);
+      curl_close($c);
+      return $result;
+    }
+
 }
 ?>
