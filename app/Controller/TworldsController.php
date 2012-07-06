@@ -68,7 +68,7 @@ class TWorldsController extends AppController {
 
         //IF "FALSE", IT'S STOPPED. IF "NULL" THERE WAS A CONNECTION ERROR
 
-        if (is_null($running)) {
+        if (is_null($running) || preg_match("/salt/", $running)) {
 
         $this->layout = 'sbv1_notreached'; 
                      

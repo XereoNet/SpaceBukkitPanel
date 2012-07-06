@@ -350,7 +350,7 @@ class InstallController extends AppController{
 
 		  $this->set('running', $running);
 
-		  if (is_null($running)) {
+		  if (is_null($running) || preg_match("/salt/", $running)) {
 
 		  	$answer = 'Server was not reached. Is the address correct, are the ports open?';
 

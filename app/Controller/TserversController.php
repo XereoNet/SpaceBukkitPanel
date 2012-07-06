@@ -68,7 +68,7 @@ class TServersController extends AppController {
 
         //IF "FALSE", IT'S STOPPED. IF "NULL" THERE WAS A CONNECTION ERROR
 
-        if (is_null($running)) {
+        if (is_null($running) || preg_match("/salt/", $running)) {
 
         $this->layout = 'sbv1_notreached'; 
                      
@@ -209,7 +209,7 @@ class TServersController extends AppController {
 
         $ServerSpecs['OS'] = $api->call('getOsName', $args, false);
 
-        $ServerSpecs['Java'] = '1.SPAAACEEEE-R01-SNAPSHOT';
+        $ServerSpecs['Java'] = 'Java '.$api->call('getJavaVersion', array(), true);
 
         $ServerSpecs['Web'] = $_SERVER['SERVER_SOFTWARE'];
 
