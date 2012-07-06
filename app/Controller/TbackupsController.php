@@ -117,32 +117,41 @@ class TBackupsController extends AppController {
             // --------------------------------------------------------------------------------------------------
 
             $args = array();
-            $status = $api->call('isBackupRunning', $args, true);
-            $bInfo = $api->call('getBackupInfo', $args, true);
-            $data = '';
-            if ($status) {
-                $r = 'yes';
-                $size = round((intval($bInfo[7]) / 1048576), 2);
-                $data .= '<h3>'.__('Backing up').' '.$bInfo[0].'</h3>';
-                $data .= '<div class="b-what">'.$bInfo[6].$bInfo[5].'</div>';
-                $data .= '<br><div class="b-in">(Started on '.date('l, dS F Y \a\t H:i)', round($bInfo[2] / 1000)).'</div>';
-                $data .= '<div class="b-when">'.__('Currently').' '.$size.' '.__('MB').'</div>';
-            } else if(($bInfo[2]/1000)+300 >= time()) {
-                $r = 'done';
-                $data .= '<div class="col left col_1_3"><img src="./img/win.png" /></div>';
-                $data .= '<div class="col right col_2_3"><h3>'.__('Backup finished!').'</h3>';
-                $data .= '<div class="b-what">'.__('Backup of').' '.$bInfo[0].' '.__('finished').' '.round((time() - $bInfo[2] / 1000) / 60, 0, PHP_ROUND_HALF_DOWN).' '.__('minutes ago!').'</div></div>';
-            }else {
+            $latOp = end($api->call('getBackups', $args, true));
+            if (is_array($latOp)) {
+                $latOp = $latOp[0];
+                $status = $api->call('isOperationRunning', array($latOp), true);
+                $bInfo = $api->call('getBackupInfo', array($latOp), true);
+                $data = '';
+                if ($status) {
+                    $r = 'yes';
+                    $size = round((intval($bInfo[6]) / 1048576), 2);
+                    $data .= '<h3>'.__('Backing up').' '.$bInfo[0].'</h3>';
+                    $data .= '<div class="b-what">'.$bInfo[5].'</div>';
+                    $data .= '<br><div class="b-in">(Started on '.date('l, dS F Y \a\t H:i)', round($bInfo[2] / 1000)).'</div>';
+                    $data .= '<div class="b-when">'.__('Currently').' '.$size.' '.__('MB').'</div>';
+                } else if(($bInfo[2]/1000)+300 >= time()) {
+                    $r = 'done';
+                    $data .= '<div class="col left col_1_3"><img src="./img/win.png" /></div>';
+                    $data .= '<div class="col right col_2_3"><h3>'.__('Operation finished!').'</h3>';
+                    $data .= '<div class="b-what">'.__('Backup of').' '.$bInfo[0].' '.__('finished').' '.round((time() - $bInfo[2] / 1000) / 60, 0, PHP_ROUND_HALF_DOWN).' '.__('minutes ago!').'</div></div>';
+                } else {
+                    $r = 'no';
+                    $data .= '<div class="col left col_1_3"><img src="./img/info.png" /></div>';
+                    $data .= '<div class="col right col_2_3"><h3>'.__('No operations running!').'</h3>'."\n".'<div class="b-what">'.__('All your backups are completed!').'</div></div>';
+                }
+
+                // --------------------------------------------------------------------------------------------------
+                // | Progressbar                                                                                    |
+                // --------------------------------------------------------------------------------------------------
+
+                $pb = $bInfo[3].'%';
+            } else {
                 $r = 'no';
-                $data .= '<div class="col left col_1_3"><img src="./img/info.png" /></div>';
-                $data .= '<div class="col right col_2_3"><h3>'.__('No backups running!').'</h3>'."\n".'<div class="b-what">'.__('All your backups are completed!').'</div></div>';
+                $data = '<div class="col left col_1_3"><img src="./img/info.png" />'.$latOp.'</div>';
+                $data .= '<div class="col right col_2_3"><h3>'.__('No operations running!').'</h3>'."\n".'<div class="b-what">'.__('All your backups are completed!').'</div></div>';
+                $pb = '0%';
             }
-
-            // --------------------------------------------------------------------------------------------------
-            // | Progressbar                                                                                    |
-            // --------------------------------------------------------------------------------------------------
-
-            $pb = $bInfo[3].'%';
 
             // --------------------------------------------------------------------------------------------------
             // | Combine call result                                                                            |
@@ -157,7 +166,7 @@ class TBackupsController extends AppController {
     function getBackups($prevAmount = '3,3,3,3') {      // ajax function that return a json with the data for previous and scheduled backups ans well as the backup stats
         if ($this->request->is('ajax')) {
             $this->disableCache();
-            //Configure::write('debug', 0);
+            Configure::write('debug', 0);
             $this->autoRender = false;
             require APP . 'spacebukkitcall.php';
 
@@ -172,7 +181,7 @@ class TBackupsController extends AppController {
                     $types['w'][] = $key;
                 } else if ($backup[1] == 'Plugins') {
                     $types['p'][] = $key;
-                } else if ($backup[1] == 'Server'){
+                } else if ($backup[1] == 'Server') {
                     $types['s'][] = $key;
                 }
                 $types['a'] = $array;
@@ -209,7 +218,7 @@ class TBackupsController extends AppController {
                 $e = 0;
             } else {
                 $e = count($backups);
-                $backups = time_sort_array($backups); //reverse array, newest on top
+                $backups = array_reverse($backups); //reverse array, newest on top
                 $types = backup_type_count($backups); //Count the backup types
 
                 $prevOutput = array("a" => '', "w" => '', "p" => '', "s" => '');
@@ -221,9 +230,9 @@ class TBackupsController extends AppController {
                         $text = '';
                         $text .= '<section>';
                         $wn = explode('-', $b[1]);
-                        $text .= '<div class="b-what">'.perm_action('backups', 'restore', $this->Session->read("user_perm"), '<a href="./tbackups/restore/Worlds/'.$b[0].'" class="button icon move backup">'.__('Restore').'</a> ').$wn[0].' "'.$wn[1].'"</div>';
-                        $text .= '<div class="b-in">'.round($b[2] / 1048576, 2).__('MB').'</div>';
-                        $text .= '<div class="b-when">'.date('l, dS F Y \a\t H:i', $b[3] / 1000).'</div>';
+                        $text .= '<div class="b-what">'.perm_action('backups', 'restore', $this->Session->read("user_perm"), '<a href="./tbackups/restore/'.$b[0].'" class="button icon move restore">'.__('Restore').'</a> ').$wn[0].' "'.$wn[1].'"</div>';
+                        $text .= '<div class="b-in">'.round($b[3] / 1048576, 2).__('MB').'</div>';
+                        $text .= '<div class="b-when">'.date('l, dS F Y \a\t H:i', $b[2] / 1000).'</div>';
                         $text .= '</section>';
 
                         if ($wrote["w"] < $tyToWrite[1]) {
@@ -237,9 +246,9 @@ class TBackupsController extends AppController {
                     } else if (preg_match("/Plugins/", $b[1])) {
                         $text = '';
                         $text .= '<section>';
-                        $text .= '<div class="b-what">'.perm_action('backups', 'restore', $this->Session->read("user_perm"), '<a href="./tbackups/restore/Plugins/'.$b[0].'" class="button icon move backup">'.__('Restore').'</a> ').__('All Plugins').'</div>';
-                        $text .= '<div class="b-in">'.round($b[2] / 1048576, 2).__('MB').'</div>';
-                        $text .= '<div class="b-when">'.date('l, dS F Y \a\t H:i', $b[3] / 1000).'</div>';
+                        $text .= '<div class="b-what">'.perm_action('backups', 'restore', $this->Session->read("user_perm"), '<a href="./tbackups/restore/'.$b[0].'" class="button icon move restore">'.__('Restore').'</a> ').__('All Plugins').'</div>';
+                        $text .= '<div class="b-in">'.round($b[3] / 1048576, 2).__('MB').'</div>';
+                        $text .= '<div class="b-when">'.date('l, dS F Y \a\t H:i', $b[2] / 1000).'</div>';
                         $text .= '</section>';
 
                         if ($wrote["p"] < $tyToWrite[2]) {
@@ -253,9 +262,9 @@ class TBackupsController extends AppController {
                     } else if (preg_match("/Server/", $b[1])) {
                         $text = '';
                         $text .= '<section>';
-                        $text .= '<div class="b-what">'.perm_action('backups', 'restore', $this->Session->read("user_perm"), '<a href="./tbackups/restore/Server/'.$b[0].'" class="button icon move backup">'.__('Restore').'</a> ').__('Complete Server').'</div>';
-                        $text .= '<div class="b-in">'.round($b[2] / 1048576, 2).'MB</div>';
-                        $text .= '<div class="b-when">'.date('l, dS F Y \a\t H:i', $b[3] / 1000).'</div>';
+                        $text .= '<div class="b-what">'.perm_action('backups', 'restore', $this->Session->read("user_perm"), '<a href="./tbackups/restore/'.$b[0].'" class="button icon move restore">'.__('Restore').'</a> ').__('Complete Server').'</div>';
+                        $text .= '<div class="b-in">'.round($b[3] / 1048576, 2).'MB</div>';
+                        $text .= '<div class="b-when">'.date('l, dS F Y \a\t H:i', $b[2] / 1000).'</div>';
                         $text .= '</section>';
 
                         if ($wrote["s"] < $tyToWrite[3]) {
@@ -305,7 +314,7 @@ class TBackupsController extends AppController {
             // --------------------------------------------------------------------------------------------------
             
             $args = array();
-            $jobs = $api->call('getJobs', $args, true);
+            //$jobs = $api->call('getJobs', $args, true);
             $schedOutput = '';
             $nbackups = array();
             foreach ($jobs as $name => $info) {
@@ -358,7 +367,7 @@ class TBackupsController extends AppController {
             $bsize = 0;
 
             foreach ($backups as $b) {
-                $bsize += round($b[2] / 1048576, 2);
+                $bsize += round($b[3] / 1048576, 2);
             }
 
             $backupInfo .= '<section>';
@@ -381,44 +390,45 @@ class TBackupsController extends AppController {
     // --------------------------------------------------------------------------------------------------
     // | Passive functions (user invoked)                                                               |
     // --------------------------------------------------------------------------------------------------
-            
 
-    function backup($type = 'Server', $name = '*', $restart = false) {      // function used to make a backup
+    function backup($type, $contents, $restart) {
         perm('backups', 'backup', $this->Session->read("user_perm"), true);
         if ($this->request->is('ajax')) {
             $this->disableCache();
-            //Configure::write('debug', 0);
+            Configure::write('debug', 0);
             $this->autoRender = false;
             require APP . 'spacebukkitcall.php';
-
-            if ($type == 'Server') {
+            if (preg_match("/Server/", $type)) {
                 perm('backups', 'backupServer', $this->Session->read("user_perm"), true);
-                $name = '*';
-            } else if ($type == 'Plugins') {
+                $name = $type;
+                $contents = '*';
+            } else if (preg_match("/Plugins/", $type)) {
                 perm('backups', 'backupPlugins', $this->Session->read("user_perm"), true);
-                $name = 'plugins';
-            } else if ($type == 'World') {
+                $contents = 'plugins';
+                $name = $type;
+            } else if (preg_match("/World/", $type)) {
                 perm('backups', 'backupWorlds', $this->Session->read("user_perm"), true);
-                $type = 'World-'.$name;
+                $name = 'World-'.$contents;
             }
-
-            if ($restart) {
+            if ($restart == 'true') {
                 $args = array($this->Session->read("Sbvars.10"), 'Server is shutting down for backup!');
                 $api->call('broadcastWithName', $args, false);
                 sleep(3);
             }
-
-            $args = array($type, $name, $restart);
-            $api->call('backup', $args, true);
-            w_serverlog($this->Session->read("current_server"), __('[BACKUPS] ').$this->Auth->user('username').' '.__('made a backup of').' '.$type);
+            $args = array($name, $contents, $restart);
+            $r = $api->call('backup', $args, true);
+            if (!preg_match("/error/", $r[0])) {
+                w_serverlog($this->Session->read("current_server"), __('[BACKUPS] ').$this->Auth->user('username').' '.__('made a backup of').' '.$name);
+            }
+            echo debug($r);
         }
-    }   // end of backup
+    }
 
-    function restore($type, $fileName, $overwrite) {    // function to restore a certain backup
+    function restore($uid, $cleardest) {    // function to restore a certain backup
         perm('backups', 'restore', $this->Session->read("user_perm"), true);
         if ($this->request->is('ajax')) {
             $this->disableCache();
-            //Configure::write('debug', 0);
+            Configure::write('debug', 0);
             $this->autoRender = false;
             require APP . 'spacebukkitcall.php';
 
@@ -426,15 +436,11 @@ class TBackupsController extends AppController {
             $api->call('broadcastWithName', $args, false);
             sleep(3);
 
-            $args = array($name);
-            $api->call('restore', $args, true);
+            $args = array($uid, $cleardest, true);
+            $api->call('restoreBackup', $args, true);
             w_serverlog($this->Session->read("current_server"), __('[WORLDS] ').$this->Auth->user('username').' '.__('restored').' '.$name);
         }
     }   // end of restore
-
-    function delete($file) {
-        perm('backups', 'restore', $this->Session->read("user_perm"), true);
-    }
 
     function schedule(){
         if ($this->request->is('post')) { 

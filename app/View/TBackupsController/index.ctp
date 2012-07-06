@@ -441,6 +441,8 @@ $('document').ready(function() {
           getRunning();
         }
       });
+    } else {
+      alert('The restore was canceled by the user!');
     }
     return false;
   });
