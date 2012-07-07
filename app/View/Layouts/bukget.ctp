@@ -58,7 +58,7 @@ $("document").ready(function() {
 
 		event.preventDefault();
  		var arg = $('#se_all input').val();
-		search.activity().load("./bukget2/search/"+arg);
+		search.spin().load("./bukget2/search/"+arg);
 
 	});
 	

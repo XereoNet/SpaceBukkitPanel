@@ -228,7 +228,7 @@
 
             act.html("");
 
-            //act.activity();
+            act.spin()
 
             //submit
 
@@ -253,7 +253,7 @@
 
                       //if data is false, show error on the left
 
-                      //act.activity();
+                      act.spin()
 
                       act.html(d);
 
@@ -274,7 +274,7 @@
 
             act.html("");
 
-            //act.activity();
+            act.spin()
 
             //submit
 
@@ -290,7 +290,7 @@
                 {
                   //if data is false, show error on the left
 
-                      //act.activity();
+                      act.spin()
 
                       act.html(d);
                 }

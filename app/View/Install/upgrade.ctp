@@ -225,7 +225,7 @@
             var act   = $('#inst_activity');
             act.html("");
 
-            act.activity();
+            act.spin();
 
             $.ajax({
                 type: 'POST',
@@ -243,7 +243,7 @@
                         });
                     }
                     else {
-                        act.activity();
+                        act.spin();
                       act.html(content.status);
                     }
                 }

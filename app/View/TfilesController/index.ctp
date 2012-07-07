@@ -269,7 +269,7 @@ $('document').ready(function() {
 
 		//load the directory
 
-		list.html('<h2>Fetching directory...</h2>').activity().load(url);
+		list.html('<h2>Fetching directory...</h2>').spin().load(url);
 
 	}
 
