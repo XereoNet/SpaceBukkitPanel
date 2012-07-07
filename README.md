@@ -1,5 +1,6 @@
 # SpaceBukkit - Web administration the awesome way!
 A powerful yet simple web panel for administering your Bukkit Minecraft servers with ease.
+http://spacebukkit.xereo.net
 
 ## Description
 SpaceBukkit is a project developed over the last 6 months aiming to bring an advanced and powerful web administration framework to Bukkit. What makes it unique is, on one hand, it's graphical user interface, and on the other hand some nifty features enlisted just below.
