@@ -70,6 +70,36 @@
         'vars'              => null,
         'val'               => /*10*/'SpaceBukkit'
         ), 
+    array(
+        'name'              => 'Kill Notification',
+        'desc'              => 'The message for killing somebody',
+        'vars'              => null,
+        'val'               => /*11*/'{player} was killed from orbit!'
+        ), 
+    array(
+        'name'              => 'Heal Notification',
+        'desc'              => 'The message for healing somebody',
+        'vars'              => null,
+        'val'               => /*12*/'{player} was magically healed from space!'
+        ), 
+    array(
+        'name'              => 'Feed Notification',
+        'desc'              => 'The message for feeding somebody',
+        'vars'              => null,
+        'val'               => /*13*/'{player} ate some delicious MoonCheese (tm)!'
+        ),     
+    array(
+        'name'              => 'Kick Notification',
+        'desc'              => 'The message for kicking somebody',
+        'vars'              => null,
+        'val'               => /*14*/'{player} has been kicked. Spacey!'
+        ), 
+    array(
+        'name'              => 'Ban Notification',
+        'desc'              => 'The message for banning somebody',
+        'vars'              => null,
+        'val'               => /*15*/'{player} has been banned. SpaceBukkit is gonna miss him :('
+        ), 
     ); 
 
 

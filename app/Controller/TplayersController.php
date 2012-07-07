@@ -42,6 +42,8 @@ class TPlayerscontroller extends AppController {
 
     public $helpers = array ('Html','Form');
 
+    public $uses = array('Configurator');
+
     public $name = 'TPlayersController';
 
     public function beforeFilter()
@@ -360,11 +362,15 @@ END;
         
 		$args = array($player);   
 		$kill = $api->call("killPlayer", $args, false);
-		$say = $player .' '. __('has been killed from orbit'); 
-		$args = array($this->Session->read("Sbvars.10"), $say);   
+
+        $mex = $this->Configurator->returnVars(11);
+
+        $mex = str_replace("{player}", $player, $mex['val']);
+
+		$args = array($this->Session->read("Sbvars.10"), $mex);   
         $api->call("broadcastWithName", $args, false); 
          
-        echo $say;
+        echo $mex;
 
         w_serverlog($this->Session->read("current_server"), __('[USERS] ').$this->Auth->user('username').' '.__('killed').' '.$player);
 
@@ -386,10 +392,15 @@ END;
 
 		$args = array($player, '20');   
 		$sethealth = $api->call("setHealth", $args, false);
-		$say = $player . __(' has been magically healed from space'); 
-		$args = array('SpaceBukkit', $say);   
-        $api->call("broadcastWithName", $args, false);  
-        echo $say;
+
+        $mex = $this->Configurator->returnVars(12);
+
+        $mex = str_replace("{player}", $player, $mex['val']);
+
+        $args = array($this->Session->read("Sbvars.10"), $mex);   
+        $api->call("broadcastWithName", $args, false); 
+         
+        echo $mex;
 
         w_serverlog($this->Session->read("current_server"), __('[USERS] ').$this->Auth->user('username').' '.__('healed').' '.$player);
         
@@ -410,10 +421,15 @@ END;
 
 		$args = array($player, '20');   
 		$sethealth = $api->call("setFoodLevel", $args, false);
-		$say = $player . __(' ate some delicious MoonCheese (tm)'); 
-		$args = array('SpaceBukkit', $say);   
-        $api->call("broadcastWithName", $args, false);  
-        echo $say;
+
+        $mex = $this->Configurator->returnVars(13);
+
+        $mex = str_replace("{player}", $player, $mex['val']);
+
+        $args = array($this->Session->read("Sbvars.10"), $mex);   
+        $api->call("broadcastWithName", $args, false); 
+         
+        echo $mex;
 
         w_serverlog($this->Session->read("current_server"), __('[USERS] ').$this->Auth->user('username').' '.__('fed').' '.$player);
         
@@ -433,10 +449,15 @@ END;
         
 		$args = array($player, 'Kicked by Admin');   
 		$sethealth = $api->call("kickPlayer", $args, false);
-		$say = $player . __(' has been kicked. Spacey!'); 
-		$args = array('SpaceBukkit', $say);   
-        $api->call("broadcastWithName", $args, false);  
-        echo $say;
+
+        $mex = $this->Configurator->returnVars(14);
+
+        $mex = str_replace("{player}", $player, $mex['val']);
+
+        $args = array($this->Session->read("Sbvars.10"), $mex);   
+        $api->call("broadcastWithName", $args, false); 
+         
+        echo $mex;
 
         w_serverlog($this->Session->read("current_server"), __('[USERS] ').$this->Auth->user('username').' '.__('kicked').' '.$player);
         
@@ -458,10 +479,15 @@ END;
         $api->call("ban", $args, false);
         $args2 = array($player, 'You have been banned from server.');   
         $api->call("kickPlayer", $args2, false);
-		$say = $player . __(' has been banned. SpaceBukkit is gonna miss him :('); 
-		$args = array('SpaceBukkit', $say);   
-        $api->call("broadcastWithName", $args, false);  
-        echo $say;
+
+        $mex = $this->Configurator->returnVars(15);
+
+        $mex = str_replace("{player}", $player, $mex['val']);
+
+        $args = array($this->Session->read("Sbvars.10"), $mex);   
+        $api->call("broadcastWithName", $args, false); 
+         
+        echo $mex;
 
         w_serverlog($this->Session->read("current_server"), __('[USERS] ').$this->Auth->user('username').' '.__('banned').' '.$player);
         
