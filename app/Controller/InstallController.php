@@ -7,6 +7,8 @@ class InstallController extends AppController{
 		$install = new File(TMP."inst.txt");
 
 		if (!$install->exists()) exit("You are not allowed to be here!");
+		App::uses('ConnectionManager', 'Model');
+
 		
 	}
 
@@ -82,7 +84,6 @@ class InstallController extends AppController{
 							}
 						}
 					}
-					App::uses('ConnectionManager', 'Model');
 
 					$db = ConnectionManager::getDataSource('default');
 					$test = executeSQLScript($db, WWW_ROOT.'app.sql');
@@ -264,11 +265,9 @@ class InstallController extends AppController{
 							}
 						}
 					}
-					
 
 					$db = ConnectionManager::getDataSource('default');
 					$test = executeSQLScript($db, WWW_ROOT.'app.sql');
-
 					echo "true";
 				}
 			}

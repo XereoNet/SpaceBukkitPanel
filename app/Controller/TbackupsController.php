@@ -127,7 +127,7 @@ class TBackupsController extends AppController {
                     $r = 'yes';
                     $size = round((intval($bInfo[6]) / 1048576), 2);
                     $data .= '<h3>'.__('Backing up').' '.$bInfo[0].'</h3>';
-                    $data .= '<div class="b-what">'.$bInfo[5].'</div>';
+                    $data .= '<div class="b-what">'.$bInfo[4].'</div>';
                     $data .= '<br><div class="b-in">(Started on '.date('l, dS F Y \a\t H:i)', round($bInfo[2] / 1000)).'</div>';
                     $data .= '<div class="b-when">'.__('Currently').' '.$size.' '.__('MB').'</div>';
                 } else if(($bInfo[2]/1000)+300 >= time()) {
@@ -420,7 +420,6 @@ class TBackupsController extends AppController {
             if (!preg_match("/error/", $r[0])) {
                 w_serverlog($this->Session->read("current_server"), __('[BACKUPS] ').$this->Auth->user('username').' '.__('made a backup of').' '.$name);
             }
-            echo debug($r);
         }
     }
 
