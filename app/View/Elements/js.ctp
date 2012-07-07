@@ -12,7 +12,7 @@
 	<script src="<?php echo $this->webroot; ?>js/ajax.js"></script> 
 	<script src="<?php echo $this->webroot; ?>js/jquery.placeholder.js"></script> 
 	<script src="<?php echo $this->webroot; ?>js/jquery.tools.min.js"></script> 
-	<script src="<?php echo $this->webroot; ?>js/jquery.nyroModal.custom.js"></script>
+	<script src="<?php echo $this->webroot; ?>js/jquery.nyroModal.custom.min.js"></script>
 	<script src="<?php echo $this->webroot; ?>js/bootstrap-collapse.js"></script>
 	<script src="<?php echo $this->webroot; ?>js/bootstrap-typeahead.js"></script>
 	<script src="<?php echo $this->webroot; ?>js/jquery.listnav.js"></script>
