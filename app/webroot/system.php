@@ -6,7 +6,7 @@
 
     array(
         'name'              => 'Debug Level',
-        'desc'              => 'The Debug level that SpaceBukkit should use. Should be 0 in almost all cases',
+        'desc'              => 'The Debug level that SpaceBukkit should use. Should be set to "Normal" in almost all cases',
         'vars'              => array('Normal' => 0, 'Error reporting' => 1, 'Error reporting with debug and SQL stacktrace' => 2),
         'val'               => /*0*/'2'
         ), 
@@ -18,7 +18,7 @@
         ), 
     array(
         'name'              => 'Timezone',
-        'desc'              => 'For formatting help use google...',
+        'desc'              => 'Manually edit this, pay attention to correct formatting',
         'vars'              => null,
         'val'               => /*2*/'Europe/Berlin'
         )
