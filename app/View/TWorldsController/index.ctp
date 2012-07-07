@@ -4,7 +4,6 @@
 	<ul>
 		<li class="current"><a href="#tab1"><?php echo __('Overview') ?></a></li>
 		<li><a href="#tab2"><?php echo __('Map') ?></a></li>
-		<li><a href="#tab3"><?php echo __('Chunkster') ?></a></li>
 		<li><a href="#tab4"><?php echo __('MapAutoTrim') ?></a></li>
 	</ul>
 </nav>
@@ -85,79 +84,6 @@
   </div>
 		</div>
 	<div class="clear"></div>
-
-	<div class="tab" id="tab3">
-		<div class="colorbox blue">
-		    <h3><?php echo __('Chunkster') ?></h3> 
-		    <p> 
-	        <?php echo __('Use this utility if you are encountering chunk errors over and over in the error log and would like them repaired. This repairs an underlying issue of duplicate/bad pointers.
-	        No responsibility is taken if worlds get corrupted/destroyed by this tool. A backup is reccomended first!<br />
-	        <a href="http://forums.bukkit.org/threads/admin-chunkster.8186/">Bukkit Thread</a>') ?>
-		    </p> 
-		</div>
-		<div class="clear"></div>
-
-		<div class="col left">
-
-		  <section class="box" id="autotrim"> 
-		   
-		    <header>
-		        <h2><?php echo __('Parameters') ?></h2> 
-		    </header>
-		    
-		    <section>
-		    <form id="chunkster" method="post" action="./tworlds/chunkster">     
-			    <section>
-			      <label for="title">
-			        <?php echo __('World'); ?>
-			      </label>
-			    
-			      <div>
-			        <select name="world">
-			        <?php
-			        foreach ($worlds as $world) {
-			        	
-			        	echo '<option value="'.$world.'">'.$world.'</option>';
-			        }
-
-			        ?>
-			        </select>
-			      </div>
-			    </section>
-		    	<input type="submit" id="chunkster" class="button big primary submit" value="<?php echo __('Run Chunkster'); ?>">
-
-		    </form>
-		  </section> 
-		  </section> 
-		<div class="clear"></div>
-
-		</div>
-
-		<div id="chunksterloader" class="col right" style="text-align: center; display: none;">
-			
-			<br />
-			<br />
-			<p></p>
-			<br />
-			<br />		
-
-			<div class="progress-new progress-striped active">
-			  <div class="bar" id="chunkster_progress"></div>
-			</div>
-
-			<div class="colorbox blue">
-			<span id="chunkster_message"><?php echo __('Notifying players of shutdown...') ?><span/>	
-			</div>
-
-			<div class="clear"></div>
-
-		</div>
-
-		<div class="clear"></div>
-		<br />
-
-	<div class="clear"></div>
-	</div>
 
 	<div class="tab" id="tab4">
 

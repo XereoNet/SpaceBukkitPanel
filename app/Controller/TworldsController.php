@@ -733,6 +733,7 @@ END;
 
     	
     }
+    /*
 //chunkster tab functions
     function chunkster() {
         perm('worlds', 'runChunkster', $this->Session->read("user_perm"), true);
@@ -763,7 +764,7 @@ END;
         $this->redirect($this->referer());
 
         
-    }
+    }*/
 
 }
 
