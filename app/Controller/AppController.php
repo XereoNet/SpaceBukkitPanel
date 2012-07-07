@@ -179,7 +179,7 @@ class AppController extends Controller {
 
         //check for uncle Ant's messages
 
-        $filename = 'http://dl.nope.bz/sb/build/message.xml';
+        $filename = 'http://dl.nope.bz/sb/build/message.12.xml';
         $message = simplexml_load_file($filename); 
 
         $json = json_encode($message);
