@@ -3,11 +3,7 @@
 <head>
 <title><?php echo $title_for_layout?> | SpaceBukkit by XereoNet | Bukkit Web Administration</title>
 
-<!-- CSS -->
-<link rel="stylesheet" href="<?php echo $this->webroot; ?>css/import.css" /> 
-<link rel="stylesheet" href="<?php echo $this->webroot; ?>css/overcast/jquery-ui-1.8.18.custom.css" /> 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<?php echo $this->element('css'); ?>
 
 <!--[if lt IE 9]>
 <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -20,10 +16,6 @@
 <![endif]-->
 
 <noscript><h1>Please enabled Javascript!</h1></noscript>
-
-
-<!-- Load theme -->
-<link rel="stylesheet" href="<?php echo $this->webroot; ?>themes/<?php echo $current_theme?>/css/theme.css" /> 
 
 <!-- Load Jquery -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js" type="text/javascript"></script>

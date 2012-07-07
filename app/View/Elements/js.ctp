@@ -1,0 +1,19 @@
+
+	<script src="<?php echo $this->webroot; ?>js/jquery-ui-1.8.18.custom.min.js"></script> 
+	<script src="<?php echo $this->webroot; ?>js/ttw-simple-notifications-min.js"></script> 
+	<script src="<?php echo $this->webroot; ?>js/excanvas.js"></script> 
+	<script src="<?php echo $this->webroot; ?>js/jquery.uniform.min.js"></script> 
+	<script src="<?php echo $this->webroot; ?>js/jquery.validate.min.js"></script> 
+	<script src="http://tab-slide-out.googlecode.com/files/jquery.tabSlideOut.v1.3.js"></script>
+	<script src="<?php echo $this->webroot; ?>js/jquery.livesearch.js"></script>
+	<script src="<?php echo $this->webroot; ?>js/jquery.visualize.js"></script> 
+	<script src="<?php echo $this->webroot; ?>js/jquery.datatables.js"></script>
+	<script src="<?php echo $this->webroot; ?>js/reload_dtb.js"></script>
+	<script src="<?php echo $this->webroot; ?>js/ajax.js"></script> 
+	<script src="<?php echo $this->webroot; ?>js/jquery.placeholder.js"></script> 
+	<script src="<?php echo $this->webroot; ?>js/jquery.tools.min.js"></script> 
+	<script src="<?php echo $this->webroot; ?>js/jquery.nyroModal.custom.js"></script>
+	<script src="<?php echo $this->webroot; ?>js/bootstrap-collapse.js"></script>
+	<script src="<?php echo $this->webroot; ?>js/bootstrap-typeahead.js"></script>
+	<script src="<?php echo $this->webroot; ?>js/jquery.listnav.js"></script>
+	<script src="<?php echo $this->webroot; ?>js/jquery.activity-indicator-1.0.0.min.js"></script>

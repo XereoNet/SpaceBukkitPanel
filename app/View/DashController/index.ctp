@@ -259,7 +259,7 @@
 
   function dabg() {
 
-    var num = $.randomBetween(0, 12);
+    var num = $.randomBetween(0, 11);
 
     var img = 'url(./img/wallpaper/'+num+'.jpg) no-repeat top left';
 
