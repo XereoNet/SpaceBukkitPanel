@@ -76,7 +76,7 @@
 			<iframe src="<?php echo $dynmapurl; ?>" style="width: 100%; height: 100%;"></iframe>
 			<?php } else { ?>
 			<div class="alert alert-info"> 
-	        <?php echo __('Dynmap not found!').' <a href="./bukget2/installPlugin/dynmap" class="button icon arrowdown dynmap">Install Dynmap</a>' ?>
+	        <?php echo __('Dynmap not found!').' Please install it!' ?>
 		    </div> 
 		    <?php } ?>
 		</div>
@@ -232,75 +232,39 @@ $('document').ready(function() {
   	return false;
   }));
 
-  $(".ajax_table1").live('click', (function(){
+	$("#autotrim").submit(function() {
+		$('.buttons').hide();
+		$('.bounce').hide();
+	    $('input[type=submit]', this).attr('disabled', 'disabled').addClass("disable");
+	    $("#autotrimloader").fadeIn(2000);
+		$('#autotrim_progress').animate({width: '33%'}, 1000);    
+	    $("#autotrimloader p").activity({'color' : 'white'});
+		setTimeout( function() { 
+		$('#autotrim_message').html('Shutting server down...');
+		$('#autotrim_progress').animate({width: '66%'}, 1000);
+		}, 10000 );
+		setTimeout( function() { 
+		$('#autotrim_message').html('Running autotrim...');
+		$('#autotrim_progress').animate({width: '100%'}, 1000);
+		}, 20000 );
+	});
 
-  var source = $(this).attr("href");
-  
-$.ajax({
-  url: source,
-  success: function(data) {
-      notifications.show(data);
-      Table1.fnReloadAjax("./tworlds/getWorlds")
-
-  }
-});
-      return false;
-
-}));
-
-  $(".dynmap").live('click', (function(){
-  	if (!$(this).hasClass('approve')) {
-  		$(this).addClass('disable');
-  		var source = $(this).attr("href");
-		$.ajax({
-  			url: source,
-  			success: function(data) {
-      			notifications.show('Dynmap has been installed! Please reload or restart the server!');
-      			$(this).removeClass('arrowdown');
-      			$(this).removeClass('disable');
-      			$(this).removeClass('button');
-      			$(this).addClass('approve');
-      			$(this).addClass('nobutton');
-  			}
-		});
-      	return false;
-  	}
-  	return false;
-}));
-
-$("#autotrim").submit(function() {
-	$('.buttons').hide();
-	$('.bounce').hide();
-    $('input[type=submit]', this).attr('disabled', 'disabled').addClass("disable");
-    $("#autotrimloader").fadeIn(2000);
-	$('#autotrim_progress').animate({width: '33%'}, 1000);    
-    $("#autotrimloader p").activity({'color' : 'white'});
-	setTimeout( function() { 
-	$('#autotrim_message').html('Shutting server down...');
-	$('#autotrim_progress').animate({width: '66%'}, 1000);
-	}, 10000 );
-	setTimeout( function() { 
-	$('#autotrim_message').html('Running autotrim...');
-	$('#autotrim_progress').animate({width: '100%'}, 1000);
-	}, 20000 );
-});
-
-$("#chunkster").submit(function() {
-	$('.buttons').hide();
-	$('.bounce').hide();
-    $('input[type=submit]', this).attr('disabled', 'disabled').addClass("disable");
-    $("#chunksterloader").fadeIn(2000);
-	$('#chunkster_progress').animate({width: '33%'}, 1000);    
-    $("#chunksterloader p").activity({'color' : 'white'});
-	setTimeout( function() { 
-	$('#chunkster_message').html('Shutting server down...');
-	$('#chunkster_progress').animate({width: '66%'}, 1000);
-	}, 10000 );
-	setTimeout( function() { 
-	$('#chunkster_message').html('Running Chunkster...');
-	$('#chunkster_progress').animate({width: '100%'}, 1000);
-	}, 20000 );
-});
+	$("#chunkster").submit(function() {
+		$('.buttons').hide();
+		$('.bounce').hide();
+	    $('input[type=submit]', this).attr('disabled', 'disabled').addClass("disable");
+	    $("#chunksterloader").fadeIn(2000);
+		$('#chunkster_progress').animate({width: '33%'}, 1000);    
+	    $("#chunksterloader p").activity({'color' : 'white'});
+		setTimeout( function() { 
+		$('#chunkster_message').html('Shutting server down...');
+		$('#chunkster_progress').animate({width: '66%'}, 1000);
+		}, 10000 );
+		setTimeout( function() { 
+		$('#chunkster_message').html('Running Chunkster...');
+		$('#chunkster_progress').animate({width: '100%'}, 1000);
+		}, 20000 );
+	});
 
 });
 </script>
