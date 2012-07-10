@@ -105,21 +105,6 @@ class TBackupsController extends AppController {
     // | Active functions (ajax invoked functions)                                                      |
     // --------------------------------------------------------------------------------------------------
 
-    function test() {
-        $this->disableCache();
-            //Configure::write('debug', 0);
-            $this->autoRender = false;
-            require APP . 'spacebukkitcall.php';
-
-            // --------------------------------------------------------------------------------------------------
-            // | Is a backup running? yes / no / done and Current info                                          |
-            // --------------------------------------------------------------------------------------------------
-
-            $args = array();
-            $latOp = $api->call('getOperations', $args, true);
-            var_dump($latOp);
-    }
-
     function getRunning() {     // ajax function to get the info for the running backup
         if ($this->request->is('ajax')) {
             $this->disableCache();
