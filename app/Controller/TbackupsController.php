@@ -105,6 +105,21 @@ class TBackupsController extends AppController {
     // | Active functions (ajax invoked functions)                                                      |
     // --------------------------------------------------------------------------------------------------
 
+    function test() {
+        $this->disableCache();
+            //Configure::write('debug', 0);
+            $this->autoRender = false;
+            require APP . 'spacebukkitcall.php';
+
+            // --------------------------------------------------------------------------------------------------
+            // | Is a backup running? yes / no / done and Current info                                          |
+            // --------------------------------------------------------------------------------------------------
+
+            $args = array();
+            $latOp = $api->call('getOperations', $args, true);
+            var_dump($latOp);
+    }
+
     function getRunning() {     // ajax function to get the info for the running backup
         if ($this->request->is('ajax')) {
             $this->disableCache();
@@ -117,9 +132,15 @@ class TBackupsController extends AppController {
             // --------------------------------------------------------------------------------------------------
 
             $args = array();
-            $latOp = end($api->call('getBackups', $args, true));
-            if (is_array($latOp)) {
-                $latOp = $latOp[0];
+            $ops = $api->call('getOperations', $args, true);
+            if (!empty($ops)) {
+                foreach ($ops as $key => $op) {
+                    if ($op[2] == '-1') {
+                        $latOp = $ops[$key-1][0];
+                    } else {
+                        $latOp = $ops[$key][0];
+                    }
+                }
                 $status = $api->call('isOperationRunning', array($latOp), true);
                 $bInfo = $api->call('getBackupInfo', array($latOp), true);
                 $data = '';
@@ -148,7 +169,7 @@ class TBackupsController extends AppController {
                 $pb = $bInfo[3].'%';
             } else {
                 $r = 'no';
-                $data = '<div class="col left col_1_3"><img src="./img/info.png" />'.$latOp.'</div>';
+                $data = '<div class="col left col_1_3"><img src="./img/info.png" /></div>';
                 $data .= '<div class="col right col_2_3"><h3>'.__('No operations running!').'</h3>'."\n".'<div class="b-what">'.__('All your backups are completed!').'</div></div>';
                 $pb = '0%';
             }
