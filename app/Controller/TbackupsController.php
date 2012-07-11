@@ -39,7 +39,7 @@ class TBackupsController extends AppController {
 
     public function beforeFilter()
 
-      {
+    {
         parent::beforeFilter();
 
         //check if user has rights to do this
@@ -50,9 +50,9 @@ class TBackupsController extends AppController {
 
            exit("access denied");
 
-        } 
+       } 
 
-      }
+   }
 
     function index() {      // index function 
 
@@ -69,8 +69,8 @@ class TBackupsController extends AppController {
 
         if (is_null($running) || preg_match("/salt/", $running)) {
 
-        $this->layout = 'sbv1_notreached'; 
-                     
+            $this->layout = 'sbv1_notreached'; 
+
         } else {
 
             $args = array();
@@ -84,7 +84,7 @@ class TBackupsController extends AppController {
             $this->set('backupWorlds', $backupWorlds);
             //parse plugin list
             $bPlugins = '';
-                $bPlugins .= perm_action('backups', 'backupPlugins', $this->Session->read("user_perm"), "<section>\n<div> <a href=\"./tbackups/backup/Plugins/plugins\" class=\"button icon like backup\">".__('Backup All Plugins')."</a></div>\n</section>");
+            $bPlugins .= perm_action('backups', 'backupPlugins', $this->Session->read("user_perm"), "<section>\n<div> <a href=\"./tbackups/backup/Plugins/plugins\" class=\"button icon like backup\">".__('Backup All Plugins')."</a></div>\n</section>");
             if (!$running) {
                 $bPlugins = __("Couldn't load plugins list (Server is turned off)");
             } else {
@@ -105,6 +105,17 @@ class TBackupsController extends AppController {
     // | Active functions (ajax invoked functions)                                                      |
     // --------------------------------------------------------------------------------------------------
 
+    function get() {
+
+        $this->disableCache();
+            //Configure::write('debug', 0);
+        $this->autoRender = false;
+        require APP . 'spacebukkitcall.php';
+        $args = array();
+        $ops = $api->call('getRunningOperationInfo', $args, true);
+        var_dump($ops);
+    }
+
     function getRunning() {     // ajax function to get the info for the running backup
         if ($this->request->is('ajax')) {
             $this->disableCache();
@@ -117,46 +128,22 @@ class TBackupsController extends AppController {
             // --------------------------------------------------------------------------------------------------
 
             $args = array();
-            $ops = $api->call('getOperations', $args, true);
-            if (!empty($ops)) {
-                foreach ($ops as $key => $op) {
-                    if ($op[2] == '-1') {
-                        $latOp = $ops[$key-1][0];
-                    } else {
-                        $latOp = $ops[$key][0];
-                    }
-                }
-                $status = $api->call('isOperationRunning', array($latOp), true);
-                $bInfo = $api->call('getBackupInfo', array($latOp), true);
-                $data = '';
-                if ($status) {
-                    $r = 'yes';
-                    $size = round((intval($bInfo[6]) / 1048576), 2);
-                    $data .= '<h3>'.__('Backing up').' '.$bInfo[0].'</h3>';
-                    $data .= '<div class="b-what">'.$bInfo[4].'</div>';
-                    $data .= '<br><div class="b-in">(Started on '.date('l, dS F Y \a\t H:i)', round($bInfo[2] / 1000)).'</div>';
-                    $data .= '<div class="b-when">'.__('Currently').' '.$size.' '.__('MB').'</div>';
-                } else if(($bInfo[2]/1000)+300 >= time()) {
-                    $r = 'done';
-                    $data .= '<div class="col left col_1_3"><img src="./img/win.png" /></div>';
-                    $data .= '<div class="col right col_2_3"><h3>'.__('Operation finished!').'</h3>';
-                    $data .= '<div class="b-what">'.__('Backup of').' '.$bInfo[0].' '.__('finished').' '.round((time() - $bInfo[2] / 1000) / 60, 0, PHP_ROUND_HALF_DOWN).' '.__('minutes ago!').'</div></div>';
-                } else {
-                    $r = 'no';
-                    $data .= '<div class="col left col_1_3"><img src="./img/info.png" /></div>';
-                    $data .= '<div class="col right col_2_3"><h3>'.__('No operations running!').'</h3>'."\n".'<div class="b-what">'.__('All your backups are completed!').'</div></div>';
-                }
-
-                // --------------------------------------------------------------------------------------------------
-                // | Progressbar                                                                                    |
-                // --------------------------------------------------------------------------------------------------
-
+            $bInfo = $api->call('getRunningOperationInfo', $args, true);
+            $data = '';
+            
+            if (!is_null($bInfo[0])) {
+                $r = 'yes';
+                $size = round((intval($bInfo[6]) / 1048576), 2);
+                $data .= '<h3>'.__('Backing up').' '.$bInfo[0].'</h3>';
+                $data .= '<div class="b-what">'.$bInfo[4].'</div>';
+                $data .= '<br><div class="b-in">(Started on '.date('l, dS F Y \a\t H:i)', round($bInfo[2] / 1000)).'</div>';
+                $data .= '<div class="b-when">'.__('Currently').' '.$size.' '.__('MB').'</div>';
                 $pb = $bInfo[3].'%';
             } else {
                 $r = 'no';
-                $data = '<div class="col left col_1_3"><img src="./img/info.png" /></div>';
+                $data .= '<div class="col left col_1_3"><img src="./img/info.png" /></div>';
                 $data .= '<div class="col right col_2_3"><h3>'.__('No operations running!').'</h3>'."\n".'<div class="b-what">'.__('All your backups are completed!').'</div></div>';
-                $pb = '0%';
+                $pb = '100%';
             }
 
             // --------------------------------------------------------------------------------------------------
@@ -169,6 +156,31 @@ class TBackupsController extends AppController {
 
     }   // end of getRunning
 
+    function getFinished() {
+        if ($this->request->is('ajax')) {
+            $this->disableCache();
+            //Configure::write('debug', 0);
+            $this->autoRender = false;
+            require APP . 'spacebukkitcall.php';
+
+            $args = array();
+            $ops = $api->call('getOperations', $args, true);
+            $rop = $api->call('getRunningOperation', $args, true);
+            $data = '';
+            array_reverse($ops);
+            foreach ($ops as $op) {
+                if((($op[2]/1000)+300 >= time()) && $op[0] != $rop) {
+                    $data .= '<section>';
+                    $data .= '<div class="col left col_1_3"><img src="./img/win.png" /></div>';
+                    $data .= '<div class="col right col_2_3"><h3>'.__('Operation finished!').'</h3>';
+                    $data .= '<div class="b-what">'.__('Backup of').' '.$op[1].' '.__('finished').' '.round((time() - $op[2] / 1000) / 60, 0, PHP_ROUND_HALF_DOWN).' '.__('minutes ago!').'</div></div><br><br><br><br>';
+                    $data .= '</section>';
+                }
+            }
+            echo $data;
+        }
+    }
+
     function getBackups($prevAmount = '3,3,3,3') {      // ajax function that return a json with the data for previous and scheduled backups ans well as the backup stats
         if ($this->request->is('ajax')) {
             $this->disableCache();
@@ -180,38 +192,38 @@ class TBackupsController extends AppController {
         // | Functions to aid in parsing previous backups!                                                  |
         // --------------------------------------------------------------------------------------------------
 
-        function backup_type_count($array) {
-            $types = array('w' => array(), 'p' => array(), 's' => array());
-            foreach ($array as $key => $backup) {
-                if (preg_match("/World-.*/", $backup[1])) {
-                    $types['w'][] = $key;
-                } else if ($backup[1] == 'Plugins') {
-                    $types['p'][] = $key;
-                } else if ($backup[1] == 'Server') {
-                    $types['s'][] = $key;
+            function backup_type_count($array) {
+                $types = array('w' => array(), 'p' => array(), 's' => array());
+                foreach ($array as $key => $backup) {
+                    if (preg_match("/World-.*/", $backup[1])) {
+                        $types['w'][] = $key;
+                    } else if ($backup[1] == 'Plugins') {
+                        $types['p'][] = $key;
+                    } else if ($backup[1] == 'Server') {
+                        $types['s'][] = $key;
+                    }
+                    $types['a'] = $array;
                 }
-                $types['a'] = $array;
+                return $types;
             }
-            return $types;
-        }
 
-        function time_sort_array($array) {
-            $sorter = array();
-            $new = array();
-            foreach ($array as $int => $array2) {
-                $k = intval($array2[3] / 10000);
-                while (array_key_exists($k, $sorter)) {
-                    $k++;
+            function time_sort_array($array) {
+                $sorter = array();
+                $new = array();
+                foreach ($array as $int => $array2) {
+                    $k = intval($array2[3] / 10000);
+                    while (array_key_exists($k, $sorter)) {
+                        $k++;
+                    }
+                    $sorter[$k] = $int;
                 }
-                $sorter[$k] = $int;
+                ksort($sorter);
+                foreach ($sorter as $key) {
+                    $new[] = $array[$key];
+                }
+                $new = array_reverse($new);
+                return $new;
             }
-            ksort($sorter);
-            foreach ($sorter as $key) {
-                $new[] = $array[$key];
-            }
-            $new = array_reverse($new);
-            return $new;
-        }
 
             // --------------------------------------------------------------------------------------------------
             // | Previous Backups                                                                               |
@@ -229,7 +241,7 @@ class TBackupsController extends AppController {
 
                 $prevOutput = array("a" => '', "w" => '', "p" => '', "s" => '');
                 $wrote = array("a" => 0, "w" => 0, "p" => 0, "s" => 0);
-    
+
                 $i = 0;
                 foreach ($backups as $b) {
                     if (preg_match("/World-.*/", $b[1])) {
@@ -294,7 +306,7 @@ class TBackupsController extends AppController {
                 $prevOutput["p"] = $text;
                 $prevOutput["s"] = $text;
             } else {
-                
+
                 if (count($types["a"]) > $wrote["a"]) {
                     $prevOutput["a"] .= '<section><div class="b-what"><a href="#" class="button icon add" id="updatepa">'.__('More...').'</a></div><div class="b-in"></div><div class="b-when"></div></section>';
                 }
@@ -473,23 +485,23 @@ class TBackupsController extends AppController {
             }
             if ($data['timeArgs2'] == "null") {
                $timeargs = $data["timeArgs1"];   
-            } else { 
+           } else { 
                $timeargs = $data["timeArgs1"].':'.$data['timeArgs2'];
-            }
+           }
 
-            require APP . 'spacebukkitcall.php';
-            
-            $args = array($data["name"], 'backup', $arguments, $timetype, $timeargs);
-     
-            $api->call("addJob", $args, true);
+           require APP . 'spacebukkitcall.php';
 
-        } else {
-            require APP . 'spacebukkitcall.php';
+           $args = array($data["name"], 'backup', $arguments, $timetype, $timeargs);
+
+           $api->call("addJob", $args, true);
+
+       } else {
+        require APP . 'spacebukkitcall.php';
             //get world specific information
-            $args = array();
-            $worlds = $api->call("allWorlds", $args, true);
-            $this->set('worlds', $worlds);
-        }
-        $this->layout = 'popup';
+        $args = array();
+        $worlds = $api->call("allWorlds", $args, true);
+        $this->set('worlds', $worlds);
     }
+    $this->layout = 'popup';
+}
 }

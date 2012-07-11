@@ -38,10 +38,24 @@
 
                 <br><br>
                 <div id="runningPB" class="progress-new progress-striped active"><div class="bar" id="PBbar" style="width: 0%"></div></div>
-
               </section>
-
             </div>
+
+        </section>
+
+        <section class="b-now" id="finishedDisp" style="display: none;">
+
+          <h2><?php echo __('Finished operations:') ?></h2>
+
+
+            <div class="darkwell" id="Finished">
+              <section>
+                <div>
+                  Fetching...
+                </div>
+              </section>
+            </div>
+            <div class="clear"></div>
 
         </section>
 
@@ -354,6 +368,20 @@ function getRunning() {
     });
 };
 
+function getFinished() {
+    $.ajax({
+      url: './tbackups/getFinished',
+      success: function(data) {
+        if (data == '') {
+          $("#finishedDisp").fadeOut();
+        } else {
+          $("div#Finished").html(data);
+          $("#finishedDisp").fadeIn();
+        }
+      }
+    });
+};
+
 function getBackups() {
   $.ajax({
       url: './tbackups/getBackups/'+pa+','+pw+','+pp+','+ps,
@@ -381,6 +409,7 @@ $('document').ready(function() {
 
   //set update intervals
   setInterval("getRunning()", '<?php echo $this->Session->read("Sbvars.8"); ?>');
+  setInterval("getFinished()", '<?php echo $this->Session->read("Sbvars.8"); ?>');
   setInterval("getBackups()", '<?php echo $this->Session->read("Sbvars.9"); ?>');
 
   //more buttons checks
