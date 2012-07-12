@@ -71,7 +71,6 @@ class InstallController extends AppController{
 		  		//insert into mysql database
 				if ($db == 'mysql') {
 					$this->Configurator->saveDb('Database/Mysql', $hostname, $username, $password, $database);
-					
 					//import new database layout
 
 					function executeSQLScript($db, $fileName) {
@@ -85,8 +84,7 @@ class InstallController extends AppController{
 						}
 					}
 
-					$db = ConnectionManager::getDataSource('default');
-					$test = executeSQLScript($db, WWW_ROOT.'app.sql');
+					$test = executeSQLScript($mysqli, WWW_ROOT.'app.sql');
 
 					$mysqli->query("TRUNCATE TABLE  `space_servers_users`");
 					$mysqli->query("TRUNCATE TABLE  `space_servers`");
@@ -118,7 +116,7 @@ class InstallController extends AppController{
 
 				} else if ($db == 'sqlite') {
 					$this->Configurator->saveDb("Database/Sqlite", "", "", "", '../spacebukkit.sqlite');
-					$db = ConnectionManager::getDataSource('default');
+					$db = new sqlite3('../spacebukkit.sqlite');
 			//clear all tables
 					$db->query("DELETE FROM  `space_servers_users`");
 					$db->query("DELETE FROM  `space_users`");
@@ -253,6 +251,7 @@ class InstallController extends AppController{
 				} else {
 					//the settings are correct. Set the DB variables and install the database
 					$this->Configurator->saveDb($datasource, $hostname, $username, $password, $database);
+					$db = new mysqli("$hostname", "$username", "$password", "$database");
 
 					//now run the sql file
 					function executeSQLScript($db, $fileName) {
@@ -266,7 +265,6 @@ class InstallController extends AppController{
 						}
 					}
 
-					$db = ConnectionManager::getDataSource('default');
 					$test = executeSQLScript($db, WWW_ROOT.'app.sql');
 					echo "true";
 				}
