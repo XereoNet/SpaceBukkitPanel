@@ -84,6 +84,7 @@ class ServersController extends AppController {
         $this->redirect($this->referer());
     }
     public function clearLog() {
+        perm('dash', 'Activity', $this->Session->read("user_perm"), true);
         if ($this->request->is('ajax')) {
             $server = $this->Session->read("current_server");
             $logfile = TMP . "server/".$server.".log";
