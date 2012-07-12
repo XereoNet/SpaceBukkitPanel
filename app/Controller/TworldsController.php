@@ -723,11 +723,15 @@ END;
 		$vars = $this->request->data;
 
   		$args2 = array($vars['world'], $vars['dilatation'], $vars['blocks']);   
-		$api->call("runMapAutoTrim", $args2, true);
+		$api->call("runMapTrimmer", $args2, true);
 
         sleep(5);
 
         w_serverlog($this->Session->read("current_server"), __('[WORLDS] ').$this->Auth->user('username').' '.__('ran MapAutoTrim on').' '.$vars['world']);
+
+        while(is_null($api->call('getWorlds', array(), false))) {
+            sleep(1);
+        }
 
     	$this->redirect($this->referer());
 
