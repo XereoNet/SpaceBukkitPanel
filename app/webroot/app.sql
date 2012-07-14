@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Machine: localhost
--- Genereertijd: 17 jun 2012 om 03:03
+-- Genereertijd: 12 jul 2012 om 22:21
 -- Serverversie: 5.5.16
 -- PHP-Versie: 5.3.8
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `def`
+-- Database: `sbtemp`
 --
 
 -- --------------------------------------------------------
@@ -40,13 +40,16 @@ CREATE TABLE IF NOT EXISTS `space_roles` (
   `settings` smallint(6) DEFAULT NULL,
   `fallback` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=0 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Gegevens worden uitgevoerd voor tabel `space_roles`
 --
 
-
+INSERT INTO `space_roles` (`id`, `title`, `pages`, `global`, `dash`, `users`, `plugins`, `worlds`, `servers`, `backups`, `settings`, `fallback`) VALUES
+(1, 'Viewer', 1, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL),
+(2, 'Moderator', 67, 64, 3, 159, 0, 0, 0, NULL, NULL, NULL),
+(3, 'Administrator', 127, 127, 3, 255, 15, 31, 7, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -64,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `space_servers` (
   `default_role` varchar(50) DEFAULT NULL,
   `external_address` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=0 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 -- --------------------------------------------------------
 
@@ -78,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `space_servers_users` (
   `server_id` int(10) unsigned NOT NULL,
   `role_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=0 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -98,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `space_users` (
   `language` varchar(50) DEFAULT NULL,
   `is_super` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=0 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

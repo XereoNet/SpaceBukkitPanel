@@ -198,6 +198,8 @@ class DashController extends AppController {
     // --------------------------------------------------------------------------------------------------
 
     function graphs() {
+        perm('dash', 'Stats', $this->Session->read("user_perm"), true);
+
     	if ($this->request->is('ajax')) {
             $this->disableCache();
             Configure::write('debug', 0);
@@ -241,6 +243,7 @@ class DashController extends AppController {
     }
 
     function panelInfo() {
+        perm('dash', 'Activity', $this->Session->read("user_perm"), true);
     	if ($this->request->is('ajax')) {
     		$this->disableCache();
             Configure::write('debug', 0);
