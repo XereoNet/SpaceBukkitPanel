@@ -127,8 +127,8 @@
                     
                       <div>
 
-                        <input id="port1" name="port1" type="text" style="width: 100px" placeholder="2011" />
-                        <input id="port2" name="port2" type="text" style="width: 100px" placeholder="2012" />
+                        <input id="port1" name="port1" type="text" style="width: 100px" />
+                        <input id="port2" name="port2" type="text" style="width: 100px" />
                         <p class="help-block">SpaceBukkit needs two ports to connect to your server. By default it's 2011 and 2012.</p>
                         <p class="help-block">You can change those in the SpaceBukkit configuration, located in SpaceModule/configuration.yml (NOT plugins/SpaceModule)</p>
 
