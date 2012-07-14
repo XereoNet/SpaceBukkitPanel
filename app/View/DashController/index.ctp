@@ -24,24 +24,43 @@
                ?></td>
         </tr>
         <tr>
-          <td><?php echo __('Players'); ?></td><td> <p><?php echo $whitelist_count; ?>  | <span class="greyed"><?php echo $ban_count; ?> </span></p>
-               <p class="cell_medium">
-               <b class="cell_left"><?php echo __('whitelist') ?></b>  
-               <b class="cell_right greyed"><?php echo __('banned') ?></b>
-               </p>
+          <td><?php echo __('Players'); ?></td>
+          <td> 
+
+
+             <p class="cell_medium">
+             <b class="cell_left"><?php echo $whitelist_count; ?> </b>  
+             <b class="cell_right greyed"><?php echo $ban_count; ?></b>
+             </p>
+<br>
+             <p class="cell_medium">
+             <b class="cell_left"><?php echo __('whitelist') ?></b>  
+             <b class="cell_right greyed"><?php echo __('banned') ?></b>
+             </p>
+
           </td>
         </tr>
         <tr>
-          <td><?php echo __('Plugins'); ?></td><td>          
-              <p><?php echo $plugin_count; ?> | <span class="greyed"><?php echo $dis_plugin_count; ?> </span></p>
-              <p class="cell_medium">
-                <b class="cell_left"><?php echo __('installed') ?></b>  
-                <b class="cell_right greyed"><?php echo __('disabled') ?></b>
-              </p></td>
-        </tr>                
+          <td><?php echo __('Plugins'); ?></td>
+          <td> 
+
+
+             <p class="cell_medium">
+             <b class="cell_left"><?php echo $plugin_count; ?> </b>  
+             <b class="cell_right greyed"><?php echo $dis_plugin_count; ?></b>
+             </p>
+<br>
+             <p class="cell_medium">
+             <b class="cell_left"><?php echo __('installed') ?></b>  
+             <b class="cell_right greyed"><?php echo __('disabled') ?></b>
+             </p>
+
+          </td>
+        </tr>        
+            
         <tr>
-          <td><?php echo __('Staff'); ?></td><td><p><?php echo $connected_users; ?></span></p>
-              <p class="cell_medium"><?php echo ' '.__('linked to this server') ?></p></td>
+          <td><?php echo __('SpaceBukkit'); ?></td><td><p><?php echo $connected_users; ?></span></p>
+              <p class="cell_medium"><?php echo ' '.__('accounts linked to this server') ?></p></td>
         </tr>
       </tbody>
     </table>
@@ -177,6 +196,12 @@
     var timerSeconds;
 
     function drawTimer(container, percent){
+      var deg = 360/100*percent;
+      var slice = container + ' .slice';
+      var con = container + ' .slice .pie';
+      var per = container + ' .percent';
+      
+      $(container).html('<div class="percent"></div><div class="slice"'+(percent > 50?' class="gt50"':'')+'><div class="pie"></div>'+(percent > 50?'<div class="pie fill"></div>':'')+'</div>');
       var deg = 360/100*percent;
       var slice = container + ' .slice';
       var con = container + ' .slice .pie';
