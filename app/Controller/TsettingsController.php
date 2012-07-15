@@ -59,12 +59,44 @@ class TsettingsController extends AppController {
 
     	{
 
+        /*
+
+        *   Connection Check - Is the server running? Redirect accordingly.
+
+        */
+
+        require APP . 'spacebukkitcall.php';
+        
+        //CHECK IF SERVER IS RUNNING
+
+        $args = array();   
+        $running = $api->call("isServerRunning", $args, true);
+        
+        $this->set('running', $running);
+
+        //IF "FALSE", IT'S STOPPED. IF "NULL" THERE WAS A CONNECTION ERROR
+
+        if (is_null($running) || preg_match("/salt/", $running)) {
+
+            $this->layout = 'sbv1_notreached_settings'; 
+                     
+        } 
+
+        elseif (!$running) {
+
+            $this->layout = 'sbv1_notrunning_settings';
+
+        } else {
+
+            $this->layout = 'sbv1';
+
+        }
+
         $dataSource = ConnectionManager::getDataSource('default');
 
 		//View Specific settings
         $this->set('title_for_layout', 'Settings');    
         $this->set('configurations', $dataSource);    
-        $this->layout = 'sbv1';
         include(APP . 'webroot/vars.php');
         include(APP . 'webroot/system.php');
         $this->set('variables', $variables);    

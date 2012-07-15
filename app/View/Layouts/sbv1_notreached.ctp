@@ -102,6 +102,10 @@ END;
 
 					<div id="serverbuttons"> 
 
+					<div class="colorbox red" style="margin: 0">
+					    <p><?php echo __('Server was not reached!'); ?></p> 					  
+					</div>
+
 					</div>
 					<div id="userbuttons">
 						

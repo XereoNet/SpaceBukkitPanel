@@ -17,15 +17,12 @@
 
 <noscript><h1>Please enabled Javascript!</h1></noscript>
 
-
-
 <!-- Load Jquery -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js" type="text/javascript"></script>
 <script src="<?php echo $this->webroot; ?>js/script.js"></script> 
 <script src="<?php echo $this->webroot; ?>js/selectivizr.min.js"></script> 
 
 </head>
-
 
 <body>
 <div class="screen_overlay">
@@ -43,8 +40,10 @@
 </div>
 <?php };?>
 
+</div>
 	<div id="header">
 		<div id="container"> 
+			<a class="trigger" href="#"></a>
 
 			<!-- Logo -->
 			<div class="hheight"> 
@@ -101,13 +100,11 @@ END;
 					
 					<!-- Start/Stop, Reload, Message, Logout -->
 
-
-					<?php if (perm('global', 'stopStartServer', $user_perm)): ?>
-					<a href="./global/start" id="start" class="bounce tip showOverlay" rel="<?php echo __('Starting server'); ?>..."></a> 
-						<div class="tooltip"><?php echo __('Start server'); ?></div>		
-					<?php endif; ?>
-
-
+					<div id="serverbuttons"> 
+					<div class="colorbox red" style="margin: 0">
+					    <p><?php echo __('Server was not reached!'); ?></p> 					  
+					</div>
+					</div>
 					<div id="userbuttons">
 						
 						<span><a href="#" class="account tip"><?php echo $username; ?> </a></span>
@@ -123,39 +120,24 @@ END;
 				</div>
 			</div>
 
+
 			<!-- Main Content Start -->
 			<div id="wrapper"> 
 			
 					<!-- Navigation -->
 					<nav id="mainnav">
 						<ul>
-						<?php if (perm('pages', 'dash', $user_perm)): ?>
-			        		<li class="<?php if ($this->name == "DashController") { echo "current" ; }  ?> bounce fadein"> 
-							<a href="<?php echo $this->Html->url('/dash', true); ?>"> <span class="icon dashboard"></span><?php echo __(' Dashboard') ?></a> 
-			        		</li>
-				        <?php endif; ?>
-				        <?php if ($is_super == 1) { ?>
-					        <li class="<?php if ($this->name == "Tsettings") { echo "current" ; }  ?> bounce fadein floatright"> 
-					        	<a href="<?php echo $this->Html->url('/tsettings', true); ?>"> <span class="icon settings"></span><?php echo __(' Settings ') ?></a> 
+					        <?php if ($is_super == 1) { ?>
+					        <li class="<?php if ($this->name == "Tsettings") { echo "current" ; }  ?> fadein floatright"> 
+					        	<a href="<?php echo $this->Html->url('/tsettings', true); ?>"> <span class="icon settings"></span><?php echo ' '.__('Settings').' ' ?></a> 
 					        </li>
-				        <?php } ?>
-					        </ul>
+					        <?php } ?>
+						</ul>
 					</nav>
 					<!-- End Navigation --> 
 
-					<!-- Tabs -->
-					<nav id="smalltabs">
-					</nav>
-					<!-- End Tabs -->
+					<?php echo $content_for_layout ?>
 
-					<div class="colorbox red">
-					    <h3><?php echo __('Server is stopped!'); ?></h3> 
-					    <p> 
-					    	<?php echo __('This page needs a running server to fetch it\'s data. 
-					        You can start your server in the upper right bar of SpaceBukkit.'); ?>
-					    </p> 
-					</div>
-				
 				</div>
 			<!-- End #wrapper --> 
 
@@ -189,6 +171,7 @@ END;
 		</div>
 		<!-- End #container --> 
 
+
 	<!-- Import JS -->
 	<?php echo $this->element('js'); ?>
 
@@ -196,13 +179,14 @@ END;
 	<!--[if IE 6]>
 		<script type="text/javascript" src="<?php echo $this->webroot; ?>js/jquery.nyroModal-ie6.min.js"></script>
 	<![endif]-->
-<?php 
+	<?php 
 if (isset($doodle)) {
 ?>
 <script>
 $(document).ready(function() {
-var doodle = "url(<?php echo $doodle; ?>)";
-$("#logo").css("background-image", doodle);  
+
+	var doodle = "url(<?php echo $doodle; ?>)";
+	$("#logo").css("background-image", doodle);  
 
 });
 </script>
@@ -210,5 +194,6 @@ $("#logo").css("background-image", doodle);
 <?php 
 }
 ?>
+
 	</body>
 </html>

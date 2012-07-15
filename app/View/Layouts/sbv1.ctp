@@ -182,14 +182,28 @@ END;
 					<!-- Start/Stop, Reload, Message, Logout -->
 
 					<div id="serverbuttons"> 
+
+						<?php if (perm('global', 'stopStartServer', $user_perm)): ?>
 						<a href="./global/stop" id="stop" class="bounce tip showOverlay" rel="<?php echo __('Stopping server'); ?>..."></a> 
-							<div class="tooltip"><?php echo __('Stop server'); ?></div>											
+							<div class="tooltip"><?php echo __('Stop server'); ?></div>		
+						<?php endif; ?>
+
+						<?php if (perm('global', 'reloadServer', $user_perm)): ?>						
 						<a href="./global/reload" id="reload" class="bounce tip showOverlay reload" rel="<?php echo __('Reloading server'); ?>..."></a> 
 							<div class="tooltip"><?php echo __('Reload server'); ?></div>
+						<?php endif; ?>
+						<?php if (perm('global', 'restartServer', $user_perm)): ?>						
+
 						<a href="./global/restart" id="restart" class="bounce tip showOverlay restart" rel="<?php echo __('Restarting server'); ?>..."></a> 
 							<div class="tooltip"><?php echo __('Restart server'); ?></div>
+						<?php endif; ?>
+						<?php if (perm('global', 'forceRestartServer', $user_perm)): ?>						
+
 						<a href="./global/frestart" id="frestart" class="bounce tip showOverlay frestart" rel="<?php echo __('Force-Restarting server'); ?>..."></a> 
+
 							<div class="tooltip"><?php echo __('Force-Restart server'); ?></div>													
+						<?php endif; ?>
+							
 					</div>
 					<div id="userbuttons">
 						

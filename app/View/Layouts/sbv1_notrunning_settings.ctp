@@ -143,18 +143,8 @@ END;
 					</nav>
 					<!-- End Navigation --> 
 
-					<!-- Tabs -->
-					<nav id="smalltabs">
-					</nav>
-					<!-- End Tabs -->
+					<?php echo $content_for_layout ?>
 
-					<div class="colorbox red">
-					    <h3><?php echo __('Server is stopped!'); ?></h3> 
-					    <p> 
-					    	<?php echo __('This page needs a running server to fetch it\'s data. 
-					        You can start your server in the upper right bar of SpaceBukkit.'); ?>
-					    </p> 
-					</div>
 				
 				</div>
 			<!-- End #wrapper --> 
