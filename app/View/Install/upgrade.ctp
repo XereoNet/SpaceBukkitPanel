@@ -210,10 +210,10 @@
 
         //yes/no button event
         selector.live('click', function (event) {
-            if (event.srcElement.rel === "no") {
+            if (event.target.rel === "no") {
                 selector.fadeOut();
                 return true;
-            } else if (event.srcElement.rel === "yes") {
+            } else if (event.target.rel === "yes") {
                 event.preventDefault();
                 selector.fadeOut(350, function() {mysql.fadeIn(350);});
             }
