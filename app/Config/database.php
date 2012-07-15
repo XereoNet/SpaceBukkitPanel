@@ -3,12 +3,12 @@
 class DATABASE_CONFIG {
 
 	public $default = array(
-		'datasource' => 'Database/Mysql',
+		'datasource' => '%type%',
 		'persistent' => false,
-		'host' => 'localhost',
-		'login' => 'root',
-		'password' => '',
-		'database' => 'spacebukkit',
+		'host' => '%host%',
+		'login' => '%login%',
+		'password' => '%password%',
+		'database' => '%database%',
 		'prefix' => '',
 		'port' => NULL
 	);
