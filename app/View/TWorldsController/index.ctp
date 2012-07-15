@@ -187,9 +187,21 @@ $('document').ready(function() {
 
   } );
 
-  $('#update_worlds').click(function() {
-    Table1.fnReloadAjax("./tworlds/getWorlds")
-  });
+  	$('#update_worlds').click(function() {
+    	Table1.fnReloadAjax("./tworlds/getWorlds")
+  	});
+
+	$(".ajax_table1").live('click', (function(){ 	
+		var source = $(this).attr("href");
+		$.ajax({
+			url: source,
+			success: function(data) {
+				notifications.show(data);
+				Table1.fnReloadAjax("./tworlds/getWorlds")
+			}
+		});
+		return false;
+	}));
 
   $(".backup").live('click', (function(){
   	
