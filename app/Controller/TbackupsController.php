@@ -65,13 +65,19 @@ class TBackupsController extends AppController {
         
         $this->set('running', $running);
 
-        //IF "FALSE", IT'S STOPPED. IF "NULL" THERE WAS A CONNECTION ERROR
-
         if (is_null($running) || preg_match("/salt/", $running)) {
 
             $this->layout = 'sbv1_notreached'; 
+                     
+        } 
 
-        } else {
+        elseif (!$running) {
+
+            $this->layout = 'sbv1_notrunning_settings';
+
+        } 
+
+        elseif ($running) {
 
             $args = array();
 
