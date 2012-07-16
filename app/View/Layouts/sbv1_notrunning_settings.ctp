@@ -101,11 +101,15 @@ END;
 					
 					<!-- Start/Stop, Reload, Message, Logout -->
 
+					<div id="serverbuttons"> 
 
-					<?php if (perm('global', 'stopStartServer', $user_perm)): ?>
-					<a href="./global/start" id="start" class="bounce tip showOverlay" rel="<?php echo __('Starting server'); ?>..."></a> 
-						<div class="tooltip"><?php echo __('Start server'); ?></div>		
-					<?php endif; ?>
+						<?php if (perm('global', 'stopStartServer', $user_perm)): ?>
+						<a href="./global/start" id="start" class="bounce tip showOverlay" rel="Starting server..."></a> 
+								<div class="tooltip">Start server</div>	
+						<?php endif; ?>
+
+					</div>
+
 
 
 					<div id="userbuttons">
