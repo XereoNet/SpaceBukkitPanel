@@ -104,7 +104,7 @@ END;
 					<div id="serverbuttons"> 
 
 						<?php if (perm('global', 'stopStartServer', $user_perm)): ?>
-						<a href="./global/start" id="start" class="bounce tip showOverlay" rel="Starting server..."></a> 
+						<a href="./global/start" id="start" class="tip showOverlay" rel="Starting server..."></a> 
 								<div class="tooltip">Start server</div>	
 						<?php endif; ?>
 
@@ -133,12 +133,12 @@ END;
 					<nav id="mainnav">
 						<ul>
 						<?php if (perm('pages', 'dash', $user_perm)): ?>
-			        		<li class="<?php if ($this->name == "DashController") { echo "current" ; }  ?> bounce fadein"> 
+			        		<li class="<?php if ($this->name == "DashController") { echo "current" ; }  ?> fadein"> 
 							<a href="<?php echo $this->Html->url('/dash', true); ?>"> <span class="icon dashboard"></span><?php echo __(' Dashboard') ?></a> 
 			        		</li>
 				        <?php endif; ?>
 				        <?php if ($is_super == 1) { ?>
-					        <li class="<?php if ($this->name == "Tsettings") { echo "current" ; }  ?> bounce fadein floatright"> 
+					        <li class="<?php if ($this->name == "Tsettings") { echo "current" ; }  ?> fadein floatright"> 
 					        	<a href="<?php echo $this->Html->url('/tsettings', true); ?>"> <span class="icon settings"></span><?php echo __(' Settings ') ?></a> 
 					        </li>
 				        <?php } ?>

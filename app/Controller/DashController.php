@@ -323,21 +323,21 @@ class DashController extends AppController {
             //Generate Output
             foreach (array_reverse($chats) as $time => $chat) {
 
-        	$time = substr($time, 0, -3); 
-        	$time = date( "d/m/Y g:i:s A", $time);
+	        	$time = substr($time, 0, -3); 
+	        	$time = date( "d/m/Y g:i:s A", $time);
 
-        	$chat = explode(':', $chat, 2);
+	        	$chat = explode(':', $chat, 2);
 
-        	if ($chat[0] == $this->Session->read("Sbvars.10")) {
-        		$classes = "blue";
-        	} else { $classes = "";}
+	        	if ($chat[0] == $this->Session->read("Sbvars.10")) {
+	        		$classes = "blue";
+	        	} else { $classes = "";}
 
-            echo <<<END
-            <tr>
-              <td class="chatname $classes">$chat[0]</td>
-              <td class="chattext">$chat[1]</td>
-              <td class="chattime">$time</td>
-            </tr>            
+	            echo <<<END
+	            <tr>
+	              <td class="chatname $classes">$chat[0]</td>
+	              <td class="chattext">$chat[1]</td>
+	              <td class="chattime">$time</td>
+	            </tr>            
 
 END;
       		}  
