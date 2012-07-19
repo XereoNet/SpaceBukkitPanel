@@ -76,9 +76,11 @@
       </div>
 
       <div class="clear"></div>
-            <br>
-            <input type="submit" class="button primary submit big leftsubmit ajaxify" style="" value="<?php echo __('Add this schedule') ?>">
-               </form>
+      <br>
+      <input type="submit" class="button primary submit big leftsubmit" style="" value="<?php echo __('Add this schedule') ?>">
+         
+
+     </form>
 
     </section> 
                
@@ -117,7 +119,7 @@ $('document').ready(function() {
       var lworld = $("#sworlds option:selected").attr('value');
   });
 
-  $(".ajaxify").submit(function(event) {
+  $(".scheduler").live("submit", function(event) {
 
     /* stop form from submitting normally */
     event.preventDefault(); 
@@ -134,11 +136,12 @@ $('document').ready(function() {
     /* Send the data using post and put the results in a div */
     $.post(url, {name: lname, type: ltype, world: lworld, timetype: ltimetype, timeargs1: ltimeargs1, timeargs2: ltimeargs2},
       function( data ) {
-        
+        $.nmTop().close();
       }
     );
-    $.nmTop().close();
+    
     return false;
+
   });
 
   //listen for change of select box
