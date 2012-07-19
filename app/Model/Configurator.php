@@ -86,7 +86,7 @@ class Configurator extends AppModel {
       foreach ($variables as $key => $var) {
 
         $old[$key] = "/*".$key."*/'".$var['val']."'";
-        $new[$key] = "/*".$key."*/'".$new[$key]."'";
+        $new[$key] = "/*".$key."*/'".htmlspecialchars($new[$key], ENT_QUOTES)."'";
 
       }
 
@@ -136,7 +136,7 @@ class Configurator extends AppModel {
       foreach ($system as $key => $var) {
 
         $old[$key] = "/*".$key."*/'".$var['val']."'";
-        $new[$key] = "/*".$key."*/'".$new[$key]."'";
+        $new[$key] = "/*".$key."*/'".htmlspecialchars($new[$key], ENT_QUOTES)."'";
 
       }
 
