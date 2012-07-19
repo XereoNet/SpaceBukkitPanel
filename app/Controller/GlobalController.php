@@ -266,15 +266,15 @@ class GlobalController extends AppController {
             //var_dump($log);
 
             //Function to make array monodimensional
-            function flatten_array($value, $key, $array) {
+            function flatten_array($value, $key, &$array) {
                 if (!is_array($value))
                     array_push($array,$value);
                 else
-                    array_walk($value, 'flatten_array', $array);
+                    array_walk($value, 'flatten_array', &$array);
              
             }
             $console = array();
-            array_walk($log, 'flatten_array', $console);
+            array_walk($log, 'flatten_array', &$console);
 
             //var_dump($console);
 

@@ -45,14 +45,25 @@
         margin: 30px;
     }
     .login-news > div {
-        margin: 10px 30px;
+        margin: 10px 30px 20px;
+        clear: both;
+        display: block;
+        padding-bottom: 10px;
+    }
+    .login-news > div.clear {
+        border-bottom: 1px solid #444;
+        box-shadow: 0px 1px 0px #111;
+    }
+    .login-news > div.clear:last-child {
+        border: none;
+        box-shadow: none;
     }
     .new-login > div h2 {
         font-size: 40px;
         margin: 14px 0;
         text-shadow: 0 1px 0 #555;
         color: #eee;
-        padding-bottom: 25px;
+        padding-bottom: 30px;
     }
     .new-login > div h3 {
         font-size: 21px;
@@ -103,6 +114,7 @@
     }
 
     .login-news {
+        text-shadow: 0 1px 0 black;
         margin-top: 30px;
         border: 1px solid #171717;
         border-top: 1px solid #252525;
@@ -134,8 +146,8 @@
     .login-news > div h2 {
         font-size: 21px;
         margin: 14px 0;
-        text-shadow: 0 1px 0 #555;
         color: #eee;
+        text-shadow: 0 1px 0 #111;
     }
     .login-news > div a {
         display: inline-block;
@@ -207,13 +219,27 @@
 
     <div class="login-news">
 
-        <div>
-            <h2><?php echo $message['TITLE']; ?></h2>
-            <p><?php echo $message['TEXT']; ?></p>
+<?php 
 
-            <a href="<?php echo $message['LINK']; ?>"><?php echo $message['LTEXT']; ?></a><span><?php echo $message['DATE']; ?></span>
+foreach($message['NEWS']['N'] as $m) {
+
+    if ($m['STATUS'] == '1') {
+
+        echo <<<END
+        <div>
+            <h2>$m[TITLE]</h2>
+            <p>$m[TEXT]</p>
+
+            <a href="$m[LINK]">$m[LTEXT]</a><span>$m[DATE]</span>
 
         </div>
+        <div class="clear"></div>
+END;
+
+        }
+
+    }
+?>
 
     </div>
 

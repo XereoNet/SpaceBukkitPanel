@@ -104,7 +104,7 @@ END;
 					<div id="serverbuttons"> 
 
 						<?php if (perm('global', 'stopStartServer', $user_perm)): ?>
-						<a href="./global/start" id="start" class="tip showOverlay" rel="Starting server..."></a> 
+						<a href="./global/start" id="start" class="bounce tip showOverlay" rel="Starting server..."></a> 
 								<div class="tooltip">Start server</div>	
 						<?php endif; ?>
 
@@ -134,12 +134,12 @@ END;
 					<nav id="mainnav">
 						<ul>
 						<?php if (perm('pages', 'dash', $user_perm)): ?>
-			        		<li class="<?php if ($this->name == "DashController") { echo "current" ; }  ?> fadein"> 
+			        		<li class="<?php if ($this->name == "DashController") { echo "current" ; }  ?> bounce fadein"> 
 							<a href="<?php echo $this->Html->url('/dash', true); ?>"> <span class="icon dashboard"></span><?php echo __(' Dashboard') ?></a> 
 			        		</li>
 				        <?php endif; ?>
 				        <?php if ($is_super == 1) { ?>
-					        <li class="<?php if ($this->name == "Tsettings") { echo "current" ; }  ?> fadein floatright"> 
+					        <li class="<?php if ($this->name == "Tsettings") { echo "current" ; }  ?> bounce fadein floatright"> 
 					        	<a href="<?php echo $this->Html->url('/tsettings', true); ?>"> <span class="icon settings"></span><?php echo __(' Settings ') ?></a> 
 					        </li>
 				        <?php } ?>
@@ -151,35 +151,7 @@ END;
 
 				
 				</div>
-			<!-- End #wrapper --> 
-
-			<div id="footer">
-
-				<div class="col left">
-					<p>
-				<?php echo __('SpaceBukkit version'); ?> <?php echo $spacebukkitbuildcurrent; ?> <?php echo __('proudly presented by the SpaceBukkit Team :)'); ?>
-					</p>
-				</div>
-
-				<div class="col right">
-
-				<ul>
-					<li><a href="http://spacebukkit.xereo.net" alt="SpaceBukkit Home"><?php echo __('Home'); ?></a></li>
-					<li><a href="http://spacebukkit.xereo.net/wiki" alt="SpaceBukkit Home"><?php echo __('Wiki'); ?></a></li>
-					<li><a href="http://spacebukkit.xereo.net/forum" alt="SpaceBukkit Home"><?php echo __('Forums'); ?></a></li>
-					<form action="https://www.paypal.com/cgi-bin/webscr" method="post" style="display: inline-block; position: relative; top: 10px;">
-					<input type="hidden" name="cmd" value="_s-xclick">
-					<input type="hidden" name="hosted_button_id" value="ZW8KTNTJLRGGY">
-					<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-					<img alt="" border="0" src="https://www.paypalobjects.com/it_IT/i/scr/pixel.gif" width="1" height="1">
-					</form>
-
-				</ul>
-
-				</div>
-
-			</div>
-			<!-- End #footer --> 			
+			<?php echo $this->element('footer'); ?> 			
 		</div>
 		<!-- End #container --> 
 

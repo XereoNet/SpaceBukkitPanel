@@ -85,22 +85,15 @@ class UsersController extends AppController {
 
     $json = json_encode($message);
     $message = json_decode($json, TRUE);
-
-    //set the message
-
-    if ($message["NEWS"]["STATUS"] > 0) {
-
-        $this->set('message', $message["NEWS"]);
-
-    }
+    $this->set('message', $message);
 
     $this->set('title_for_layout', __('Login to SpaceBukkit'));
+
     if (!empty($this->Auth->request->data)) {
       $this->set('flash', $this->Auth->loginError);
     } else {
       $this->set('flash', $this->Session->read('auth'));
     }
-    
 
     $this->layout = 'login';
     
