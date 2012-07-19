@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="<?php echo $this->webroot; ?>themes/<?php echo $current_theme?>/css/theme.css" /> 
 
 <!-- Load Jquery -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js" type="text/javascript"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js" type="text/javascript"></script>
 <script src="<?php echo $this->webroot; ?>js/script.js"></script> 
 <?php 		echo $this->Html->css('cake.generic'); ?>
 </head>
