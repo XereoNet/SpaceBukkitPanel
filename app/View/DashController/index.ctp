@@ -7,7 +7,7 @@
       
       <h1><?php echo $current_server_name; ?></h1>
 
-      <pre><?php echo $motd; ?></pre>
+      <p><?php echo $motd; ?></p>
     
     </div>
 
