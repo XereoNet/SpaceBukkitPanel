@@ -178,6 +178,12 @@ class TPluginsController extends AppController {
                      
         foreach ($plglist as $plg) {
 
+        //sanitize
+
+        foreach ($plg as $data) {
+            $data = htmlspecialchars($data, ENT_QUOTES);
+        }
+
         if ($plg['IsEnabled'] == 1) {
                 $status = '<img src=\"img/circle_green.png\" />';
                 } else {
