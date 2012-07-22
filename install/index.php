@@ -90,20 +90,39 @@
 
         <div class="col right" style="text-align: right">
 
-            <h2>Error Notice</h2>
+            <h2>Error: URL rewriting is not configured correctly</h2>
 
         </div>
 
     </header>
 
 
+    <section class="installation" style="font-size: 15px; color: #444; line-height: 21px">
 
-    <section class="installation">
+    <div style="text-align: center">
 
-    <div class="triangle-border left">
+    	<img src="../app/webroot/img/sad.png" />
+    	<h2>Houston, we've got a little problem!</h2>
 
-    <p><b>It seems like either your rewrite engine is not running or you first need to add some rewrite-rules!<br />SpaceBukkit uses .htaccess files and rewrite to create it's URLs.<br />Please enable your rewrite engine and/or add the rewrite rules in the .htaccess file to your webservers config and restart your webserver.</b></p>
+    </div>
 
+    	<p><b>Don't fear, my friend, it's an easy fix!</b></p>
+
+    	<p><b>SpaceBukkit uses URL rewriting. This means that instead of having long-ass URLs they get rewritten and overally get much nicer.</b></p>
+	<br>
+		<p><b>It seems like something is not working as it should on your webserver, though.</b></p>
+	<br>
+
+	    <p><b>The possible causes are:</b></p>
+
+	    <ul style="list-style: disc; margin-left: 20px">
+
+	    	<li>You didn't copy the .htaccess files (they are hidden files and sometimes get ignored). <a href="#" target="_blank">Solution</a></li>
+	    	<li>Your rewrite engine is not running / installed. <a href="#" target="_blank">Solution</a></li>
+	    	<li>Your override settings are not being nice to SpaceBukkit. <a href="#" target="_blank">Solution</a></li>
+
+	    </ul><br><br>
+	    <small>(solutions coming with 1.2 final. Refer to old solutions below)</small>
     <br>
     <hr>
 
@@ -130,8 +149,6 @@
     <p><font size=4>If you are running some other webserver not listed</font></p><br />
     
     <p>Then I unfortunately can't help you here, visit our <a href="http://forums.xereo.net/">Forum</a> or try this <a href="http://www.google.com/">fine site</a></p>
-
-    </div>
 
     <div class="clear"></div>
 

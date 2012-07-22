@@ -269,6 +269,9 @@ class InstallController extends AppController{
 					echo "true";
 				}
 			}
+
+			if (isset($result)) echo $result;
+
 		} else if ($this->request->is('ajax')) {
 			$this->disableCache();
 			Configure::write('debug', 0);
