@@ -360,14 +360,14 @@ END;
 
         include APP.'spacebukkitcall.php';
         
-		$args = array($player);   
-		$kill = $api->call("killPlayer", $args, false);
+        $args = array($player);   
+        $kill = $api->call("killPlayer", $args, false);
 
         $mex = $this->Configurator->returnVars(11);
 
-        $mex = str_replace("{player}", $player, $mex['val']);
+        $mex = htmlspecialchars_decode(str_replace("{player}", $player, $mex['val']), ENT_QUOTES);
 
-		$args = array($this->Session->read("Sbvars.10"), $mex);   
+        $args = array($this->Session->read("Sbvars.10"), $mex);   
         $api->call("broadcastWithName", $args, false); 
          
         echo $mex;
@@ -390,12 +390,12 @@ END;
         include APP.'spacebukkitcall.php';
         
 
-		$args = array($player, '20');   
-		$sethealth = $api->call("setHealth", $args, false);
+        $args = array($player, '20');   
+        $sethealth = $api->call("setHealth", $args, false);
 
         $mex = $this->Configurator->returnVars(12);
 
-        $mex = str_replace("{player}", $player, $mex['val']);
+        $mex = htmlspecialchars_decode(str_replace("{player}", $player, $mex['val']), ENT_QUOTES);
 
         $args = array($this->Session->read("Sbvars.10"), $mex);   
         $api->call("broadcastWithName", $args, false); 
@@ -404,7 +404,7 @@ END;
 
         w_serverlog($this->Session->read("current_server"), __('[USERS] ').$this->Auth->user('username').' '.__('healed').' '.$player);
         
-        } 	 
+        }    
     }
 
 
@@ -419,12 +419,12 @@ END;
 
         include APP.'spacebukkitcall.php';
 
-		$args = array($player, '20');   
-		$sethealth = $api->call("setFoodLevel", $args, false);
+        $args = array($player, '20');   
+        $sethealth = $api->call("setFoodLevel", $args, false);
 
         $mex = $this->Configurator->returnVars(13);
 
-        $mex = str_replace("{player}", $player, $mex['val']);
+        $mex = htmlspecialchars_decode(str_replace("{player}", $player, $mex['val']), ENT_QUOTES);
 
         $args = array($this->Session->read("Sbvars.10"), $mex);   
         $api->call("broadcastWithName", $args, false); 
@@ -433,7 +433,7 @@ END;
 
         w_serverlog($this->Session->read("current_server"), __('[USERS] ').$this->Auth->user('username').' '.__('fed').' '.$player);
         
-        } 	 
+        }    
     }
 
     function kick($player) {      
@@ -447,12 +447,12 @@ END;
 
         include APP.'spacebukkitcall.php';
         
-		$args = array($player, 'Kicked by Admin');   
-		$sethealth = $api->call("kickPlayer", $args, false);
+        $args = array($player, 'Kicked by Admin');   
+        $sethealth = $api->call("kickPlayer", $args, false);
 
         $mex = $this->Configurator->returnVars(14);
 
-        $mex = str_replace("{player}", $player, $mex['val']);
+        $mex = htmlspecialchars_decode(str_replace("{player}", $player, $mex['val']), ENT_QUOTES);
 
         $args = array($this->Session->read("Sbvars.10"), $mex);   
         $api->call("broadcastWithName", $args, false); 
@@ -461,7 +461,7 @@ END;
 
         w_serverlog($this->Session->read("current_server"), __('[USERS] ').$this->Auth->user('username').' '.__('kicked').' '.$player);
         
-        } 	 
+        }    
     }
 
     function ban($player) {      
@@ -475,14 +475,14 @@ END;
 
         include APP.'spacebukkitcall.php';
 
-		$args = array($player);   
+        $args = array($player);   
         $api->call("ban", $args, false);
         $args2 = array($player, 'You have been banned from server.');   
         $api->call("kickPlayer", $args2, false);
 
         $mex = $this->Configurator->returnVars(15);
 
-        $mex = str_replace("{player}", $player, $mex['val']);
+        $mex = htmlspecialchars_decode(str_replace("{player}", $player, $mex['val']), ENT_QUOTES);
 
         $args = array($this->Session->read("Sbvars.10"), $mex);   
         $api->call("broadcastWithName", $args, false); 
@@ -491,7 +491,7 @@ END;
 
         w_serverlog($this->Session->read("current_server"), __('[USERS] ').$this->Auth->user('username').' '.__('banned').' '.$player);
         
-        } 	 
+        }    
     }
 
     function blacklist_add() {
