@@ -134,27 +134,6 @@ class TServersController extends AppController {
             }
         
         }
-
-        //schedules information
-        //define possible tasks in the format $tasks["Task Name"] = array('method', array(arguments);
-        //arguments: if not set, no arguments, if true, free text input, if text, dropdown
-
-        $tasks = array(
-
-		'Enable whitelist' => array('method' => 'consoleCommand', 'args' => 'whitelist on'),
-		'Disable whitelist' => array('method' => 'consoleCommand', 'args' => 'whitelist off'),
-		'Restart server' => array('method' => 'restart', 'args' => 'true'),
-        'Restart server if empty' => array('method' => 'restartIfEmpty', 'args' => false),
-        'Rotate server.log' => array('method' => 'rollOverLog', 'args' => false),
-		'Save worlds' => array('method' => 'consoleCommand', 'args' => 'save-all'),
-        'Say something' => array('method' => 'say', 'args' => 'needsargs'),
-		'Run console command' => array('method' => 'consoleCommand', 'args' => 'needsargs'),
-		'Start server' => array('method' => 'start', 'args' => false),
-		'Stop server' => array('method' => 'stop', 'args' => false)
-		
-            );
-
-       $this->set('tasks', $tasks);
         
         //view-specific settings
         $this->layout = 'sbv1';

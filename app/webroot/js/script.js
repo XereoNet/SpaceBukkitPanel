@@ -24,7 +24,9 @@ $('document').ready(function () {
 
     $('.fancy').live('click', function (e) {
         href = $(this).attr('href');
-        $.nmManual(href);
+        $.nmManual(href, {callbacks: {beforeShowCont: function() {
+            $("select, input:checkbox, input:radio, input:file").uniform();
+        }}});
         return false;
     });
 
@@ -92,9 +94,6 @@ $('document').ready(function () {
 
   });
 
-    $(document).bind('cbox_complete', function () {
-        $("select, input:checkbox, input:radio, input:file").uniform();
-    });
     $("select, input:checkbox, input:radio, input:file").uniform();
     $(".bounce").hover(function () {
         $(this).stop().animate({
