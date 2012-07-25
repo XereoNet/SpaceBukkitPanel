@@ -52,7 +52,7 @@ class GlobalController extends AppController {
 
       function index() {
 
-      	$this->redirect($this->referer());
+        $this->redirect($this->referer());
 
       }
 
@@ -263,24 +263,11 @@ class GlobalController extends AppController {
 
             $args = array($this->Session->read("Sbvars.1"));   
             $log = $api->call("getLatestConsoleLogsWithLimit", $args, false);
-            //var_dump($log);
-
-            //Function to make array monodimensional
-            function flatten_array($value, $key, $array) {
-                if (!is_array($value))
-                    array_push($array,$value);
-                else
-                    array_walk($value, 'flatten_array', $array);
-             
-            }
-            $console = array();
-            array_walk($log, 'flatten_array', $console);
-
-            //var_dump($console);
 
             echo '<ul>';
 
-            foreach (array_reverse($console) as $c) {
+            foreach (array_reverse($log) as $c) {
+
               $hidden = 'hidden';
      
               //split the string
@@ -313,10 +300,11 @@ class GlobalController extends AppController {
               } else { 
                 $class = "info";
               }
+
               if ($filter == 'all') {
                 $hidden = '';
               }
-              //var_dump($c);
+
               echo <<<END
                 <li class="$hidden"><b>$c[0]</b> <p class="console-$class"> [$c[1]</p></li>                    
 END;
@@ -381,9 +369,9 @@ END;
 
         sleep(10);
 
-    	  $this->redirect($this->referer());
+        $this->redirect($this->referer());
 
-	
+  
       }
 
       function restart() {
@@ -475,13 +463,13 @@ END;
         $data = $this->ServersUsers->find('first', array('conditions' => array('ServersUsers.user_id' => $this->Auth->user('id'), 'Server.id' => $id)));
        
         if ((!empty($data)) || ($this->Auth->user('is_super') == 1)) {
-                                	
+                                  
         $this->Session->write("current_server", $id);
 
         } else { exit("You can't do that!");}
 
-  		  $this->redirect($this->referer());
-		
+        $this->redirect($this->referer());
+    
     }
 
       function addserver() {
