@@ -72,7 +72,7 @@
 					<!-- End Tabs -->
 
 					<div class="colorbox blue">
-					    <h3><?pĥp echo __('Admin is updating SpaceBukkit. Please wait!'); ?></h3> 
+					    <h3><?php echo __('Admin is updating SpaceBukkit. Please wait!'); ?></h3> 
 					</div>
 				
 						</div>

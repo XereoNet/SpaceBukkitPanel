@@ -226,7 +226,7 @@ END;
 
 			<?php if((isset($spacebukkitbuildready)) && ($user_perm['is_super'] == 1)) {?>
 			<div class="top-message slideDown">
-			<p><?php echo __('A new SpaceBukkit version has been released! Your version is').' '; ?> <strong><?php echo $spacebukkitbuildcurrent; ?></strong> <?php echo __('while the new version is'); ?> <strong><?php echo $spacebukkitbuildnew; ?></strong>
+			<p><?php echo __('A new SpaceBukkit version has been released! Your version is').' '; ?> <strong><?php echo $spacebukkitbuildcurrent; ?></strong> <?php echo __('while the new version is'); ?> <strong><?php echo $spacebukkitbuildnew.__(' Click the button on the right to start the upgrade.'); ?></strong>
 				<a class="top-message-button" href="<?php echo $spacebukkitbuildfile; ?>"></a></p>
 			</div>
 			<?php };?>

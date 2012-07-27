@@ -39,7 +39,7 @@ class UpdateController extends AppController {
  
         //get LATEST SpaceBukkit version
 
-        $filename = 'http://spacebukkit.xereo.net/build/build.xml';
+        $filename = 'http://dl.nope.be/sb/build/build.xml';
         $l_sb = simplexml_load_file($filename); 
 
         $json = json_encode($l_sb);
@@ -49,7 +49,7 @@ class UpdateController extends AppController {
 
         if ($app >= $l_sb["BUILD"]["APP"]) {
             
-        $this->redirect(array('controller' => 'Dash', 'action' => 'index'));
+            $this->redirect(array('controller' => 'Dash', 'action' => 'index'));
 
         }
 
@@ -59,6 +59,19 @@ class UpdateController extends AppController {
         $this->set('latest', $l_sb["BUILD"]["VERSION"]);
         $this->set('changelog', $l_sb["BUILD"]["CHANGELOG"]);
 
+        $command = '';
+        if (PHP_OS !== 'WINNT') {
+            $user = exec('whoami');
+            if (get_current_user() == $user) {
+                $chown = true;
+            } else {
+                $chown = false;
+                $command = 'chown -R '.$user.' '.ROOT;
+            }
+        } else {
+            $chown = true;
+        }
+        $this->set('owner', array($chown, $command));
 
         $this->layout = 'update';
 
@@ -77,7 +90,7 @@ class UpdateController extends AppController {
 
         //get LATEST SpaceBukkit version
 
-        $filename = 'http://spacebukkit.xereo.net/build/build2.xml';
+        $filename = 'http://dl.nope.bz/sb/build/build.xml';
         $l_sb = simplexml_load_file($filename); 
 
         $json = json_encode($l_sb);
@@ -222,9 +235,7 @@ class UpdateController extends AppController {
 
         //Upgrade the database if sql file exists
 
-        /*
-
-        $sql_upgrade = new File$appdir."upgrade.sql");
+        $sql_upgrade = new File($appdir."/upgrade.sql");
 
         if ($sql_upgrade->exists()) {
 
@@ -245,8 +256,6 @@ class UpdateController extends AppController {
             $run = executeSQLScript($db, $appdir.'upgrade.sql');        
 
         }
-
-        */
 
         //Delete the unzipped files
 

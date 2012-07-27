@@ -18,7 +18,6 @@
 *
 */
 
-
 //DATABASE SERVER RETRIVAL
 
 $server = $this->Session->read("Server.address");
