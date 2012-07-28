@@ -134,9 +134,10 @@
         </header>
         
        <section>
-       <p class="description">
-       </p>
 
+        <?php $c_bukkit_version = get_string_between($server['Version'], "-b", "jnks"); ?>
+       <h3 style="text-align: center">You are running CraftBukkit version <?php echo $c_bukkit_version; ?></h3>
+       
        <p class="description">
        <?php echo __('Hover over an RB to see it\'s details. Click on an RB to install it for this server. Installing another CraftBukkit build will stop the server during the process!') ?>  
        </p>
@@ -156,8 +157,6 @@
           $len = strpos($string,$end,$ini) - $ini;
           return substr($string,$ini,$len);
           }
-
-          $c_bukkit_version = get_string_between($server['Version'], "-b", "jnks");
 
           $tmp = 0;
 
@@ -184,6 +183,7 @@
                <div class="timeline_end"></div>
 
        </div>
+
 
        <div class="clear"></div>
              <br /><br />
