@@ -30,6 +30,7 @@ class UpdateController extends AppController {
 
     function index() {
 
+
         require APP .'webroot/configuration.php';
 
         //get CURRENT SpaceBukkit version
@@ -39,7 +40,7 @@ class UpdateController extends AppController {
  
         //get LATEST SpaceBukkit version
 
-        $filename = 'http://dl.nope.be/sb/build/build.xml';
+        $filename = 'http://dl.nope.bz/sb/build/build.xml';
         $l_sb = simplexml_load_file($filename); 
 
         $json = json_encode($l_sb);
@@ -77,8 +78,28 @@ class UpdateController extends AppController {
 
     }
 
-    function update() {
+    function getStatus() {
+        if ($this->request->is('ajax')) {
+            $this->disableCache();
+            Configure::write('debug', 0);
+            $this->autoRender = false;
 
+            $file = new File(TMP.'update');
+            if (!$file->exists()) {
+                exit(json_encode(array('pb' => 100, 'msg' => 'Redirecting...')));
+            }
+            $file = explode(',', $file->read());
+            echo json_encode(array('pb' => $file[0], 'msg' => $file[1]));
+        }
+    }
+
+    function update() {
+        session_write_close();
+
+        $updateFile = new File(TMP.'update');
+        $updateFile->create();
+
+        file_put_contents(TMP.'update', '0,Locking panel...');
         $maintenance = new File(APP."webroot/.maintenance");
         $maintenance->create();
 
@@ -118,8 +139,12 @@ class UpdateController extends AppController {
      
         }
         $file = $l_sb["BUILD"]["FILE"];
+        file_put_contents(TMP.'update', '2,Downloading update...');
+
 
         download_remote_file_with_curl($file, realpath(WWW_ROOT."upgrade") . '/app.zip');
+
+        file_put_contents(TMP.'update', '32,Unzipping...');
 
         //Extract it to /upgrade and delete zip
 
@@ -178,7 +203,7 @@ class UpdateController extends AppController {
         if (is_file($source)) { 
             if ($dest[strlen($dest)-1]=='/') { 
                 if (!file_exists($dest)) { 
-                    cmfcDirectory::makeAll($dest,$options['folderPermission'],true); 
+                    cmfcDirectory::makeAll($dest,$options['folderPermission'],true);
                 } 
                 $__dest=$dest."/".basename($source); 
             } else { 
@@ -230,10 +255,15 @@ class UpdateController extends AppController {
         } 
         return $result; 
     } 
+        file_put_contents(TMP.'update', '47,Copying new files...');
+
 
         $status = smartCopy($appdir, APP);
 
         //Upgrade the database if sql file exists
+
+        file_put_contents(TMP.'update', '77,Upgrading database...');
+
 
         $sql_upgrade = new File($appdir."/upgrade.sql");
 
@@ -300,15 +330,20 @@ class UpdateController extends AppController {
             return TRUE;
         }
         // ------------------------------------------------------------
+        file_put_contents(TMP.'update', '92,Deleting update folder...');
 
         recursive_remove_directory($appdir, TRUE);
         rmdir($appdir);
         clearCache();
   
         //Delete .maintenance file and redirect to DashBoard
+        file_put_contents(TMP.'update', '98,Unlocking panel...');
 
         unlink(WWW_ROOT.".maintenance");
-        $this->redirect(array('controller' => 'dash', 'action' => 'index'));
+        file_put_contents(TMP.'update', '100,Redirecting...');
+
+        $updateFile->delete();
+
 
     }
 
