@@ -163,6 +163,8 @@ END;
             foreach ($playerslist as $p) {
 
             $name = $p['Name'];
+            $ip = $p['IP'];
+
             $life = percent($p['Health'], '20');
             $hunger = percent($p['FoodLevel'], '20');
             $lvl = $p['Level'];
@@ -194,13 +196,14 @@ END;
             $action3 = perm_action('users', 'kill', $this->Session->read("user_perm"), '<a href=\'./tplayers/kill/'.$name.'\' class=\'button icon remove danger ajax_table1\'>'.__('Kill').'</a>');
             $action4 = perm_action('users', 'kick', $this->Session->read("user_perm"), '<a href=\'./tplayers/kick/'.$name.'\' class=\'button icon remove danger ajax_table1\'>'.__('Kick').'</a>');
             $action5 = perm_action('users', 'ban', $this->Session->read("user_perm"), '<a href=\'./tplayers/ban/'.$name.'\' class=\'button icon remove danger ajax_table3\'>'.__('Ban').'</a>');
+            $action6 = perm_action('users', 'ban', $this->Session->read("user_perm"), '<a href=\'./tplayers/ipban/'.$name.'/'.$ip.'\' class=\'button icon remove danger ajax_table4\'>'.__('IPBan').'</a>');
 
-            $actionText = '<span class=\'button-group\'>'.$action1.$action2.'</span> <span class=\'button-group\'>'.$action3.$action4.$action5.'</span>';
+            $actionText = '<span class=\'button-group\'>'.$action1.$action2.'</span> <span class=\'button-group\'>'.$action3.$action4.$action5.$action6.'</span>';
             ECHO <<<END
                 [
                   "<img src=\"./global/avatar/$name/40\" class=\"avatar\" />",
                   "$lifeText",
-                  "$name",
+                  "$name ($ip)",
                   "$gamemode",
                   "$op",
                   "$actionText"
@@ -338,15 +341,61 @@ END;
                 ]
             
 END;
-                if($i < $num) {
-                    echo ",";
-                  }
-                  $i++;
+                    if($i < $num) {
+                        echo ",";
+                      }
+                      $i++;
+
+            }
+             echo '] }';
+        }
+    }
+    }
+
+    function getBannedIps() {
+
+    if ($this->request->is('ajax')) {
+        $this->disableCache();
+        Configure::write('debug', 2);
+        $this->autoRender = false;
+
+        include APP.'spacebukkitcall.php';
+
+        //Get Players           
+        $args = array('banned-ips.txt');   
+        $blacklist = $api->call("getFileContent", $args, true);
+
+        $blacklist = explode("\r\n", $blacklist, -1);
+        $num = count($blacklist);        
+
+        //Output
+        if (!isset($blacklist)) { echo '';}
+
+        else {
+            $i = 1;
+            echo '{ "aaData": [';  
+                         
+            foreach ($blacklist as $b) {
+
+                $action = perm_action('users', 'ban', $this->Session->read("user_perm"), '<span class=\"button-group\"><a href=\"./tplayers/ipban_del/'.$b.'\"  class=\"button icon danger arrowdown ajax_table4\">'.__('Remove').'</a>');
+
+            ECHO <<<END
+                [
+                  "$b",
+                  "$action"
+                ]
+            
+END;
+                    if($i < $num) {
+                        echo ",";
+                      }
+                      $i++;
+
+            }
+             echo '] }';
+        }
 
         }
-         echo '] }';
-    }
-    }
     }
 
     function kill($player) {      
@@ -494,6 +543,37 @@ END;
         }    
     }
 
+    function ipban($player, $ip) {      
+
+    perm('users', 'ban', $this->Session->read("user_perm"), true);
+
+    if ($this->request->is('ajax')) {
+        $this->disableCache();
+        Configure::write('debug', 0);
+        $this->autoRender = false;
+
+        include APP.'spacebukkitcall.php';
+
+        $command = 'ban-ip '.$ip;
+
+        $args = array($command);   
+        $api->call("consoleCommand", $args, true);
+        $args2 = array($player, 'You have been banned from server.');   
+        $api->call("kickPlayer", $args2, false);
+
+        $mex = $this->Configurator->returnVars(15);
+
+        $mex = htmlspecialchars_decode(str_replace("{player}", $player, $mex['val']), ENT_QUOTES);
+
+        $args = array($this->Session->read("Sbvars.10"), $mex);   
+        $api->call("broadcastWithName", $args, false); 
+         
+        echo $mex;
+
+        w_serverlog($this->Session->read("current_server"), __('[USERS] ').$this->Auth->user('username').' '.__('banned').' '.$player);
+        
+        }    
+    }
     function blacklist_add() {
 
     perm('users', 'ban', $this->Session->read("user_perm"), true);
@@ -506,7 +586,6 @@ END;
         Configure::write('debug', 0);
         $this->autoRender = false;
 
-
         include APP.'spacebukkitcall.php';
         $name = $this->request->data;
         $args = array($name['name']); 
@@ -517,6 +596,44 @@ END;
         w_serverlog($this->Session->read("current_server"), __('[USERS] ').$this->Auth->user('username').' '.__('banned').' '.$name);
 
         }   
+    }
+
+    function ipban_add() {
+
+    perm('users', 'ban', $this->Session->read("user_perm"), true);
+
+        if (!$this->request->is('post')) {
+            throw new MethodNotAllowedException();
+        }
+
+        if ($this->request->is('ajax')) {
+        $this->disableCache();
+        Configure::write('debug', 0);
+        $this->autoRender = false;
+
+        include APP.'spacebukkitcall.php';
+
+        $ip = $this->request->data;
+
+        $command = 'ban-ip '.$ip['name'];
+
+        $args = array($command);   
+        $api->call("consoleCommand", $args, true);
+        $args2 = array($player, 'You have been banned from server.');   
+        $api->call("kickPlayer", $args2, false);
+
+        $mex = $this->Configurator->returnVars(15);
+
+        $mex = htmlspecialchars_decode(str_replace("{player}", $player, $mex['val']), ENT_QUOTES);
+
+        $args = array($this->Session->read("Sbvars.10"), $mex);   
+        $api->call("broadcastWithName", $args, false); 
+         
+        echo $mex;
+
+        w_serverlog($this->Session->read("current_server"), __('[USERS] ').$this->Auth->user('username').' '.__('banned').' '.$player);
+
+        }    
     }
 
     function blacklist_del($name) {
@@ -537,6 +654,28 @@ END;
         echo $name.__(' was removed from blacklist.');
 
         w_serverlog($this->Session->read("current_server"), __('[USERS] ').$this->Auth->user('username').' '.__('unbanned').' '.$name);
+
+        }    
+    }
+
+    function ipban_del($ip) {
+
+    perm('users', 'ban', $this->Session->read("user_perm"), true);
+
+         if ($this->request->is('ajax')) {
+        $this->disableCache();
+        Configure::write('debug', 0);
+        $this->autoRender = false;
+
+        include APP.'spacebukkitcall.php';
+
+        $args = array('pardon-ip '.$ip); 
+
+        $api->call("consoleCommand", $args, true);
+
+        echo $ip.__(' was removed from blacklist.');
+
+        w_serverlog($this->Session->read("current_server"), __('[USERS] ').$this->Auth->user('username').' '.__('unbanned').' '.$ip);
 
         }    
     }
@@ -643,6 +782,8 @@ END;
 
             $args = array($name); 
             $items = $api->call("getInventory", $args, false);
+
+            debug($items);
 
             $dir = new Folder(WWW_ROOT . 'inventory/icons/');
             $allitems = $dir->find('.+\.png'); 

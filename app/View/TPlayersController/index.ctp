@@ -1,10 +1,11 @@
 <!-- Tabs -->
 <nav id="smalltabs">
-	<ul>
-		<li class="current"><a href="#tab1"><?php echo __('Online') ?></a></li>
-		<li><a href="#tab2"><?php echo __('Whitelist') ?></a></li>
-		<li><a href="#tab3"><?php echo __('Blacklist') ?></a></li>
-	</ul>
+  <ul>
+    <li class="current"><a href="#tab1"><?php echo __('Online') ?></a></li>
+    <li><a href="#tab2"><?php echo __('Whitelist') ?></a></li>
+    <li><a href="#tab3"><?php echo __('Player Bans') ?></a></li>
+    <li><a href="#tab4"><?php echo __('IP Bans') ?></a></li>
+  </ul>
 </nav>
 <!-- End Tabs -->
 
@@ -118,7 +119,7 @@
 
     <header>
 
-      <h2><?php echo __('Blacklisted Players') ?></h2>
+      <h2><?php echo __('Banned Players') ?></h2>
 
     </header>
 
@@ -180,13 +181,73 @@
     <input type="submit" class="button big primary submit" value="<?php echo __('Add') ?>">
 
     </div>
-    </form>
     </fieldset>
 
+    </form>
 
   </section> 
 </div><!-- End col right -->
 
+</div>
+
+<div class="clear"></div>
+
+<div class="tab" id="tab4">
+
+<div class="col left">
+
+  <div class="table_container">
+
+    <header>
+
+      <h2><?php echo __('Banned IPs') ?></h2>
+
+    </header>
+
+  <table class="datatable adtb4"> 
+    <thead> 
+      <tr> 
+        <th><?php echo __('IP') ?></th> 
+        <th><?php echo __('Actions') ?></th> 
+      </tr> 
+    </thead> 
+    <tbody> 
+    </tbody> 
+  </table> 
+
+  </div>
+
+  <div class="clear"></div>
+
+</div>
+<div class="col right">
+
+  <section class="box"> 
+   
+    <header>
+        <h2><?php echo __('Add IP') ?></h2> 
+    </header>
+    
+    <section>
+    <form id="ban" class="bwl3" method="post" action="./tplayers/ipban_add">
+
+      <fieldset>
+       
+      <label for="title">
+      <?php echo __('IP') ?>
+      </label>
+
+      <div>
+      <input id="name" name="name" type="text" />
+      <input type="submit" class="button big primary submit" value="<?php echo __('Add') ?>">
+
+      </div>
+      </fieldset>
+
+    </form>
+
+  </section> 
+</div><!-- End col right -->
 </div>
 
 <div class="clear"></div>
@@ -212,7 +273,11 @@ $('document').ready(function() {
       "sAjaxSource": './tplayers/getBlacklist'
 
   } );
+  Table4 = $('.adtb4').dataTable( {
+      "bProcessing": true,
+      "sAjaxSource": './tplayers/getBannedIps'
 
+  } );
   var refreshId = setInterval(function() {
     if(refresh_check === true){
       $.get('./tplayers/shouldIgetPlayers', function(data) {
@@ -266,6 +331,25 @@ $('document').ready(function() {
     );
   });
 
+  $(".bwl3").submit(function(event) {
+
+    /* stop form from submitting normally */
+    event.preventDefault(); 
+        
+    /* get some values from elements on the page: */
+    var $form = $(this),
+        term = $form.find( 'input[name="name"]' ).val(),
+        url = $form.attr( 'action' );
+
+    /* Send the data using post and put the results in a div */
+    $.post(url, {name: term},
+      function( data ) {
+         notifications.show({msg:data, icon:'img/win.png'});
+         Table4.fnReloadAjax("./tplayers/getBannedIps")
+      }
+    );
+  });
+
 $(".ajax_table2").live('click', (function(){
 
   var source = $(this).attr("href");
@@ -291,6 +375,22 @@ $.ajax({
   success: function(data) {
       notifications.show({msg:data, icon:'img/win.png'});
       Table3.fnReloadAjax("./tplayers/getBlacklist")
+
+  }
+});
+      return false;
+
+}));
+
+$(".ajax_table4").live('click', (function(){
+
+  var source = $(this).attr("href");
+  
+$.ajax({
+  url: source,
+  success: function(data) {
+      notifications.show({msg:data, icon:'img/win.png'});
+      Table4.fnReloadAjax("./tplayers/getBannedIps")
 
   }
 });
