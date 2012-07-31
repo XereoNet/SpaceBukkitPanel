@@ -9,7 +9,7 @@
 <div class="error_box"></div>
 
 <div class="users form">
-<form id="UserEditForm" method="post" action="./users/edit/<?php echo $edituser["User"]["id"]; ?>">
+<form id="UserEditForm" method="post" action="./users/edit_admin/<?php echo $edituser["User"]["id"]; ?>">
   
     <section>
       <label for="username">

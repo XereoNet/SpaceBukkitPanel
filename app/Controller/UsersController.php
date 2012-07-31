@@ -317,7 +317,7 @@ class UsersController extends AppController {
                 $this->Session->write('Auth.User.username', $data['username']);
                 $this->Session->write('Auth.User.language', $data['language']);
 
-                $this->redirect(array('action' => 'index'));
+                $this->redirect(array('controller' => 'tsettings', 'action' => 'index'));    
                 
             } else {
                 $this->Session->setFlash(__('Unable to update your User.'));
@@ -431,7 +431,7 @@ class UsersController extends AppController {
 
             if ($this->User->save($this->request->data)) {
                 $this->Session->setFlash(__('Your User has been updated.'));
-                $this->redirect(array('action' => 'index'));
+                $this->redirect(array('controller' => 'tsettings', 'action' => 'index'));    
             } else {
                 $this->Session->setFlash(__('Unable to update your User.'));
             }
