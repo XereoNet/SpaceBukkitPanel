@@ -362,10 +362,9 @@ END;
         include APP.'spacebukkitcall.php';
 
         //Get Players           
-        $args = array('banned-ips.txt');   
+        $args = array('./banned-ips.txt');   
         $blacklist = $api->call("getFileContent", $args, true);
-
-        $blacklist = explode("\r\n", $blacklist, -1);
+        $blacklist = explode("\n", $blacklist, -1);
         $num = count($blacklist);        
 
         //Output
@@ -619,19 +618,16 @@ END;
 
         $args = array($command);   
         $api->call("consoleCommand", $args, true);
-        $args2 = array($player, 'You have been banned from server.');   
-        $api->call("kickPlayer", $args2, false);
-
         $mex = $this->Configurator->returnVars(15);
 
-        $mex = htmlspecialchars_decode(str_replace("{player}", $player, $mex['val']), ENT_QUOTES);
+        $mex = htmlspecialchars_decode(str_replace("{player}", $ip['name'], $mex['val']), ENT_QUOTES);
 
         $args = array($this->Session->read("Sbvars.10"), $mex);   
         $api->call("broadcastWithName", $args, false); 
          
         echo $mex;
 
-        w_serverlog($this->Session->read("current_server"), __('[USERS] ').$this->Auth->user('username').' '.__('banned').' '.$player);
+        w_serverlog($this->Session->read("current_server"), __('[USERS] ').$this->Auth->user('username').' '.__('banned').' '.$ip['name']);
 
         }    
     }
