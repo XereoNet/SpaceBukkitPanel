@@ -98,7 +98,16 @@ class TWorldsController extends AppController {
             $this->set("wmpl", $wmpl);
             if (in_array('dynmap', $plugins)) {
                 $dynmap = true;
-                $dynmapurl = 'http://'.$this->Session->read('Server.external_address').':'.$api->call('dynmapPort', $args, false);
+                $addr = $this->Session->read('Server.external_address');
+                if (preg_match("/http/", $addr)) {
+                    $dynmapurl = $addr;
+                } else {
+                    if ($addr == '')    $addr = $this->Session->read('Server.address');
+                    if (preg_match("/localhost/", $addr) || preg_match("/127.0.0.1/", $addr) || preg_match("/::1/", $addr)) {
+                            $addr = file_get_contents("http://automation.whatismyip.com/n09230945.asp");
+                        }
+                $dynmapurl = 'http://'.$addr.':'.$api->call('dynmapPort', $args, false);
+                }
                 $this->set('dynmapurl', $dynmapurl);
             } else {
                 $dynmap = false;
@@ -325,7 +334,7 @@ class TWorldsController extends AppController {
                 
                 //$actions = '<center> '.$load.' <span class=\"button-group\"><a href=\"#\"  class=\"button icon like ajax_table1\">'.__('Backup').'</a><a href=\"#\" class=\"button icon remove danger ajax_table1\">'.__('Delete!').'</a></span></center>';
                 
-                $actions = '<center><span class=\"button-group\"> '.$load.'</span> <span class=\"button-group\"><a href=\"./tworlds/backup/'.$w.'\"  class=\"button icon like backup\">'.__('Backup').'</a><a href=\"./tworlds/deleteWorld/'.$name.'\" class=\"button icon remove danger remove\">'.__('Delete!').'</a></span></center>';
+                $actions = '<center><span class=\"button-group\"> '.$load.'</span> <span class=\"button-group\"><a href=\"./tworlds/deleteWorld/'.$name.'\" class=\"button icon remove danger remove\">'.__('Delete!').'</a></span></center>';
                 
                 //send to table
                 ECHO <<<END
@@ -689,17 +698,6 @@ END;
             } 
         }
         $this->layout = 'popup';
-    }
-
-    function backup($w) {
-        perm('worlds', 'backupRestoreWorld', $this->Session->read("user_perm"), true);
-        if ($this->request->is('ajax')) {
-            $this->disableCache();
-            Configure::write('debug', 0);
-            $this->autoRender = false;
-            $this->requestAction('/tbackups/backup/world/'.$w);
-            echo __("Backup of")." ".$w." ".__('finished!');
-        }
     }
 
 //autotrim tab functions

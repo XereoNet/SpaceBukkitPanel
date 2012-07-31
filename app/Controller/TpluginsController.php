@@ -425,43 +425,44 @@ END;
             throw new MethodNotAllowedException();
         } else {
         
-        $data = $this->request->data;
+            $data = $this->request->data;
 
-        require APP . 'spacebukkitcall.php';
+            require APP . 'spacebukkitcall.php';
 
-        $path = "./plugins/".$data["plugin"]."/".$data["file"];
-        $content = $data["config_content"];
+            $path = "./plugins/".$data["plugin"]."/".$data["file"];
+            $content = $data["config_content"];
 
-        //echo $path;
+            //echo $path;
 
-        $methods = array_keys($data);
-        $method = $methods[3];
+            $methods = array_keys($data);
+            $method = $methods[3];
 
-        $args = array($path, $content); 
-        $api->call("setFileContent", $args, true);
-        
-        $args = array();
+            $args = array($path, $content); 
+            $api->call("setFileContent", $args, true);
+            
+            $args = array();
 
-        if ($method == "reload") {
+            if ($method == "reload") {
 
-        $api->call("reloadServer", $args, false);
-        sleep(10);
+                $api->call("reloadServer", $args, false);
+                sleep(10);
 
-        } elseif ($method == "restart") {
+            } elseif ($method == "restart") {
 
-        $args2 = array($this->Session->read("Sbvars.10"), "Server will restart due to plugin configuration save...");
-        $api->call("broadcastWithName", $args2, false);
-        sleep(5);
-        
-        $args = array();
-        $api->call("restartServer", $args, true);
-        sleep(10);
+                $args2 = array($this->Session->read("Sbvars.10"), "Server will restart due to plugin configuration save...");
+                $api->call("broadcastWithName", $args2, false);
+                sleep(2);
+                
+                $args = array(true);
+                $api->call("restartServer", $args, true);
+                sleep(5);
+                while (is_null($api->call('getWorlds', array(), false))) {
+                    sleep(1);
+                }
 
 
-        } 
-        $this->redirect($this->referer());
-    
-        
+            } 
+            $this->redirect($this->referer());
         }
     }
 

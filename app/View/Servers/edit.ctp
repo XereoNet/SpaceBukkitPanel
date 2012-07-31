@@ -63,6 +63,17 @@
         <input name="password" id="password" type="password" value="<?php echo $editserver["Server"]["password"]; ?>"/>
       </div>
     </section>   
+
+    <section>
+      <label for="external_address">
+        <?php echo __('Dynmap address'); ?>
+        <small><?php echo __('Only change this if you have Dynmap installed on a seperate server!'); ?></small>
+      </label>
+    
+      <div>
+        <input name="external_address" id="external_address" type="text" value="<?php echo $editserver["Server"]["external_address"]; ?>"/>
+      </div>
+    </section> 
 <input type="submit" class="button primary submit" value="<?php echo __('Submit'); ?>">
 </form>
 <div class="clear"></div>

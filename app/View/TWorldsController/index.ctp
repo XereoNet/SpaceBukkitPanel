@@ -203,26 +203,6 @@ $('document').ready(function() {
 		return false;
 	}));
 
-  $(".backup").live('click', (function(){
-  	
-  		// Create overlay and append to body:
-    	showOverlay('Backing up...');
-    	
-  		var source = $(this).attr("href");
-  
-		$.ajax({
-  			url: source,
-  			success: function(data) {
-	     		notifications.show(data);
-	      		hideOverlay();
-  			}
-		
-		});
-  	
-  	return false;
-
-  }));
-
   $(".remove").live('click', (function(){
   	
   	if(confirm("Are you sure you want to delete this world?!\nThis will restart the server...")){
