@@ -69,7 +69,7 @@ class Configurator extends AppModel {
 
         fwrite($fp,$str,strlen($str));  
 
-        return $str;   
+        return $md5c;   
 
     }
     //Save config
