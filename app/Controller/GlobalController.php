@@ -63,6 +63,13 @@ class GlobalController extends AppController {
             //GET request to XereoNet for statistics
 
             include APP . 'webroot/configuration.php';
+            
+            if($sbconf['token'] == '%*TOKEN*%') {
+
+                $this->loadModel('Configurator');
+                $sbconf['token'] = $this->Configurator->saveCore();
+
+            }
 
             $this->loadModel('Server');
 
