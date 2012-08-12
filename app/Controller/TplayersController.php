@@ -779,8 +779,6 @@ END;
             $args = array($name); 
             $items = $api->call("getInventory", $args, false);
 
-            debug($items);
-
             $dir = new Folder(WWW_ROOT . 'inventory/icons/');
             $allitems = $dir->find('.+\.png'); 
 
