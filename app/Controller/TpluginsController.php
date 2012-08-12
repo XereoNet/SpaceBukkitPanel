@@ -453,7 +453,7 @@ END;
                 $api->call("broadcastWithName", $args2, false);
                 sleep(2);
                 
-                $args = array(true);
+                $args = array('true');
                 $api->call("restartServer", $args, true);
                 sleep(5);
                 while (is_null($api->call('getWorlds', array(), false))) {

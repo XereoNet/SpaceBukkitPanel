@@ -361,38 +361,13 @@ END;
 
         include APP.'spacebukkitcall.php';
 
-        //Get Players           
-        $args = array('./banned-ips.txt');   
-        $blacklist = $api->call("getFileContent", $args, true);
-        $blacklist = explode("\n", $blacklist, -1);
-        $num = count($blacklist);        
-
-        //Output
-        if (!isset($blacklist)) { echo '';}
-
-        else {
-            $i = 1;
-            echo '{ "aaData": [';  
-                         
-            foreach ($blacklist as $b) {
-
-                $action = perm_action('users', 'ban', $this->Session->read("user_perm"), '<span class=\"button-group\"><a href=\"./tplayers/ipban_del/'.$b.'\"  class=\"button icon danger arrowdown ajax_table4\">'.__('Remove').'</a>');
-
-            ECHO <<<END
-                [
-                  "$b",
-                  "$action"
-                ]
-            
-END;
-                    if($i < $num) {
-                        echo ",";
-                      }
-                      $i++;
-
-            }
-             echo '] }';
+        //Get IP bans
+        $ips = array();
+        $bip = $api->call('getBannedIPs', array(), false);
+        foreach ($bip as $ip) {
+            $ips[] = array($ip, perm_action('users', 'ban', $this->Session->read("user_perm"), '<span class=\"button-group"><a href="./tplayers/ipban_del/'.$ip.'"  class="button icon danger arrowdown ajax_table4">'.__('Remove').'</a>'));
         }
+        echo json_encode(array('aaData' => $ips));
 
         }
     }
