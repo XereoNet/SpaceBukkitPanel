@@ -172,12 +172,12 @@ END;
             if($p['GameMode'] == 'SURVIVAL') {
 
                 $gamemode = __('Survival');
-                $gamemode .= perm_action('users', 'changeGamemode', $this->Session->read("user_perm"), '<span class=\'button-group\'><a href=\'./tplayers/gameMode/'.$name.'/1\'  class=\'button icon arrowdown ajax_table1\'>'.__('Set to creative').'</a></span>');
+                $gamemode .= perm_action('users', 'changeGamemode', $this->Session->read("user_perm"), ' <span class=\'button-group\'><a href=\'./tplayers/gameMode/'.$name.'/1\'  class=\'button icon arrowdown ajax_table1\'>'.__('Set to creative').'</a></span>');
 
 
             } elseif($p['GameMode'] == 'CREATIVE') {
                 $gamemode = __('Creative');
-                $gamemode .= perm_action('users', 'changeGamemode', $this->Session->read("user_perm"), '<span class=\'button-group\'><a href=\'./tplayers/gameMode/'.$name.'/0\'  class=\'button icon arrowdown ajax_table1\'>'.__('Set to survival').'</a></span>');
+                $gamemode .= perm_action('users', 'changeGamemode', $this->Session->read("user_perm"), ' <span class=\'button-group\'><a href=\'./tplayers/gameMode/'.$name.'/0\'  class=\'button icon arrowdown ajax_table1\'>'.__('Set to survival').'</a></span>');
 
 
             }
