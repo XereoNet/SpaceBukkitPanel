@@ -80,7 +80,8 @@ class AppController extends Controller {
 	{
 
    $this->Auth->loginError = __('This usernames/password combination was not found, did you enter the correct password?');    
-   $this->Auth->authError = __('This error shows up when the user tries to access a part of the website that is protected.');       
+   $this->Auth->authError = __('This error shows up when the user tries to access a part of the website that is protected.'); 
+
 /* ####################################################
  *   4)  If not logged in, do nothing. If yes...
 ##################################################### */
@@ -101,14 +102,22 @@ class AppController extends Controller {
 
     $maintenance = new File(APP."webroot/.maintenance");
     
+    $allowed = array("Users");  
+
+    if (!$this->Auth->user() && !(in_array($this->name, $allowed)) )
+    {
+        echo $this->name;
+        $this->redirect(array('controller' => 'users', 'action' => 'login'));
+    }
+
     $allowed = array("maintenance");  
 
     if(!is_null($this->Auth->user())) {
 
-    $this->set('username',  $this->Auth->user('username'));
-    $this->set('current_user_id', $this->Auth->user('id'));
+        $this->set('username',  $this->Auth->user('username'));
+        $this->set('current_user_id', $this->Auth->user('id'));
 
-    $this->set('is_super', $this->Auth->user('is_super'));
+        $this->set('is_super', $this->Auth->user('is_super'));
 
 
     if (($maintenance->exists()) && (!(in_array($this->action, $allowed))) && ($this->Auth->user('is_super') < 1)) {
@@ -398,7 +407,7 @@ class AppController extends Controller {
         } //end else server count        
         } //endif logging        
         } //endif maintenance       
-        } //endif install        
+        } //endif install   
         } //endif ajax
         } //endif post
     }
