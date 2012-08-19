@@ -364,8 +364,12 @@ END;
         //Get IP bans
         $ips = array();
         $bip = $api->call('getBannedIPs', array(), false);
-        foreach ($bip as $ip) {
-            $ips[] = array($ip, perm_action('users', 'ban', $this->Session->read("user_perm"), '<span class=\"button-group"><a href="./tplayers/ipban_del/'.$ip.'"  class="button icon danger arrowdown ajax_table4">'.__('Remove').'</a>'));
+        if (!is_null($bip)) {
+            foreach ($bip as $ip) {
+                $ips[] = array($ip, perm_action('users', 'ban', $this->Session->read("user_perm"), '<span class=\"button-group"><a href="./tplayers/ipban_del/'.$ip.'"  class="button icon danger arrowdown ajax_table4">'.__('Remove').'</a>'));
+            }
+        } else {
+            $ips = array(array('No Banned IP\'s found!', ''));
         }
         echo json_encode(array('aaData' => $ips));
 
