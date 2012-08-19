@@ -73,7 +73,7 @@
 	</header>
 	<section>
 		<div><?php if ($dynmap) { ?>
-			<iframe src="<?php echo $dynmapurl; ?>" style="width: 100%; height: 100%;"></iframe>
+			<iframe src="<?php echo $dynmapurl; ?>" style="width: 100%; height: 100%; min-height: 810px"></iframe>
 			<?php } else { ?>
 			<div class="alert alert-info"> 
 	        <?php echo __('Dynmap not found!').' Please install it!' ?>
