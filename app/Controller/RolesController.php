@@ -47,6 +47,7 @@ class RolesController extends AppController {
             $worlds = 0;
             $servers = 0;
             $global = 0;
+            $backups = 0;
 
             foreach ($permissions["pages"] as $role => $value) {
                 $bit = (int)$value;
@@ -84,6 +85,12 @@ class RolesController extends AppController {
                 $servers = $servers+($bit*$multi);
             }
 
+            foreach ($permissions["backups"] as $role => $value) {
+                $bit = (int)$value;
+                $multi = (int)$data[$role];
+                $backups = $backups+($bit*$multi);
+            }
+
             foreach ($permissions["global"] as $role => $value) {
                 $bit = (int)$value;
                 $multi = (int)$data[$role];
@@ -99,6 +106,7 @@ class RolesController extends AppController {
                 "users" => $users,
                 "plugins" => $plugins,
                 "worlds" => $worlds,
+                "backups" => $backups,
                 "servers" => $servers
              );
 
@@ -134,6 +142,7 @@ class RolesController extends AppController {
             $plugins = 0;
             $worlds = 0;
             $servers = 0;
+            $backups = 0;
             $global = 0;
 
             foreach ($permissions["pages"] as $role => $value) {
@@ -172,6 +181,12 @@ class RolesController extends AppController {
                 $servers = $servers+($bit*$multi);
             }
 
+            foreach ($permissions["backups"] as $role => $value) {
+                $bit = (int)$value;
+                $multi = (int)$data[$role];
+                $backups = $backups+($bit*$multi);
+            }
+
             foreach ($permissions["global"] as $role => $value) {
                 $bit = (int)$value;
                 $multi = (int)$data[$role];
@@ -187,6 +202,7 @@ class RolesController extends AppController {
                 "users" => $users,
                 "plugins" => $plugins,
                 "worlds" => $worlds,
+                "backups" => $backups,
                 "servers" => $servers
              );
 
