@@ -80,6 +80,16 @@
         ?>
         </select>   
 
+    </section> 
+    <section>
+      <label for="external_address">
+        <?php echo __('Dynmap address'); ?>
+        <small><?php echo __('Only add this if you have Dynmap installed on a seperate server! Include http://'); ?></small>
+      </label>
+    
+      <div>
+        <input name="external_address" id="external_address" type="text" value=""/>
+      </div>
     </section>      
 <input type="submit" class="button primary submit leftsubmit" value="<?php echo __('Create Server'); ?>">
 </form>

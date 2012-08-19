@@ -67,7 +67,7 @@
     <section>
       <label for="external_address">
         <?php echo __('Dynmap address'); ?>
-        <small><?php echo __('Only change this if you have Dynmap installed on a seperate server!'); ?></small>
+        <small><?php echo __('Only change this if you have Dynmap installed on a seperate server! Include http://'); ?></small>
       </label>
     
       <div>

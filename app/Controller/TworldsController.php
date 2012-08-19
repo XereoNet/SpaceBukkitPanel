@@ -106,7 +106,7 @@ class TWorldsController extends AppController {
                     if (preg_match("/localhost/", $addr) || preg_match("/127.0.0.1/", $addr) || preg_match("/::1/", $addr)) {
                             $addr = file_get_contents("http://automation.whatismyip.com/n09230945.asp");
                         }
-                $dynmapurl = 'http://'.$addr.':'.$api->call('dynmapPort', $args, false);
+                    $dynmapurl = 'http://'.$addr.':'.$api->call('dynmapPort', $args, false);
                 }
                 $this->set('dynmapurl', $dynmapurl);
             } else {
