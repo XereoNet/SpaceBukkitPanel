@@ -323,8 +323,8 @@ class DashController extends AppController {
             //Generate Output
             foreach (array_reverse($chats) as $time => $chat) {
 
-        	$time = substr($time, 0, -3); 
-        	$time = date( "d/m/Y g:i:s A", $time);
+        	$time = round($time / 1000, 0); 
+        	$time = date("d/m/Y g:i:s A", $time);
 
         	$chat = explode(':', $chat, 2);
 

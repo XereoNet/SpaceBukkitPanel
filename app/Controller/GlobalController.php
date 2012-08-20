@@ -571,7 +571,7 @@ END;
               
     }
 
-      function debug_call($call=null, $arg=null) {
+      function debug_call($call=null, $arg=null, $rtk = false) {
 
 
 
@@ -592,7 +592,7 @@ END;
 
             $starttime = microtime(true);
 
-            $result = $api->call($call, $args, false);  
+            $result = $api->call($call, $args, $rtk);  
 
             $stoptime  = microtime(true);
 
