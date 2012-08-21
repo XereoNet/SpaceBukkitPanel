@@ -138,7 +138,7 @@
                     
                       <div>
 
-                        <input id="password" name="password" type="text"/>
+                        <input id="password" name="password" type="password"/>
                         <p class="help-block">This is the password associated with your username for MySQL.</p>
 
                       </div>
