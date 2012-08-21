@@ -909,6 +909,7 @@ $('document').ready(function() {
     var r=confirm("Are you sure you want to install this CraftBukkit version?");
     if (r==true)
       {
+        showOverlay('Installing the new Craftbukkit build, please wait!');
       }
     else
       {
