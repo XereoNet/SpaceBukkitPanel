@@ -1,4 +1,5 @@
 <?php
+App::uses('Sanitize', 'Utility');
 
 class SpaceBukkitAPI {
 	private $hostname;
@@ -31,7 +32,7 @@ class SpaceBukkitAPI {
 				
 			} else {
 
-			return json_decode($value, true);
+			return Sanitize::clean(json_decode($value, true));
 
 			}
 		}
