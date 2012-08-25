@@ -172,7 +172,7 @@ END;
             if($p['GameMode'] == 'SURVIVAL') {
 
                 $gamemode = __('Survival');
-                $gamemode .= perm_action('users', 'changeGamemode', $this->Session->read("user_perm"), '<span class=\'button-group\'><a href=\'./tplayers/gameMode/'.$name.'/1\'  class=\'button icon arrowdown ajax_table1\'>'.__('Set to creative').'</a></span>');
+                $gamemode .= perm_action('users', 'changeGamemode', $this->Session->read("user_perm"), '<span class=\'button-group\'><a href=\'./tplayers/gameMode/'.$name.'/1\'  class=\'button icon arrowup ajax_table1\'>'.__('Set to creative').'</a></span>');
 
 
             } elseif($p['GameMode'] == 'CREATIVE') {
