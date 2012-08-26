@@ -559,116 +559,14 @@
 <div class="clear"></div>
 
 <div class="tab" id="tab5">
-  <section class="box boxpad"> 
-       
-    <header>
-        <h2><?php echo __('Add Schedule') ?></h2> 
 
-    </header>
-
-    <section>
-
-      <div class="error_box"></div>
-        <form id="scheduler" class="scheduler" method="post" action="./schedules/addTask">
-
-      <div class="col left">
-
-      <input id="name" name="name" type="text" style="display: block;" placeholder="Schedule title">
-
-      <br>
-
-      <select name="type" id="type">
-
-      <?php
-
-        foreach ($tasks as $tname => $targs) {
-
-          if ($targs['args'] == 'true') {
-            
-            $rel = 'rel="true"';
-          
-          } elseif ($targs['args'] == 'false') { 
-
-            $rel = ""; 
-
-          } else {
-
-            $rel = 'rel="'.$targs['args'].'"';
-
-          }
-          
-          echo <<<END
-
-          <option value="$targs[method]" $rel>$tname</option>
-
-END;
-
-        }
-
-      ?>
-
-      </select> 
-
-      <br><br>
-
-      <input id="arguments" name="arguments" type="text" style="display: block;" placeholder="Arguments">
-
-      </div>
-
-      <div class="col right">
-
-       <select name="timeType" id="timeType">
-
-        <option value="0" selected="selected">Time type</option>
-        <option value="EVERYXHOURS">Every X Hours</option>
-        <option value="EVERYXMINUTES">Every X Minutes</option>
-        <option value="ONCEPERDAYAT">Once per day at</option>
-        <option value="XMINUTESPASTEVERYHOUR">At X minutes after every hour</option>
-
-      </select>   
-
-      <br><br>
-
-      <div id="time1_container" style="display: none;">
-
-      <select name="timeArgs1" id="timeArgs1">
-
-        <option value="null">Choose...</option>
-
-      </select>  
-
-      </div>
-
-      <br><br>
-
-
-      <div id="time2_container" style="display: none;">
-      :
-      <select name="timeArgs2" id="timeArgs2">
-
-      </select>  
-
-      </div>
-
-      </div>
-
-      <div class="clear"></div>
-
-            <input type="submit" class="button primary submit big leftsubmit" style="top: -30px" value="<?php echo __('Add this schedule') ?>">
-               </form>
-
-    </section> 
-               
- </section>
-
-<div class="clear"></div>
-<br /><br />
   <div class="table_container">
 
     <header>
 
       <h2><?php echo __('Schedules') ?></h2>
 
+      <a href="./schedules/add" class="button icon fancy add">Add Schedule</a>
 
     </header>
     <table class="datatable dtb1 notitle" id="schedules_table"> 
