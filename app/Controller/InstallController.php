@@ -350,20 +350,29 @@ class InstallController extends AppController{
 
 		  $this->set('running', $running);
 
-		  if (is_null($running) || preg_match("/salt/", $running)) {
+		  if (is_null($running) || preg_match("/salt/", $running)) 
+		  {
 
 		  	$answer = 'Server was not reached. Is the address correct, are the ports open?';
 
-		  } elseif ($running == "true") {
+		  } 
+		  elseif ($running == "true" || $running == true || $running == 1 ) 
+		  {
+
 		  	$this->loadModel('Server');
-		  	if ($this->Server->save($add)) {
+
+		  	if ($this->Server->save($add)) 
+		  	{
 		  		$answer = 'true';
-		  	} else {
+		  	} 
+		  	else 
+		  	{
 		  		$answer = 'The server could not be saved, please try again.';
 		  	}
 
-
-		  } elseif ($running == "salt") {
+		  } 
+		  elseif ($running == "salt") 
+		  {
 
 		  	$answer = 'Incorrect Salt supplied. If you changed it in the config, make sure you restarted Remote Toolkit with ".stopwrapper" and "sh rtoolkit.sh".';
 
