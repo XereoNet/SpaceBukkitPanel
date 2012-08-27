@@ -56,11 +56,11 @@ END;
 
 	    </section>  
 
-	    <section id="arguments">
+	    <section id="argcont">
 
 	    	<label for="name">Arguments</label>
 	    	<div>
-	    		<input name="arguments" type="text" style="display: block;" placeholder="Arguments">
+	    		<input name="arguments" id="arguments" type="text" style="display: block;" placeholder="Arguments">
 	    		<p class="help-block">Additional arguments required for this task type</p>
 	    	</div>
 
@@ -122,13 +122,13 @@ END;
 
 /* schedules */
 
-   $('#arguments').hide();        
+   $('#argcont').hide();        
 
    var rel = $("#type option:selected").attr('rel');
 
    if (rel == "needsargs")
       {
-        $('#arguments').fadeIn();
+        $('#argcont').fadeIn();
       } 
     else if ((rel != "false") || (rel != "nee")) 
       {
@@ -138,7 +138,7 @@ END;
   //listen for change of select box
   $('#type').live("change", function() {
       
-      $('#arguments').hide();
+      $('#argcont').hide();
 
       $('#arguments').val('');
 
@@ -146,7 +146,7 @@ END;
 
        if (rel == "needsargs")
       {
-        $('#arguments').show();
+        $('#argcont').show();
       } 
       else if ((rel != "false") || (rel != "needsargs")) 
       {
