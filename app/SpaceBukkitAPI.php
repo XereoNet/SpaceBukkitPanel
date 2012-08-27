@@ -32,7 +32,18 @@ class SpaceBukkitAPI {
 				
 			} else {
 
-			return Sanitize::clean(json_decode($value, true));
+			$options = array(
+	            'odd_spaces' => true,
+	            'remove_html' => false,
+	            'encode' => true,
+	            'dollar' => true,
+	            'carriage' => false,
+	            'unicode' => true,
+	            'escape' => false,
+	            'backslash' => true
+	        );
+
+			return Sanitize::clean(json_decode($value, true), $options);
 
 			}
 		}
