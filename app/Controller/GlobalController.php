@@ -419,7 +419,8 @@ END;
         require APP . 'spacebukkitcall.php';
         $args = array();   
         $running = $api->call("isServerRunning", $args, true);
-        if ($running == 'true') 
+
+        if ($running) 
         {
         $api->call("stopServer", $args, true);
         sleep(5);
@@ -436,7 +437,7 @@ END;
         require APP . 'spacebukkitcall.php';
         $args = array();   
         $running = $api->call("isServerRunning", $args, true);
-        if ($running == 'true') 
+        if ($running) 
         {
         $api->call("forceStop", $args, true);
         sleep(5);
