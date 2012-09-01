@@ -51,14 +51,14 @@ class Bukget2Controller extends AppController {
       } else {
 
         //get all categories
-        $cats = json_decode(file_get_contents("http://api.bukget.org/api/categories"));
-        $latest = json_decode(file_get_contents("http://api.bukget.org/api"), TRUE);
-
-        $this->set('cats', $cats);
-        $this->set('latest', $latest['changes']);
+        //$cats = json_decode(file_get_contents("http://api.bukget.org/api2/categories"));
+        //$latest = json_decode(file_get_contents("http://api.bukget.org/api2/"), TRUE);
+//
+//        //$this->set('cats', $cats);
+        //$this->set('latest', $latest['changes']);
 
         //view-specific settings
-        $this->layout = 'bukget';
+        $this->layout = 'bukgetdis';
              
       }
 
@@ -92,7 +92,7 @@ class Bukget2Controller extends AppController {
       //get all plugins in the cat
 
       $string = str_replace("#", "", $string); 
-      $plugins = json_decode(file_get_contents("http://api.bukget.org/api/search/name/like/".$string));
+      $plugins = json_decode(file_get_contents("http://api.bukget.org/api2/search/name/like/".$string));
 
       foreach ($plugins as $plugin) {
 
@@ -140,11 +140,11 @@ class Bukget2Controller extends AppController {
       //get all plugins in the cat
 
       $cat = str_replace("#", "", $cat); 
-      $plugins = json_decode(file_get_contents("http://api.bukget.org/api/category/".$cat));
-
-      foreach ($plugins as $plugin) {
-
-      if (in_array($plugin, $installed) || in_array($plugin, $installed2) || in_array($plugin, $installed3) || in_array($plugin, $installed4) ) {
+      $plugins = json_decode(file_get_contents("http://api.bukget.org/api2/bukkit///category/".$cat));
+//
+//      foreach ($plugins as $plugin) {//
+//
+      if (in_array($plugin, $installed) || in_array($plugin, $installed2) || in_ar//ray($plugin, $installed3) || in_array($plugin, $installed4) ) {
         $button = '<a href="#" class="nobutton approve">'.__('Installed!').'</a>';
       } else {
         $button = '<a href="./bukget2/installPlugin/'.$plugin.'" class="button icon favorite installer">'.__('Install').'</a>';
@@ -194,7 +194,7 @@ END;
       $this->disableCache();
       $this->autoRender = false;
 
-      $api = json_decode(file_get_contents("http://api.bukget.org/api/plugin/".$plugin), TRUE);
+      $api = json_decode(file_get_contents("http://api.bukget.org/api2/plugin/".$plugin), TRUE);
       
       echo('<h3>'.$api['plugin_name'].'</h3> <a href="'.$api['bukkitdev_link'].'" target="_blank">(BukkitDev)</a>');
 
@@ -207,7 +207,7 @@ END;
       $this->disableCache();
       $this->autoRender = false;
 
-      $api = json_decode(file_get_contents("http://api.bukget.org/api/plugin/".$plugin), TRUE);
+      $api = json_decode(file_get_contents("http://api.bukget.org/api2/plugin/".$plugin), TRUE);
       
       //debug($api);
 

@@ -107,6 +107,11 @@ class TPluginsController extends AppController {
             Configure::write('debug', 0);
             $this->autoRender = false;
 
+            $json['aaData'] = array(array('Currently disabled...', '', '', ''));
+
+            echo json_encode($json);
+
+            /*
             require APP . 'spacebukkitcall.php';
             $args = array();
             $plugins = $api->call('getPlugins', $args, false);
@@ -139,7 +144,7 @@ class TPluginsController extends AppController {
             if (empty($json['aaData'])) {
                 $json['aaData'][] = array('', 'All plugins are up to date!', '', '');
             }
-            echo json_encode($json);
+            echo json_encode($json);*/
 		}
     
     }
