@@ -40,30 +40,13 @@ App::uses('Controller', 'Controller');
 *   
 *   The basic layout is:
 *  
-*   0)  Compontents
-*   1)  Authentication
-*   2)  If Ajax Request, do nothing. If not...
-*   3)  Check for: messages, updates, doodles
-*   4)  If not logged in, do nothing. If yes...
-*   4.2)  If Mainteneance, redirect. If not...
-*   5)  If no servers are set, deny access if not "SuperUser", redirect to "noservers.ctp"
-*   6)  If the user is not super and not associated to any server, redirect to "noserver.ctp"
-*   7)  If the user role is not defined, change it to default
-*   8)  Set current server, language, global variables etc.
-*   9)  Set current theme. If non existent, set it to default.
 *
 */
 
-/* ####################################################
- *   0)  Some compontents
-##################################################### */
+/* Class declaration and components */
 
 App::uses('Folder', 'Utility');
 App::uses('File', 'Utility');
-
-/* ####################################################
- *   1)  Authentication
-##################################################### */
 
 class AppController extends Controller {
 
@@ -75,341 +58,347 @@ class AppController extends Controller {
 	        )
 	    );
 
-	function beforeFilter()
+	function beforeFilter() {
 
-	{
+        /* Configure Auth class */
 
-   $this->Auth->loginError = __('This usernames/password combination was not found, did you enter the correct password?');    
-   $this->Auth->authError = __('This error shows up when the user tries to access a part of the website that is protected.'); 
+        $this->Auth->loginError = __('This usernames/password combination was not found, did you enter the correct password?');    
+        $this->Auth->authError = __('This error shows up when the user tries to access a part of the website that is protected.'); 
 
-/* ####################################################
- *   4)  If not logged in, do nothing. If yes...
-##################################################### */
+        /* Check for installation */
 
-    $install = new File(TMP."inst.txt");
-   
-    $allowed = array("Install");
+        $install = new File(TMP."inst.txt");
+       
+        $allowed = array("Install");
 
-    if (($install->exists()) && (!(in_array($this->name, $allowed)))) {
+        if (($install->exists()) && (!(in_array($this->name, $allowed)))) {
 
-        $this->redirect(array('controller' => 'install', 'action' => 'index'));
+            $this->redirect(array('controller' => 'install', 'action' => 'index'));
 
-        } elseif (in_array($this->name, $allowed)) {
-            
-            //do something for Installation Process
-
-        } else  { //not installation process, continue
-
-    $maintenance = new File(APP."webroot/.maintenance");
-    
-    $allowed = array("Users");  
-
-    if (!$this->Auth->user() && !(in_array($this->name, $allowed)) )
-    {
-        echo $this->name;
-        $this->redirect(array('controller' => 'users', 'action' => 'login'));
-    }
-
-    $allowed = array("maintenance");  
-
-    if(!is_null($this->Auth->user())) {
-
-        $this->set('username',  $this->Auth->user('username'));
-        $this->set('current_user_id', $this->Auth->user('id'));
-
-        $this->set('is_super', $this->Auth->user('is_super'));
-
-
-    if (($maintenance->exists()) && (!(in_array($this->action, $allowed))) && ($this->Auth->user('is_super') < 1)) {
-
-        $this->redirect(array('controller' => 'global', 'action' => 'maintenance'));
-
-        } elseif (in_array($this->name, $allowed)) {         
-            
-
-        } else  { //not maintenance process, continue        
-
-/* ####################################################
- *   2.1)  If Post, do nothing. If not...
-##################################################### */
-
-    /* STORE SPACEBUKKIT VARIABLES TO SESSION */
-
-    require APP . 'webroot/vars.php';
-
-    foreach ($variables as $k => $var) {
-
-        $this->Session->write("Sbvars.".$k, $var['val']);
-
-    }
-
-      if (!($this->request->is('post'))) {
-           
-/* ####################################################
- *   2)  If Ajax Request, do nothing. If not...
-##################################################### */
-
-      $this->loadModel('Server'); 
-
-      if (!($this->request->is('ajax'))) {
-
-/* ####################################################
- *   3)  Check for: messages, updates, doodles
-##################################################### */
-      
-      require APP.'webroot/configuration.php';
-
-    if ($this->action == "index") {
-
-        //get CURRENT SpaceBukkit version
-
-        $c_sb = $sbconf['app_version'];
-        $app = $sbconf['app'];
- 
-        //get LATEST SpaceBukkit version
-
-        $filename = 'http://dl.nope.bz/sb/build/build.xml';
-        $l_sb = simplexml_load_file($filename); 
-
-        $json = json_encode($l_sb);
-        $l_sb = json_decode($json, TRUE);
-        
-        $this->set('spacebukkitbuildcurrent', $c_sb);
-
-        //Set the notifier
-
-        if ($app < $l_sb["BUILD"]["APP"]) {
+            } elseif (in_array($this->name, $allowed)) {
                 
-            $this->set('spacebukkitbuildready', "new");
-            $this->set('spacebukkitbuildnew', $l_sb["BUILD"]["VERSION"]);
-            $this->set('spacebukkitbuildfile', './update');
+                //do something for Installation Process
 
-        }
+            } else  { //not installation process, continue
 
-        //check for uncle Ant's messages
+            /* Check for maintenance */                
 
-        $filename = 'http://dl.nope.bz/sb/build/message.12.xml';
-        $message = simplexml_load_file($filename); 
+            $maintenance = new File(APP."webroot/.maintenance");
+            
+            $allowed = array("Users");  
 
-        $json = json_encode($message);
-        $message = json_decode($json, TRUE);
+            /* Are we logged in? */  
 
-        //set the message
-
-        if ($message["MESSAGES"]["STATUS"] > 0) {
-
-            $this->set('antmessage', $message["MESSAGES"]["MESSAGE"]);
-    
-            switch ($message["MESSAGES"]["TYPE"]) {
-                case 0:
-                    $this->set('antmessagetype', "red");
-                    break;
-                case 1:
-                    $this->set('antmessagetype', "blue");
-                    break;
-                case 2:
-                    $this->set('antmessagetype', "green");
-                    break;
-            }
-        }
-
-        //check for uncle Ant's doodles
-
-        if ($message["DOODLES"]["STATUS"] > 0) {
-
-            $this->set('doodle', "http://dl.nope.bz/sb/build/".$message["DOODLES"]["IMAGE"]);
-        }
-
-    }
-
-
-/* ####################################################
- *   4.2) If Maintenance, redirect. If not...
-##################################################### */
-
-
-/* ####################################################
- *   5)  If no servers are set, deny access if not "SuperUser", redirect to "noservers.ctp"
-##################################################### */
-
-        $all_servers = $this->Server->find("all");
-
-        $allowed_actions = array("no_servers_set", "no_servers_set_manage", "logout");
-
-        if ((count($all_servers) < 1) && (!(in_array($this->action, $allowed_actions)))) {
-
-            if ($this->Auth->user('is_super') != 1) {
-
-            $this->redirect(array('controller' => 'global', 'action' => 'no_servers_set'));
-
-            } elseif ($this->Auth->user("is_super") == 1) {
-                
-            $this->redirect(array('controller' => 'global', 'action' => 'no_servers_set_manage'));
-
+            if (!$this->Auth->user() && !(in_array($this->name, $allowed)) )
+            {
+                echo $this->name;
+                $this->redirect(array('controller' => 'users', 'action' => 'login'));
             }
 
-        } elseif (in_array($this->action, $allowed_actions)) {} else  { 
+            $allowed = array("maintenance");  
+
+            if(!is_null($this->Auth->user())) {
+
+                    $this->set('username',  $this->Auth->user('username'));
+                    $this->set('current_user_id', $this->Auth->user('id'));
+
+                    $this->set('is_super', $this->Auth->user('is_super'));
+
+                /* Maintenance */  
+
+                if (($maintenance->exists()) && (!(in_array($this->action, $allowed))) && ($this->Auth->user('is_super') < 1)) {
+
+                    $this->redirect(array('controller' => 'global', 'action' => 'maintenance'));
+
+                    } elseif (in_array($this->name, $allowed)) {         
+                        
+
+                    } else  { //not maintenance process, continue        
+
+                    /* STORE SPACEBUKKIT VARIABLES TO SESSION */
+
+                    require APP . 'webroot/vars.php';
+                    require APP . 'webroot/system.php';
+
+                    foreach ($variables as $k => $var) {
+
+                        $this->Session->write("Sbvars.".$k, $var['val']);
+
+                    }
+
+                    foreach ($system as $k => $var) {
+
+                        $this->Session->write("Sbsys.".$k, $var['val']);
+
+                    }
+
+                    /* If this is not a post request, continue */
+
+                    if (!($this->request->is('post'))) {
+                           
+                      $this->loadModel('Server'); 
+    
+                      /* If this is not an ajax request, continue */
+
+                      if (!($this->request->is('ajax'))) {
+
+                        /* Setup Spacebukkit stuff like versioning and messages */
+
+                        require APP.'webroot/configuration.php';     
+                        $c_sb = $sbconf['app_version'];
+
+                        $app = $sbconf['app'];
+
+                        $this->set('spacebukkitbuildcurrent', $c_sb);
+
+                        if ($this->action == "index") {
+
+                            //do we want this?
+
+                            if($this->Session->read("Sbsys.3") == "true") {
+
+                                //is the user authorized?
+
+                                if (($this->Session->read("Sbvars.16") == 0 && $this->Auth->user('is_super') == 1) || $this->Session->read("Sbvars.16") == 1) {                               
+                                
+                                    //get LATEST SpaceBukkit version
+
+                                    $filename = 'http://dl.nope.bz/sb/build/build.xml';
+                                    $l_sb = simplexml_load_file($filename); 
+
+                                    $json = json_encode($l_sb);
+                                    $l_sb = json_decode($json, TRUE);
+                                    
+
+                                    //Set the notifier
+
+                                    if ($app < $l_sb["BUILD"]["APP"]) {
+                                            
+                                        $this->set('spacebukkitbuildready', "new");
+                                        $this->set('spacebukkitbuildnew', $l_sb["BUILD"]["VERSION"]);
+                                        $this->set('spacebukkitbuildfile', './update');
+
+                                    }
+
+                                    //check for uncle Ant's messages
+
+                                    $filename = 'http://dl.nope.bz/sb/build/message.12.xml';
+                                    $message = simplexml_load_file($filename); 
+
+                                    $json = json_encode($message);
+                                    $message = json_decode($json, TRUE);
+
+                                    //set the message
+
+                                    if ($message["MESSAGES"]["STATUS"] > 0) {
+
+                                        $this->set('antmessage', $message["MESSAGES"]["MESSAGE"]);
+                                
+                                        switch ($message["MESSAGES"]["TYPE"]) {
+                                            case 0:
+                                                $this->set('antmessagetype', "red");
+                                                break;
+                                            case 1:
+                                                $this->set('antmessagetype', "blue");
+                                                break;
+                                            case 2:
+                                                $this->set('antmessagetype', "green");
+                                                break;
+                                        }
+                                    }
+
+                                    //check for uncle Ant's doodles
+
+                                    if ($message["DOODLES"]["STATUS"] > 0) {
+
+                                        $this->set('doodle', "http://dl.nope.bz/sb/build/".$message["DOODLES"]["IMAGE"]);
+                                    }
+
+                                }
+
+                            } 
+
+                        }
 
 
-/* ####################################################
-*   6)  If the user is not "SuperUser" and not associated to any server, redirect to "global/no_servers_set"
-##################################################### */
+                            $all_servers = $this->Server->find("all");
 
-        $this->loadModel('User'); 
-        $this->loadModel('ServersUsers'); 
+                            $allowed_actions = array("no_servers_set", "no_servers_set_manage", "logout");
 
-        $user_data = $this->User->findById($this->Auth->user("id"));
-        $allowed_actions = array("no_servers_assoc", "logout");
+                            if ((count($all_servers) < 1) && (!(in_array($this->action, $allowed_actions)))) {
 
-        if (empty($user_data["ServersUsers"]) && !(in_array($this->action, $allowed_actions)) && ($this->Auth->user('is_super') < 1)) {
+                                if ($this->Auth->user('is_super') != 1) {
 
-            $this->redirect(array('controller' => 'global', 'action' => 'no_servers_assoc'));
+                                $this->redirect(array('controller' => 'global', 'action' => 'no_servers_set'));
 
-        } elseif (in_array($this->action, $allowed_actions)) {} else { 
+                                } elseif ($this->Auth->user("is_super") == 1) {
+                                    
+                                $this->redirect(array('controller' => 'global', 'action' => 'no_servers_set_manage'));
 
-/* ####################################################
- *   7)  Set roles for server. If the user role is not defined, change it to default
-##################################################### */
+                                }
 
-        if ( empty($user_data["ServersUsers"]) ) {
-           
-            $current_server = $this->Session->read("current_server");
-
-            //Check if cookie for current server was set. If not, set it to default
-            if (empty($current_server)) {
-                    $s = $this->Server->find("first");
-                    $this->Session->write("current_server", $s['Server']['id']);
-                    $current_server = $s['Server']['id'];
-
-            }  
-            
-        }  else {
-
-            $current_server = $this->Session->read("current_server");
-
-            //Check if cookie for current server was set. If not, set it to default
-            if (empty($current_server)) {
-
-                if ( $user_data["User"]['favourite_server'] != 0 ) {
-
-                    $this->Session->write("current_server", $user_data['User']['favourite_server']);
-                    $current_server =  $user_data['User']['favourite_server'];
-
-                }
-                else 
-                {
-                    $s = $this->ServersUsers->find('first', array('conditions' => array("ServersUsers.user_id" => $this->Auth->user("id"))));
-                    $this->Session->write("current_server", $s['Server']['id']);
-                    $current_server = $s['Server']['id'];     
-
-                }
-          
-            }  
-        }
-                
-        //New variable "$usr" stores all data relative to the user, relative to the current server
-        $conditions = array("ServersUsers.server_id" => $current_server, "ServersUsers.user_id" => $this->Auth->user("id"));
-        $usr = $this->ServersUsers->find('first', array('conditions' => $conditions));
-        $usr['AllowedServers'] = $this->ServersUsers->find('all', array('conditions' => array("ServersUsers.user_id" => $this->Auth->user("id"))));
-
-        //If superuser, construct his "$usr" manually
-
-        if ($this->Auth->user("is_super") == 1) {
-
-            $usr = array();
-
-            $usr["User"] = $user_data["User"];
-            $conditions = array("Server.id" => $current_server);
-            $server = $this->Server->find('first', array('conditions' => $conditions));
-            $usr["Server"] = $server["Server"];              
-            $usr["Role"] = array(
-
-                "id" => 99999,
-                "title" => "superuser",
-                "pages" => 255,
-                "global" => 255,
-                "dash" => 255,
-                "users" => 255,
-                "plugins" => 255,
-                "worlds" => 255,
-                "servers" => 255,
-                "backups" => 255,
-                "permissions" => 255,
-                "timeline" => 255,
-                );
-
-        }
-
-        $conditions = array("Server.id" => $current_server);
-        $s = $this->Server->find('first', array('conditions' => $conditions));
-
-        //write server config to session
-
-        $this->Session->write('Server.address', $s['Server']['address']);
-        $this->Session->write('Server.external_address', $s['Server']['external_address']);
-        $this->Session->write('Server.salt', $s['Server']['password']);
-        $this->Session->write('Server.p1', $s['Server']['port1']);
-        $this->Session->write('Server.p2', $s['Server']['port2']);
-
-        //security reset to fallback role if role does not exist
-
-        if (is_null($usr["Role"]["id"])) {
-
-            $conditions = array("Role.fallback" => "1");
-
-            $this->loadModel('Role'); 
-
-            $fallback = $this->Role->find('first', array("conditions" => $conditions));
-
-            $this->ServersUsers->updateAll(    
-                array('ServersUsers.role_id' => $fallback["Role"]["id"]),    
-                array('ServersUsers.role_id' => $usr["ServersUsers"]["role_id"])
-                );     
-                
-            //Re-read USR
-            $conditions = array("ServersUsers.server_id" => $current_server, "ServersUsers.user_id" => $this->Auth->user("id"));
-            $usr = $this->ServersUsers->find('first', array('conditions' => $conditions));     
-                 
-        }
+                            } elseif (in_array($this->action, $allowed_actions)) {} else  { 
 
 
-/* ####################################################
- *   8)  Set current server, language, global variables etc.
-##################################################### */
+                    /* ####################################################
+                    *   6)  If the user is not "SuperUser" and not associated to any server, redirect to "global/no_servers_set"
+                    ##################################################### */
 
-        $this->Session->write('Config.language', $usr['User']['language']);
+                            $this->loadModel('User'); 
+                            $this->loadModel('ServersUsers'); 
 
-        } //end else user_data empty 
+                            $user_data = $this->User->findById($this->Auth->user("id"));
+                            $allowed_actions = array("no_servers_assoc", "logout");
 
-        $this->set('all_servers', $all_servers);
-        $this->set('current_server', $current_server);
-        $usr['Role']['is_super'] = $this->Auth->user('is_super');
-        $this->set('glob_perm', $permissions);
-        $this->set('current_server_name', $usr["Server"]["title"]);
-        $this->set('user_data', $usr);
-        $this->set('user_perm', $usr['Role']);
-        $this->Session->write('glob_perm', $permissions);
-        $this->Session->write('user_perm', $usr['Role']);
+                            if (empty($user_data["ServersUsers"]) && !(in_array($this->action, $allowed_actions)) && ($this->Auth->user('is_super') < 1)) {
 
-/* ####################################################
- *   8b)  Write timestamp for "Admins online" section
-##################################################### */
-        $this->User->id = $this->Auth->User('id');
+                                $this->redirect(array('controller' => 'global', 'action' => 'no_servers_assoc'));
 
-        $data = array(
-           'User' => array(
-                        'active'          =>    time()
-           )
-        );
+                            } elseif (in_array($this->action, $allowed_actions)) {} else { 
 
-        $this->User->save($data);
-        
-        } //end else server count        
-        } //endif logging        
-        } //endif maintenance       
-        } //endif install   
-        } //endif ajax
-        } //endif post
+                    /* ####################################################
+                     *   7)  Set roles for server. If the user role is not defined, change it to default
+                    ##################################################### */
+
+                            if ( empty($user_data["ServersUsers"]) ) {
+                               
+                                $current_server = $this->Session->read("current_server");
+
+                                //Check if cookie for current server was set. If not, set it to default
+                                if (empty($current_server)) {
+                                        $s = $this->Server->find("first");
+                                        $this->Session->write("current_server", $s['Server']['id']);
+                                        $current_server = $s['Server']['id'];
+
+                                }  
+                                
+                            }  else {
+
+                                $current_server = $this->Session->read("current_server");
+
+                                //Check if cookie for current server was set. If not, set it to default
+                                if (empty($current_server)) {
+
+                                    if ( $user_data["User"]['favourite_server'] != 0 ) {
+
+                                        $this->Session->write("current_server", $user_data['User']['favourite_server']);
+                                        $current_server =  $user_data['User']['favourite_server'];
+
+                                    }
+                                    else 
+                                    {
+                                        $s = $this->ServersUsers->find('first', array('conditions' => array("ServersUsers.user_id" => $this->Auth->user("id"))));
+                                        $this->Session->write("current_server", $s['Server']['id']);
+                                        $current_server = $s['Server']['id'];     
+
+                                    }
+                              
+                                }  
+                            }
+                                    
+                            //New variable "$usr" stores all data relative to the user, relative to the current server
+                            $conditions = array("ServersUsers.server_id" => $current_server, "ServersUsers.user_id" => $this->Auth->user("id"));
+                            $usr = $this->ServersUsers->find('first', array('conditions' => $conditions));
+                            $usr['AllowedServers'] = $this->ServersUsers->find('all', array('conditions' => array("ServersUsers.user_id" => $this->Auth->user("id"))));
+
+                            //If superuser, construct his "$usr" manually
+
+                            if ($this->Auth->user("is_super") == 1) {
+
+                                $usr = array();
+
+                                $usr["User"] = $user_data["User"];
+                                $conditions = array("Server.id" => $current_server);
+                                $server = $this->Server->find('first', array('conditions' => $conditions));
+                                $usr["Server"] = $server["Server"];              
+                                $usr["Role"] = array(
+
+                                    "id" => 99999,
+                                    "title" => "superuser",
+                                    "pages" => 255,
+                                    "global" => 255,
+                                    "dash" => 255,
+                                    "users" => 255,
+                                    "plugins" => 255,
+                                    "worlds" => 255,
+                                    "servers" => 255,
+                                    "backups" => 255,
+                                    "permissions" => 255,
+                                    "timeline" => 255,
+                                    );
+
+                            }
+
+                            $conditions = array("Server.id" => $current_server);
+                            $s = $this->Server->find('first', array('conditions' => $conditions));
+
+                            //write server config to session
+
+                            $this->Session->write('Server.address', $s['Server']['address']);
+                            $this->Session->write('Server.external_address', $s['Server']['external_address']);
+                            $this->Session->write('Server.salt', $s['Server']['password']);
+                            $this->Session->write('Server.p1', $s['Server']['port1']);
+                            $this->Session->write('Server.p2', $s['Server']['port2']);
+
+                            //security reset to fallback role if role does not exist
+
+                            if (is_null($usr["Role"]["id"])) {
+
+                                $conditions = array("Role.fallback" => "1");
+
+                                $this->loadModel('Role'); 
+
+                                $fallback = $this->Role->find('first', array("conditions" => $conditions));
+
+                                $this->ServersUsers->updateAll(    
+                                    array('ServersUsers.role_id' => $fallback["Role"]["id"]),    
+                                    array('ServersUsers.role_id' => $usr["ServersUsers"]["role_id"])
+                                    );     
+                                    
+                                //Re-read USR
+                                $conditions = array("ServersUsers.server_id" => $current_server, "ServersUsers.user_id" => $this->Auth->user("id"));
+                                $usr = $this->ServersUsers->find('first', array('conditions' => $conditions));     
+                                     
+                            }
+
+
+                    /* ####################################################
+                     *   8)  Set current server, language, global variables etc.
+                    ##################################################### */
+
+                            $this->Session->write('Config.language', $usr['User']['language']);
+
+                            } //end else user_data empty 
+
+                            $this->set('all_servers', $all_servers);
+                            $this->set('current_server', $current_server);
+                            $usr['Role']['is_super'] = $this->Auth->user('is_super');
+                            $this->set('glob_perm', $permissions);
+                            $this->set('current_server_name', $usr["Server"]["title"]);
+                            $this->set('user_data', $usr);
+                            $this->set('user_perm', $usr['Role']);
+                            $this->Session->write('glob_perm', $permissions);
+                            $this->Session->write('user_perm', $usr['Role']);
+
+                    /* ####################################################
+                     *   8b)  Write timestamp for "Admins online" section
+                    ##################################################### */
+                            $this->User->id = $this->Auth->User('id');
+
+                            $data = array(
+                               'User' => array(
+                                            'active'          =>    time()
+                               )
+                            );
+
+                            $this->User->save($data);
+                            
+                            }   
+                        }  
+                    }    
+                } //maintenance
+            } //logged in
+        } //endif install
     }
 
 /* ####################################################

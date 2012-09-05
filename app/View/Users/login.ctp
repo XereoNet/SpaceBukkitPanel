@@ -27,12 +27,17 @@
     .new-login .left {
         border-bottom-left-radius: 7px;        
         border-top-left-radius: 7px;        
+        -moz-border-bottom-left-radius: 7px;        
+        -moz-border-top-left-radius: 7px;        
+        -webkit-border-bottom-left-radius: 7px;        
+        -webkit-border-top-left-radius: 7px;        
         height: 100%;
     }
 
     .new-login .right {
-        border-bottom-right-radius: 7px;        
-        border-top-right-radius: 7px;        
+        border-radius: 7px;        
+        -moz-border-radius: 7px;        
+        -webkit-border-radius: 7px;        
         background-image: -webkit-gradient(linear, center top, center bottom, from(white), to(#c2c2c2));
         background-image: -webkit-linear-gradient(top, white, #c2c2c2);
         background-image: -moz-linear-gradient(top, white, #c2c2c2);
@@ -40,9 +45,10 @@
         background-image: -ms-linear-gradient(top, white, #c2c2c2);
         background-image: linear-gradient(to bottom, white, #c2c2c2);
         height: 100%;
+        padding-bottom: 20px;
     }
     .new-login > div div {
-        margin: 30px;
+        margin: 20px 10px;
     }
     .login-news > div {
         margin: 10px 30px 20px;
@@ -179,7 +185,7 @@
                     You can report any bugs to our <a href="http://forums.xereo.net">Forums</a><br><br>
 
 
-                    SpaceBukkit if free for personal usage. Please consider making a donation: <br><br> <form action="https://www.paypal.com/cgi-bin/webscr" method="post" style="display: inline; position: relative">
+                    SpaceBukkit if free for personal usage. Please consider making a donation: <br><br> <form action="https://www.paypal.com/cgi-bin/webscr" target="_blank" method="post" style="display: inline; position: relative">
                     <input type="hidden" name="cmd" value="_s-xclick">
                     <input type="hidden" name="hosted_button_id" value="ZW8KTNTJLRGGY">
                     <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
@@ -207,7 +213,7 @@
                 <?php echo $this->Form->create('User');?>
                     <div>
                         <input type="text" id="UserUsername" maxlength="50" name="data[User][username]" placeholder="Enter username" class="login_user"><br>
-                        <input type="password" id="UserPassword" name="data[User][password]" placeholder="Enter password" class="login_pass"><br><br><br><br>
+                        <input type="password" id="UserPassword" name="data[User][password]" placeholder="Enter password" class="login_pass"><br>
                         <input type="submit" class="button big primary submit loginkey pull-right" value="Login">
                     </div>
                 </form>
@@ -217,6 +223,7 @@
 
     </div>
 
+    <?php if(isset($message)) : ?>
     <div class="login-news">
 
 <?php 
@@ -242,5 +249,7 @@ END;
 ?>
 
     </div>
+
+    <?php endif; ?>
 
 </section>

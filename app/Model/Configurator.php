@@ -159,11 +159,11 @@ class Configurator extends AppModel {
 
       if ($key) {
 
-        return $variables[$key];
+        return $system[$key];
 
       } else {
 
-        return $variables;
+        return $system;
 
       }
 

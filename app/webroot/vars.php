@@ -100,6 +100,12 @@
         'vars'              => null,
         'val'               => /*15*/'{player} has been banned. SpaceBukkit is gonna miss him :('
         ), 
+    array(
+        'name'              => 'Panel Notifications',
+        'desc'              => 'Who should see panel notifications (like updates or messages from the team)',
+        'vars'              => array('Everybody' => 1, 'Superusers' => 0),
+        'val'               => /*16*/0
+        )
     ); 
 
 

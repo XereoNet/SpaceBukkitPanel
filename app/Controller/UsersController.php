@@ -66,37 +66,42 @@ class UsersController extends AppController {
 
     public function login() {
 
-    if ($this->Auth->login()) {
-        $this->Session->write("current_theme", $this->Auth->user('theme'));
-        $this->Session->write("current_server", $this->Auth->user("favourite_server"));
-       
-        $this->redirect(array('controller' => 'global', 'action' => 'login'));
+      if ($this->Auth->login()) {
+          $this->Session->write("current_theme", $this->Auth->user('theme'));
+          $this->Session->write("current_server", $this->Auth->user("favourite_server"));
+         
+          $this->redirect(array('controller' => 'global', 'action' => 'login'));
 
-    } else {
+      }
 
+      //check for uncle Ant's news
 
-    }
+      $this->loadModel('Configurator');
 
+      $setting1 = $this->Configurator->returnSys(3);
+      $setting2 = $this->Configurator->returnSys(4);
 
-    //check for uncle Ant's news
+      if($setting1["val"] == "true" && $setting2["val"] == 'true') {
 
-    $filename = 'http://dl.nope.bz/sb/build/news.xml';
-    $message = simplexml_load_file($filename); 
+        $filename = 'http://dl.nope.bz/sb/build/news.xml';
+        $message = simplexml_load_file($filename); 
 
-    $json = json_encode($message);
-    $message = json_decode($json, TRUE);
-    $this->set('message', $message);
+        $json = json_encode($message);
+        $message = json_decode($json, TRUE);
+        $this->set('message', $message);
 
-    $this->set('title_for_layout', __('Login to SpaceBukkit'));
+      }
 
-    if (!empty($this->Auth->request->data)) {
-      $this->set('flash', $this->Auth->loginError);
-    } else {
-      $this->set('flash', $this->Session->read('auth'));
-    }
+      $this->set('title_for_layout', __('Login to SpaceBukkit'));
 
-    $this->layout = 'login';
-    
+      if (!empty($this->Auth->request->data)) {
+        $this->set('flash', $this->Auth->loginError);
+      } else {
+        $this->set('flash', $this->Session->read('auth'));
+      }
+
+      $this->layout = 'login';
+      
     }
 
     public function logout() {
