@@ -68,6 +68,18 @@
                 </div>
 
                 <div style="display: none" id="mysql_forms">
+                  <br>
+                <?php
+                    if (extension_loaded('pdo_mysql')):
+                        echo '<span class="alert alert-success">';
+                            echo __('The "pdo_mysql" extension is loaded in your php.ini!');
+                        echo '</span>';
+                    else:
+                        echo '<span class="alert alert-error">';
+                            echo __('The "pdo_mysql" extension is NOT loaded in your php.ini! Make sure to load it before continuing!');
+                        echo '</span>';
+                    endif;
+                ?>
 
                     <h2>MySQL - Information needed</h2>
 
