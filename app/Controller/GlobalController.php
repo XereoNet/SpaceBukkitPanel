@@ -72,8 +72,9 @@ class GlobalController extends AppController {
             }
 
             $this->loadModel('Server');
+            $this->loadModel('User');
 
-            $url = 'api.xereo.net/Spacebukkit/store/'.$sbconf['token'].'/'.$this->Server->find('count');
+            $url = 'api.xereo.net/Spacebukkit/store/'.$sbconf['token'].'/'.$this->Server->find('count').'/'.$this->User->find('count');
 
             $c = curl_init($url);
             curl_setopt($c, CURLOPT_PORT, 80);
