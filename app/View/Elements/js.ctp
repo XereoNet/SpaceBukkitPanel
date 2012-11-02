@@ -4,7 +4,7 @@
 	<script src="<?php echo $this->webroot; ?>js/excanvas.js"></script> 
 	<script src="<?php echo $this->webroot; ?>js/jquery.uniform.min.js"></script> 
 	<script src="<?php echo $this->webroot; ?>js/jquery.validate.min.js"></script> 
-	<script src="http://tab-slide-out.googlecode.com/files/jquery.tabSlideOut.v1.3.js"></script>
+	<script src="//tab-slide-out.googlecode.com/files/jquery.tabSlideOut.v1.3.js"></script>
 	<script src="<?php echo $this->webroot; ?>js/jquery.livesearch.js"></script>
 	<script src="<?php echo $this->webroot; ?>js/jquery.visualize.js"></script> 
 	<script src="<?php echo $this->webroot; ?>js/jquery.datatables.js"></script>

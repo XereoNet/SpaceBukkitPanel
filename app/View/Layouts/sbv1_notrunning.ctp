@@ -20,7 +20,7 @@
 
 
 <!-- Load Jquery -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js" type="text/javascript"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js" type="text/javascript"></script>
 <script src="<?php echo $this->webroot; ?>js/script.js"></script> 
 <script src="<?php echo $this->webroot; ?>js/selectivizr.min.js"></script> 
 
