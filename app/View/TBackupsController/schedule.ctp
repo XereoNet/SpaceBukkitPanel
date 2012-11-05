@@ -1,150 +1,125 @@
-<nav id="mainnav" class="popup">
-    <h3>Schedule backup</h3>
-</nav>
-<nav id="popuptabs">
-</nav>
-<!-- End Tabs -->
-
 <!-- Content -->
-<section id="content"> 
-    <section>
 
+Deactivated for now since it's not functional, we are working on a fix!
+
+<!-- <section id="content">
+<div class="error_box"></div>
+
+        <form id="schedform" class="scheduler" method="post" action="./tbackups/schedule">
       <div class="error_box"></div>
-        <form id="scheduler" class="scheduler" method="post" action="./tbackups/schedule">
 
-      <div class="col left">
+      <section>
 
-      <input id="name" name="name" type="text" style="display: block;" placeholder="Schedule title">
+        <label for="name">Backup title</label>
+        <div>
+          <input id="name" name="name" type="text" placeholder="Backup title">
+          <p class="help-block">Give your backup a unique name</p>
+        </div>
 
-      <br>
+      </section>
 
-      <select name="type" id="type">
+      <section>
 
-      <option value="server">Server</option>
-      <option value="plugins">Plugins</option>
-      <option value="world">World</option>
+        <label for="name">Type</label>
+        <div>
 
-      </select> 
+          <select name="type" id="type">
 
-      <br><br>
+              <option value="server">Complete Server</option>
+              <option value="plugins">All plugins</option>
+              <option value="world">A world</option>
 
-      <select name="sworlds" id="sworlds">
-        <?php 
-          foreach ($worlds as $world) {
-            echo '<option value="'.$world.'">'.$world.'</option>';
-          }
-        ?>
-      </select>
+          </select>
+        </div>
 
-      </div>
+      </section>
 
-      <div class="col right">
+      <section>
 
-       <select name="timeType" id="timeType">
+        <label for="name">Time type</label>
+        <div>
 
-        <option value="0" selected="selected">Time type</option>
-        <option value="EVERYXHOURS">Every X Hours</option>
-        <option value="EVERYXMINUTES">Every X Minutes</option>
-        <option value="ONCEPERDAYAT">Once per day at</option>
-        <option value="XMINUTESPASTEVERYHOUR">At X minutes after every hour</option>
+           <select name="timeType" id="timeType">
 
-      </select>   
+            <option value="0" selected="selected">Time type</option>
+            <option value="EVERYXHOURS">Every X Hours</option>
+            <option value="EVERYXMINUTES">Every X Minutes</option>
+            <option value="ONCEPERDAYAT">Once per day at</option>
+            <option value="XMINUTESPASTEVERYHOUR">At X minutes after every hour</option>
 
-      <br><br>
+          </select>
 
-      <div id="time1_container" style="display: none;">
+          <p class="help-block">What kind of time type do you want?</p>
+        </div>
 
-      <select name="timeArgs1" id="timeArgs1">
+      </section>
 
-        <option value="null">Choose...</option>
+      <section>
 
-      </select>  
+        <label id="timeargslabel" for="timeArgs1" style="display: none">Time arguments</label>
 
-      </div>
+          <div id="time1_container" style="display: none; margin: 0">
 
-      <br><br>
+            <select name="timeArgs1" id="timeArgs1">
 
+            <option value="null">Choose...</option>
 
-      <div id="time2_container" style="display: none;">
-      :
-      <select name="timeArgs2" id="timeArgs2">
+          </select>
 
-      </select>  
+          </div>
 
-      </div>
+        <div id="time2_container" style="display: none; margin: 0">
+          :
+          <select name="timeArgs2" id="timeArgs2">
 
-      </div>
+          </select>
 
-      <div class="clear"></div>
-      <br>
-      <input type="submit" class="button primary submit big leftsubmit" style="" value="<?php echo __('Add this schedule') ?>">
-         
+        </div>
 
-     </form>
+      </section>
 
-    </section> 
-               
- </section>
+        <input type="submit" class="button primary submit big leftsubmit" value="<?php echo __('Add this schedule') ?>">
 
-<div class="clear"></div>
-</section>
-<!-- End #content --> 
-<script type="text/javascript">
-  /* schedules */
-$('document').ready(function() {
-   $('#sworlds').hide();        
+    <div class="clear"></div>
 
-   var value = $("#type option:selected").attr('value');
+  </form>
 
-   if (value === "world")
+</div>
+
+<script>
+
+/* schedules */
+
+   $('#argcont').hide();
+
+   var rel = $("#type option:selected").attr('rel');
+
+   if (rel == "needsargs")
       {
-        $('#sworlds').fadeIn();
+        $('#argcont').fadeIn();
+      }
+    else if ((rel != "false") || (rel != "nee"))
+      {
+        $('#arguments').val(rel);
       }
 
   //listen for change of select box
   $('#type').live("change", function() {
-      
-      $('#sworlds').hide();
 
-      var value = $("#type option:selected").attr('value');
+      $('#argcont').hide();
 
-       if (value === "world")
+      $('#arguments').val('');
+
+      var rel = $("#type option:selected").attr('rel');
+
+       if (rel == "needsargs")
       {
-        $('#sworlds').show();
+        $('#argcont').show();
       }
-
-  });
-
-  var lworld;
-
-  $('#sworlds').live("change", function() {
-       lworld = $("#sworlds option:selected").attr('value');
-  });
-
-  $(".scheduler").live("submit", function(event) {
-
-    /* stop form from submitting normally */
-    event.preventDefault(); 
-        
-    /* get some values from elements on the page: */
-    var $form = $(this),
-        lname = $form.find( 'input[name="name"]' ).val(),
-        ltype = $form.find( 'select[name="type"]' ).val(),
-        ltimetype = $form.find( 'select[name="timeType"]' ).val(),
-        ltimeargs1 = $form.find( 'select[name="timeArgs1"]' ).val(),
-        ltimeargs2 = $form.find( 'select[name="timeArgs2"]' ).val(),
-        url = $form.attr( 'action' );
-
-    /* Send the data using post and put the results in a div */
-    $.post(url, {name: lname, type: ltype, world: lworld, timetype: ltimetype, timeargs1: ltimeargs1, timeargs2: ltimeargs2},
-      function( data ) {
-        
+      else if ((rel != "false") || (rel != "needsargs"))
+      {
+        $('#arguments').val(rel);
       }
-    );
-    
-    $.nmTop().close();
-    
-    return false;
 
   });
 
@@ -153,6 +128,7 @@ $('document').ready(function() {
 
       $("#time1_container").css('display', 'none');
       $("#time2_container").css('display', 'none');
+      $('#timeargslabel').css('display', 'none');
       $('#uniform-timeArgs1 span').html('');
       $('#uniform-timeArgs2 span').html('');
 
@@ -162,7 +138,7 @@ $('document').ready(function() {
       var url3 = "./schedules/getTimes/3";
       var url4 = "./schedules/getTimes/4";
 
-      if (value=="EVERYXHOURS") 
+      if (value=="EVERYXHOURS")
         {
           $.getJSON(url1, function(j){
 
@@ -175,11 +151,12 @@ $('document').ready(function() {
                 $("#timeArgs1").html(options);
                 $('#uniform-timeArgs1 span').html('Choose...');
                 $("#time1_container").css('display', 'inline');
+            $('#timeargslabel').css('display', 'inline');
 
               })
         }
 
-      if (value=="EVERYXMINUTES") 
+      if (value=="EVERYXMINUTES")
         {
           $.getJSON(url2, function(k){
 
@@ -192,11 +169,12 @@ $('document').ready(function() {
                 $("#timeArgs1").html(options);
                 $('#uniform-timeArgs1 span').html('Choose...');
                 $("#time1_container").css('display', 'inline');
+            $('#timeargslabel').css('display', 'inline');
 
               })
-        } 
+        }
 
-      if (value=="ONCEPERDAYAT") 
+      if (value=="ONCEPERDAYAT")
         {
           $.getJSON(url3, function(x){
 
@@ -209,6 +187,7 @@ $('document').ready(function() {
                 $("#timeArgs1").html(options);
                 $('#uniform-timeArgs1 span').html('Choose...');
                 $("#time1_container").css('display', 'inline');
+            $('#timeargslabel').css('display', 'inline');
 
               })
           $.getJSON(url4, function(y){
@@ -223,11 +202,12 @@ $('document').ready(function() {
                 $("#timeArgs2").html(options);
                 $('#uniform-timeArgs2 span').html('Choose...');
                 $("#time2_container").css('display', 'inline');
+            $('#timeargslabel').css('display', 'inline');
 
-              })              
-        } 
+              })
+        }
 
-      if (value=="XMINUTESPASTEVERYHOUR") 
+      if (value=="XMINUTESPASTEVERYHOUR")
         {
           $.getJSON(url2, function(z){
 
@@ -240,10 +220,52 @@ $('document').ready(function() {
                 $("#timeArgs1").html(options);
                 $('#uniform-timeArgs1 span').html('Choose...');
                 $("#time1_container").css('display', 'inline');
+            $('#timeargslabel').css('display', 'inline');
 
               })
-        } 
+        }
 
   });
-});
-</script>
+
+
+
+  $("#schedform").submit(function(event) {
+
+    /* stop form from submitting normally */
+    event.preventDefault();
+
+    /* get some values from elements on the page: */
+    var $form = $(this),
+        type = $form.find( 'select[name="type"]' ).val(),
+        timeType = $form.find( 'select[name="timeType"]' ).val(),
+        timeArgs1 = $form.find( 'select[name="timeArgs1"]' ).val(),
+        timeArgs2 = $form.find( 'select[name="timeArgs2"]' ).val(),
+        args = $form.find( 'input[name="arguments"]' ).val(),
+        name = $form.find( 'input[name="name"]' ).val(),
+        url = $form.attr( 'action' );
+
+    /* Send the data using post and put the results in a div */
+    $.post(url, {name: name, arguments: args, timeArgs2: timeArgs2, timeArgs1: timeArgs1, timeType: timeType, type: type},
+      function( data ) {
+
+          if (data=="yes")
+          {
+
+            setTimeout(function() {$.nmTop().close();}, 300);
+            notifications.show({msg:"Schedule added", icon:'img/win.png'});
+
+          }
+
+          else
+          {
+
+            notifications.show({msg:"Failed adding schedule, check your data", icon:'img/fail.png'});
+
+          }
+
+         Table1.fnReloadAjax("./schedules/getTasks")
+      }
+    );
+  });
+
+</script> -->

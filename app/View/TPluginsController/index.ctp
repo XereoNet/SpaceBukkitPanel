@@ -9,15 +9,15 @@
 <!-- End Tabs -->
 
 <!-- Content -->
-<section id="content"> 
-  
+<section id="content">
+
 	<div class="tab" id="tab1">
 
-	<div class="alert alert-info">
+<!-- 	<div class="alert alert-info">
 	<p><?php echo __('This page might be slow with many plugins!'); ?></p>
 	<p><?php echo __('Plugins with the <img src="img/bukget_enabled.png" /> Bukget Icon are automatically checked for Updates. Disabling a plugin will only disable it till the next reload or restart (we are working on a better solution :)') ?></p>
-	</div>
-		
+	</div> -->
+
   <div class="table_container">
 
     <header>
@@ -27,23 +27,23 @@
 
     </header>
 
-	  <table class="datatable adtb1"> 
-	    <thead> 
-	      <tr> 
-	        <th><?php echo __('Status') ?></th> 
-	        <th><?php echo __('Name') ?></th> 
-	        <th><?php echo __('Version') ?></th> 
-	        <th><?php echo __('Authors') ?></th> 
-	        <th><?php echo __('Description') ?></th> 
-	        <th style="width: 300px"><?php echo __('Actions') ?></th> 
-	        <th><?php echo __('Info') ?></th> 	        
-	      </tr> 
-	    </thead> 
-	 
-	    <tbody> 
-      
-	    </tbody> 
-	  </table> 
+	  <table class="datatable adtb1">
+	    <thead>
+	      <tr>
+	        <th><?php echo __('Status') ?></th>
+	        <th><?php echo __('Name') ?></th>
+	        <th><?php echo __('Version') ?></th>
+	        <th><?php echo __('Authors') ?></th>
+	        <th><?php echo __('Description') ?></th>
+	        <th style="width: 300px"><?php echo __('Actions') ?></th>
+	        <th><?php echo __('Info') ?></th>
+	      </tr>
+	    </thead>
+
+	    <tbody>
+
+	    </tbody>
+	  </table>
 
 	<div class="clear"></div>
 
@@ -63,42 +63,42 @@
 
 
     </header>
-		<table class="datatable adtb2"> 
-		<thead> 
-		  <tr> 
+		<table class="datatable adtb2">
+		<thead>
+		  <tr>
 		    <th><?php echo __('Name') ?></th>
 		    <th><?php echo __('Version') ?></th>
 		    <th><?php echo __('New Version') ?></th>
-		    <th><?php echo __('Actions') ?></th> 
-		  </tr> 
-		</thead> 
+		    <th><?php echo __('Actions') ?></th>
+		  </tr>
+		</thead>
 
-		<tbody> 
-        </tbody> 
-		</table> 
-	
+		<tbody>
+        </tbody>
+		</table>
+
 	</div>
 
 	</div>
 
 	<div class="col right">
 
-		<section class="box"> 
-	 
+		<section class="box">
+
 			<header>
-			    <h2><?php echo __('Install Plugin') ?></h2> 
+			    <h2><?php echo __('Install Plugin') ?></h2>
 			</header>
 
 			<section>
 
-				<table class="table"> 
-				    <tbody> 
-				        <tr> 
-				            <td><?php echo __('Via Bukget (Recommended)') ?></td> 
-				            <td class="ar">Currently not available</td> 
-				        </tr> 
-				        <tr> 
-				            <td>Via URL</td> 
+				<table class="table">
+				    <tbody>
+				        <tr>
+				            <td><?php echo __('Via Bukget (Recommended)') ?></td>
+				            <td class="ar"><a href="./bukget2" class="button icon arrowright fancy big"><?php echo __('Bukget') ?></a></td>
+				        </tr>
+				        <tr>
+				            <td>Via URL</td>
 				            <td class="ar">
 							    <form id="installPluginURL" class="installPluginURL" method="post" action="./tplugins/URLinstall">
 							      <div>
@@ -106,16 +106,16 @@
 							    	<input type="submit" class="button primary submit installURL" value="<?php echo __('Install') ?>">
 							      </div>
 							    </form>
-				            </td> 
-				        </tr> 
-				    </tbody> 
+				            </td>
+				        </tr>
+				    </tbody>
 
 				</table>
 
 			</section>
-			    
-		</section> 
-	
+
+		</section>
+
 	</div><!--end left -->
 
 	<div class="clear"></div>
@@ -125,7 +125,7 @@
 	<div class="clear"></div>
 
 </section>
-<!-- End #content --> 
+<!-- End #content -->
 <script>
 $('document').ready(function() {
 
@@ -138,7 +138,7 @@ $('document').ready(function() {
       "bProcessing": true,
       "sAjaxSource": './tplugins/checkPluginUpdates'
   });
- 
+
 	$(".ajax_table1").live('click', (function(){
 
 	var source = $(this).attr("href");
@@ -146,7 +146,7 @@ $('document').ready(function() {
     var aPos = Table1.fnGetPosition(pos[0]);
     var plugin = Table1.fnGetData(aPos, 1);
 	Table1.fnUpdate( ["", "", "", "Processing...", "", "", ""], aPos, 0);
-		  	  
+
 	$.ajax({
 	  url: source,
 	  success: function(data) {
@@ -155,7 +155,7 @@ $('document').ready(function() {
 
 				    Table1.fnUpdate( data2, aPos, 0);
 		  });
-		  
+
 	      notifications.show({msg:data, icon:'img/win.png'});
 
 	  }
@@ -174,9 +174,9 @@ $('document').ready(function() {
 		var url = form.attr('action');
 
 		$.ajax({
-			type: 'POST', 
-			url: url, 
-			data: {url: file}, 
+			type: 'POST',
+			url: url,
+			data: {url: file},
 			success: function (d) {
 				var data = $.parseJSON(d);
 				if (data.ret) {
