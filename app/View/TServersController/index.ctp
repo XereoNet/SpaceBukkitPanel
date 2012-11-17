@@ -304,11 +304,47 @@
                 <input id="view-distance" name="view-distance" type="text" value="<?php echo $view_distance ;?>"/>
               </div>
             </section>
+            <section>
+              <label for="title">
+                <?php echo __('Level type') ?>
+              </label>
+            
+              <div>
+                <input id="level-type" name="level-type" type="text" value="<?php echo $level_type ;?>"/>
+              </div>
+            </section>
             </div>
 
 
             
             <div class="col right">
+             
+
+            <section>
+              <label for="title">
+                <?php echo __('Max build height') ?>
+              </label>
+            
+              <div>
+              
+                <select name="max-build-height" id="max-build-height">
+
+                  <?php
+                      for ($i=1; $i <= 256; $i++) { 
+                        if ($max_build_height == $i) {
+                          echo '<option value="'.$i.'" selected>'.$i.'</option>';
+                        } else {
+                          echo '<option value="'.$i.'">'.$i.'</option>';
+                        }
+                          
+                      }
+                  ?>
+                  
+
+                </select>   
+              </div>
+            </section>
+
              <section>
               <label for="title">
                 <?php echo __('Difficulty') ?>
@@ -332,7 +368,7 @@
               </label>
             
               <div>
-               <select name="gamemode" id="difficulty">
+               <select name="gamemode" id="gamemode">
 
                   <option value="0"<?php if ($gamemode == "0") {echo " selected";}?>><?php echo __('Survival') ?></option>
                   <option value="1"<?php if ($gamemode == "1") {echo " selected";}?>><?php echo __('Creative') ?></option>
@@ -386,6 +422,15 @@
                 <input id="spawn-animals" name="spawn-animals" type="checkbox" value="true"   <?php if ($spawn_animals == "true") {echo " checked";}?>/>
               </div>
             </section>
+            <section>
+              <label for="title">
+                <?php echo __('Spawn NPC\'s') ?>
+              </label>
+            
+              <div>
+                <input id="spawn-npcs" name="spawn-npcs" type="checkbox" value="true"   <?php if ($spawn_npcs == "true") {echo " checked";}?>/>
+              </div>
+            </section>
              <section>
               <label for="title">
                 <?php echo __('PVP') ?>
@@ -393,6 +438,15 @@
             
               <div>
                 <input id="pvp" name="pvp" type="checkbox" value="true"   <?php if ($pvp == "true") {echo " checked";}?>/>
+              </div>
+            </section>
+            <section>
+              <label for="title">
+                <?php echo __('Hardcore') ?>
+              </label>
+            
+              <div>
+                <input id="hardcore" name="hardcore" type="checkbox" value="true"   <?php if ($hardcore == "true") {echo " checked";}?>/>
               </div>
             </section>
 
@@ -423,6 +477,16 @@
                 <input id="enable-query" name="enable-query" type="checkbox" value="true" <?php if ($enable_query == "true") {echo " checked";}?>/>
               </div>
             </section>
+            <section>
+              <label for="title">
+                <?php echo __('Enable Snooper') ?>
+              </label>
+            
+              <div>
+                <input id="snooper-enabled" name="snooper-enabled" type="checkbox" value="true" <?php if ($snooper_enabled == "true") {echo " checked";}?>/>
+              </div>
+            </section>
+
 <input type="submit" value="Save" style="position: absolute; top: 13px; right: 10px;" name="save" class="button primary submit leftsubmit showOverlay" rel="Saving server.properties..." id="saveprop">
         </div>
         </form>
