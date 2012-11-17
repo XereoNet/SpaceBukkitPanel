@@ -14,8 +14,8 @@
 
 					foreach ($cats as $cat) {
 
-					$id[$cat] = str_replace(" ", "_", $cat);
-						
+					$id[$cat] = str_replace(" ", "%20", $cat);
+
 						echo '<li><a href="./bukget2/cat/'.$id[$cat].'" class="fancy has-child unloaded" rel="'.$id[$cat].'">'.$cat.'</a></li>';
 
 					}
@@ -38,7 +38,7 @@
 
 	<ul>
 		<?php
-		    foreach ($latest as $change) 
+		    foreach ($latest as $change)
       {
 
 echo <<<END
@@ -47,8 +47,8 @@ echo <<<END
     <p>$change[version]</p>
     </li>
 END;
-      } 
-		?>		
+      }
+		?>
 	</ul>
 	</div>
 </div>

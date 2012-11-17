@@ -3,7 +3,7 @@
 /**
 *
 *   ####################################################
-*   TbackupsController.php 
+*   TbackupsController.php
 *   ####################################################
 *
 *   DESCRIPTION
@@ -11,7 +11,7 @@
 *   This controller is relative to the "Backups" page and all it's related functions.
 *
 *   TABLE OF CONTENTS
-*   
+*
 *   1)  index
 *
 *   Active functions: (ajax updates)
@@ -22,8 +22,8 @@
 *       4)  backup
 *       5)  restore
 *       6)  schedule
-*   
-*   
+*
+*
 * @copyright  Copyright (c) 2012 XereoNet and SpaceBukkit (http://spacebukkit.xereo.net)
 * @version    Last edited by Jamy
 * @since      File available since Release 1.2
@@ -46,36 +46,36 @@ class TBackupsController extends AppController {
         $user_perm = $this->Session->read("user_perm");
         $glob_perm = $this->Session->read("glob_perm");
 
-        if (!($user_perm['pages'] & $glob_perm['pages']['backups'])) { 
+        if (!($user_perm['pages'] & $glob_perm['pages']['backups'])) {
 
            exit("access denied");
 
-       } 
+       }
 
    }
 
-    function index() {      // index function 
+    function index() {      // index function
 
         if (!isset($api)){
-            require APP . 'spacebukkitcall.php';  
+            require APP . 'spacebukkitcall.php';
         }
 
-        $args = array();   
+        $args = array();
         $running = $api->call("isServerRunning", $args, true);
-        
+
         $this->set('running', $running);
 
         if (is_null($running) || preg_match("/salt/", $running)) {
 
-            $this->layout = 'sbv1_notreached'; 
-                     
-        } 
+            $this->layout = 'sbv1_notreached';
+
+        }
 
         elseif (!$running) {
 
             $this->layout = 'sbv1_notrunning_settings';
 
-        } 
+        }
 
         elseif ($running) {
 
@@ -100,8 +100,8 @@ class TBackupsController extends AppController {
                 }
             }
             $this->set('backupPlugins', $bPlugins);
-            
-            $this->layout = 'sbv1';  
+
+            $this->layout = 'sbv1';
 
             $this->set('title_for_layout', 'Backups');
         }
@@ -126,7 +126,7 @@ class TBackupsController extends AppController {
             $args = array();
             $bInfo = $api->call('getRunningOperationInfo', $args, true);
             $data = '';
-            
+
             if (!is_null($bInfo[0])) {
                 $r = 'yes';
                 $size = round((intval($bInfo[6]) / 1048576), 2);
@@ -224,7 +224,7 @@ class TBackupsController extends AppController {
             // --------------------------------------------------------------------------------------------------
             // | Previous Backups                                                                               |
             // --------------------------------------------------------------------------------------------------
-            
+
             $tyToWrite = explode(',', $prevAmount);
             $args = array();
             $backups = $api->call('getBackups', $args, true);
@@ -320,13 +320,13 @@ class TBackupsController extends AppController {
                     $prevOutput["s"] .= '<section><div class="b-what"><a href="#" class="button icon add" id="updateps">'.__('More...').'</a></div><div class="b-in"></div><div class="b-when"></div></section>';
                 } else if ($wrote["s"] == 0) {
                     $prevOutput["s"] .= '<section><h3>No server backups found!</h3></section>';
-                }      
+                }
             }
 
             // --------------------------------------------------------------------------------------------------
             // | Scheduled Backups                                                                              |
             // --------------------------------------------------------------------------------------------------
-            
+
             $args = array();
             //$jobs = $api->call('getJobs', $args, true);
             $schedOutput = '';
@@ -456,7 +456,9 @@ class TBackupsController extends AppController {
     }   // end of restore
 
     function schedule(){
-        if ($this->request->is('post')) { 
+        if ($this->request->is('post')) {
+
+            $this->autoRender = false;
 
             $data = $this->request->data;
 
@@ -480,16 +482,21 @@ class TBackupsController extends AppController {
                 $data["timeArgs2"] = 'null';
             }
             if ($data['timeArgs2'] == "null") {
-               $timeargs = $data["timeArgs1"];   
-           } else { 
+               $timeargs = $data["timeArgs1"];
+           } else {
                $timeargs = $data["timeArgs1"].':'.$data['timeArgs2'];
            }
 
            require APP . 'spacebukkitcall.php';
 
            $args = array($data["name"], 'backup', $arguments, $timetype, $timeargs);
+           var_dump($args);
 
-           $api->call("addJob", $args, true);
+           if($api->call("addJob", $args, true)) {
+                echo 'yes';
+            } else {
+                echo 'no';
+            }
 
        } else {
         require APP . 'spacebukkitcall.php';

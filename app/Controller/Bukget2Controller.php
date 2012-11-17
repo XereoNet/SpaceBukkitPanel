@@ -3,7 +3,7 @@
 /**
 *
 *   ####################################################
-*   BukgetController.php 
+*   BukgetController.php
 *   ####################################################
 *
 *   DESCRIPTION
@@ -11,12 +11,12 @@
 *   This controller manages the BukGet interface and it's related functions
 *
 *   TABLE OF CONTENTS
-*   
+*
 *   1)  index
 *   2)  getPlugins
 *   3)  installPlugin
-*   
-*   
+*
+*
 * @copyright  Copyright (c) 20011 XereoNet and SpaceBukkit (http://spacebukkit.xereo.net)
 * @version    Last edited by Antariano
 * @since      File available since Release 1.0
@@ -44,26 +44,26 @@ class Bukget2Controller extends AppController {
       $httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
 
       if($httpCode == 503 || $httpCode == 404) {
-          
+
         $this->layout = 'bukgetdown';
 
 
       } else {
 
         //get all categories
-        //$cats = json_decode(file_get_contents("http://api.bukget.org/api2/categories"));
-        //$latest = json_decode(file_get_contents("http://api.bukget.org/api2/"), TRUE);
-//
-//        //$this->set('cats', $cats);
-        //$this->set('latest', $latest['changes']);
+        $cats = json_decode(file_get_contents("http://api.bukget.org/api/categories"));
+        $latest = json_decode(file_get_contents("http://api.bukget.org/api"), TRUE);
+
+        $this->set('cats', $cats);
+        $this->set('latest', $latest['changes']);
 
         //view-specific settings
-        $this->layout = 'bukgetdis';
-             
+        $this->layout = 'bukget';
+
       }
 
       curl_close($handle);
- 
+
     }
 
     function search($string) {
@@ -74,25 +74,25 @@ class Bukget2Controller extends AppController {
        //get all plugins installed
       require APP . 'spacebukkitcall.php';
 
-      $args = array();   
-      $installed = $api->call("getPlugins", $args, false); 
+      $args = array();
+      $installed = $api->call("getPlugins", $args, false);
 
-      function arraytolower(array $array, $round = 0){ 
-        return unserialize(strtolower(serialize($array))); 
-      }    
+      function arraytolower(array $array, $round = 0){
+        return unserialize(strtolower(serialize($array)));
+      }
 
       $installed2 = arraytolower($installed);
 
       $output = '';
-          
+
       $installed3 = str_replace("", " ", $installed);
-          
-      $installed4 = str_replace("-", " ", $installed);    
-      
+
+      $installed4 = str_replace("-", " ", $installed);
+
       //get all plugins in the cat
 
-      $string = str_replace("#", "", $string); 
-      $plugins = json_decode(file_get_contents("http://api.bukget.org/api2/search/name/like/".$string));
+      $string = str_replace("#", "", $string);
+      $plugins = json_decode(file_get_contents("http://api.bukget.org/api/search/name/like/".$string));
 
       foreach ($plugins as $plugin) {
 
@@ -101,11 +101,11 @@ class Bukget2Controller extends AppController {
       } else {
         $button = '<a href="./bukget2/installPlugin/'.$plugin.'" class="button icon favorite installer">'.__('Install').'</a>';
       }
-        
+
       $output .= '<li class="plugin"><div class="first_row"><div class="col left col_2_3"><h4>'.$plugin.'</h4></div><div class="col right col_1_3" style="text-align: right; margin-top: 3px">
                 '.$button.'</div></div></li>';
 
-        } 
+        }
 
       $this->set('output', $output);
 
@@ -122,38 +122,38 @@ class Bukget2Controller extends AppController {
        //get all plugins installed
       require APP . 'spacebukkitcall.php';
 
-      $args = array();   
-      $installed = $api->call("getPlugins", $args, false); 
+      $args = array();
+      $installed = $api->call("getPlugins", $args, false);
 
-      function arraytolower(array $array, $round = 0){ 
-        return unserialize(strtolower(serialize($array))); 
-      }    
+      function arraytolower(array $array, $round = 0){
+        return unserialize(strtolower(serialize($array)));
+      }
 
       $installed2 = arraytolower($installed);
 
       $output = '';
-          
+
       $installed3 = str_replace("", " ", $installed);
-          
-      $installed4 = str_replace("-", " ", $installed);    
-      
+
+      $installed4 = str_replace("-", " ", $installed);
+
       //get all plugins in the cat
 
-      $cat = str_replace("#", "", $cat); 
-      $plugins = json_decode(file_get_contents("http://api.bukget.org/api2/bukkit///category/".$cat));
-//
-//      foreach ($plugins as $plugin) {//
-//
-      if (in_array($plugin, $installed) || in_array($plugin, $installed2) || in_ar//ray($plugin, $installed3) || in_array($plugin, $installed4) ) {
+      $cat = str_replace("#", "", $cat);
+      $plugins = json_decode(file_get_contents("http://api.bukget.org/api/category/".$cat));
+
+      foreach ($plugins as $plugin) {
+
+      if (in_array($plugin, $installed) || in_array($plugin, $installed2) || in_array($plugin, $installed3) || in_array($plugin, $installed4) ) {
         $button = '<a href="#" class="nobutton approve">'.__('Installed!').'</a>';
       } else {
         $button = '<a href="./bukget2/installPlugin/'.$plugin.'" class="button icon favorite installer">'.__('Install').'</a>';
       }
-        
+
       $output .= '<li class="plugin"><div class="first_row"><div class="col left col_2_3"><h4>'.$plugin.'</h4></div><div class="col right col_1_3" style="text-align: right; margin-top: 3px">
                 '.$button.'</div></div></li>';
 
-        } 
+        }
 
       $this->set('output', $output);
 
@@ -169,10 +169,10 @@ class Bukget2Controller extends AppController {
       $this->autoRender = false;
 
       $api = json_decode(file_get_contents("http://api.bukget.org/api"), TRUE);
-      
+
       echo '<ul>';
-      
-      foreach ($api['changes'] as $plugin) 
+
+      foreach ($api['changes'] as $plugin)
       {
 
 echo <<<END
@@ -181,11 +181,11 @@ echo <<<END
     <p>Date modified</p>
     </li>
 END;
-      } 
+      }
 
       echo '</ul>';
 
-      }  
+      }
     }
 
    function getHeading($plugin) {
@@ -194,11 +194,11 @@ END;
       $this->disableCache();
       $this->autoRender = false;
 
-      $api = json_decode(file_get_contents("http://api.bukget.org/api2/plugin/".$plugin), TRUE);
-      
+      $api = json_decode(file_get_contents("http://api.bukget.org/api/plugin/".$plugin), TRUE);
+
       echo('<h3>'.$api['plugin_name'].'</h3> <a href="'.$api['bukkitdev_link'].'" target="_blank">(BukkitDev)</a>');
 
-      }  
+      }
     }
 
    function getDetails($plugin) {
@@ -207,8 +207,8 @@ END;
       $this->disableCache();
       $this->autoRender = false;
 
-      $api = json_decode(file_get_contents("http://api.bukget.org/api2/plugin/".$plugin), TRUE);
-      
+      $api = json_decode(file_get_contents("http://api.bukget.org/api/plugin/".$plugin), TRUE);
+
       //debug($api);
 
       //Function to get strings
@@ -221,30 +221,23 @@ END;
         return substr($string,$ini,$len);
       }
 
-      $authors      = implode(', ', $api['authors']);
       $status       = $api['status'];
       $categories   = implode(', ', $api['categories']);
       $desc   = $api['desc'];
 
       $data = file_get_contents($api['bukkitdev_link']);
 
-      
-
       $img = get_string_between($data, 'data-full-src="', '"');
 
       echo <<<END
 <ul>
-  <li>
-    <b>Authors</b>
-    <p>$authors</p>
-  </li>
   <li>
     <b>Status</b>
     <p>$status</p>
   </li>
   <li>
     <b>Categories</b>
-    <p>$categories</p>    
+    <p>$categories</p>
   </li>
   <li>
     <b>Description</b>
@@ -258,24 +251,24 @@ END;
 
 END;
 
-      }  
+      }
     }
 
     function installPlugin($name) {
 
       perm('plugins', 'removeAddPlugin', $this->Session->read("user_perm"), true);
- 
+
       if ($this->request->is('ajax')) {
-          
+
         $this->disableCache();
         Configure::write('debug', 0);
-        $this->autoRender = false;   
-        
+        $this->autoRender = false;
+
         require APP . 'spacebukkitcall.php';
 
-        $args = array($name);   
-        $api->call("pluginInstall", $args, true);    
+        $args = array($name);
+        $api->call("pluginInstall", $args, true);
 
-      }   
+      }
     }
 }
