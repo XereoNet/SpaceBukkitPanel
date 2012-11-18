@@ -86,7 +86,7 @@ class TServersController extends AppController {
 
         $this->set('title_for_layout', __('Server'));
 
-        $server = $api->call("getServer", $args, false);    
+        $server = $api->call("getServer", $args, false);   
 
         //Bukkit Properties Info
         $bukkit = array();
