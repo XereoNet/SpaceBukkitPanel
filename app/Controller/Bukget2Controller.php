@@ -51,7 +51,7 @@ class Bukget2Controller extends AppController {
       } else {
 
         //get all categories
-        $cats = json_decode(file_get_contents("http://api.bukget.org/api/categories"));
+        $cats = json_decode(file_get_contents("http://api.bukget.org/api2/categories"));
         $latest = json_decode(file_get_contents("http://api.bukget.org/api"), TRUE);
 
         $this->set('cats', $cats);
@@ -140,17 +140,17 @@ class Bukget2Controller extends AppController {
       //get all plugins in the cat
 
       $cat = str_replace("#", "", $cat);
-      $plugins = json_decode(file_get_contents("http://api.bukget.org/api/category/".$cat));
+      $plugins = json_decode(file_get_contents("http://api.bukget.org/api2/bukkit/category/".$cat));
 
       foreach ($plugins as $plugin) {
 
-      if (in_array($plugin, $installed) || in_array($plugin, $installed2) || in_array($plugin, $installed3) || in_array($plugin, $installed4) ) {
+      if (in_array($plugin->name, $installed) || in_array($plugin->name, $installed2) || in_array($plugin->name, $installed3) || in_array($plugin->name, $installed4) ) {
         $button = '<a href="#" class="nobutton approve">'.__('Installed!').'</a>';
       } else {
-        $button = '<a href="./bukget2/installPlugin/'.$plugin.'" class="button icon favorite installer">'.__('Install').'</a>';
+        $button = '<a href="./bukget2/installPlugin/'.$plugin->name.'" class="button icon favorite installer">'.__('Install').'</a>';
       }
 
-      $output .= '<li class="plugin"><div class="first_row"><div class="col left col_2_3"><h4>'.$plugin.'</h4></div><div class="col right col_1_3" style="text-align: right; margin-top: 3px">
+      $output .= '<li class="plugin"><div class="first_row"><div class="col left col_2_3"><h4>'.$plugin->name.'</h4></div><div class="col right col_1_3" style="text-align: right; margin-top: 3px">
                 '.$button.'</div></div></li>';
 
         }
@@ -194,9 +194,9 @@ END;
       $this->disableCache();
       $this->autoRender = false;
 
-      $api = json_decode(file_get_contents("http://api.bukget.org/api/plugin/".$plugin), TRUE);
+      $api = json_decode(file_get_contents("http://api.bukget.org/api2/bukkit/plugin/".$plugin), TRUE);
 
-      echo('<h3>'.$api['plugin_name'].'</h3> <a href="'.$api['bukkitdev_link'].'" target="_blank">(BukkitDev)</a>');
+      echo('<h3>'.$api['name'].'</h3> <a href="'.$api['link'].'" target="_blank">(BukkitDev)</a>');
 
       }
     }
@@ -207,7 +207,7 @@ END;
       $this->disableCache();
       $this->autoRender = false;
 
-      $api = json_decode(file_get_contents("http://api.bukget.org/api/plugin/".$plugin), TRUE);
+      $api = json_decode(file_get_contents("http://api.bukget.org/api2/bukkit/plugin/".$plugin), TRUE);
 
       //debug($api);
 
@@ -221,11 +221,12 @@ END;
         return substr($string,$ini,$len);
       }
 
-      $status       = $api['status'];
+      $status       = $api['stage'];
       $categories   = implode(', ', $api['categories']);
-      $desc   = $api['desc'];
+      $authors   = implode(', ', $api['authors']);
+      $desc   = $api['description'];
 
-      $data = file_get_contents($api['bukkitdev_link']);
+      $data = file_get_contents($api['link']);
 
       $img = get_string_between($data, 'data-full-src="', '"');
 
@@ -238,6 +239,10 @@ END;
   <li>
     <b>Categories</b>
     <p>$categories</p>
+  </li>
+    <li>
+    <b>Authors</b>
+    <p>$authors</p>
   </li>
   <li>
     <b>Description</b>
