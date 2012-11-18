@@ -1,8 +1,8 @@
 <!-- Content -->
-<section id="content" class="installer"> 
+<section id="content" class="installer">
 
-<section class="box boxpad"> 
- 
+<section class="box boxpad">
+
     <header>
         <div class="col left">
             <h2>SpaceBukkit Installer</h2>
@@ -21,7 +21,7 @@
 
                 <h3>Start</h3>
 
-                <p>               
+                <p>
 
                 </p>
 
@@ -53,7 +53,7 @@
 
                 <div>
 
-<p> 
+<p>
 <?php
     if (version_compare(PHP_VERSION, '5.2.8', '>=')):
         echo '<span class="alert alert-success">';
@@ -64,7 +64,7 @@
             echo __('Your version of PHP is too low. You need PHP 5.2.8 or higher to use CakePHP.');
         echo '</span>';
     endif;
-?> 
+?>
 </p>
 <p>
     <?php
@@ -78,7 +78,7 @@
             echo '</span>';
         endif;
     ?>
-</p>  
+</p>
 <p>
     <?php
         if (ini_get('allow_url_fopen')):
@@ -91,33 +91,50 @@
             echo '</span>';
         endif;
     ?>
-</p>  
+</p>
 <p>
     <?php
-        if (is_writable(TMP)):
+        function is_removeable($dir)
+        {
+           $folder = opendir($dir);
+           while($file = readdir( $folder )) {
+
+              if($file != '.' && $file != '..' &&
+                ( !is_writable(  $dir."/".$file  ) ||
+                (  is_dir(   $dir."/".$file   ) && !is_removeable(   $dir.DS.$file   )  ) ))
+               {
+                closedir($folder);
+                return false;
+               }
+
+           }
+           closedir($folder);
+           return true;
+        }
+        if (is_removeable(TMP)):
             echo '<span class="alert alert-success">';
-                echo __('The app/tmp directory is writable.');
+                echo __('The app/tmp and all subdirectories are writable.');
             echo '</span>';
         else:
             echo '<span class="alert alert-error">';
-                echo __('The app/tmp directory is NOT writable.');
+                echo __('The app/tmp and all subdirectories are NOT writable. You need to recursively CHMOD them and/or set proper permissions and owners.');
             echo '</span>';
         endif;
     ?>
-</p>                    
+</p>
 <p>
     <?php
-        if (is_writable(APP . 'webroot')):
+        if (is_removeable(APP . 'webroot')):
             echo '<span class="alert alert-success">';
-                echo __('The app/webroot directory is writable.');
+                echo __('The app/webroot and all subdirectories are writable.');
             echo '</span>';
         else:
             echo '<span class="alert alert-error">';
-                echo __('The app/webroot directory is NOT writable.');
+                echo __('The app/webroot and all subdirectories are NOT writable. You need to recursively CHMOD them and/or set proper permissions and owners.');
             echo '</span>';
         endif;
     ?>
-</p>                       
+</p>
 <p>
     <?php
         if (is_writable(APP . 'Config/database.php')):
@@ -130,7 +147,7 @@
             echo '</span>';
         endif;
     ?>
-</p>   
+</p>
                 </div>
 
             </div>
@@ -141,14 +158,14 @@
 
     <div class="clear"></div>
 
-    </section> 
-      
+    </section>
+
     <header>
        <a href="<?php echo $this->Html->url('/install/upgrade', true); ?>" class="button icon arrowright leftsubmit">Next</a>
-    </header>   
+    </header>
 
  </section>
 
 <div class="clear"></div>
 </section>
-<!-- End #content --> 
+<!-- End #content -->
