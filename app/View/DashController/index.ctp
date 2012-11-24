@@ -1,14 +1,14 @@
 <!-- Content -->
-<section id="content" class="dashboard_content"> 
+<section id="content" class="dashboard_content">
 
   <div class="col left">
 
     <div class="inner">
-      
+
       <h1><?php echo $current_server_name; ?></h1>
 
       <p><?php echo $motd; ?></p>
-    
+
     </div>
 
     <table class="dash-bigstats">
@@ -20,21 +20,21 @@
         <tr>
           <td>Craftbukkit</td><td>   <?php echo $c_bukkit_version; ?><br>
                <?php
-                echo $m_bukkit_version; 
+                echo $m_bukkit_version;
                ?></td>
         </tr>
         <tr>
           <td><?php echo __('Players'); ?></td>
-          <td> 
+          <td>
 
 
              <p class="cell_medium">
-             <b class="cell_left"><?php echo $whitelist_count; ?> </b>  
+             <b class="cell_left"><?php echo $whitelist_count; ?> </b>
              <b class="cell_right greyed"><?php echo $ban_count; ?></b>
              </p>
 <br>
              <p class="cell_medium">
-             <b class="cell_left"><?php echo __('whitelist') ?></b>  
+             <b class="cell_left"><?php echo __('whitelist') ?></b>
              <b class="cell_right greyed"><?php echo __('banned') ?></b>
              </p>
 
@@ -42,22 +42,22 @@
         </tr>
         <tr>
           <td><?php echo __('Plugins'); ?></td>
-          <td> 
+          <td>
 
 
              <p class="cell_medium">
-             <b class="cell_left"><?php echo $plugin_count; ?> </b>  
+             <b class="cell_left"><?php echo $plugin_count; ?> </b>
              <b class="cell_right greyed"><?php echo $dis_plugin_count; ?></b>
              </p>
 <br>
              <p class="cell_medium">
-             <b class="cell_left"><?php echo __('installed') ?></b>  
+             <b class="cell_left"><?php echo __('installed') ?></b>
              <b class="cell_right greyed"><?php echo __('disabled') ?></b>
              </p>
 
           </td>
-        </tr>        
-            
+        </tr>
+
         <tr>
           <td><?php echo __('SpaceBukkit'); ?></td><td><p><?php echo $connected_users; ?></span></p>
               <p class="cell_medium"><?php echo ' '.__('accounts linked to this server') ?></p></td>
@@ -71,8 +71,8 @@
   <div class="col right" id="dabg">
 
     <div class="inner">
-      
-      <div class="dbox up">
+
+      <div class="dbox up" style="z-index: 15">
 
         <section>
         <div class="accordion" id="accordion2">
@@ -140,7 +140,7 @@
 
                   <div id="activity-list">
                     <ul>
-                    <li><?php echo __('Fetching...'); ?></li>               
+                    <li><?php echo __('Fetching...'); ?></li>
                     </ul>
                 </div>
 
@@ -176,7 +176,7 @@
 
 
 </section>
-         	
+
 <!-- End #content -->
 
 <script>
@@ -200,7 +200,7 @@
       var slice = container + ' .slice';
       var con = container + ' .slice .pie';
       var per = container + ' .percent';
-      
+
       $(container).html('<div class="percent"></div><div class="slice"'+(percent > 50?' class="gt50"':'')+'><div class="pie"></div>'+(percent > 50?'<div class="pie fill"></div>':'')+'</div>');
       var deg = 360/100*percent;
       var slice = container + ' .slice';
@@ -217,31 +217,31 @@
       if (percent <= 19) {
         $(con).css({'border-color': '#1284f6'})
       }
-      else if (percent > 20 && percent <= 39) 
+      else if (percent > 20 && percent <= 39)
       {
         $(con).css({'border-color': '#2d6bc6'})
-      } 
-      else if (percent >= 40 && percent <= 49) 
+      }
+      else if (percent >= 40 && percent <= 49)
       {
         $(con).css({'border-color': '#3563b6'})
       }
-      else if (percent >= 50 && percent <= 59) 
+      else if (percent >= 50 && percent <= 59)
       {
         $(con).css({'border-color': '#514985'})
       }
-      else if (percent >= 60 && percent <= 69) 
+      else if (percent >= 60 && percent <= 69)
       {
         $(con).css({'border-color': '#5d3e6f'})
       }
-      else if (percent >= 70 && percent <= 79) 
+      else if (percent >= 70 && percent <= 79)
       {
         $(con).css({'border-color': '#7d2036'})
       }
-      else if (percent >= 80 && percent <= 100) 
+      else if (percent >= 80 && percent <= 100)
       {
         $(con).css({'border-color': '#900d13'})
       }
-      if (percent > 50) 
+      if (percent > 50)
       {
         $(slice).css({'clip': 'rect(0px,1em,1em,0em)'});
       }
@@ -284,11 +284,23 @@
 
   function dabg() {
 
-    var num = $.randomBetween(0, 11);
+    conf = '<?php echo $this->Session->read("Sbvars.17"); ?>';
+    switch(conf) {
+      case "0":
+      break;
+      case "1":
 
-    var img = 'url(./img/wallpaper/'+num+'.jpg) no-repeat top left';
+      var num = $.randomBetween(0, 11);
 
-    $('#dabg').css("background", img);  
+      var img = 'url(./img/wallpaper/'+num+'.jpg) no-repeat top left';
+
+      $('#dabg').css("background", img);
+
+      break;
+      case "2":
+      $('#dabg').prepend('<iframe src="http://173.237.196.252:8123" style="width: 100%; height: 500px; position: absolute; z-index: 10"></iframe>');
+      break;
+    }
 
   };
 
@@ -315,7 +327,7 @@ $(document).ready(function(){
   $('input[type=button]#percent').click(function(e){
     e.preventDefault();
     drawTimer('.timer1', $('input[type=text]#percent').val());
-  });          
+  });
 
   setInterval("serverInfo()", '<?php echo $this->Session->read("Sbvars.4"); ?>');
   setInterval("graphs()", '<?php echo $this->Session->read("Sbvars.5"); ?>');
@@ -323,4 +335,4 @@ $(document).ready(function(){
 
 });
 
-</script> 
+</script>
