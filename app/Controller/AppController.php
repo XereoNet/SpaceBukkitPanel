@@ -30,16 +30,16 @@ App::uses('Controller', 'Controller');
  *
 *
 *   ####################################################
-*   AppController.php 
+*   AppController.php
 *   ####################################################
 *
 *   DESCRIPTION
 *
 *   This controller wraps around the entire application. It is set to execute different tasks and set different variables
 *   according to specific situations.
-*   
+*
 *   The basic layout is:
-*  
+*
 *
 */
 
@@ -62,13 +62,13 @@ class AppController extends Controller {
 
         /* Configure Auth class */
 
-        $this->Auth->loginError = __('This usernames/password combination was not found, did you enter the correct password?');    
-        $this->Auth->authError = __('This error shows up when the user tries to access a part of the website that is protected.'); 
+        $this->Auth->loginError = __('This usernames/password combination was not found, did you enter the correct password?');
+        $this->Auth->authError = __('This error shows up when the user tries to access a part of the website that is protected.');
 
         /* Check for installation */
 
         $install = new File(TMP."inst.txt");
-       
+
         $allowed = array("Install");
 
         if (($install->exists()) && (!(in_array($this->name, $allowed)))) {
@@ -76,18 +76,18 @@ class AppController extends Controller {
             $this->redirect(array('controller' => 'install', 'action' => 'index'));
 
             } elseif (in_array($this->name, $allowed)) {
-                
+
                 //do something for Installation Process
 
             } else  { //not installation process, continue
 
-            /* Check for maintenance */                
+            /* Check for maintenance */
 
             $maintenance = new File(APP."webroot/.maintenance");
-            
-            $allowed = array("Users");  
 
-            /* Are we logged in? */  
+            $allowed = array("Users");
+
+            /* Are we logged in? */
 
             if (!$this->Auth->user() && !(in_array($this->name, $allowed)) )
             {
@@ -95,7 +95,7 @@ class AppController extends Controller {
                 $this->redirect(array('controller' => 'users', 'action' => 'login'));
             }
 
-            $allowed = array("maintenance");  
+            $allowed = array("maintenance");
 
             if(!is_null($this->Auth->user())) {
 
@@ -104,16 +104,16 @@ class AppController extends Controller {
 
                     $this->set('is_super', $this->Auth->user('is_super'));
 
-                /* Maintenance */  
+                /* Maintenance */
 
                 if (($maintenance->exists()) && (!(in_array($this->action, $allowed))) && ($this->Auth->user('is_super') < 1)) {
 
                     $this->redirect(array('controller' => 'global', 'action' => 'maintenance'));
 
-                    } elseif (in_array($this->name, $allowed)) {         
-                        
+                    } elseif (in_array($this->name, $allowed)) {
 
-                    } else  { //not maintenance process, continue        
+
+                    } else  { //not maintenance process, continue
 
                     /* STORE SPACEBUKKIT VARIABLES TO SESSION */
 
@@ -135,16 +135,16 @@ class AppController extends Controller {
                     /* If this is not a post request, continue */
 
                     if (!($this->request->is('post'))) {
-                           
-                      $this->loadModel('Server'); 
-    
+
+                      $this->loadModel('Server');
+
                       /* If this is not an ajax request, continue */
 
                       if (!($this->request->is('ajax'))) {
 
                         /* Setup Spacebukkit stuff like versioning and messages */
 
-                        require APP.'webroot/configuration.php';     
+                        require APP.'webroot/configuration.php';
                         $c_sb = $sbconf['app_version'];
 
                         $app = $sbconf['app'];
@@ -159,21 +159,21 @@ class AppController extends Controller {
 
                                 //is the user authorized?
 
-                                if (($this->Session->read("Sbvars.16") == 0 && $this->Auth->user('is_super') == 1) || $this->Session->read("Sbvars.16") == 1) {                               
-                                
+                                if (($this->Session->read("Sbvars.16") == "s" && $this->Auth->user('is_super') == 1) || $this->Session->read("Sbvars.16") == "e") {
+
                                     //get LATEST SpaceBukkit version
 
                                     $filename = 'http://dl.nope.bz/sb/build/build.xml';
-                                    $l_sb = simplexml_load_file($filename); 
+                                    $l_sb = simplexml_load_file($filename);
 
                                     $json = json_encode($l_sb);
                                     $l_sb = json_decode($json, TRUE);
-                                    
+
 
                                     //Set the notifier
 
                                     if ($app < $l_sb["BUILD"]["APP"]) {
-                                            
+
                                         $this->set('spacebukkitbuildready', "new");
                                         $this->set('spacebukkitbuildnew', $l_sb["BUILD"]["VERSION"]);
                                         $this->set('spacebukkitbuildfile', './update');
@@ -183,7 +183,7 @@ class AppController extends Controller {
                                     //check for uncle Ant's messages
 
                                     $filename = 'http://dl.nope.bz/sb/build/message.12.xml';
-                                    $message = simplexml_load_file($filename); 
+                                    $message = simplexml_load_file($filename);
 
                                     $json = json_encode($message);
                                     $message = json_decode($json, TRUE);
@@ -193,7 +193,7 @@ class AppController extends Controller {
                                     if ($message["MESSAGES"]["STATUS"] > 0) {
 
                                         $this->set('antmessage', $message["MESSAGES"]["MESSAGE"]);
-                                
+
                                         switch ($message["MESSAGES"]["TYPE"]) {
                                             case 0:
                                                 $this->set('antmessagetype', "red");
@@ -216,7 +216,7 @@ class AppController extends Controller {
 
                                 }
 
-                            } 
+                            }
 
                         }
 
@@ -232,20 +232,20 @@ class AppController extends Controller {
                                 $this->redirect(array('controller' => 'global', 'action' => 'no_servers_set'));
 
                                 } elseif ($this->Auth->user("is_super") == 1) {
-                                    
+
                                 $this->redirect(array('controller' => 'global', 'action' => 'no_servers_set_manage'));
 
                                 }
 
-                            } elseif (in_array($this->action, $allowed_actions)) {} else  { 
+                            } elseif (in_array($this->action, $allowed_actions)) {} else  {
 
 
                     /* ####################################################
                     *   6)  If the user is not "SuperUser" and not associated to any server, redirect to "global/no_servers_set"
                     ##################################################### */
 
-                            $this->loadModel('User'); 
-                            $this->loadModel('ServersUsers'); 
+                            $this->loadModel('User');
+                            $this->loadModel('ServersUsers');
 
                             $user_data = $this->User->findById($this->Auth->user("id"));
                             $allowed_actions = array("no_servers_assoc", "logout");
@@ -254,14 +254,14 @@ class AppController extends Controller {
 
                                 $this->redirect(array('controller' => 'global', 'action' => 'no_servers_assoc'));
 
-                            } elseif (in_array($this->action, $allowed_actions)) {} else { 
+                            } elseif (in_array($this->action, $allowed_actions)) {} else {
 
                     /* ####################################################
                      *   7)  Set roles for server. If the user role is not defined, change it to default
                     ##################################################### */
 
                             if ( empty($user_data["ServersUsers"]) ) {
-                               
+
                                 $current_server = $this->Session->read("current_server");
 
                                 //Check if cookie for current server was set. If not, set it to default
@@ -270,8 +270,8 @@ class AppController extends Controller {
                                         $this->Session->write("current_server", $s['Server']['id']);
                                         $current_server = $s['Server']['id'];
 
-                                }  
-                                
+                                }
+
                             }  else {
 
                                 $current_server = $this->Session->read("current_server");
@@ -285,17 +285,17 @@ class AppController extends Controller {
                                         $current_server =  $user_data['User']['favourite_server'];
 
                                     }
-                                    else 
+                                    else
                                     {
                                         $s = $this->ServersUsers->find('first', array('conditions' => array("ServersUsers.user_id" => $this->Auth->user("id"))));
                                         $this->Session->write("current_server", $s['Server']['id']);
-                                        $current_server = $s['Server']['id'];     
+                                        $current_server = $s['Server']['id'];
 
                                     }
-                              
-                                }  
+
+                                }
                             }
-                                    
+
                             //New variable "$usr" stores all data relative to the user, relative to the current server
                             $conditions = array("ServersUsers.server_id" => $current_server, "ServersUsers.user_id" => $this->Auth->user("id"));
                             $usr = $this->ServersUsers->find('first', array('conditions' => $conditions));
@@ -310,7 +310,7 @@ class AppController extends Controller {
                                 $usr["User"] = $user_data["User"];
                                 $conditions = array("Server.id" => $current_server);
                                 $server = $this->Server->find('first', array('conditions' => $conditions));
-                                $usr["Server"] = $server["Server"];              
+                                $usr["Server"] = $server["Server"];
                                 $usr["Role"] = array(
 
                                     "id" => 99999,
@@ -346,19 +346,19 @@ class AppController extends Controller {
 
                                 $conditions = array("Role.fallback" => "1");
 
-                                $this->loadModel('Role'); 
+                                $this->loadModel('Role');
 
                                 $fallback = $this->Role->find('first', array("conditions" => $conditions));
 
-                                $this->ServersUsers->updateAll(    
-                                    array('ServersUsers.role_id' => $fallback["Role"]["id"]),    
+                                $this->ServersUsers->updateAll(
+                                    array('ServersUsers.role_id' => $fallback["Role"]["id"]),
                                     array('ServersUsers.role_id' => $usr["ServersUsers"]["role_id"])
-                                    );     
-                                    
+                                    );
+
                                 //Re-read USR
                                 $conditions = array("ServersUsers.server_id" => $current_server, "ServersUsers.user_id" => $this->Auth->user("id"));
-                                $usr = $this->ServersUsers->find('first', array('conditions' => $conditions));     
-                                     
+                                $usr = $this->ServersUsers->find('first', array('conditions' => $conditions));
+
                             }
 
 
@@ -368,7 +368,7 @@ class AppController extends Controller {
 
                             $this->Session->write('Config.language', $usr['User']['language']);
 
-                            } //end else user_data empty 
+                            } //end else user_data empty
 
                             $this->set('all_servers', $all_servers);
                             $this->set('current_server', $current_server);
@@ -392,10 +392,10 @@ class AppController extends Controller {
                             );
 
                             $this->User->save($data);
-                            
-                            }   
-                        }  
-                    }    
+
+                            }
+                        }
+                    }
                 } //maintenance
             } //logged in
         } //endif install
@@ -413,7 +413,7 @@ class AppController extends Controller {
         $theme = $this->Session->read("current_theme");
 
         $themefile = new File(WWW_ROOT . "themes/".$theme."/theme.xml");
-    
+
         if ($themefile->exists()){
             $this->set('current_theme', $theme);
         } else {
@@ -423,17 +423,17 @@ class AppController extends Controller {
 
         $this->set('gototab', $this->Session->read('Page.tab'));
         $this->Session->delete('Page.tab');
- 
+
       }
 
 /**
  * Refreshes the Auth session with new/updated data
  * @param string $field
  * @param string $value
- * @return void 
+ * @return void
  */
 function _refreshAuth($field = '', $value = '') {
-    if (!empty($field) && !empty($value)) { 
+    if (!empty($field) && !empty($value)) {
         $this->Session->write($this->Auth->sessionKey .'.'. $field, $value);
     } else {
         if (isset($this->User)) {

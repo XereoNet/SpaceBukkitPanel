@@ -32,7 +32,7 @@
         'name'              => 'Show news on login',
         'desc'              => 'Activate or deactivate news on login',
         'vars'              => array('Activate' => 'true', 'Deactivate' => 'false'),
-        'val'               => /*4*/'true'
+        'val'               => /*4*/'false'
         )
     ); 
 

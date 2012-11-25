@@ -286,9 +286,9 @@
 
     conf = '<?php echo $this->Session->read("Sbvars.17"); ?>';
     switch(conf) {
-      case "0":
+      case "g":
       break;
-      case "1":
+      case "i":
 
       var num = $.randomBetween(0, 11);
 
@@ -297,7 +297,7 @@
       $('#dabg').css("background", img);
 
       break;
-      case "2":
+      case "d":
       $('#dabg').prepend('<iframe src="http://173.237.196.252:8123" style="width: 100%; height: 500px; position: absolute; z-index: 10"></iframe>');
       break;
     }

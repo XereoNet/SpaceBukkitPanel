@@ -3,7 +3,7 @@
 /**
 *
 *   ####################################################
-*   GlobalController.php 
+*   GlobalController.php
 *   ####################################################
 *
 *   DESCRIPTION
@@ -12,7 +12,7 @@
 *   across the application.
 *
 *   TABLE OF CONTENTS
-*   
+*
 *   1)  index
 *   2)  getServers
 *   3)  getConsole
@@ -28,8 +28,8 @@
 *   10)  no_servers_set
 *   11)  no_servers_set_manage
 *   12)  no_servers_assoc
-*   
-*   
+*
+*
 * @copyright  Copyright (c) 20011 XereoNet and SpaceBukkit (http://spacebukkit.xereo.net)
 * @version    Last edited by Antariano
 * @since      File available since Release 1.0
@@ -63,7 +63,7 @@ class GlobalController extends AppController {
             //GET request to XereoNet for statistics
 
             include APP . 'webroot/configuration.php';
-            
+
             if($sbconf['token'] == '%*TOKEN*%') {
 
                 $this->loadModel('Configurator');
@@ -87,12 +87,12 @@ class GlobalController extends AppController {
 
             $user_perm = $this->Session->read("user_perm");
             $glob_perm = $this->Session->read("glob_perm");
-            
-            if ($user_perm['pages'] & $glob_perm['pages']['dash']) { 
+
+            if ($user_perm['pages'] & $glob_perm['pages']['dash']) {
 
                $this->redirect($this->Auth->redirect());
 
-            } 
+            }
 
             //if not, do a foreach with all "pages" perms to check what page is allowed
 
@@ -103,16 +103,16 @@ class GlobalController extends AppController {
                 $redirect = 'dash';
 
               } else {
-                         
+
               foreach ($glob_perm['pages'] as $desc => $node) {
 
-                if ($user_perm['pages'] & $node) { 
+                if ($user_perm['pages'] & $node) {
 
                    $redirect = $desc;
 
                    break;
 
-                } 
+                }
 
               }
 
@@ -132,7 +132,7 @@ class GlobalController extends AppController {
                 exit('You have absolutely no permissions on this Spacebukkit, sorry :(');
               }
 
-            }                  
+            }
 
       }
 
@@ -156,7 +156,7 @@ class GlobalController extends AppController {
 
           $dif = $current_time - $last_modified;
 
-        }       
+        }
         //generate avatar if !1) || !2) and save him
 
         if (!$avatar->exists() || !$dif > 21600 ) {
@@ -207,23 +207,34 @@ class GlobalController extends AppController {
           exit();
 
         } else {
-          
+
           readfile($avatar->path);
           exit();
 
         }
 
       }
-      
+
+      function xml($file) {
+
+        $contents = "";
+
+        //either requery the file
+        //or send the contents
+
+        return $contents;
+
+      }
+
       function getServer($id) {
 
       if ($this->request->is('ajax')) {
-        
+
             $this->disableCache();
             Configure::write('debug', 0);
             $this->autoRender = false;
 
-            require APP . 'spacebukkitcall.php';        
+            require APP . 'spacebukkitcall.php';
 
             $bukkit = $this->Server->findById($id);
 
@@ -231,7 +242,7 @@ class GlobalController extends AppController {
             $server = $bukkit['Server']['address'];
             $salt = $bukkit['Server']['password'];
 
-            //call API  
+            //call API
             $api = new SpaceBukkitAPI($server, 2011, 2012, $salt);
             $args = array();
 
@@ -240,17 +251,17 @@ class GlobalController extends AppController {
                   if($running == 1)
                   {
 
-                    $run = "circle_green.png";                  
+                    $run = "circle_green.png";
 
-                  } elseif ($running == 0) 
+                  } elseif ($running == 0)
 
                   {
-                    
-                    $run = "circle_orange.png";             
+
+                    $run = "circle_orange.png";
 
                   } else {
-                    
-                    $run = "circle_red.png";                  
+
+                    $run = "circle_red.png";
 
                   }
 
@@ -260,16 +271,16 @@ class GlobalController extends AppController {
 
       function getConsole($filter=null) {
 
-        if ($this->request->is('ajax')) 
+        if ($this->request->is('ajax'))
         {
-            
+
             require APP . 'spacebukkitcall.php';
 
             $this->disableCache();
             Configure::write('debug', 0);
             $this->autoRender = false;
 
-            $args = array($this->Session->read("Sbvars.1"));   
+            $args = array($this->Session->read("Sbvars.1"));
             $log = $api->call("getLatestConsoleLogsWithLimit", $args, false);
 
             echo '<ul>';
@@ -277,35 +288,35 @@ class GlobalController extends AppController {
             foreach (array_reverse($log) as $c) {
 
               $hidden = 'hidden';
-     
+
               //split the string
               $c = explode("[", $c, 2);
 
               //check for color the string
-              if (strpos($c[1], 'WARNING' ) === 0) { 
+              if (strpos($c[1], 'WARNING' ) === 0) {
 
-                $class = "warning"; 
+                $class = "warning";
 
                 if ($filter == 'warning') {
                   $hidden = '';
                 }
 
-              } 
+              }
               elseif (strpos($c[1], 'SEVERE') === 0) {
 
-               $class = "warning"; 
+               $class = "warning";
                 if ($filter == 'severe') {
                   $hidden = '';
                 }
               }
-              elseif (strpos($c[1], 'INFO') === 0) { 
+              elseif (strpos($c[1], 'INFO') === 0) {
 
-                $class = "info"; 
+                $class = "info";
                 if ($filter == 'info') {
                   $hidden = '';
                 }
 
-              } else { 
+              } else {
                 $class = "info";
               }
 
@@ -314,28 +325,28 @@ class GlobalController extends AppController {
               }
 
               echo <<<END
-                <li class="$hidden"><b>$c[0]</b> <p class="console-$class"> [$c[1]</p></li>                    
+                <li class="$hidden"><b>$c[0]</b> <p class="console-$class"> [$c[1]</p></li>
 END;
 
             }
             echo '</ul>';
-  
 
-        } 
+
+        }
 
     }
       function getUpTime() {
 
-        if ($this->request->is('ajax')) 
+        if ($this->request->is('ajax'))
         {
-            
+
             require APP . 'spacebukkitcall.php';
 
             $this->disableCache();
             Configure::write('debug', 0);
             $this->autoRender = false;
 
-            $args = array();   
+            $args = array();
             $secs = $api->call("getUpTime", $args, false);
 
             //echo date('d:h:m:s', $time);
@@ -358,7 +369,7 @@ END;
            }
            echo $time;
 
-        } 
+        }
 
     }
 
@@ -366,62 +377,62 @@ END;
 
         require APP . 'spacebukkitcall.php';
 
-        $args = array();   
-        $api->call("reloadServer", $args, false);  
+        $args = array();
+        $api->call("reloadServer", $args, false);
 
         w_serverlog($this->Session->read("current_server"), '[GLOBAL] '.$this->Auth->user('username').' '.__('reloaded the server.'));
 
-        //Dummy call to listen for reload   
-        $args = array();   
+        //Dummy call to listen for reload
+        $args = array();
         $api->call("getWorlds", $args, true);
 
         sleep(10);
 
         $this->redirect($this->referer());
 
-  
+
       }
 
       function restart() {
 
         require APP . 'spacebukkitcall.php';
 
-        $args = array(true);   
-        $api->call("restartServer", $args, true);  
+        $args = array(true);
+        $api->call("restartServer", $args, true);
 
         w_serverlog($this->Session->read("current_server"), '[GLOBAL] '.$this->Auth->user('username').' '.__('restarted the server.'));
 
-        //Dummy call to listen for reload   
-        $args = array();   
+        //Dummy call to listen for reload
+        $args = array();
         $api->call("getWorlds", $args, true);
 
         $this->redirect($this->referer());
-  
+
       }
-  
+
       function frestart() {
 
         require APP . 'spacebukkitcall.php';
 
-        $args = array();   
-        $api->call("forceRestart", $args, true);  
+        $args = array();
+        $api->call("forceRestart", $args, true);
 
         w_serverlog($this->Session->read("current_server"), '[GLOBAL] '.$this->Auth->user('username').' '.__('forced a restart on the server.'));
 
-        //Dummy call to listen for reload   
-        $args = array();   
+        //Dummy call to listen for reload
+        $args = array();
         $api->call("getWorlds", $args, true);
 
         $this->redirect($this->referer());
-  
-      }    
+
+      }
       function stop() {
 
         require APP . 'spacebukkitcall.php';
-        $args = array();   
+        $args = array();
         $running = $api->call("isServerRunning", $args, true);
 
-        if ($running) 
+        if ($running)
         {
         $api->call("stopServer", $args, true);
         sleep(5);
@@ -432,13 +443,13 @@ END;
         $this->redirect($this->referer());
 
       }
-      
+
       function fstop() {
 
         require APP . 'spacebukkitcall.php';
-        $args = array();   
+        $args = array();
         $running = $api->call("isServerRunning", $args, true);
-        if ($running) 
+        if ($running)
         {
         $api->call("forceStop", $args, true);
         sleep(5);
@@ -452,10 +463,10 @@ END;
       function start() {
 
         require APP . 'spacebukkitcall.php';
-        $args = array();   
+        $args = array();
         $running = $api->call("isServerRunning", $args, true);
 
-        if ($running == 0) 
+        if ($running == 0)
         {
         $api->call("startServer", $args, true);
         sleep(13);
@@ -470,21 +481,21 @@ END;
       function setserver($id) {
 
         $data = $this->ServersUsers->find('first', array('conditions' => array('ServersUsers.user_id' => $this->Auth->user('id'), 'Server.id' => $id)));
-       
+
         if ((!empty($data)) || ($this->Auth->user('is_super') == 1)) {
-                                  
+
         $this->Session->write("current_server", $id);
 
         } else { exit("You can't do that!");}
 
         $this->redirect($this->referer());
-    
+
     }
 
       function addserver() {
-      
+
         $this->layout = 'popup';
-    
+
     }
 
     function delserver($id = null) {
@@ -503,74 +514,74 @@ END;
     }
 
       function addserver_exec() {
-      
-        if ($this->request->is('post')) { 
+
+        if ($this->request->is('post')) {
             if ($this->Server->save($this->request->data)) {
                 $this->Session->setFlash(__('The server has been added!'));
             }
         }
                    $this->redirect($this->referer());
-                
+
     }
 
 
       function runcommand() {
 
-      if ($this->request->is('ajax')) 
+      if ($this->request->is('ajax'))
       {
 
             $this->disableCache();
             Configure::write('debug', 0);
             $this->autoRender = false;
-            
-      if ($this->request->is('post')) { 
+
+      if ($this->request->is('post')) {
 
           $command = $this->request->data;
 
-          require APP . 'spacebukkitcall.php';     
+          require APP . 'spacebukkitcall.php';
 
           $command = str_replace("/", "", $command['command']);
 
           $args = array($command);
 
-          $runConsole = $api->call("consoleCommand", $args, true);  
+          $runConsole = $api->call("consoleCommand", $args, true);
           echo __('The command').' "' . $command . '" '.__('was executed!');
           //Sleep if command is 'stop'
           if ($command == 'stop') {
              sleep(7);
           }
 
-      } 
+      }
       }
       w_serverlog($this->Session->read("current_server"), '[GLOBAL] '.$this->Auth->user('username').' '.__('executed the command').' "'.$command.'"');
-              
+
     }
 
       function call() {
 
-      if ($this->request->is('ajax')) 
+      if ($this->request->is('ajax'))
       {
 
             $this->disableCache();
             Configure::write('debug', 0);
             $this->autoRender = false;
-            
-        if ($this->request->is('post')) { 
+
+        if ($this->request->is('post')) {
 
             $data = $this->request->data;
 
-            require APP . 'spacebukkitcall.php';     
+            require APP . 'spacebukkitcall.php';
 
             $data['call'];
 
             $args = array($data['args']);
 
-            $result = $api->call($data['rtk'], $args, $data['rtk']);  
-            
-        } 
+            $result = $api->call($data['rtk'], $args, $data['rtk']);
+
+        }
 
       }
-              
+
     }
 
       function debug_call($call=null, $arg=null, $rtk = false) {
@@ -578,23 +589,23 @@ END;
 
 
             $this->autoRender = false;
-            
+
             $data = $this->request->data;
 
-            require APP . 'spacebukkitcall.php';     
+            require APP . 'spacebukkitcall.php';
 
             $data['call'] = $call;
             $data['args'] = $arg;
-            
+
             if ($data['args'] == NULL) {
               $args = array();
             } else {
               $args = array($arg);
-            }         
+            }
 
             $starttime = microtime(true);
 
-            $result = $api->call($call, $args, $rtk);  
+            $result = $api->call($call, $args, $rtk);
 
             $stoptime  = microtime(true);
 
@@ -613,40 +624,40 @@ The server responded in $time milliseconds with:<br><br>
 END;
 
 debug($result, true, false);
-              
+
     }
 
     function no_servers_set() {
       $this->set('title_for_layout', __('No servers set'));
-      $this->layout = 'ajax'; 
-             
+      $this->layout = 'ajax';
+
     }
 
     function no_servers_set_manage() {
       $this->set('title_for_layout', __('No server set | Manage'));
-      $this->layout = 'ajax'; 
-             
+      $this->layout = 'ajax';
+
     }
 
     function no_servers_assoc() {
       $this->set('title_for_layout', __('No servers associated'));
-      $this->layout = 'ajax'; 
-             
+      $this->layout = 'ajax';
+
     }
 
     function maintenance() {
       $this->set('title_for_layout', __('SpaceBukkit is in maintenance mode'));
-      $this->layout = 'ajax'; 
-             
+      $this->layout = 'ajax';
+
     }
 
     function serverConnectionInfo($id) {
 
       if ($this->request->is('ajax')) {
-        
+
         $this->disableCache();
         Configure::write('debug',3);
-        $this->layout = 'ajax'; 
+        $this->layout = 'ajax';
 
         $this->loadModel('Server');
 
@@ -674,9 +685,9 @@ debug($result, true, false);
 
         //check salt
 
-        include APP.'spacebukkitcall.php';          
-        
-        $args = array();   
+        include APP.'spacebukkitcall.php';
+
+        $args = array();
         $running = $api->call("isServerRunning", $args, true);
 
         $this->set('running', $running);
@@ -698,7 +709,7 @@ debug($result, true, false);
         $this->set('salt', $answer);
 
       }
-             
+
     }
 
     function get_data_curl($url)

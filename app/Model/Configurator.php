@@ -10,7 +10,7 @@ class Configurator extends AppModel {
 
     function saveDb($type, $host = 'localhost', $login, $password, $database) {
 
-        $config = APP.'Config/database.php'; 
+        $config = APP.'Config/database.php';
         $template = APP.'Config/database.php.default';
 
         $old = array();
@@ -29,16 +29,16 @@ class Configurator extends AppModel {
         $new['database']    = $database;
         $new['host']        = $host;
 
-        $new_file = implode(file($template));     
-     
+        $new_file = implode(file($template));
+
         $str = str_replace($old,$new,$new_file);
 
         //now, TOTALLY rewrite the file
         $fp=fopen($config,'w');
 
-        fwrite($fp,$str,strlen($str));  
+        fwrite($fp,$str,strlen($str));
 
-        return $str;   
+        return $str;
 
     }
 
@@ -46,7 +46,7 @@ class Configurator extends AppModel {
 
     function saveCore() {
 
-        $config = APP.'webroot/configuration.php'; 
+        $config = APP.'webroot/configuration.php';
 
         $old = array();
 
@@ -60,24 +60,24 @@ class Configurator extends AppModel {
 
         $new['token']        = $md5c;
 
-        $new_file = implode(file($config));     
-     
+        $new_file = implode(file($config));
+
         $str = str_replace($old,$new,$new_file);
 
         //now, TOTALLY rewrite the file
         $fp=fopen($config,'w');
 
-        fwrite($fp,$str,strlen($str));  
+        fwrite($fp,$str,strlen($str));
 
-        return $md5c;   
+        return $md5c;
 
     }
     //Save config
 
     function saveVars($new) {
-
       $file       = APP . 'webroot/vars.php';
       include $file;
+
 
       $contents   = file_get_contents($file);
 
@@ -87,21 +87,19 @@ class Configurator extends AppModel {
 
         $old[$key] = "/*".$key."*/'".$var['val']."'";
         $new[$key] = "/*".$key."*/'".htmlspecialchars($new[$key], ENT_QUOTES)."'";
-
       }
+      $new_file = implode(file($file));
 
-      $new_file = implode(file($file));     
-   
       $str = str_replace($old,$new,$new_file);
 
       //now, TOTALLY rewrite the file
       $fp=fopen($file,'w');
 
-      fwrite($fp, $str, strlen($str));     
+      fwrite($fp, $str, strlen($str));
 
     }
 
-    //Retrieve config   
+    //Retrieve config
 
     function returnVars($key = null) {
 
@@ -140,18 +138,18 @@ class Configurator extends AppModel {
 
       }
 
-      $new_file = implode(file($file));     
-   
+      $new_file = implode(file($file));
+
       $str = str_replace($old,$new,$new_file);
 
       //now, TOTALLY rewrite the file
       $fp=fopen($file,'w');
 
-      fwrite($fp, $str, strlen($str));    
+      fwrite($fp, $str, strlen($str));
 
     }
 
-    //Retrieve config   
+    //Retrieve config
 
     function returnSys($key = null) {
 
@@ -168,7 +166,7 @@ class Configurator extends AppModel {
       }
 
     }
-        
+
     //Function to get strings
     function get_string_between($string, $start, $end){
       $string = " ".$string;

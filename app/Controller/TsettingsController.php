@@ -3,7 +3,7 @@
 /**
 *
 *   ####################################################
-*   TSettingsController.php 
+*   TSettingsController.php
 *   ####################################################
 *
 *   DESCRIPTION
@@ -13,7 +13,7 @@
 *   NOT require a connection.
 *
 *   TABLE OF CONTENTS
-*   
+*
 *   1)  index
 *   2)  getUsers
 *   3)  getRoles
@@ -23,8 +23,8 @@
 *   7)  update_theme
 *   8)  delete_theme
 *   9)  update_config
-*   
-*   
+*
+*
 * @copyright  Copyright (c) 20011 XereoNet and SpaceBukkit (http://spacebukkit.xereo.net)
 * @version    Last edited by Antariano
 * @since      File available since Release 1.0
@@ -55,7 +55,7 @@ class TsettingsController extends AppController {
         }
     }
 
-    function index() 
+    function index()
 
     	{
 
@@ -66,21 +66,21 @@ class TsettingsController extends AppController {
         */
 
         require APP . 'spacebukkitcall.php';
-        
+
         //CHECK IF SERVER IS RUNNING
 
-        $args = array();   
+        $args = array();
         $running = $api->call("isServerRunning", $args, true);
-        
+
         $this->set('running', $running);
 
         //IF "FALSE", IT'S STOPPED. IF "NULL" THERE WAS A CONNECTION ERROR
 
         if (is_null($running) || preg_match("/salt/", $running)) {
 
-            $this->layout = 'sbv1_notreached_settings'; 
-                     
-        } 
+            $this->layout = 'sbv1_notreached_settings';
+
+        }
 
         elseif (!$running) {
 
@@ -95,12 +95,12 @@ class TsettingsController extends AppController {
         $dataSource = ConnectionManager::getDataSource('default');
 
 		//View Specific settings
-        $this->set('title_for_layout', 'Settings');    
-        $this->set('configurations', $dataSource);    
+        $this->set('title_for_layout', 'Settings');
+        $this->set('configurations', $dataSource);
         include(APP . 'webroot/vars.php');
         include(APP . 'webroot/system.php');
-        $this->set('variables', $variables);    
-        $this->set('system', $system);    
+        $this->set('variables', $variables);
+        $this->set('system', $system);
 
 	    }
 
@@ -132,7 +132,7 @@ class TsettingsController extends AppController {
         }
 
     }
-            
+
     function getUsers() {
 
     if ($this->request->is('ajax')) {
@@ -141,14 +141,14 @@ class TsettingsController extends AppController {
         $this->autoRender = false;
 
         //Get users
-        $this->loadModel('User'); 
-        $users = $this->User->find('all'); 
-        
+        $this->loadModel('User');
+        $users = $this->User->find('all');
+
         $i = 1;
         $num = count($users);
 
-        echo '{ "aaData": [';  
-                     
+        echo '{ "aaData": [';
+
         foreach ($users as $user) {
 
         $name = $user['User']['username'];
@@ -167,7 +167,7 @@ class TsettingsController extends AppController {
             [
               "<span>$name</span>$buttons"
             ]
-        
+
 END;
 
         if($i < $num) {
@@ -188,14 +188,14 @@ END;
         $this->autoRender = false;
 
         //Get users
-        $this->loadModel('User'); 
-        $users = $this->User->find('all'); 
-        
+        $this->loadModel('User');
+        $users = $this->User->find('all');
+
         $i = 1;
         $num = count($users);
 
-        echo '{ "aaData": [';  
-                     
+        echo '{ "aaData": [';
+
         foreach ($users as $user) {
 
         $name = $user['User']['username'];
@@ -214,7 +214,7 @@ END;
             [
               "<span>$name</span>$buttons"
             ]
-        
+
 END;
 
         if($i < $num) {
@@ -227,7 +227,7 @@ END;
 
     }
     }
-               
+
    function getRoles() {
 
     if ($this->request->is('ajax')) {
@@ -236,27 +236,27 @@ END;
         $this->autoRender = false;
 
         //Get users
-        $this->loadModel('Role'); 
-        $roles = $this->Role->find('all');        
+        $this->loadModel('Role');
+        $roles = $this->Role->find('all');
 
         $i = 1;
         $num = count($roles);
 
-        echo '{ "aaData": [';  
-                     
+        echo '{ "aaData": [';
+
         foreach ($roles as $role) {
 
         $title = $role['Role']['title'];
         $id = $role['Role']['id'];
         if ($role["Role"]["fallback"] == 1) {
 
-            $default = '<img src=\"./img/test-pass-icon.png\" />'; 
+            $default = '<img src=\"./img/test-pass-icon.png\" />';
             $delete = "";
 
             } else {
-            
+
             $delete = '<form style=\"position: relative; display: inline;\" name=\"submitForm\" method=\"POST\" action=\"./roles/delete/'.$id.'\"><input type=\"hidden\" name=\"id\" value=\"'.$id.'\"><input type=\"submit\" value=\"Delete\" class=\"button danger\" style=\"float: right\"></form>';
-            $default = ""; 
+            $default = "";
         }
         ECHO <<<END
             [
@@ -264,7 +264,7 @@ END;
               "<a href=\"./roles/edit/$id\" class=\"button icon edit fancy\" style=\"float: right\">Edit</a>$delete",
               "$default"
             ]
-        
+
 END;
 
         if($i < $num) {
@@ -277,7 +277,7 @@ END;
 
     }
     }
-         
+
    function getServers() {
 
     if ($this->request->is('ajax')) {
@@ -293,8 +293,8 @@ END;
 
         //var_dump($servers);
 
-        echo '{ "aaData": [';  
-                     
+        echo '{ "aaData": [';
+
         foreach ($servers as $server) {
 
         $title = $server['Server']['title'];
@@ -305,7 +305,7 @@ END;
               "$title",
               "<a href=\"./servers/edit/$id\" class=\"button icon edit fancy\" style=\"float: right\">Edit</a><form style=\"position: relative; display: inline;\" name=\"submitForm\" method=\"POST\" action=\"./servers/delete/$id\"><input type=\"hidden\" name=\"id\" value=\"$id\"><input type=\"submit\" value=\"Delete\" class=\"button danger\" style=\"float: right\"></form>"
             ]
-        
+
 END;
 
         if($i < $num) {
@@ -317,36 +317,36 @@ END;
          echo '] }';
 
     }
-    }   
+    }
     function getServer($user) {
 
     if ($this->request->is('ajax')) {
         $this->disableCache();
         Configure::write('debug', 0);
-        $this->autoRender = false;  
+        $this->autoRender = false;
 
         //Get servers
         $this->loadModel("User");
         $this->loadModel("ServersUsers");
 
-        $username = $this->User->findByUsername($user);  
+        $username = $this->User->findByUsername($user);
 
         $servers = $this->ServersUsers->find('all', array('conditions' => array('ServersUsers.user_id' => $username['User']['id'])));
         $i = 1;
         $num = count($servers);
 
-        echo '{ "aaData": [';  
-                     
+        echo '{ "aaData": [';
+
         foreach ($servers as $server) {
 
         $name = $server['Server']['title'];
         $id = $server['ServersUsers']['id'];
-        
+
         ECHO <<<END
             [
               "<span title=\"$id\">$name</span> <form style=\"position: relative; display: inline;\" name=\"submitForm\" method=\"POST\" action=\"./users/deleteFromServer/$id\"><input type=\"submit\" value=\"Delete\" class=\"button danger\" style=\"float: right\"></form>"
             ]
-        
+
 END;
 
         if($i < $num) {
@@ -358,20 +358,20 @@ END;
          echo '] }';
 
     }
-    }  
-          
+    }
+
    function getNoServer($user) {
 
     if ($this->request->is('ajax')) {
         $this->disableCache();
         Configure::write('debug', 0);
-        $this->autoRender = false;  
+        $this->autoRender = false;
 
         //Get servers
         $this->loadModel("User");
         $this->loadModel("Role");
 
-        $username = $this->User->findByUsername($user);  
+        $username = $this->User->findByUsername($user);
 
         $userid = $username['User']['id'];
         $servers = $this->Server->find('all');
@@ -381,42 +381,42 @@ END;
         $title = $server['Server']['title'];
         $id = $server['Server']['id'];
         $role = $server['Server']['default_role'];
-        
+
         $output = '<li><form name="addtoaserver" method="POST" action="./users/addToServer/"><input type="hidden" name="server_id" value="'.$id.'"><input type="hidden" name="user_id" value="'.$userid.'"><input type="hidden" name="role_id" value="'.$role.'"><input type="submit" value="'.$title.'" class="button"></form></li>';
 
             foreach ($server['ServersUsers'] as $su) {
-            
-            if ($su['user_id'] == $userid) {
-                
-                $output = "";
 
-            }             
+            if ($su['user_id'] == $userid) {
+
+                $output = "";
 
             }
 
-           echo $output; 
+            }
+
+           echo $output;
 
         }
 
-    }    
-    }     
-    
+    }
+    }
+
     function getRole($id) {
 
     if ($this->request->is('ajax')) {
         $this->disableCache();
         Configure::write('debug', 0);
-        $this->autoRender = false;  
+        $this->autoRender = false;
 
         //Get servers
         $this->loadModel("ServersUsers");
         $this->loadModel("Role");
 
-        //get the selected relation 
+        //get the selected relation
 
-        $usr = $this->ServersUsers->findById($id);  
+        $usr = $this->ServersUsers->findById($id);
 
-        $roles = $this->Role->find("list");  
+        $roles = $this->Role->find("list");
 
         $current_role = $usr["Role"]["id"];
         $current_role_name = $usr["Role"]["title"];
@@ -424,7 +424,7 @@ END;
         $current_user = $usr['User']['id'];
 
 
-   
+
         ECHO <<<END
         <form name="changeRole" id="role_select" method="POST" action="./users/editRoleOfServer/$id">
             <input type="hidden" name="server_id" value="$current_server">
@@ -437,18 +437,18 @@ END;
         if ($role_key != $current_role) {
 
         echo '<option value="'.$role_key.'">'.$role.'</option>';
-        
-        }      
-    }      
+
+        }
+    }
         ECHO <<<END
             </select>
         </form>
 END;
         }
-    }   
-       
+    }
+
     public function update_theme($name = null) {
-        $this->loadModel('User');   	
+        $this->loadModel('User');
     	$id = $this->Auth->user('id');
         $this->User->id = $id;
         if (!$this->User->exists()) {
@@ -470,7 +470,7 @@ END;
         }
         $this->layout = 'popup';
     }
-       
+
     public function delete_theme($name = null) {
 
         if ($this->request->is('post')) {
@@ -498,7 +498,7 @@ END;
                             if($item != '.' && $item != '..')
                             {
                                 $path = $directory.'/'.$item;
-                                if(is_dir($path)) 
+                                if(is_dir($path))
                                 {
                                     recursive_remove_directory($path);
                                 }else{
@@ -522,15 +522,15 @@ END;
                 $themedir = WWW_ROOT . "themes/".$name;
 
                 recursive_remove_directory($themedir, TRUE);
-                
+
                 rmdir($themedir);
 
                 clearCache();
 
                 $this->Session->write('Page.tab', 4);
-                                           
-                $this->redirect(array('controller' => 'tsettings', 'action' => 'index'));    
-            
+
+                $this->redirect(array('controller' => 'tsettings', 'action' => 'index'));
+
        }
     }
 
@@ -547,7 +547,7 @@ END;
         }
 
     }
-  
+
 }
 
 ?>

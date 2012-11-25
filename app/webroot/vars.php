@@ -103,14 +103,14 @@
     array(
         'name'              => 'Panel Notifications',
         'desc'              => 'Who should see panel notifications (like updates or messages from the team)',
-        'vars'              => array('Everybody' => 1, 'Superusers' => 0),
-        'val'               => /*16*/0
+        'vars'              => array('Everybody' => "e", 'Superusers' => "s"),
+        'val'               => /*16*/'s'
         ),
     array(
         'name'              => 'Dashboard image',
         'desc'              => 'Should the dashboard display a gradient, images or a live dynmap view?',
-        'vars'              => array('Gradient' => 0, 'Images' => 1, 'Dynmap' => 2),
-        'val'               => /*17*/2
+        'vars'              => array('Gradient' => "g", 'Images' => "i", 'Dynmap' => "d"),
+        'val'               => /*17*/'i'
         )
     );
 
