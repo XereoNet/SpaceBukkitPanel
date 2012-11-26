@@ -2,7 +2,7 @@
 
 	/* The below function will list all folders and files within a directory
 
-	It is a recursive function that uses a global array.  The global array was the easiest 
+	It is a recursive function that uses a global array.  The global array was the easiest
 
 	way for me to work with an array in a recursive function
 
@@ -28,7 +28,7 @@
 
 	    //list the directory/file names that you want to ignore
 
-	    $ignoredDirectory[] = "."; 
+	    $ignoredDirectory[] = ".";
 
 	    $ignoredDirectory[] = "..";
 
@@ -36,9 +36,9 @@
 
 	    global $directorylist;    //initialize global array
 
-	    if (is_dir($startdir)) { 
+	    if (is_dir($startdir)) {
 
-	        if ($dh = opendir($startdir)) { 
+	        if ($dh = opendir($startdir)) {
 
 	            while (($file = readdir($dh)) !== false) {
 
@@ -46,7 +46,7 @@
 
 	                 if (filetype($startdir . $file) == "dir") {
 
-	                       //build your directory array however you choose; 
+	                       //build your directory array however you choose;
 
 	                       //add other file details that you want.
 
@@ -72,7 +72,7 @@
 
 	                       if (!$directoriesonly) {
 
-	                           //if you want to include files; build your file array  
+	                           //if you want to include files; build your file array
 
 	                           //however you choose; add other file details that you want.
 
@@ -99,7 +99,7 @@
 	foreach ($files as $list) {//print array
 
 		$filename = WWW_ROOT.'themes/'.$list['name'].'/theme.xml';
-		$xml = simplexml_load_file($filename); 
+		$xml = simplexml_load_file($filename);
 
    		$tname = $xml->name;
    		$tver = $xml->version;
@@ -109,51 +109,51 @@
 
    	    echo <<<END
 
-	      <tr> 
+	      <tr>
 
-	        <td><img src="$this->webroot$list[path]$list[name]/thumbnail.png" width="100px" height="50px" /></td> 
+	        <td><img src="$this->webroot$list[path]$list[name]/thumbnail.png" width="100px" height="50px" /></td>
 
-	        <td>$tname</td> 
-	        <td>$tver</td> 
-	        <td>$taut</td> 
-	        <td>$tdes</td> 
-	        <td>$turl</td> 
+	        <td>$tname</td>
+	        <td>$tver</td>
+	        <td>$taut</td>
+	        <td>$tdes</td>
+	        <td>$turl</td>
 
-	        <td> 
+	        <td>
 
 END;
-	
+
 		if ($current_theme == $list['name']) {
    	    echo <<<END
-	          <span class="button-group"> 
-	          
-	            <p class="nobutton">Enabled</a>            
+	          <span class="button-group">
 
-	          </span> 
+	            <p class="nobutton">Enabled</a>
 
-	        </td> 
+	          </span>
 
-	      </tr> 
+	        </td>
+
+	      </tr>
 END;
-		} 
+		}
 		else {
    	    echo <<<END
-	          <span class="button-group"> 
+	          <span class="button-group">
 END;
-          
+
 echo $this->Form->postLink(
                 'Activate',
                 '/tsettings/update_theme/'.$list['name'],
                 array('class' => 'button icon approve')
             );
-	                    
+
    	    echo <<<END
 
-	          </span> 
+	          </span>
 
-	        </td> 
+	        </td>
 
-	      </tr> 
+	      </tr>
 END;
 		}
 

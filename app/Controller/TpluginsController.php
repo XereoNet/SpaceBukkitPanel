@@ -3,7 +3,7 @@
 /**
 *
 *   ####################################################
-*   TPluginsController.php 
+*   TPluginsController.php
 *   ####################################################
 *
 *   DESCRIPTION
@@ -13,7 +13,7 @@
 *   on the bukkit server.
 *
 *   TABLE OF CONTENTS
-*   
+*
 *   1)  index
 *   2)  checkPluginUpdates
 *   3)  disable_plugin
@@ -23,8 +23,8 @@
 *   7)  SaveConfig
 *   8)  URLinstall
 *   9)  remove_plugin
-*   
-*   
+*
+*
 * @copyright  Copyright (c) 20011 XereoNet and SpaceBukkit (http://spacebukkit.xereo.net)
 * @version    Last edited by Antariano
 * @since      File available since Release 1.0
@@ -47,11 +47,11 @@ class TPluginsController extends AppController {
         $user_perm = $this->Session->read("user_perm");
         $glob_perm = $this->Session->read("glob_perm");
 
-        if (!($user_perm['pages'] & $glob_perm['pages']['plugins'])) { 
+        if (!($user_perm['pages'] & $glob_perm['pages']['plugins'])) {
 
            exit("access denied");
 
-        } 
+        }
     }
 
 
@@ -65,43 +65,43 @@ class TPluginsController extends AppController {
         */
 
         require APP . 'spacebukkitcall.php';
-        
+
         //CHECK IF SERVER IS RUNNING
 
-        $args = array();   
+        $args = array();
         $running = $api->call("isServerRunning", $args, true);
-        
+
         $this->set('running', $running);
 
         //IF "FALSE", IT'S STOPPED. IF "NULL" THERE WAS A CONNECTION ERROR
 
         if (is_null($running) || preg_match("/salt/", $running)) {
 
-        $this->layout = 'sbv1_notreached'; 
-                     
-        } 
+        $this->layout = 'sbv1_notreached';
+
+        }
 
         elseif (!$running) {
 
         $this->layout = 'sbv1_notrunning';
 
-        } 
+        }
 
         elseif ($running) {
 
         //IF IT'S RUNNING, CONTINUE WITH THE PROGRAM
-    
+
 		$this->set('title_for_layout', 'Plugins');
-		
-        $this->layout = 'sbv1';  
+
+        $this->layout = 'sbv1';
 
        	$this->set('title_for_layout', 'Plugins');
 
-        }    
+        }
     }
 
     function checkPluginUpdates() {
-        
+
         if ($this->request->is('ajax')) {
             $this->disableCache();
             Configure::write('debug', 0);
@@ -146,9 +146,9 @@ class TPluginsController extends AppController {
             }
             echo json_encode($json);*/
 		}
-    
+
     }
-        
+
    function getPlugins() {
         set_time_limit(300);
     if ($this->request->is('ajax')) {
@@ -158,7 +158,7 @@ class TPluginsController extends AppController {
 
         require APP . 'spacebukkitcall.php';
 
-        //Get Plugins           
+        //Get Plugins
         $args = array();
         $plugins = $api->call("getPlugins", $args, false);
         while ($plugins == NULL) {
@@ -168,8 +168,8 @@ class TPluginsController extends AppController {
         $plglist = array();
 
         foreach ($plugins as $plgname) {
-            
-            $args = array($plgname);   
+
+            $args = array($plgname);
             $plugin = $api->call("getPluginInformations", $args, false);
             $plugin['pName'] = $plgname;
             $plglist[] = $plugin;
@@ -179,8 +179,8 @@ class TPluginsController extends AppController {
         $i = 1;
         $num = count($plglist);
 
-        echo '{ "aaData": [';  
-                     
+        echo '{ "aaData": [';
+
         foreach ($plglist as $plg) {
 
         //sanitize
@@ -190,12 +190,12 @@ class TPluginsController extends AppController {
         }
 
         if ($plg['IsEnabled'] == 1) {
-                $status = '<img src=\"img/circle_green.png\" />';
+                $status = addslashes('<img src="'.$this->webroot.'img/circle_green.png" />');
                 } else {
-                $status = '<img src=\"img/circle_red.png\" />';
-                }        
+                $status = addslashes('<img src="/'.$this->webroot.'img/circle_red.png" />');
+                }
         if ($plg['Bukget'] == true) {
-                $bukget = '<img src=\"img/bukget_enabled.png\" />';
+                $bukget = addslashes('<img src="/'.$this->webroot.'img/bukget_enabled.png" />');
                 $pname = $plg["pName"];
                 } else {
                 $bukget = '';
@@ -217,23 +217,23 @@ class TPluginsController extends AppController {
                 $enplg = perm_action('plugins', 'disablePlugin', $this->Session->read("user_perm"), '<a href=\"./tplugins/disable_plugin/' . $pname .'\" class=\"button icon remove danger ajax_table1\">'.__('Disable').'</a>');
             } else {
                 $enplg = perm_action('plugins', 'disablePlugin', $this->Session->read("user_perm"), '<a href=\"./tplugins/enable_plugin/' . $pname .'\" class=\"button icon reload ajax_table1\">'.__('Enable').'</a>');
-            }             
-   
+            }
+
         }
 
         $plgconf = perm_action('plugins', 'configurePlugin', $this->Session->read("user_perm"), '<a href=\"./tplugins/config/' . $pconf .'\" class=\"button icon fancy edit \">'.__('Configure').'</a>');
 
         $plgactions = $enplg.$remplg.$plgconf;
-            
-        if ($plg['Website'] != "") { 
+
+        if ($plg['Website'] != "") {
                     $plginfo = '<a href=\"'. $plg['Website'] .'\" target=\"_blank\" class=\"button icon home\">'.__('Website').'</a>';
                 } else {
                     $plginfo = '';
                 }
-        
+
         $description = trim(str_replace('"','\"',str_replace("\n",' ',$plg["Description"])));
 
-        
+
         ECHO <<<END
             [
               "$status $bukget",
@@ -244,7 +244,7 @@ class TPluginsController extends AppController {
               "<span class=\"button-group\">$plgactions</span>",
               "<span class=\"button-group\">$plginfo</span>"
             ]
-        
+
 END;
 
         if($i < $num) {
@@ -267,16 +267,16 @@ END;
 
         require APP . 'spacebukkitcall.php';
 
-        $args = array($plugin);   
+        $args = array($plugin);
         $plg = $api->call("getPluginInformations", $args, false);
-                    
+
         if ($plg['IsEnabled'] == 1) {
-                $status = '<img src="img/circle_green.png" />';
+                $status = '<img src="'.$this->webroot.'img/circle_green.png" />';
                 } else {
-                $status = '<img src="img/circle_red.png" />';
-                }        
+                $status = '<img src="'.$this->webroot.'img/circle_red.png" />';
+                }
         if ($plg['Bukget'] == true) {
-                $bukget = '<img src="img/bukget_enabled.png" />';
+                $bukget = '<img src="'.$this->webroot.'img/bukget_enabled.png" />';
                 $pname = $plg["Bukget"];
                 } else {
                 $bukget = '';
@@ -298,28 +298,28 @@ END;
                 $enplg = perm_action('plugins', 'disablePlugin', $this->Session->read("user_perm"), '<a href="./tplugins/disable_plugin/' . $plg["Name"] .'" class="button icon remove danger ajax_table1">'.__('Disable').'</a>');
             } else {
                 $enplg = perm_action('plugins', 'disablePlugin', $this->Session->read("user_perm"), '<a href="./tplugins/enable_plugin/' . $plg["Name"] .'" class="button icon reload ajax_table1">'.__('Enable').'</a>');
-            }             
-   
+            }
+
         }
 
         $plgconf = perm_action('plugins', 'configurePlugin', $this->Session->read("user_perm"), '<a href="./tplugins/config/' . $pconf .'" class="button icon fancy edit ">'.__('Configure').'</a>');
 
         $plgactions = $enplg.$remplg.$plgconf;
-            
-        if ($plg['Website'] != "") { 
+
+        if ($plg['Website'] != "") {
                     $plginfo = '<a href="'. $plg['Website'] .'" target="_blank" class="button icon home">'.__('Website').'</a>';
                 } else {
                     $plginfo = '';
                 }
-        
+
         $description = trim(str_replace('"','"',str_replace("n",' ',$plg["Description"])));
 
-        $result = array($status.$bukget, $plg["Name"], $plg["Version"], $authors, $description, '<span class="button-group">'.$plgactions.'</span>', '<span class="button-group">'.$plginfo.'</span>' ); 
+        $result = array($status.$bukget, $plg["Name"], $plg["Version"], $authors, $description, '<span class="button-group">'.$plgactions.'</span>', '<span class="button-group">'.$plginfo.'</span>' );
         echo json_encode($result);
 
-              
+
     }
-    }    
+    }
 
     function disable_plugin($name) {
 
@@ -331,9 +331,9 @@ END;
         $this->autoRender = false;
 
         require APP . 'spacebukkitcall.php';
-    	
-    	//Disable plugin		
-    	$args = array($name);   
+
+    	//Disable plugin
+    	$args = array($name);
     	$api->call("disablePluginTemporarily", $args, false);
         w_serverlog($this->Session->read("current_server"), __('[PLUGINS] ').$this->Auth->user('username').' '.__('disabled').' '.$name);
         echo $name.__(' has been disabled.');
@@ -350,9 +350,9 @@ END;
         $this->autoRender = false;
 
         require APP . 'spacebukkitcall.php';
-    			
-		//Disable plugin		
-		$args = array($name);   
+
+		//Disable plugin
+		$args = array($name);
 		$api->call("enablePluginTemporarily", $args, FALSE);
         w_serverlog($this->Session->read("current_server"), __('[PLUGINS] ').$this->Auth->user('username').' '.__('enabled').' '.$name);
         echo $name.__(' has been enabled.');
@@ -365,9 +365,9 @@ END;
         perm('plugins', 'updatePlugin', $this->Session->read("user_perm"), true);
 
         require APP . 'spacebukkitcall.php';
-                
-        //Disable plugin        
-        $args = array($name, true);   
+
+        //Disable plugin
+        $args = array($name, true);
         $api->call("pluginUpdate", $args, true);
         $w = $api->call('getWorlds', array(), false);
         while(empty($w)) {
@@ -389,18 +389,18 @@ END;
 
         //check if plugin has folder
 
-        $args = array('plugins'); 
+        $args = array('plugins');
         $folders = $api->call("listDirectories", $args, true);
 
         if (!in_array($name, $folders)) {
             exit('Plugin has no config!');
-        }  
-        
+        }
+
         //get the path
         $path = 'plugins/'.$name;
 
         //get all files in folder
-		$args = array($path); 
+		$args = array($path);
 		$files = $api->call("listFiles", $args, true);
 
         //set contents to each file
@@ -415,7 +415,7 @@ END;
 
         //set variables
     	$this->set('plugin_name', $name);
-        $this->set('files', $files);        
+        $this->set('files', $files);
     	$this->set('contents', $content);
         $this->layout = 'popup';
 
@@ -429,7 +429,7 @@ END;
         if (!$this->request->is('post')) {
             throw new MethodNotAllowedException();
         } else {
-        
+
             $data = $this->request->data;
 
             require APP . 'spacebukkitcall.php';
@@ -442,9 +442,9 @@ END;
             $methods = array_keys($data);
             $method = $methods[3];
 
-            $args = array($path, $content); 
+            $args = array($path, $content);
             $api->call("setFileContent", $args, true);
-            
+
             $args = array();
 
             if ($method == "reload") {
@@ -457,7 +457,7 @@ END;
                 $args2 = array($this->Session->read("Sbvars.10"), "Server will restart due to plugin configuration save...");
                 $api->call("broadcastWithName", $args2, false);
                 sleep(2);
-                
+
                 $args = array('true');
                 $api->call("restartServer", $args, true);
                 sleep(5);
@@ -466,7 +466,7 @@ END;
                 }
 
 
-            } 
+            }
             $this->redirect($this->referer());
         }
     }
@@ -502,21 +502,21 @@ END;
                 exit(json_encode($jsonout));
             }
 
-            //Check if it exists      
-            $args = array('plugins');   
+            //Check if it exists
+            $args = array('plugins');
             $plugins = $api->call("listFiles", $args, true);
-            
+
             if (in_array($name, $plugins)) {
                 $jsonout = array("ret" => false, "msg" => "File already installed!");
                 exit(json_encode($jsonout));
             }
 
-            //Install plugin        
-            $args = array($url["url"], $name);   
+            //Install plugin
+            $args = array($url["url"], $name);
             $ret = $api->call("pluginInstallByURL", $args, true);
 
-            //Dummy call to listen for reload   
-            $args = array();   
+            //Dummy call to listen for reload
+            $args = array();
             $api->call("getOPs", $args, false);
             $jsonout = array("ret" => true, "msg" => "Plugin installed!");
             echo json_encode($jsonout);
@@ -529,14 +529,14 @@ END;
 
         require APP . 'spacebukkitcall.php';
 
-        //DeInstall plugin        
-        $args = array($name, false);   
+        //DeInstall plugin
+        $args = array($name, false);
         $api->call("pluginRemove", $args, true);
 
-        //Dummy call to listen for reload   
-        $args = array();   
+        //Dummy call to listen for reload
+        $args = array();
         $api->call("getOPs", $args, false);
-        
+
         $this->redirect(array('controller' => 'Tplugins', 'action' => 'index'));
 
     }

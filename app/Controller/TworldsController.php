@@ -3,22 +3,22 @@
 /**
 *
 *   ####################################################
-*   TWorldsController.php 
+*   TWorldsController.php
 *   ####################################################
 *
 *   DESCRIPTION
 *
 *   This controller is relative to the "Worlds" page and responsible
-*   for all it's operations. This includes backups, mainteneance and 
+*   for all it's operations. This includes backups, mainteneance and
 *   multiworld management
-*   
+*
 *   TABLE OF CONTENTS
-*   
+*
 *   1)  index
 *   2)  mapautotrim
 *   3)  chunkster
-*   
-*   
+*
+*
 * @copyright  Copyright (c) 20011 XereoNet and SpaceBukkit (http://spacebukkit.xereo.net)
 * @version    Last edited by Antariano
 * @since      File available since Release 1.0
@@ -41,11 +41,11 @@ class TWorldsController extends AppController {
         $user_perm = $this->Session->read("user_perm");
         $glob_perm = $this->Session->read("glob_perm");
 
-        if (!($user_perm['pages'] & $glob_perm['pages']['worlds'])) { 
+        if (!($user_perm['pages'] & $glob_perm['pages']['worlds'])) {
 
            exit("access denied");
 
-        } 
+        }
       }
 
     function index() {
@@ -58,38 +58,38 @@ class TWorldsController extends AppController {
         */
 
         require APP . 'spacebukkitcall.php';
-        
+
         //CHECK IF SERVER IS RUNNING
 
-        $args = array();   
+        $args = array();
         $running = $api->call("isServerRunning", $args, true);
-        
+
         $this->set('running', $running);
 
         //IF "FALSE", IT'S STOPPED. IF "NULL" THERE WAS A CONNECTION ERROR
 
         if (is_null($running) || preg_match("/salt/", $running)) {
 
-        $this->layout = 'sbv1_notreached'; 
-                     
-        } 
+        $this->layout = 'sbv1_notreached';
+
+        }
 
         elseif (!$running) {
 
         $this->layout = 'sbv1_notrunning';
 
-        } 
+        }
 
         elseif ($running) {
 
             //IF IT'S RUNNING, CONTINUE WITH THE PROGRAM
 
     		$this->set('title_for_layout', __('Worlds'));
-    		
-            $this->layout = 'sbv1';  
 
-    		$args = array();   
-    		$worlds = $api->call("getAllWorlds", $args, true);		
+            $this->layout = 'sbv1';
+
+    		$args = array();
+    		$worlds = $api->call("getAllWorlds", $args, true);
        		$this->set('worlds', $worlds);
             $enWorlds = $api->call("getWorlds", $args, false);
             $this->set("enWorlds", $enWorlds);
@@ -115,11 +115,11 @@ class TWorldsController extends AppController {
             $this->set('dynmap', $dynmap);
         }
     }
-    
+
     //Function to get strings
     function get_string_between($string, $start, $end){
-        $ini = strpos($string, $start); 
-        if($ini===false) return ""; 
+        $ini = strpos($string, $start);
+        if($ini===false) return "";
         $ini += strlen($start);
         $len = strpos($string,$end,$ini) - $ini;
         return substr($string,$ini,$len);
@@ -156,7 +156,7 @@ class TWorldsController extends AppController {
             $loadedWorlds = $api->call("getWorlds", $args, false);
 
             //get main worlds
-            $args = array("server.properties");   
+            $args = array("server.properties");
             $config = $api->call("getFileContent", $args, true);
 
             //make an array for them
@@ -174,7 +174,7 @@ class TWorldsController extends AppController {
                 //Call when the world is NOT loaded
                 if(in_array($w, $loadedWorlds) == NULL){
                     //These variables are the "columns" of the table
-                    $online = '<img src=\"img/disabled.png\">';
+                    $online = addslashes('<img src="'.$this->webroot.'img/disabled.png">');
                     $name = $w;
                     $time = "";
                     $animals = "";
@@ -184,7 +184,7 @@ class TWorldsController extends AppController {
                     $environment = "";
                     //if the World Management Plugin is installed, put a load button
                     if($wmpl != 0){
-                        $load = perm_action('worlds', 'changeWorldSettings', $this->Session->read("user_perm"), '<span class=\"button-group\"><a href=\"./tworlds/loadWorld/'.$name.'\" class=\"button icon arrowup ajax_table1\">'.__('Load').'</a></span>');
+                        $load = perm_action('worlds', 'changeWorldSettings', $this->Session->read("user_perm"), '<span class="button-group"><a href="./tworlds/loadWorld/'.$name.'" class="button icon arrowup ajax_table1">'.__('Load').'</a></span>');
                     }else{
                         $load = "";
                     }
@@ -198,7 +198,7 @@ class TWorldsController extends AppController {
                     //these variables aren't multiworld dependent so we don't check for that :)
                     //set icon
                     if(in_array($w, $main) == NULL){
-                       $online = '<img src=\"img/enabled.png\">'; 
+                       $online = addslashes('<img src="'.$this->webroot.'img/enabled.png">');
                     }else{
                         $online = __('Default');
                     }
@@ -208,78 +208,78 @@ class TWorldsController extends AppController {
 
                     //set environment variable
                     if($worldInfo['Environment'] == "NORMAL"){
-                        $environment = '<img src=\"img/world_normal.png\"> Normal';
+                        $environment = addslashes('<img src="'.$this->webroot.'img/world_normal.png"> Normal');
                     }else if($worldInfo['Environment'] == "NETHER"){
-                        $environment = '<img src=\"img/world_nether.png\"> Nether';
+                        $environment = addslashes('<img src="'.$this->webroot.'img/world_nether.png"> Nether');
                     }else if($worldInfo['Environment'] == "THE_END"){
-                        $environment = '<img src=\"img/world_end.png\"> The End';
+                        $environment = addslashes('<img src="'.$this->webroot.'img/world_end.png"> The End');
                     }
 
                     //if you use a WMPL
                     if($wmpl != 0){
                         //set time column
-                        $time = '<span class=\"button-group\"><a href=\"./tworlds/getTime/'.$name.'\" class=\"button icon clock fancy\">'.$rTime.'</a></span>';
+                        $time = addslashes('<span class="button-group"><a href="./tworlds/getTime/'.$name.'" class="button icon clock fancy">'.$rTime.'</a></span>');
 
                         //set properties
                         //per WMPL config
                         if ($wmpl == 2) {
                             //animals multiverse
                             if($worldInfo['AllowAnimals'] == 1){
-                                $animals = '<img src=\"img/circle_green.png\"> ';
-                                $animals .= perm_action('worlds', 'changeWorldSettings', $this->Session->read("user_perm"), '<span class=\"button-group\"><a href=\"./tworlds/worldAnimals/0/'.$name.'\" class=\"button icon arrowdown ajax_table1\">'.__('Disable').'</a></span>');
+                                $animals = addslashes('<img src="'.$this->webroot.'img/circle_green.png"> ');
+                                $animals .= perm_action('worlds', 'changeWorldSettings', $this->Session->read("user_perm"), addslashes('<span class="button-group"><a href="./tworlds/worldAnimals/0/'.$name.'" class="button icon arrowdown ajax_table1">'.__('Disable').'</a></span>'));
                             }else{
-                                $animals = '<img src=\"img/circle_red.png\"> ';
-                                $animals .= perm_action('worlds', 'changeWorldSettings', $this->Session->read("user_perm"), '<span class=\"button-group\"><a href=\"./tworlds/worldAnimals/1/'.$name.'\" class=\"button icon arrowup ajax_table1\">'.__('Enable').'</a></span>');
+                                $animals = addslashes('<img src="'.$this->webroot.'img/circle_red.png"> ');
+                                $animals .= perm_action('worlds', 'changeWorldSettings', $this->Session->read("user_perm"), addslashes('<span class="button-group"><a href="./tworlds/worldAnimals/1/'.$name.'" class="button icon arrowup ajax_table1">'.__('Enable').'</a></span>'));
                             }
 
                             //monsters multiverse
                             if($worldInfo['AllowMonsters'] == 1){
-                                $hostiles = '<img src=\"img/circle_green.png\"> ';
-                                $hostiles .= perm_action('worlds', 'changeWorldSettings', $this->Session->read("user_perm"), '<span class=\"button-group\"><a href=\"./tworlds/worldHostiles/0/'.$name.'\" class=\"button icon arrowdown ajax_table1\">'.__('Disable').'</a></span>');
+                                $hostiles = addslashes('<img src="'.$this->webroot.'img/circle_green.png"> ');
+                                $hostiles .= perm_action('worlds', 'changeWorldSettings', $this->Session->read("user_perm"), addslashes('<span class="button-group"><a href="./tworlds/worldHostiles/0/'.$name.'" class="button icon arrowdown ajax_table1">'.__('Disable').'</a></span>'));
                             }else{
-                                $hostiles = '<img src=\"img/circle_red.png\"> ';
-                                $hostiles .= perm_action('worlds', 'changeWorldSettings', $this->Session->read("user_perm"), '<span class=\"button-group\"><a href=\"./tworlds/worldHostiles/1/'.$name.'\" class=\"button icon arrowup ajax_table1\">'.__('Enable').'</a></span>');
+                                $hostiles = addslashes('<img src="'.$this->webroot.'img/circle_red.png"> ');
+                                $hostiles .= perm_action('worlds', 'changeWorldSettings', $this->Session->read("user_perm"), addslashes('<span class="button-group"><a href="./tworlds/worldHostiles/1/'.$name.'" class="button icon arrowup ajax_table1">'.__('Enable').'</a></span>'));
                             }
                         }else if($wmpl == 1) {
                             //animals MyWorlds
                             if($worldInfo['AllowAnimals'] == 1){
-                                $animals = '<img src=\"img/circle_green.png\">';
+                                $animals = addslashes('<img src="'.$this->webroot.'img/circle_green.png">');
                             }else{
-                                $animals = '<img src=\"img/circle_red.png\">';
+                                $animals = addslashes('<img src="'.$this->webroot.'img/circle_red.png">');
                             }
 
                             //hostiles myWorlds
                             if($worldInfo['AllowMonsters'] == 1){
-                                $hostiles = '<img src=\"img/circle_green.png\">';
+                                $hostiles = addslashes('<img src="'.$this->webroot.'img/circle_green.png">');
                             }else{
-                                $hostiles = '<img src=\"img/circle_red.png\">';
+                                $hostiles = addslashes('<img src="'.$this->webroot.'img/circle_red.png">');
                             }
                         }
 
                         //set PVP
                         if($worldInfo['PVP'] == 1){
-                            $pvp = '<img src=\"img/circle_green.png\"> ';
-                            $pvp .= perm_action('worlds', 'changeWorldSettings', $this->Session->read("user_perm"), '<span class=\"button-group\"><a href=\"./tworlds/worldPVP/0/'.$name.'\" class=\"button icon arrowdown ajax_table1\">'.__('Disable').'</a></span>');
+                            $pvp = addslashes('<img src="'.$this->webroot.'img/circle_green.png"> ');
+                            $pvp .= perm_action('worlds', 'changeWorldSettings', $this->Session->read("user_perm"), addslashes('<span class="button-group"><a href="./tworlds/worldPVP/0/'.$name.'" class="button icon arrowdown ajax_table1">'.__('Disable').'</a></span>'));
                         }else{
-                            $pvp = '<img src=\"img/circle_red.png\"> ';
-                            $pvp .= perm_action('worlds', 'changeWorldSettings', $this->Session->read("user_perm"), '<span class=\"button-group\"><a href=\"./tworlds/worldPVP/1/'.$name.'\" class=\"button icon arrowup ajax_table1\">'.__('Enable').'</a></span>');
+                            $pvp = addslashes('<img src="'.$this->webroot.'img/circle_red.png"> ');
+                            $pvp .= perm_action('worlds', 'changeWorldSettings', $this->Session->read("user_perm"), addslashes('<span class="button-group"><a href="./tworlds/worldPVP/1/'.$name.'" class="button icon arrowup ajax_table1">'.__('Enable').'</a></span>'));
                         }
 
                         //set difficulty
                         if($worldInfo['Difficulty'] == "PEACEFUL"){
-                            $difficulty = '<img src=\"img/peaceful.png\"> <span class=\"button-group\"><a href=\"./tworlds/getWorldDiff/'.$name.'\" class=\"button icon edit fancy\">'.__('Change').'</a></span>';
+                            $difficulty = addslashes('<img src="'.$this->webroot.'img/peaceful.png"> <span class="button-group"><a href="./tworlds/getWorldDiff/'.$name.'" class="button icon edit fancy">'.__('Change').'</a></span>');
                         }else if($worldInfo['Difficulty'] == "EASY"){
-                            $difficulty = '<img src=\"img/easy.png\"> <span class=\"button-group\"><a href=\"./tworlds/getWorldDiff/'.$name.'\" class=\"button icon edit fancy\">'.__('Change').'</a></span>';
+                            $difficulty = addslashes('<img src="'.$this->webroot.'img/easy.png"> <span class="button-group"><a href="./tworlds/getWorldDiff/'.$name.'" class="button icon edit fancy">'.__('Change').'</a></span>');
                         }else if($worldInfo['Difficulty'] == "NORMAL"){
-                            $difficulty = '<img src=\"img/normal.png\"> <span class=\"button-group\"><a href=\"./tworlds/getWorldDiff/'.$name.'\" class=\"button icon edit fancy\">'.__('Change').'</a></span>';
+                            $difficulty = addslashes('<img src="'.$this->webroot.'img/normal.png"> <span class="button-group"><a href="./tworlds/getWorldDiff/'.$name.'" class="button icon edit fancy">'.__('Change').'</a></span>');
                         }else if($worldInfo['Difficulty'] == "HARD"){
-                            $difficulty = '<img src=\"img/hard.png\"> <span class=\"button-group\"><a href=\"./tworlds/getWorldDiff/'.$name.'\" class=\"button icon edit fancy\">'.__('Change').'</a></span>';
+                            $difficulty = addslashes('<img src="'.$this->webroot.'img/hard.png"> <span class="button-group"><a href="./tworlds/getWorldDiff/'.$name.'" class="button icon edit fancy">'.__('Change').'</a></span>');
                         }
 
 
                         //set load button if it's not the main world
                         if (in_array($name, $main) == NULL){
-                            $load = '<a href=\"./tworlds/unloadWorld/'.$name.'\" class=\"button icon arrowdown ajax_table1\">'.__('Unload').'</a>';
+                            $load = addslashes('<a href="./tworlds/unloadWorld/'.$name.'" class="button icon arrowdown ajax_table1">'.__('Unload').'</a>');
                         }else{
                             $load = "";
                         }
@@ -291,51 +291,51 @@ class TWorldsController extends AppController {
 
                         //set animals column
                         if($worldInfo['AllowAnimals'] == 1){
-                            $animals = '<img src=\"img/circle_green.png\">';
+                            $animals = addslashes('<img src="'.$this->webroot.'img/circle_green.png">');
                         }else{
-                            $animals = '<img src=\"img/circle_red.png\">';
+                            $animals = addslashes('<img src="'.$this->webroot.'img/circle_red.png">');
                         }
 
                         //set monsters column
                         if($worldInfo['AllowMonsters'] == 1){
-                            $hostiles = '<img src=\"img/circle_green.png\">';
+                            $hostiles = addslashes('<img src="'.$this->webroot.'img/circle_green.png">');
                         }else{
-                            $hostiles = '<img src=\"img/circle_red.png\">';
+                            $hostiles = addslashes('<img src="'.$this->webroot.'img/circle_red.png">');
                         }
 
                         //set pvp column
                         if($worldInfo['PVP'] == 1){
-                            $pvp = '<img src=\"img/circle_green.png\">';
+                            $pvp = addslashes('<img src="'.$this->webroot.'img/circle_green.png">');
                         }else{
-                            $pvp = '<img src=\"img/circle_red.png\">';
+                            $pvp = addslashes('<img src="'.$this->webroot.'img/circle_red.png">');
                         }
                         //set difficulty
                         if($worldInfo['Difficulty'] == "PEACEFUL"){
-                            $difficulty = '<img src=\"img/peaceful.png\">';
+                            $difficulty = addslashes('<img src="'.$this->webroot.'img/peaceful.png">');
                         }else if($worldInfo['Difficulty'] == "EASY"){
-                            $difficulty = '<img src=\"img/easy.png\">';
+                            $difficulty = addslashes('<img src="'.$this->webroot.'img/easy.png">');
                         }else if($worldInfo['Difficulty'] == "NORMAL"){
-                            $difficulty = '<img src=\"img/normal.png\">';
+                            $difficulty = addslashes('<img src="'.$this->webroot.'img/normal.png">');
                         }else if($worldInfo['Difficulty'] == "HARD"){
-                            $difficulty = '<img src=\"img/hard.png\">';
+                            $difficulty = addslashes('<img src="'.$this->webroot.'img/hard.png">');
                         }
 
                         //set load button if it's not the main world
                         if (in_array($name, $main) == NULL){
-                        $load = '<a href=\"./tworlds/unloadWorld/'.$name.'\" class=\"button icon arrowdown ajax_table1\">'.__('Unload').'</a>';
+                        $load = addslashes('<a href="./tworlds/unloadWorld/'.$name.'" class="button icon arrowdown ajax_table1">'.__('Unload').'</a>');
                         }else{
                             $load = "";
                         }
                     }
-                
+
                 }
 
                 //UNCOMMENT THIS FOR BACKUPS, ETC
-                
-                //$actions = '<center> '.$load.' <span class=\"button-group\"><a href=\"#\"  class=\"button icon like ajax_table1\">'.__('Backup').'</a><a href=\"#\" class=\"button icon remove danger ajax_table1\">'.__('Delete!').'</a></span></center>';
-                
-                $actions = '<center><span class=\"button-group\"> '.$load.'</span> <span class=\"button-group\"><a href=\"./tworlds/deleteWorld/'.$name.'\" class=\"button icon remove danger remove\">'.__('Delete!').'</a></span></center>';
-                
+
+                //$actions = '<center> '.$load.' <span class="button-group"><a href="#"  class="button icon like ajax_table1">'.__('Backup').'</a><a href="#" class="button icon remove danger ajax_table1">'.__('Delete!').'</a></span></center>';
+
+                $actions = addslashes('<center><span class="button-group"> '.$load.'</span> <span class="button-group"><a href="./tworlds/deleteWorld/'.$name.'" class="button icon remove danger remove">'.__('Delete!').'</a></span></center>');
+
                 //send to table
                 ECHO <<<END
                 [
@@ -349,7 +349,7 @@ class TWorldsController extends AppController {
                   "$environment",
                   "$actions"
                 ]
-            
+
 END;
                 if($i < $num) {
                     echo ",";
@@ -621,7 +621,7 @@ END;
             if($info == TRUE){
                 w_serverlog($this->Session->read("current_server"), __('[WORLDS] ').$this->Auth->user('username').' '.__('loaded').' '.$wrld);
                 echo $wrld.' '.__('has been loaded.');
-            }else{echo __('error while loading').' '.$wrld;}  
+            }else{echo __('error while loading').' '.$wrld;}
         }
     }
 
@@ -695,7 +695,7 @@ END;
                     w_serverlog($this->Session->read("current_server"), __('[WORLDS] ').$this->Auth->user('username').' '.__('created').' '.$wrld);
                     $this->redirect(array('controller' => 'tworlds', 'action' => 'index'));
                 }
-            } 
+            }
         }
         $this->layout = 'popup';
     }
@@ -711,16 +711,16 @@ END;
         require APP . 'spacebukkitcall.php';
 
 		//notify users
-		$args = array($this->Session->read("Sbvars.10"), '$bServer will shut down shortly due to map mainteniance with MapAutoTrim'); 
-		  
-        $api->call("broadcastWithName", $args, false);  
+		$args = array($this->Session->read("Sbvars.10"), '$bServer will shut down shortly due to map mainteniance with MapAutoTrim');
+
+        $api->call("broadcastWithName", $args, false);
 
         sleep(10);
 
 		//run MapAutoTrim
 		$vars = $this->request->data;
 
-  		$args2 = array($vars['world'], $vars['dilatation'], $vars['blocks']);   
+  		$args2 = array($vars['world'], $vars['dilatation'], $vars['blocks']);
 		$api->call("runMapTrimmer", $args2, true);
 
         sleep(5);
@@ -733,7 +733,7 @@ END;
 
     	$this->redirect($this->referer());
 
-    	
+
     }
     /*
 //chunkster tab functions
@@ -747,25 +747,25 @@ END;
         require APP . 'spacebukkitcall.php';
 
         //notify users
-        $args = array($this->Session->read("Sbvars.10"), '$bServer will shut down shortly due to map mainteniance with Chunkster'); 
-          
-        $api->call("broadcastWithName", $args, false);  
+        $args = array($this->Session->read("Sbvars.10"), '$bServer will shut down shortly due to map mainteniance with Chunkster');
+
+        $api->call("broadcastWithName", $args, false);
 
         sleep(10);
 
         //run MapAutoTrim
         $vars = $this->request->data;
 
-        $args2 = array($vars['world']);   
+        $args2 = array($vars['world']);
         $api->call("runChunkster", $args2, true);
 
         sleep(5);
 
-        w_serverlog($this->Session->read("current_server"), __('[WORLDS] ').$this->Auth->user('username').' '.__('ran Chunkster on').' '.$vars['world']);        
+        w_serverlog($this->Session->read("current_server"), __('[WORLDS] ').$this->Auth->user('username').' '.__('ran Chunkster on').' '.$vars['world']);
 
         $this->redirect($this->referer());
 
-        
+
     }*/
 
 }
