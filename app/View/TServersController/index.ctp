@@ -133,7 +133,7 @@
             <h2><?php echo __('Server .jar') ?></h2>
             <select id="jarchooser">
               <option value="cb">CraftBukkit</option>
-              <option value="sg">Spigot</option>
+              <!-- <option value="sg">Spigot</option> -->
             </select>
         </header>
 
