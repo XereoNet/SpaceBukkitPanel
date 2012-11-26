@@ -15,14 +15,14 @@
 <!-- End Tabs -->
 
 <!-- Content -->
-<section id="content"> 
+<section id="content">
 
   <div class="tab nosearch" id="tab1">
 
-    <section class="box boxpad"> 
-     
+    <section class="box boxpad">
+
         <header>
-            <h2><?php echo __('Users, Servers, Roles') ?></h2> 
+            <h2><?php echo __('Users, Servers, Roles') ?></h2>
         </header>
 
         <section>
@@ -32,26 +32,26 @@
   <div class="clear"></div>
   <div class="col left col_1_3 nofilter" style="padding: 30px 60px 0 0; width: 300px; min-height: 500px;background: url(./img/fancy_nav_right.png) no-repeat 95% 25%">
 
-     <table class=" datatable dtb1 notitle" id="settings_users" style="cursor: pointer"> 
-      <thead> 
-        <tr> 
+     <table class=" datatable dtb1 notitle" id="settings_users" style="cursor: pointer">
+      <thead>
+        <tr>
           <th><?php echo __('Name ') ?>
           <a href="./Users/add" class="fancy" style="float: right; margin-right: 5px"><?php echo __('Add new user') ?></a>
           </th>
-        </tr> 
-      </thead> 
-   
+        </tr>
+      </thead>
+
       <tbody>
-      </tbody> 
+      </tbody>
 
       </table>
 
   </div>
   <div class="col left col_1_3 nofilter" style="padding: 30px 60px 0 0; width: 300px; min-height: 500px;background: url(./img/fancy_nav_right.png) no-repeat 95% 25%">
      <p class="column_desc" style="margin-top: 2%" id="c1desc"><?php echo __('Select a user first!') ?></p>
-     <table class="datatable dtb2 notitle" id="settings_server" style="cursor: pointer; display: none; width: 300px"> 
-      <thead> 
-        <tr> 
+     <table class="datatable dtb2 notitle" id="settings_server" style="cursor: pointer; display: none; width: 300px">
+      <thead>
+        <tr>
           <th>
             <?php echo __('Name ') ?>
             <a href="#" class="tip" style="float: right; margin-right: 5px"><?php echo __('Add to a server') ?></a>
@@ -59,13 +59,13 @@
               <ul id="server_ad_to_list">
                 <?php echo __('loading') ?>
               </ul>
-            </div>            
-          </th> 
-        </tr> 
-      </thead> 
-   
+            </div>
+          </th>
+        </tr>
+      </thead>
+
       <tbody>
-      </tbody> 
+      </tbody>
       </table>
 
   </div>
@@ -80,7 +80,7 @@
 
   </div>
     <div class="clear"></div>
-   
+
    </section>
 
    </section>
@@ -99,16 +99,16 @@
 
     </header>
 
-   <table class="datatable dtb4"> 
-      <thead> 
-        <tr> 
-          <th><?php echo __('Name') ?></th> 
-          <th><?php echo __('Action') ?></th> 
-        </tr> 
-      </thead> 
+   <table class="datatable dtb4">
+      <thead>
+        <tr>
+          <th><?php echo __('Name') ?></th>
+          <th><?php echo __('Action') ?></th>
+        </tr>
+      </thead>
       <tbody>
-      </tbody> 
-    </table> 
+      </tbody>
+    </table>
 
     </div>
 
@@ -130,21 +130,21 @@
 
     </header>
 
-   <table class="datatable dtb3"> 
-      <thead> 
-        <tr> 
-          <th><?php echo __('Name') ?></th> 
-          <th><?php echo __('Action') ?></th> 
-          <th><?php echo __('Default') ?></th> 
-        </tr> 
-      </thead> 
+   <table class="datatable dtb3">
+      <thead>
+        <tr>
+          <th><?php echo __('Name') ?></th>
+          <th><?php echo __('Action') ?></th>
+          <th><?php echo __('Default') ?></th>
+        </tr>
+      </thead>
       <tbody>
-      </tbody> 
-    </table> 
+      </tbody>
+    </table>
     </div>
   <div class="clear"></div>
 
-  </div><!-- End tab3 -->  
+  </div><!-- End tab3 -->
 
   <div class="tab" id="tab4">
 <div class="clear"></div>
@@ -156,22 +156,22 @@
       <h2><?php echo __('Themes') ?></h2>
 
     </header>
-   <table class="datatable dtb"> 
-      <thead> 
-        <tr> 
-          <th><?php echo __('Thumbnail') ?></th> 
-          <th><?php echo __('Theme') ?></th> 
-          <th><?php echo __('Version') ?></th> 
-          <th><?php echo __('Author') ?></th> 
-          <th><?php echo __('Description') ?></th> 
-          <th><?php echo __('Link') ?></th> 
-          <th><?php echo __('Action') ?></th> 
-        </tr> 
-      </thead> 
-      <tbody> 
-  	<?php include 'findthemes.php'; ?>
-      </tbody> 
-    </table> 
+   <table class="datatable themesdb">
+      <thead>
+        <tr>
+          <th><?php echo __('Thumbnail') ?></th>
+          <th><?php echo __('Theme') ?></th>
+          <th><?php echo __('Version') ?></th>
+          <th><?php echo __('Author') ?></th>
+          <th><?php echo __('Description') ?></th>
+          <th><?php echo __('Link') ?></th>
+          <th><?php echo __('Action') ?></th>
+        </tr>
+      </thead>
+      <tbody id="setthemes">
+
+      </tbody>
+    </table>
 
    </div>
   <div class="clear"></div>
@@ -180,12 +180,12 @@
 
   <div class="tab" id="tab5">
 
-    <section class="box boxpad"> 
-     
+    <section class="box boxpad">
+
       <header>
-            <h2><?php echo __('SpaceBukkit Settings') ?></h2> 
+            <h2><?php echo __('SpaceBukkit Settings') ?></h2>
       </header>
-        
+
       <section>
 
         <form id="SbConfig" method="post" action="./tsettings/sb_config_save">
@@ -206,16 +206,16 @@
                 } else {
 
                   $options = '';
-        
+
                   foreach ($var['vars'] as $desc => $val) {
 
-                    if ($var['val'] == $val) 
-                    { 
-                      $sel = " selected"; 
-                    } 
-                    else 
-                    { 
-                      $sel = " "; 
+                    if ($var['val'] == $val)
+                    {
+                      $sel = " selected";
+                    }
+                    else
+                    {
+                      $sel = " ";
                     }
 
                     $options .= '<option value="'.$val.'"'.$sel.'>'.$desc.'</option>';
@@ -237,14 +237,14 @@
 
 
             ?>
-             
+
           <input type="submit" class="pull-right button primary submit" value="<?php echo __('Submit') ?>">
   <div class="clear"></div>
 
         </form>
 
       </section>
-    
+
     </section>
 
   <div class="clear"></div>
@@ -256,20 +256,20 @@
 
     <div class="col left col_2_3">
 
-        <section class="box boxpad"> 
-         
+        <section class="box boxpad">
+
           <header>
-                <h2><?php echo __('SpaceBukkit Database Settings') ?></h2> 
+                <h2><?php echo __('SpaceBukkit Database Settings') ?></h2>
           </header>
-            
+
           <section>
             <form id="ServerAddForm" method="post" action="./tsettings/update_config">
-    
+
               <section>
                 <label for="type">
                   <?php echo __('Type*') ?>
                 </label>
-              
+
                 <div>
                   <input id="type" name="type" type="text" value="<?php echo $configurations->config['datasource']; ?>"/>
                 </div>
@@ -279,17 +279,17 @@
                 <label for="host">
                   <?php echo __('Host*') ?>
                 </label>
-              
+
                 <div>
                   <input id="host" name="host" type="text" value="<?php echo $configurations->config['host']; ?>"/>
                 </div>
               </section>
-            
+
               <section>
                 <label for="login">
                   <?php echo __('Login*') ?>
                 </label>
-              
+
                 <div>
                   <input type="text" id="login" name="login" value="<?php echo $configurations->config['login']; ?>"/>
                 </div>
@@ -299,7 +299,7 @@
                 <label for="password">
                   <?php echo __('Password*') ?>
                 </label>
-              
+
                 <div>
                   <input type="password" id="password" name="password" value="<?php echo $configurations->config['password']; ?>"/>
                 </div>
@@ -309,18 +309,18 @@
                 <label for="database">
                   <?php echo __('Database*') ?>
                 </label>
-              
+
                 <div>
                   <input type="text" id="database" name="database" value="<?php echo $configurations->config['database']; ?>"/>
                 </div>
               </section>
-            
-             
+
+
           <input type="submit" class="button primary submit" value="<?php echo __('Submit') ?>">
           </form>
 
-          </section> 
-                                
+          </section>
+
         </section>
 
         <div class="clear"></div>
@@ -331,31 +331,31 @@
     <div class="col right col_1_3">
 
         <div class="colorbox green boxpad">
-            <h3><?php echo __('Configuring Spacebukkit') ?></h3> 
-            <p> 
+            <h3><?php echo __('Configuring Spacebukkit') ?></h3>
+            <p>
                 <?php echo __('Here you can reconfigure your database settings.') ?></a>
-            </p> 
-        </div> 
+            </p>
+        </div>
 
         <div class="clear"></div>
         <br />
     </div>
-   
+
   <div class="clear"></div>
 
   </div>
   <!-- End tab6 -->
-  
+
  <div class="tab" id="tab7">
 
-    <section class="box boxpad"> 
-     
+    <section class="box boxpad">
+
       <header>
-            <h2><?php echo __('System Settings') ?></h2> 
+            <h2><?php echo __('System Settings') ?></h2>
       </header>
-        
+
       <section>
- 
+
         <form id="SbSystem" method="post" action="./tsettings/sb_system_save">
 
             <div class="error_box"></div>
@@ -374,16 +374,16 @@
                 } else {
 
                   $options = '';
-        
+
                   foreach ($var['vars'] as $desc => $val) {
 
-                    if ($var['val'] == $val) 
-                    { 
-                      $sel = " selected"; 
-                    } 
-                    else 
-                    { 
-                      $sel = " "; 
+                    if ($var['val'] == $val)
+                    {
+                      $sel = " selected";
+                    }
+                    else
+                    {
+                      $sel = " ";
                     }
 
                     $options .= '<option value="'.$val.'"'.$sel.'>'.$desc.'</option>';
@@ -405,7 +405,7 @@
 
 
             ?>
-             
+
           <input type="submit" class="pull-right button primary submit" value="<?php echo __('Submit') ?>">
   <div class="clear"></div>
 
@@ -413,7 +413,7 @@
 
 
       </section>
-    
+
     </section>
 
   <div class="clear"></div>
@@ -422,16 +422,20 @@
   <!-- End tab7 -->
 
 </section>
-<!-- End #content --> 
+<!-- End #content -->
 
 <script>
+
+$('#setthemes').load('./tsettings/findThemes', function() {
+  $(".themesdb").dataTable();
+});
 
 /* Get the rows which are currently selected */
 function fnGetSelected( oTableLocal )
 {
   var aReturn = new Array();
   var aTrs = oTableLocal.fnGetNodes();
-  
+
   for ( var i=0 ; i<aTrs.length ; i++ )
   {
     if ( $(aTrs[i]).hasClass('row_selected') )
@@ -455,7 +459,7 @@ $('document').ready(function() {
 
       user = $(".row_selected span").text();
 
-      var server = './tsettings/getServer/'+user; 
+      var server = './tsettings/getServer/'+user;
       var noserver = './tsettings/getNoServer/'+user;
 
       $('.dtb2').fadeIn(700);
@@ -465,7 +469,7 @@ $('document').ready(function() {
       $('#server_ad_to_list').html(ajax_load).load(noserver);
 
       Table2 = $('.dtb2').dataTable( {
-      "bDestroy": true,   
+      "bDestroy": true,
       "bProcessing": true,
       "sAjaxSource": server
       });
@@ -480,7 +484,7 @@ $('document').ready(function() {
 
       var usr = $(".row2_selected span").attr("title");
 
-      var role = './tsettings/getRole/'+usr; 
+      var role = './tsettings/getRole/'+usr;
 
       $('#settings_role').html(ajax_load).load(role, function() {
 
@@ -490,27 +494,27 @@ $('document').ready(function() {
       });
 
     });
-      
+
   //initiate Tables
   Table1 = $('.dtb1').dataTable( {
       "bProcessing": true,
       "sAjaxSource": './tsettings/getUsers'
   });
-      
+
   Table3 = $('.dtb3').dataTable( {
       "bProcessing": true,
       "sAjaxSource": './tsettings/getRoles'
   });
-      
+
   Table4 = $('.dtb4').dataTable( {
       "bProcessing": true,
       "sAjaxSource": './tsettings/getServers'
   });
-     
+
    //listen for change of select box
   $('#roleSelect').live("change", function() {
     $('#saving_role').text("Saving...").fadeIn();
-          
+
       /* get some values from elements on the page: */
       var $form = $("#role_select"),
           server_id = $form.find( 'input[name="server_id"]' ).val(),
