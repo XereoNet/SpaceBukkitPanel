@@ -160,15 +160,10 @@ class AppController extends Controller {
                                 //is the user authorized?
 
                                 if (($this->Session->read("Sbvars.16") == "s" && $this->Auth->user('is_super') == 1) || $this->Session->read("Sbvars.16") == "e") {
-
+                                    $this->loadModel('Configurator');
                                     //get LATEST SpaceBukkit version
 
-                                    $filename = 'http://dl.nope.bz/sb/build/build.xml';
-                                    $l_sb = simplexml_load_file($filename);
-
-                                    $json = json_encode($l_sb);
-                                    $l_sb = json_decode($json, TRUE);
-
+                                    $l_sb = $this->Configurator->xml('build.xml');
 
                                     //Set the notifier
 
@@ -182,11 +177,7 @@ class AppController extends Controller {
 
                                     //check for uncle Ant's messages
 
-                                    $filename = 'http://dl.nope.bz/sb/build/message.12.xml';
-                                    $message = simplexml_load_file($filename);
-
-                                    $json = json_encode($message);
-                                    $message = json_decode($json, TRUE);
+                                    $message = $this->Configurator->xml('message.12.xml');
 
                                     //set the message
 

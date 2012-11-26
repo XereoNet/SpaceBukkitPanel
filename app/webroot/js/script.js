@@ -10,7 +10,7 @@ $('document').ready(function () {
           }, 800, function() {
             // Animation complete.
       });
-    
+
     $('.slideDown').animate({
         opacity: 'toggle',
         height: 'toggle'
@@ -36,12 +36,12 @@ $('document').ready(function () {
         $.nmManual(href, {sizes: { W: 960, H: 648, initW: 960, initH: 648, hMargin: 0 }});
         return false;
     });
-     
+
     $(".console-button").click(function() {
         $(".sidebar-wrap").each(function() { $(this).hide();});
 
             if (!($(this).hasClass('active'))) {
-                $(this).siblings('.active').removeClass('active');             
+                $(this).siblings('.active').removeClass('active');
                 $(this).addClass('active');
                 $("#sidebar-console-wrap").show();
                 $('#console-list').html('<div class="preloader"><div><img src="./img/big_loader.gif" /></div></div>');
@@ -71,12 +71,12 @@ $('document').ready(function () {
 
         return false;
     });
-                         
+
     $(document).bind('click', function(e) {
         var $clicked = $(e.target);
         if (! $clicked.parents().hasClass("widget-reset")) {
         $(".sidebar-wrap").each(function() { $(this).hide();});
-        $(".widget-reset").find('a.active').removeClass('active');    
+        $(".widget-reset").find('a.active').removeClass('active');
     }
     });
 
@@ -89,13 +89,13 @@ $('document').ready(function () {
     $(this).parent('li').addClass('selected-1');
     $('#console-list').attr('rel', rel).addClass('loading-console').html('<div class="preloader"><div><img src="./img/big_loader.gif" /></div></div>');
 
-    e.preventDefault();  
+    e.preventDefault();
     return false;
 
   });
 
     $("select, input:checkbox, input:radio, input:file").uniform();
-    $(".bounce").hover(function () {
+    $(".bounce").live('hover', function () {
         $(this).stop().animate({
             opacity: 0.75,
             marginTop: -10
@@ -122,7 +122,7 @@ $('document').ready(function () {
         effect: "fade",
         relative: "true"
     });
-    
+
     $(".dtb").dataTable();
 
     $(function () {

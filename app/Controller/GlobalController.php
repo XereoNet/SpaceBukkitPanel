@@ -215,17 +215,6 @@ class GlobalController extends AppController {
 
       }
 
-      function xml($file) {
-
-        $contents = "";
-
-        //either requery the file
-        //or send the contents
-
-        return $contents;
-
-      }
-
       function getServer($id) {
 
       if ($this->request->is('ajax')) {

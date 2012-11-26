@@ -3,7 +3,7 @@
 /**
 *
 *   ####################################################
-*   TServersController.php 
+*   TServersController.php
 *   ####################################################
 *
 *   DESCRIPTION
@@ -12,12 +12,12 @@
 *   This includes CraftBukkit version choosing, config saving and schedules
 *
 *   TABLE OF CONTENTS
-*   
+*
 *   1)  index
 *   2)  install_cb
 *   3)  saveConfig
-*   
-*   
+*
+*
 * @copyright  Copyright (c) 20011 XereoNet and SpaceBukkit (http://spacebukkit.xereo.net)
 * @version    Last edited by Antariano
 * @since      File available since Release 1.0
@@ -42,11 +42,11 @@ class TServersController extends AppController {
         $user_perm = $this->Session->read("user_perm");
         $glob_perm = $this->Session->read("glob_perm");
 
-        if (!($user_perm['pages'] & $glob_perm['pages']['servers'])) { 
+        if (!($user_perm['pages'] & $glob_perm['pages']['servers'])) {
 
            exit("access denied");
 
-        } 
+        }
       }
 
     function index() {
@@ -58,27 +58,27 @@ class TServersController extends AppController {
         */
 
         require APP . 'spacebukkitcall.php';
-        
+
         //CHECK IF SERVER IS RUNNING
 
-        $args = array();   
+        $args = array();
         $running = $api->call("isServerRunning", $args, true);
-        
+
         $this->set('running', $running);
 
         //IF "FALSE", IT'S STOPPED. IF "NULL" THERE WAS A CONNECTION ERROR
 
         if (is_null($running) || preg_match("/salt/", $running)) {
 
-        $this->layout = 'sbv1_notreached'; 
-                     
-        } 
+        $this->layout = 'sbv1_notreached';
+
+        }
 
         elseif (!$running) {
 
         $this->layout = 'sbv1_notrunning';
 
-        } 
+        }
 
         elseif ($running) {
 
@@ -86,12 +86,12 @@ class TServersController extends AppController {
 
         $this->set('title_for_layout', __('Server'));
 
-        $server = $api->call("getServer", $args, false);   
+        $server = $api->call("getServer", $args, false);
 
         //Bukkit Properties Info
         $bukkit = array();
 
-        $args = array("bukkit.yml");   
+        $args = array("bukkit.yml");
         $bukkityml = $api->call("getFileContent", $args, true);
 
         $bukkit['spawn-radius'] = $this->get_string_between($bukkityml, 'spawn-radius: ', "\n");
@@ -106,21 +106,22 @@ class TServersController extends AppController {
         $bukkit['plugin-profiling'] = $this->get_string_between($bukkityml, 'plugin-profiling: ', "\n");
 
         $this->set('bukkit', $bukkit);
+        $this->set('cversion', $this->get_string_between($server['Version'], "-b", "jnks"));
 
         //CraftBukkit chooser information
 
         $filename = 'http://dl.bukkit.org/downloads/craftbukkit/feeds/latest-rb.rss';
         $bukkitxml = simplexml_load_file($filename);
-         
+
         $json = json_encode($bukkitxml);
         $bukkitxml = json_decode($json, TRUE);
-        
+
         $this->set('versions', $bukkitxml["channel"]["item"]);
         $this->set('server', $server);
 
         //CraftBukkit configuration information
 
-        $args = array("server.properties");   
+        $args = array("server.properties");
         $properties = $api->call("getFileContent", $args, true);
 
         foreach(preg_split("/(\r?\n)/", $properties) as $line){
@@ -128,19 +129,163 @@ class TServersController extends AppController {
             $config = explode("=", $line);
 
             $cname = trim(str_replace('-','_',$config[0]));
-          
+
             if (isset($config[1])) {
 
             $this->set($cname, $config[1]);
 
             }
-        
+
         }
-        
+
         //view-specific settings
         $this->layout = 'sbv1';
     }
-        
+
+    }
+
+    function getBuilds($mod='cb') {
+
+        $this->autoRender = false;
+
+        switch($mod) {
+            case 'cb':
+
+                $opts = array(
+                  'http'=>array(
+                    'method'=>"GET",
+                    'header'=>"Accept:  application/json "
+                  )
+                );
+
+                $context = stream_context_create($opts);
+
+                // Open the file using the HTTP headers set above
+                $file = json_decode(file_get_contents('http://dl.bukkit.org/api/1.0/downloads/projects/craftbukkit/artifacts/', false, $context), TRUE);
+
+                $aa = array();
+
+                foreach($file['results'] as $i => $build) {
+
+                    $button = $build['is_broken'] ? 'Broken build' : '<a href="./tservers/install_cb/'.$build['build_number'].'/cb">Install</a>' ;
+                    $text = $build['is_broken'] ? $build['broken_reason'] : 'Success';
+
+                    $aa[$i] = array(
+                        $build['build_number'],
+                        $build['version'],
+                        $build['channel']['name'],
+                        $text,
+                        $button
+                    );
+                }
+
+                $aa = array_reverse($aa);
+
+            break;
+            case 'sg':
+
+                $opts = array(
+                  'http'=>array(
+                    'method'=>"GET",
+                    'header'=>"Accept:  application/json "
+                  )
+                );
+
+                $context = stream_context_create($opts);
+
+                // Open the file using the HTTP headers set above
+                $file = json_decode(file_get_contents('http://ci.md-5.net/job/Spigot/api/json?pretty=true', false, $context), TRUE);
+
+                $aa = array();
+
+                foreach($file['builds'] as $i => $build) {
+
+                    $button = '<a href="./tservers/install_cb/'.$build['number'].'/sp">Install</a>' ;
+
+                    $aa[$i] = array(
+                        $build['number'],
+                        $build['number'],
+                        "Spigot",
+                        "",
+                        $button
+                    );
+                }
+            break;
+            case 'sp':
+
+                $opts = array(
+                  'http'=>array(
+                    'method'=>"GET",
+                    'header'=>"Accept:  application/json "
+                  )
+                );
+
+                $context = stream_context_create($opts);
+
+                // Open the file using the HTTP headers set above
+                $file = json_decode(file_get_contents('http://ci.md-5.net/job/Spigot/api/json?pretty=true', false, $context), TRUE);
+
+                $aa = array();
+
+                foreach($file['builds'] as $i => $build) {
+
+                    $button = '<a href="./tservers/install_cb/'.$build['number'].'/sp">Install</a>' ;
+
+                    $aa[$i] = array(
+                        $build['number'],
+                        $build['number'],
+                        "Spigot",
+                        "",
+                        $button
+                    );
+                }
+            break;
+
+        }
+
+        $res = new stdClass();
+        $res -> aaData = $aa;
+
+        echo json_encode($res);
+
+    }
+
+    function getRBS($mod='cb') {
+        $this->autoRender = false;
+
+        switch($mod) {
+        case 'cb':
+
+            $opts = array(
+              'http'=>array(
+                'method'=>"GET",
+                'header'=>"Accept:  application/json "
+              )
+            );
+
+            $context = stream_context_create($opts);
+
+            // Open the file using the HTTP headers set above
+            $file = json_decode(file_get_contents('http://dl.bukkit.org/api/1.0/downloads/projects/craftbukkit/artifacts/rb/', false, $context), TRUE);
+
+            $i = 0;
+            $tmp = 0;
+            foreach ($file['results'] as $b) if ($tmp++ < 5) {
+              $version_number = $b['build_number'];
+              $version_link = $b['build_number'];
+              $rb = "";
+
+              echo '<a href="./tservers/install_cb/'.$version_link.'" class="confirmCB"><div class="rb bounce tip '.$rb.'">'.$version_number.'</div></a>';
+              if (++$i == 8) break;
+            }
+        break;
+        case 'sg':
+            echo "This mod has no recommended builds!";
+        break;
+        case 'sp':
+        break;
+        }
+
     }
 
     //get the server log
@@ -167,7 +312,7 @@ class TServersController extends AppController {
 
     function getServerOverview() {
     if ($this->request->is('ajax')) {
-            
+
             $this->disableCache();
             Configure::write('debug', 0);
             $this->autoRender = false;
@@ -207,7 +352,7 @@ class TServersController extends AppController {
 
     <section>
       <label for="CPU">
-        CPU: 
+        CPU:
       </label>
 
       <div>
@@ -217,7 +362,7 @@ class TServersController extends AppController {
 
     <section>
       <label for="Java">
-        Java Version: 
+        Java Version:
       </label>
 
       <div>
@@ -227,7 +372,7 @@ class TServersController extends AppController {
 
     <section>
       <label for="Bukkit">
-        Bukkit Version: 
+        Bukkit Version:
       </label>
 
       <div>
@@ -242,7 +387,7 @@ class TServersController extends AppController {
 
       <section>
         <label for="Architecture">
-          Architecture: 
+          Architecture:
         </label>
 
         <div>
@@ -251,7 +396,7 @@ class TServersController extends AppController {
       </section>
         <section>
           <label for="OS">
-            Operating System: 
+            Operating System:
           </label>
 
           <div>
@@ -261,14 +406,14 @@ class TServersController extends AppController {
 
         <section>
           <label for="SB">
-            SpaceBukkit Version: 
+            SpaceBukkit Version:
           </label>
 
           <div>
             $ServerSpecs[SpaceBukkit]<br>
           </div>
        <div class="clear"></div>
-          </section>           
+          </section>
   </div>
 
 
@@ -276,7 +421,7 @@ class TServersController extends AppController {
 
     <section>
       <label for="Memory">
-        Memory: 
+        Memory:
       </label>
 
       <div>
@@ -286,7 +431,7 @@ class TServersController extends AppController {
 
     <section>
       <label for="Disk">
-        Disk Space: 
+        Disk Space:
       </label>
 
       <div>
@@ -297,7 +442,7 @@ class TServersController extends AppController {
 
         <section>
           <label for="Web">
-            Webserver Version: 
+            Webserver Version:
           </label>
 
           <div>
@@ -315,7 +460,7 @@ END;
     function delServerlog() {
 
         if ($this->request->is('ajax')) {
-            
+
             $this->disableCache();
             Configure::write('debug', 0);
             $this->autoRender = false;
@@ -333,7 +478,7 @@ END;
     function rollServerlog() {
 
         if ($this->request->is('ajax')) {
-            
+
             $this->disableCache();
             Configure::write('debug', 0);
             $this->autoRender = false;
@@ -346,12 +491,12 @@ END;
 
         }
 
-    }    
+    }
     //download the server log
     function dlServerlog() {
 
             $this->disableCache();
-            
+
 
             $this->autoRender = false;
 
@@ -374,14 +519,14 @@ END;
         return substr($string,$ini,$len);
     }
 
-    function install_cb($cb = null) {
+    function install_cb($cb = null, $mod='cb') {
         perm('servers', 'bukkit', $this->Session->read("user_perm"), true);
 
         set_time_limit(300);
 
         if ($this->request->is('post')) {
            $cb = $this->request->data["cb"];
-        }            
+        }
 
         //check if new files exist at all
         //they are either called craftbukkit.jar or craftbukkit-dev.jar
@@ -391,7 +536,7 @@ END;
             $cburl2 = 'http://dl.bukkit.org/downloads/craftbukkit/get/build-'.$cb.'/craftbukkit.jar';
         } else {
             $cburl1 = 'http://dl.bukkit.org/downloads/craftbukkit/get/'.$cb.'/craftbukkit-dev.jar';
-            $cburl2 = 'http://dl.bukkit.org/downloads/craftbukkit/get/'.$cb.'/craftbukkit.jar'; 
+            $cburl2 = 'http://dl.bukkit.org/downloads/craftbukkit/get/'.$cb.'/craftbukkit.jar';
         }
 
         if ((!(fopen($cburl1, "r"))) && (!(fopen($cburl2, "r")))) {
@@ -401,18 +546,18 @@ END;
         } elseif (fopen($cburl1, "r")) {
 
             $new_jar = $cburl1;
-            
+
         } elseif (fopen($cburl2, "r")) {
 
             $new_jar = $cburl2;
-            
+
         }
-                  
+
         require APP . 'spacebukkitcall.php';
 
         //stop the server
 
-        $args = array();   
+        $args = array();
         $running = $api->call("isServerRunning", $args, true);
 
         if($running == 'true')
@@ -422,10 +567,10 @@ END;
 
         //delete old CB
 
-        $args = array("toolkit/wrapper.properties");   
+        $args = array("toolkit/wrapper.properties");
         $config = $api->call("getFileContent", $args, true);
-               
-        
+
+
 
         $old_jar = trim($this->get_string_between($config, "minecraft-server-jar=", "\n"));
 
@@ -438,7 +583,7 @@ END;
             {
                 $i = 10;
             } else {
-                
+
              $i++;
              sleep(2);
 
@@ -451,31 +596,31 @@ END;
             exit('Error: could not stop the server');
         }
 
-        $args = array($old_jar);   
-        $api->call("deleteFile", $args, true);  
-            
+        $args = array($old_jar);
+        $api->call("deleteFile", $args, true);
+
         //send new CB
 
         sleep(3);
 
-        $args = array($new_jar, $old_jar);   
-        $api->call("sendFile", $args, true);   
+        $args = array($new_jar, $old_jar);
+        $api->call("sendFile", $args, true);
 
         sleep(10);
 
         //start server
         $args = array();
-        $api->call("startServer", $args, true);       
+        $api->call("startServer", $args, true);
 
-        //Dummy call to listen for reload   
-        $args = array();   
+        //Dummy call to listen for reload
+        $args = array();
         $api->call("getOPs", $args, false);
 
         w_serverlog($this->Session->read("current_server"), __('[SERVERS] ').$this->Auth->user('username').' '.__('installed CraftBukkit').' '.$cb);
         sleep(2);
 
         $this->redirect($this->referer());
-            
+
     }
 
         function saveConfig() {
@@ -538,7 +683,7 @@ END;
         $this->Session->write('Page.tab', 3);
 
         $this->redirect($this->referer());
-        
+
     }
 
     function saveBukkitConfig() {
@@ -551,7 +696,7 @@ END;
         $bukkit = array();
         unset($new['save']);
 
-        $args = array("bukkit.yml");   
+        $args = array("bukkit.yml");
         $bukkityml = $api->call("getFileContent", $args, true);
         $old['spawn-radius'] = $this->get_string_between($bukkityml, 'spawn-radius: ', "\n");
         $old['update-folder'] = $this->get_string_between($bukkityml, 'update-folder: ', "\n");
@@ -591,7 +736,7 @@ END;
         $this->redirect($this->referer());
     }
 
-   
+
     function addTask() {
         perm('servers', 'Schedules', $this->Session->read("user_perm"), true);
 
@@ -617,14 +762,14 @@ END;
 
 
         $args = array($type, $argument, $timeType, $timeArgument1, $timeArgument2);
-                    
-        $api->call("addTask", $args, true);   
+
+        $api->call("addTask", $args, true);
 
         $this->Session->write('Page.tab', 5);
 
         $this->redirect($this->referer());
 
-        }   
+        }
     }
 
     function getTasks() {
@@ -636,13 +781,13 @@ END;
 
         require APP . 'spacebukkitcall.php';
 
-        $args = array();   
-        $tasks = $api->call("getTasks", $args, true);   
-        
+        $args = array();
+        $tasks = $api->call("getTasks", $args, true);
+
         $i = 1;
         $num = count($tasks);
-         
-        echo '{ "aaData": [';  
+
+        echo '{ "aaData": [';
 
         foreach ($tasks as $id => $task) {
 
@@ -694,7 +839,7 @@ END;
               "$timeArg1 : $timeArg2",
               "$actions"
             ]
-        
+
 END;
 
         if($i < $num) {
@@ -714,20 +859,20 @@ END;
 
         require APP . 'spacebukkitcall.php';
 
-        $args = array($task);   
+        $args = array($task);
         $tasks = $api->call("removeTask", $args, true);
 
         $this->Session->write('Page.tab', 5);
 
         $this->redirect($this->referer());
-   
+
     }
 
     function runTask($task, $param) {
         perm('servers', 'Schedules', $this->Session->read("user_perm"), true);
 
         require APP . 'spacebukkitcall.php';
-        $args = array();   
+        $args = array();
 
             if ($task == 1)  {
 
@@ -748,7 +893,7 @@ END;
 
             if (count($api->call("getPlayers", $args, false)) == 0) {
 
-                $tasks = $api->call("restartServer", $args, true);  
+                $tasks = $api->call("restartServer", $args, true);
 
             }
 
@@ -758,14 +903,14 @@ END;
 
             }       elseif ($task == 7)  {
 
-        $args = array($param);   
-        
+        $args = array($param);
+
         $tasks = $api->call("broadcast", $args, false);
 
             }       elseif ($task == 8)  {
 
-        $args = array($param);   
-        
+        $args = array($param);
+
         $tasks = $api->call("runConsoleCommand", $args, false);
 
             }       elseif ($task == 9)  {
@@ -776,13 +921,13 @@ END;
 
         $tasks = $api->call("stopServer", $args, true);
 
-            }      
+            }
 
 
         $this->Session->write('Page.tab', 5);
 
         $this->redirect($this->referer());
-   
+
     }
 
 }

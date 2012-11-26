@@ -41,7 +41,37 @@ class Configurator extends AppModel {
         return $str;
 
     }
+    function xml($n) {
 
+        $this->autoRender = false;
+
+        $file = new File(TMP . 'xml' . DS . $n );
+
+        //2) check if it younger then 6h
+
+        if ($file->exists()) {
+
+          $last_modified = filemtime($file->path);
+
+          $current_time = time();
+
+          $dif = $current_time - $last_modified;
+
+        }
+        //generate cache file if !1) || !2) and save him
+
+        if (!$file->exists() || !$dif > 21600 ) {
+
+          $filename = 'http://dl.nope.bz/sb/build/'.$n;
+          $l_sb = simplexml_load_file($filename);
+
+          $json = json_encode($l_sb);
+          $file->write($l_sb);
+
+        }
+
+        return json_decode($file->read(), TRUE);
+    }
     //Generate configuration.php token
 
     function saveCore() {
