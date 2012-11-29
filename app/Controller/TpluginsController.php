@@ -190,12 +190,13 @@ class TPluginsController extends AppController {
         }
 
         if ($plg['IsEnabled'] == 1) {
-                $status = '<img src=\"img/circle_green.png\" />';
+                $status = addslashes('<img src="'.$this->webroot.'img/circle_green.png" />');
                 } else {
-                $status = '<img src=\"img/circle_red.png\" />';
+
+                $status = addslashes('<img src="/'.$this->webroot.'img/circle_red.png" />');
                 }
         if ($plg['Bukget'] == true) {
-                $bukget = '<img src=\"img/bukget_enabled.png\" />';
+                $bukget = addslashes('<img src="/'.$this->webroot.'img/bukget_enabled.png" />');
                 $pname = $plg["pName"];
                 } else {
                 $bukget = '';
@@ -271,12 +272,13 @@ END;
         $plg = $api->call("getPluginInformations", $args, false);
 
         if ($plg['IsEnabled'] == 1) {
-                $status = '<img src="img/circle_green.png" />';
+                $status = '<img src="'.$this->webroot.'img/circle_green.png" />';
                 } else {
-                $status = '<img src="img/circle_red.png" />';
+
+                $status = '<img src="'.$this->webroot.'img/circle_red.png" />';
                 }
         if ($plg['Bukget'] == true) {
-                $bukget = '<img src="img/bukget_enabled.png" />';
+                $bukget = '<img src="'.$this->webroot.'img/bukget_enabled.png" />';
                 $pname = $plg["Bukget"];
                 } else {
                 $bukget = '';
@@ -468,6 +470,7 @@ END;
 
             }
             echo "ok!";
+
         }
     }
 

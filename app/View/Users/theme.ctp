@@ -7,32 +7,33 @@
 <!-- End Tabs -->
 
 <!-- Content -->
-<section id="content"> 
+<section id="content" style="width: 760px; height: auto">
 
- <table class="datatable tdtb notitle"> 
-    <thead> 
-      <tr> 
-        <th>Thumbnail</th> 
-        <th>Theme</th> 
-        <th>Version</th> 
-        <th>Author</th> 
-        <th>Description</th> 
-        <th>Link</th> 
-        <th>Action</th> 
-      </tr> 
-    </thead> 
-    <tbody> 
-	<?php include 'findthemes.php'; ?>
-    </tbody> 
-  </table> 
-     	
+ <table class="datatable tdtb notitle">
+    <thead>
+      <tr>
+        <th>Thumbnail</th>
+        <th>Theme</th>
+        <th>Version</th>
+        <th>Author</th>
+        <th>Description</th>
+        <th>Link</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="themes">
+
+    </tbody>
+  </table>
+
 <div class="clear"></div>
 </section>
-<!-- End #content --> 
+<!-- End #content -->
 <script>
 $(document).ready(function() {
 
-  $(".tdtb").dataTable();
-    
+    $('#themes').load('./tsettings/findThemes', function() {
+      $(".tdtb").dataTable();
+    });
 });
 </script>
