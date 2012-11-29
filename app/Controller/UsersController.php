@@ -3,7 +3,7 @@
 /**
 *
 *   ####################################################
-*   UserController.php 
+*   UserController.php
 *   ####################################################
 *
 *   DESCRIPTION
@@ -11,9 +11,9 @@
 *   This controller manages all user related functions
 *   like logins and logouts, CRUD, theme chooser, USR
 *   and validation (found in the model).
-*   
+*
 *   TABLE OF CONTENTS
-*   
+*
 *   1)  beforeFilter
 *   2)  index
 *   3)  login
@@ -25,8 +25,8 @@
 *   9)  addToServer
 *   10) removeFromServer
 *   11) editRoleOfServer
-*   
-*   
+*
+*
 * @copyright  Copyright (c) 20011 XereoNet and SpaceBukkit (http://spacebukkit.xereo.net)
 * @version    Last edited by Antariano
 * @since      File available since Release 1.0
@@ -42,9 +42,9 @@ class UsersController extends AppController {
        The following functions regulate all user related manners like logins and CRUD
        ###################################################################################
     */
-    
+
     public function beforeFilter() {
-        parent::beforeFilter();   
+        parent::beforeFilter();
 
         $allowed_actions = array("index", "login", "logout", "edit", "theme");
 
@@ -69,7 +69,7 @@ class UsersController extends AppController {
       if ($this->Auth->login()) {
           $this->Session->write("current_theme", $this->Auth->user('theme'));
           $this->Session->write("current_server", $this->Auth->user("favourite_server"));
-         
+
           $this->redirect(array('controller' => 'global', 'action' => 'login'));
 
       }
@@ -84,7 +84,7 @@ class UsersController extends AppController {
       if($setting1["val"] == "true" && $setting2["val"] == 'true') {
 
         $filename = 'http://dl.nope.bz/sb/build/news.xml';
-        $message = simplexml_load_file($filename); 
+        $message = simplexml_load_file($filename);
 
         $json = json_encode($message);
         $message = json_decode($json, TRUE);
@@ -101,7 +101,7 @@ class UsersController extends AppController {
       }
 
       $this->layout = 'login';
-      
+
     }
 
     public function logout() {
@@ -121,7 +121,7 @@ class UsersController extends AppController {
             }
         }
             $this->loadModel("Server");
-            $this->set('all_servers', $this->Server->find("all"));        
+            $this->set('all_servers', $this->Server->find("all"));
 
         /*
 
@@ -133,7 +133,7 @@ class UsersController extends AppController {
 
         //list the directory/file names that you want to ignore
 
-        $ignoredDirectory[] = "."; 
+        $ignoredDirectory[] = ".";
 
         $ignoredDirectory[] = "..";
 
@@ -141,9 +141,9 @@ class UsersController extends AppController {
 
         global $directorylist;    //initialize global array
 
-        if (is_dir($startdir)) { 
+        if (is_dir($startdir)) {
 
-            if ($dh = opendir($startdir)) { 
+            if ($dh = opendir($startdir)) {
 
                 while (($file = readdir($dh)) !== false) {
 
@@ -151,7 +151,7 @@ class UsersController extends AppController {
 
                      if (filetype($startdir . $file) == "dir") {
 
-                           //build your directory array however you choose; 
+                           //build your directory array however you choose;
 
                            //add other file details that you want.
 
@@ -177,7 +177,7 @@ class UsersController extends AppController {
 
                            if (!$directoriesonly) {
 
-                               //if you want to include files; build your file array  
+                               //if you want to include files; build your file array
 
                                //however you choose; add other file details that you want.
 
@@ -200,7 +200,7 @@ class UsersController extends AppController {
         }
 
         $themes = filelist(APP . "webroot/themes/",1,1);
-        
+
         $this->set('themes', $themes);
 
         //get all languages
@@ -233,7 +233,7 @@ class UsersController extends AppController {
 
         //list the directory/file names that you want to ignore
 
-        $ignoredDirectory[] = "."; 
+        $ignoredDirectory[] = ".";
 
         $ignoredDirectory[] = "..";
 
@@ -241,9 +241,9 @@ class UsersController extends AppController {
 
         global $directorylist;    //initialize global array
 
-        if (is_dir($startdir)) { 
+        if (is_dir($startdir)) {
 
-            if ($dh = opendir($startdir)) { 
+            if ($dh = opendir($startdir)) {
 
                 while (($file = readdir($dh)) !== false) {
 
@@ -251,7 +251,7 @@ class UsersController extends AppController {
 
                      if (filetype($startdir . $file) == "dir") {
 
-                           //build your directory array however you choose; 
+                           //build your directory array however you choose;
 
                            //add other file details that you want.
 
@@ -277,7 +277,7 @@ class UsersController extends AppController {
 
                            if (!$directoriesonly) {
 
-                               //if you want to include files; build your file array  
+                               //if you want to include files; build your file array
 
                                //however you choose; add other file details that you want.
 
@@ -300,7 +300,7 @@ class UsersController extends AppController {
         }
 
         $themes = filelist(APP . "webroot/themes/",1,1);
-        
+
         $this->set('themes', $themes);
 
         //get all languages
@@ -310,7 +310,7 @@ class UsersController extends AppController {
         $this->set('languages', $languages);
 
         $this->layout = 'popup';
-            
+
         } else {
 
             if ($this->User->save($this->request->data)) {
@@ -322,8 +322,8 @@ class UsersController extends AppController {
                 $this->Session->write('Auth.User.username', $data['username']);
                 $this->Session->write('Auth.User.language', $data['language']);
 
-                $this->redirect(array('controller' => 'tsettings', 'action' => 'index'));    
-                
+                $this->redirect(array('controller' => 'tsettings', 'action' => 'index'));
+
             } else {
                 $this->Session->setFlash(__('Unable to update your User.'));
             }
@@ -338,7 +338,7 @@ class UsersController extends AppController {
             unset($this->request->data['User']['password']);
             $this->set('edituser', $this->request->data);
             $this->loadModel("Server");
-            $this->set('all_servers', $this->Server->find("all"));            
+            $this->set('all_servers', $this->Server->find("all"));
 
         /*
 
@@ -350,7 +350,7 @@ class UsersController extends AppController {
 
         //list the directory/file names that you want to ignore
 
-        $ignoredDirectory[] = "."; 
+        $ignoredDirectory[] = ".";
 
         $ignoredDirectory[] = "..";
 
@@ -358,9 +358,9 @@ class UsersController extends AppController {
 
         global $directorylist;    //initialize global array
 
-        if (is_dir($startdir)) { 
+        if (is_dir($startdir)) {
 
-            if ($dh = opendir($startdir)) { 
+            if ($dh = opendir($startdir)) {
 
                 while (($file = readdir($dh)) !== false) {
 
@@ -368,7 +368,7 @@ class UsersController extends AppController {
 
                      if (filetype($startdir . $file) == "dir") {
 
-                           //build your directory array however you choose; 
+                           //build your directory array however you choose;
 
                            //add other file details that you want.
 
@@ -394,7 +394,7 @@ class UsersController extends AppController {
 
                            if (!$directoriesonly) {
 
-                               //if you want to include files; build your file array  
+                               //if you want to include files; build your file array
 
                                //however you choose; add other file details that you want.
 
@@ -417,7 +417,7 @@ class UsersController extends AppController {
         }
 
         $themes = filelist(APP . "webroot/themes/",1,1);
-        
+
         $this->set('themes', $themes);
 
         //get all languages
@@ -431,12 +431,12 @@ class UsersController extends AppController {
         $this->set("username", $username["User"]["username"]);
 
         $this->layout = 'popup';
-            
-        } else {
 
+        } else {
+          $this->User->validate = $this->User->validatewithoutpw;
             if ($this->User->save($this->request->data)) {
                 $this->Session->setFlash(__('Your User has been updated.'));
-                $this->redirect(array('controller' => 'tsettings', 'action' => 'index'));    
+                $this->redirect(array('controller' => 'tsettings', 'action' => 'index'));
             } else {
                 $this->Session->setFlash(__('Unable to update your User.'));
             }
@@ -470,14 +470,14 @@ class UsersController extends AppController {
     */
 
     function theme() {
-        $this->layout = 'popup';              
+        $this->layout = 'popup';
     }
 
     /*
        ###################################################################################
        The following functions regulate the user-server-roles relationships
        ###################################################################################
-    */    
+    */
 
     public function addToServer() {
 
@@ -540,7 +540,7 @@ class UsersController extends AppController {
             } else {
                 echo __('Error :(');
             }
-        } 
+        }
     }
     }
 

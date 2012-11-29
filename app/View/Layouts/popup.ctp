@@ -1,11 +1,11 @@
-<script type = "text/javascript"> 
+<script type = "text/javascript">
 
 $(function () {
- 
+
 
   var tabContainers = $('section#content > div.tab2');
   tabContainers.hide().filter(':first').show();
-  
+
   $('nav#popuptabs ul li a').click(function () {
 
           tabContainers.hide();
@@ -16,14 +16,19 @@ $(function () {
           return false;
   }).filter(':first').click();
                 });
- 
-  </script>
 
+  </script>
+<style>
+  .error_box {
+    position: absolute;
+    top: -50px;
+  }
+</style>
 
 <!-- Main Content Start -->
-<div id="wrapper" class="popup"> 
-	
+<div id="wrapper" class="popup">
+
 	<?php echo $content_for_layout ?>
-		
+
 </div>
-<!-- End #wrapper --> 
+<!-- End #wrapper -->
