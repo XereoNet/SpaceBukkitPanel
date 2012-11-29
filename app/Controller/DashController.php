@@ -3,7 +3,7 @@
 /**
 *
 *   ####################################################
-*   DashController.php 
+*   DashController.php
 *   ####################################################
 *
 *   DESCRIPTION
@@ -11,7 +11,7 @@
 *   This controller is relative to the "Dash" page and all it's related functions.
 *
 *   TABLE OF CONTENTS
-*   
+*
 *   1)  index
 *	Active functions: (ajax updates)
 *   	2)  graphs
@@ -20,8 +20,8 @@
 *   4)  get_chat
 *   5)  get_log
 *   6)  saysomething
-*   
-*   
+*
+*
 * @copyright  Copyright (c) 2012 XereoNet and SpaceBukkit (http://spacebukkit.xereo.net)
 * @version    Last edited by Antariano/Jamy
 * @since      File available since Release 1.0
@@ -44,11 +44,11 @@ class DashController extends AppController {
 	  	$user_perm = $this->Session->read("user_perm");
 	  	$glob_perm = $this->Session->read("glob_perm");
 
-        if (!($user_perm['pages'] & $glob_perm['pages']['dash'])) { 
+        if (!($user_perm['pages'] & $glob_perm['pages']['dash'])) {
 
            exit("access denied");
 
-        } 
+        }
 	  }
 
     function index() {
@@ -60,47 +60,59 @@ class DashController extends AppController {
     	*/
 
         require APP . 'spacebukkitcall.php';
-        
+
         //CHECK IF SERVER IS RUNNING
 
-        $args = array();   
+        $args = array();
         $running = $api->call("isServerRunning", $args, true);
-		
+
 		$this->set('running', $running);
 
         //IF "FALSE", IT'S STOPPED. IF "NULL" THERE WAS A CONNECTION ERROR
 
 		if (is_null($running) || preg_match("/salt/", $running)) {
 
-        $this->layout = 'sbv1_notreached'; 
-                     
-        } 
+        $this->layout = 'sbv1_notreached';
+
+        }
 
         elseif (!$running) {
 
         $this->layout = 'sbv1_notrunning';
 
-    	} 
+    	}
 
     	elseif ($running) {
 
     	//IF IT'S RUNNING, CONTINUE WITH THE PROGRAM
 
+        $addr = $this->Session->read('Server.external_address');
+        if (preg_match("/http/", $addr)) {
+            $dynmapurl = $addr;
+        } else {
+            if ($addr == '')    $addr = $this->Session->read('Server.address');
+            if (preg_match("/localhost/", $addr) || preg_match("/127.0.0.1/", $addr) || preg_match("/::1/", $addr)) {
+                    $addr = file_get_contents("http://automation.whatismyip.com/n09230945.asp");
+                }
+            $dynmapurl = 'http://'.$addr.':'.$api->call('dynmapPort', $args, false);
+        }
+        $this->set('dynmapurl', $dynmapurl);
+
     	require APP . 'webroot/configuration.php';
-        $this->layout = 'sbv1';  
-	
+        $this->layout = 'sbv1';
+
 		//get the data
-		$args = array();   
-		$server = $api->call("getServer", $args, false);     
-		 
-		//Function to get percentage	
+		$args = array();
+		$server = $api->call("getServer", $args, false);
+
+		//Function to get percentage
 		function percent($num_amount, $num_total) {
 		$count1 = @($num_amount / $num_total);
 		$count2 = $count1 * 100;
 		$count = number_format($count2, 0);
 		return $count;
 		}
-				
+
 		//Function to get strings
 		function get_string_between($string, $start, $end){
 		$string = " ".$string;
@@ -137,10 +149,10 @@ class DashController extends AppController {
 		//get LATEST craftbukkit version
 
 		$filename = 'http://dl.bukkit.org/api/1.0/downloads/projects/craftbukkit/view/latest-rb/';
-		$load_bukkit_version = json_decode(file_get_contents($filename)); 
+		$load_bukkit_version = json_decode(file_get_contents($filename));
 		$l_bukkit_version = $load_bukkit_version->build_number;
 
-		//check if update is needed     			 
+		//check if update is needed
 		if ($c_bukkit_version > $l_bukkit_version) {
 		    $m_bukkit_version = '<p class="cell_small win">'.__('Up to date (devbuild)').'!</p>';
 		} elseif ($c_bukkit_version == $l_bukkit_version) {
@@ -150,7 +162,7 @@ class DashController extends AppController {
 		}
 
 		//plugin stats
-		$args = array();   
+		$args = array();
 		$plugin_count = count($api->call("getPlugins", $args, false));
 		$dis_plugin_count = count($api->call("getDisabledPlugins", $args, false));
 
@@ -158,18 +170,18 @@ class DashController extends AppController {
 
 		$current_server_id = $this->Server->findById($this->Session->read("current_server"));
 
-		$connected_users = count($current_server_id['ServersUsers']);               
+		$connected_users = count($current_server_id['ServersUsers']);
 
 		//player stats
-        $args = array();   
+        $args = array();
 
 		$whitelist_count = count($api->call("getWhitelist", $args, false));
 		$ban_count = count($api->call("getBanned", $args, false));
 		$max_players = $server['MaxPlayers'];
-		        
+
 		//MOTD
 
-        $args = array("server.properties");   
+        $args = array("server.properties");
 		$config = $api->call("getFileContent", $args, true);
     	$this->set('motd', get_string_between($config, "motd=", "\n"));
 
@@ -190,7 +202,7 @@ class DashController extends AppController {
 
     	*/
 
-     	}   
+     	}
  	}
 
     // --------------------------------------------------------------------------------------------------
@@ -208,13 +220,13 @@ class DashController extends AppController {
             require APP . 'spacebukkitcall.php';
             $args = array();
             // Ram
-            //Function to get percentage	
+            //Function to get percentage
 			function percent($num_amount, $num_total) {
 				$count1 = @($num_amount / $num_total);
 				$count2 = $count1 * 100;
 				$count = number_format($count2, 0);
 				return $count;
-			}   
+			}
 			$ram = array();
 
 			$ram['tot'] = $api->call("getPhysicalMemoryTotal", $args, false);
@@ -223,7 +235,7 @@ class DashController extends AppController {
 			$ram['perc'] = percent($ram['used'], $ram['tot']);
 
             // CPU
-			//get the cpu 
+			//get the cpu
 			$cpu = array();
 			$cpu['tot'] = $api->call("getNumCpus", $args, false);
 			//$cpu['used'] = $api->call("getCpuFrequency", $args, false);
@@ -308,22 +320,22 @@ class DashController extends AppController {
 
 	function get_chat_new() {
 
-        if ($this->request->is('ajax')) 
+        if ($this->request->is('ajax'))
         {
- 	      	require APP . 'spacebukkitcall.php';     
-           
+ 	      	require APP . 'spacebukkitcall.php';
+
             $this->autoRender = false;
-		
-            $args = array($this->Session->read("Sbvars.3"));   
+
+            $args = array($this->Session->read("Sbvars.3"));
             $chats = $api->call("getLatestChatsWithLimit", $args, false);
 
             if(!is_array($chats)) $chats = array($chats);
-		
+
 
             //Generate Output
             foreach (array_reverse($chats) as $time => $chat) {
 
-        	$time = round($time / 1000, 0); 
+        	$time = round($time / 1000, 0);
         	$time = date("d/m/Y g:i:s A", $time);
 
         	$chat = explode(':', $chat, 2);
@@ -337,25 +349,25 @@ class DashController extends AppController {
               <td class="chatname $classes">$chat[0]</td>
               <td class="chattext">$chat[1]</td>
               <td class="chattime">$time</td>
-            </tr>            
+            </tr>
 
 END;
-      		}  
-       
+      		}
+
     	}
 
     }
 
 	 function get_chat_players() {
 
-        if ($this->request->is('ajax')) 
+        if ($this->request->is('ajax'))
         {
-            
-            $this->autoRender = false;
-	      	
-	      	require APP . 'spacebukkitcall.php';     
 
-            $args = array();   
+            $this->autoRender = false;
+
+	      	require APP . 'spacebukkitcall.php';
+
+            $args = array();
 
 			$players = $api->call("getPlayers", $args, false);
 
@@ -372,35 +384,35 @@ END;
 				}
 			}
 
-        } 
+        }
 
     }
 
 	function saysomething() {
 
-	  if ($this->request->is('ajax')) 
+	  if ($this->request->is('ajax'))
 	  {
 
-	  if ($this->request->is('post')) { 
+	  if ($this->request->is('post')) {
 
 		  $this->disableCache();
 	   	  Configure::write('debug', 0);
 	      $this->autoRender = false;
 
 	      $say = $this->request->data;
-	      
-	      require APP . 'spacebukkitcall.php';     
+
+	      require APP . 'spacebukkitcall.php';
 
 	      $args = array($this->Session->read("Sbvars.10"), "(".$this->Auth->user('username').") ".$say['say']);
 
-	      $runConsole = $api->call("broadcastWithName", $args, false);  
+	      $runConsole = $api->call("broadcastWithName", $args, false);
 	      echo __('You said ').$say['say'];
 
 		  w_serverlog($this->Session->read("current_server"), '[DASHBOARD] '.$this->Auth->user('username').' said "'.$say['say'].'" ');
 
-	  } 
 	  }
-              
+	  }
+
     }
 
 }
