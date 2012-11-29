@@ -467,7 +467,7 @@ END;
 
 
             }
-            echo $path;
+            echo "ok!";
         }
     }
 

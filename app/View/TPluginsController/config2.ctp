@@ -23,9 +23,7 @@
 
   <div class="col col_2_3 right" style="height: 100%; width: 68%; background: #555">
 
-    <div id="editor">
-      Loading...
-    </div>
+    <div id="editor">Choose a file on the left!</div>
 
   </div>
 
@@ -118,15 +116,39 @@ $(document).ready(function() {
         method: false
       },
       success: function(data) {
-        alert(data);
+        notifications.show({msg:"Saved!", icon:'img/win.png'});
       }
     });
 
   });
   $('#reloadcfg').click(function() {
+    $.ajax({
+      type: 'POST',
+      url: "./tplugins/SaveConfig",
+      data: {
+        path : $('a.jstree-clicked').parent('li').data('path'),
+        config_content : editor.getSession().getValue(),
+        method: "reload"
+      },
+      success: function(data) {
+        notifications.show({msg:"Saved!", icon:'img/win.png'});
+      }
+    });
 
   });
   $('#restartcfg').click(function() {
+    $.ajax({
+      type: 'POST',
+      url: "./tplugins/SaveConfig",
+      data: {
+        path : $('a.jstree-clicked').parent('li').data('path'),
+        config_content : editor.getSession().getValue(),
+        method: "restart"
+      },
+      success: function(data) {
+        notifications.show({msg:"Saved!", icon:'img/win.png'});
+      }
+    });
 
   });
 
