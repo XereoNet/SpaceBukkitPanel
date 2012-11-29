@@ -1,5 +1,5 @@
 <!-- Content -->
-<section id="content"> 
+<section id="content">
 <div class="error_box"></div>
 
         <form id="schedform" class="scheduler" method="post" action="./schedules/addTask">
@@ -13,7 +13,7 @@
 	    		<p class="help-block">Give your schedule a unique name</p>
 	    	</div>
 
-	    </section>  
+	    </section>
 
 	    <section>
 
@@ -27,19 +27,19 @@
         foreach ($tasks as $tname => $targs) {
 
           if ($targs['args'] == 'true') {
-            
-            $rel = 'rel="true"';
-          
-          } elseif ($targs['args'] == 'false') { 
 
-            $rel = ""; 
+            $rel = 'rel="true"';
+
+          } elseif ($targs['args'] == 'false') {
+
+            $rel = "";
 
           } else {
 
             $rel = 'rel="'.$targs['args'].'"';
 
           }
-          
+
           echo <<<END
 
           <option value="$targs[method]" $rel>$tname</option>
@@ -50,11 +50,11 @@ END;
 
       ?>
 
-      </select> 
+      </select>
    	    		<p class="help-block">Select a  task type</p>
 	    	</div>
 
-	    </section>  
+	    </section>
 
 	    <section id="argcont">
 
@@ -64,7 +64,7 @@ END;
 	    		<p class="help-block">Additional arguments required for this task type</p>
 	    	</div>
 
-	    </section>  
+	    </section>
 
 	    <section>
 
@@ -79,12 +79,12 @@ END;
 		        <option value="ONCEPERDAYAT">Once per day at</option>
 		        <option value="XMINUTESPASTEVERYHOUR">At X minutes after every hour</option>
 
-		      </select>  
+		      </select>
 
 	    		<p class="help-block">What kind of time type do you want?</p>
 	    	</div>
 
-	    </section>  
+	    </section>
 
 	    <section>
 
@@ -96,7 +96,7 @@ END;
 
 		        <option value="null">Choose...</option>
 
-		     	</select>  
+		     	</select>
 
 	      	</div>
 
@@ -104,7 +104,7 @@ END;
 			    :
 			    <select name="timeArgs2" id="timeArgs2">
 
-			    </select>  
+			    </select>
 
 		    </div>
 
@@ -122,22 +122,22 @@ END;
 
 /* schedules */
 
-   $('#argcont').hide();        
+   $('#argcont').hide();
 
    var rel = $("#type option:selected").attr('rel');
 
    if (rel == "needsargs")
       {
         $('#argcont').fadeIn();
-      } 
-    else if ((rel != "false") || (rel != "nee")) 
+      }
+    else if ((rel != "false") || (rel != "nee"))
       {
         $('#arguments').val(rel);
       }
 
   //listen for change of select box
   $('#type').live("change", function() {
-      
+
       $('#argcont').hide();
 
       $('#arguments').val('');
@@ -147,8 +147,8 @@ END;
        if (rel == "needsargs")
       {
         $('#argcont').show();
-      } 
-      else if ((rel != "false") || (rel != "needsargs")) 
+      }
+      else if ((rel != "false") || (rel != "needsargs"))
       {
         $('#arguments').val(rel);
       }
@@ -170,7 +170,7 @@ END;
       var url3 = "./schedules/getTimes/3";
       var url4 = "./schedules/getTimes/4";
 
-      if (value=="EVERYXHOURS") 
+      if (value=="EVERYXHOURS")
         {
           $.getJSON(url1, function(j){
 
@@ -188,7 +188,7 @@ END;
               })
         }
 
-      if (value=="EVERYXMINUTES") 
+      if (value=="EVERYXMINUTES")
         {
           $.getJSON(url2, function(k){
 
@@ -204,9 +204,9 @@ END;
       			$('#timeargslabel').css('display', 'inline');
 
               })
-        } 
+        }
 
-      if (value=="ONCEPERDAYAT") 
+      if (value=="ONCEPERDAYAT")
         {
           $.getJSON(url3, function(x){
 
@@ -236,10 +236,10 @@ END;
                 $("#time2_container").css('display', 'inline');
       			$('#timeargslabel').css('display', 'inline');
 
-              })              
-        } 
+              })
+        }
 
-      if (value=="XMINUTESPASTEVERYHOUR") 
+      if (value=="XMINUTESPASTEVERYHOUR")
         {
           $.getJSON(url2, function(z){
 
@@ -255,17 +255,17 @@ END;
       			$('#timeargslabel').css('display', 'inline');
 
               })
-        } 
+        }
 
   });
-     
+
 
 
   $("#schedform").submit(function(event) {
 
     /* stop form from submitting normally */
-    event.preventDefault(); 
-        
+    event.preventDefault();
+
     /* get some values from elements on the page: */
     var $form = $(this),
         type = $form.find( 'select[name="type"]' ).val(),
@@ -280,17 +280,17 @@ END;
     $.post(url, {name: name, arguments: args, timeArgs2: timeArgs2, timeArgs1: timeArgs1, timeType: timeType, type: type},
       function( data ) {
 
-          if (data=="yes") 
+          if (data=="yes")
           {
 
             setTimeout(function() {$.nmTop().close();}, 300);
-            notifications.show({msg:"Schedule added", icon:'img/win.png'});
+            notifications.show({msg:"Schedule added", icon:'../app/webroot/img/win.png'});
 
           }
 
-          else 
+          else
           {
-            
+
             notifications.show({msg:"Failed adding schedule, check your data", icon:'img/fail.png'});
 
           }

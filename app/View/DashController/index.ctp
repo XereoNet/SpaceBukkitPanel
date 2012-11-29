@@ -298,7 +298,7 @@
 
       break;
       case "d":
-      $('#dabg').prepend('<iframe src="http://173.237.196.252:8123" style="width: 100%; height: 500px; position: absolute; z-index: 10"></iframe>');
+      $('#dabg').prepend('<iframe src="#" style="width: 100%; height: 500px; position: absolute; z-index: 10"></iframe>');
       break;
     }
 
