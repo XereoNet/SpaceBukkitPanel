@@ -298,7 +298,7 @@
 
       break;
       case "d":
-      $('#dabg').prepend('<iframe src="#" style="width: 100%; height: 500px; position: absolute; z-index: 10"></iframe>');
+      $('#dabg').prepend('<iframe src="<?php echo $dynmapurl; ?>" style="width: 100%; height: 500px; position: absolute; z-index: 10"></iframe>');
       break;
     }
 
