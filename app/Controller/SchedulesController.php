@@ -3,7 +3,7 @@
 /**
 *
 *   ####################################################
-*   TServersController.php 
+*   TServersController.php
 *   ####################################################
 *
 *   DESCRIPTION
@@ -11,8 +11,8 @@
 *   This controller is relative to the "Servers" page and is responsible for
 *   schedules specifically.
 *
-*   
-*   
+*
+*
 * @copyright  Copyright (c) 20011 XereoNet and SpaceBukkit (http://spacebukkit.xereo.net)
 * @version    Last edited by Antariano
 * @since      File available since Release 1.0
@@ -34,9 +34,9 @@ class SchedulesController extends AppController {
         //check if user has rights to do this
         $user_perm = $this->Session->read("user_perm");
         $glob_perm = $this->Session->read("glob_perm");
-        if (!($user_perm['pages'] & $glob_perm['pages']['servers'])) { 
+        if (!($user_perm['pages'] & $glob_perm['pages']['servers'])) {
            exit("access denied");
-        } 
+        }
       }
 
     function add() {
@@ -62,13 +62,13 @@ class SchedulesController extends AppController {
             'Run console command' => array('method' => 'consoleCommand', 'args' => 'needsargs'),
             'Start server' => array('method' => 'start', 'args' => false),
             'Stop server' => array('method' => 'stop', 'args' => false)
-            
+
                 );
 
             $this->set('tasks', $tasks);
-        
+
             $this->layout = 'popup';
-    
+
         }
 
     }
@@ -76,13 +76,13 @@ class SchedulesController extends AppController {
 
     function run($call, $args) {
 
-      if ($this->request->is('ajax')) 
+      if ($this->request->is('ajax'))
         {
 
         $this->disableCache();
         Configure::write('debug', 0);
         $this->autoRender = false;
-                
+
         require APP . 'spacebukkitcall.php';
 
         }
@@ -90,13 +90,13 @@ class SchedulesController extends AppController {
 
 
     function runTask($name=null) {
-        if ($this->request->is('ajax')) 
+        if ($this->request->is('ajax'))
         {
 
         $this->disableCache();
         Configure::write('debug', 0);
         $this->autoRender = false;
-                
+
         require APP . 'spacebukkitcall.php';
         $args = array($name);
         $api->call('runJob', $args, true);
@@ -105,7 +105,7 @@ class SchedulesController extends AppController {
     }
 
     function getTimes($id) {
-      if ($this->request->is('ajax')) 
+      if ($this->request->is('ajax'))
         {
         $this->disableCache();
         Configure::write('debug', 0);
@@ -113,11 +113,11 @@ class SchedulesController extends AppController {
 
         //define time types
         $time_types = array('EVERYXHOURS', 'EVERYXMINUTES', 'ONCEPERDAYAT', 'XMINUTESPASTEVERYHOUR');
-        
+
         if ($id == 1) {
 
             echo '[{"optionValue": 1, "optionDisplay": "'.__('Every hour').'"}, ';
-            
+
             for ($i = 2; $i <= 167; $i++) {
                 echo '{"optionValue": '.$i.', "optionDisplay": "'.__('Every').' '.$i.' '.__('hours').'"}, ';
                 $id++;
@@ -125,11 +125,11 @@ class SchedulesController extends AppController {
 
             echo '{"optionValue": 168, "optionDisplay": "'.__('Every 168 hours (1 week)').'"}]';
 
-            
+
         } elseif ($id == 2) {
-            
+
             echo '[{"optionValue": 1, "optionDisplay": "'.__('Every minute').'"}, ';
-            
+
             for ($i = 2; $i <= 59; $i++) {
                 echo '{"optionValue": '.$i.', "optionDisplay": "'.__('Every').' '.$i.' '.__('minutes').'"}, ';
                 $id++;
@@ -139,13 +139,13 @@ class SchedulesController extends AppController {
 
         } elseif ($id == 3) {
 
-            echo '[{"optionValue": 1, "optionDisplay": "01"}, ';
-            
-            for ($i = 2; $i <= 9; $i++) {
+            echo '[{"optionValue": 0, "optionDisplay": "00"}, ';
+
+            for ($i = 1; $i <= 9; $i++) {
                 echo '{"optionValue": '.$i.', "optionDisplay": "0'.$i.'"}, ';
                 $id++;
             }
-            
+
             for ($i = 10; $i <= 22; $i++) {
                 echo '{"optionValue": '.$i.', "optionDisplay": "'.$i.'"}, ';
                 $id++;
@@ -156,21 +156,21 @@ class SchedulesController extends AppController {
         } elseif ($id == 4) {
 
             echo '[{"optionValue": 0, "optionDisplay": "00"}, ';
-            
+
             for ($i = 1; $i <= 9; $i++) {
                 echo '{"optionValue": '.$i.', "optionDisplay": "0'.$i.'"}, ';
                 $id++;
             }
-            
+
             for ($i = 10; $i <= 58; $i++) {
                 echo '{"optionValue": '.$i.', "optionDisplay": "'.$i.'"}, ';
                 $id++;
             }
-           
+
             echo ' {"optionValue": 59, "optionDisplay": "59"}]';
 
         }
-        }                   
+        }
     }
 
 
@@ -178,14 +178,14 @@ class SchedulesController extends AppController {
 
     function addTask() {
 
-        if ($this->request->is('ajax')) 
+        if ($this->request->is('ajax'))
         {
 
         $this->disableCache();
         Configure::write('debug', 0);
         $this->autoRender = false;
-            
-          if ($this->request->is('post')) { 
+
+          if ($this->request->is('post')) {
 
             $data = $this->request->data;
 
@@ -201,53 +201,53 @@ class SchedulesController extends AppController {
             if ($data['timeArgs2'] == "null") {
 
                $timeargs = $data["timeArgs1"];
-                
+
             } else {
-               
+
                $timeargs = $data["timeArgs1"].':'.$data['timeArgs2'];
 
             }
 
 
             require APP . 'spacebukkitcall.php';
-            
+
             $args = array($data["name"], $action, $arguments, $timetype, $timeargs);
-             
+
             //debug($args);
-     
+
             if ($api->call("addJob", $args, true)) {
                 echo __('yes');
             }
 
-                       
-            
-          } 
-        }                 
+
+
+          }
+        }
 
     }
 
     //function removeTask
 
     function removeTask($name) {
-        
-    if ($this->request->is('ajax')) 
+
+    if ($this->request->is('ajax'))
         {
 
         $this->disableCache();
         Configure::write('debug', 0);
         $this->autoRender = false;
-            
+
             require APP . 'spacebukkitcall.php';
-   
+
             $args = array($name);
-             
+
             //debug($args);
-     
-            $api->call("removeJob", $args, true);  
-            
+
+            $api->call("removeJob", $args, true);
+
             echo __('The schedule').' '.$name.' '.__('was removed!');
-                      
-        }                 
+
+        }
     }
 
     //function getTasks
@@ -262,13 +262,13 @@ class SchedulesController extends AppController {
 
         require APP . 'spacebukkitcall.php';
 
-        $args = array();   
-        $tasks = $api->call("getJobs", $args, true);   
-        
+        $args = array();
+        $tasks = $api->call("getJobs", $args, true);
+
         $i = 1;
         $num = count($tasks);
-         
-        echo '{ "aaData": [';  
+
+        echo '{ "aaData": [';
 
         foreach ($tasks as $id => $task) {
 
@@ -285,7 +285,7 @@ class SchedulesController extends AppController {
               "$task[3]",
               "$actions"
             ]
-        
+
 END;
 
         if($i < $num) {
