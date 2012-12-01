@@ -312,7 +312,16 @@
 
             <div class="col right">
 
-
+            <section>
+              <label for="title">
+                <?php echo __('Spawn Radius') ?>
+              </label>
+              
+              <div>
+                <input id="spawn-protection" name="spawn-protection" type="text" value="<?php echo $spawn_protection ;?>"/>
+              </div>
+            </section>
+            
             <section>
               <label for="title">
                 <?php echo __('Max build height') ?>
@@ -506,15 +515,6 @@
         <form id="ServerBukkitAddForm" method="post" action="./tservers/saveBukkitConfig">
           <div class="col left">
 
-            <section>
-              <label for="title">
-                <?php echo __('Spawn radius') ?>
-              </label>
-
-              <div>
-                <input id="spawn-radius" name="spawn-radius" type="text" value="<?php echo $bukkit['spawn-radius'] ;?>"/>
-              </div>
-            </section>
             <section>
               <label for="title">
                 <?php echo __('Update folder') ?>
