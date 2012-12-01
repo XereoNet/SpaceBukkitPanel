@@ -94,7 +94,6 @@ class TServersController extends AppController {
         $args = array("bukkit.yml");
         $bukkityml = $api->call("getFileContent", $args, true);
 
-        $bukkit['spawn-radius'] = $this->get_string_between($bukkityml, 'spawn-radius: ', "\n");
         $bukkit['update-folder'] = $this->get_string_between($bukkityml, 'update-folder: ', "\n");
         $bukkit['permissions-file'] = $this->get_string_between($bukkityml, 'permissions-file: ', "\n");
         $bukkit['connection-throttle'] = $this->get_string_between($bukkityml, 'connection-throttle: ', "\n");
@@ -110,7 +109,7 @@ class TServersController extends AppController {
 
         //CraftBukkit chooser information
 
-        $filename = 'http://dl.bukkit.org/downloads/craftbukkit/feeds/latest-rb.rss';
+        $filename = 'http://dl.bukkit.org/downloads/craftbukkit/feeds/latest-dev.rss';
         $bukkitxml = simplexml_load_file($filename);
 
         $json = json_encode($bukkitxml);
@@ -632,6 +631,9 @@ END;
         $new = $this->request->data;
 
         //if a checkbox isn't marked it doesn't respond. We set these to false
+        if (NULL == isset($new['spawn-protection'])) {
+            $new['spawn-protection'] = "16";
+        }
         if (NULL == isset($new['allow-nether'])) {
             $new['allow-nether'] = "false";
         }
@@ -698,7 +700,6 @@ END;
 
         $args = array("bukkit.yml");
         $bukkityml = $api->call("getFileContent", $args, true);
-        $old['spawn-radius'] = $this->get_string_between($bukkityml, 'spawn-radius: ', "\n");
         $old['update-folder'] = $this->get_string_between($bukkityml, 'update-folder: ', "\n");
         $old['permissions-file'] = $this->get_string_between($bukkityml, 'permissions-file: ', "\n");
         $old['connection-throttle'] = $this->get_string_between($bukkityml, 'connection-throttle: ', "\n");
