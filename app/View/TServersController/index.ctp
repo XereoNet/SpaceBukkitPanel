@@ -365,6 +365,7 @@
 
                   <option value="0"<?php if ($gamemode == "0") {echo " selected";}?>><?php echo __('Survival') ?></option>
                   <option value="1"<?php if ($gamemode == "1") {echo " selected";}?>><?php echo __('Creative') ?></option>
+                  <option value="2"<?php if ($gamemode == "2") {echo " selected";}?>><?php echo __('Adventure') ?></option>
 
                 </select>
              </div>
