@@ -10,7 +10,7 @@
 
 	<ul>
 		<li><a target="_blank" href="http://spacebukkit.xereo.net" alt="SpaceBukkit Home"><?php echo __('Home'); ?></a></li>
-		<li><a target="_blank" href="http://docs.xereo.net" alt="SpaceBukkit Home"><?php echo __('Documentation'); ?></a></li>
+		<li><a target="_blank" href="http://xereo.net/documentation" alt="SpaceBukkit Home"><?php echo __('Documentation'); ?></a></li>
 		<li><a target="_blank" href="http://forums.xereo.net" alt="SpaceBukkit Home"><?php echo __('Forums'); ?></a></li>
 		<form action="https://www.paypal.com/cgi-bin/webscr" method="post" style="display: inline-block; position: relative; top: 10px;">
 		<input type="hidden" name="cmd" value="_s-xclick">
