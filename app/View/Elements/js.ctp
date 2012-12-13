@@ -1,6 +1,5 @@
 	<script type="text/javascript" src="<?php echo $this->webroot; ?>js/jquery.jstree.js"></script>
-	<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
-
+	<script src="//d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 	<script src="<?php echo $this->webroot; ?>js/jquery-ui-1.8.18.custom.min.js"></script>
 	<script src="<?php echo $this->webroot; ?>js/ttw-simple-notifications-min.js"></script>
 	<script src="<?php echo $this->webroot; ?>js/excanvas.js"></script>
