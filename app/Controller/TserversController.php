@@ -179,7 +179,7 @@ class TServersController extends AppController {
                     );
                 }
 
-                $aa = array_reverse($aa);
+                $aa = $aa;
 
             break;
             case 'sg':

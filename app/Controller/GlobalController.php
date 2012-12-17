@@ -258,6 +258,22 @@ class GlobalController extends AppController {
       }
     }
 
+    function test() {
+
+            require APP . 'spacebukkitcall.php';
+
+            $this->disableCache();
+            $this->autoRender = false;
+
+            $methods = array('broadcast', 'broadcast');
+            $args = array(
+              array('test'),
+              array('test')
+            );
+
+            $api->callMultiple($methods, $args);
+    }
+
       function getConsole($filter=null) {
 
         if ($this->request->is('ajax'))
