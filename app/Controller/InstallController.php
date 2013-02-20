@@ -97,7 +97,7 @@ class InstallController extends AppController{
 					}
 					foreach ($servers as $s) {
 						if (preg_match("/localhost/", $s['address']) || preg_match("/127.0.0.1/", $s['address']) || preg_match("/::1/", $s['address'])) {
-							$s['external_address'] = file_get_contents("http://automation.whatismyip.com/n09230945.asp");
+							$s['external_address'] = file_get_contents("http://icanhazip.com/");
 						} else {
 							$s['external_address'] = $s['address'];
 						}
@@ -129,7 +129,7 @@ class InstallController extends AppController{
 					}
 					foreach ($servers as $s) {
 						if (preg_match("/localhost/", $s['address']) || preg_match("/127.0.0.1/", $s['address']) || preg_match("/::1/", $s['address'])) {
-							$s['external_address'] = file_get_contents("http://automation.whatismyip.com/n09230945.asp");
+							$s['external_address'] = file_get_contents("http://icanhazip.com/");
 						} else {
 							$s['external_address'] = $s['address'];
 							$db->query("INSERT INTO  `space_servers` (`id` ,`title` ,`address` ,`password` ,`port1` ,`port2` ,`default_role` ,`external_address`) VALUES ('$s[id]',  '$s[title]',  '$s[address]',  '$s[password]',  '$s[port1]',  '$s[port2]',  '$s[default_role]',  '$s[external_address]');");              
@@ -325,7 +325,7 @@ class InstallController extends AppController{
 
 			$data = $this->request->data;
 			if (preg_match("/localhost/", $data['address']) || preg_match("/127.0.0.1/", $data['address']) || preg_match("/::1/", $data['address'])) {
-				$data['external_address'] = file_get_contents("http://automation.whatismyip.com/n09230945.asp");
+				$data['external_address'] = file_get_contents("http://icanhazip.com/");
 			} else {
 				$data['external_address'] = $data['address'];
 			}
