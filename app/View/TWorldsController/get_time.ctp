@@ -6,7 +6,7 @@
 <!-- End Tabs -->
 
 <!-- Content -->
-<section id="content"> 
+<section id="content">
 
 <div class="buttons"><center><br><br><?php echo __('Notice: If you\'re running MultiVerse, please update to the latest dev version ;)'); ?><br><br>
 <h1><?php echo "World: ".$wrld; ?></h1><br><?php echo __("Your current time is: ").$time; ?><br><br><?php echo __('Set time to:'); ?><br><br>
@@ -25,15 +25,15 @@
 </center></div>
 <div class="clear"></div>
 </section>
-<!-- End #content --> 
+<!-- End #content -->
 <script>
 $('document').ready(function() {
 
   $(".bw11").submit(function(event) {
 
     /* stop form from submitting normally */
-    event.preventDefault(); 
-        
+    event.preventDefault();
+
     /* get some values from elements on the page: */
     var $form = $(this),
         lwrld = $form.find( 'input[name="wrld"]' ).val(),
@@ -43,7 +43,7 @@ $('document').ready(function() {
     /* Send the data using post and put the results in a div */
     $.post(url, {wrld: lwrld, time: ltime},
       function( data ) {
-         notifications.show({msg:data, icon:'img/win.png'});
+         notifications.show({msg:data, icon:'../app/webroot/img/win.png'});
          adtb.fnReloadAjax("./tworlds/getWorlds")
       }
     );

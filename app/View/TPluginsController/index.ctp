@@ -156,7 +156,7 @@ $('document').ready(function() {
 				    Table1.fnUpdate( data2, aPos, 0);
 		  });
 
-	      notifications.show({msg:data, icon:'img/win.png'});
+	      notifications.show({msg:data, icon:'../app/webroot/img/win.png'});
 
 	  }
 	});
@@ -180,7 +180,7 @@ $('document').ready(function() {
 			success: function (d) {
 				var data = $.parseJSON(d);
 				if (data.ret) {
-					notifications.show({msg:data.msg, icon:'img/win.png'});
+					notifications.show({msg:data.msg, icon:'../app/webroot/img/win.png'});
 					form.find( 'input[name=url] ').val("Installed!");
 				} else {
 					notifications.show({msg:data.msg, icon:'img/fail.png'});

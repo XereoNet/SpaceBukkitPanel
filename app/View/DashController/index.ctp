@@ -292,7 +292,7 @@
 
       var num = $.randomBetween(0, 11);
 
-      var img = 'url(./img/wallpaper/'+num+'.jpg) no-repeat top left';
+      var img = 'url(../app/webroot/img/wallpaper/'+num+'.jpg) no-repeat top left';
 
       $('#dabg').css("background", img);
 
