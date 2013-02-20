@@ -19,7 +19,7 @@
 *
 */
 
-	$sbconf['app_version'] = "Open Beta 1.2 WIP";
+    $sbconf['app_version'] = "Open Beta 1.2.1";
     $sbconf['app'] = "2";
     $sbconf['theme'] = "Spacebukkit";
     $sbconf['token'] = "%*TOKEN*%";
