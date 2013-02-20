@@ -55,6 +55,7 @@
 
 <p>
 <?php
+    $pass = true;
     if (version_compare(PHP_VERSION, '5.2.8', '>=')):
         echo '<span class="alert alert-success">';
             echo __('Your version of PHP is 5.2.8 or higher.');
@@ -63,6 +64,7 @@
         echo '<span class="alert alert-error">';
             echo __('Your version of PHP is too low. You need PHP 5.2.8 or higher to use CakePHP.');
         echo '</span>';
+        $pass = false;
     endif;
 ?>
 </p>
@@ -76,6 +78,7 @@
             echo '<span class="alert alert-error">';
                 echo __('The CURL library is NOT loaded in your php.ini!');
             echo '</span>';
+            $pass = false;
         endif;
     ?>
 </p>
@@ -89,6 +92,7 @@
             echo '<span class="alert alert-error">';
                 echo __('The "allow_url_fopen" function is NOT loaded in your php.ini!');
             echo '</span>';
+            $pass = false;
         endif;
     ?>
 </p>
@@ -119,6 +123,7 @@
             echo '<span class="alert alert-error">';
                 echo __('The app/tmp and all subdirectories are NOT writable. You need to recursively CHMOD them and/or set proper permissions and owners.');
             echo '</span>';
+            $pass = false;
         endif;
     ?>
 </p>
@@ -132,6 +137,7 @@
             echo '<span class="alert alert-error">';
                 echo __('The app/webroot and all subdirectories are NOT writable. You need to recursively CHMOD them and/or set proper permissions and owners.');
             echo '</span>';
+            $pass = false;
         endif;
     ?>
 </p>
@@ -145,6 +151,7 @@
             echo '<span class="alert alert-error">';
                 echo __('The app/Config/database file is NOT writable.');
             echo '</span>';
+            $pass = false;
         endif;
     ?>
 </p>
@@ -161,7 +168,9 @@
     </section>
 
     <header>
+       <?php if($pass){ ?>
        <a href="<?php echo $this->Html->url('/install/upgrade', true); ?>" class="button icon arrowright leftsubmit">Next</a>
+       <?php } ?>
     </header>
 
  </section>
