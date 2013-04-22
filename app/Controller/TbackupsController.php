@@ -137,7 +137,7 @@ class TBackupsController extends AppController {
                 $pb = $bInfo[3].'%';
             } else {
                 $r = 'no';
-                $data .= '<div class="col left col_1_3"><img src="'.$this->webroot.'img/info.png" /></div>';
+                $data .= '<div class="col left col_1_3"><img src="./img/info.png" /></div>';
                 $data .= '<div class="col right col_2_3"><h3>'.__('No operations running!').'</h3>'."\n".'<div class="b-what">'.__('All your backups are completed!').'</div></div>';
                 $pb = '100%';
             }
@@ -167,7 +167,7 @@ class TBackupsController extends AppController {
             foreach ($ops as $op) {
                 if((($op[2]/1000)+300 >= time()) && $op[0] != $rop) {
                     $data .= '<section>';
-                    $data .= '<div class="col left col_1_3"><img src="'.$this->webroot.'img/win.png" /></div>';
+                    $data .= '<div class="col left col_1_3"><img src="./img/win.png" /></div>';
                     $data .= '<div class="col right col_2_3"><h3>'.__('Operation finished!').'</h3>';
                     $data .= '<div class="b-what">'.__('Backup of').' '.$op[1].' '.__('finished').' '.round((time() - $op[2] / 1000) / 60, 0, PHP_ROUND_HALF_DOWN).' '.__('minutes ago!').'</div></div><br><br><br><br>';
                     $data .= '</section>';

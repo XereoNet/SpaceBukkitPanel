@@ -252,7 +252,7 @@ Deactivated for now since it's not functional, we are working on a fix!
           {
 
             setTimeout(function() {$.nmTop().close();}, 300);
-            notifications.show({msg:"Schedule added", icon:'../app/webroot/img/win.png'});
+            notifications.show({msg:"Schedule added", icon:'img/win.png'});
 
           }
 

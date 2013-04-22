@@ -908,7 +908,7 @@ $('document').ready(function() {
           if (data=="yes")
           {
 
-            notifications.show({msg:"Schedule added", icon:'../app/webroot/img/win.png'});
+            notifications.show({msg:"Schedule added", icon:'img/win.png'});
 
           }
 
@@ -931,7 +931,7 @@ var source = $(this).attr("href");
 $.ajax({
   url: source,
   success: function(data) {
-      notifications.show({msg:data, icon:'../app/webroot/img/win.png'});
+      notifications.show({msg:data, icon:'img/win.png'});
       Table1.fnReloadAjax("./schedules/getTasks")
 
   }

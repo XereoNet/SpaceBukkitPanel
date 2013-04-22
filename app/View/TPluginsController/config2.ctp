@@ -116,7 +116,7 @@ $(document).ready(function() {
         method: false
       },
       success: function(data) {
-        notifications.show({msg:"Saved!", icon:'../app/webroot/img/win.png'});
+        notifications.show({msg:"Saved!", icon:'img/win.png'});
       }
     });
 
@@ -131,7 +131,7 @@ $(document).ready(function() {
         method: "reload"
       },
       success: function(data) {
-        notifications.show({msg:"Saved!", icon:'../app/webroot/img/win.png'});
+        notifications.show({msg:"Saved!", icon:'img/win.png'});
       }
     });
 
@@ -146,7 +146,7 @@ $(document).ready(function() {
         method: "restart"
       },
       success: function(data) {
-        notifications.show({msg:"Saved!", icon:'../app/webroot/img/win.png'});
+        notifications.show({msg:"Saved!", icon:'img/win.png'});
       }
     });
 

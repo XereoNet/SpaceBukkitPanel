@@ -93,7 +93,7 @@
  *
  * And uncomment the App.baseUrl below:
  */
-	Configure::write('App.baseUrl', env('SCRIPT_NAME'));
+	//Configure::write('App.baseUrl', env('SCRIPT_NAME'));
 
 /**
  * Uncomment the define below to use CakePHP prefix routes.
@@ -173,7 +173,7 @@
  * the cake shell command: cake schema create Sessions
  *
  */
-
+ 
 Configure::write('Session', array(
     'defaults' => 'php'
 ));
@@ -293,7 +293,7 @@ Configure::write('Session', array(
  * If running via cli - apc is disabled by default. ensure it's available and enabled in this case
  *
  */
-
+ 
 $engine = 'File';
 if (extension_loaded('apc') && (php_sapi_name() !== 'cli' || ini_get('apc.enable_cli'))) {
 	$engine = 'Apc';

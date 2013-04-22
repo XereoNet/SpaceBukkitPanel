@@ -44,7 +44,7 @@ $('document').ready(function () {
                 $(this).siblings('.active').removeClass('active');
                 $(this).addClass('active');
                 $("#sidebar-console-wrap").show();
-                $('#console-list').html('<div class="preloader"><div><img src="../app/webroot/img/big_loader.gif" /></div></div>');
+                $('#console-list').html('<div class="preloader"><div><img src="./img/big_loader.gif" /></div></div>');
             } else {
                 $(this).removeClass('active');
             }
@@ -63,7 +63,7 @@ $('document').ready(function () {
                 $(this).siblings('.active').removeClass('active');
                 $(this).addClass('active');
                 $("#sidebar-chat-wrap").show();
-                $('.chat_chat').html('<div class="preloader"><div><img src="../app/webroot/img/big_loader.gif" /></div></div>');
+                $('.chat_chat').html('<div class="preloader"><div><img src="./img/big_loader.gif" /></div></div>');
 
             } else {
                 $(this).removeClass('active');
@@ -87,7 +87,7 @@ $('document').ready(function () {
 
     $('.console-controls li').each(function () { $(this).removeClass('selected-1'); });
     $(this).parent('li').addClass('selected-1');
-    $('#console-list').attr('rel', rel).addClass('loading-console').html('<div class="preloader"><div><img src="../app/webroot/img/big_loader.gif" /></div></div>');
+    $('#console-list').attr('rel', rel).addClass('loading-console').html('<div class="preloader"><div><img src="./img/big_loader.gif" /></div></div>');
 
     e.preventDefault();
     return false;
@@ -95,17 +95,17 @@ $('document').ready(function () {
   });
 
     $("select, input:checkbox, input:radio, input:file").uniform();
-    $(".bounce").live({mouseenter: function () {
+    $(".bounce").live('hover', function () {
         $(this).stop().animate({
             opacity: 0.75,
             marginTop: -10
         }, 500);
-    }, mouseleave: function () {
+    }, function () {
         $(this).stop().animate({
             opacity: 1.0,
             marginTop: 0
         }, 500);
-    }});
+    });
     $(".tip").tooltip({
         position: "bottom center",
         effect: "fade",

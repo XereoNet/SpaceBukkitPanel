@@ -20,8 +20,8 @@
 
 <!-- Load Jquery -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js" type="text/javascript"></script>
-<script src="<?php echo $this->webroot; ?>js/script.js"></script>
-<script src="<?php echo $this->webroot; ?>js/selectivizr.min.js"></script>
+<script src="<?php echo $this->webroot; ?>js/script.js"></script> 
+<script src="<?php echo $this->webroot; ?>js/selectivizr.min.js"></script> 
 
 </head>
 
@@ -37,8 +37,8 @@
 </div>
 
 	<div id="header">
-		<div id="container">
-
+		<div id="container"> 
+		
 			<div id="sidebar-widget" class="widget-reset" style="display: none; ">
 			<?php if (perm('global', 'console', $user_perm)): ?>
 
@@ -90,19 +90,19 @@
 						<div class="console-meta">
 
 							<h4><?php echo __('Chat'); ?></h4>
-						    <p>(<?php echo __('Latest on top'); ?>)</p>
+						    <p>(<?php echo __('Latest on top'); ?>)</p>							
 					        <form id="saysomething" class="saysomething" method="post" action="./dash/saysomething">
 						        <input id="say" name="say" type="text" class="chatarea" />
 						        <input type="submit" class="button primary hidden submit" value="<?php echo __('Say it') ?>">
-					        </form>
-
+					        </form>			
+					        				
 						</div>
-
+												
 						<section class="chat">
 						    <div class="col left chatleft">
 						      <div class="chatwindow">
 						        <table class="zebra-striped chat_table">
-						          <tbody class="chat_chat">
+						          <tbody class="chat_chat">                      
 						          </tbody>
 						        </table>
 						      </div>
@@ -111,25 +111,25 @@
 
 						    <div class="col right chatright ">
 						        <table class="zebra-striped chat_table">
-						          <tbody class="chat_list">
+						          <tbody class="chat_list">  
 						            <tr>
 						            </tr>
 						          </tbody>
 						        </table>
 						    </div>
 
-						    <div class="clear"></div>
+						    <div class="clear"></div> 
 
 						  </section>
 					</div>
 					<span class="switcher-arrow"></span>
-				</div>
+				</div>				
 <?php endif; ?>
 
 			</div>
 
 			<!-- Logo -->
-			<div class="hheight">
+			<div class="hheight"> 
 
 				<!-- Logo -->
 				<h1 id="logo">SpaceBukkit</h1>
@@ -139,14 +139,14 @@
 						<span class="dropdown_servers tip"><p><a href="#"><?php echo $current_server_name; ?></a></p></span>
 						<div class="tooltip server_add_to_list" style="max-width: 190px">
 							<ul>
-									<?php
+									<?php 
 
 					//get all servers and display them nicely :)
 
 					if ($is_super == 1) {
 
 					//if superuser
-
+					
 					foreach ($all_servers as $list) {
 
 						$title = $list['Server']['title'];
@@ -156,11 +156,11 @@
 									<li><a href="./global/setserver/$id">$title</a></li>
 END;
 					}
-
+										
 					} else {
 
 					//if not superuser
-
+					
 					foreach ($user_data['AllowedServers'] as $sid => $list) {
 
 						$title = $list['Server']['title'];
@@ -173,40 +173,40 @@ END;
  }
 
 
-								?>
+								?>	
 							</ul>
 						</div>
 
 					</div>
-
+					
 					<!-- Start/Stop, Reload, Message, Logout -->
 
-					<div id="serverbuttons">
+					<div id="serverbuttons"> 
 
 						<?php if (perm('global', 'stopStartServer', $user_perm)): ?>
-						<a href="./global/stop" id="stop" class="bounce tip showOverlay" rel="<?php echo __('Stopping server'); ?>..."></a>
-							<div class="tooltip"><?php echo __('Stop server'); ?></div>
+						<a href="./global/stop" id="stop" class="bounce tip showOverlay" rel="<?php echo __('Stopping server'); ?>..."></a> 
+							<div class="tooltip"><?php echo __('Stop server'); ?></div>		
 						<?php endif; ?>
 
-						<?php if (perm('global', 'reloadServer', $user_perm)): ?>
-						<a href="./global/reload" id="reload" class="bounce tip showOverlay reload" rel="<?php echo __('Reloading server'); ?>..."></a>
+						<?php if (perm('global', 'reloadServer', $user_perm)): ?>						
+						<a href="./global/reload" id="reload" class="bounce tip showOverlay reload" rel="<?php echo __('Reloading server'); ?>..."></a> 
 							<div class="tooltip"><?php echo __('Reload server'); ?></div>
 						<?php endif; ?>
-						<?php if (perm('global', 'restartServer', $user_perm)): ?>
+						<?php if (perm('global', 'restartServer', $user_perm)): ?>						
 
-						<a href="./global/restart" id="restart" class="bounce tip showOverlay restart" rel="<?php echo __('Restarting server'); ?>..."></a>
+						<a href="./global/restart" id="restart" class="bounce tip showOverlay restart" rel="<?php echo __('Restarting server'); ?>..."></a> 
 							<div class="tooltip"><?php echo __('Restart server'); ?></div>
 						<?php endif; ?>
-						<?php if (perm('global', 'forceRestartServer', $user_perm)): ?>
+						<?php if (perm('global', 'forceRestartServer', $user_perm)): ?>						
 
-						<a href="./global/frestart" id="frestart" class="bounce tip showOverlay frestart" rel="<?php echo __('Force-Restarting server'); ?>..."></a>
+						<a href="./global/frestart" id="frestart" class="bounce tip showOverlay frestart" rel="<?php echo __('Force-Restarting server'); ?>..."></a> 
 
-							<div class="tooltip"><?php echo __('Force-Restart server'); ?></div>
+							<div class="tooltip"><?php echo __('Force-Restart server'); ?></div>													
 						<?php endif; ?>
-
+							
 					</div>
 					<div id="userbuttons">
-
+						
 						<span><a href="#" class="account tip"><?php echo $username; ?> </a></span>
 						<div class="tooltip">
 							<ul>
@@ -215,14 +215,14 @@ END;
 								<li><a href="./users/logout"><?php echo __('Logout'); ?></a></li>
 							</ul>
 						</div>
-
+											
 					</div>
 				</div>
 			</div>
 
 
 			<!-- Main Content Start -->
-			<div id="wrapper">
+			<div id="wrapper"> 
 
 			<?php if((isset($spacebukkitbuildready)) && ($user_perm['is_super'] == 1)) {?>
 			<div class="top-message slideDown">
@@ -239,61 +239,61 @@ END;
 
 			<!-- Navigation -->
 			<nav id="mainnav">
-				<ul>
+				<ul> 
 					<?php if (perm('pages', 'dash', $user_perm)): ?>
-			        <li class="<?php if ($this->name == "DashController") { echo "current" ; }  ?> fadein">
+			        <li class="<?php if ($this->name == "DashController") { echo "current" ; }  ?> fadein"> 
 
-			        	<a href="<?php echo $this->Html->url('/dash', true); ?>"> <span class="icon dashboard"></span><?php echo ' '.__('Dashboard').' ' ?></a>
+			        	<a href="<?php echo $this->Html->url('/dash', true); ?>"> <span class="icon dashboard"></span><?php echo ' '.__('Dashboard').' ' ?></a> 
 			        </li>
 			        <?php endif; ?>
 					<?php if (perm('pages', 'users', $user_perm)): ?>
-			        <li class="<?php if ($this->name == "TPlayersController") { echo "current" ; }  ?> fadein">
-			        	<a href="<?php echo $this->Html->url('/tplayers', true); ?>"> <span class="icon users"></span><?php echo ' '.__('Players').' ' ?></a>
+			        <li class="<?php if ($this->name == "TPlayersController") { echo "current" ; }  ?> fadein"> 
+			        	<a href="<?php echo $this->Html->url('/tplayers', true); ?>"> <span class="icon users"></span><?php echo ' '.__('Players').' ' ?></a> 
 			        </li>
 			        <?php endif; ?>
 					<?php if (perm('pages', 'plugins', $user_perm)): ?>
-			        <li class="<?php if ($this->name == "TPluginsController") { echo "current" ; }  ?> fadein">
-			        	<a href="<?php echo $this->Html->url('/tplugins', true); ?>"> <span class="icon plugins"></span><?php echo ' '.__('Plugins').' ' ?></a>
+			        <li class="<?php if ($this->name == "TPluginsController") { echo "current" ; }  ?> fadein"> 
+			        	<a href="<?php echo $this->Html->url('/tplugins', true); ?>"> <span class="icon plugins"></span><?php echo ' '.__('Plugins').' ' ?></a> 
 			        </li>
 			        <?php endif; ?>
 					<?php if (perm('pages', 'worlds', $user_perm)): ?>
-			        <li class="<?php if ($this->name == "TWorldsController") { echo "current" ; }  ?> fadein">
-			        	<a href="<?php echo $this->Html->url('/tworlds', true); ?>"> <span class="icon world"></span><?php echo ' '.__('Worlds').' ' ?></a>
+			        <li class="<?php if ($this->name == "TWorldsController") { echo "current" ; }  ?> fadein"> 
+			        	<a href="<?php echo $this->Html->url('/tworlds', true); ?>"> <span class="icon world"></span><?php echo ' '.__('Worlds').' ' ?></a> 
 			        </li>
 			        <?php endif; ?>
 					<?php if (perm('pages', 'servers', $user_perm)): ?>
-			        <li class="<?php if ($this->name == "TServersController") { echo "current" ; }  ?> fadein">
-			        	<a href="<?php echo $this->Html->url('/tservers', true); ?>"> <span class="icon server"></span><?php echo ' '.__('Server').' ' ?></a>
+			        <li class="<?php if ($this->name == "TServersController") { echo "current" ; }  ?> fadein"> 
+			        	<a href="<?php echo $this->Html->url('/tservers', true); ?>"> <span class="icon server"></span><?php echo ' '.__('Server').' ' ?></a> 
 			        </li>
 			        <?php endif; ?>
 					<?php if (perm('pages', 'backups', $user_perm)): ?>
-			        <li class="<?php if ($this->name == "TBackupsController") { echo "current" ; }  ?> fadein">
-			        	<a href="<?php echo $this->Html->url('/tbackups', true); ?>"> <span class="icon backups"></span><?php echo ' '.__('Backups').' ' ?></a>
+			        <li class="<?php if ($this->name == "TBackupsController") { echo "current" ; }  ?> fadein"> 
+			        	<a href="<?php echo $this->Html->url('/tbackups', true); ?>"> <span class="icon backups"></span><?php echo ' '.__('Backups').' ' ?></a> 
 			        </li>
 			        <?php endif; ?>
 			        <?php if ($is_super == 1) { ?>
-			        <li class="<?php if ($this->name == "Tsettings") { echo "current" ; }  ?> fadein floatright">
-			        	<a href="<?php echo $this->Html->url('/tsettings', true); ?>"> <span class="icon settings"></span><?php echo ' '.__('Settings').' ' ?></a>
+			        <li class="<?php if ($this->name == "Tsettings") { echo "current" ; }  ?> fadein floatright"> 
+			        	<a href="<?php echo $this->Html->url('/tsettings', true); ?>"> <span class="icon settings"></span><?php echo ' '.__('Settings').' ' ?></a> 
 			        </li>
 			        <?php } ?>
 				</ul>
 			</nav>
-			<!-- End Navigation -->
-
+			<!-- End Navigation --> 
+			
 			<?php echo $content_for_layout ?>
 			<div class="pushfooter"></div>
 
 			</div>
-			<!-- End #wrapper -->
+			<!-- End #wrapper --> 
 
 			<?php echo $this->element('footer'); ?>
 
 		</div>
-		<!-- End #container -->
+		<!-- End #container --> 
 
 	<!-- Import JS -->
 	<?php echo $this->element('js'); ?>
-
+	
 	<!--[if IE 6]>
 		<script type="text/javascript" src="<?php echo $this->webroot; ?>js/jquery.nyroModal-ie6.min.js"></script>
 	<![endif]-->
@@ -315,8 +315,8 @@ $(document).ready(function() {
 		if ($('.console-button').hasClass('active')) {
 
 		var console_param = $(console_wrapper).attr("rel");
-		var console_url = './global/getConsole/'+console_param;
-
+		var console_url = './global/getConsole/'+console_param;	 
+			
 		$.ajax({
 
 			  url: console_url,
@@ -343,13 +343,13 @@ $(document).ready(function() {
 			  }});
 
 		}
-		else
+		else 
 		{
 		setTimeout(function() {
 		    loadConsole()
 		  }, 1000);
 		}
-	}
+	} 
 
 
 	loadConsole();
@@ -358,8 +358,8 @@ $(document).ready(function() {
   $(".saysomething").submit(function(event) {
 
     /* stop form from submitting normally */
-    event.preventDefault();
-
+    event.preventDefault(); 
+        
     /* get some values from elements on the page: */
     var $form = $(this),
         term = $form.find( 'input[name="say"]' ).val(),
@@ -368,7 +368,7 @@ $(document).ready(function() {
     /* Send the data using post and put the results in a div */
     $.post(url, {say: term},
       function( data ) {
-
+        
       }
     );
     $(".chatarea").val('');
@@ -379,8 +379,8 @@ $(document).ready(function() {
   $(".runcommand").submit(function(event) {
 
     /* stop form from submitting normally */
-    event.preventDefault();
-
+    event.preventDefault(); 
+        
     /* get some values from elements on the page: */
     var $form = $(this),
         term = $form.find( 'input[name="command"]' ).val(),
@@ -390,12 +390,12 @@ $(document).ready(function() {
     $.post(url, {command: term},
       function( data ) {
       	message = data;
-        notifications.show({msg:data, icon:'../app/webroot/img/win.png'});
+        notifications.show({msg:data, icon:'img/win.png'});
       }
     );
 		$('.commandarea').val('');
 
-  });
+  }); 
 
   doAndRefreshChat('.chat_chat', './dash/get_chat_new', '<?php echo $this->Session->read("Sbvars.2"); ?>');
 
@@ -404,7 +404,7 @@ $(document).ready(function() {
 });
 
 </script>
-<?php
+<?php 
 if ($gototab > 1) {
 ?>
 <script>
@@ -419,21 +419,21 @@ $('nav#smalltabs ul li:nth-child(<?php echo $gototab ?>) a').trigger('click');
 });
 </script>
 
-<?php
+<?php 
 }
-?>
-<?php
+?>       
+<?php 
 if (isset($doodle)) {
 ?>
 <script>
 $(document).ready(function() {
 var doodle = "url(<?php echo $doodle; ?>)";
-$("#logo").css("background-image", doodle);
+$("#logo").css("background-image", doodle);  
 
 });
 </script>
 
-<?php
+<?php 
 }
 ?>
 
