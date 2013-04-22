@@ -1,9 +1,12 @@
-# SpaceBukkit - Web administration the awesome way!
+# SpaceBukkit 1.2.1 - Web administration the awesome way!
 A powerful yet simple web panel for administering your Bukkit Minecraft servers with ease.
 http://spacebukkit.xereo.net
 
-## Description
-SpaceBukkit is a project developed over the last 6 months aiming to bring an advanced and powerful web administration framework to Bukkit. What makes it unique is, on one hand, it's graphical user interface, and on the other hand some nifty features enlisted just below.
+## Update
+SpaceCP has been announced, a new, amazing administration panel that does everything except breakfast. Signup for beta on [http://spacecp.xereo.net](http://spacecp.xereo.net).
+
+## Update
+SpaceBukkit is a project developed aiming to bring an advanced and powerful web administration framework to Bukkit. What makes it unique is, on one hand, it's graphical user interface, and on the other hand some nifty features enlisted just below.
 
 ## Features
 - General
@@ -11,9 +14,10 @@ SpaceBukkit is a project developed over the last 6 months aiming to bring an adv
     * Non lethal doses of awesomeness
     * Multiple Servers
     * Multi-user access with role setting
-    * Theme Support for extra commiseration
+    * Theming Support
     * Per server - per user role settings
     * Console access
+    * Chat access
 - Dashboard
     * Pretty and quick statistics about your server
     * Activity feed - who did what, and when
@@ -24,17 +28,17 @@ SpaceBukkit is a project developed over the last 6 months aiming to bring an adv
     * Bans
 - Plugins
     * Plugin management
-    * Config editor
+    * Advanced Config editor
     * Installing and Deinstalling
     * Updating and disabling
-    * Bukget integration
+    * Bukget integration (Plugin "app" store)
 - Worlds
     * World management
     * Multiworld support
     * Backups
     * Chunkster
-    * MapAutoTrim
-- Servers
+    * Dynmap
+- Server
     * Craftbukkit one-click installing and updating
     * Server Properties saving
     * Schedules
