@@ -14,7 +14,7 @@ class SpaceBukkitAPI {
 		$this->salt = $salt;
 	}
 
-	public function call($method, array $args = array(), $isRTK = false) {
+	public function call($method, array $args = array(), $isRTK = false, $escape = true) {
         if ($isRTK)
         	$port = $this->spacebukkitrtk_port;
         else
@@ -32,18 +32,22 @@ class SpaceBukkitAPI {
 
 			} else {
 
-			$options = array(
-	            'odd_spaces' => true,
-	            'remove_html' => false,
-	            'encode' => true,
-	            'dollar' => true,
-	            'carriage' => false,
-	            'unicode' => true,
-	            'escape' => false,
-	            'backslash' => true
-	        );
+				$options = array(
+		            'odd_spaces' => true,
+		            'remove_html' => false,
+		            'encode' => true,
+		            'dollar' => true,
+		            'carriage' => false,
+		            'unicode' => true,
+		            'escape' => false,
+		            'backslash' => true
+		        );
 
-			return Sanitize::clean(json_decode($value, true), $options);
+				if($escape) {
+					return Sanitize::clean(json_decode($value, true), $options);
+				} else {
+					return json_decode($value, true);
+				}
 
 			}
 		}

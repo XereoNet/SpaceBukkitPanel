@@ -408,7 +408,8 @@ END;
 		foreach ($files as $file) {
 
 			$args2 = array($path.'/'.$file);
-			$content[$file]["content"] = $api->call("getFileContent", $args2, true);
+			$content[$file]["content"] = $api->call("getFileContent", $args2, true, false);
+            $this->log($content[$file]["content"]);
             $content[$file]["file"] = $file;
 
 		}
@@ -571,7 +572,7 @@ END;
 
         $args = array($p);
 
-        return($api->call('getFileContent', $args, true));
+        return($api->call('getFileContent', $args, true, false));
 
     }
 
