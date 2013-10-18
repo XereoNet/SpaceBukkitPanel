@@ -444,7 +444,7 @@ END;
             $method = $data['method'];
 
             $args = array($path, $content);
-            $api->call("setFileContent", $args, true);
+            $api->call("setFileContent", $args, true, false);
 
             $args = array();
 
