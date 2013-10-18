@@ -19,10 +19,10 @@ class SpaceBukkitAPI {
         	$port = $this->spacebukkitrtk_port;
         else
         	$port = $this->spacebukkit_port;
-        	if ($method == 'setFileContents') {
-        	    $args = json_encode($args);
-        	} else {
+        	if ($escape) {
         	    $args = rawurlencode(json_encode($args));
+        	} else {
+        	    $args = json_encode($args);
         	}
 		$url = sprintf("http://%s:%s/call?method=%s&args=%s&key=%s", $this->hostname, $port, rawurlencode($method), $args, hash('sha256', $method . $this->salt));
 
