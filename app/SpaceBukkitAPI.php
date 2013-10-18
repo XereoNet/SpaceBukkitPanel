@@ -19,7 +19,12 @@ class SpaceBukkitAPI {
         	$port = $this->spacebukkitrtk_port;
         else
         	$port = $this->spacebukkit_port;
-		$url = sprintf("http://%s:%s/call?method=%s&args=%s&key=%s", $this->hostname, $port, rawurlencode($method), rawurlencode(json_encode($args)), hash('sha256', $method . $this->salt));
+        	if ($method == 'setFileContents') {
+        	    $args = json_encode($args);
+        	} else {
+        	    $args = rawurlencode(json_encode($args));
+        	}
+		$url = sprintf("http://%s:%s/call?method=%s&args=%s&key=%s", $this->hostname, $port, rawurlencode($method), $args, hash('sha256', $method . $this->salt));
 
 		if ($method == "downloadWorld")
 			return $url;
