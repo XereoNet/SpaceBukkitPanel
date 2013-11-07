@@ -1,10 +1,1 @@
-
-$.fn.dataTableExt.oApi.fnReloadAjax=function(oSettings,sNewSource,fnCallback,bStandingRedraw)
-{if(typeof sNewSource!='undefined'&&sNewSource!=null)
-{oSettings.sAjaxSource=sNewSource;}
-this.oApi._fnProcessingDisplay(oSettings,true);var that=this;var iStart=oSettings._iDisplayStart;oSettings.fnServerData(oSettings.sAjaxSource,[],function(json){that.oApi._fnClearTable(oSettings);var aData=(oSettings.sAjaxDataProp!=="")?that.oApi._fnGetObjectDataFn(oSettings.sAjaxDataProp)(json):json;for(var i=0;i<json.aaData.length;i++)
-{that.oApi._fnAddData(oSettings,json.aaData[i]);}
-oSettings.aiDisplay=oSettings.aiDisplayMaster.slice();that.fnDraw();if(typeof bStandingRedraw!='undefined'&&bStandingRedraw===true)
-{oSettings._iDisplayStart=iStart;that.fnDraw(false);}
-that.oApi._fnProcessingDisplay(oSettings,false);if(typeof fnCallback=='function'&&fnCallback!=null)
-{fnCallback(oSettings);}},oSettings);}
+$.fn.dataTableExt.oApi.fnReloadAjax=function(a,b,c,d){"undefined"!=typeof b&&null!=b&&(a.sAjaxSource=b),this.oApi._fnProcessingDisplay(a,!0);var e=this,f=a._iDisplayStart;a.fnServerData(a.sAjaxSource,[],function(b){e.oApi._fnClearTable(a);for(var g=(""!==a.sAjaxDataProp?e.oApi._fnGetObjectDataFn(a.sAjaxDataProp)(b):b,0);g<b.aaData.length;g++)e.oApi._fnAddData(a,b.aaData[g]);a.aiDisplay=a.aiDisplayMaster.slice(),e.fnDraw(),"undefined"!=typeof d&&d===!0&&(a._iDisplayStart=f,e.fnDraw(!1)),e.oApi._fnProcessingDisplay(a,!1),"function"==typeof c&&null!=c&&c(a)},a)};
