@@ -1,0 +1,350 @@
+/**
+
+ * This is Spacebukkit's default theme css file
+
+ *
+
+ * Use it to as a template to make your own themes.
+
+ *
+
+ * 
+
+ *
+
+ *
+
+ * @copyright     XereoNet LLc. (http://xereo.net);
+
+ *
+
+ *
+
+ */
+
+
+
+
+/*Define the overall background image and color */
+
+#header
+
+{
+
+	background: #000000 url(../img/header.jpg) no-repeat top center;
+
+}
+
+
+/*Define background images and colors */
+
+#wrapper
+
+{
+	min-height: 250px;
+}
+
+
+#upperbar
+
+{
+
+	background: url(../img/upperbg.png) top repeat-x #e1e1e1;
+
+	border-bottom-left-radius: 7px;
+
+	border-bottom-right-radius: 7px;
+
+	padding: 0 5px 10px 15px;
+
+	text-decoration: none;
+
+	float: right;
+
+	position: relative;
+
+}
+
+.panel 
+
+{
+
+background: url(../img/consolebg.png) repeat-x #E1E1E1;
+
+}
+
+.dashboard_content {
+    
+    background: url(../img/dash_bg.png) no-repeat top center #fefefe;
+}
+
+a.trigger{
+    
+	background: #111 url(../img/console.png) 45% 55% no-repeat;
+}
+
+a.trigger:hover, a.active.trigger{
+	background: #000 url(../img/console.png) 45% 55% no-repeat;
+}
+
+
+/*Define the logo */
+
+
+
+.hheight #logo
+
+{
+
+	background: url(../img/logo.png) no-repeat center;
+
+	float: left;
+
+	height: 100px;
+
+	text-indent: -9999px;
+
+	width: 238px;
+
+	margin: 0 50px 0 0;
+
+}
+
+
+
+/*Define colors and icons in the main navigation */
+
+nav#mainnav ul li.current a
+
+{
+
+	color: #3DBABA;
+
+}
+
+
+.icon.dashboard
+
+{
+
+	background-image: url(../img/dashboard.png)
+
+}
+
+
+
+.icon.files
+
+{
+
+	background-image: url(../img/files.png)
+
+}
+
+
+
+.icon.server
+
+{
+
+	background-image: url(../img/server.png)
+
+}
+
+
+
+.icon.world
+
+{
+
+	background-image: url(../img/worlds.png)
+
+}
+
+
+
+.icon.users
+
+{
+
+	background-image: url(../img/users.png)
+
+}
+
+
+
+.icon.settings
+
+{
+
+	background-image: url(../img/setting.png)
+
+}
+
+
+
+.icon.plugins
+
+{
+
+	background-image: url(../img/plugins.png)
+
+}
+
+
+
+.icon.debug
+{
+
+	background-image: url(../img/debug.png)
+
+}
+
+.icon.permissions
+{
+
+	background-image: url(../img/permissions.png)
+
+}
+
+.icon.files
+{
+
+	background-image: url(../img/files.png)
+
+}
+
+.icon.backups
+{
+
+	background-image: url(../img/backups.png)
+
+}
+
+.icon.timeline
+{
+
+	background-image: url(../img/timeline.png)
+
+}
+
+
+.badge
+
+{
+
+	background: url(../img/badge.png) no-repeat;
+
+	color: #fff;
+
+	display: block;
+
+	font-family: "Tahoma";
+
+	font-size: 11px;
+
+	height: 25px;
+
+	padding-top: 5px;
+
+	position: absolute;
+
+	top: 10px;
+
+	left: 50px;
+
+	width: 25px;
+
+}
+
+
+/*Define the icons in the upper section */
+
+
+
+#start
+
+{
+
+	background: url(../img/start.png) no-repeat center;
+
+	float: left;
+
+}
+
+
+
+#stop
+
+{
+
+	background: url(../img/stop.png) no-repeat center;
+
+	float: left;
+
+}
+
+
+
+#reload
+
+{
+
+	background: url(../img/reload.png) no-repeat center;
+
+	float: left;
+
+}
+
+#restart
+
+{
+
+	background: url(../img/restart.png) no-repeat center;
+
+	float: left;
+
+}
+
+
+#fstop
+
+{
+
+	background: url(../img/fstop.png) no-repeat center;
+
+	float: left;
+
+}
+
+
+#frestart
+
+{
+
+	background: url(../img/frestart.png) no-repeat center;
+
+	float: left;
+
+}
+
+#vanilla
+
+{
+
+	background: url(../img/vanilla.png) no-repeat center;
+
+	float: left;
+
+}
+
+
+#logout
+
+{
+
+	background: url(../img/logout.png) no-repeat center;
+
+	float: right;
+
+}

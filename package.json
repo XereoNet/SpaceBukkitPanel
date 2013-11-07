@@ -1,0 +1,22 @@
+{
+  "name": "SpaceBukkitPanel",
+  "version": "1.2.1",
+  "description": "A powerful yet simple web panel for administering your Bukkit Minecraft servers with ease.",
+  "main": "Gruntfile.js",
+  "dependencies": {
+    "grunt": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-contrib-cssmin": "latest",
+    "grunt-contrib-copy": "latest",
+    "grunt-contrib-clean": "latest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SpaceDev/SpaceBukkitPanel"
+  },
+  "author": "SpaceDev Team",
+  "license": "CC-BY-NC-SA-3.0",
+  "bugs": {
+    "url": "https://github.com/SpaceDev/SpaceBukkitPanelissues"
+  }
+}
